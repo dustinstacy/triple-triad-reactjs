@@ -1,12 +1,16 @@
 import { Routes, Route } from 'react-router-dom'
 import { LandingPage } from './pages'
-import './App.scss'
+import { NavBar, Footer } from './components'
 
 function App() {
 	return (
-		<Routes>
-			<Route path='/' element={<LandingPage />} />
-		</Routes>
+		<div className='app'>
+			<NavBar />
+			<Routes>
+				<Route path='/' element={<LandingPage />} />
+			</Routes>
+			<Footer />
+		</div>
 	)
 }
 

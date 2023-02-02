@@ -1,10 +1,123 @@
+@mixin main-gradient {
+	background: var(--primary-color);
+	background: -webkit-linear-gradient(
+		45deg,
+		var(--primary-color),
+		var(--secondary-color)
+	);
+	background: linear-gradient(
+		45deg,
+		var(--primary-color),
+		var(--secondary-color)
+	);
+}
+
+@mixin skew {
+	transform: skew(-20deg);
+}
+
+@mixin unskew {
+	transform: skew(20deg);
+}
+
+/*-------------Nav-------------*/
 .navbar {
 	position: sticky;
 	top: 0;
 	left: 0;
 	right: 0;
 	height: var(--navbar-height);
-	background-color: white;
-	color: black;
-	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--white-color);
+	border-bottom: 3px solid var(--tertiary-color);
+	line-height: 4em;
+	overflow: hidden;
+
+	&__container {
+		display: flex;
+	}
+
+	&__link {
+		@include skew;
+		padding: 0 1em;
+		font-size: 2rem;
+		line-height: 0.5rem;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+
+		&.active {
+			@include main-gradient;
+		}
+
+		p {
+			@include unskew;
+		}
+
+		&:hover:not(.active) {
+			color: var(--gray-color);
+			background: var(--white-color);
+			background: linear-gradient(
+				45deg,
+				var(--white-color),
+				var(--secondary-color)
+			);
+		}
+	}
+
+	&__logo {
+		@include main-gradient;
+		@include skew;
+		position: relative;
+		right: 1em;
+
+		img {
+			@include unskew;
+			height: var(--navbar-height);
+			width: 10rem;
+			padding: 0 3rem;
+			cursor: pointer;
+		}
+
+		&:hover {
+			animation-name: navbar-hover;
+			animation-duration: 0.3s;
+			animation-fill-mode: forwards;
+			animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
+		}
+	}
+}
+
+.login {
+	@include main-gradient;
+	@include skew;
+	position: relative;
+	left: 0.5em;
+	color: var(--white-color);
+	font-size: 1.75rem;
+	line-height: 0.75rem;
+	cursor: pointer;
+
+	p {
+		@include unskew;
+		padding: 0 3rem;
+	}
+
+	&:hover {
+		animation-name: navbar-hover;
+		animation-duration: 0.3s;
+		animation-fill-mode: forwards;
+		animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
+	}
+}
+
+@keyframes navbar-hover {
+	20% {
+		padding-right: 0em;
+	}
+	100% {
+		padding-right: 2em;
+	}
 }

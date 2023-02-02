@@ -1,11 +1,18 @@
 .landing {
 	align-items: center;
 	justify-content: center;
+	background-image: url('../../assets/forest.png');
+	background-position: center;
+	background-size: cover;
 
 	.content {
-		height: 600px;
+		height: 800px;
 		width: 600px;
-		background-color: white;
-		color: black;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		background-color: rgba(0, 0, 0, 0.75);
+		border-radius: 1rem;
 	}
 }

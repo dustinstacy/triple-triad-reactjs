@@ -1,0 +1,87 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.cta {
+	height: 1.5rem;
+	display: flex;
+	align-items: center;
+	padding: 10px 20px;
+	background: var(--primary-color);
+	color: var(--white-color);
+	font-size: 20px;
+	text-decoration: none;
+	box-shadow: 6px 6px 0 var(--black-color);
+	transition: 1s;
+	transform: skewX(-20deg);
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover {
+		box-shadow: 10px 10px 0 var(--accent-color);
+		transition: 0.5s;
+
+		span:nth-child(2) {
+			margin-right: 15px;
+			transition: 0.5s;
+		}
+	}
+
+	span {
+		transform: skewX(15deg);
+	}
+
+	span:nth-child(2) {
+		position: relative;
+		top: 12%;
+		margin-right: 0px;
+		margin-left: 20px;
+		width: 10px;
+		transition: 0.5s;
+	}
+}
+
+/**************SVG****************/
+
+path.one {
+	transition: 0.4s;
+	transform: translateX(-60%);
+}
+
+path.two {
+	transition: 0.5s;
+	transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+	animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+	transform: translateX(0%);
+	animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+	transform: translateX(0%);
+	animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+	0% {
+		fill: white;
+	}
+	50% {
+		fill: var(--secondary-color);
+	}
+	100% {
+		fill: white;
+	}
+}

@@ -1,11 +1,14 @@
 import React from 'react'
+import { Button } from '../../components'
 import './LandingPage.scss'
 
 const LandingPage = () => {
 	return (
 		<div className='landing page'>
-			<h1>Landing Page</h1>
-			<div className='content'>Content</div>
+			<div className='content'>
+				<div></div>
+				<Button className='button' label='Create Account' />
+			</div>
 		</div>
 	)
 }

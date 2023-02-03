@@ -1,5 +1,5 @@
 import React from 'react'
-import { logo } from '../../assets'
+import { logo, swords, book, cottage } from '../../assets'
 import './NavBar.scss'
 
 const NavBar = () => {
@@ -9,17 +9,23 @@ const NavBar = () => {
 				<span className='navbar__logo'>
 					<img src={logo} alt='logo' className='un-skew' />
 				</span>
+				<a className='navbar__link'>
+					<p>
+						<img src={cottage} alt='home' />
+					</p>
+				</a>
+				<a className='navbar__link active'>
+					<p>
+						<img src={swords} alt='battle' />
+					</p>
+				</a>
+				<a className='navbar__link'>
+					<p>
+						<img src={book} alt='library' />
+					</p>
+				</a>
 			</div>
 			<div className='navbar__container'>
-				<a className='navbar__link active'>
-					<p>⚔️</p>
-				</a>
-				<a className='navbar__link'>
-					<p>🛡️</p>
-				</a>
-				<a className='navbar__link'>
-					<p>🎴</p>
-				</a>
 				<a className='login'>
 					<p>
 						Login <span>{'>'}</span>

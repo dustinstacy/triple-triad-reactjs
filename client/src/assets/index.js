@@ -1,8 +1,7 @@
-import logo from './logo.png'
-import cliffs from './cliffs.png'
+import book from './book.png'
+import cottage from './cottage.png'
 import forest from './forest.png'
-import castle from './castle.png'
-import tavern from './tavern.png'
-import river from './river.png'
+import logo from './logo.png'
+import swords from './swords.png'
 
-export { logo, cliffs, forest, castle, tavern, river }
+export { book, cottage, forest, logo, swords }

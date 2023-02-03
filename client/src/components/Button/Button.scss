@@ -1,14 +1,8 @@
-.wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-}
-
-.cta {
+.button {
 	height: 1.5rem;
 	display: flex;
 	align-items: center;
+	margin-bottom: -1rem;
 	padding: 10px 20px;
 	background: var(--primary-color);
 	color: var(--white-color);
@@ -17,20 +11,7 @@
 	box-shadow: 6px 6px 0 var(--black-color);
 	transition: 1s;
 	transform: skewX(-20deg);
-
-	&:focus {
-		outline: none;
-	}
-
-	&:hover {
-		box-shadow: 10px 10px 0 var(--accent-color);
-		transition: 0.5s;
-
-		span:nth-child(2) {
-			margin-right: 15px;
-			transition: 0.5s;
-		}
-	}
+	cursor: pointer;
 
 	span {
 		transform: skewX(15deg);
@@ -43,6 +24,22 @@
 		margin-left: 20px;
 		width: 10px;
 		transition: 0.5s;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover {
+		color: var(--secondary-color);
+		text-shadow: 1px 1px 5px var(--accent2-color);
+		box-shadow: 10px 10px 0 var(--secondary-color);
+		transition: 0.5s;
+
+		span:nth-child(2) {
+			margin-right: 15px;
+			transition: 0.5s;
+		}
 	}
 }
 

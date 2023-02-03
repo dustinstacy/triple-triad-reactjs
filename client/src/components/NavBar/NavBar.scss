@@ -3,13 +3,18 @@
 	background: -webkit-linear-gradient(
 		45deg,
 		var(--primary-color),
-		var(--secondary-color)
+		var(--accent-color)
 	);
-	background: linear-gradient(
-		45deg,
-		var(--primary-color),
-		var(--secondary-color)
-	);
+	background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+}
+
+@mixin hover-effect {
+	&:hover {
+		animation-name: navbar-hover;
+		animation-duration: 0.3s;
+		animation-fill-mode: forwards;
+		animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
+	}
 }
 
 @mixin skew {
@@ -29,10 +34,12 @@
 	height: var(--navbar-height);
 	display: flex;
 	justify-content: space-between;
-	background-color: var(--white-color);
-	border-bottom: 3px solid var(--tertiary-color);
+	background: #0f2027; /* fallback for old browsers */
+	background: linear-gradient(to top, #2c5364, #203a43, #0f2027);
+	border-bottom: 3px solid var(--accent-color);
 	line-height: 4em;
 	overflow: hidden;
+	z-index: 1;
 
 	&__container {
 		display: flex;
@@ -40,9 +47,10 @@
 
 	&__link {
 		@include skew;
+		display: flex;
+		align-items: center;
 		padding: 0 1em;
 		font-size: 2rem;
-		line-height: 0.5rem;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;
@@ -50,10 +58,18 @@
 
 		&.active {
 			@include main-gradient;
+			border-right: 1px solid var(--secondary-color);
+			border-left: 1px solid var(--secondary-color);
+			opacity: 0.8;
 		}
 
 		p {
 			@include unskew;
+			display: flex;
+
+			img {
+				height: 42px;
+			}
 		}
 
 		&:hover:not(.active) {
@@ -61,7 +77,7 @@
 			background: var(--white-color);
 			background: linear-gradient(
 				45deg,
-				var(--white-color),
+				var(--tertiary-color),
 				var(--secondary-color)
 			);
 		}
@@ -72,32 +88,31 @@
 		@include skew;
 		position: relative;
 		right: 1em;
+		display: flex;
+		align-items: center;
+		border-right: 1px solid var(--secondary-color);
 
 		img {
 			@include unskew;
-			height: var(--navbar-height);
-			width: 10rem;
-			padding: 0 3rem;
+			height: 85%;
+			margin: 4rem;
+			border-radius: 1rem;
 			cursor: pointer;
-		}
-
-		&:hover {
-			animation-name: navbar-hover;
-			animation-duration: 0.3s;
-			animation-fill-mode: forwards;
-			animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
 		}
 	}
 }
 
 .login {
+	@include hover-effect;
 	@include main-gradient;
 	@include skew;
 	position: relative;
 	left: 0.5em;
+	border-left: 1px solid var(--secondary-color);
 	color: var(--white-color);
 	font-size: 1.75rem;
 	line-height: 0.75rem;
+	white-space: nowrap;
 	cursor: pointer;
 
 	p {
@@ -106,10 +121,8 @@
 	}
 
 	&:hover {
-		animation-name: navbar-hover;
-		animation-duration: 0.3s;
-		animation-fill-mode: forwards;
-		animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
+		color: var(--secondary-color);
+		text-shadow: 1px 1px 5px var(--accent2-color);
 	}
 }
 

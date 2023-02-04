@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { LandingPage } from './pages'
+import { LandingPage, Home } from './pages'
 import { NavBar, Footer } from './components'
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
 				<Route path='/' element={<LandingPage />} />
 				<Route path='/login' element={<LandingPage login />} />
 				<Route path='/register' element={<LandingPage register />} />
+				<Route path='/home' element={<Home />} />
 			</Routes>
 			<Footer />
 		</div>

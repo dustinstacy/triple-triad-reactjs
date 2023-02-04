@@ -24,18 +24,33 @@
 			rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
 			rgba(0, 0, 0, 0.09) 0px 32px 16px;
 
-		.logo__large {
-			width: 100%;
-			margin: 2em 0;
+		.logo {
+			&__large {
+				width: 100%;
+				margin: 2em 0;
+			}
+
+			&__medium {
+				width: 70%;
+				margin: 1rem 0;
+			}
 		}
 
-		form {
+		.form {
 			width: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
 			margin-bottom: 2rem;
+
+			&__footer {
+				color: var(--white-color);
+
+				a {
+					margin-left: 6px;
+				}
+			}
 		}
 	}
 }

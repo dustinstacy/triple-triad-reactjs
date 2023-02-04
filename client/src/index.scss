@@ -46,3 +46,11 @@ body {
 	flex: 1;
 	flex-direction: column;
 }
+
+a {
+	color: var(--secondary-color);
+
+	&:hover {
+		color: var(--primary-color);
+	}
+}

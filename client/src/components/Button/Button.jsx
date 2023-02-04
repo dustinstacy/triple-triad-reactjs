@@ -1,9 +1,23 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Button.scss'
 
-const Button = ({ label, handleClick }) => {
+const Button = ({ label, type, path }) => {
+	const navigate = useNavigate()
+
+	const handleClick = (e) => {
+		e.preventDefault()
+
+		if (type === 'link') {
+			navigate(`/${path}`)
+		}
+
+		if (type === 'submit') {
+		}
+	}
+
 	return (
-		<div className='button' handleClick={handleClick}>
+		<div className='button' onClick={(e) => handleClick(e)}>
 			<span>{label}</span>
 			<span>
 				<svg

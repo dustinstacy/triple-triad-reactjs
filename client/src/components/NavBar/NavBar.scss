@@ -43,6 +43,10 @@
 
 	&__container {
 		display: flex;
+
+		.disabled {
+			opacity: 0.3;
+		}
 	}
 
 	&__link {
@@ -99,6 +103,10 @@
 			border-radius: 1rem;
 			cursor: pointer;
 		}
+	}
+
+	a {
+		text-decoration: none;
 	}
 }
 

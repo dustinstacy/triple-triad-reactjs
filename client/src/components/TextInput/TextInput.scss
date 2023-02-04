@@ -1,15 +1,23 @@
 .input {
 	width: 60%;
-	margin: 15px 5px;
+	margin: 20px 5px;
 	position: relative;
 
 	/* necessary to give position: relative to parent. */
 	input {
-		font: 15px/24px 'Lato', Arial, sans-serif;
-		color: var(--white-color);
 		width: 100%;
 		box-sizing: border-box;
+		font: 15px/24px 'Lato', Arial, sans-serif;
+		color: var(--white-color);
 		letter-spacing: 1px;
+	}
+
+	svg {
+		position: absolute;
+		right: 1rem;
+		top: 0.75rem;
+		color: var(--secondary-color);
+		font-size: 1.2rem;
 	}
 
 	:focus {

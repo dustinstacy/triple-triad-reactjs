@@ -5,8 +5,7 @@
 	background-position: center;
 	background-size: cover;
 
-	.content {
-		position: relative;
+	.auth {
 		height: 100%;
 		width: 600px;
 		display: flex;
@@ -36,20 +35,22 @@
 			}
 		}
 
-		.form {
+		&__form {
 			width: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
 			margin-bottom: 2rem;
+		}
 
-			&__footer {
-				color: var(--white-color);
+		&__footer {
+			margin-top: 20px;
+			color: var(--white-color);
 
-				a {
-					margin-left: 6px;
-				}
+			a {
+				margin-left: 6px;
+				text-decoration: none;
 			}
 		}
 	}

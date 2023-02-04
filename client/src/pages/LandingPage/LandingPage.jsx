@@ -45,12 +45,7 @@ const LandingPage = ({ login, register }) => {
 			{!login && !register && (
 				<div className='auth'>
 					<img className='logo__large' src={logo} alt='logo' />
-					<Button
-						id='button'
-						type='link'
-						path='register'
-						label='Create Account'
-					/>
+					<Button type='link' path='register' label='Create Account' />
 				</div>
 			)}
 

@@ -8,6 +8,8 @@ function App() {
 			<NavBar />
 			<Routes>
 				<Route path='/' element={<LandingPage />} />
+				<Route path='/login' element={<LandingPage login />} />
+				<Route path='/register' element={<LandingPage register />} />
 			</Routes>
 			<Footer />
 		</div>

@@ -37,21 +37,15 @@ const NavBar = () => {
 					</a>
 				) : pathname === '/' ? (
 					<NavLink to='/login' className='login'>
-						<p>
-							Login <span>{'>'}</span>
-						</p>
+						<p>Login</p>
 					</NavLink>
 				) : pathname === '/register' ? (
 					<NavLink to='/login' className='login'>
-						<p>
-							Login <span>{'>'}</span>
-						</p>
+						<p>Login</p>
 					</NavLink>
 				) : (
 					<NavLink to='/register' className='login'>
-						<p>
-							Register <span>{'>'}</span>
-						</p>
+						<p>Register</p>
 					</NavLink>
 				)}
 			</div>

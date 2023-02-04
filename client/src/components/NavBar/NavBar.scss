@@ -76,7 +76,7 @@
 			}
 		}
 
-		&:hover:not(.active) {
+		&:hover:not(.active, .disabled) {
 			color: var(--gray-color);
 			background: var(--white-color);
 			background: linear-gradient(

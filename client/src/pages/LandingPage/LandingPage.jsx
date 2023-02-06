@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-
+import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { logo } from '../../assets'
 import { Button, TextInput } from '../../components'
 import './LandingPage.scss'
+import { useEffect } from 'react'
 
 const LandingPage = ({ login, register }) => {
-	const { user } = useGlobalContext()
+	const { user, getCurrentUser } = useGlobalContext()
 	const navigate = useNavigate()
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
@@ -17,6 +18,12 @@ const LandingPage = ({ login, register }) => {
 	const [confirmpasswordVisible, setConfirmpasswordVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [errors, setErrors] = useState({})
+
+	useEffect(() => {
+		if (user) {
+			navigate('/home')
+		}
+	}, [user])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -37,7 +44,24 @@ const LandingPage = ({ login, register }) => {
 				password,
 			}
 		}
-		console.log(data)
+
+		axios
+			.post(register ? '/api/auth/register' : '/api/auth/login', data)
+			.then(() => {
+				getCurrentUser()
+			})
+			.catch((error) => {
+				setLoading(false)
+				if (error?.response?.data) {
+					setErrors(error.response.data)
+				}
+			})
+	}
+
+	const handleKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			handleSubmit(e)
+		}
 	}
 
 	return (
@@ -52,7 +76,7 @@ const LandingPage = ({ login, register }) => {
 			{(register || login) && (
 				<div className='auth'>
 					<img className='logo__medium' src={logo} alt='logo' />
-					<form className='auth__form'>
+					<form className='auth__form' onKeyDown={(e) => handleKeyDown(e)}>
 						<TextInput
 							label='Username'
 							value={username}
@@ -111,6 +135,7 @@ const LandingPage = ({ login, register }) => {
 						type='submit'
 						handleSubmit={handleSubmit}
 						disabled={loading}
+						onKeyDown
 					/>
 				</div>
 			)}

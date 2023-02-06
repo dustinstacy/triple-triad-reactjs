@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Button.scss'
 
-const Button = ({ label, type, path, handleSubmit, disabled }) => {
+const Button = ({ label, type, path, handleSubmit, onKeyDown, disabled }) => {
 	const navigate = useNavigate()
 
 	const handleClick = (e) => {

@@ -10,20 +10,13 @@ const NavBar = () => {
 	const { user, logout, getCurrentUser } = useGlobalContext()
 	const { pathname } = useLocation()
 
-	useEffect(() => {
-		if (!user) {
-			navigate('/')
-		}
-		console.log('ran')
-	}, [user])
-
 	return (
 		<div className='navbar'>
 			<div className='navbar__container'>
-				<NavLink to={user ? '/home' : '/'} className='navbar__logo'>
+				<NavLink to='/' className='navbar__logo'>
 					<img src={logo} alt='logo' className='un-skew' />
 				</NavLink>
-				<NavLink to={user ? '/home' : '/'} className='navbar__link'>
+				<NavLink to='/' className='navbar__link'>
 					<p>
 						<img src={cottage} alt='home' />
 					</p>

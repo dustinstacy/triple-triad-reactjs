@@ -44,6 +44,11 @@
 			margin-bottom: 2rem;
 		}
 
+		&__error {
+			margin: 5px 0;
+			color: var(--error-color);
+		}
+
 		&__footer {
 			margin-top: 20px;
 			color: var(--white-color);

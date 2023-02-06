@@ -19,12 +19,6 @@ const LandingPage = ({ login, register }) => {
 	const [loading, setLoading] = useState(false)
 	const [errors, setErrors] = useState({})
 
-	useEffect(() => {
-		if (user) {
-			navigate('/home')
-		}
-	}, [user])
-
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		setLoading(true)
@@ -48,7 +42,7 @@ const LandingPage = ({ login, register }) => {
 		axios
 			.post(register ? '/api/auth/register' : '/api/auth/login', data)
 			.then(() => {
-				getCurrentUser()
+				getCurrentUser(), navigate('/')
 			})
 			.catch((error) => {
 				setLoading(false)
@@ -63,6 +57,20 @@ const LandingPage = ({ login, register }) => {
 			handleSubmit(e)
 		}
 	}
+
+	const reset = () => {
+		setUsername('')
+		setEmail('')
+		setPassword('')
+		setConfirmPassword('')
+		setLoading(false)
+		setErrors({})
+	}
+
+	useEffect(() => {
+		reset()
+		console.log('reset')
+	}, [login, register])
 
 	return (
 		<div className='landing page'>
@@ -83,7 +91,9 @@ const LandingPage = ({ login, register }) => {
 							setState={setUsername}
 							loading={loading}
 						/>
-						{errors.name && <p className='auth__error'>{errors.username}</p>}
+						{errors.username && (
+							<p className='auth__error'>{errors.username}</p>
+						)}
 						{register && (
 							<TextInput
 								label='Email'
@@ -116,6 +126,14 @@ const LandingPage = ({ login, register }) => {
 						)}
 						{errors.confirmPassword && (
 							<p className='auth__error'>{errors.confirmPassword}</p>
+						)}
+
+						{Object.keys(errors).length > 0 && (
+							<p className='auth__error'>
+								{register
+									? "Something's not right. Try again."
+									: 'Nope. Try again.'}
+							</p>
 						)}
 
 						{register ? (

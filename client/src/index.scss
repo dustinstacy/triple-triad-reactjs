@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300;1,500;1,700;1,900&display=swap');
 
 :root {
 	--primary-color: #857f0b;
@@ -6,6 +6,7 @@
 	--tertiary-color: #2c5364;
 	--accent-color: #454206;
 	--accent2-color: #0f2027;
+	--error-color: #63363d;
 	--black-color: #040f0f;
 	--gray-color: #655e51;
 	--white-color: #faf0e1;
@@ -26,7 +27,7 @@ body {
 	max-width: 100vw;
 	margin: 0;
 	font-family: 'Poppins';
-	font-weight: 900;
+	font-weight: 700;
 	scroll-behavior: smooth;
 }
 

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react'
 import axios from 'axios'
+import { useEffect } from 'react'
 
 const initialState = {
 	user: null,
@@ -29,6 +30,10 @@ const GlobalContext = createContext(initialState)
 
 export const GlobalProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(globalReducer, initialState)
+
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
 
 	const getCurrentUser = async () => {
 		try {

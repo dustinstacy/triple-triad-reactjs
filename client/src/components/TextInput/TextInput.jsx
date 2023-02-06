@@ -10,6 +10,7 @@ const TextInput = ({
 	loading,
 	passwordVisibility,
 	setPasswordVisibility,
+	handleKeyDown,
 }) => {
 	return (
 		<div className='input'>

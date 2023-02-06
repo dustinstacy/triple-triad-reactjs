@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react'
+import axios from 'axios'
 
 const initialState = {
 	user: null,
@@ -29,8 +30,38 @@ const GlobalContext = createContext(initialState)
 export const GlobalProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(globalReducer, initialState)
 
+	const getCurrentUser = async () => {
+		try {
+			const res = await axios.get('/api/auth/current')
+
+			if (res.data) {
+				dispatch({
+					type: 'SET_USER',
+					payload: res.data,
+				})
+			} else {
+				dispatch({ type: 'RESET_USER' })
+			}
+		} catch (error) {
+			console.log(error, 'No User')
+			dispatch({ type: 'RESET_USER' })
+		}
+	}
+
+	const logout = async () => {
+		try {
+			await axios.put('/api/auth/logout')
+			dispatch({ type: 'RESET_USER' })
+		} catch (error) {
+			console.log(error)
+			dispatch({ type: 'RESET_USER' })
+		}
+	}
+
 	const value = {
 		...state,
+		getCurrentUser,
+		logout,
 	}
 
 	return (

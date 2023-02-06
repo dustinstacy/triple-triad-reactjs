@@ -1,12 +1,21 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { logo, swords, book, cottage } from '../../assets'
 import './NavBar.scss'
+import { useEffect } from 'react'
 
 const NavBar = () => {
-	const { user } = useGlobalContext()
+	const navigate = useNavigate()
+	const { user, logout, getCurrentUser } = useGlobalContext()
 	const { pathname } = useLocation()
+
+	useEffect(() => {
+		if (!user) {
+			navigate('/')
+		}
+		console.log('ran')
+	}, [user])
 
 	return (
 		<div className='navbar'>
@@ -33,7 +42,7 @@ const NavBar = () => {
 			<div className='navbar__container'>
 				{user ? (
 					<a className='login'>
-						<p>🍔</p>
+						<p onClick={logout}>Logout</p>
 					</a>
 				) : pathname === '/' ? (
 					<NavLink to='/login' className='login'>

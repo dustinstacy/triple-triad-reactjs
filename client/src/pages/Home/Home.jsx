@@ -5,15 +5,20 @@ import './Home.scss'
 const Home = () => {
 	return (
 		<div className='home page'>
-			<div className='container'>
-				<div className='card'>
-					<Button label='Solo' />
+			<div className='menu'>
+				<div className='menu__card solo'>
+					<div className='menu__info'>Type your information in here</div>
+					<Button label='Solo' type='link' path='solo' />
 				</div>
-				<div className='card'>
+				<div className='menu__card matchmaking disabled'>
+					<div className='menu__info disabled'>
+						Type your information in here
+					</div>
 					<Button label='Matchmaking' />
 				</div>
-				<div className='card'>
-					<Button label='Collection' />
+				<div className='menu__card arcaneum'>
+					<div className='menu__info'>Type your information in here</div>
+					<Button label='Arcaneum' type='link' path='arcaneum' />
 				</div>
 			</div>
 		</div>

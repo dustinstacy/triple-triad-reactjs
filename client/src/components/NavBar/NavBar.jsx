@@ -1,13 +1,11 @@
 import React from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { logo, swords, book, cottage } from '../../assets'
+import { logo, book, cottage, swords } from '../../assets'
 import './NavBar.scss'
-import { useEffect } from 'react'
 
 const NavBar = () => {
-	const navigate = useNavigate()
-	const { user, logout, getCurrentUser } = useGlobalContext()
+	const { user, logout } = useGlobalContext()
 	const { pathname } = useLocation()
 
 	return (
@@ -16,21 +14,25 @@ const NavBar = () => {
 				<NavLink to='/' className='navbar__logo'>
 					<img src={logo} alt='logo' className='un-skew' />
 				</NavLink>
-				<NavLink to='/' className='navbar__link'>
-					<p>
-						<img src={cottage} alt='home' />
-					</p>
-				</NavLink>
-				<a className='navbar__link disabled'>
-					<p>
-						<img src={swords} alt='battle' />
-					</p>
-				</a>
-				<a className='navbar__link disabled'>
-					<p>
-						<img src={book} alt='library' />
-					</p>
-				</a>
+				{user && (
+					<>
+						<NavLink to='/' className='navbar__link'>
+							<p>
+								<img src={cottage} alt='home' />
+							</p>
+						</NavLink>
+						<NavLink to='/solo' className='navbar__link'>
+							<p>
+								<img src={swords} alt='battle' />
+							</p>
+						</NavLink>
+						<NavLink to='/arcaneum' className='navbar__link'>
+							<p>
+								<img src={book} alt='library' />
+							</p>
+						</NavLink>
+					</>
+				)}
 			</div>
 			<div className='navbar__container'>
 				{user ? (

@@ -6,6 +6,7 @@
 	background-size: cover;
 
 	.auth {
+		position: relative;
 		height: 100%;
 		width: 600px;
 		display: flex;
@@ -50,7 +51,7 @@
 		}
 
 		&__footer {
-			margin-top: 20px;
+			margin: 15px 0;
 			color: var(--white-color);
 
 			a {

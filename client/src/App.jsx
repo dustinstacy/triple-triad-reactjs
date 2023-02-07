@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { LandingPage, Home } from './pages'
+import { LandingPage, Home, Solo, Match, Arcaneum, Collection } from './pages'
 import { NavBar, Footer } from './components'
 import { useGlobalContext } from './context/GlobalContext'
 
@@ -21,6 +21,10 @@ function App() {
 			{user && (
 				<Routes>
 					<Route path='/' element={<Home />} />
+					<Route path='/solo' element={<Solo />} />
+					<Route path='/match' element={<Match />} />
+					<Route path='/arcaneum' element={<Arcaneum />} />
+					<Route path='/collection' element={<Collection />} />
 				</Routes>
 			)}
 

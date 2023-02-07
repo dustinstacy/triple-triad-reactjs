@@ -3,14 +3,20 @@ import * as dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import authRoute from './routes/auth.js'
+import cardsRoute from './routes/cards.js'
+import collectionRoute from './routes/collection.js'
+import deckRoute from './routes/deck.js'
 
-const app = express()
 dotenv.config()
 
+const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json({ limit: '50mb' }))
 app.use(cookieParser())
 app.use('/api/auth', authRoute)
+app.use('/api/cards', cardsRoute)
+app.use('/api/collection', collectionRoute)
+app.use('/api/deck', deckRoute)
 
 app.get('/', (req, res) => {
 	res.send('Server Running')

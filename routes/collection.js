@@ -1,50 +1,54 @@
 import express from 'express'
 import requiresAuth from '../middleware/permissions.js'
-import Card from '../models/Card.js'
+import Collection from '../models/Collection.js'
 
 const router = express.Router()
 
-// @route GET /api/cards/test
+// @route GET /api/collection/test
 // @desc Test the auth route
 // @access Public
 router.get('/test', (req, res) => {
-	res.send('Cards route working')
+	res.send('Collection route working')
 })
 
-// @route GET /api/cards
-// @desc Get all released cards
+// @route GET /api/collection
+// @desc Get all user owned cards
 // @access Private
 router.get('/', requiresAuth, async (req, res) => {
 	try {
-		const cards = await Card.find({ ...Card })
+		const collection = await Collection.find({ ...Collection })
 
-		return res.json(cards)
+		return res.json(collection)
 	} catch (error) {
 		return res.status(500).send(error.message)
 	}
 })
 
-// @route POST /api/cards/new
-// @route Release new card
+// @route POST /api/collection/add
+// @route Add card to users collection
 // @access Private
 router.post('/new', requiresAuth, async (req, res) => {
 	try {
-		const { isValid, errors } = validateCard(req.body)
+		const { isValid, errors } = validateCollection(req.body)
 
 		if (!isValid) {
 			return res.status(400).json(errors)
 		}
 
-		const newCard = new Card({
+		const values = [1, 2, 3, 4]
+
+		const newCollection = new Collection({
+			user: req.body.user,
 			number: req.body.number,
 			name: req.body.name,
-			rarity: req.body.rarity,
-			element: req.body.element,
+			rarity: req.body.name,
+			element: req.body.name,
 			image: req.body.image,
+			values: values,
 		})
 
-		await newCard.save()
-		return res.json(newCard)
+		await newCollection.save()
+		return res.json(newCollection)
 	} catch (error) {
 		console.log(error)
 		return res.status(500).send(error.message)

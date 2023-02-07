@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
-// user cards selected from collection to use during a match
-const DeckSchema = new Schema(
+// user obtained cards with added values and favorite option
+const CollectionSchema = new Schema(
 	{
 		user: {
 			type: Schema.Types.ObjectId,
@@ -33,12 +33,16 @@ const DeckSchema = new Schema(
 				required: true,
 			},
 		],
+		favorite: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	{
-		timestamps: true,
+		timestamp: true,
 	}
 )
 
-const Deck = model('Deck', DeckSchema)
+const Collection = model('Collection', CollectionSchema)
 
-export default Deck
+export default Collection

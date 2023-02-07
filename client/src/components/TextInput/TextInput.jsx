@@ -1,6 +1,5 @@
 import React from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-
 import './TextInput.scss'
 
 const TextInput = ({
@@ -10,7 +9,6 @@ const TextInput = ({
 	loading,
 	passwordVisibility,
 	setPasswordVisibility,
-	handleKeyDown,
 }) => {
 	return (
 		<div className='input'>

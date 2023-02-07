@@ -1,20 +1,51 @@
-.home {
+.arcaneum {
 	align-items: center;
 	justify-content: center;
-	background-image: url('../../assets/cliffs.png');
+	background-image: url('../../assets/arcaneum.jpg');
 	background-position: center;
 	background-size: cover;
 
 	.menu {
+		position: relative;
 		width: 100%;
+		flex-direction: column;
 
-		&__card,
-		&__info {
+		&__top,
+		&__middle {
+			display: flex;
+		}
+
+		&__top {
+			gap: 6rem;
+		}
+
+		&__middle {
+			gap: 24rem;
+		}
+
+		&__bottom {
+			margin-top: -4rem;
+		}
+
+		&__spell {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 600px;
+			transform: translate(-50%, -50%);
+			z-index: 0;
+		}
+
+		&__card {
+			position: relative;
+			height: 260px;
+			width: 250px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-around;
 			background-color: var(--accent2-color);
+			opacity: 1;
 			border: 2px solid var(--primary-color);
 			border-radius: 1rem;
 			box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
@@ -23,28 +54,7 @@
 				rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
 				rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
 				rgba(0, 0, 0, 0.09) 0px 32px 16px;
+			z-index: 1;
 		}
-
-		&__card {
-			position: relative;
-			height: 500px;
-			width: 400px;
-		}
-
-		&__info {
-			position: absolute;
-			bottom: 0;
-			height: 175px;
-			width: 400px;
-			border-radius: 0 0 1rem 1rem;
-			color: var(--white-color);
-		}
-	}
-
-	.matchmaking {
-		background-image: url('../../assets/volcano.png');
-		background-position: center;
-		background-size: cover;
-		filter: grayscale(0.7);
 	}
 }

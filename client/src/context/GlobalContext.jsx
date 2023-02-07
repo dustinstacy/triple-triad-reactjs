@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 const initialState = {
 	user: null,
 	fetchingUser: true,
+	userCards: [],
+	userDeck: [],
 }
 
 const globalReducer = (state, action) => {
@@ -20,6 +22,16 @@ const globalReducer = (state, action) => {
 				...state,
 				user: null,
 				fetchingUser: false,
+			}
+		case 'SET_USER_CARDS':
+			return {
+				...state,
+				userCards: action.payload,
+			}
+		case 'SET_USER_DECK':
+			return {
+				...state,
+				userDeck: action.payload,
 			}
 		default:
 			return state
@@ -53,6 +65,36 @@ export const GlobalProvider = ({ children }) => {
 		}
 	}
 
+	const getUserCards = async () => {
+		try {
+			const res = await axios.get('/api/cards/current')
+
+			if (res.data) {
+				dispatch({
+					type: 'SET_USER_CARDS',
+					payload: res.data,
+				})
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	const getUserDeck = async () => {
+		try {
+			const res = await axios.get('/api/deck/current')
+
+			if (res.data) {
+				dispatch({
+					type: 'SET_USER_DECK',
+					payload: res.data,
+				})
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	const logout = async () => {
 		try {
 			await axios.put('/api/auth/logout')
@@ -66,6 +108,8 @@ export const GlobalProvider = ({ children }) => {
 	const value = {
 		...state,
 		getCurrentUser,
+		getUserCards,
+		getUserDeck,
 		logout,
 	}
 

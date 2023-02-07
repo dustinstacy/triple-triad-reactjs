@@ -46,6 +46,30 @@ body {
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+
+	.menu {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5rem;
+
+		.disabled {
+			border: 2px solid var(--accent-color);
+			background-color: var(--black-color);
+			color: var(--gray-color);
+			pointer-events: none;
+
+			.button {
+				background-color: var(--accent-color);
+				color: var(--gray-color);
+
+				svg {
+					visibility: hidden;
+				}
+			}
+		}
+	}
 }
 
 a {

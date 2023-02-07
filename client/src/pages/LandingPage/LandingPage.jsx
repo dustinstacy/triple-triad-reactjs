@@ -69,7 +69,6 @@ const LandingPage = ({ login, register }) => {
 
 	useEffect(() => {
 		reset()
-		console.log('reset')
 	}, [login, register])
 
 	return (

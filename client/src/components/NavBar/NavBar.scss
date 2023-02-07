@@ -39,13 +39,14 @@
 	border-bottom: 3px solid var(--accent-color);
 	line-height: 4em;
 	overflow: hidden;
-	z-index: 1;
+	z-index: 10;
 
 	&__container {
 		display: flex;
 
 		.disabled {
 			opacity: 0.3;
+			pointer-events: none;
 		}
 	}
 

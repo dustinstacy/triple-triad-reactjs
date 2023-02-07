@@ -1,7 +1,7 @@
 .input {
-	width: 60%;
-	margin: 20px 5px 0 5px;
 	position: relative;
+	width: 60%;
+	margin: 30px 5px 0 5px;
 
 	/* necessary to give position: relative to parent. */
 	input {
@@ -25,11 +25,11 @@
 	}
 
 	&__text {
+		padding: 7px 14px;
+		background: transparent;
 		border: 2px solid var(--accent-color);
 		border-radius: 5px;
-		padding: 7px 14px;
 		transition: 0.4s;
-		background: transparent;
 	}
 
 	&__text ~ .focus-border:before,

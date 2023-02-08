@@ -29,7 +29,7 @@ mongoose
 		console.log('*****Connected to database*****')
 
 		app.listen(process.env.Port, () => {
-			console.log(`Server running on port ${process.env.PORT}`)
+			console.log(`Server running on http://localhost:${process.env.PORT}`)
 		})
 	})
 	.catch((error) => {

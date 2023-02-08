@@ -11,6 +11,11 @@ import logo from './logo.png'
 import spellCircle from './spellcircle.png'
 import swords from './swords.png'
 import volcano from './volcano.png'
+import angel from './angel.png'
+import demon from './demon.png'
+import golem from './golem.png'
+import owl from './owl.png'
+import snake from './snake.png'
 
 export {
 	arcaneum,
@@ -26,4 +31,9 @@ export {
 	spellCircle,
 	swords,
 	volcano,
+	angel,
+	demon,
+	golem,
+	owl,
+	snake,
 }

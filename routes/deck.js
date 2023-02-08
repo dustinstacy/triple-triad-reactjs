@@ -27,13 +27,9 @@ router.get('/', requiresAuth, async (req, res) => {
 // @route POST /api/deck/add
 // @route Add card to users deck
 // @access Private
-router.post('/new', requiresAuth, async (req, res) => {
+router.post('/add', requiresAuth, async (req, res) => {
 	try {
-		const { isValid, errors } = validateDeck(req.body)
-
-		if (!isValid) {
-			return res.status(400).json(errors)
-		}
+		const values = [1, 2, 3, 4]
 
 		const newDeck = new Deck({
 			user: req.body.user,
@@ -42,11 +38,37 @@ router.post('/new', requiresAuth, async (req, res) => {
 			rarity: req.body.rarity,
 			element: req.body.element,
 			image: req.body.image,
-			values: req.body.value,
+			values: values,
 		})
 
 		await newDeck.save()
 		return res.json(newDeck)
+	} catch (error) {
+		console.log(error)
+		return res.status(500).send(error.message)
+	}
+})
+
+// @route DELETE /api/deck/:deckId/remove
+// @desc Remove card from user's deck
+// @access Private
+router.delete('/:deckId/remove', requiresAuth, async (req, res) => {
+	try {
+		const card = await Deck.findOne({
+			user: req.body._id,
+			_id: req.params.deckId,
+		})
+
+		if (!card) {
+			return res.status(404).json({ error: 'Card does not exist' })
+		}
+
+		await Deck.findByIdAndRemove({
+			user: req.body._id,
+			_id: req.params.deckId,
+		})
+
+		return res.json({ success: true })
 	} catch (error) {
 		console.log(error)
 		return res.status(500).send(error.message)

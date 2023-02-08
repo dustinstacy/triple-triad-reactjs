@@ -1,0 +1,53 @@
+.match {
+	flex-direction: row !important;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	background-color: var(--accent2-color);
+
+	.card {
+		position: relative;
+		height: 300px;
+		border-radius: 1rem;
+
+		&__image {
+			height: 100%;
+			border-radius: 1rem;
+			background: linear-gradient(45deg, rgb(73, 25, 25), rgb(168, 42, 42));
+		}
+
+		&__values {
+			display: flex;
+			flex-direction: column;
+			color: var(--white-color);
+			text-shadow: 2px 2px 1px var(--black-color),
+				-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
+				-1px 1px 1px var(--black-color);
+			font-size: 28px;
+
+			.up {
+				position: absolute;
+				top: 0;
+				right: 47%;
+			}
+
+			.right {
+				position: absolute;
+				right: 7%;
+				top: 42%;
+			}
+
+			.left {
+				position: absolute;
+				left: 6%;
+				top: 42%;
+			}
+
+			.down {
+				position: absolute;
+				bottom: 1%;
+				right: 46.5%;
+			}
+		}
+	}
+}

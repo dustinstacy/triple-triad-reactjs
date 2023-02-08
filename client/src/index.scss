@@ -60,6 +60,10 @@ body {
 			color: var(--gray-color);
 			pointer-events: none;
 
+			img {
+				filter: grayscale(0.8);
+			}
+
 			.button {
 				background-color: var(--accent-color);
 				color: var(--gray-color);

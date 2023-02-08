@@ -1,0 +1,21 @@
+.setup {
+	align-items: center;
+	justify-content: center;
+	background-image: url('../../assets/castle.png');
+	background-position: top;
+	background-size: cover;
+
+	.settings {
+		position: relative;
+		height: 800px;
+		width: 1200px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+
+		.button {
+			right: 5rem;
+		}
+	}
+}

@@ -8,7 +8,7 @@ import './LandingPage.scss'
 import { useEffect } from 'react'
 
 const LandingPage = ({ login, register }) => {
-	const { user, getCurrentUser } = useGlobalContext()
+	const { getCurrentUser } = useGlobalContext()
 	const navigate = useNavigate()
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
@@ -74,14 +74,14 @@ const LandingPage = ({ login, register }) => {
 	return (
 		<div className='landing page'>
 			{!login && !register && (
-				<div className='auth'>
+				<div className='auth box'>
 					<img className='logo__large' src={logo} alt='logo' />
 					<Button type='link' path='register' label='Create Account' />
 				</div>
 			)}
 
 			{(register || login) && (
-				<div className='auth'>
+				<div className='auth box'>
 					<img className='logo__medium' src={logo} alt='logo' />
 					<form className='auth__form' onKeyDown={(e) => handleKeyDown(e)}>
 						<TextInput

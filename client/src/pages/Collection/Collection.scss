@@ -1,0 +1,104 @@
+.collection.page {
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+
+	.background {
+		position: fixed;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background-image: url('../../assets/arcaneum.jpg');
+		background-position: center;
+		background-size: cover;
+		filter: blur(4px);
+		overflow: hidden;
+		z-index: -1;
+	}
+
+	.filters {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 500px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		border-radius: 0;
+		border-top: none;
+		border-left: none;
+		border-bottom: none;
+		overflow: hidden;
+		z-index: 1;
+	}
+
+	.list {
+		height: calc(100vh - (var(--navbar-height) + 3px));
+		width: calc(100vw - 500px);
+		box-sizing: border-box;
+		display: flex;
+		flex-wrap: wrap;
+		align-self: flex-end;
+		justify-content: space-around;
+		padding: 3rem 1rem;
+		overflow-y: scroll;
+
+		.disabled {
+			border: 1px solid var(--primary-color);
+			filter: blur(1px) grayscale(0.5);
+		}
+	}
+
+	.card {
+		position: relative;
+		height: 350px;
+		width: 252.5px;
+		margin: 3rem 2rem;
+		background-color: var(--black-color);
+		border-radius: 1rem;
+		z-index: 1;
+
+		&__image {
+			height: 100%;
+			background: linear-gradient(45deg, rgb(73, 25, 25), rgb(168, 42, 42));
+			border-radius: 1rem;
+		}
+
+		&__values {
+			display: flex;
+			flex-direction: column;
+			color: var(--white-color);
+			text-shadow: 2px 2px 1px var(--black-color),
+				-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
+				-1px 1px 1px var(--black-color);
+			font-size: 36px;
+
+			.up {
+				position: absolute;
+				top: -1%;
+				right: 47%;
+			}
+
+			.right {
+				position: absolute;
+				right: 6%;
+				top: 41%;
+			}
+
+			.left {
+				position: absolute;
+				left: 5%;
+				top: 41%;
+			}
+
+			.down {
+				position: absolute;
+				bottom: 0;
+				right: 46.5%;
+			}
+		}
+	}
+}

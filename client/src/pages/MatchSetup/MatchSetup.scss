@@ -7,12 +7,129 @@
 
 	.settings {
 		position: relative;
-		height: 800px;
-		width: 1200px;
+		height: 850px;
+		width: 1400px;
+		box-sizing: border-box;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: center;
+		gap: 2rem;
+		padding: 5rem 2rem;
+		color: var(--white-color);
+
+		.player,
+		.settings__list,
+		.opponent {
+			position: relative;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		h1:not(.player > h1, .opponent > h1) {
+			min-width: 175px;
+			margin-top: 0;
+			padding: 0.5rem 4rem;
+			background-color: var(--accent2-color);
+			border: 3px solid var(--primary-color);
+			border-radius: 0 0 1rem 1rem;
+			border-top: none;
+			color: var(--white-color);
+			text-shadow: 1px 1px 5px var(--accent2-color);
+			text-align: center;
+		}
+
+		h1,
+		h2 {
+			position: absolute;
+			top: 0;
+		}
+
+		h2 {
+			text-decoration: underline;
+		}
+
+		.player,
+		.opponent {
+			flex: 1;
+			border: 4px double var(--secondary-color);
+			border-radius: 1rem;
+		}
+
+		.settings__list {
+			height: 100%;
+			width: 100%;
+			box-sizing: border-box;
+			flex: 2.5;
+			justify-content: flex-start;
+			gap: 1.5rem;
+			padding: 5rem 1rem 0 1rem;
+			font-size: 1.25rem;
+
+			.setting {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				align-self: flex-start;
+				justify-content: center;
+
+				&__field {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+
+				label {
+					margin-right: 1rem;
+				}
+
+				p {
+					margin: 0;
+					color: var(--white-color);
+					font-size: 1rem;
+					font-weight: 300;
+				}
+
+				input[type='radio'] {
+					margin: 0 0.5rem 0 1rem;
+				}
+
+				input[type='number'] {
+					width: 36px;
+					background-color: var(--accent2-color);
+					border: 2px solid var(--secondary-color);
+					border-radius: 4px;
+					color: var(--secondary-color);
+					padding: 3px 0 1px 0;
+					font-size: 1rem;
+					text-align: center;
+				}
+			}
+
+			.disabled {
+				pointer-events: none;
+				color: var(--gray-color);
+
+				input[type='radio']:after,
+				input[type='checkbox']:after {
+					content: '';
+					position: relative;
+					top: -1px;
+					left: -1px;
+					width: 11px;
+					height: 11px;
+					display: inline-block;
+					background-color: var(--gray-color);
+					border: 2px solid var(--black-color);
+				}
+
+				input[type='radio']:after {
+					border-radius: 15px;
+				}
+			}
+		}
 
 		.button {
 			right: 5rem;

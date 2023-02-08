@@ -13,6 +13,9 @@ const Solo = () => {
 						src={creature1}
 						alt='creature1'
 					/>
+					<p className='menu__text'>
+						Take on the CPU in a single match with custom rules
+					</p>
 					<Button label='Single Match' type='link' path='matchSetup' />
 				</div>
 				<div className='menu__bar box right disabled'>
@@ -21,6 +24,10 @@ const Solo = () => {
 						src={creature2}
 						alt='creature2'
 					/>
+					<p className='menu__text'>
+						A variety of challenges to test your skills while unlocking
+						exclusive items as you progress
+					</p>
 					<Button label='Challenges' type='link' path='challenges' />
 				</div>
 				<div className='menu__bar box left disabled'>
@@ -29,6 +36,10 @@ const Solo = () => {
 						src={creature3}
 						alt='creature3'
 					/>
+					<p className='menu__text'>
+						Venture through Asethale in search of claiming the title of Grand
+						Master
+					</p>
 					<Button label='Story' type='link' path='story' />
 				</div>
 			</div>

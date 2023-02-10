@@ -16,8 +16,8 @@ const Arcaneum = () => {
 					</div>
 				</div>
 				<div className='menu__middle'>
-					<div className='menu__card box disabled'>
-						<Button label='Packs' type='link' path='arcaneum' />
+					<div className='menu__card box'>
+						<Button label='Packs' type='link' path='packs' />
 					</div>
 					<img className='menu__spell' src={spellCircle} alt='spell circle' />
 					<div className='menu__card box disabled'>

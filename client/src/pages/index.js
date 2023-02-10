@@ -1,5 +1,6 @@
 export { default as Arcaneum } from './Arcaneum/Arcaneum'
 export { default as Collection } from './Collection/Collection'
+export { default as Deck } from './Deck/Deck'
 export { default as Home } from './Home/Home'
 export { default as LandingPage } from './LandingPage/LandingPage'
 export { default as Match } from './Match/Match'

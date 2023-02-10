@@ -3,9 +3,10 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import './Collection.scss'
 
 const Collection = () => {
-	const { allCards, userCards, user } = useGlobalContext()
-	console.log(user)
-	console.log(userCards)
+	const { allCards, userCards, getUserCards } = useGlobalContext()
+	useEffect(() => {
+		getUserCards
+	}, [])
 
 	return (
 		<div className='collection page'>

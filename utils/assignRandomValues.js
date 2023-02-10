@@ -1,4 +1,4 @@
-export const assignRandomValues = (req) => {
+export const assignRandomValues = (card) => {
 	const randomIntFromInterval = (min, max) => {
 		return Math.floor(Math.random() * (max - min + 1) + min)
 	}
@@ -27,7 +27,7 @@ export const assignRandomValues = (req) => {
 		return values
 	}
 
-	const rarity = req.body.rarity
+	const rarity = card.rarity
 	const maxValue = 10
 	let total
 
@@ -43,5 +43,5 @@ export const assignRandomValues = (req) => {
 		total = randomIntFromInterval(28, 32)
 	}
 
-	return (req.values = randomizeValues(total, maxValue))
+	return (card.values = randomizeValues(total, maxValue))
 }

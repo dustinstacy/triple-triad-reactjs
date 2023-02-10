@@ -1,7 +1,6 @@
 import express from 'express'
 import requiresAuth from '../middleware/permissions.js'
 import Collection from '../models/Collection.js'
-import { assignRandomValues } from '../utils/assignRandomValues.js'
 
 const router = express.Router()
 
@@ -12,14 +11,14 @@ router.get('/test', (req, res) => {
 	res.send('Collection route working')
 })
 
-// @route GET /api/collection
+// @route GET /api/collection/current
 // @desc Get user's card collection
 // @access Private
-router.get('/', requiresAuth, async (req, res) => {
+router.get('/current', requiresAuth, async (req, res) => {
 	try {
 		const collection = await Collection.find({
-			user: req.body._id,
-		}).sort({ number: 1 })
+			user: req.user._id,
+		})
 
 		return res.json(collection)
 	} catch (error) {
@@ -32,8 +31,6 @@ router.get('/', requiresAuth, async (req, res) => {
 // @access Private
 router.post('/new', requiresAuth, async (req, res) => {
 	try {
-		const values = assignRandomValues(req)
-
 		const newCollection = new Collection({
 			user: req.body.user,
 			number: req.body.number,
@@ -41,7 +38,7 @@ router.post('/new', requiresAuth, async (req, res) => {
 			rarity: req.body.rarity,
 			element: req.body.element,
 			image: req.body.image,
-			values: values,
+			values: req.body.values,
 		})
 
 		await newCollection.save()

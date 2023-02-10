@@ -7,6 +7,7 @@ import {
 	MatchSetup,
 	Arcaneum,
 	Collection,
+	Packs,
 } from './pages'
 import { NavBar, Footer } from './components'
 import { useGlobalContext } from './context/GlobalContext'
@@ -35,6 +36,7 @@ function App() {
 					<Route path='/match' element={<Match />} />
 					<Route path='/arcaneum' element={<Arcaneum />} />
 					<Route path='/collection' element={<Collection />} />
+					<Route path='/packs' element={<Packs />} />
 				</Routes>
 			)}
 

@@ -52,6 +52,7 @@ export const GlobalProvider = ({ children }) => {
 
 	useEffect(() => {
 		getCurrentUser()
+		getAllCards()
 	}, [])
 
 	const getCurrentUser = async () => {

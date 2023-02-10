@@ -1,18 +1,30 @@
-import { UNSAFE_convertRoutesToDataRoutes } from '@remix-run/router'
-import { all } from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
+import { assignRandomValues } from '../../../../utils/assignRandomValues'
 import './Packs.scss'
 
 const Packs = () => {
-	const { allCards } = useGlobalContext()
+	const { allCards, user } = useGlobalContext()
 	const [packContents, setPackContents] = useState([])
 
-	const openPack = (e) => {
+	const openPack = async (e) => {
 		e.preventDefault()
 		const packSize = 3
 		const newPack = [...Array(packSize)]
 		getRandomCards(newPack)
+		newPack.forEach((card) => {
+			assignRandomValues(card)
+			axios.post('/api/collection/new', {
+				user: user._id,
+				number: card.number,
+				name: card.name,
+				rarity: card.rarity,
+				element: card.element,
+				image: card.image,
+				values: card.values,
+			})
+		})
 		setPackContents(newPack)
 	}
 
@@ -46,10 +58,10 @@ const Packs = () => {
 					<div key={card.name + i} className='card'>
 						<img className='card__image' src={card.image} alt='owl' />
 						<div className='card__values'>
-							<span className='up'>1</span>
-							<span className='right'>2</span>
-							<span className='left'>3</span>
-							<span className='down'>4</span>
+							<span className='up'>{card.values[0]}</span>
+							<span className='right'>{card.values[1]}</span>
+							<span className='left'>{card.values[3]}</span>
+							<span className='down'>{card.values[2]}</span>
 						</div>
 					</div>
 				))}

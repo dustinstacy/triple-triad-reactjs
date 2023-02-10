@@ -8,7 +8,7 @@ import './LandingPage.scss'
 import { useEffect } from 'react'
 
 const LandingPage = ({ login, register }) => {
-	const { getCurrentUser, getAllCards } = useGlobalContext()
+	const { getCurrentUser, getAllCards, getUserCards } = useGlobalContext()
 	const navigate = useNavigate()
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
@@ -42,7 +42,7 @@ const LandingPage = ({ login, register }) => {
 		axios
 			.post(register ? '/api/auth/register' : '/api/auth/login', data)
 			.then(() => {
-				getCurrentUser(), getAllCards(), navigate('/')
+				getCurrentUser(), getAllCards(), getUserCards(), navigate('/')
 			})
 			.catch((error) => {
 				setLoading(false)

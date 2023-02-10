@@ -23,6 +23,7 @@ const globalReducer = (state, action) => {
 				...state,
 				user: null,
 				fetchingUser: false,
+				userCards: [],
 			}
 		case 'SET_ALL_CARDS':
 			return {
@@ -64,6 +65,8 @@ export const GlobalProvider = ({ children }) => {
 					type: 'SET_USER',
 					payload: res.data,
 				})
+
+				getUserCards()
 			} else {
 				dispatch({ type: 'RESET_USER' })
 			}
@@ -90,7 +93,7 @@ export const GlobalProvider = ({ children }) => {
 
 	const getUserCards = async () => {
 		try {
-			const res = await axios.get('/api/collection/')
+			const res = await axios.get('/api/collection/current')
 
 			if (res.data) {
 				dispatch({

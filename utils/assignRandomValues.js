@@ -3,7 +3,7 @@ export const assignRandomValues = (req) => {
 		return Math.floor(Math.random() * (max - min + 1) + min)
 	}
 
-	const randomizeValues = (rarity, max) => {
+	const randomizeValues = (total, max) => {
 		const numberOfValues = 4
 		let startValues = new Array(numberOfValues)
 		let sum = 0
@@ -12,12 +12,12 @@ export const assignRandomValues = (req) => {
 				startValues[i] = Math.random()
 			}
 			sum = startValues.reduce((sum, value) => sum + value, 0)
-			const scale = (rarity - numberOfValues) / sum
+			const scale = (total - numberOfValues) / sum
 			startValues = startValues.map((value) =>
 				Math.min(max, Math.round(value * scale) + 1)
 			)
 			sum = startValues.reduce((sum, value) => sum + value, 0)
-		} while (sum - rarity)
+		} while (sum - total)
 		const values = startValues.map((value) => {
 			if (value === 10) {
 				return 'A'
@@ -29,21 +29,19 @@ export const assignRandomValues = (req) => {
 
 	const rarity = req.body.rarity
 	const maxValue = 10
-	const common = randomIntFromInterval(8, 12)
-	const uncommon = randomIntFromInterval(13, 17)
-	const rare = randomIntFromInterval(18, 22)
-	const epic = randomIntFromInterval(23, 27)
-	const legendary = randomIntFromInterval(28, 32)
+	let total
 
 	if (rarity === 'Common') {
-		return (req.values = randomizeValues(common, maxValue))
+		total = randomIntFromInterval(8, 12)
 	} else if (rarity === 'Uncommon') {
-		return (req.values = randomizeValues(uncommon, maxValue))
+		total = randomIntFromInterval(13, 17)
 	} else if (rarity === 'Rare') {
-		return (req.values = randomizeValues(rare, maxValue))
+		total = randomIntFromInterval(18, 22)
 	} else if (rarity === 'Epic') {
-		return (req.values = randomizeValues(epic, maxValue))
+		total = randomIntFromInterval(23, 27)
 	} else if (rarity === 'Legendary') {
-		return (req.values = randomizeValues(legendary, maxValue))
+		total = randomIntFromInterval(28, 32)
 	}
+
+	return (req.values = randomizeValues(total, maxValue))
 }

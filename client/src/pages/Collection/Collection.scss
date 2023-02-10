@@ -43,7 +43,7 @@
 		flex-wrap: wrap;
 		align-self: flex-end;
 		justify-content: space-around;
-		padding: 3rem 1rem;
+		padding: 5rem 1rem;
 		overflow-y: scroll;
 
 		.disabled {
@@ -52,11 +52,33 @@
 		}
 	}
 
+	.display {
+		width: 252.5px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 0 2rem;
+
+		p {
+			margin: 0;
+			color: var(--secondary-color);
+			text-align: center;
+			text-shadow: 2px 2px 1px var(--accent2-color),
+				-1px -1px 1px var(--accent2-color), 1px -1px 1px var(--accent2-color),
+				-1px 1px 1px var(--accent2-color);
+		}
+
+		p:last-child {
+			margin-bottom: 2rem;
+		}
+	}
+
 	.card {
 		position: relative;
 		height: 350px;
 		width: 252.5px;
-		margin: 3rem 2rem;
+		margin-bottom: 0.5rem;
 		background-color: var(--black-color);
 		border-radius: 1rem;
 		z-index: 1;
@@ -85,18 +107,18 @@
 			.right {
 				position: absolute;
 				right: 6%;
-				top: 41%;
+				top: 42%;
 			}
 
 			.left {
 				position: absolute;
 				left: 5%;
-				top: 41%;
+				top: 42%;
 			}
 
 			.down {
 				position: absolute;
-				bottom: 0;
+				bottom: -1%;
 				right: 46.5%;
 			}
 		}

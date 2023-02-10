@@ -1,10 +1,11 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useContext, useReducer, useEffect } from 'react'
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const initialState = {
 	user: null,
 	fetchingUser: true,
+	allCards: [],
 	userCards: [],
 	userDeck: [],
 }
@@ -22,6 +23,11 @@ const globalReducer = (state, action) => {
 				...state,
 				user: null,
 				fetchingUser: false,
+			}
+		case 'SET_ALL_CARDS':
+			return {
+				...state,
+				allCards: action.payload,
 			}
 		case 'SET_USER_CARDS':
 			return {
@@ -42,6 +48,7 @@ const GlobalContext = createContext(initialState)
 
 export const GlobalProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(globalReducer, initialState)
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		getCurrentUser()
@@ -65,9 +72,24 @@ export const GlobalProvider = ({ children }) => {
 		}
 	}
 
+	const getAllCards = async () => {
+		try {
+			const res = await axios.get('/api/cards/')
+
+			if (res.data) {
+				dispatch({
+					type: 'SET_ALL_CARDS',
+					payload: res.data,
+				})
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	const getUserCards = async () => {
 		try {
-			const res = await axios.get('/api/cards/current')
+			const res = await axios.get('/api/collection/')
 
 			if (res.data) {
 				dispatch({
@@ -97,7 +119,9 @@ export const GlobalProvider = ({ children }) => {
 
 	const logout = async () => {
 		try {
-			await axios.put('/api/auth/logout')
+			await axios
+				.put('/api/auth/logout')
+				.then(() => getCurrentUser(), navigate('/'))
 			dispatch({ type: 'RESET_USER' })
 		} catch (error) {
 			console.log(error)
@@ -108,6 +132,7 @@ export const GlobalProvider = ({ children }) => {
 	const value = {
 		...state,
 		getCurrentUser,
+		getAllCards,
 		getUserCards,
 		getUserDeck,
 		logout,

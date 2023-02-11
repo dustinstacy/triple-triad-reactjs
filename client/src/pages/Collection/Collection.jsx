@@ -4,6 +4,8 @@ import './Collection.scss'
 
 const Collection = () => {
 	const { allCards, userCards, getUserCards } = useGlobalContext()
+	const sortedCards = allCards.sort((a, b) => a.number - b.number)
+
 	useEffect(() => {
 		getUserCards
 	}, [])
@@ -13,7 +15,7 @@ const Collection = () => {
 			<div className='background' />
 			<div className='filters box'></div>
 			<div className='list'>
-				{allCards.map((card) =>
+				{sortedCards.map((card) =>
 					userCards.find((userCard) => userCard.name === card.name) ? (
 						<div key={card.name} className='display'>
 							<div className='card'>

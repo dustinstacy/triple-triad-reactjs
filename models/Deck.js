@@ -11,6 +11,10 @@ const DeckSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		_id: {
+			type: Schema.Types.ObjectId,
+			ref: 'Collection',
+		},
 		name: {
 			type: String,
 			required: true,

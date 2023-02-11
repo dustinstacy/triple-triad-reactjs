@@ -14,9 +14,9 @@ router.get('/test', (req, res) => {
 // @route GET /api/deck
 // @desc Get user deck
 // @access Private
-router.get('/', requiresAuth, async (req, res) => {
+router.get('/current', requiresAuth, async (req, res) => {
 	try {
-		const deck = await Deck.find({ ...Deck })
+		const deck = await Deck.find({ user: req.user._id })
 
 		return res.json(deck)
 	} catch (error) {
@@ -29,16 +29,15 @@ router.get('/', requiresAuth, async (req, res) => {
 // @access Private
 router.post('/add', requiresAuth, async (req, res) => {
 	try {
-		const values = [1, 2, 3, 4]
-
 		const newDeck = new Deck({
 			user: req.body.user,
+			_id: req.body._id,
 			number: req.body.number,
 			name: req.body.name,
 			rarity: req.body.rarity,
 			element: req.body.element,
 			image: req.body.image,
-			values: values,
+			values: req.body.values,
 		})
 
 		await newDeck.save()
@@ -54,8 +53,9 @@ router.post('/add', requiresAuth, async (req, res) => {
 // @access Private
 router.delete('/:deckId/remove', requiresAuth, async (req, res) => {
 	try {
+		console.log(req.user._id, req.params.deckId)
 		const card = await Deck.findOne({
-			user: req.body._id,
+			user: req.user._id,
 			_id: req.params.deckId,
 		})
 

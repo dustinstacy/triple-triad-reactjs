@@ -67,6 +67,7 @@ export const GlobalProvider = ({ children }) => {
 				})
 
 				getUserCards()
+				getUserDeck()
 			} else {
 				dispatch({ type: 'RESET_USER' })
 			}

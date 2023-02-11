@@ -7,6 +7,7 @@ import {
 	MatchSetup,
 	Arcaneum,
 	Collection,
+	Deck,
 	Packs,
 } from './pages'
 import { NavBar, Footer } from './components'
@@ -36,11 +37,12 @@ function App() {
 					<Route path='/match' element={<Match />} />
 					<Route path='/arcaneum' element={<Arcaneum />} />
 					<Route path='/collection' element={<Collection />} />
+					<Route path='/deck' element={<Deck />} />
 					<Route path='/packs' element={<Packs />} />
 				</Routes>
 			)}
 
-			{pathname !== '/collection' && <Footer />}
+			{pathname !== ('/deck' && <Footer />) || ('/collection' && <Footer />)}
 		</div>
 	)
 }

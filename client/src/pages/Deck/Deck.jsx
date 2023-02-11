@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { FaStar, FaRegStar } from 'react-icons/fa'
@@ -11,6 +11,14 @@ const Deck = () => {
 	)
 	const sortedCards = userCards.sort((a, b) => a.number - b.number)
 
+	useEffect(() => {
+		sortedCards.forEach((card, index) => {
+			if (userDeck.find((deckCard) => deckCard._id === card._id)) {
+				setCheckedState([...checkedState, checkedState.splice(index, 1, true)])
+			}
+		})
+	}, [])
+
 	const handleChecked = async (e, card, index) => {
 		const updatedCheckedState = checkedState.map((item, position) =>
 			index === position ? !item : item
@@ -18,7 +26,6 @@ const Deck = () => {
 		setCheckedState(updatedCheckedState)
 
 		if (e.target.checked) {
-			console.log('added to deck')
 			await axios.post('/api/deck/add', {
 				user: user._id,
 				_id: card._id,
@@ -31,15 +38,12 @@ const Deck = () => {
 			})
 			getUserDeck()
 		} else {
-			console.log('removed from deck')
 			await axios.delete(`/api/deck/${card._id}/remove`, {
 				user: user._id,
 			})
 			getUserDeck()
 		}
 	}
-
-	console.log(userDeck)
 
 	return (
 		<div className='deck page'>

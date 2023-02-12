@@ -20,34 +20,48 @@ const Deck = () => {
 	}, [])
 
 	const handleChecked = async (e, card, index) => {
-		const updatedCheckedState = checkedState.map((item, position) =>
-			index === position ? !item : item
-		)
-		setCheckedState(updatedCheckedState)
-
-		if (e.target.checked) {
-			await axios.post('/api/deck/add', {
-				user: user._id,
-				_id: card._id,
-				number: card.number,
-				name: card.name,
-				rarity: card.rarity,
-				element: card.element,
-				image: card.image,
-				values: card.values,
-			})
-			getUserDeck()
-		} else {
+		if (userDeck.length < 35) {
+			const updatedCheckedState = checkedState.map((item, position) =>
+				index === position ? !item : item
+			)
+			setCheckedState(updatedCheckedState)
+			if (e.target.checked) {
+				await axios.post('/api/deck/add', {
+					user: user._id,
+					_id: card._id,
+					number: card.number,
+					name: card.name,
+					rarity: card.rarity,
+					element: card.element,
+					image: card.image,
+					values: card.values,
+				})
+			}
+		} else if (userDeck.length === 35 && e.target.checked === true) {
+			alert('Your deck is currently full')
+		} else if (userDeck.length === 35 && e.target.checked === false) {
+			const updatedCheckedState = checkedState.map((item, position) =>
+				index === position ? !item : item
+			)
+			setCheckedState(updatedCheckedState)
 			await axios.delete(`/api/deck/${card._id}/remove`, {
 				user: user._id,
 			})
-			getUserDeck()
 		}
+		getUserDeck()
 	}
 
 	return (
 		<div className='deck page'>
-			<div className='filters box'></div>
+			<div className='filters box'>
+				<p>Cards in Deck</p>
+				<p>
+					<span className={userDeck.length < 35 ? 'invalid' : 'valid'}>
+						{userDeck.length}
+					</span>
+					/ 35
+				</p>
+			</div>
 			<div className='list'>
 				{sortedCards.map((card, i) => (
 					<div key={card._id} className='display'>

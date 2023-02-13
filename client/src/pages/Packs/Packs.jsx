@@ -66,7 +66,7 @@ const Packs = () => {
 					</div>
 				))}
 			</div>
-			<button className='packs__button box' onClick={(e) => openPack(e)}>
+			<button className='box' onClick={(e) => openPack(e)}>
 				Open Pack
 			</button>
 		</div>

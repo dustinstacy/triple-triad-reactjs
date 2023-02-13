@@ -5,7 +5,7 @@
 	background-position: center;
 	background-size: cover;
 
-	.filters {
+	.sidebar {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -14,7 +14,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-end;
+		gap: 3rem;
 		border-radius: 0;
 		border-top: none;
 		border-left: none;
@@ -23,21 +24,65 @@
 		overflow: hidden;
 		z-index: 1;
 
-		p {
-			margin: 0;
-			font-size: 2rem;
+		.counter {
+			position: absolute;
+			top: 8%;
+			text-align: center;
+
+			p {
+				margin: 0;
+				font-size: 1.5rem;
+			}
+
+			span {
+				margin-right: 0.5rem;
+			}
+
+			.invalid {
+				color: var(--error-color);
+			}
+
+			.valid {
+				color: var(--secondary-color);
+			}
 		}
 
-		span {
-			margin-right: 0.5rem;
-		}
+		.filters {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+			padding-bottom: 2rem;
 
-		.invalid {
-			color: var(--error-color);
-		}
+			&__section {
+				width: 80%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 
-		.valid {
-			color: var(--secondary-color);
+				.section__header {
+					width: 100%;
+					text-align: center;
+					line-height: 0.75rem;
+
+					h3 {
+						align-self: center;
+						margin-bottom: 0;
+					}
+				}
+
+				.section__options {
+					width: 100%;
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: flex-start;
+					gap: 0 1rem;
+					padding: 0 0 0.5rem 2.5rem;
+					button {
+						margin: 0.25rem;
+					}
+				}
+			}
 		}
 	}
 
@@ -47,8 +92,9 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;
+		align-items: flex-start;
 		align-self: flex-end;
-		justify-content: space-around;
+		justify-content: flex-start;
 		padding: 5rem 1rem;
 		overflow-y: scroll;
 

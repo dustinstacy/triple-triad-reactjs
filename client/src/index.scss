@@ -18,6 +18,21 @@ a {
 	}
 }
 
+button {
+	height: 40px;
+	width: 100px;
+	font-size: 0.75rem;
+	color: var(--white-color);
+
+	cursor: pointer;
+}
+
+button.active {
+	background-color: var(--secondary-color);
+	border: 2px solid var(--secondary-color);
+	color: var(--secondary-color);
+}
+
 ::-webkit-scrollbar {
 	width: 18px;
 }

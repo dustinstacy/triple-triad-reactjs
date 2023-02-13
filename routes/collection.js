@@ -84,13 +84,13 @@ router.put('/:collectionId', requiresAuth, async (req, res) => {
 	}
 })
 
-// @route PUT /api/collection/:collectionId/favorite
-// @desc Add card from user's collection to favorites
+// @route PUT /api/collection/:collectionId/selected
+// @desc Add card from user's collection to selected cards
 // @access Private
-router.put('/:collectionId/favorite', requiresAuth, async (req, res) => {
+router.put('/:collectionId/selected', requiresAuth, async (req, res) => {
 	try {
 		const card = await Collection.findOne({
-			user: req.body._id,
+			user: req.user._id,
 			_id: req.params.collectionId,
 		})
 
@@ -98,17 +98,17 @@ router.put('/:collectionId/favorite', requiresAuth, async (req, res) => {
 			return res.status(404).json({ error: 'Card does not exist' })
 		}
 
-		if (card.favorite) {
-			return res.status(400).json({ error: 'Already added to favorites' })
+		if (card.selected) {
+			return res.status(400).json({ error: 'Already added to selected' })
 		}
 
 		const updatedCard = await Collection.findOneAndUpdate(
 			{
-				user: req.body._id,
+				user: req.user._id,
 				_id: req.params.collectionId,
 			},
 			{
-				favorite: true,
+				selected: true,
 			},
 			{
 				new: true,
@@ -122,13 +122,13 @@ router.put('/:collectionId/favorite', requiresAuth, async (req, res) => {
 	}
 })
 
-// @route PUT /api/collection/:collectionId/removeFavorite
-// @desc Remove card from user's collection form favorites
+// @route PUT /api/collection/:collectionId/removeSelection
+// @desc Remove card from user's collection from selected cards
 // @access Private
-router.put('/:collectionId/removeFavorite', requiresAuth, async (req, res) => {
+router.put('/:collectionId/removeSelection', requiresAuth, async (req, res) => {
 	try {
 		const card = await Collection.findOne({
-			user: req.body._id,
+			user: req.user._id,
 			_id: req.params.collectionId,
 		})
 
@@ -136,19 +136,19 @@ router.put('/:collectionId/removeFavorite', requiresAuth, async (req, res) => {
 			return res.status(404).json({ error: 'Card does not exist' })
 		}
 
-		if (!card.favorite) {
+		if (!card.selected) {
 			return res
 				.status(400)
-				.json({ error: 'Card already removed from favorites' })
+				.json({ error: 'Card already removed from selected' })
 		}
 
 		const updatedCard = await Collection.findOneAndUpdate(
 			{
-				user: req.body._id,
+				user: req.user._id,
 				_id: req.params.collectionId,
 			},
 			{
-				favorite: false,
+				selected: false,
 			},
 			{
 				new: true,

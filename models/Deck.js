@@ -7,21 +7,9 @@ const DeckSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'User',
 		},
-		number: {
-			type: String,
-			required: true,
-		},
 		_id: {
 			type: Schema.Types.ObjectId,
 			ref: 'Collection',
-		},
-		name: {
-			type: String,
-			required: true,
-		},
-		rarity: {
-			type: String,
-			required: true,
 		},
 		element: {
 			type: String,

@@ -65,7 +65,6 @@ export const GlobalProvider = ({ children }) => {
 					type: 'SET_USER',
 					payload: res.data,
 				})
-
 				getUserCards()
 				getUserDeck()
 			} else {

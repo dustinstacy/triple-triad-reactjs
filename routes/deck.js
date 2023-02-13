@@ -32,9 +32,6 @@ router.post('/add', requiresAuth, async (req, res) => {
 		const newDeck = new Deck({
 			user: req.body.user,
 			_id: req.body._id,
-			number: req.body.number,
-			name: req.body.name,
-			rarity: req.body.rarity,
 			element: req.body.element,
 			image: req.body.image,
 			values: req.body.values,

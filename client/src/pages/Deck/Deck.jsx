@@ -1,60 +1,119 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { FaStar, FaRegStar } from 'react-icons/fa'
+import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import './Deck.scss'
 
 const Deck = () => {
-	const { user, userCards, getUserDeck, userDeck } = useGlobalContext()
-	const [checkedState, setCheckedState] = useState(
-		new Array(userCards.length).fill(false)
-	)
-	const [sortedCards, setSortedCards] = useState(
-		userCards.sort((a, b) => a.number - b.number)
-	)
+	const { getCurrentUser, user, userCards, userDeck, allCards } =
+		useGlobalContext()
+	const [deckFilter, setDeckFilter] = useState('Show All')
+	const [rarityFilter, setRarityFilter] = useState(null)
+	const [elementFilter, setElementFilter] = useState(null)
+	const [sorting, setSorting] = useState(null)
 
-	const deckOptions = (e) => {
-		if (e.target.id === 'uncheckAll') {
-			userDeck.forEach((deckCard) => {
-				axios.delete(`/api/deck/${deckCard._id}/remove`, {
-					user: user._id,
-				})
-				getUserDeck()
+	const valuesArray = ['Up', 'Right', 'Down', 'Left']
+	const elementArray = []
+	const rarityArray = []
+
+	allCards.forEach((card) => {
+		if (!elementArray.includes(card.element)) {
+			elementArray.push(card.element)
+		}
+		if (!rarityArray.includes(card.rarity)) {
+			rarityArray.push(card.rarity)
+		}
+	})
+
+	const unSelectAll = (e) => {
+		e.preventDefault()
+		userDeck.forEach((deckCard) => {
+			removeSelection(e, deckCard)
+		})
+		getCurrentUser()
+	}
+
+	const markSelected = async (e, card) => {
+		if (userDeck.length < 35) {
+			e.preventDefault()
+			await axios.put(`/api/collection/${card._id}/selected`)
+			await axios.post('/api/deck/add', {
+				user: user._id,
+				_id: card._id,
+				number: card.number,
+				name: card.name,
+				rarity: card.rarity,
+				element: card.element,
+				image: card.image,
+				values: card.values,
 			})
-			setCheckedState(checkedState.fill(false))
-		}
-
-		if (e.target.id === 'selected') {
-			setSortedCards(userDeck)
-		}
-
-		if (e.target.id === 'unselected') {
-			setSortedCards(
-				userCards.filter(
-					(card) => !userDeck.find(({ _id }) => card._id === _id)
-				)
-			)
+			getCurrentUser()
+		} else {
+			alert('Your deck is currently full')
 		}
 	}
 
-	const sortCardsByValues = (e) => {
-		if (e.target.id !== 'total') {
-			let index
-			if (e.target.id === 'up') {
-				index = 0
-			} else if (e.target.id === 'right') {
-				index = 1
-			} else if (e.target.id === 'down') {
-				index = 2
-			} else if (e.target.id === 'left') {
-				index = 3
-			}
-			const filteredCards = sortedCards.sort(
-				(a, b) => parseInt(b.values[index]) - parseInt(a.values[index])
-			)
-			setSortedCards([...filteredCards])
-		} else if (e.target.id === 'total') {
-			const filteredCards = sortedCards.sort(
+	const removeSelection = async (e, card) => {
+		e.preventDefault()
+		await axios.put(`/api/collection/${card._id}/removeSelection`)
+		await axios.delete(`/api/deck/${card._id}/remove`, {
+			user: user._id,
+		})
+		getCurrentUser()
+	}
+
+	const filterCards = () => {
+		let filteredCards = []
+
+		if (deckFilter === 'Show All') {
+			filteredCards = [...userCards.sort((a, b) => a.number - b.number)]
+		}
+
+		if (deckFilter === 'Selected') {
+			filteredCards = [
+				...userCards.filter((card) =>
+					userDeck.find(({ _id }) => card._id === _id)
+				),
+			]
+		}
+
+		if (deckFilter === 'Unselected') {
+			filteredCards = [
+				...userCards.filter(
+					(card) => !userDeck.find(({ _id }) => card._id === _id)
+				),
+			]
+		}
+		if (rarityFilter) {
+			filteredCards = [
+				...filteredCards.filter((card) => card.rarity === rarityFilter),
+			]
+		}
+
+		if (elementFilter) {
+			filteredCards = [
+				...filteredCards.filter((card) => card.element === elementFilter),
+			]
+		}
+
+		if (sorting === 'Reset') {
+			filteredCards.sort((a, b) => a.number - b.number)
+		}
+		if (sorting === 'Up') {
+			filteredCards.sort((a, b) => b.values[0] - a.values[0])
+		}
+		if (sorting === 'Right') {
+			filteredCards.sort((a, b) => b.values[1] - a.values[1])
+		}
+		if (sorting === 'Down') {
+			filteredCards.sort((a, b) => b.values[2] - a.values[2])
+		}
+		if (sorting === 'Left') {
+			filteredCards.sort((a, b) => b.values[3] - a.values[3])
+		}
+		if (sorting === 'Total') {
+			filteredCards.sort(
 				(a, b) =>
 					b.values.reduce(
 						(sum, current) => parseInt(sum) + parseInt(current),
@@ -65,70 +124,14 @@ const Deck = () => {
 						0
 					)
 			)
-			setSortedCards([...filteredCards])
 		}
+
+		return filteredCards
 	}
 
-	const filterByRarity = (e) => {
-		const filteredCards = userCards.filter(
-			(card) => card.rarity === e.target.id
-		)
-		setSortedCards([...filteredCards])
-	}
-
-	const filterByElement = (e) => {
-		const filteredCards = userCards.filter(
-			(card) => card.element === e.target.id
-		)
-		setSortedCards([...filteredCards])
-	}
-
-	const reset = (e) => {
-		setSortedCards(userCards.sort((a, b) => a.number - b.number))
-	}
-
-	useEffect(() => {
-		sortedCards.forEach((card, index) => {
-			if (userDeck.find((deckCard) => deckCard._id === card._id)) {
-				setCheckedState([...checkedState, checkedState.splice(index, 1, true)])
-			}
-		})
-	}, [])
-
-	const handleChecked = async (e, card, index) => {
-		if (userDeck.length < 35) {
-			const updatedCheckedState = checkedState.map((item, position) =>
-				index === position ? !item : item
-			)
-			setCheckedState(updatedCheckedState)
-			if (e.target.checked) {
-				await axios.post('/api/deck/add', {
-					user: user._id,
-					_id: card._id,
-					number: card.number,
-					name: card.name,
-					rarity: card.rarity,
-					element: card.element,
-					image: card.image,
-					values: card.values,
-				})
-			} else {
-				await axios.delete(`/api/deck/${card._id}/remove`, {
-					user: user._id,
-				})
-			}
-		} else if (userDeck.length === 35 && e.target.checked === true) {
-			alert('Your deck is currently full')
-		} else if (userDeck.length === 35 && e.target.checked === false) {
-			const updatedCheckedState = checkedState.map((item, position) =>
-				index === position ? !item : item
-			)
-			setCheckedState(updatedCheckedState)
-			await axios.delete(`/api/deck/${card._id}/remove`, {
-				user: user._id,
-			})
-		}
-		getUserDeck()
+	const reset = () => {
+		setRarityFilter(null)
+		setElementFilter(null)
 	}
 
 	return (
@@ -144,33 +147,32 @@ const Deck = () => {
 					</p>
 				</div>
 				<div className='filters'>
-					<button className='box active' onClick={(e) => reset(e)}>
-						Show All
+					<button className='box' onClick={(e) => unSelectAll(e)}>
+						Unselect All
 					</button>
+
 					<div className='filters__section box'>
 						<div className='section__header'>
 							<h3>Deck Options</h3>
 							<hr />
 						</div>
+
 						<div className='section__options'>
 							<button
-								className='box'
-								id='uncheckAll'
-								onClick={(e) => deckOptions(e)}
+								className={`${deckFilter === 'Show All' ? 'active' : ''} box`}
+								onClick={() => setDeckFilter('Show All')}
 							>
-								Uncheck All
+								Show All
 							</button>
 							<button
-								className='box'
-								id='selected'
-								onClick={(e) => deckOptions(e)}
+								className={`${deckFilter === 'Selected' ? 'active' : ''} box`}
+								onClick={() => setDeckFilter('Selected')}
 							>
 								Show Selected
 							</button>
 							<button
-								className='box'
-								id='unselected'
-								onClick={(e) => deckOptions(e)}
+								className={`${deckFilter === 'Unselected' ? 'active' : ''} box`}
+								onClick={() => setDeckFilter('Unselected')}
 							>
 								Show Unselected
 							</button>
@@ -182,40 +184,23 @@ const Deck = () => {
 							<hr />
 						</div>
 						<div className='section__options'>
+							<button className='box' onClick={() => setSorting('Reset')}>
+								Reset
+							</button>
+							{valuesArray.map((value) => (
+								<button
+									key={value}
+									className={`${sorting === value ? 'active' : ''} box`}
+									onClick={() => setSorting(value)}
+								>
+									{value}
+								</button>
+							))}
 							<button
-								className='box'
-								id='total'
-								onClick={(e) => sortCardsByValues(e)}
+								className={`${sorting === 'Total' ? 'active' : ''} box`}
+								onClick={() => setSorting('Total')}
 							>
 								Total
-							</button>
-							<button
-								className='box'
-								id='up'
-								onClick={(e) => sortCardsByValues(e)}
-							>
-								Up
-							</button>
-							<button
-								className='box'
-								id='right'
-								onClick={(e) => sortCardsByValues(e)}
-							>
-								Right
-							</button>
-							<button
-								className='box'
-								id='down'
-								onClick={(e) => sortCardsByValues(e)}
-							>
-								Down
-							</button>
-							<button
-								className='box'
-								id='left'
-								onClick={(e) => sortCardsByValues(e)}
-							>
-								Left
 							</button>
 						</div>
 					</div>
@@ -225,41 +210,18 @@ const Deck = () => {
 							<hr />
 						</div>
 						<div className='section__options'>
-							<button
-								className='box'
-								id='Common'
-								onClick={(e) => filterByRarity(e)}
-							>
-								Common
+							<button className='box' onClick={(e) => setRarityFilter(null)}>
+								Clear Filter
 							</button>
-							<button
-								className='box'
-								id='Uncommon'
-								onClick={(e) => filterByRarity(e)}
-							>
-								Uncommon
-							</button>
-							<button
-								className='box'
-								id='Rare'
-								onClick={(e) => filterByRarity(e)}
-							>
-								Rare
-							</button>
-							<button
-								className='box'
-								id='Epic'
-								onClick={(e) => filterByRarity(e)}
-							>
-								Epic
-							</button>
-							<button
-								className='box'
-								id='Legendary'
-								onClick={(e) => filterByRarity(e)}
-							>
-								Legendary
-							</button>
+							{rarityArray.map((rarity) => (
+								<button
+									key={rarity}
+									className={`${rarityFilter === rarity ? 'active' : ''} box`}
+									onClick={(e) => setRarityFilter(rarity)}
+								>
+									{rarity}
+								</button>
+							))}
 						</div>
 					</div>
 					<div className='filters__section box'>
@@ -268,82 +230,24 @@ const Deck = () => {
 							<hr />
 						</div>
 						<div className='section__options'>
-							<button
-								className='box'
-								id='Neutral'
-								onClick={(e) => filterByElement(e)}
-							>
-								Neutral
+							<button className='box' onClick={(e) => setElementFilter(null)}>
+								Clear Filter
 							</button>
-							<button
-								className='box'
-								id='Fire'
-								onClick={(e) => filterByElement(e)}
-							>
-								Fire
-							</button>
-							<button
-								className='box'
-								id='Water'
-								onClick={(e) => filterByElement(e)}
-							>
-								Water
-							</button>
-							<button
-								className='box'
-								id='Earth'
-								onClick={(e) => filterByElement(e)}
-							>
-								Earth
-							</button>
-							<button
-								className='box'
-								id='Wind'
-								onClick={(e) => filterByElement(e)}
-							>
-								Wind
-							</button>
-							<button
-								className='box'
-								id='Ice'
-								onClick={(e) => filterByElement(e)}
-							>
-								Ice
-							</button>
-							<button
-								className='box'
-								id='Lightning'
-								onClick={(e) => filterByElement(e)}
-							>
-								Lightning
-							</button>
-							<button
-								className='box'
-								id='Holy'
-								onClick={(e) => filterByElement(e)}
-							>
-								Holy
-							</button>
-							<button
-								className='box'
-								id='Dark'
-								onClick={(e) => filterByElement(e)}
-							>
-								Dark
-							</button>
-							<button
-								className='box'
-								id='Universal'
-								onClick={(e) => filterByElement(e)}
-							>
-								Universal
-							</button>
+							{elementArray.map((element) => (
+								<button
+									key={element}
+									className={`${elementFilter === element ? 'active' : ''} box`}
+									onClick={(e) => setElementFilter(element)}
+								>
+									{element}
+								</button>
+							))}
 						</div>
 					</div>
 				</div>
 			</div>
 			<div className='list'>
-				{sortedCards.map((card, i) => (
+				{filterCards().map((card) => (
 					<div key={card._id} className='display'>
 						<div className='card'>
 							<img className='card__image' src={card.image} alt='owl' />
@@ -353,17 +257,20 @@ const Deck = () => {
 								<span className='down'>{card.values[2]}</span>
 								<span className='left'>{card.values[3]}</span>
 							</div>
-							<div className='checkcircle'>
-								<div className='round'>
-									<input
-										type='checkbox'
-										id={card._id}
-										value={{ ...card }}
-										checked={checkedState[i]}
-										onChange={(e) => handleChecked(e, card, i)}
-									/>
-									<label htmlFor={card._id}></label>
-								</div>
+							<div className='checkbox'>
+								<span
+									onClick={(e) =>
+										!card.selected
+											? markSelected(e, card)
+											: removeSelection(e, card)
+									}
+								>
+									{card.selected ? (
+										<ImCheckboxChecked className='check' />
+									) : (
+										<ImCheckboxUnchecked className='uncheck' />
+									)}
+								</span>
 							</div>
 						</div>
 

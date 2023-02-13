@@ -33,7 +33,7 @@ const CollectionSchema = new Schema(
 				required: true,
 			},
 		],
-		favorite: {
+		selected: {
 			type: Boolean,
 			default: false,
 		},

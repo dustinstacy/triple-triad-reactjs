@@ -5,39 +5,49 @@
 	background-position: center;
 	background-size: cover;
 
-	.filters {
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		width: 500px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
-		border-radius: 0;
-		border-top: none;
-		border-left: none;
-		border-bottom: none;
-		overflow: hidden;
-		z-index: 1;
+	h1 {
+		width: 300px;
+		align-self: center;
+		padding: 0.25rem 5rem;
+		color: var(--white-color);
+		font-size: 3rem;
+		text-align: center;
+		font-weight: 700;
+		letter-spacing: 4px;
 	}
 
 	.list {
 		height: calc(100vh - (var(--navbar-height) + 3px));
-		width: calc(100vw - 500px);
+		width: 100vw;
 		box-sizing: border-box;
 		display: flex;
-		flex-wrap: wrap;
-		align-self: flex-end;
-		justify-content: space-around;
-		padding: 5rem 1rem;
+		flex-direction: column;
 		overflow-y: scroll;
+
+		.header {
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+
+			span {
+				font-size: 1.5rem;
+				font-weight: 300;
+				letter-spacing: 2px;
+			}
+		}
 
 		.disabled {
 			border: 1px solid var(--primary-color);
 			filter: blur(1px) grayscale(0.5);
 		}
+	}
+
+	.container {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		padding: 0 2rem 4rem;
 	}
 
 	.display {
@@ -46,7 +56,12 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin: 0 2rem;
+		margin: 0 3rem;
+
+		.info {
+			height: 100px;
+			font-size: 1.15rem;
+		}
 
 		p {
 			margin: 0;
@@ -55,10 +70,6 @@
 			text-shadow: 2px 2px 1px var(--accent2-color),
 				-1px -1px 1px var(--accent2-color), 1px -1px 1px var(--accent2-color),
 				-1px 1px 1px var(--accent2-color);
-		}
-
-		p:last-child {
-			margin-bottom: 2rem;
 		}
 	}
 
@@ -75,40 +86,6 @@
 			height: 100%;
 			background: linear-gradient(45deg, rgb(73, 25, 25), rgb(168, 42, 42));
 			border-radius: 1rem;
-		}
-
-		&__values {
-			display: flex;
-			flex-direction: column;
-			color: var(--white-color);
-			text-shadow: 2px 2px 1px var(--black-color),
-				-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
-				-1px 1px 1px var(--black-color);
-			font-size: 36px;
-
-			.up {
-				position: absolute;
-				top: -1%;
-				right: 47%;
-			}
-
-			.right {
-				position: absolute;
-				right: 6%;
-				top: 42%;
-			}
-
-			.left {
-				position: absolute;
-				left: 5%;
-				top: 42%;
-			}
-
-			.down {
-				position: absolute;
-				bottom: -1%;
-				right: 46.5%;
-			}
 		}
 	}
 }

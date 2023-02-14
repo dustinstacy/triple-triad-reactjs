@@ -11,7 +11,7 @@ const Deck = () => {
 	const [deckFilter, setDeckFilter] = useState('Show All')
 	const [rarityFilter, setRarityFilter] = useState(null)
 	const [elementFilter, setElementFilter] = useState(null)
-	const [sorting, setSorting] = useState(null)
+	const [sortingFilter, setSortingFilter] = useState(null)
 
 	const valuesArray = ['Up', 'Right', 'Down', 'Left']
 	const elementArray = []
@@ -60,22 +60,22 @@ const Deck = () => {
 			]
 		}
 
-		if (sorting === 'Reset') {
+		if (sortingFilter === 'Reset') {
 			filteredCards.sort((a, b) => a.number - b.number)
 		}
-		if (sorting === 'Up') {
+		if (sortingFilter === 'Up') {
 			filteredCards.sort((a, b) => b.values[0] - a.values[0])
 		}
-		if (sorting === 'Right') {
+		if (sortingFilter === 'Right') {
 			filteredCards.sort((a, b) => b.values[1] - a.values[1])
 		}
-		if (sorting === 'Down') {
+		if (sortingFilter === 'Down') {
 			filteredCards.sort((a, b) => b.values[2] - a.values[2])
 		}
-		if (sorting === 'Left') {
+		if (sortingFilter === 'Left') {
 			filteredCards.sort((a, b) => b.values[3] - a.values[3])
 		}
-		if (sorting === 'Total') {
+		if (sortingFilter === 'Total') {
 			filteredCards.sort(
 				(a, b) =>
 					b.values.reduce(
@@ -230,21 +230,21 @@ const Deck = () => {
 							<hr />
 						</div>
 						<div className='section__options'>
-							<button className='box' onClick={() => setSorting('Reset')}>
+							<button className='box' onClick={() => setSortingFilter('Reset')}>
 								Reset
 							</button>
 							{valuesArray.map((value) => (
 								<button
 									key={value}
-									className={`${sorting === value ? 'active' : ''} box`}
-									onClick={() => setSorting(value)}
+									className={`${sortingFilter === value ? 'active' : ''} box`}
+									onClick={() => setSortingFilter(value)}
 								>
 									{value}
 								</button>
 							))}
 							<button
-								className={`${sorting === 'Total' ? 'active' : ''} box`}
-								onClick={() => setSorting('Total')}
+								className={`${sortingFilter === 'Total' ? 'active' : ''} box`}
+								onClick={() => setSortingFilter('Total')}
 							>
 								Total
 							</button>

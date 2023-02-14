@@ -11,6 +11,9 @@ import logo from './logo.png'
 import spellCircle from './spellcircle.png'
 import swords from './swords.png'
 import volcano from './volcano.png'
+import frames from './frames.png'
+import rank1 from './rank1.png'
+import rank6 from './rank6.png'
 
 export {
 	arcaneum,
@@ -26,4 +29,7 @@ export {
 	spellCircle,
 	swords,
 	volcano,
+	frames,
+	rank1,
+	rank6,
 }

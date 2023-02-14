@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { Button } from '../../components'
+import { frames, rank1, rank6 } from '../../assets'
 import './MatchSetup.scss'
 
 const MatchSetup = () => {
@@ -20,6 +21,16 @@ const MatchSetup = () => {
 				<h1>Match Setup</h1>
 				<div className='player'>
 					<h1>Player</h1>
+					<img src={frames} alt='frame' />
+					<div className='player__info'>
+						<p>Matches Won:</p>
+						<span>58</span>
+						<p>Matches Lost:</p>
+						<span>0</span>
+						<p>Deck Strength:</p>
+						<span>748</span>
+					</div>
+					<img src={rank6} alt='rank6' className='rank' />
 				</div>
 				<div className='settings__list'>
 					<h2>Rules</h2>
@@ -127,6 +138,16 @@ const MatchSetup = () => {
 				</div>
 				<div className='opponent'>
 					<h1>Opponent</h1>
+					<img src={frames} alt='frame' />
+					<div className='opponent__info'>
+						<p>Matches Won:</p>
+						<span>0</span>
+						<p>Matches Lost:</p>
+						<span>58</span>
+						<p>Deck Strength:</p>
+						<span>4</span>
+					</div>
+					<img src={rank1} alt='rank1' className='rank' />
 				</div>
 				<Button label='Start Match' type='link' path='match' />
 			</div>

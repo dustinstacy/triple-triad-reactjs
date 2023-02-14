@@ -10,8 +10,9 @@ import {
 	Deck,
 	Packs,
 } from './pages'
-import { NavBar, Footer } from './components'
 import { useGlobalContext } from './context/GlobalContext'
+import { SettingsProvider } from './context/SettingsContext'
+import { NavBar, Footer } from './components'
 
 function App() {
 	const { user } = useGlobalContext()
@@ -30,16 +31,18 @@ function App() {
 			)}
 
 			{user && (
-				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route path='/solo' element={<Solo />} />
-					<Route path='/matchSetup' element={<MatchSetup />} />
-					<Route path='/match' element={<Match />} />
-					<Route path='/arcaneum' element={<Arcaneum />} />
-					<Route path='/collection' element={<Collection />} />
-					<Route path='/deck' element={<Deck />} />
-					<Route path='/packs' element={<Packs />} />
-				</Routes>
+				<SettingsProvider>
+					<Routes>
+						<Route path='/' element={<Home />} />
+						<Route path='/solo' element={<Solo />} />
+						<Route path='/matchSetup' element={<MatchSetup />} />
+						<Route path='/match' element={<Match />} />
+						<Route path='/arcaneum' element={<Arcaneum />} />
+						<Route path='/collection' element={<Collection />} />
+						<Route path='/deck' element={<Deck />} />
+						<Route path='/packs' element={<Packs />} />
+					</Routes>
+				</SettingsProvider>
 			)}
 
 			{pathname !== ('/deck' && <Footer />) || ('/collection' && <Footer />)}

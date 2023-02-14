@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useReducer } from 'react'
 
 const initialState = {
 	rounds: 1,
@@ -17,20 +17,17 @@ const settingsReducer = (state, action) => {
 		case 'SET_ROUNDS':
 			return {
 				...state,
-				user: action.payload,
-				fetchingUser: false,
+				rounds: action.payload,
 			}
 		case 'SET_ELEMENTS':
 			return {
 				...state,
-				user: null,
-				fetchingUser: false,
-				userCards: [],
+				elements: action.payload,
 			}
 		case 'SET_SAME':
 			return {
 				...state,
-				allCards: action.payload,
+				same: action.payload,
 			}
 		default:
 			return state
@@ -42,11 +39,25 @@ const SettingsContext = createContext(initialState)
 export const SettingsProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(settingsReducer, initialState)
 
-	const setNumberOfRounds = () => {}
+	const setNumberOfRounds = (e) => {
+		dispatch({ type: 'SET_ROUNDS', payload: e.target.value })
+	}
 
-	const toggleElementsSetting = () => {}
+	const toggleElementsSetting = () => {
+		if (state.elements === false) {
+			dispatch({ type: 'SET_ELEMENTS', payload: true })
+		} else if (state.elements === true) {
+			dispatch({ type: 'SET_ELEMENTS', payload: false })
+		}
+	}
 
-	const toggleSameSetting = () => {}
+	const toggleSameSetting = () => {
+		if (state.same === false) {
+			dispatch({ type: 'SET_SAME', payload: true })
+		} else if (state.same === true) {
+			dispatch({ type: 'SET_SAME', payload: false })
+		}
+	}
 
 	const value = {
 		...state,

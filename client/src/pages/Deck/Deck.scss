@@ -1,6 +1,4 @@
 .deck {
-	align-items: center;
-	justify-content: center;
 	background-image: url('../../assets/arcaneum.jpg');
 	background-position: center;
 	background-size: cover;
@@ -14,8 +12,9 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: flex-end;
+		justify-content: center;
 		gap: 3rem;
+		padding-top: 5rem;
 		border-radius: 0;
 		border-top: none;
 		border-left: none;
@@ -24,35 +23,16 @@
 		overflow: hidden;
 		z-index: 1;
 
-		.counter {
-			position: absolute;
-			top: 8%;
-			text-align: center;
-
-			p {
-				margin: 0;
-				font-size: 1.5rem;
-			}
-
-			span {
-				margin-right: 0.5rem;
-			}
-
-			.invalid {
-				color: var(--error-color);
-			}
-
-			.valid {
-				color: var(--secondary-color);
-			}
-		}
-
 		.filters {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			gap: 1rem;
 			padding-bottom: 2rem;
+
+			h1 {
+				margin: 1rem 0 0 0;
+			}
 
 			&__section {
 				width: 80%;
@@ -66,8 +46,9 @@
 					line-height: 0.75rem;
 
 					h3 {
-						align-self: center;
+						display: flex;
 						margin-bottom: 0;
+						padding-left: 1rem;
 					}
 				}
 
@@ -86,6 +67,48 @@
 		}
 	}
 
+	&__details {
+		position: sticky;
+		top: 0;
+		height: 100px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		margin: 2rem 0;
+		color: var(--white-color);
+		z-index: 2;
+
+		.counter,
+		.strength {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 1.5rem;
+
+			p {
+				margin: 0;
+			}
+
+			span {
+				margin-right: 0.5rem;
+			}
+
+			.invalid {
+				color: var(--error-color);
+			}
+
+			.valid {
+				color: var(--secondary-color);
+			}
+		}
+
+		button {
+			width: 200px;
+			font-size: 1.25rem;
+		}
+	}
+
 	.list {
 		height: calc(100vh - (var(--navbar-height) + 3px));
 		width: calc(100vw - 500px);
@@ -95,8 +118,13 @@
 		align-items: flex-start;
 		align-self: flex-end;
 		justify-content: flex-start;
-		padding: 5rem 1rem;
-		overflow-y: scroll;
+		padding: 0 4rem;
+		overflow-y: auto;
+
+		.section {
+			display: flex;
+			gap: 1rem;
+		}
 
 		.disabled {
 			border: 1px solid var(--primary-color);

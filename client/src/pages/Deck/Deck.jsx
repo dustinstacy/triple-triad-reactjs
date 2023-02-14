@@ -26,43 +26,6 @@ const Deck = () => {
 		}
 	})
 
-	const unSelectAll = (e) => {
-		e.preventDefault()
-		userDeck.forEach((deckCard) => {
-			removeSelection(e, deckCard)
-		})
-		getCurrentUser()
-	}
-
-	const markSelected = async (e, card) => {
-		if (userDeck.length < 35) {
-			e.preventDefault()
-			await axios.put(`/api/collection/${card._id}/selected`)
-			await axios.post('/api/deck/add', {
-				user: user._id,
-				_id: card._id,
-				number: card.number,
-				name: card.name,
-				rarity: card.rarity,
-				element: card.element,
-				image: card.image,
-				values: card.values,
-			})
-			getCurrentUser()
-		} else {
-			alert('Your deck is currently full')
-		}
-	}
-
-	const removeSelection = async (e, card) => {
-		e.preventDefault()
-		await axios.put(`/api/collection/${card._id}/removeSelection`)
-		await axios.delete(`/api/deck/${card._id}/remove`, {
-			user: user._id,
-		})
-		getCurrentUser()
-	}
-
 	const filterCards = () => {
 		let filteredCards = []
 
@@ -116,44 +79,89 @@ const Deck = () => {
 			filteredCards.sort(
 				(a, b) =>
 					b.values.reduce(
-						(sum, current) => parseInt(sum) + parseInt(current),
+						(sum, current) =>
+							parseInt(sum) + parseInt(current.replace(/A/g, 10)),
 						0
 					) -
 					a.values.reduce(
-						(sum, current) => parseInt(sum) + parseInt(current),
+						(sum, current) =>
+							parseInt(sum) + parseInt(current.replace(/A/g, 10)),
 						0
 					)
 			)
 		}
 
+		console.log(Number('A'))
+
 		return filteredCards
 	}
 
-	const reset = () => {
-		setRarityFilter(null)
-		setElementFilter(null)
+	const markSelected = async (card) => {
+		if (userDeck.length < 35) {
+			await axios.put(`/api/collection/${card._id}/selected`)
+			await axios.post('/api/deck/add', {
+				user: user._id,
+				_id: card._id,
+				number: card.number,
+				name: card.name,
+				rarity: card.rarity,
+				element: card.element,
+				image: card.image,
+				values: card.values,
+			})
+			getCurrentUser()
+		} else {
+			alert('Your deck is currently full')
+		}
+	}
+
+	const removeSelection = async (card) => {
+		await axios.put(`/api/collection/${card._id}/removeSelection`)
+		await axios.delete(`/api/deck/${card._id}/remove`, {
+			user: user._id,
+		})
+		getCurrentUser()
+	}
+
+	const autoBuild = async () => {
+		const emptySlots = 35 - userDeck.length
+		const totalValueArray = userCards
+			.filter((card) => !userDeck.find(({ _id }) => card._id === _id))
+			.sort(
+				(a, b) =>
+					b.values.reduce(
+						(sum, current) =>
+							parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+						0
+					) -
+					a.values.reduce(
+						(sum, current) =>
+							parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+						0
+					)
+			)
+
+		for (let i = 0; i < emptySlots; i++) {
+			markSelected(totalValueArray[i])
+		}
+		getCurrentUser()
+	}
+
+	const unSelectAll = () => {
+		userDeck.forEach((deckCard) => {
+			removeSelection(deckCard)
+		})
+		getCurrentUser()
 	}
 
 	return (
 		<div className='deck page'>
 			<div className='sidebar box'>
-				<div className='counter'>
-					<p>Cards in Deck</p>
-					<p>
-						<span className={userDeck.length < 35 ? 'invalid' : 'valid'}>
-							{userDeck.length}
-						</span>
-						/ 35
-					</p>
-				</div>
 				<div className='filters'>
-					<button className='box' onClick={(e) => unSelectAll(e)}>
-						Unselect All
-					</button>
-
 					<div className='filters__section box'>
+						<h1>Filter</h1>
 						<div className='section__header'>
-							<h3>Deck Options</h3>
+							<h3>Cards </h3>
 							<hr />
 						</div>
 
@@ -177,10 +185,48 @@ const Deck = () => {
 								Show Unselected
 							</button>
 						</div>
+						<div className='section__header'>
+							<h3>Rarity</h3>
+							<hr />
+						</div>
+						<div className='section__options'>
+							<button className='box' onClick={() => setRarityFilter(null)}>
+								Clear Filter
+							</button>
+							{rarityArray.map((rarity) => (
+								<button
+									key={rarity}
+									className={`${rarityFilter === rarity ? 'active' : ''} box`}
+									onClick={() => setRarityFilter(rarity)}
+								>
+									{rarity}
+								</button>
+							))}
+						</div>
+
+						<div className='section__header'>
+							<h3>Element</h3>
+							<hr />
+						</div>
+						<div className='section__options'>
+							<button className='box' onClick={() => setElementFilter(null)}>
+								Clear Filter
+							</button>
+							{elementArray.map((element) => (
+								<button
+									key={element}
+									className={`${elementFilter === element ? 'active' : ''} box`}
+									onClick={() => setElementFilter(element)}
+								>
+									{element}
+								</button>
+							))}
+						</div>
 					</div>
 					<div className='filters__section box'>
+						<h1>Sort</h1>
 						<div className='section__header'>
-							<h3>Sort by Card Values</h3>
+							<h3>Card Values</h3>
 							<hr />
 						</div>
 						<div className='section__options'>
@@ -204,49 +250,42 @@ const Deck = () => {
 							</button>
 						</div>
 					</div>
-					<div className='filters__section box'>
-						<div className='section__header'>
-							<h3>Filter by Rarity</h3>
-							<hr />
-						</div>
-						<div className='section__options'>
-							<button className='box' onClick={(e) => setRarityFilter(null)}>
-								Clear Filter
-							</button>
-							{rarityArray.map((rarity) => (
-								<button
-									key={rarity}
-									className={`${rarityFilter === rarity ? 'active' : ''} box`}
-									onClick={(e) => setRarityFilter(rarity)}
-								>
-									{rarity}
-								</button>
-							))}
-						</div>
-					</div>
-					<div className='filters__section box'>
-						<div className='section__header'>
-							<h3>Filter by Element</h3>
-							<hr />
-						</div>
-						<div className='section__options'>
-							<button className='box' onClick={(e) => setElementFilter(null)}>
-								Clear Filter
-							</button>
-							{elementArray.map((element) => (
-								<button
-									key={element}
-									className={`${elementFilter === element ? 'active' : ''} box`}
-									onClick={(e) => setElementFilter(element)}
-								>
-									{element}
-								</button>
-							))}
-						</div>
-					</div>
 				</div>
 			</div>
 			<div className='list'>
+				<div className='deck__details box'>
+					<div className='counter'>
+						<p>Cards in Deck</p>
+						<p>
+							<span className={userDeck.length < 35 ? 'invalid' : 'valid'}>
+								{userDeck.length}
+							</span>
+							/ 35
+						</p>
+					</div>
+					<div className='strength'>
+						<p>Deck Strength</p>
+						{userDeck.reduce(
+							(total, card) =>
+								total +
+								card.values.reduce(
+									(sum, current) =>
+										parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+									0
+								),
+							0
+						)}
+					</div>
+					<div className='section'>
+						<button className='box' onClick={() => autoBuild()}>
+							Auto Build
+						</button>
+						<button className='box' onClick={() => unSelectAll()}>
+							Unselect All
+						</button>
+					</div>
+				</div>
+
 				{filterCards().map((card) => (
 					<div key={card._id} className='display'>
 						<div className='card'>
@@ -259,10 +298,8 @@ const Deck = () => {
 							</div>
 							<div className='checkbox'>
 								<span
-									onClick={(e) =>
-										!card.selected
-											? markSelected(e, card)
-											: removeSelection(e, card)
+									onClick={() =>
+										!card.selected ? markSelected(card) : removeSelection(card)
 									}
 								>
 									{card.selected ? (

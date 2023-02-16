@@ -30,6 +30,16 @@ import dungeon from './dungeon.jpg'
 import darkskies from './darkskies.jpg'
 import boardframe2 from './boardframe2.png'
 import boardframe3 from './boardframe3.png'
+import Dark from './dark.png'
+import Earth from './earth.png'
+import Fire from './fire.png'
+import Holy from './holy.png'
+import Ice from './ice.png'
+import Lightning from './lightning.png'
+import Neutral from './neutral.png'
+import Universal from './rainbow.png'
+import Water from './water.png'
+import Wind from './wind.png'
 
 export {
 	arcaneum,
@@ -64,4 +74,14 @@ export {
 	darkskies,
 	boardframe2,
 	boardframe3,
+	Dark,
+	Earth,
+	Fire,
+	Ice,
+	Lightning,
+	Neutral,
+	Universal,
+	Water,
+	Wind,
+	Holy,
 }

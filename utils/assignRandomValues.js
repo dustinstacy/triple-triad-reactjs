@@ -22,7 +22,7 @@ export const assignRandomValues = (card) => {
 			if (value === 10) {
 				return 'A'
 			}
-			return value
+			return String(value)
 		})
 		return values
 	}

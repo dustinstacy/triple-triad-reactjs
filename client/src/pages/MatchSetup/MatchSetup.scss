@@ -18,6 +18,10 @@
 		padding: 5rem 2rem;
 		color: var(--white-color);
 
+		.radios {
+			display: flex;
+		}
+
 		.player,
 		.settings__list,
 		.opponent {

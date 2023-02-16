@@ -3,6 +3,18 @@ import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { FaStar, FaRegStar } from 'react-icons/fa'
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
+import {
+	Neutral,
+	Fire,
+	Water,
+	Earth,
+	Wind,
+	Ice,
+	Lightning,
+	Holy,
+	Dark,
+	Universal,
+} from '../../assets'
 import './Deck.scss'
 
 const Deck = () => {
@@ -262,35 +274,99 @@ const Deck = () => {
 			</div>
 			<div className='list'>
 				<div className='deck__details box'>
-					<div className='counter'>
-						<p>Cards in Deck</p>
-						<p>
-							<span className={userDeck.length < 35 ? 'invalid' : 'valid'}>
-								{userDeck.length}
+					<div className='top'>
+						<div className='counter'>
+							<p>Cards in Deck</p>
+							<p>
+								<span className={userDeck.length < 35 ? 'invalid' : 'valid'}>
+									{userDeck.length}
+								</span>
+								/ 35
+							</p>
+						</div>
+						<div className='strength'>
+							<p>Deck Strength</p>
+							{userDeck.reduce(
+								(total, card) =>
+									total +
+									card.values.reduce(
+										(sum, current) =>
+											parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+										0
+									),
+								0
+							)}
+						</div>
+						<div className='section'>
+							<button className='box' onClick={() => autoBuild()}>
+								Auto Build
+							</button>
+							<button className='box' onClick={() => unSelectAll()}>
+								Unselect All
+							</button>
+						</div>
+					</div>
+					<div className='bottom'>
+						<div className='element'>
+							<img src={Neutral} alt='Neutral' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Neutral').length}
 							</span>
-							/ 35
-						</p>
-					</div>
-					<div className='strength'>
-						<p>Deck Strength</p>
-						{userDeck.reduce(
-							(total, card) =>
-								total +
-								card.values.reduce(
-									(sum, current) =>
-										parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-									0
-								),
-							0
-						)}
-					</div>
-					<div className='section'>
-						<button className='box' onClick={() => autoBuild()}>
-							Auto Build
-						</button>
-						<button className='box' onClick={() => unSelectAll()}>
-							Unselect All
-						</button>
+						</div>
+						<div className='element'>
+							<img src={Fire} alt='Fire' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Fire').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Water} alt='Water' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Water').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Earth} alt='Earth' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Earth').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Wind} alt='Wind' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Wind').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Ice} alt='Ice' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Ice').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Lightning} alt='Lightning' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Lightning').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Holy} alt='Holy' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Holy').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Dark} alt='Dark' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Dark').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Universal} alt='Universal' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Universal').length}
+							</span>
+						</div>
 					</div>
 				</div>
 

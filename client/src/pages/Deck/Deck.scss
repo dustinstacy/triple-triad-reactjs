@@ -70,12 +70,11 @@
 	&__details {
 		position: sticky;
 		top: 0;
-		height: 100px;
+		height: 135px;
 		width: 100%;
 		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		margin: 2rem 0;
+		flex-direction: column;
+		margin: 1rem 0;
 		color: var(--white-color);
 		z-index: 2;
 
@@ -100,6 +99,30 @@
 
 			.valid {
 				color: var(--secondary-color);
+			}
+		}
+
+		.top {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			margin-top: 0.5rem;
+		}
+
+		.bottom {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2rem;
+			margin-top: 0.5rem;
+
+			.element {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				img {
+					height: 40px;
+				}
 			}
 		}
 

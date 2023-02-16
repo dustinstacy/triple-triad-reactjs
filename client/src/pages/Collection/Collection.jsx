@@ -20,7 +20,8 @@ const Collection = () => {
 				<h1 className='header box'>
 					Collection
 					<span>
-						Total Found : {uniqueCards.reduce((total) => total + 1, 0)} / 281
+						Total Found : {uniqueCards.reduce((total) => total + 1, 0)} /{' '}
+						{allCards.length}
 					</span>
 				</h1>
 				<div className='container'>
@@ -31,7 +32,9 @@ const Collection = () => {
 									<img className='card__image' src={card.image} alt='owl' />
 								</div>
 								<div className='info'>
-									<p>{card.number} / 281</p>
+									<p>
+										{card.number} / {allCards.length}
+									</p>
 									<p>{card.name}</p>
 								</div>
 							</div>
@@ -39,7 +42,7 @@ const Collection = () => {
 							<div key={card.name} className='display'>
 								<div className='card disabled' />
 								<div className='info'>
-									<p>??? / 281</p>
+									<p>??? / {allCards.length}</p>
 									<p>????????</p>
 								</div>
 							</div>

@@ -14,6 +14,22 @@ import volcano from './volcano.png'
 import frames from './frames.png'
 import rank1 from './rank1.png'
 import rank6 from './rank6.png'
+import boardframe from './boardframe.png'
+import crystal from './crystal.jpg'
+import darkcanyon from './darkcanyon.jpg'
+import darkcastle from './darkcastle.jpg'
+import natural from './natural.jpg'
+import pattern1 from './pattern1.jpg'
+import pattern2 from './pattern2.jpg'
+import pattern3 from './pattern3.jpg'
+import sea from './sea.jpg'
+import snowcastle from './snowcastle.jpg'
+import treehouse from './treehouse.jpg'
+import wideopen from './wideopen.jpg'
+import dungeon from './dungeon.jpg'
+import darkskies from './darkskies.jpg'
+import boardframe2 from './boardframe2.png'
+import boardframe3 from './boardframe3.png'
 
 export {
 	arcaneum,
@@ -32,4 +48,20 @@ export {
 	frames,
 	rank1,
 	rank6,
+	boardframe,
+	crystal,
+	darkcanyon,
+	darkcastle,
+	natural,
+	pattern1,
+	pattern2,
+	pattern3,
+	sea,
+	snowcastle,
+	treehouse,
+	wideopen,
+	dungeon,
+	darkskies,
+	boardframe2,
+	boardframe3,
 }

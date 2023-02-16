@@ -64,16 +64,24 @@ const Deck = () => {
 			filteredCards.sort((a, b) => a.number - b.number)
 		}
 		if (sortingFilter === 'Up') {
-			filteredCards.sort((a, b) => b.values[0] - a.values[0])
+			filteredCards.sort(
+				(a, b) => b.values[0].replace(/A/g, 10) - a.values[0].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Right') {
-			filteredCards.sort((a, b) => b.values[1] - a.values[1])
+			filteredCards.sort(
+				(a, b) => b.values[1].replace(/A/g, 10) - a.values[1].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Down') {
-			filteredCards.sort((a, b) => b.values[2] - a.values[2])
+			filteredCards.sort(
+				(a, b) => b.values[2].replace(/A/g, 10) - a.values[2].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Left') {
-			filteredCards.sort((a, b) => b.values[3] - a.values[3])
+			filteredCards.sort(
+				(a, b) => b.values[3].replace(/A/g, 10) - a.values[3].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Total') {
 			filteredCards.sort(

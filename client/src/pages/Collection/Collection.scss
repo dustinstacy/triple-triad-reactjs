@@ -1,7 +1,7 @@
 .collection.page {
 	align-items: center;
 	justify-content: center;
-	background-image: url('../../assets/pattern3.jpg');
+	background-image: url('../../assets/library2.jpg');
 	background-position: center;
 	background-size: cover;
 
@@ -85,7 +85,7 @@
 
 		&__image {
 			height: 100%;
-			background: linear-gradient(45deg, rgb(73, 25, 25), rgb(168, 42, 42));
+			background-image: url('../../assets/blue2.jpg');
 			border-radius: 1rem;
 		}
 	}

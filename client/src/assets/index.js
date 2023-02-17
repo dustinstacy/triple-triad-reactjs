@@ -40,6 +40,28 @@ import Neutral from './neutral.png'
 import Universal from './rainbow.png'
 import Water from './water.png'
 import Wind from './wind.png'
+import arcanecrystal from './arcanecrystal.png'
+import deck from './deck.png'
+import gift from './gift.png'
+import magicbook from './magicbook.png'
+import skullbook from './skullbook.png'
+import stonetablet from './stonetablet.png'
+import voodoobook from './voodoobook.png'
+import crystalbook from './crystalbook.png'
+import cursedbook from './cursedbook.png'
+import blue1 from './blue1.jpg'
+import blue2 from './blue2.jpg'
+import city from './city.jpg'
+import darkportal from './darkportal.jpg'
+import entrance from './entrance.jpg'
+import facecave from './facecave.jpg'
+import floating from './floating.jpg'
+import library1 from './library1.jpg'
+import library2 from './library2.jpg'
+import red1 from './red1.jpg'
+import red2 from './red2.png'
+import snakecave from './snakecave.jpg'
+import view from './view.jpg'
 
 export {
 	arcaneum,
@@ -84,4 +106,26 @@ export {
 	Water,
 	Wind,
 	Holy,
+	arcanecrystal,
+	deck,
+	gift,
+	magicbook,
+	skullbook,
+	stonetablet,
+	voodoobook,
+	crystalbook,
+	cursedbook,
+	view,
+	snakecave,
+	red1,
+	red2,
+	blue1,
+	blue2,
+	library1,
+	library2,
+	facecave,
+	floating,
+	entrance,
+	darkportal,
+	city,
 }

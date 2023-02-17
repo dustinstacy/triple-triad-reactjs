@@ -1,11 +1,125 @@
 .match {
 	flex-direction: row !important;
 	align-items: center;
-	justify-content: center;
-	gap: 2rem;
+	justify-content: space-between;
 	background-color: var(--accent2-color);
 
 	.board {
+		position: absolute;
+		left: 50%;
 		height: 900px;
+		transform: translatex(-50%);
+		pointer-events: none;
+	}
+
+	.grid {
+		display: flex;
+		flex-wrap: wrap;
+		width: 660px;
+	}
+
+	.cell {
+		height: 295px;
+		width: 215px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid var(--error-color);
+		color: var(--white-color);
+	}
+
+	.player,
+	.cpu {
+		height: 90vh;
+		width: 300px;
+		display: flex;
+		justify-content: center;
+		margin-top: 2rem;
+
+		.card {
+			position: relative;
+			height: 300px;
+			margin-bottom: 0.5rem;
+			background-color: var(--black-color);
+			border-radius: 1rem;
+			z-index: 1;
+
+			&__image {
+				height: 100%;
+				background-image: url('../../assets/red1.jpg');
+				border-radius: 1rem;
+				pointer-events: none;
+			}
+
+			&__values {
+				display: flex;
+				flex-direction: column;
+				color: var(--white-color);
+				text-shadow: 2px 2px 1px var(--black-color),
+					-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
+					-1px 1px 1px var(--black-color);
+				font-size: 26px;
+				pointer-events: none;
+
+				.up {
+					position: absolute;
+					top: -1%;
+					right: 45%;
+				}
+
+				.right {
+					position: absolute;
+					right: 5%;
+					top: 42%;
+				}
+
+				.left {
+					position: absolute;
+					left: 5%;
+					top: 42%;
+				}
+
+				.down {
+					position: absolute;
+					bottom: -1%;
+					right: 45%;
+				}
+			}
+		}
+	}
+
+	.card.active {
+		border: 8px solid var(--secondary-color);
+	}
+
+	.cpu,
+	.player {
+		position: relative;
+
+		.card:hover {
+			transform: scale(1.1) translateX(-30%);
+			z-index: 10;
+		}
+
+		.card:nth-child(1) {
+			position: absolute;
+			top: 4%;
+		}
+		.card:nth-child(2) {
+			position: absolute;
+			top: 18%;
+		}
+		.card:nth-child(3) {
+			position: absolute;
+			top: 32%;
+		}
+		.card:nth-child(4) {
+			position: absolute;
+			top: 46%;
+		}
+		.card:nth-child(5) {
+			position: absolute;
+			top: 60%;
+		}
 	}
 }

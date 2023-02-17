@@ -1,7 +1,15 @@
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { logo, book, cottage, swords } from '../../assets'
+import {
+	logo,
+	cottage,
+	swords,
+	arcanecrystal,
+	crystalbook,
+	magicbook,
+	deck,
+} from '../../assets'
 import './NavBar.scss'
 
 const NavBar = () => {
@@ -28,7 +36,22 @@ const NavBar = () => {
 						</NavLink>
 						<NavLink to='/arcaneum' className='navbar__link'>
 							<p>
-								<img src={book} alt='library' />
+								<img src={arcanecrystal} alt='library' />
+							</p>
+						</NavLink>{' '}
+						<NavLink to='/collection' className='navbar__link'>
+							<p>
+								<img src={magicbook} alt='library' />
+							</p>
+						</NavLink>{' '}
+						<NavLink to='/packs' className='navbar__link'>
+							<p>
+								<img src={crystalbook} alt='library' />
+							</p>
+						</NavLink>{' '}
+						<NavLink to='/deck' className='navbar__link'>
+							<p>
+								<img src={deck} alt='library' />
 							</p>
 						</NavLink>
 					</>

@@ -1,5 +1,5 @@
 .deck {
-	background-image: url('../../assets/dungeon.jpg');
+	background-image: url('../../assets/entrance.jpg');
 	background-position: center;
 	background-size: cover;
 
@@ -189,7 +189,7 @@
 
 		&__image {
 			height: 100%;
-			background: linear-gradient(45deg, rgb(73, 25, 25), rgb(168, 42, 42));
+			background-image: url('../../assets/red1.jpg');
 			border-radius: 1rem;
 		}
 

@@ -1,14 +1,15 @@
 .packs {
 	align-items: center;
 	justify-content: center;
+	gap: 5rem;
 	background-image: url('../../assets/crystal.jpg');
 	background-position: center;
 	background-size: cover;
 
 	.contents {
+		height: 350px;
 		display: flex;
-		margin: 5rem;
-		gap: 3rem;
+		gap: 5rem;
 	}
 
 	.card {

@@ -47,6 +47,7 @@ export const CPUCardProvider = ({ children }) => {
 				currentRarityCards[
 					Math.floor(Math.random() * currentRarityCards.length)
 				]
+			randomCard.user = 'cpu'
 			deck.splice(i, 1, randomCard)
 		})
 	}

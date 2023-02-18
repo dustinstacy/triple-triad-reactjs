@@ -1,15 +1,13 @@
 import React from 'react'
-import { p1, p2 } from '../../assets'
-import { useGlobalContext } from '../../context/GlobalContext'
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import './Card.scss'
 
-const Card = ({ card, player, handleClick, page }) => {
-	const { user } = useGlobalContext()
-
+const Card = ({ card, player, turn, handleClick, page }) => {
 	return (
 		<div
-			className={`card ${player === user ? 'blue' : 'red'}`}
+			className={`card ${player === 'p1' ? 'blue' : 'red'} ${
+				!turn ? 'not__user' : ''
+			}`}
 			id={card._id}
 			onClick={(e) => handleClick(e)}
 			onDrag={(e) => handleDrag(e)}

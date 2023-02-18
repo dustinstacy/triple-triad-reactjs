@@ -15,8 +15,8 @@
 	.grid {
 		display: flex;
 		flex-wrap: wrap;
-		width: 660px;
-		border: 2px solid red;
+		justify-content: center;
+		width: 800px;
 	}
 
 	.player,
@@ -35,11 +35,6 @@
 	.cpu,
 	.player {
 		position: relative;
-
-		.card:hover {
-			transform: scale(1.1) translateX(-30%);
-			z-index: 10;
-		}
 
 		.card:nth-child(1) {
 			position: absolute;

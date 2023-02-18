@@ -1,8 +1,21 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
+import { Card } from '../../components'
 import { FaStar, FaRegStar } from 'react-icons/fa'
-import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
+
+import {
+	Neutral,
+	Fire,
+	Water,
+	Earth,
+	Wind,
+	Ice,
+	Lightning,
+	Holy,
+	Dark,
+	Universal,
+} from '../../assets'
 import './Deck.scss'
 
 const Deck = () => {
@@ -64,16 +77,24 @@ const Deck = () => {
 			filteredCards.sort((a, b) => a.number - b.number)
 		}
 		if (sortingFilter === 'Up') {
-			filteredCards.sort((a, b) => b.values[0] - a.values[0])
+			filteredCards.sort(
+				(a, b) => b.values[0].replace(/A/g, 10) - a.values[0].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Right') {
-			filteredCards.sort((a, b) => b.values[1] - a.values[1])
+			filteredCards.sort(
+				(a, b) => b.values[1].replace(/A/g, 10) - a.values[1].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Down') {
-			filteredCards.sort((a, b) => b.values[2] - a.values[2])
+			filteredCards.sort(
+				(a, b) => b.values[2].replace(/A/g, 10) - a.values[2].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Left') {
-			filteredCards.sort((a, b) => b.values[3] - a.values[3])
+			filteredCards.sort(
+				(a, b) => b.values[3].replace(/A/g, 10) - a.values[3].replace(/A/g, 10)
+			)
 		}
 		if (sortingFilter === 'Total') {
 			filteredCards.sort(
@@ -90,9 +111,6 @@ const Deck = () => {
 					)
 			)
 		}
-
-		console.log(Number('A'))
-
 		return filteredCards
 	}
 
@@ -254,64 +272,114 @@ const Deck = () => {
 			</div>
 			<div className='list'>
 				<div className='deck__details box'>
-					<div className='counter'>
-						<p>Cards in Deck</p>
-						<p>
-							<span className={userDeck.length < 35 ? 'invalid' : 'valid'}>
-								{userDeck.length}
+					<div className='top'>
+						<div className='counter'>
+							<p>Cards in Deck</p>
+							<p>
+								<span className={userDeck.length < 35 ? 'invalid' : 'valid'}>
+									{userDeck.length}
+								</span>
+								/ 35
+							</p>
+						</div>
+						<div className='strength'>
+							<p>Deck Strength</p>
+							{userDeck.reduce(
+								(total, card) =>
+									total +
+									card.values.reduce(
+										(sum, current) =>
+											parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+										0
+									),
+								0
+							)}
+						</div>
+						<div className='section'>
+							<button className='box' onClick={() => autoBuild()}>
+								Auto Build
+							</button>
+							<button className='box' onClick={() => unSelectAll()}>
+								Unselect All
+							</button>
+						</div>
+					</div>
+					<div className='bottom'>
+						<div className='element'>
+							<img src={Neutral} alt='Neutral' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Neutral').length}
 							</span>
-							/ 35
-						</p>
-					</div>
-					<div className='strength'>
-						<p>Deck Strength</p>
-						{userDeck.reduce(
-							(total, card) =>
-								total +
-								card.values.reduce(
-									(sum, current) =>
-										parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-									0
-								),
-							0
-						)}
-					</div>
-					<div className='section'>
-						<button className='box' onClick={() => autoBuild()}>
-							Auto Build
-						</button>
-						<button className='box' onClick={() => unSelectAll()}>
-							Unselect All
-						</button>
+						</div>
+						<div className='element'>
+							<img src={Fire} alt='Fire' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Fire').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Water} alt='Water' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Water').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Earth} alt='Earth' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Earth').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Wind} alt='Wind' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Wind').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Ice} alt='Ice' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Ice').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Lightning} alt='Lightning' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Lightning').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Holy} alt='Holy' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Holy').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Dark} alt='Dark' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Dark').length}
+							</span>
+						</div>{' '}
+						<div className='element'>
+							<img src={Universal} alt='Universal' />
+							<span>
+								{userDeck.filter((card) => card.element === 'Universal').length}
+							</span>
+						</div>
 					</div>
 				</div>
 
 				{filterCards().map((card) => (
 					<div key={card._id} className='display'>
-						<div className='card'>
-							<img className='card__image' src={card.image} alt='owl' />
-							<div className='card__values'>
-								<span className='up'>{card.values[0]}</span>
-								<span className='right'>{card.values[1]}</span>
-								<span className='down'>{card.values[2]}</span>
-								<span className='left'>{card.values[3]}</span>
-							</div>
-							<div className='checkbox'>
-								<span
-									onClick={() =>
-										!card.selected ? markSelected(card) : removeSelection(card)
-									}
-								>
-									{card.selected ? (
-										<ImCheckboxChecked className='check' />
-									) : (
-										<ImCheckboxUnchecked className='uncheck' />
-									)}
-								</span>
-							</div>
-						</div>
+						<Card
+							card={card}
+							player={user}
+							page={'deck'}
+							handleClick={() =>
+								!card.selected ? markSelected(card) : removeSelection(card)
+							}
+						/>
 
-						<p>
+						<p className='stars'>
 							<FaStar />
 							<FaRegStar />
 							<FaRegStar />

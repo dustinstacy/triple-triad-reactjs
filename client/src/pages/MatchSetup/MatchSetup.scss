@@ -1,7 +1,7 @@
 .setup {
 	align-items: center;
 	justify-content: center;
-	background-image: url('../../assets/castle.png');
+	background-image: url('../../assets/facecave.jpg');
 	background-position: top;
 	background-size: cover;
 
@@ -17,6 +17,10 @@
 		gap: 2rem;
 		padding: 5rem 2rem;
 		color: var(--white-color);
+
+		.radios {
+			display: flex;
+		}
 
 		.player,
 		.settings__list,
@@ -138,13 +142,18 @@
 				input[type='checkbox']:after {
 					content: '';
 					position: relative;
-					top: -1px;
-					left: -1px;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
 					width: 11px;
 					height: 11px;
 					display: inline-block;
 					background-color: var(--gray-color);
 					border: 2px solid var(--black-color);
+				}
+
+				input[type='checkbox']:after {
+					transform: translate(-50%, 0);
 				}
 
 				input[type='radio']:after {

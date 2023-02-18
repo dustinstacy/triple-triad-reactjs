@@ -48,10 +48,10 @@ router.post('/new', requiresAuth, async (req, res) => {
 // @route PUT /api/cards/:number
 // @desc Update released card
 // @desc Admin
-router.put('/:number', requiresAuth, async (req, res) => {
+router.put('/:cardsId', requiresAuth, async (req, res) => {
 	try {
 		const card = await Card.findOne({
-			number: req.params.number,
+			_id: req.params.cardsId,
 		})
 
 		if (!card) {
@@ -60,9 +60,10 @@ router.put('/:number', requiresAuth, async (req, res) => {
 
 		const updatedCard = await Card.findOneAndUpdate(
 			{
-				number: req.params.number,
+				_id: req.params.cardsId,
 			},
 			{
+				number: req.body.number,
 				name: req.body.name,
 				rarity: req.body.rarity,
 				element: req.body.element,

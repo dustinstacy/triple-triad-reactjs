@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
+import { Card } from '../../components'
 import './Collection.scss'
 
 const Collection = () => {
-	const { allCards, userCards, getUserCards } = useGlobalContext()
+	const { allCards, user, userCards, getUserCards } = useGlobalContext()
 	const sortedCards = allCards.sort((a, b) => a.number - b.number)
 	const cardNames = userCards.map((card) => card.name)
 	const uniqueCards = [...new Set(cardNames)]
 
 	useEffect(() => {
-		getUserCards
+		getUserCards()
 	}, [])
 
 	return (
@@ -20,18 +21,19 @@ const Collection = () => {
 				<h1 className='header box'>
 					Collection
 					<span>
-						Total Found : {uniqueCards.reduce((total) => total + 1, 0)} / 281
+						Total Found : {uniqueCards.reduce((total) => total + 1, 0)} /{' '}
+						{allCards.length}
 					</span>
 				</h1>
 				<div className='container'>
 					{sortedCards.map((card) =>
 						userCards.find((userCard) => userCard.name === card.name) ? (
 							<div key={card.name} className='display'>
-								<div className='card'>
-									<img className='card__image' src={card.image} alt='owl' />
-								</div>
+								<Card card={card} player={user} page='collection' />
 								<div className='info'>
-									<p>{card.number} / 281</p>
+									<p>
+										{card.number} / {allCards.length}
+									</p>
 									<p>{card.name}</p>
 								</div>
 							</div>
@@ -39,7 +41,7 @@ const Collection = () => {
 							<div key={card.name} className='display'>
 								<div className='card disabled' />
 								<div className='info'>
-									<p>??? / 281</p>
+									<p>??? / {allCards.length}</p>
 									<p>????????</p>
 								</div>
 							</div>

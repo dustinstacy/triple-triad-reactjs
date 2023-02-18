@@ -1,10 +1,14 @@
 import React from 'react'
 import { useSettingsContext } from '../../context/SettingsContext'
+import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
 import { frames, rank1, rank6 } from '../../assets'
 import './MatchSetup.scss'
+import { useGlobalContext } from '../../context/GlobalContext'
 
 const MatchSetup = () => {
+	const { setCPUOpponent, cpuDeck } = useCPUCardContext()
+	const { userDeck } = useGlobalContext()
 	const {
 		setNumberOfRounds,
 		toggleElementsSetting,
@@ -28,7 +32,19 @@ const MatchSetup = () => {
 						<p>Matches Lost:</p>
 						<span>0</span>
 						<p>Deck Strength:</p>
-						<span>748</span>
+						<span>
+							{userDeck.reduce(
+								(total, card) =>
+									total +
+									card.values.reduce(
+										(sum, current) =>
+											parseInt(sum) +
+											parseInt(String(current.replace(/A/g, 10))),
+										0
+									),
+								0
+							)}
+						</span>
 					</div>
 					<img src={rank6} alt='rank6' className='rank' />
 				</div>
@@ -39,7 +55,7 @@ const MatchSetup = () => {
 							<label># of Rounds</label>
 							<div className='radios'>
 								{roundCount.map((count) => (
-									<>
+									<div key={count}>
 										<input
 											key={count}
 											type='radio'
@@ -50,7 +66,7 @@ const MatchSetup = () => {
 											checked={rounds === `${count}` ? true : false}
 										/>
 										<label htmlFor={`${count}rounds`}>{count}</label>
-									</>
+									</div>
 								))}
 							</div>
 						</div>
@@ -137,7 +153,7 @@ const MatchSetup = () => {
 					</div>
 				</div>
 				<div className='opponent'>
-					<h1>Opponent</h1>
+					<h1 onClick={() => setCPUOpponent()}>Opponent</h1>
 					<img src={frames} alt='frame' />
 					<div className='opponent__info'>
 						<p>Matches Won:</p>
@@ -145,7 +161,18 @@ const MatchSetup = () => {
 						<p>Matches Lost:</p>
 						<span>58</span>
 						<p>Deck Strength:</p>
-						<span>4</span>
+						<span>
+							{cpuDeck.reduce(
+								(total, card) =>
+									total +
+									card.values.reduce(
+										(sum, current) =>
+											parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+										0
+									),
+								0
+							)}
+						</span>
 					</div>
 					<img src={rank1} alt='rank1' className='rank' />
 				</div>

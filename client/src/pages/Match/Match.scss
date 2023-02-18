@@ -1,7 +1,65 @@
 .match {
 	flex-direction: row !important;
 	align-items: center;
-	justify-content: center;
-	gap: 2rem;
+	justify-content: space-between;
 	background-color: var(--accent2-color);
+
+	.board {
+		position: absolute;
+		left: 50%;
+		height: 900px;
+		transform: translatex(-50%);
+		pointer-events: none;
+	}
+
+	.grid {
+		display: flex;
+		flex-wrap: wrap;
+		width: 660px;
+		border: 2px solid red;
+	}
+
+	.player,
+	.cpu {
+		height: 90vh;
+		width: 300px;
+		display: flex;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+
+	.card.active {
+		border: 8px solid var(--secondary-color);
+	}
+
+	.cpu,
+	.player {
+		position: relative;
+
+		.card:hover {
+			transform: scale(1.1) translateX(-30%);
+			z-index: 10;
+		}
+
+		.card:nth-child(1) {
+			position: absolute;
+			top: 4%;
+		}
+		.card:nth-child(2) {
+			position: absolute;
+			top: 18%;
+		}
+		.card:nth-child(3) {
+			position: absolute;
+			top: 32%;
+		}
+		.card:nth-child(4) {
+			position: absolute;
+			top: 46%;
+		}
+		.card:nth-child(5) {
+			position: absolute;
+			top: 60%;
+		}
+	}
 }

@@ -13,6 +13,7 @@ import {
 import { useGlobalContext } from './context/GlobalContext'
 import { SettingsProvider } from './context/SettingsContext'
 import { NavBar, Footer } from './components'
+import { CPUCardProvider } from './context/CPUCardContext'
 
 function App() {
 	const { user } = useGlobalContext()
@@ -31,18 +32,20 @@ function App() {
 			)}
 
 			{user && (
-				<SettingsProvider>
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/solo' element={<Solo />} />
-						<Route path='/matchSetup' element={<MatchSetup />} />
-						<Route path='/match' element={<Match />} />
-						<Route path='/arcaneum' element={<Arcaneum />} />
-						<Route path='/collection' element={<Collection />} />
-						<Route path='/deck' element={<Deck />} />
-						<Route path='/packs' element={<Packs />} />
-					</Routes>
-				</SettingsProvider>
+				<CPUCardProvider>
+					<SettingsProvider>
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path='/solo' element={<Solo />} />
+							<Route path='/matchSetup' element={<MatchSetup />} />
+							<Route path='/match' element={<Match />} />
+							<Route path='/arcaneum' element={<Arcaneum />} />
+							<Route path='/collection' element={<Collection />} />
+							<Route path='/deck' element={<Deck />} />
+							<Route path='/packs' element={<Packs />} />
+						</Routes>
+					</SettingsProvider>
+				</CPUCardProvider>
 			)}
 
 			{pathname !== ('/deck' && <Footer />) || ('/collection' && <Footer />)}

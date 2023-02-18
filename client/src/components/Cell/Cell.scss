@@ -4,6 +4,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 2px solid var(--error-color);
+	border: 2px solid var(--primary-color);
+	border-radius: 1rem;
 	color: var(--white-color);
 }

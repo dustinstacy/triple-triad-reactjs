@@ -6,12 +6,20 @@
 	cursor: pointer;
 	z-index: 1;
 
+	&:hover {
+		z-index: 10;
+	}
+
 	&.blue {
 		background-image: url('../../assets/blue1.jpg');
 	}
 
 	&.red {
 		background-image: url('../../assets/red1.jpg');
+	}
+
+	&.not__user {
+		pointer-events: none;
 	}
 
 	&__image {

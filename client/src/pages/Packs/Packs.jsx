@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { assignRandomValues } from '../../../../utils/assignRandomValues'
+import { Card } from '../../components'
 import './Packs.scss'
 
 const Packs = () => {
@@ -55,15 +56,7 @@ const Packs = () => {
 		<div className='packs page'>
 			<div className='contents'>
 				{packContents?.map((card, i) => (
-					<div key={card.name + i} className='card'>
-						<img className='card__image' src={card.image} alt='owl' />
-						<div className='card__values'>
-							<span className='up'>{card.values[0]}</span>
-							<span className='right'>{card.values[1]}</span>
-							<span className='left'>{card.values[3]}</span>
-							<span className='down'>{card.values[2]}</span>
-						</div>
-					</div>
+					<Card card={card} player={user} />
 				))}
 			</div>
 			<button className='box' onClick={(e) => openPack(e)}>

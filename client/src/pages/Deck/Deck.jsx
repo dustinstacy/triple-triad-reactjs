@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
+import { Card } from '../../components'
 import { FaStar, FaRegStar } from 'react-icons/fa'
-import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
+
 import {
 	Neutral,
 	Fire,
@@ -110,9 +111,6 @@ const Deck = () => {
 					)
 			)
 		}
-
-		console.log(Number('A'))
-
 		return filteredCards
 	}
 
@@ -372,30 +370,16 @@ const Deck = () => {
 
 				{filterCards().map((card) => (
 					<div key={card._id} className='display'>
-						<div className='card'>
-							<img className='card__image' src={card.image} alt='owl' />
-							<div className='card__values'>
-								<span className='up'>{card.values[0]}</span>
-								<span className='right'>{card.values[1]}</span>
-								<span className='down'>{card.values[2]}</span>
-								<span className='left'>{card.values[3]}</span>
-							</div>
-							<div className='checkbox'>
-								<span
-									onClick={() =>
-										!card.selected ? markSelected(card) : removeSelection(card)
-									}
-								>
-									{card.selected ? (
-										<ImCheckboxChecked className='check' />
-									) : (
-										<ImCheckboxUnchecked className='uncheck' />
-									)}
-								</span>
-							</div>
-						</div>
+						<Card
+							card={card}
+							player={user}
+							page={'deck'}
+							handleClick={() =>
+								!card.selected ? markSelected(card) : removeSelection(card)
+							}
+						/>
 
-						<p>
+						<p className='stars'>
 							<FaStar />
 							<FaRegStar />
 							<FaRegStar />

@@ -35,57 +35,6 @@
 		display: flex;
 		justify-content: center;
 		margin-top: 2rem;
-
-		.card {
-			position: relative;
-			height: 300px;
-			margin-bottom: 0.5rem;
-			background-color: var(--black-color);
-			border-radius: 1rem;
-			z-index: 1;
-
-			&__image {
-				height: 100%;
-				background-image: url('../../assets/red1.jpg');
-				border-radius: 1rem;
-				pointer-events: none;
-			}
-
-			&__values {
-				display: flex;
-				flex-direction: column;
-				color: var(--white-color);
-				text-shadow: 2px 2px 1px var(--black-color),
-					-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
-					-1px 1px 1px var(--black-color);
-				font-size: 26px;
-				pointer-events: none;
-
-				.up {
-					position: absolute;
-					top: -1%;
-					right: 45%;
-				}
-
-				.right {
-					position: absolute;
-					right: 5%;
-					top: 42%;
-				}
-
-				.left {
-					position: absolute;
-					left: 5%;
-					top: 42%;
-				}
-
-				.down {
-					position: absolute;
-					bottom: -1%;
-					right: 45%;
-				}
-			}
-		}
 	}
 
 	.card.active {

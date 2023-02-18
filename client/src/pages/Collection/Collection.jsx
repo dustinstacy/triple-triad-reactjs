@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
+import { Card } from '../../components'
 import './Collection.scss'
 
 const Collection = () => {
@@ -28,9 +29,7 @@ const Collection = () => {
 					{sortedCards.map((card) =>
 						userCards.find((userCard) => userCard.name === card.name) ? (
 							<div key={card.name} className='display'>
-								<div className='card'>
-									<img className='card__image' src={card.image} alt='owl' />
-								</div>
+								<Card card={card} page='collection' />
 								<div className='info'>
 									<p>
 										{card.number} / {allCards.length}

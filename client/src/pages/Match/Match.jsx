@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { boardframe } from '../../assets'
+
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { shuffleCards, dealCards } from '../../../../utils/shuffleAndDeal'
+import { Card } from '../../components'
+import { boardframe } from '../../assets'
 import './Match.scss'
 
 const width = 3
@@ -17,9 +19,11 @@ const Match = () => {
 	// const [p1Score, setP1Score] = useState(5)
 	// const [p2Score, setP2Score] = useState(5)
 	// const table = [...p1Hand, ...boardArray, ...p2Hand]
-	const { userDeck } = useGlobalContext()
+	const { user, userDeck } = useGlobalContext()
 	const { cpuDeck } = useCPUCardContext()
 	const boardArray = []
+	const p1 = user
+	const p2 = 'cpu'
 
 	const newGame = () => {
 		const p1DealtCards = []
@@ -40,15 +44,7 @@ const Match = () => {
 		<div className='match page'>
 			<div className='cpu'>
 				{p2Hand.map((card) => (
-					<div key={card._id} className='card'>
-						<img className='card__image' src={card.image} alt={card._id} />
-						<div className='card__values'>
-							<span className='up'>{card.values[0]}</span>
-							<span className='right'>{card.values[1]}</span>
-							<span className='down'>{card.values[2]}</span>
-							<span className='left'>{card.values[3]}</span>
-						</div>
-					</div>
+					<Card key={card._id} card={card} player={p2} />
 				))}
 			</div>
 			<img className='board' src={boardframe} alt='board frame' />
@@ -64,21 +60,7 @@ const Match = () => {
 			</div>
 			<div className='player'>
 				{p1Hand.map((card, i) => (
-					<div
-						key={card._id}
-						className='card'
-						selected={false}
-						onClick={(e) => selectCard(e, p1HandArray)}
-						id={i}
-					>
-						<img className='card__image' src={card.image} alt={card._id} />
-						<div className='card__values'>
-							<span className='up'>{card.values[0]}</span>
-							<span className='right'>{card.values[1]}</span>
-							<span className='down'>{card.values[2]}</span>
-							<span className='left'>{card.values[3]}</span>
-						</div>
-					</div>
+					<Card key={card._id} card={card} player={p1} />
 				))}
 			</div>
 		</div>

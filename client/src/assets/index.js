@@ -49,7 +49,7 @@ import stonetablet from './stonetablet.png'
 import voodoobook from './voodoobook.png'
 import crystalbook from './crystalbook.png'
 import cursedbook from './cursedbook.png'
-import blue1 from './blue1.jpg'
+import p1 from './blue1.jpg'
 import blue2 from './blue2.jpg'
 import city from './city.jpg'
 import darkportal from './darkportal.jpg'
@@ -58,7 +58,7 @@ import facecave from './facecave.jpg'
 import floating from './floating.jpg'
 import library1 from './library1.jpg'
 import library2 from './library2.jpg'
-import red1 from './red1.jpg'
+import p2 from './red1.jpg'
 import red2 from './red2.png'
 import snakecave from './snakecave.jpg'
 import view from './view.jpg'
@@ -117,9 +117,9 @@ export {
 	cursedbook,
 	view,
 	snakecave,
-	red1,
+	p2,
 	red2,
-	blue1,
+	p1,
 	blue2,
 	library1,
 	library2,

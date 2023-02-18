@@ -1,0 +1,88 @@
+.card {
+	position: relative;
+	height: 300px;
+	margin-bottom: 0.5rem;
+	border-radius: 1rem;
+	cursor: pointer;
+	z-index: 1;
+
+	&.blue {
+		background-image: url('../../assets/blue1.jpg');
+	}
+
+	&.red {
+		background-image: url('../../assets/red1.jpg');
+	}
+
+	&__image {
+		height: 100%;
+		border-radius: 1rem;
+		pointer-events: none;
+	}
+
+	&__values {
+		display: flex;
+		flex-direction: column;
+		color: var(--white-color);
+		text-shadow: 2px 2px 1px var(--black-color),
+			-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
+			-1px 1px 1px var(--black-color);
+		font-size: 26px;
+		pointer-events: none;
+
+		.up {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.right {
+			position: absolute;
+			right: 5%;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.left {
+			position: absolute;
+			left: 5%;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.down {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+	.checkbox {
+		position: absolute;
+		top: 5%;
+		right: 8%;
+		z-index: 2;
+
+		font-size: 2rem;
+
+		.check {
+			color: var(--secondary-color);
+		}
+
+		.uncheck {
+			color: var(--accent2-color);
+		}
+
+		svg {
+			border-radius: 0.4rem;
+			cursor: pointer;
+		}
+
+		svg.check {
+			border: 3px solid var(--accent2-color);
+			font-size: 1.6rem;
+		}
+	}
+}

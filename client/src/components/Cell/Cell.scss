@@ -1,0 +1,9 @@
+.cell {
+	height: 295px;
+	width: 215px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid var(--error-color);
+	color: var(--white-color);
+}

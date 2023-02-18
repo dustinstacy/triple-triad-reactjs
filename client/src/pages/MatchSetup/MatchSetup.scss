@@ -142,13 +142,18 @@
 				input[type='checkbox']:after {
 					content: '';
 					position: relative;
-					top: -1px;
-					left: -1px;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
 					width: 11px;
 					height: 11px;
 					display: inline-block;
 					background-color: var(--gray-color);
 					border: 2px solid var(--black-color);
+				}
+
+				input[type='checkbox']:after {
+					transform: translate(-50%, 0);
 				}
 
 				input[type='radio']:after {

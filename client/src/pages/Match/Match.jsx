@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
-
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { shuffleCards, dealCards } from '../../../../utils/shuffleAndDeal'
-import { Card } from '../../components'
+import { Card, Cell } from '../../components'
 import { boardframe } from '../../assets'
 import './Match.scss'
 
 const width = 3
 
 const Match = () => {
-	// const [boardArray, setBoardArray] = useState([])
+	const [boardArray, setBoardArray] = useState([...new Array(9).fill('empty')])
 	const [p1Hand, setP1Hand] = useState([])
 	const [p2Hand, setP2Hand] = useState([])
 	// const [cardSelected, setCardSelected] = useState(null)
@@ -21,7 +20,6 @@ const Match = () => {
 	// const table = [...p1Hand, ...boardArray, ...p2Hand]
 	const { user, userDeck } = useGlobalContext()
 	const { cpuDeck } = useCPUCardContext()
-	const boardArray = []
 	const p1 = user
 	const p2 = 'cpu'
 
@@ -50,12 +48,7 @@ const Match = () => {
 			<img className='board' src={boardframe} alt='board frame' />
 			<div className='grid'>
 				{boardArray.map((cell, i) => (
-					<div
-						key={i}
-						id={i}
-						className='cell empty'
-						onClick={(e) => placeCard(e, p1HandArray)}
-					></div>
+					<Cell key={i} id={i} />
 				))}
 			</div>
 			<div className='player'>

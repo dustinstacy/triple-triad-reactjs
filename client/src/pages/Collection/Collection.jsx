@@ -4,13 +4,13 @@ import { Card } from '../../components'
 import './Collection.scss'
 
 const Collection = () => {
-	const { allCards, userCards, getUserCards } = useGlobalContext()
+	const { allCards, user, userCards, getUserCards } = useGlobalContext()
 	const sortedCards = allCards.sort((a, b) => a.number - b.number)
 	const cardNames = userCards.map((card) => card.name)
 	const uniqueCards = [...new Set(cardNames)]
 
 	useEffect(() => {
-		getUserCards
+		getUserCards()
 	}, [])
 
 	return (
@@ -29,7 +29,7 @@ const Collection = () => {
 					{sortedCards.map((card) =>
 						userCards.find((userCard) => userCard.name === card.name) ? (
 							<div key={card.name} className='display'>
-								<Card card={card} page='collection' />
+								<Card card={card} player={user} page='collection' />
 								<div className='info'>
 									<p>
 										{card.number} / {allCards.length}

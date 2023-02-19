@@ -4,6 +4,13 @@
 	justify-content: space-between;
 	background-color: var(--accent2-color);
 
+	&__score {
+		align-self: flex-start;
+		margin-top: 1rem;
+		color: var(--white-color);
+		font-size: 4rem;
+	}
+
 	.board {
 		position: absolute;
 		left: 50%;
@@ -56,5 +63,11 @@
 			position: absolute;
 			top: 60%;
 		}
+	}
+
+	.selected {
+		box-shadow: var(--secondary-color) 0px 10px 10px,
+			var(--secondary-color) 0px -10px 10px, var(--secondary-color) 0px 5px 5px,
+			var(--secondary-color) 0px 5px 5px, var(--secondary-color) 0px -5px 5px;
 	}
 }

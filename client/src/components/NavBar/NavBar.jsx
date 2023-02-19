@@ -39,6 +39,12 @@ const NavBar = () => {
 								<img src={arcanecrystal} alt='library' />
 							</p>
 						</NavLink>{' '}
+					</>
+				)}
+			</div>
+			<div className='navbar__container'>
+				{user && (
+					<>
 						<NavLink to='/collection' className='navbar__link'>
 							<p>
 								<img src={magicbook} alt='library' />
@@ -56,8 +62,7 @@ const NavBar = () => {
 						</NavLink>
 					</>
 				)}
-			</div>
-			<div className='navbar__container'>
+
 				{user ? (
 					<a className='login'>
 						<p onClick={logout}>Logout</p>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
@@ -8,7 +8,7 @@ import { useGlobalContext } from '../../context/GlobalContext'
 
 const MatchSetup = () => {
 	const { setCPUOpponent, cpuDeck } = useCPUCardContext()
-	const { userDeck } = useGlobalContext()
+	const { userDeck, getUserDeck } = useGlobalContext()
 	const {
 		setNumberOfRounds,
 		toggleElementsSetting,
@@ -33,7 +33,7 @@ const MatchSetup = () => {
 						<span>0</span>
 						<p>Deck Strength:</p>
 						<span>
-							{userDeck.reduce(
+							{userDeck?.reduce(
 								(total, card) =>
 									total +
 									card.values.reduce(

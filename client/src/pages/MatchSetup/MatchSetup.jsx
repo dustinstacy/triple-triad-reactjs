@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
@@ -8,15 +8,9 @@ import { useGlobalContext } from '../../context/GlobalContext'
 
 const MatchSetup = () => {
 	const { setCPUOpponent, cpuDeck } = useCPUCardContext()
-	const { userDeck } = useGlobalContext()
-	const {
-		setNumberOfRounds,
-		toggleElementsSetting,
-		toggleSameSetting,
-		rounds,
-		elements,
-		same,
-	} = useSettingsContext()
+	const { user, userDeck } = useGlobalContext()
+	const { toggleElementsSetting, toggleSameSetting, elements, same, rounds } =
+		useSettingsContext()
 	const roundCount = [1, 3, 5, 7]
 
 	return (
@@ -24,16 +18,12 @@ const MatchSetup = () => {
 			<div className='settings box'>
 				<h1>Match Setup</h1>
 				<div className='player'>
-					<h1>Player</h1>
+					<h1>{user.username}</h1>
 					<img src={frames} alt='frame' />
 					<div className='player__info'>
-						<p>Matches Won:</p>
-						<span>58</span>
-						<p>Matches Lost:</p>
-						<span>0</span>
 						<p>Deck Strength:</p>
 						<span>
-							{userDeck.reduce(
+							{userDeck?.reduce(
 								(total, card) =>
 									total +
 									card.values.reduce(
@@ -52,29 +42,6 @@ const MatchSetup = () => {
 					<h2>Rules</h2>
 					<div className='setting'>
 						<div className='setting__field'>
-							<label># of Rounds</label>
-							<div className='radios'>
-								{roundCount.map((count) => (
-									<div key={count}>
-										<input
-											key={count}
-											type='radio'
-											name='board'
-											id={`${count}rounds`}
-											value={count}
-											onChange={(e) => setNumberOfRounds(e)}
-											checked={rounds === `${count}` ? true : false}
-										/>
-										<label htmlFor={`${count}rounds`}>{count}</label>
-									</div>
-								))}
-							</div>
-						</div>
-						<p>Select the number of Rounds for your match</p>
-					</div>
-
-					<div className='setting'>
-						<div className='setting__field'>
 							<label>Elements</label>
 							<input
 								type='checkbox'
@@ -82,10 +49,7 @@ const MatchSetup = () => {
 								onChange={() => toggleElementsSetting()}
 							/>
 						</div>
-						<p>
-							Matching Elements increase values by +1. Counter Elements decrease
-							values by -1
-						</p>
+						<p>Matching Elements increase values by +1</p>
 					</div>
 
 					<div className='setting'>
@@ -151,15 +115,27 @@ const MatchSetup = () => {
 							</div>
 						</div>
 					</div>
+
+					<div className='setting disabled'>
+						<div className='setting__field'>
+							<label># of Rounds</label>
+							<div className='radios'>
+								<input type='radio' name='board' id='1' />
+								<label htmlFor='1'>1</label>
+								<input type='radio' name='board' id='3' />
+								<label htmlFor='3'>3</label>
+								<input type='radio' name='board' id='5' />
+								<label htmlFor='5'>5</label>
+								<input type='radio' name='board' id='7' />
+								<label htmlFor='7'>7</label>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div className='opponent'>
-					<h1 onClick={() => setCPUOpponent()}>Opponent</h1>
+					<h1 onClick={() => setCPUOpponent()}></h1>
 					<img src={frames} alt='frame' />
 					<div className='opponent__info'>
-						<p>Matches Won:</p>
-						<span>0</span>
-						<p>Matches Lost:</p>
-						<span>58</span>
 						<p>Deck Strength:</p>
 						<span>
 							{cpuDeck.reduce(

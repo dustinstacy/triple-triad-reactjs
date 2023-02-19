@@ -21,6 +21,12 @@
 		pointer-events: none;
 	}
 
+	&.harmony {
+		.card__values {
+			color: var(--secondary-color);
+		}
+	}
+
 	&__image {
 		height: 100%;
 		border-radius: 1rem;

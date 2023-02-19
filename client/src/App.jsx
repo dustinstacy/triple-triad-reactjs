@@ -9,6 +9,7 @@ import {
 	Collection,
 	Deck,
 	Packs,
+	FirstDeck,
 } from './pages'
 import { useGlobalContext } from './context/GlobalContext'
 import { SettingsProvider } from './context/SettingsContext'
@@ -16,7 +17,7 @@ import { NavBar, Footer } from './components'
 import { CPUCardProvider } from './context/CPUCardContext'
 
 function App() {
-	const { user } = useGlobalContext()
+	const { user, userCards } = useGlobalContext()
 	const { pathname } = useLocation()
 
 	return (
@@ -31,11 +32,18 @@ function App() {
 				</Routes>
 			)}
 
-			{user && (
+			{(user && userCards.length) === 0 && (
+				<Routes>
+					<Route path='/' element={<FirstDeck />} />
+				</Routes>
+			)}
+
+			{userCards.length > 0 && (
 				<CPUCardProvider>
 					<SettingsProvider>
 						<Routes>
 							<Route path='/' element={<Home />} />
+							<Route path='/firstDeck' element={<FirstDeck />} />
 							<Route path='/solo' element={<Solo />} />
 							<Route path='/matchSetup' element={<MatchSetup />} />
 							<Route path='/match' element={<Match />} />

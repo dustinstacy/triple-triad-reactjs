@@ -56,7 +56,7 @@ const Packs = () => {
 		<div className='packs page'>
 			<div className='contents'>
 				{packContents?.map((card, i) => (
-					<Card card={card} player={user} />
+					<Card key={card._id} card={card} player='p1' />
 				))}
 			</div>
 			<button className='box' onClick={(e) => openPack(e)}>

@@ -7,7 +7,7 @@ const Card = ({ card, player, turn, handleClick, page }) => {
 		<div
 			className={`card ${player === 'p1' ? 'blue' : 'red'} ${
 				!turn ? 'not__user' : ''
-			}`}
+			} ${card.power}`}
 			id={card._id}
 			onClick={(e) => handleClick(e)}
 			onDrag={(e) => handleDrag(e)}

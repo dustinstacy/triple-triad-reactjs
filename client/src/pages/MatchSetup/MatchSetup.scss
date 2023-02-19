@@ -39,7 +39,7 @@
 
 			.rank {
 				position: absolute;
-				bottom: -10%;
+				bottom: 0;
 				z-index: 2;
 			}
 		}
@@ -80,6 +80,7 @@
 			align-items: center;
 			justify-content: center;
 			margin-bottom: 1rem;
+			font-size: 1.5rem;
 			line-height: 1rem;
 			text-align: center;
 		}

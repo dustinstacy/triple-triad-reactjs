@@ -372,11 +372,12 @@ const Deck = () => {
 					<div key={card._id} className='display'>
 						<Card
 							card={card}
-							player={user}
+							player='p1'
 							page={'deck'}
 							handleClick={() =>
 								!card.selected ? markSelected(card) : removeSelection(card)
 							}
+							turn={true}
 						/>
 
 						<p className='stars'>

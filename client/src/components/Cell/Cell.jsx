@@ -1,30 +1,45 @@
 import React from 'react'
-import { useGlobalContext } from '../../context/GlobalContext'
 import { useSettingsContext } from '../../context/SettingsContext'
+import {
+	Neutral,
+	Earth,
+	Fire,
+	Water,
+	Wind,
+	Ice,
+	Lightning,
+	Holy,
+	Dark,
+	Universal,
+} from '../../assets'
 import './Cell.scss'
 
-const Cell = ({ value, id, handleClick }) => {
-	const { allCards } = useGlobalContext()
+const Cell = ({ id, handleClick, element }) => {
 	const { elements } = useSettingsContext()
-	const elementArray = []
-
-	allCards.forEach((card) => {
-		if (!elementArray.includes(card.element)) {
-			elementArray.push(card.element)
+	const imageArray = [
+		Neutral,
+		Earth,
+		Fire,
+		Water,
+		Wind,
+		Ice,
+		Lightning,
+		Holy,
+		Dark,
+		Universal,
+	]
+	const addElement = () => {
+		if (elements && element) {
+			let source = imageArray.find((image) =>
+				image.includes(element.toLowerCase())
+			)
+			return <img className='element' src={source} alt={element} />
 		}
-	})
-
-	const randomElement = () => {
-		const element =
-			elementArray[Math.floor(Math.random() * elementArray.length)]
-		return element
 	}
 
-	randomElement()
-
 	return (
-		<div className='cell' value={value} onClick={handleClick} id={id}>
-			{elements ? randomElement() : ''}
+		<div className='cell' value={element} onClick={handleClick} id={id}>
+			{addElement()}
 		</div>
 	)
 }

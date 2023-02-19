@@ -62,6 +62,10 @@ import p2 from './red1.jpg'
 import red2 from './red2.png'
 import snakecave from './snakecave.jpg'
 import view from './view.jpg'
+import smalllogo from './smalllogo.png'
+import frozenCharge from './frozencharge.png'
+import hurricane from './hurricane.png'
+import scorchedEarth from './scorchedearth.png'
 
 export {
 	arcaneum,
@@ -128,4 +132,8 @@ export {
 	entrance,
 	darkportal,
 	city,
+	smalllogo,
+	frozenCharge,
+	scorchedEarth,
+	hurricane,
 }

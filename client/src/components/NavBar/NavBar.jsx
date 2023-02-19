@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
 import {
+	smalllogo,
 	logo,
 	cottage,
 	swords,
@@ -9,20 +10,21 @@ import {
 	crystalbook,
 	magicbook,
 	deck,
+	gift,
 } from '../../assets'
 import './NavBar.scss'
 
 const NavBar = () => {
-	const { user, logout } = useGlobalContext()
+	const { user, userCards, logout } = useGlobalContext()
 	const { pathname } = useLocation()
 
 	return (
 		<div className='navbar'>
 			<div className='navbar__container'>
 				<NavLink to='/' className='navbar__logo'>
-					<img src={logo} alt='logo' className='un-skew' />
+					<img src={smalllogo} alt='logo' className='un-skew' />
 				</NavLink>
-				{user && (
+				{userCards.length > 0 && (
 					<>
 						<NavLink to='/' className='navbar__link'>
 							<p>
@@ -38,23 +40,23 @@ const NavBar = () => {
 							<p>
 								<img src={arcanecrystal} alt='library' />
 							</p>
-						</NavLink>{' '}
+						</NavLink>
 					</>
 				)}
 			</div>
 			<div className='navbar__container'>
-				{user && (
+				{userCards.length > 0 && (
 					<>
 						<NavLink to='/collection' className='navbar__link'>
 							<p>
 								<img src={magicbook} alt='library' />
 							</p>
-						</NavLink>{' '}
+						</NavLink>
 						<NavLink to='/packs' className='navbar__link'>
 							<p>
 								<img src={crystalbook} alt='library' />
 							</p>
-						</NavLink>{' '}
+						</NavLink>
 						<NavLink to='/deck' className='navbar__link'>
 							<p>
 								<img src={deck} alt='library' />

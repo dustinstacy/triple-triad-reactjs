@@ -24,10 +24,7 @@ const Solo = () => {
 						src={creature2}
 						alt='creature2'
 					/>
-					<p className='menu__text'>
-						A variety of challenges to test your skills while unlocking
-						exclusive items as you progress
-					</p>
+					<p className='menu__text'>Coming Soon!</p>
 					<Button label='Challenges' type='link' path='challenges' />
 				</div>
 				<div className='menu__bar box left disabled'>
@@ -36,10 +33,7 @@ const Solo = () => {
 						src={creature3}
 						alt='creature3'
 					/>
-					<p className='menu__text'>
-						Venture through Asethale in search of claiming the title of Grand
-						Master
-					</p>
+					<p className='menu__text'>Coming Soon!</p>
 					<Button label='Story' type='link' path='story' />
 				</div>
 			</div>

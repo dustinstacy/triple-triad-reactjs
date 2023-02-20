@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Card } from '../../components'
@@ -19,7 +19,7 @@ import {
 import './Deck.scss'
 
 const Deck = () => {
-	const { getCurrentUser, user, userCards, userDeck, allCards } =
+	const { getCurrentUser, user, getUserCards, userCards, userDeck, allCards } =
 		useGlobalContext()
 	const [deckFilter, setDeckFilter] = useState('Show All')
 	const [rarityFilter, setRarityFilter] = useState(null)
@@ -29,6 +29,10 @@ const Deck = () => {
 	const valuesArray = ['Up', 'Right', 'Down', 'Left']
 	const elementArray = []
 	const rarityArray = []
+
+	useEffect(() => {
+		getUserCards()
+	}, [])
 
 	allCards.forEach((card) => {
 		if (!elementArray.includes(card.element)) {

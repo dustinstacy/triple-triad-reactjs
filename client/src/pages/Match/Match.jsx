@@ -10,7 +10,7 @@ const width = 3
 
 const Match = () => {
 	const { same, elements, rounds } = useSettingsContext()
-	const { userDeck, allCards } = useGlobalContext()
+	const { user, userDeck, allCards } = useGlobalContext()
 	const { cpuDeck } = useCPUCardContext()
 
 	const [p1Hand, setP1Hand] = useState([])
@@ -173,7 +173,7 @@ const Match = () => {
 		table.forEach((card) => {
 			if (card.user === 'cpu') {
 				p2ScoreCounter++
-			} else if (card.user === '63e0159760773620ef998e62') {
+			} else if (card.user === user._id) {
 				p1ScoreCounter++
 			}
 		})

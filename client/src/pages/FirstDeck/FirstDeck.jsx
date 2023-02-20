@@ -36,21 +36,22 @@ const FirstDeck = () => {
 						image: card.image,
 						values: card.values,
 					})
-					axios.put(`/api/collection/${card._id}/selected`)
-					axios.post('/api/deck/add', {
-						user: user._id,
-						_id: card._id,
-						number: card.number,
-						name: card.name,
-						rarity: card.rarity,
-						element: card.element,
-						image: card.image,
-						values: card.values,
-					})
-					getCurrentUser()
 				}
 			})
 		)
+		axios.post('/api/inventory/add', {
+			user: user._id,
+			pack: 'large',
+		})
+		axios.post('/api/inventory/add', {
+			user: user._id,
+			pack: 'large',
+		})
+		axios.post('/api/inventory/add', {
+			user: user._id,
+			pack: 'large',
+		})
+		getCurrentUser()
 	}
 
 	return (

@@ -6,6 +6,7 @@ import authRoute from './routes/auth.js'
 import cardsRoute from './routes/cards.js'
 import collectionRoute from './routes/collection.js'
 import deckRoute from './routes/deck.js'
+import inventoryRoute from './routes/inventory.js'
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use('/api/auth', authRoute)
 app.use('/api/cards', cardsRoute)
 app.use('/api/collection', collectionRoute)
 app.use('/api/deck', deckRoute)
+app.use('/api/inventory', inventoryRoute)
 
 app.get('/', (req, res) => {
 	res.send('Server Running')

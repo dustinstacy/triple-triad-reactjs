@@ -1,14 +1,66 @@
 .packs {
+	flex-direction: row !important;
 	align-items: center;
-	justify-content: center;
-	gap: 5rem;
 	background-image: url('../../assets/crystal.jpg');
 	background-position: center;
 	background-size: cover;
+	color: var(--white-color);
 
 	.contents {
-		height: 350px;
+		box-sizing: border-box;
+		height: 70vh;
+		width: 70vw;
 		display: flex;
-		gap: 5rem;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-around;
+		padding: 0 5rem;
+
+		.card {
+			margin-bottom: 2rem;
+		}
+	}
+
+	&__bar {
+		height: calc(100vh - (var(--navbar-height) + 12px));
+		width: 30vw;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.inventory {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.coin {
+		width: 80%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 1rem;
+		img {
+			width: 35px;
+		}
+	}
+
+	.pack {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		gap: 1rem;
+
+		svg {
+			color: var(--secondary-color);
+			font-size: 2rem;
+		}
+
+		img {
+			width: 125px;
+		}
 	}
 }

@@ -66,6 +66,10 @@ import smalllogo from './smalllogo.png'
 import frozenCharge from './frozencharge.png'
 import hurricane from './hurricane.png'
 import scorchedEarth from './scorchedearth.png'
+import smallPack from './pack1v2.png'
+import mediumPack from './pack2v2.png'
+import largePack from './pack3v2.png'
+import coin from './coin.png'
 
 export {
 	arcaneum,
@@ -136,4 +140,8 @@ export {
 	frozenCharge,
 	scorchedEarth,
 	hurricane,
+	smallPack,
+	mediumPack,
+	largePack,
+	coin,
 }

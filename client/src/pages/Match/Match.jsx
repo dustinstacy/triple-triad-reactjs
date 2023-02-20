@@ -9,7 +9,7 @@ import './Match.scss'
 const width = 3
 
 const Match = () => {
-	const { same, elements, rounds } = useSettingsContext()
+	const { same, elements } = useSettingsContext()
 	const { user, userDeck, allCards } = useGlobalContext()
 	const { cpuDeck } = useCPUCardContext()
 
@@ -25,15 +25,12 @@ const Match = () => {
 	const [isP1Turn, setisP1Turn] = useState(true)
 	const [p1Score, setP1Score] = useState(5)
 	const [p2Score, setP2Score] = useState(5)
-	const [roundsLeft, setRoundsLeft] = useState(parseInt(rounds) - 1)
 
 	const table = [...p1Hand, ...boardArray, ...p2Hand]
 	const p1 = 'p1'
 	const p2 = 'cpu'
 	const emptyCells = []
 	const elementArray = []
-
-	boardArray.forEach((cell, i) => (cell === 'empty' ? emptyCells.push(i) : ''))
 
 	let p1ScoreCounter = 0
 	let p2ScoreCounter = 0
@@ -42,6 +39,8 @@ const Match = () => {
 	const reset = () => {
 		setP1Hand([])
 		setP2Hand([])
+		setP1Score(5)
+		setP2Score(5)
 		setBoardArray([...new Array(9).fill('empty')])
 		setCardSelected(null)
 		setisP1Turn(true)
@@ -94,29 +93,28 @@ const Match = () => {
 		const index = parseInt(e.target.id)
 		let newHand = p1Hand
 		if (cardSelected) {
-			checkElements(index)
+			checkElements(index, cardSelected)
 			newBoardArray.splice(index, 1, cardSelected)
 			newHand.forEach((card, i) =>
 				card._id === cardSelected._id ? newHand.splice(i, 1) : ''
 			)
 			setP1Hand(newHand)
 			setBoardArray(newBoardArray)
-			processBattles(index)
+			processBattles(index, cardSelected)
 		}
 	}
 
-	const checkElements = (index) => {
-		if (elements && randomElementArray[index] === cardSelected.element) {
-			cardSelected.values.forEach((value, i) => {
+	const checkElements = (index, card) => {
+		if (elements && randomElementArray[index] === card.element) {
+			card.values.forEach((value, i) => {
 				const newValue = parseInt(value) + 1
-				cardSelected.values.splice(i, 1, newValue)
+				card.values.splice(i, 1, newValue)
 			})
-			cardSelected.power = 'harmony'
+			card.power = 'harmony'
 		}
 	}
 
-	const processBattles = (index) => {
-		const card = cardSelected
+	const processBattles = (index, card) => {
 		const up = boardArray[index - width]
 		const right = boardArray[index + 1]
 		const left = boardArray[index - 1]
@@ -184,28 +182,15 @@ const Match = () => {
 
 	const checkForWin = () => {
 		if (emptyCells.length <= 1) {
-			setRoundsLeft((current) => (current -= 1))
-			console.log(roundsLeft)
-			if (roundsLeft === 0) {
-				console.log('game over')
-				if (p1Score > p2Score) {
-					console.log('p1 wins')
-					winner = 'Player One Wins!'
-				} else if (p1Score < p2Score) {
-					console.log('p2 wins')
-					winner = 'Player Two Wins!'
-				} else if (p1Score === p2Score) {
-					console.log('Draw')
-				}
-			} else {
-				reset()
-				const p1DealtCards = []
-				const p2DealtCards = []
-				console.log(p1DealtCards)
-				dealCards(p1DealtCards, userDeck)
-				dealCards(p2DealtCards, cpuDeck)
-				setP1Hand(p1DealtCards)
-				setP2Hand(p2DealtCards)
+			console.log('game over')
+			if (p1Score > p2Score) {
+				console.log('p1 wins')
+				winner = 'Player One Wins!'
+			} else if (p1Score < p2Score) {
+				console.log('p2 wins')
+				winner = 'Player Two Wins!'
+			} else if (p1Score === p2Score) {
+				console.log('Draw')
 			}
 		} else {
 			endTurn()
@@ -217,36 +202,126 @@ const Match = () => {
 		setisP1Turn((current) => !current)
 	}
 
-	const cpuTurn = () => {
-		setTimeout(() => {
-			const newBoardArray = boardArray
-			const randomCell =
-				emptyCells[Math.floor(Math.random() * emptyCells.length)]
-			checkElements(randomCell)
-			newBoardArray.splice(randomCell, 1, cardSelected)
-			setBoardArray(newBoardArray)
+	const cpuMove = () => {
+		const newBoardArray = boardArray
+		let newHand = p2Hand
+		let bestScore = -Infinity
+		let move
+		p2Hand.forEach((card) => {
+			emptyCells.forEach((cell) => {
+				let score = 0
+				const up = boardArray[cell - width]
+				const right = boardArray[cell + 1]
+				const left = boardArray[cell - 1]
+				const down = boardArray[cell + width]
 
-			let newHand = p2Hand
-			newHand.forEach((card, i) =>
-				card._id === cardSelected._id ? p2Hand.splice(i, 1) : ''
-			)
-			setP2Hand(newHand)
-			processBattles(randomCell)
-		}, 1500)
+				if (same) {
+					if (cell !== 0 && cell !== 1 && cell !== 2 && up !== 'empty') {
+						if (up.values[2] <= card.values[0]) {
+							score += 100 + (up.values[2] - card.values[0].replace(/A/g, 10))
+						}
+					}
+				} else {
+					if (cell !== 0 && cell !== 1 && cell !== 2 && up !== 'empty') {
+						if (up.values[2] < card.values[0]) {
+							score += 100 + (up.values[2] - card.values[0].replace(/A/g, 10))
+						}
+					}
+				}
+				if (cell !== 0 && cell !== 1 && cell !== 2 && up === 'empty') {
+					score += card.values[0].replace(/A/g, 10)
+				}
+				if (cell === 0 || cell === 1 || cell === 2) {
+					score -= card.values[0].replace(/A/g, 10)
+				}
+
+				if (same) {
+					if (cell !== 0 && cell !== 3 && cell !== 6 && left !== 'empty') {
+						if (left.values[1] <= card.values[3]) {
+							score += 100 + (left.values[1] - card.values[3].replace(/A/g, 10))
+						}
+					}
+				} else {
+					if (cell !== 0 && cell !== 3 && cell !== 6 && left !== 'empty') {
+						if (left.values[1] < card.values[3]) {
+							score += 100 + (left.values[1] - card.values[3].replace(/A/g, 10))
+						}
+					}
+				}
+				if (cell !== 0 && cell !== 3 && cell !== 6 && left === 'empty') {
+					score += card.values[3].replace(/A/g, 10)
+				}
+				if (cell === 0 || cell === 3 || cell === 6) {
+					score -= card.values[3].replace(/A/g, 10)
+				}
+
+				if (same) {
+					if (cell !== 2 && cell !== 5 && cell !== 8 && right !== 'empty') {
+						if (right.values[3] <= card.values[1]) {
+							score +=
+								100 + (right.values[3] - card.values[1].replace(/A/g, 10))
+						}
+					}
+				} else {
+					if (cell !== 2 && cell !== 5 && cell !== 8 && right !== 'empty') {
+						if (right.values[3] < card.values[1]) {
+							score +=
+								100 + (right.values[3] - card.values[1].replace(/A/g, 10))
+						}
+					}
+				}
+
+				if (cell !== 2 && cell !== 5 && cell !== 8 && right !== 'empty') {
+					score += card.values[1].replace(/A/g, 10)
+				}
+				if (cell === 2 || cell === 5 || cell === 8) {
+					score -= card.values[1].replace(/A/g, 10)
+				}
+
+				if (same) {
+					if (cell !== 6 && cell !== 7 && cell !== 8 && down !== 'empty') {
+						if (down.values[0] <= card.values[2]) {
+							score += 100 + (down.values[0] - card.values[2].replace(/A/g, 10))
+						}
+					}
+				} else {
+					if (cell !== 6 && cell !== 7 && cell !== 8 && down !== 'empty') {
+						if (down.values[0] < card.values[2]) {
+							score += 100 + (down.values[0] - card.values[2].replace(/A/g, 10))
+						}
+					}
+				}
+				if (cell !== 6 && cell !== 7 && cell !== 8 && down !== 'empty') {
+					score += card.values[2].replace(/A/g, 10)
+				}
+				if (cell === 6 || cell === 7 || cell === 8) {
+					score -= card.values[2].replace(/A/g, 10)
+				}
+
+				if (score > bestScore) {
+					bestScore = score
+					move = { card: card, cell: cell }
+				}
+			})
+		})
+		newBoardArray.splice(move.cell, 1, move.card)
+		setBoardArray(newBoardArray)
+		newHand.forEach((handCard, i) =>
+			handCard._id === move.card._id ? p2Hand.splice(i, 1) : ''
+		)
+		setP2Hand(newHand)
+		processBattles(move.cell, move.card)
 	}
 
 	useEffect(() => {
-		if (!isP1Turn && emptyCells.length > 0) {
-			const randomCard = p2Hand[Math.floor(Math.random() * p2Hand.length)]
-			setCardSelected(randomCard)
+		if (!isP1Turn) {
+			setTimeout(() => {
+				cpuMove()
+			}, 1500)
 		}
 	}, [isP1Turn])
 
-	useEffect(() => {
-		if (!isP1Turn && cardSelected) {
-			cpuTurn()
-		}
-	}, [cardSelected])
+	boardArray.forEach((cell, i) => (cell === 'empty' ? emptyCells.push(i) : ''))
 
 	return (
 		<div className='match page'>

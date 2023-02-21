@@ -10,6 +10,9 @@ const InventorySchema = new Schema(
 		pack: {
 			type: String,
 		},
+		coin: {
+			type: Number,
+		},
 	},
 	{
 		timestamps: true,

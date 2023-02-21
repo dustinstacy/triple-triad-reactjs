@@ -16,10 +16,6 @@ const Packs = () => {
 	const largePacks = []
 	let userCoin = 0
 
-	useEffect(() => {
-		getUserInventory()
-	}, [])
-
 	userInventory.forEach((item) => {
 		if (item.pack === 'small') {
 			smallPacks.push(item)
@@ -34,8 +30,6 @@ const Packs = () => {
 	})
 
 	const allPacks = [...smallPacks, ...mediumPacks, ...largePacks]
-
-	console.log(allPacks)
 
 	const openPack = async () => {
 		if (
@@ -59,27 +53,32 @@ const Packs = () => {
 			})
 			setPackContents(newPack)
 			if (packSize === 3) {
-				const usedPack = smallPacks[0]._id
-			}
-			if (packSize === 5) {
-				const usedPack = mediumPacks[0]._id
-			}
-			if (packSize === 10) {
-				const usedPack = largePacks[0]._id
+				let usedPack = smallPacks[0]._id
 				axios.delete(`/api/inventory/${usedPack}/remove`, {
 					user: user._id,
 				})
 			}
-			getUserInventory()
+			if (packSize === 5) {
+				let usedPack = mediumPacks[0]._id
+				axios.delete(`/api/inventory/${usedPack}/remove`, {
+					user: user._id,
+				})
+			}
+			if (packSize === 10) {
+				let usedPack = largePacks[0]._id
+				axios.delete(`/api/inventory/${usedPack}/remove`, {
+					user: user._id,
+				})
+			}
 		}
 	}
 
 	const randomRarity = () => {
 		const num = Math.random()
-		if (num < 0.425) return 'Common'
-		else if (num <= 0.725) return 'Uncommon'
-		else if (num <= 0.875) return 'Rare'
-		else if (num <= 0.95) return 'Epic'
+		if (num < 0.5) return 'Common'
+		else if (num <= 0.75) return 'Uncommon'
+		else if (num <= 0.9) return 'Rare'
+		else if (num <= 0.975) return 'Epic'
 		else return 'Legendary'
 	}
 
@@ -96,6 +95,10 @@ const Packs = () => {
 			pack.splice(i, 1, randomCard)
 		})
 	}
+
+	useEffect(() => {
+		getUserInventory()
+	}, ['', openPack])
 
 	return (
 		<div className='packs page'>

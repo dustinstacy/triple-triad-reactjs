@@ -45,11 +45,11 @@ const FirstDeck = () => {
 		})
 		axios.post('/api/inventory/add', {
 			user: user._id,
-			pack: 'large',
+			pack: 'medium',
 		})
 		axios.post('/api/inventory/add', {
 			user: user._id,
-			pack: 'large',
+			pack: 'small',
 		})
 		getCurrentUser()
 	}

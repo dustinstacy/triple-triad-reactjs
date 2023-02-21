@@ -7,11 +7,15 @@ import './MatchSetup.scss'
 import { useGlobalContext } from '../../context/GlobalContext'
 
 const MatchSetup = () => {
-	const { setCPUOpponent, cpuDeck } = useCPUCardContext()
-	const { user, userDeck } = useGlobalContext()
+	const { setCPUOpponent, cpuDeck, getCPUDeck } = useCPUCardContext()
+	const { user, userDeck, getUserDeck } = useGlobalContext()
 	const { toggleElementsSetting, toggleSameSetting, elements, same, rounds } =
 		useSettingsContext()
-	const roundCount = [1, 3, 5, 7]
+
+	useEffect(() => {
+		getUserDeck()
+		setCPUOpponent()
+	}, [])
 
 	return (
 		<div className='setup page'>

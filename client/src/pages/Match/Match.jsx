@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useSettingsContext } from '../../context/SettingsContext'
@@ -9,6 +10,7 @@ import './Match.scss'
 const width = 3
 
 const Match = () => {
+	const navigate = useNavigate()
 	const { same, elements } = useSettingsContext()
 	const { user, userDeck, allCards } = useGlobalContext()
 	const { cpuDeck } = useCPUCardContext()
@@ -192,6 +194,9 @@ const Match = () => {
 			} else if (p1Score === p2Score) {
 				console.log('Draw')
 			}
+			setTimeout(() => {
+				navigate('/matchEnd')
+			}, 1500)
 		} else {
 			endTurn()
 		}

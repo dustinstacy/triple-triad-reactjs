@@ -3,13 +3,15 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
 import {
 	smalllogo,
-	logo,
-	cottage,
+	home,
 	swords,
-	arcanecrystal,
+	matchmaking,
+	arcaneumIcon,
+	settings,
 	crystalbook,
 	magicbook,
 	deck,
+	stonetablet,
 	gift,
 } from '../../assets'
 import './NavBar.scss'
@@ -28,17 +30,22 @@ const NavBar = () => {
 					<>
 						<NavLink to='/' className='navbar__link'>
 							<p>
-								<img src={cottage} alt='home' />
+								<img src={home} alt='home' />
 							</p>
 						</NavLink>
 						<NavLink to='/solo' className='navbar__link'>
 							<p>
-								<img src={swords} alt='battle' />
+								<img src={swords} alt='solo' />
+							</p>
+						</NavLink>
+						<NavLink to='/matchmaking' className='navbar__link disabled'>
+							<p>
+								<img src={matchmaking} alt='matchmaking' />
 							</p>
 						</NavLink>
 						<NavLink to='/arcaneum' className='navbar__link'>
 							<p>
-								<img src={arcanecrystal} alt='library' />
+								<img src={arcaneumIcon} alt='arcaneum' />
 							</p>
 						</NavLink>
 					</>
@@ -60,6 +67,11 @@ const NavBar = () => {
 						<NavLink to='/deck' className='navbar__link'>
 							<p>
 								<img src={deck} alt='library' />
+							</p>
+						</NavLink>
+						<NavLink to='/fusion' className='navbar__link disabled'>
+							<p>
+								<img src={stonetablet} alt='fusion' />
 							</p>
 						</NavLink>
 					</>

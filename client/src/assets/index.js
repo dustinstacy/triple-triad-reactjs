@@ -70,6 +70,12 @@ import smallPack from './pack1v2.png'
 import mediumPack from './pack2v2.png'
 import largePack from './pack3v2.png'
 import coin from './coin.png'
+import home from './home.png'
+import solo from './solo.png'
+import store from './store.png'
+import settings from './settings.png'
+import matchmaking from './matchmaking.png'
+import arcaneumIcon from './arcaneum.png'
 
 export {
 	arcaneum,
@@ -144,4 +150,10 @@ export {
 	mediumPack,
 	largePack,
 	coin,
+	home,
+	matchmaking,
+	store,
+	arcaneumIcon,
+	settings,
+	solo,
 }

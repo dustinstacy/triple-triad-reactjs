@@ -1,5 +1,5 @@
 .deck {
-	background-image: url('../../assets/entrance.jpg');
+	background-image: url('../../assets/library1.jpg');
 	background-position: center;
 	background-size: cover;
 
@@ -76,7 +76,7 @@
 		flex-direction: column;
 		margin: 1rem 0;
 		color: var(--white-color);
-		z-index: 2;
+		z-index: 100;
 
 		.counter,
 		.strength {

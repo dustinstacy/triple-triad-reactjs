@@ -32,7 +32,6 @@ router.post('/add', requiresAuth, async (req, res) => {
 		const newInventory = new Inventory({
 			user: req.body.user,
 			pack: req.body.pack,
-			coin: req.body.coin,
 		})
 
 		await newInventory.save()

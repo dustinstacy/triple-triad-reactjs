@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { assignRandomValues } from '../../../../utils/assignRandomValues'
@@ -15,7 +15,6 @@ const FirstDeck = () => {
 
 	const selectDeck = (deck) => {
 		let prebuilt
-		console.log('clicked')
 		if (deck === 'Scorched Earth') {
 			prebuilt = scorchedEarthDeck
 		} else if (deck === 'Hurricane') {
@@ -39,17 +38,8 @@ const FirstDeck = () => {
 				}
 			})
 		)
-		axios.post('/api/inventory/add', {
-			user: user._id,
-			pack: 'large',
-		})
-		axios.post('/api/inventory/add', {
-			user: user._id,
-			pack: 'medium',
-		})
-		axios.post('/api/inventory/add', {
-			user: user._id,
-			pack: 'small',
+		axios.put('/api/profile', {
+			coin: user.coin + 1000,
 		})
 		getCurrentUser()
 	}

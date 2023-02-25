@@ -8,7 +8,6 @@ const initialState = {
 	allCards: [],
 	userCards: [],
 	userDeck: [],
-	userInventory: [],
 }
 
 const globalReducer = (state, action) => {
@@ -25,6 +24,7 @@ const globalReducer = (state, action) => {
 				user: null,
 				fetchingUser: false,
 				userCards: [],
+				userDeck: [],
 			}
 		case 'SET_ALL_CARDS':
 			return {
@@ -40,16 +40,6 @@ const globalReducer = (state, action) => {
 			return {
 				...state,
 				userDeck: action.payload,
-			}
-		case 'SET_USER_INVENTORY':
-			return {
-				...state,
-				userInventory: action.payload,
-			}
-		case 'SET_USER_COIN':
-			return {
-				...state,
-				userCoin: action.payload,
 			}
 		default:
 			return state
@@ -78,7 +68,6 @@ export const GlobalProvider = ({ children }) => {
 				})
 				getUserCards()
 				getUserDeck()
-				getUserInventory()
 			} else {
 				dispatch({ type: 'RESET_USER' })
 			}
@@ -133,21 +122,6 @@ export const GlobalProvider = ({ children }) => {
 		}
 	}
 
-	const getUserInventory = async () => {
-		try {
-			const res = await axios.get('/api/inventory/current')
-
-			if (res.data) {
-				dispatch({
-					type: 'SET_USER_INVENTORY',
-					payload: res.data,
-				})
-			}
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
 	const logout = async () => {
 		try {
 			await axios
@@ -166,10 +140,8 @@ export const GlobalProvider = ({ children }) => {
 		getAllCards,
 		getUserCards,
 		getUserDeck,
-		getUserInventory,
 		logout,
 	}
-
 	return (
 		<GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
 	)

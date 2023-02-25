@@ -8,26 +8,29 @@ import { smallPack, mediumPack, largePack, coin } from '../../assets'
 import './Packs.scss'
 
 const Packs = () => {
-	const { allCards, user, getUserInventory, userInventory } = useGlobalContext()
+	const { allCards, user, getCurrentUser } = useGlobalContext()
 	const [packSize, setPackSize] = useState(0)
 	const [packContents, setPackContents] = useState([])
 	const smallPacks = []
 	const mediumPacks = []
 	const largePacks = []
-	let userCoin = 0
 
-	userInventory.forEach((item) => {
-		if (item.pack === 'small') {
-			smallPacks.push(item)
-		} else if (item.pack === 'medium') {
-			mediumPacks.push(item)
-		} else if (item.pack === 'large') {
-			largePacks.push(item)
-		}
-		if (item.coin > 0) {
-			userCoin += item.coin
-		}
-	})
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
+
+	// userInventory.forEach((item) => {
+	// 	if (item.pack === 'small') {
+	// 		smallPacks.push(item)
+	// 	} else if (item.pack === 'medium') {
+	// 		mediumPacks.push(item)
+	// 	} else if (item.pack === 'large') {
+	// 		largePacks.push(item)
+	// 	}
+	// 	if (item.coin > 0) {
+	// 		userCoin += item.coin
+	// 	}
+	// })
 
 	const allPacks = [...smallPacks, ...mediumPacks, ...largePacks]
 
@@ -96,10 +99,6 @@ const Packs = () => {
 		})
 	}
 
-	useEffect(() => {
-		getUserInventory()
-	}, ['', openPack])
-
 	return (
 		<div className='packs page'>
 			<div className='contents'>
@@ -109,7 +108,7 @@ const Packs = () => {
 			</div>
 			<div className='packs__bar'>
 				<div className='coin'>
-					{userCoin}
+					{user.coin}
 					<img src={coin} alt='coin' />
 				</div>
 				<div className='inventory'>

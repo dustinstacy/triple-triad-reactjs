@@ -14,19 +14,26 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		image: {
+			type: String,
+		},
+		coin: {
+			type: Number,
+			default: 0,
+		},
+		rank: {
+			type: Number,
+			default: 1,
+		},
+		level: {
+			type: Number,
+			default: 1,
+		},
+		xp: {
+			type: Number,
+			default: 0,
+		},
 		stats: {
-			rank: {
-				type: Number,
-				default: 1,
-			},
-			level: {
-				type: Number,
-				default: 1,
-			},
-			xp: {
-				type: Number,
-				default: 0,
-			},
 			matches: {
 				type: Number,
 				default: 0,
@@ -44,18 +51,10 @@ const UserSchema = new Schema(
 				default: 0,
 			},
 		},
-		coin: {
-			type: Number,
-			default: 0,
-		},
-		backgrounds: {
-			type: String,
-		},
-		frames: [{ name: String }],
-		inventory: {
-			packs: [{ name: String }],
-			ingredients: [{ name: String }],
-		},
+		backgrounds: [],
+		frames: [],
+		packs: [],
+		ingredients: [],
 	},
 	{
 		timestamps: true,

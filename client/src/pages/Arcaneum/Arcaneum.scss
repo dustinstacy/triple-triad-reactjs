@@ -45,7 +45,14 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-around;
+			border: 3px solid var(--primary-color);
 			z-index: 1;
+		}
+
+		.collection {
+			background-image: url('../../assets/library2.jpg');
+			background-position: center;
+			background-size: cover;
 		}
 	}
 }

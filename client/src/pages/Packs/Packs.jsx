@@ -9,72 +9,57 @@ import './Packs.scss'
 
 const Packs = () => {
 	const { allCards, user, getCurrentUser } = useGlobalContext()
-	const [packSize, setPackSize] = useState(0)
+	const [pack, setPack] = useState(0)
 	const [packContents, setPackContents] = useState([])
-	const smallPacks = []
-	const mediumPacks = []
-	const largePacks = []
-
-	useEffect(() => {
-		getCurrentUser()
-		console.log(user)
-	}, [])
-
-	// userInventory.forEach((item) => {
-	// 	if (item.pack === 'small') {
-	// 		smallPacks.push(item)
-	// 	} else if (item.pack === 'medium') {
-	// 		mediumPacks.push(item)
-	// 	} else if (item.pack === 'large') {
-	// 		largePacks.push(item)
-	// 	}
-	// 	if (item.coin > 0) {
-	// 		userCoin += item.coin
-	// 	}
-	// })
-
-	const allPacks = [...smallPacks, ...mediumPacks, ...largePacks]
+	const [userSmallPacks, setUserSmallPacks] = useState([
+		...user.packs.filter((pack) => pack.name === 'small'),
+	])
+	const [userMediumPacks, setUserMediumPacks] = useState([
+		...user.packs.filter((pack) => pack.name === 'medium'),
+	])
+	const [userLargePacks, setUserLargePacks] = useState([
+		...user.packs.filter((pack) => pack.name === 'large'),
+	])
 
 	const openPack = async () => {
-		if (
-			(packSize === 3 && smallPacks.length > 0) ||
-			(packSize === 5 && mediumPacks.length > 0) ||
-			(packSize === 10 && largePacks.length > 0)
-		) {
-			const newPack = [...Array(packSize)]
-			getRandomCards(newPack)
-			newPack.forEach((card) => {
-				assignRandomValues(card)
-				axios.post('/api/collection/new', {
-					user: user._id,
-					number: card.number,
-					name: card.name,
-					rarity: card.rarity,
-					element: card.element,
-					image: card.image,
-					values: card.values,
-				})
-			})
-			setPackContents(newPack)
-			if (packSize === 3) {
-				let usedPack = smallPacks[0]._id
-				axios.delete(`/api/inventory/${usedPack}/remove`, {
-					user: user._id,
-				})
-			}
-			if (packSize === 5) {
-				let usedPack = mediumPacks[0]._id
-				axios.delete(`/api/inventory/${usedPack}/remove`, {
-					user: user._id,
-				})
-			}
-			if (packSize === 10) {
-				let usedPack = largePacks[0]._id
-				axios.delete(`/api/inventory/${usedPack}/remove`, {
-					user: user._id,
-				})
-			}
+		let packSize
+		if (pack === 'small') {
+			packSize = 3
 		}
+		if (pack === 'medium') {
+			packSize = 5
+		}
+		if (pack === 'large') {
+			packSize = 10
+		}
+		const newPack = [...Array(packSize)]
+		getRandomCards(newPack)
+		newPack.forEach((card) => {
+			assignRandomValues(card)
+			axios.post('/api/collection/new', {
+				user: user._id,
+				number: card.number,
+				name: card.name,
+				rarity: card.rarity,
+				element: card.element,
+				image: card.image,
+				values: card.values,
+			})
+		})
+		setPackContents(newPack)
+		if (pack === 'small') {
+			userSmallPacks.pop()
+		}
+		if (pack === 'medium') {
+			userMediumPacks.pop()
+		}
+		if (pack === 'large') {
+			userLargePacks.pop()
+		}
+		const userPacks = [...userSmallPacks, ...userMediumPacks, ...userLargePacks]
+		axios.put('/api/profile/packs', {
+			packs: userPacks,
+		})
 	}
 
 	const randomRarity = () => {
@@ -100,6 +85,10 @@ const Packs = () => {
 		})
 	}
 
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
+
 	return (
 		<div className='packs page'>
 			<div className='contents'>
@@ -116,10 +105,12 @@ const Packs = () => {
 					<div className='pack'>
 						<BsFillPlusCircleFill />
 						<img src={smallPack} alt='Small Pack' />
-						<span>x {smallPacks.length}</span>
+						<span>x {userSmallPacks.length}</span>
 						<button
-							className={`box ${packSize === 3 ? 'active' : ''}`}
-							onClick={() => setPackSize(3)}
+							className={`box ${pack === 'small' && 'active'} ${
+								userSmallPacks.length === 0 && 'disabled'
+							}`}
+							onClick={() => setPack('small')}
 						>
 							Select
 						</button>
@@ -127,10 +118,12 @@ const Packs = () => {
 					<div className='pack'>
 						<BsFillPlusCircleFill />
 						<img src={mediumPack} alt='Medium Pack' />
-						<span>x {mediumPacks.length}</span>
+						<span>x {userMediumPacks.length}</span>
 						<button
-							className={`box ${packSize === 5 ? 'active' : ''}`}
-							onClick={() => setPackSize(5)}
+							className={`box ${pack === 'medium' && 'active'} ${
+								userMediumPacks.length === 0 && 'disabled'
+							}`}
+							onClick={() => setPack('medium')}
 						>
 							Select
 						</button>
@@ -138,10 +131,12 @@ const Packs = () => {
 					<div className='pack'>
 						<BsFillPlusCircleFill />
 						<img src={largePack} alt='Large Pack' />
-						<span> x {largePacks.length}</span>
+						<span>x {userLargePacks.length}</span>
 						<button
-							className={`box ${packSize === 10 ? 'active' : ''}`}
-							onClick={() => setPackSize(10)}
+							className={`box ${pack === 'large' && 'active'} ${
+								userLargePacks.length === 0 && 'disabled'
+							}`}
+							onClick={() => setPack('large')}
 						>
 							Select
 						</button>

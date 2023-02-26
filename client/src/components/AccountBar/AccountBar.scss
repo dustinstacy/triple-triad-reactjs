@@ -1,0 +1,115 @@
+@mixin main-gradient {
+	background: var(--accent2-color);
+	background: -webkit-linear-gradient(
+		45deg,
+		var(--accent2-color),
+		var(--tertiary-color)
+	);
+	background: linear-gradient(
+		45deg,
+		var(--accent2-color),
+		var(--tertiary-color)
+	);
+}
+
+@mixin skew {
+	transform: skew(20deg);
+}
+
+@mixin unskew {
+	transform: skew(-20deg);
+}
+
+/*-------------Nav-------------*/
+.accountBar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: var(--navbar-height);
+	display: flex;
+	justify-content: space-between;
+	background: transparent;
+	line-height: 4em;
+	overflow: hidden;
+	z-index: 10;
+
+	&__container {
+		display: flex;
+
+		.disabled {
+			opacity: 0.3;
+			pointer-events: none;
+		}
+	}
+
+	&__link {
+		@include skew;
+		display: flex;
+		align-items: center;
+		padding: 0 1em;
+		font-size: 2rem;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+
+		p {
+			@include unskew;
+			display: flex;
+
+			img {
+				width: 3vw;
+			}
+		}
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	&__login,
+	&__main {
+		@include main-gradient;
+		@include skew;
+		position: relative;
+		right: -15%;
+		border-left: 3px solid var(--secondary-color);
+		border-bottom: 3px solid var(--secondary-color);
+		border-radius: 0 0 0 1rem;
+		color: var(--white-color);
+		font-size: 1.75rem;
+		line-height: 0.75rem;
+		white-space: nowrap;
+		cursor: pointer;
+
+		p {
+			@include unskew;
+			padding: 0 1rem 0 0;
+			text-align: center;
+		}
+
+		&:hover {
+			color: var(--secondary-color);
+			text-shadow: 1px 1px 5px var(--accent2-color);
+		}
+	}
+
+	&__login {
+		height: 75%;
+		width: 10vw;
+	}
+
+	&__main {
+		width: 25vw;
+	}
+}
+
+@keyframes navbar-hover {
+	20% {
+		padding-right: 0em;
+	}
+	100% {
+		padding-right: 2em;
+	}
+}

@@ -19,35 +19,34 @@ const MatchEnd = () => {
 	const updateStats = async () => {
 		if (location.state.winner === 'Player One Wins') {
 			await axios.put('/api/profile/stats', {
-				xp: user.stats.xp + 35,
 				matches: user.stats.matches + 1,
 				wins: user.stats.wins + 1,
 				losses: user.stats.losses,
 				draws: user.stats.draws,
 			})
-			await axios.put('/api/profile/coin', {
+			await axios.put('/api/profile', {
+				xp: user.xp + 35,
 				coin: user.coin + 50,
 			})
 		} else if (location.state.winner === 'Player Two Wins') {
 			await axios.put('/api/profile/stats', {
-				xp: user.stats.xp,
 				matches: user.stats.matches + 1,
 				wins: user.stats.wins,
 				losses: user.stats.losses + 1,
 				draws: user.stats.draws,
 			})
-			await axios.put('/api/profile/coin', {
+			await axios.put('/api/profile', {
 				coin: user.coin - 25,
 			})
 		} else if (location.state.winner === 'Draw') {
 			await axios.put('/api/profile/stats', {
-				xp: user.stats.xp + 15,
 				matches: user.stats.matches + 1,
 				wins: user.stats.wins,
 				losses: user.stats.losses,
 				draws: user.stats.draws + 1,
 			})
-			await axios.put('/api/profile/coin', {
+			await axios.put('/api/profile', {
+				xp: user.xp + 15,
 				coin: user.coin + 15,
 			})
 		}

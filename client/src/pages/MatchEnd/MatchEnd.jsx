@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import axios from 'axios'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { rank1, rank6 } from '../../assets'
@@ -8,12 +9,50 @@ import './MatchEnd.scss'
 const MatchEnd = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const { getUserDeck, user } = useGlobalContext()
+	const { getUserDeck, user, getCurrentUser } = useGlobalContext()
 	const { setCPUOpponent } = useCPUCardContext()
 
 	useEffect(() => {
-		getUserDeck(), setCPUOpponent()
+		getUserDeck(), setCPUOpponent(), updateStats()
 	}, [])
+
+	const updateStats = async () => {
+		if (location.state.winner === 'Player One Wins') {
+			await axios.put('/api/profile/stats', {
+				xp: user.stats.xp + 35,
+				matches: user.stats.matches + 1,
+				wins: user.stats.wins + 1,
+				losses: user.stats.losses,
+				draws: user.stats.draws,
+			})
+			await axios.put('/api/profile/coin', {
+				coin: user.coin + 50,
+			})
+		} else if (location.state.winner === 'Player Two Wins') {
+			await axios.put('/api/profile/stats', {
+				xp: user.stats.xp,
+				matches: user.stats.matches + 1,
+				wins: user.stats.wins,
+				losses: user.stats.losses + 1,
+				draws: user.stats.draws,
+			})
+			await axios.put('/api/profile/coin', {
+				coin: user.coin - 25,
+			})
+		} else if (location.state.winner === 'Draw') {
+			await axios.put('/api/profile/stats', {
+				xp: user.stats.xp + 15,
+				matches: user.stats.matches + 1,
+				wins: user.stats.wins,
+				losses: user.stats.losses,
+				draws: user.stats.draws + 1,
+			})
+			await axios.put('/api/profile/coin', {
+				coin: user.coin + 15,
+			})
+		}
+		getCurrentUser()
+	}
 
 	return (
 		<div className='end page'>
@@ -26,8 +65,8 @@ const MatchEnd = () => {
 					<h1>{user.username}</h1>
 					<div className='score'>{location.state.p1Score}</div>
 					<div className='rewards'>
-						<p>XP: +55</p>
-						<p>Coin: +10</p>
+						<p></p>
+						<p>{user.coin}</p>
 					</div>
 				</div>
 				<div className='buttons'>

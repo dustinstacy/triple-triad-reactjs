@@ -17,6 +17,7 @@ const Packs = () => {
 
 	useEffect(() => {
 		getCurrentUser()
+		console.log(user)
 	}, [])
 
 	// userInventory.forEach((item) => {

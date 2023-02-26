@@ -14,30 +14,44 @@ router.get('/test', (req, res) => {
 // @route PUT /api/profile/
 // @desc Update user's profile
 // @access Private
-router.put('/', requiresAuth, async (req, res) => {
+router.put('/stats', requiresAuth, async (req, res) => {
 	try {
+		console.log(req.body)
 		const updatedProfile = await User.findOneAndUpdate(
 			{
 				_id: req.user._id,
 			},
 			{
-				username: req.body.username,
 				stats: {
-					rank: req.body.rank,
-					level: req.body.level,
 					xp: req.body.xp,
 					matches: req.body.matches,
 					wins: req.body.wins,
 					losses: req.body.losses,
 					draws: req.body.draws,
 				},
+			},
+			{
+				new: true,
+			}
+		)
+		return res.json(updatedProfile)
+	} catch (error) {
+		console.log(error)
+		return res.status(500).send(error.message)
+	}
+})
+
+// @route PUT /api/profile/
+// @desc Update user's profile
+// @access Private
+router.put('/coin', requiresAuth, async (req, res) => {
+	try {
+		const updatedProfile = await User.findOneAndUpdate(
+			{
+				_id: req.user._id,
+			},
+			{
 				coin: req.body.coin,
-				backgrounds: req.body.backgrounds,
-				frames: req.body.frames,
-				inventory: {
-					packs: req.body.packs,
-					ingredients: req.body.ingredients,
-				},
 			},
 			{
 				new: true,

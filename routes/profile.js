@@ -23,15 +23,11 @@ router.put('/stats', requiresAuth, async (req, res) => {
 			},
 			{
 				stats: {
-					xp: req.body.xp,
 					matches: req.body.matches,
 					wins: req.body.wins,
 					losses: req.body.losses,
 					draws: req.body.draws,
 				},
-			},
-			{
-				new: true,
 			}
 		)
 		return res.json(updatedProfile)
@@ -44,23 +40,47 @@ router.put('/stats', requiresAuth, async (req, res) => {
 // @route PUT /api/profile/
 // @desc Update user's profile
 // @access Private
-router.put('/coin', requiresAuth, async (req, res) => {
+router.put('/', requiresAuth, async (req, res) => {
 	try {
 		const updatedProfile = await User.findOneAndUpdate(
 			{
 				_id: req.user._id,
 			},
 			{
+				username: req.body.username,
 				coin: req.body.coin,
-			},
-			{
-				new: true,
+				rank: req.body.rank,
+				level: req.body.level,
+				xp: req.body.xp,
 			}
 		)
 		return res.json(updatedProfile)
 	} catch (error) {
 		console.log(error)
 		return res.status(500).send(error.message)
+	}
+})
+
+router.put('/packs', requiresAuth, async (req, res) => {
+	try {
+		// const user = await User.find({ _id: req.user._id })
+		// let newPacks
+		// user[0].packs.length === 0
+		// 	? (newPacks = [...req.body.packs])
+		// 	: (newPacks = [...user[0].packs, ...req.body.packs])
+
+		const updatedProfile = await User.findOneAndUpdate(
+			{
+				_id: req.user._id,
+			},
+			{
+				packs: req.body.packs,
+			}
+		)
+		return res.json(updatedProfile)
+	} catch (error) {
+		console.log(error)
+		res.status(500).send(error.message)
 	}
 })
 

@@ -38,8 +38,11 @@ const FirstDeck = () => {
 				}
 			})
 		)
-		axios.put('/api/profile/coin', {
+		axios.put('/api/profile', {
 			coin: 1000,
+		})
+		axios.put('/api/profile/packs', {
+			packs: [{ name: 'small' }, { name: 'medium' }, { name: 'large' }],
 		})
 		getCurrentUser()
 	}

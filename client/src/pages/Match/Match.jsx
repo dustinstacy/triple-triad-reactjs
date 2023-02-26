@@ -342,6 +342,7 @@ const Match = () => {
 				))}
 			</div>
 			<span className='match__score'>{p2Score}</span>
+			<div></div>
 			<div className='grid'>
 				{boardArray.map((cell, i) =>
 					cell === 'empty' ? (
@@ -356,6 +357,7 @@ const Match = () => {
 					)
 				)}
 			</div>
+			<div></div>
 			<span className='match__score'>{p1Score}</span>
 			<div className='player'>
 				{p1Hand.map((card, i) => (

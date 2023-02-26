@@ -14,6 +14,30 @@ router.get('/test', (req, res) => {
 // @route PUT /api/profile/
 // @desc Update user's profile
 // @access Private
+router.put('/', requiresAuth, async (req, res) => {
+	try {
+		const updatedProfile = await User.findOneAndUpdate(
+			{
+				_id: req.user._id,
+			},
+			{
+				username: req.body.username,
+				coin: req.body.coin,
+				rank: req.body.rank,
+				level: req.body.level,
+				xp: req.body.xp,
+			}
+		)
+		return res.json(updatedProfile)
+	} catch (error) {
+		console.log(error)
+		return res.status(500).send(error.message)
+	}
+})
+
+// @route PUT /api/profile/stats
+// @desc Update user's stats
+// @access Private
 router.put('/stats', requiresAuth, async (req, res) => {
 	try {
 		console.log(req.body)
@@ -37,38 +61,11 @@ router.put('/stats', requiresAuth, async (req, res) => {
 	}
 })
 
-// @route PUT /api/profile/
-// @desc Update user's profile
+// @route PUT /api/profile/stats
+// @desc Update user's packs
 // @access Private
-router.put('/', requiresAuth, async (req, res) => {
-	try {
-		const updatedProfile = await User.findOneAndUpdate(
-			{
-				_id: req.user._id,
-			},
-			{
-				username: req.body.username,
-				coin: req.body.coin,
-				rank: req.body.rank,
-				level: req.body.level,
-				xp: req.body.xp,
-			}
-		)
-		return res.json(updatedProfile)
-	} catch (error) {
-		console.log(error)
-		return res.status(500).send(error.message)
-	}
-})
-
 router.put('/packs', requiresAuth, async (req, res) => {
 	try {
-		// const user = await User.find({ _id: req.user._id })
-		// let newPacks
-		// user[0].packs.length === 0
-		// 	? (newPacks = [...req.body.packs])
-		// 	: (newPacks = [...user[0].packs, ...req.body.packs])
-
 		const updatedProfile = await User.findOneAndUpdate(
 			{
 				_id: req.user._id,

@@ -14,7 +14,7 @@ import {
 } from './pages'
 import { useGlobalContext } from './context/GlobalContext'
 import { SettingsProvider } from './context/SettingsContext'
-import { NavBar, Footer } from './components'
+import { NavBar, AccountBar, Footer } from './components'
 import { CPUCardProvider } from './context/CPUCardContext'
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
 
 	return (
 		<div className='app'>
-			<NavBar />
+			<AccountBar />
 
 			{!user && (
 				<Routes>

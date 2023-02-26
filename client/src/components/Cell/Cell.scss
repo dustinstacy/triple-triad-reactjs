@@ -1,6 +1,6 @@
 .cell {
-	height: 295px;
-	width: 215px;
+	height: calc(30vh - 4px);
+	width: calc((30vh * 0.725) - 4px);
 	display: flex;
 	align-items: center;
 	justify-content: center;

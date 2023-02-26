@@ -69,7 +69,7 @@
 
 	&__details {
 		position: sticky;
-		top: 0;
+		top: 1rem;
 		height: 135px;
 		width: 100%;
 		display: flex;
@@ -133,7 +133,7 @@
 	}
 
 	.list {
-		height: calc(100vh - (var(--navbar-height) + 3px));
+		height: 100vh;
 		width: calc(100vw - 500px);
 		box-sizing: border-box;
 		display: flex;

@@ -11,11 +11,15 @@ const Packs = () => {
 	const { allCards, user, getCurrentUser } = useGlobalContext()
 	const [pack, setPack] = useState(0)
 	const [packContents, setPackContents] = useState([])
-	const userSmallPacks = [...user.packs.filter((pack) => pack.name === 'small')]
-	const userMediumPacks = [
+	const [userSmallPacks, setUserSmallPacks] = useState([
+		...user.packs.filter((pack) => pack.name === 'small'),
+	])
+	const [userMediumPacks, setUserMediumPacks] = useState([
 		...user.packs.filter((pack) => pack.name === 'medium'),
-	]
-	const userLargePacks = [...user.packs.filter((pack) => pack.name === 'large')]
+	])
+	const [userLargePacks, setUserLargePacks] = useState([
+		...user.packs.filter((pack) => pack.name === 'large'),
+	])
 
 	const openPack = async () => {
 		let packSize
@@ -83,7 +87,7 @@ const Packs = () => {
 
 	useEffect(() => {
 		getCurrentUser()
-	}, ['', openPack])
+	}, [])
 
 	return (
 		<div className='packs page'>

@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useGlobalContext } from '../../context/GlobalContext'
+import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
 import { creature1, creature2, creature3 } from '../../assets'
 import './Solo.scss'
 
 const Solo = () => {
+	const { getUserDeck } = useGlobalContext()
+	const { setCPUOpponent } = useCPUCardContext()
+
+	useEffect(() => {
+		getUserDeck(), setCPUOpponent()
+	}, [])
+
 	return (
 		<div className='solo page'>
 			<div className='menu'>

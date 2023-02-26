@@ -4,4 +4,53 @@
 	background-image: url('../../assets/facecave.jpg');
 	background-position: top;
 	background-size: cover;
+	color: var(--white-color);
+
+	.header {
+		width: 80%;
+		padding: 1rem 3rem;
+		font-size: 6rem;
+		text-align: center;
+	}
+
+	span {
+		font-size: 10rem;
+		text-shadow: 4px 4px 1px var(--black-color),
+			-2px -2px 1px var(--black-color), 2px -2px 1px var(--black-color),
+			-2px 2px 1px var(--black-color);
+	}
+
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+
+		button {
+			height: 6vh;
+			width: 10vw;
+			font-size: 2rem;
+		}
+	}
+
+	.results {
+		height: 40vh;
+		width: 80%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		img {
+			height: 20vh;
+			padding: 0 2rem;
+		}
+
+		&__p1,
+		&__p2 {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 }

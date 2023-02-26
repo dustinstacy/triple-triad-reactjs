@@ -191,96 +191,108 @@ const Match = () => {
 				const right = boardArray[cell + 1]
 				const left = boardArray[cell - 1]
 				const down = boardArray[cell + width]
+				const values = card.values
+				checkElements(cell, card)
 
+				// check cards user
+				// scales
 				if (same) {
 					if (cell !== 0 && cell !== 1 && cell !== 2 && up !== 'empty') {
-						if (up.values[2] <= card.values[0]) {
-							score += 100 + (up.values[2] - card.values[0].replace(/A/g, 10))
+						if (up.values[2] <= values[0]) {
+							score += 100 + (parseInt(up.values[2]) - parseInt(values[0]))
 						}
 					}
 				} else {
 					if (cell !== 0 && cell !== 1 && cell !== 2 && up !== 'empty') {
-						if (up.values[2] < card.values[0]) {
-							score += 100 + (up.values[2] - card.values[0].replace(/A/g, 10))
+						if (up.values[2] < values[0]) {
+							score += 100 + (parseInt(up.values[2]) - parseInt(values[0]))
 						}
 					}
 				}
 				if (cell !== 0 && cell !== 1 && cell !== 2 && up === 'empty') {
-					score += card.values[0].replace(/A/g, 10)
+					score += parseInt(values[0])
 				}
 				if (cell === 0 || cell === 1 || cell === 2) {
-					score -= card.values[0].replace(/A/g, 10)
+					score -= parseInt(values[0])
 				}
 
 				if (same) {
 					if (cell !== 0 && cell !== 3 && cell !== 6 && left !== 'empty') {
-						if (left.values[1] <= card.values[3]) {
-							score += 100 + (left.values[1] - card.values[3].replace(/A/g, 10))
+						if (left.values[1] <= values[3]) {
+							score += 100 + (parseInt(left.values[1]) - parseInt(values[3]))
 						}
 					}
 				} else {
 					if (cell !== 0 && cell !== 3 && cell !== 6 && left !== 'empty') {
-						if (left.values[1] < card.values[3]) {
-							score += 100 + (left.values[1] - card.values[3].replace(/A/g, 10))
+						if (left.values[1] < values[3]) {
+							score += 100 + (parseInt(left.values[1]) - parseInt(values[3]))
 						}
 					}
 				}
 				if (cell !== 0 && cell !== 3 && cell !== 6 && left === 'empty') {
-					score += card.values[3].replace(/A/g, 10)
+					score += parseInt(values[3])
 				}
 				if (cell === 0 || cell === 3 || cell === 6) {
-					score -= card.values[3].replace(/A/g, 10)
+					score -= parseInt(values[3])
 				}
 
 				if (same) {
 					if (cell !== 2 && cell !== 5 && cell !== 8 && right !== 'empty') {
-						if (right.values[3] <= card.values[1]) {
-							score +=
-								100 + (right.values[3] - card.values[1].replace(/A/g, 10))
+						if (right.values[3] <= values[1]) {
+							score += 100 + (parseInt(right.values[3]) - parseInt(values[1]))
 						}
 					}
 				} else {
 					if (cell !== 2 && cell !== 5 && cell !== 8 && right !== 'empty') {
-						if (right.values[3] < card.values[1]) {
-							score +=
-								100 + (right.values[3] - card.values[1].replace(/A/g, 10))
+						if (right.values[3] < values[1]) {
+							score += 100 + (parseInt(right.values[3]) - parseInt(values[1]))
 						}
 					}
 				}
 
 				if (cell !== 2 && cell !== 5 && cell !== 8 && right !== 'empty') {
-					score += card.values[1].replace(/A/g, 10)
+					score += parseInt(values[1])
 				}
 				if (cell === 2 || cell === 5 || cell === 8) {
-					score -= card.values[1].replace(/A/g, 10)
+					score -= parseInt(values[1])
 				}
 
 				if (same) {
 					if (cell !== 6 && cell !== 7 && cell !== 8 && down !== 'empty') {
-						if (down.values[0] <= card.values[2]) {
-							score += 100 + (down.values[0] - card.values[2].replace(/A/g, 10))
+						if (down.values[0] <= values[2]) {
+							score += 100 + (parseInt(down.values[0]) - parseInt(values[2]))
 						}
 					}
 				} else {
 					if (cell !== 6 && cell !== 7 && cell !== 8 && down !== 'empty') {
-						if (down.values[0] < card.values[2]) {
-							score += 100 + (down.values[0] - card.values[2].replace(/A/g, 10))
+						if (down.values[0] < values[2]) {
+							score += 100 + (parseInt(down.values[0]) - parseInt(values[2]))
 						}
 					}
 				}
 				if (cell !== 6 && cell !== 7 && cell !== 8 && down !== 'empty') {
-					score += card.values[2].replace(/A/g, 10)
+					score += parseInt(values[2])
 				}
 				if (cell === 6 || cell === 7 || cell === 8) {
-					score -= card.values[2].replace(/A/g, 10)
+					score -= parseInt(values[2])
 				}
-
+				p2Hand.forEach((card) => {
+					if (card.power === 'harmony') {
+						card.values.forEach((value, i) => {
+							if (value !== 'A') {
+								card.values.splice(i, 1, parseInt(value) - 1)
+							}
+						})
+						card.power = ''
+					}
+				})
 				if (score > bestScore) {
 					bestScore = score
 					move = { card: card, cell: cell }
 				}
 			})
 		})
+		checkElements(move.cell, move.card)
 		newBoardArray.splice(move.cell, 1, move.card)
 		setBoardArray(newBoardArray)
 		newHand.forEach((handCard, i) =>
@@ -301,17 +313,19 @@ const Match = () => {
 	const checkForWin = () => {
 		if (emptyCells.length === 0) {
 			setTimeout(() => {
-				console.log('game over')
 				if (p1Score > p2Score) {
-					console.log('p1 wins')
-					winner = 'Player One Wins!'
+					winner = 'Player One Wins'
 				} else if (p1Score < p2Score) {
-					console.log('p2 wins')
-					winner = 'Player Two Wins!'
+					winner = 'Player Two Wins'
 				} else if (p1Score === p2Score) {
-					console.log('Draw')
 				}
-				navigate('/matchEnd')
+				navigate('/matchEnd', {
+					state: {
+						winner: winner,
+						p1Score: p1Score,
+						p2Score: p2Score,
+					},
+				})
 			}, 1000)
 		}
 	}

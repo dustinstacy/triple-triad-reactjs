@@ -11,6 +11,7 @@ import {
 	Deck,
 	Packs,
 	FirstDeck,
+	Account,
 } from './pages'
 import { useGlobalContext } from './context/GlobalContext'
 import { SettingsProvider } from './context/SettingsContext'
@@ -53,6 +54,7 @@ function App() {
 							<Route path='/collection' element={<Collection />} />
 							<Route path='/deck' element={<Deck />} />
 							<Route path='/packs' element={<Packs />} />
+							<Route path='/account' element={<Account />} />
 						</Routes>
 					</SettingsProvider>
 				</CPUCardProvider>

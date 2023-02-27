@@ -1,46 +1,48 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { GiReturnArrow } from 'react-icons/gi'
+import { GiReturnArrow, GiHamburgerMenu } from 'react-icons/gi'
 import { coin, home, settings } from '../../assets/icons'
 import './AccountBar.scss'
 import { levels } from '../../constants/levels'
 import axios from 'axios'
+import { navlinks } from '../../constants/navlinks'
 
 const AccountBar = () => {
 	const { user, logout, getCurrentUser } = useGlobalContext()
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
-
-	useEffect(() => {
-		getCurrentUser()
-	}, [])
-
-	const goBack = () => {
-		navigate(-1)
-	}
-
-	const devTool = () => {
-		logout()
-	}
+	const [toggle, setToggle] = useState(false)
 
 	const userNextLevel = levels[user?.level]
 
 	const xpPercentage = () => {
 		const percentage = (user.xp / userNextLevel) * 100 + '%'
-		console.log(percentage)
 		return percentage
 	}
 
 	useEffect(() => {
+		getCurrentUser()
+	}, [])
+
+	useEffect(() => {
 		if (user?.xp > userNextLevel) {
-			console.log('ran')
 			axios.put('/api/profile', {
 				level: user.level + 1,
 			})
 			getCurrentUser()
 		}
 	}, [user])
+
+	const goBack = () => {
+		navigate(-1)
+	}
+
+	const dropDownNavigate = (link) => {
+		setToggle(false)
+		navigate(link.path)
+	}
 
 	return (
 		<div className='accountBar'>
@@ -51,12 +53,6 @@ const AccountBar = () => {
 						{pathname !== '/solo' && pathname !== '/arcaneum' && (
 							<GiReturnArrow className='back' onClick={() => goBack()} />
 						)}
-						<img
-							className='settings'
-							src={settings}
-							alt='settings'
-							onClick={() => devTool()}
-						/>
 					</div>
 				)}
 			</div>
@@ -64,32 +60,67 @@ const AccountBar = () => {
 				{user ? (
 					pathname === '/' ||
 					pathname === '/solo' ||
-					pathname === '/arcaneum' ? (
-						<div className='accountBar__main'>
-							<div className='main__left'>
-								<h2>{user.username}</h2>
-								<div className='progressBar'>
-									<span>
-										xp: {user.xp} / {userNextLevel}
-									</span>
-									<div
-										className='progressBar__inner'
-										style={{ width: xpPercentage() }}
-									></div>
+					pathname === '/arcaneum' ||
+					pathname === '/account' ? (
+						<>
+							<div className='accountBar__main'>
+								<div className='main__left'>
+									<h2>{user.username}</h2>
+									<div className='progressBar'>
+										<span>
+											xp: {user.xp} / {userNextLevel}
+										</span>
+										<div
+											className='progressBar__inner'
+											style={{ width: xpPercentage() }}
+										></div>
+									</div>
+
+									<div className='left__bottom'>
+										<p>Lvl. {user.level}</p>
+										<p>
+											{user.coin} <img src={coin} alt='coin' />
+										</p>
+									</div>
 								</div>
 
-								<div className='left__bottom'>
-									<p>Lvl. {user.level}</p>
-									<p>
-										{user.coin} <img src={coin} alt='coin' />
-									</p>
+								<div className='accountBar__image'>
+									<img src={user.image} alt='user image' />
 								</div>
+								<GiHamburgerMenu
+									className='dropdown'
+									onClick={() => setToggle((current) => !current)}
+								/>
 							</div>
-
-							<div className='accountBar__image'>
-								<img src={user.image} alt='user image' />
-							</div>
-						</div>
+							{toggle && (
+								<motion.div
+									className='dropdown__menu'
+									initial={{ width: 0 }}
+									animate={{ width: '19.5vw' }}
+									transition={{ duration: 0.5, ease: 'easeInOut' }}
+								>
+									<ul className='dropdown__links'>
+										{navlinks.map((link) => (
+											<li
+												className='dropdown__link'
+												key={link.name}
+												onClick={() => dropDownNavigate(link)}
+											>
+												{link.name}
+											</li>
+										))}
+										<li
+											className='logout'
+											onClick={() => {
+												logout(), setToggle(false)
+											}}
+										>
+											Logout
+										</li>
+									</ul>
+								</motion.div>
+							)}
+						</>
 					) : (
 						<></>
 					)

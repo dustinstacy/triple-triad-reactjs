@@ -1,0 +1,125 @@
+.account {
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	background-image: url('../../assets/pageImages/shuxingli.jpg');
+	background-position: center;
+	background-size: cover;
+
+	.containers {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 5rem;
+		padding: 10rem 0;
+		overflow-y: auto;
+
+		.container {
+			width: 50vw;
+
+			.box {
+				box-sizing: border-box;
+				min-height: 20vh;
+				padding: 2rem 4rem;
+				color: var(--white-color);
+
+				&.stats {
+					display: flex;
+					justify-content: space-between;
+
+					.stats__info {
+						font-size: 1.25rem;
+					}
+
+					.stats__rank {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						text-align: center;
+					}
+
+					img {
+						height: 150px;
+					}
+				}
+
+				.image__input {
+					display: flex;
+					align-items: flex-end;
+					gap: 2rem;
+				}
+
+				.userImage {
+					width: auto;
+					display: flex;
+					align-items: center;
+					padding: 0.5rem;
+					margin-bottom: 2px;
+					background-color: var(--primary-color);
+					border: 1px solid var(--secondary-color);
+					border-radius: 0.5rem;
+					font-size: 1.25rem;
+					color: var(--white-color);
+
+					&:hover {
+						background-color: var(--accent2-color);
+						border: 1px solid var(--primary-color);
+						color: var(--secondary-color);
+					}
+				}
+
+				.custom__image {
+					display: flex;
+					align-items: flex-start;
+					gap: 2rem;
+
+					.input {
+						width: 100%;
+					}
+
+					img {
+						height: 6vw;
+						width: 6vw;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						background-color: var(--accent-color);
+						border: 2px solid var(--primary-color);
+						border-radius: 1rem;
+					}
+				}
+
+				.backgrounds {
+					display: flex;
+					gap: 2rem;
+					margin-top: 6rem;
+
+					&__blue,
+					&__red {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+					}
+					img {
+						height: 140px;
+						width: 100px;
+						border: 1px solid var(--white-color);
+					}
+				}
+			}
+
+			h1 {
+				margin: 0;
+				color: var(--white-color);
+				text-shadow: 2px 2px 1px var(--black-color),
+					-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
+					-1px 1px 1px var(--black-color);
+			}
+		}
+	}
+}

@@ -10,7 +10,7 @@
 		position: relative;
 		box-sizing: border-box;
 		height: 70vh;
-		width: 70vw;
+		width: 75vw;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -29,6 +29,7 @@
 			height: auto;
 			padding: 0.5rem 2rem;
 			font-size: 2rem;
+			z-index: 100;
 		}
 	}
 

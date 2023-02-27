@@ -1,3 +1,4 @@
+export { default as Account } from './Account/Account'
 export { default as Arcaneum } from './Arcaneum/Arcaneum'
 export { default as Collection } from './Collection/Collection'
 export { default as Deck } from './Deck/Deck'

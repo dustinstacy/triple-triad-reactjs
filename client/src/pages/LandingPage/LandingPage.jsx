@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { logo } from '../../assets'
 import { Button, TextInput } from '../../components'
+import { logo } from '../../assets/logos'
 import './LandingPage.scss'
-import { useEffect } from 'react'
 
 const LandingPage = ({ login, register }) => {
 	const { getCurrentUser, getAllCards, getUserCards } = useGlobalContext()

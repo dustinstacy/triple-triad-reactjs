@@ -52,7 +52,6 @@ const UserSchema = new Schema(
 			},
 		},
 		backgrounds: [],
-		frames: [],
 		packs: [],
 		ingredients: [],
 	},

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
-import { creature1, creature2, creature3 } from '../../assets'
+import { creature1, creature2, creature3 } from '../../assets/misc'
 import './Solo.scss'
 
 const Solo = () => {

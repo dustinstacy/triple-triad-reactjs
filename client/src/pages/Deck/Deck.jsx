@@ -15,7 +15,7 @@ import {
 	Holy,
 	Dark,
 	Universal,
-} from '../../assets'
+} from '../../assets/elements'
 import './Deck.scss'
 
 const Deck = () => {

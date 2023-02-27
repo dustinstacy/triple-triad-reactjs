@@ -11,7 +11,7 @@ import {
 	Holy,
 	Dark,
 	Universal,
-} from '../../assets'
+} from '../../assets/elements'
 import './Cell.scss'
 
 const Cell = ({ id, handleClick, element }) => {

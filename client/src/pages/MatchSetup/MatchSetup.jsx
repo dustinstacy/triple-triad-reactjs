@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
+import { useGlobalContext } from '../../context/GlobalContext'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
-import { frames, rank1, rank6 } from '../../assets'
+import { rank1, rank6 } from '../../assets/ranks'
 import './MatchSetup.scss'
-import { useGlobalContext } from '../../context/GlobalContext'
 
 const MatchSetup = () => {
 	const { setCPUOpponent, cpuDeck, getCPUDeck } = useCPUCardContext()
@@ -23,8 +23,8 @@ const MatchSetup = () => {
 				<h1>Match Setup</h1>
 				<div className='player'>
 					<h1>{user.username}</h1>
-					<img src={frames} alt='frame' />
 					<div className='player__info'>
+						<img src={frames} alt='player image' />
 						<p>Deck Strength:</p>
 						<span>
 							{userDeck?.reduce(
@@ -138,7 +138,7 @@ const MatchSetup = () => {
 				</div>
 				<div className='opponent'>
 					<h1 onClick={() => setCPUOpponent()}></h1>
-					<img src={frames} alt='frame' />
+					<img src={frames} alt='player image' />
 					<div className='opponent__info'>
 						<p>Deck Strength:</p>
 						<span>

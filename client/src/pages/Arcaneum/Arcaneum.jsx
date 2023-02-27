@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '../../components'
-import { library2, spellCircle } from '../../assets'
+import { spellCircle } from '../../assets/misc'
+import { library2 } from '../../assets/pageImages'
 import './Arcaneum.scss'
 
 const Arcaneum = () => {

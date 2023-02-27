@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { rank1, rank6 } from '../../assets'
+import { rank1, rank6 } from '../../assets/ranks'
 import './MatchEnd.scss'
 
 const MatchEnd = () => {

@@ -1,19 +1,8 @@
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
-import {
-	smalllogo,
-	home,
-	swords,
-	matchmaking,
-	arcaneumIcon,
-	settings,
-	crystalbook,
-	magicbook,
-	deck,
-	stonetablet,
-	gift,
-} from '../../assets'
+import { home } from '../../assets/icons'
+import { smalllogo } from '../../assets/logos'
 import './NavBar.scss'
 
 const NavBar = () => {

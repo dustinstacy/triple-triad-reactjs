@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { assignRandomValues } from '../../../../utils/assignRandomValues'
@@ -7,7 +7,7 @@ import {
 	hurricaneDeck,
 	frozenChargeDeck,
 } from '../../constants/preBuilts'
-import { scorchedEarth, hurricane, frozenCharge } from '../../assets'
+import { scorchedEarth, hurricane, frozenCharge } from '../../assets/elements'
 import './FirstDeck.scss'
 
 const FirstDeck = () => {
@@ -43,6 +43,9 @@ const FirstDeck = () => {
 		})
 		axios.put('/api/profile/packs', {
 			packs: [{ name: 'small' }, { name: 'medium' }, { name: 'large' }],
+		})
+		axios.put('/api/profile/backgrounds', {
+			backgrounds: [{ name: 'blue1' }, { name: 'red1' }],
 		})
 		getCurrentUser()
 	}

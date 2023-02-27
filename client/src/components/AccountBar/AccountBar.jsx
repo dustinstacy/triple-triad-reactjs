@@ -1,19 +1,15 @@
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { home, settings } from '../../assets'
+import { home, settings } from '../../assets/icons'
 import './AccountBar.scss'
-import axios from 'axios'
 
 const AccountBar = () => {
 	const { user, logout, getCurrentUser } = useGlobalContext()
 	const { pathname } = useLocation()
 
-	const addCoin = () => {
-		axios.put('/api/profile', {
-			coin: user.coin + 20000,
-		})
-		getCurrentUser()
+	const devTool = () => {
+		logout()
 	}
 
 	return (
@@ -26,7 +22,7 @@ const AccountBar = () => {
 								<img src={home} alt='home' />
 							</p>
 						</NavLink>
-						<img src={settings} alt='settings' onClick={() => addCoin()} />
+						<img src={settings} alt='settings' onClick={() => devTool()} />
 					</>
 				)}
 			</div>

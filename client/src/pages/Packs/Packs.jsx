@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { assignRandomValues } from '../../../../utils/assignRandomValues'
 import { Card } from '../../components'
-import { smallPack, mediumPack, largePack, coin } from '../../assets'
+import { BsFillPlusCircleFill } from 'react-icons/bs'
+import { smallPack, mediumPack, largePack } from '../../assets/packs'
+import { coin } from '../../assets/icons'
 import './Packs.scss'
 
 const Packs = () => {
@@ -22,6 +23,7 @@ const Packs = () => {
 
 	useEffect(() => {
 		getCurrentUser()
+		console.log(user)
 	}, [])
 
 	useEffect(() => {

@@ -1,33 +1,63 @@
-import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { home, settings } from '../../assets'
+import { GiReturnArrow } from 'react-icons/gi'
+import { coin, home, settings } from '../../assets/icons'
 import './AccountBar.scss'
+import { levels } from '../../constants/levels'
 import axios from 'axios'
 
 const AccountBar = () => {
 	const { user, logout, getCurrentUser } = useGlobalContext()
 	const { pathname } = useLocation()
+	const navigate = useNavigate()
 
-	const addCoin = () => {
-		axios.put('/api/profile', {
-			coin: user.coin + 20000,
-		})
+	useEffect(() => {
 		getCurrentUser()
+	}, [])
+
+	const goBack = () => {
+		navigate(-1)
 	}
+
+	const devTool = () => {
+		logout()
+	}
+
+	const userNextLevel = levels[user?.level]
+
+	const xpPercentage = () => {
+		const percentage = (user.xp / userNextLevel) * 100 + '%'
+		console.log(percentage)
+		return percentage
+	}
+
+	useEffect(() => {
+		if (user?.xp > userNextLevel) {
+			console.log('ran')
+			axios.put('/api/profile', {
+				level: user.level + 1,
+			})
+			getCurrentUser()
+		}
+	}, [user])
 
 	return (
 		<div className='accountBar'>
 			<div className='accountBar__container'>
 				{user && pathname !== '/' && pathname !== '/match' && (
-					<>
-						<NavLink to='/' className='accountBar__link'>
-							<p>
-								<img src={home} alt='home' />
-							</p>
-						</NavLink>
-						<img src={settings} alt='settings' onClick={() => addCoin()} />
-					</>
+					<div className='accountBar__nav'>
+						<img src={home} alt='home' onClick={() => navigate('/')} />
+						{pathname !== '/solo' && pathname !== '/arcaneum' && (
+							<GiReturnArrow className='back' onClick={() => goBack()} />
+						)}
+						<img
+							className='settings'
+							src={settings}
+							alt='settings'
+							onClick={() => devTool()}
+						/>
+					</div>
 				)}
 			</div>
 			<div className='accountBar__container'>
@@ -35,7 +65,31 @@ const AccountBar = () => {
 					pathname === '/' ||
 					pathname === '/solo' ||
 					pathname === '/arcaneum' ? (
-						<div className='accountBar__main' />
+						<div className='accountBar__main'>
+							<div className='main__left'>
+								<h2>{user.username}</h2>
+								<div className='progressBar'>
+									<span>
+										xp: {user.xp} / {userNextLevel}
+									</span>
+									<div
+										className='progressBar__inner'
+										style={{ width: xpPercentage() }}
+									></div>
+								</div>
+
+								<div className='left__bottom'>
+									<p>Lvl. {user.level}</p>
+									<p>
+										{user.coin} <img src={coin} alt='coin' />
+									</p>
+								</div>
+							</div>
+
+							<div className='accountBar__image'>
+								<img src={user.image} alt='user image' />
+							</div>
+						</div>
 					) : (
 						<></>
 					)

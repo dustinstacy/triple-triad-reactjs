@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../../components'
+import { useGlobalContext } from '../../context/GlobalContext'
 import './Home.scss'
 
 const Home = () => {
+	const { getCurrentUser } = useGlobalContext()
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
 	return (
 		<div className='home page'>
 			<div className='menu'>

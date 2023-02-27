@@ -16,6 +16,8 @@ const UserSchema = new Schema(
 		},
 		image: {
 			type: String,
+			default:
+				'https://res.cloudinary.com/dhsflmylz/image/upload/v1677514304/triple-triad/backgrounds/defaultPlayer_unuhf2.png',
 		},
 		coin: {
 			type: Number,

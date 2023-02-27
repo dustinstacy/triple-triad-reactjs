@@ -28,9 +28,9 @@
 	right: 0;
 	height: var(--navbar-height);
 	display: flex;
+	align-items: flex-start;
 	justify-content: space-between;
 	background: transparent;
-	line-height: 4em;
 	overflow: hidden;
 	z-index: 10;
 
@@ -41,31 +41,21 @@
 			opacity: 0.3;
 			pointer-events: none;
 		}
-	}
 
-	&__link {
-		@include skew;
-		display: flex;
-		align-items: center;
-		padding: 0 1em;
-		font-size: 2rem;
-		text-align: center;
-		text-decoration: none;
-		text-transform: uppercase;
-		cursor: pointer;
-
-		p {
-			@include unskew;
-			display: flex;
-
-			img {
-				width: 3vw;
-			}
+		img {
+			width: 4vw;
+			cursor: pointer;
 		}
-	}
 
-	a {
-		text-decoration: none;
+		svg.back {
+			height: 3vw;
+			width: 3vw;
+			background-color: var(--accent2-color);
+			border: 2px solid var(--primary-color);
+			border-radius: 1rem;
+			color: var(--primary-color);
+			cursor: pointer;
+		}
 	}
 
 	&__login,
@@ -79,15 +69,20 @@
 		border-radius: 0 0 0 1rem;
 		color: var(--white-color);
 		font-size: 1.75rem;
-		line-height: 0.75rem;
 		white-space: nowrap;
-		cursor: pointer;
 
 		p {
 			@include unskew;
 			padding: 0 1rem 0 0;
 			text-align: center;
 		}
+	}
+
+	&__login {
+		width: 10vw;
+		line-height: 1rem;
+		text-decoration: none;
+		cursor: pointer;
 
 		&:hover {
 			color: var(--secondary-color);
@@ -95,21 +90,92 @@
 		}
 	}
 
-	&__login {
-		height: 75%;
-		width: 10vw;
+	&__nav {
+		display: flex;
+		align-items: center;
+		gap: 1vw;
+		margin: 1rem;
 	}
 
 	&__main {
+		height: calc(var(--navbar-height) - 3px);
 		width: 25vw;
-	}
-}
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		padding: 0 4vw 0 2vw;
+		font-size: 1rem;
 
-@keyframes navbar-hover {
-	20% {
-		padding-right: 0em;
+		h2 {
+			@include unskew();
+			margin: 0;
+			text-align: center;
+		}
+
+		p {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0.3rem;
+			pointer-events: none;
+
+			img {
+				margin-left: 0.5vw;
+			}
+		}
 	}
-	100% {
-		padding-right: 2em;
+
+	.main__left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.25rem;
+		flex: 1;
+		img {
+			width: 1vw;
+		}
+	}
+
+	.left__bottom {
+		display: flex;
+		line-height: 1rem;
+	}
+
+	&__image {
+		@include unskew();
+		height: 5vw;
+		width: 5vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--accent-color);
+		border: 2px solid var(--primary-color);
+		border-radius: 1rem;
+	}
+
+	.progressBar {
+		@include unskew();
+		height: 20px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		border: 2px solid var(--primary-color);
+		border-radius: 1rem;
+		span {
+			position: absolute;
+			width: 100%;
+			font-size: 0.8rem;
+			text-align: center;
+		}
+
+		&__inner {
+			height: 100%;
+			display: flex;
+			align-items: flex-start;
+			background-color: var(--accent-color);
+			border-radius: inherit;
+		}
 	}
 }

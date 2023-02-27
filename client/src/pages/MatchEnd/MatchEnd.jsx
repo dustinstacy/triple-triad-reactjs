@@ -25,7 +25,7 @@ const MatchEnd = () => {
 				draws: user.stats.draws,
 			})
 			await axios.put('/api/profile', {
-				xp: user.xp + 35,
+				xp: user.xp + 500,
 				coin: user.coin + 50,
 			})
 		} else if (location.state.winner === 'Player Two Wins') {

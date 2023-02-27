@@ -11,15 +11,70 @@ const Packs = () => {
 	const { allCards, user, getCurrentUser } = useGlobalContext()
 	const [pack, setPack] = useState(0)
 	const [packContents, setPackContents] = useState([])
-	const [userSmallPacks, setUserSmallPacks] = useState([
-		...user.packs.filter((pack) => pack.name === 'small'),
-	])
-	const [userMediumPacks, setUserMediumPacks] = useState([
-		...user.packs.filter((pack) => pack.name === 'medium'),
-	])
-	const [userLargePacks, setUserLargePacks] = useState([
-		...user.packs.filter((pack) => pack.name === 'large'),
-	])
+	const [userCoin, setUserCoin] = useState(user.coin)
+	const [cart, setCart] = useState({
+		total: 0,
+		packs: [],
+	})
+	const [userSmallPacks, setUserSmallPacks] = useState([])
+	const [userMediumPacks, setUserMediumPacks] = useState([])
+	const [userLargePacks, setUserLargePacks] = useState([])
+
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
+
+	useEffect(() => {
+		setUserCoin(user.coin)
+		setUserSmallPacks([...user.packs.filter((pack) => pack.name === 'small')])
+		setUserMediumPacks([...user.packs.filter((pack) => pack.name === 'medium')])
+		setUserLargePacks([...user.packs.filter((pack) => pack.name === 'large')])
+	}, [getCurrentUser])
+
+	useEffect(() => {
+		if (cart.packs.length === 0) {
+			getCurrentUser()
+		}
+	}, [cart])
+
+	const addToCart = (pack) => {
+		if (userCoin >= 600 && pack === 'small') {
+			setUserCoin(userCoin - 600)
+			setCart({
+				total: cart.total + 600,
+				packs: [...cart.packs, { name: 'small' }],
+			})
+		}
+		if (userCoin >= 900 && pack === 'medium') {
+			setUserCoin(userCoin - 900)
+			setCart({
+				total: cart.total + 900,
+				packs: [...cart.packs, { name: 'medium' }],
+			})
+		}
+		if (userCoin >= 1600 && pack === 'large') {
+			setUserCoin(userCoin - 1600)
+			setCart({
+				total: cart.total + 1600,
+				packs: [...cart.packs, { name: 'large' }],
+			})
+		}
+		getCurrentUser()
+	}
+
+	const completePurchase = async () => {
+		await axios.put('/api/profile', {
+			coin: user.coin - cart.total,
+		})
+		await axios.put('api/profile/packs', {
+			packs: [...user.packs, ...cart.packs],
+		})
+		setCart({ total: 0, packs: [] })
+	}
+
+	const resetCart = () => {
+		setCart({ total: 0, packs: [] })
+	}
 
 	const openPack = async () => {
 		let packSize
@@ -60,6 +115,7 @@ const Packs = () => {
 		axios.put('/api/profile/packs', {
 			packs: userPacks,
 		})
+		setPack(null)
 	}
 
 	const randomRarity = () => {
@@ -85,16 +141,17 @@ const Packs = () => {
 		})
 	}
 
-	useEffect(() => {
-		getCurrentUser()
-	}, [])
-
 	return (
 		<div className='packs page'>
 			<div className='contents'>
 				{packContents?.map((card, i) => (
-					<Card key={card._id} card={card} player='p1' />
+					<Card key={card._id + i} card={card} player='p1' />
 				))}
+				{pack && (
+					<button className='open box' onClick={(e) => openPack(e)}>
+						Open Pack
+					</button>
+				)}
 			</div>
 			<div className='packs__bar'>
 				<div className='coin'>
@@ -103,48 +160,84 @@ const Packs = () => {
 				</div>
 				<div className='inventory'>
 					<div className='pack'>
-						<BsFillPlusCircleFill />
+						<div className='purchase'>
+							<BsFillPlusCircleFill onClick={() => addToCart('small')} />
+							<p>
+								600
+								<img src={coin} alt={coin} />
+							</p>
+						</div>
+
 						<img src={smallPack} alt='Small Pack' />
 						<span>x {userSmallPacks.length}</span>
 						<button
 							className={`box ${pack === 'small' && 'active'} ${
 								userSmallPacks.length === 0 && 'disabled'
 							}`}
-							onClick={() => setPack('small')}
+							onClick={() => {
+								setPack('small'), setPackContents([])
+							}}
 						>
 							Select
 						</button>
 					</div>
 					<div className='pack'>
-						<BsFillPlusCircleFill />
+						<div className='purchase'>
+							<BsFillPlusCircleFill onClick={() => addToCart('medium')} />
+							<p>
+								900
+								<img src={coin} alt={coin} />
+							</p>
+						</div>
 						<img src={mediumPack} alt='Medium Pack' />
 						<span>x {userMediumPacks.length}</span>
 						<button
 							className={`box ${pack === 'medium' && 'active'} ${
 								userMediumPacks.length === 0 && 'disabled'
 							}`}
-							onClick={() => setPack('medium')}
+							onClick={() => {
+								setPack('medium'), setPackContents([])
+							}}
 						>
 							Select
 						</button>
 					</div>
 					<div className='pack'>
-						<BsFillPlusCircleFill />
+						<div className='purchase'>
+							<BsFillPlusCircleFill onClick={() => addToCart('large')} />
+							<p>
+								1600
+								<img src={coin} alt={coin} />
+							</p>
+						</div>
 						<img src={largePack} alt='Large Pack' />
 						<span>x {userLargePacks.length}</span>
 						<button
 							className={`box ${pack === 'large' && 'active'} ${
 								userLargePacks.length === 0 && 'disabled'
 							}`}
-							onClick={() => setPack('large')}
+							onClick={() => {
+								setPack('large'), setPackContents([])
+							}}
 						>
 							Select
 						</button>
 					</div>
 				</div>
-				<button className='box' onClick={(e) => openPack(e)}>
-					Open Pack
-				</button>
+				{cart.total > 0 && (
+					<div className='checkout'>
+						<p>
+							<span>Total :</span> {cart.total}
+							<img src={coin} alt={coin} />
+							<span className='clear' onClick={() => resetCart()}>
+								X
+							</span>
+						</p>
+						<button className='box' onClick={() => completePurchase()}>
+							Purchase
+						</button>
+					</div>
+				)}
 			</div>
 		</div>
 	)

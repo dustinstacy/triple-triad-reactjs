@@ -7,6 +7,7 @@
 	color: var(--white-color);
 
 	.contents {
+		position: relative;
 		box-sizing: border-box;
 		height: 70vh;
 		width: 70vw;
@@ -20,15 +21,28 @@
 		.card {
 			margin-bottom: 2rem;
 		}
+
+		.open {
+			position: absolute;
+			bottom: 0;
+			width: auto;
+			height: auto;
+			padding: 0.5rem 2rem;
+			font-size: 2rem;
+		}
 	}
 
 	&__bar {
-		height: calc(100vh - (var(--navbar-height) + 12px));
+		position: relative;
+		height: 100vh;
 		width: 30vw;
+		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: flex-end;
+		align-self: flex-start;
 		justify-content: space-around;
+		padding: 2vh 2vw;
 
 		.disabled {
 			pointer-events: none;
@@ -36,14 +50,15 @@
 	}
 
 	.inventory {
-		width: 80%;
+		height: 80%;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 4rem;
 	}
 
 	.coin {
-		width: 80%;
+		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -55,17 +70,86 @@
 
 	.pack {
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		justify-content: space-around;
 		gap: 1rem;
 
 		svg {
 			color: var(--secondary-color);
-			font-size: 2rem;
+			font-size: 1.75rem;
 		}
 
 		img {
-			width: 125px;
+			width: 5vw;
+		}
+
+		.purchase {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: flex-end;
+
+			p {
+				display: flex;
+				align-items: center;
+				margin: 1rem 0 0 0;
+			}
+
+			svg {
+				cursor: pointer;
+			}
+
+			img {
+				width: 1vw;
+				margin-left: 0.5vw;
+			}
+		}
+	}
+
+	.checkout {
+		position: absolute;
+		bottom: 5%;
+		right: 50%;
+		transform: translateX(50%);
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		button {
+			height: auto;
+			width: 60%;
+			font-size: 2rem;
+		}
+
+		p {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		span {
+			margin-right: 1rem;
+		}
+
+		img {
+			width: 1vw;
+			margin-left: 0.5vw;
+		}
+
+		.clear {
+			width: 2vw;
+			margin-left: 1vw;
+			background-color: var(--error-color);
+			border: 2px solid var(--accent2-color);
+			border-radius: 0.5rem;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			font-size: 1.5rem;
+			text-align: center;
+			cursor: pointer;
 		}
 	}
 }

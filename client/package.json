@@ -4,9 +4,8 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"start": "vite --port $PORT",
+		"start": "vite",
 		"build": "vite build",
-		"postinstall": "npm run build",
 		"preview": "vite preview"
 	},
 	"dependencies": {

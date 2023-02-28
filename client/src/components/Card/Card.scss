@@ -18,6 +18,10 @@
 		background-image: url('../../assets/backgrounds/red1.jpg');
 	}
 
+	&.transparent {
+		background: none;
+	}
+
 	&.not__user {
 		pointer-events: none;
 	}

@@ -4,7 +4,7 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { shuffleCards, dealCards } from '../../../../utils/shuffleAndDeal'
-import { Card, Cell } from '../../components'
+import { Card, Cell, TurnArrow } from '../../components'
 import './Match.scss'
 
 const width = 3
@@ -27,7 +27,7 @@ const Match = () => {
 		...new Array(width * width),
 	])
 	const [cardSelected, setCardSelected] = useState(null)
-	const [isP1Turn, setisP1Turn] = useState(true)
+	const [isP1Turn, setisP1Turn] = useState(Math.random() < 0.5 ? true : false)
 	const [p1Score, setP1Score] = useState(5)
 	const [p2Score, setP2Score] = useState(5)
 
@@ -303,12 +303,12 @@ const Match = () => {
 	}
 
 	useEffect(() => {
-		if (!isP1Turn && emptyCells.length !== 0) {
+		if (!isP1Turn && emptyCells.length !== 0 && p2Hand.length > 0) {
 			setTimeout(() => {
 				cpuMove()
 			}, 1500)
 		}
-	}, [isP1Turn])
+	}, [isP1Turn, p2Hand])
 
 	const checkForWin = () => {
 		if (emptyCells.length === 0) {
@@ -338,11 +338,20 @@ const Match = () => {
 		<div className='match page'>
 			<div className='cpu'>
 				{p2Hand.map((card, i) => (
-					<Card key={card._id + i} card={card} player={p2} turn={!isP1Turn} />
+					<Card
+						key={card._id + i}
+						card={card}
+						player={p2}
+						turn={!isP1Turn}
+						visibility={false}
+					/>
 				))}
 			</div>
-			<span className='match__score'>{p2Score}</span>
-			<div></div>
+			<div className='column'>
+				<span className='match__score'>{p2Score} </span>
+				{!isP1Turn && emptyCells.length > 0 && <TurnArrow turn={isP1Turn} />}
+			</div>
+			<div className='space' />
 			<div className='grid'>
 				{boardArray.map((cell, i) =>
 					cell === 'empty' ? (
@@ -353,12 +362,19 @@ const Match = () => {
 							element={elements && randomElementArray[i]}
 						/>
 					) : (
-						<Card key={i} card={cell} player={cell.user === 'cpu' ? p2 : p1} />
+						<Card
+							key={i}
+							card={cell}
+							player={cell.user === 'cpu' ? p2 : p1}
+							visibility={true}
+						/>
 					)
 				)}
 			</div>
-			<div></div>
-			<span className='match__score'>{p1Score}</span>
+			<div className='column'>
+				<span className='match__score'>{p1Score} </span>
+				{isP1Turn && emptyCells.length > 0 && <TurnArrow turn={isP1Turn} />}
+			</div>
 			<div className='player'>
 				{p1Hand.map((card, i) => (
 					<Card
@@ -367,6 +383,7 @@ const Match = () => {
 						player={p1}
 						handleClick={(e) => selectCard(e, card)}
 						turn={isP1Turn}
+						visibility={true}
 					/>
 				))}
 			</div>

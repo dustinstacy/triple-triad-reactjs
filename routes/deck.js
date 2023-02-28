@@ -50,7 +50,6 @@ router.post('/add', requiresAuth, async (req, res) => {
 // @access Private
 router.delete('/:deckId/remove', requiresAuth, async (req, res) => {
 	try {
-		console.log(req.user._id, req.params.deckId)
 		const card = await Deck.findOne({
 			user: req.user._id,
 			_id: req.params.deckId,

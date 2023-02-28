@@ -7,41 +7,36 @@ import { rank1, rank6 } from '../../assets/ranks'
 import './MatchSetup.scss'
 
 const MatchSetup = () => {
-	const { setCPUOpponent, cpuDeck, getCPUDeck } = useCPUCardContext()
+	const { cpu, cpuDeck } = useCPUCardContext()
 	const { user, userDeck, getUserDeck } = useGlobalContext()
-	const { toggleElementsSetting, toggleSameSetting, elements, same, rounds } =
+	const { toggleElementsSetting, toggleSameSetting, elements, same } =
 		useSettingsContext()
-
-	useEffect(() => {
-		getUserDeck()
-		setCPUOpponent()
-	}, [])
 
 	return (
 		<div className='setup page'>
+			<div className='player box'>
+				<h1>{cpu.name}</h1>
+				<img className='player__image' src={cpu.image} alt='player image' />
+				<div className='player__info'>
+					<p>Deck Strength:</p>
+					<span>
+						{cpuDeck?.reduce(
+							(total, card) =>
+								total +
+								card.values.reduce(
+									(sum, current) =>
+										parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+									0
+								),
+							0
+						)}
+					</span>
+				</div>
+				<img src={rank1} alt='rank1' className='player__rank' />
+			</div>
+
 			<div className='settings box'>
 				<h1>Match Setup</h1>
-				<div className='player'>
-					<h1>{user.username}</h1>
-					<div className='player__info'>
-						<img src={frames} alt='player image' />
-						<p>Deck Strength:</p>
-						<span>
-							{userDeck?.reduce(
-								(total, card) =>
-									total +
-									card.values.reduce(
-										(sum, current) =>
-											parseInt(sum) +
-											parseInt(String(current.replace(/A/g, 10))),
-										0
-									),
-								0
-							)}
-						</span>
-					</div>
-					<img src={rank6} alt='rank6' className='rank' />
-				</div>
 				<div className='settings__list'>
 					<h2>Rules</h2>
 					<div className='setting'>
@@ -136,27 +131,29 @@ const MatchSetup = () => {
 						</div>
 					</div>
 				</div>
-				<div className='opponent'>
-					<h1 onClick={() => setCPUOpponent()}></h1>
-					<img src={frames} alt='player image' />
-					<div className='opponent__info'>
-						<p>Deck Strength:</p>
-						<span>
-							{cpuDeck.reduce(
-								(total, card) =>
-									total +
-									card.values.reduce(
-										(sum, current) =>
-											parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-										0
-									),
-								0
-							)}
-						</span>
-					</div>
-					<img src={rank1} alt='rank1' className='rank' />
-				</div>
+
 				<Button label='Start Match' type='link' path='match' />
+			</div>
+
+			<div className='player box'>
+				<h1>{user.username}</h1>
+				<img className='player__image' src={user.image} alt='player image' />
+				<div className='player__info'>
+					<p>Deck Strength:</p>
+					<span>
+						{userDeck?.reduce(
+							(total, card) =>
+								total +
+								card.values.reduce(
+									(sum, current) =>
+										parseInt(sum) + parseInt(String(current.replace(/A/g, 10))),
+									0
+								),
+							0
+						)}
+					</span>
+				</div>
+				<img src={rank1} alt='rank6' className='player__rank' />
 			</div>
 		</div>
 	)

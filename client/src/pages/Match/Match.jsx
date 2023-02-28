@@ -40,7 +40,7 @@ const Match = () => {
 
 	let p1ScoreCounter = 0
 	let p2ScoreCounter = 0
-	let winner = 'Draw'
+	let winner = 'Stalemate'
 
 	const newGame = () => {
 		const p1DealtCards = []
@@ -314,9 +314,9 @@ const Match = () => {
 		if (emptyCells.length === 0) {
 			setTimeout(() => {
 				if (p1Score > p2Score) {
-					winner = 'Player One Wins'
+					winner = 'Victory'
 				} else if (p1Score < p2Score) {
-					winner = 'Player Two Wins'
+					winner = 'Defeat'
 				} else if (p1Score === p2Score) {
 				}
 				navigate('/matchEnd', {

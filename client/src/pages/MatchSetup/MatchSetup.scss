@@ -1,98 +1,38 @@
 .setup {
 	align-items: center;
 	justify-content: center;
+	flex-direction: row !important;
+	gap: 2rem;
 	background-image: url('../../assets/pageImages/facecave.jpg');
 	background-position: top;
 	background-size: cover;
 
 	.settings {
 		position: relative;
-		height: 850px;
-		width: 1400px;
+		height: 80vh;
+		width: 50vw;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		gap: 2rem;
-		padding: 5rem 2rem;
+		padding: 0 2rem;
 		color: var(--white-color);
 
 		.radios {
 			display: flex;
 		}
 
-		.player,
-		.settings__list,
-		.opponent {
+		.settings__list {
 			position: relative;
+			box-sizing: border-box;
 			height: 100%;
+			width: 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-
-			img {
-				height: 200px;
-				margin-top: 30%;
-				margin-bottom: 5%;
-			}
-
-			.rank {
-				position: absolute;
-				bottom: 0;
-				z-index: 2;
-			}
-		}
-
-		h1:not(.player > h1, .opponent > h1) {
-			min-width: 175px;
-			margin-top: 0;
-			padding: 0.5rem 4rem;
-			background-color: var(--accent2-color);
-			border: 3px solid var(--primary-color);
-			border-radius: 0 0 1rem 1rem;
-			border-top: none;
-			color: var(--white-color);
-			text-shadow: 1px 1px 5px var(--accent2-color);
-			text-align: center;
-		}
-
-		h1,
-		h2 {
-			position: absolute;
-			top: 0;
-		}
-
-		h2 {
-			text-decoration: underline;
-		}
-
-		.player,
-		.opponent {
-			flex: 1;
-			justify-content: flex-start;
-			border: 4px double var(--secondary-color);
-			border-radius: 1rem;
-		}
-
-		.player__info,
-		.opponent__info {
-			align-items: center;
-			justify-content: center;
-			margin-bottom: 1rem;
-			font-size: 1.5rem;
-			line-height: 1rem;
-			text-align: center;
-		}
-
-		.settings__list {
-			height: 100%;
-			width: 100%;
-			box-sizing: border-box;
-			flex: 2.5;
-			justify-content: flex-start;
 			gap: 1.5rem;
-			padding: 5rem 1rem 0 1rem;
+			padding: 4rem 1rem 0 1rem;
 			font-size: 1.25rem;
 
 			.setting {
@@ -162,5 +102,52 @@
 				}
 			}
 		}
+
+		h1 {
+			position: absolute;
+			top: 0;
+			min-width: 175px;
+			margin-top: 0;
+			padding: 0.5rem 4rem;
+			background-color: var(--accent2-color);
+			border: 3px solid var(--primary-color);
+			border-radius: 0 0 1rem 1rem;
+			border-top: none;
+			color: var(--white-color);
+			text-shadow: 1px 1px 5px var(--accent2-color);
+			text-align: center;
+		}
+	}
+
+	.player {
+		height: 75vh;
+		width: 15vw;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		border: 4px double var(--secondary-color);
+		border-radius: 1rem;
+		color: var(--white-color);
+
+		&__image {
+			width: 8vw;
+			background-color: var(--accent-color);
+			border: 2px solid var(--primary-color);
+			border-radius: 1rem;
+		}
+
+		&__rank {
+			width: 8vw;
+		}
+	}
+
+	.player__info {
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+		line-height: 1rem;
+		text-align: center;
 	}
 }

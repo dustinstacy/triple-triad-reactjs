@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react'
 import { assignRandomValues } from '../../../utils/assignRandomValues'
 import { useGlobalContext } from './GlobalContext'
+import { hades } from '../constants/opponents'
 
 const initialState = {
-	cpuOpponent: null,
+	cpu: hades,
 	cpuDeck: [],
 }
 
@@ -12,7 +13,7 @@ const cpuCardReducer = (state, action) => {
 		case 'SET_CPU_OPPONENT':
 			return {
 				...state,
-				cpuOpponent: action.payload,
+				cpu: action.payload,
 			}
 		case 'SET_CPU_DECK':
 			return {
@@ -52,27 +53,25 @@ export const CPUCardProvider = ({ children }) => {
 		})
 	}
 
-	const setCPUOpponent = () => {
+	const setCPUDeck = () => {
 		const randomDeck = [...Array(35)]
 
-		if (state.cpuOpponent === null) {
-			getRandomCards(randomDeck)
+		getRandomCards(randomDeck)
 
-			randomDeck.forEach((card) => {
-				assignRandomValues(card)
-			})
+		randomDeck.forEach((card) => {
+			assignRandomValues(card)
+		})
 
-			dispacth({ type: 'SET_CPU_DECK', payload: randomDeck })
-		}
+		dispacth({ type: 'SET_CPU_DECK', payload: randomDeck })
 	}
 
 	useEffect(() => {
-		if (allCards.length > 0 && state.cpuDeck.length === 0) setCPUOpponent()
+		if (allCards.length > 0 && state.cpuDeck.length === 0) setCPUDeck()
 	}, [allCards])
 
 	const value = {
 		...state,
-		setCPUOpponent,
+		setCPUDeck,
 	}
 
 	return (

@@ -1,0 +1,39 @@
+.turn__arrow {
+	path.one {
+		transition: 0.4s;
+		transform: translateX(-60%);
+	}
+
+	path.two {
+		transition: 0.5s;
+		transform: translateX(-30%);
+	}
+
+	path.three {
+		animation: color_anim 1s infinite 0.8s;
+	}
+
+	path.one {
+		transform: translateX(0%);
+		animation: color_anim 1s infinite 0.24s;
+	}
+
+	path.two {
+		transform: translateX(0%);
+		animation: color_anim 1s infinite 0.16s;
+	}
+
+	/* SVG animations */
+
+	@keyframes color_anim {
+		0% {
+			fill: white;
+		}
+		50% {
+			fill: var(--secondary-color);
+		}
+		100% {
+			fill: white;
+		}
+	}
+}

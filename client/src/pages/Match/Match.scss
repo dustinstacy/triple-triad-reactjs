@@ -3,12 +3,33 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--accent2-color);
+	background-image: url('../../assets/pageImages/darkportal.jpg');
+	background-position: top;
+	background-size: cover;
+
+	.column {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1rem;
+	}
 
 	&__score {
+		width: 5vw;
 		align-self: flex-start;
 		margin-top: 1rem;
+		background-color: var(--accent2-color);
+		border: 2px solid var(--primary-color);
+		border-radius: 1rem;
 		color: var(--white-color);
 		font-size: 4rem;
+		text-align: center;
+	}
+
+	.space {
+		width: 40vw;
 	}
 
 	.board {
@@ -24,10 +45,17 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+		height: 95vh;
+		width: 40vw;
 		display: flex;
 		flex-wrap: wrap;
+		align-items: center;
+		align-content: center;
 		justify-content: center;
-		width: 40vw;
+		background-color: var(--accent2-color);
+		border: 3px solid var(--tertiary-color);
+		border-radius: 1rem;
+		opacity: 0.975;
 	}
 
 	.player,

@@ -3,21 +3,21 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { rank1, rank6 } from '../../assets/ranks'
+import { coin } from '../../assets/icons'
 import './MatchEnd.scss'
 
 const MatchEnd = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
 	const { getUserDeck, user, getCurrentUser } = useGlobalContext()
-	const { setCPUOpponent } = useCPUCardContext()
+	const { cpu } = useCPUCardContext()
 
 	useEffect(() => {
-		getUserDeck(), setCPUOpponent(), updateStats()
+		getUserDeck(), updateStats()
 	}, [])
 
 	const updateStats = async () => {
-		if (location.state.winner === 'Player One Wins') {
+		if (location.state.winner === 'Victory') {
 			await axios.put('/api/profile/stats', {
 				matches: user.stats.matches + 1,
 				wins: user.stats.wins + 1,
@@ -25,20 +25,17 @@ const MatchEnd = () => {
 				draws: user.stats.draws,
 			})
 			await axios.put('/api/profile', {
-				xp: user.xp + 500,
-				coin: user.coin + 50,
+				xp: user.xp + 10,
+				coin: user.coin + 25,
 			})
-		} else if (location.state.winner === 'Player Two Wins') {
+		} else if (location.state.winner === 'Defeat') {
 			await axios.put('/api/profile/stats', {
 				matches: user.stats.matches + 1,
 				wins: user.stats.wins,
 				losses: user.stats.losses + 1,
 				draws: user.stats.draws,
 			})
-			await axios.put('/api/profile', {
-				coin: user.coin - 25,
-			})
-		} else if (location.state.winner === 'Draw') {
+		} else if (location.state.winner === 'Stalemate') {
 			await axios.put('/api/profile/stats', {
 				matches: user.stats.matches + 1,
 				wins: user.stats.wins,
@@ -46,8 +43,8 @@ const MatchEnd = () => {
 				draws: user.stats.draws + 1,
 			})
 			await axios.put('/api/profile', {
-				xp: user.xp + 15,
-				coin: user.coin + 15,
+				xp: user.xp + 5,
+				coin: user.coin + 5,
 			})
 		}
 		getCurrentUser()
@@ -55,19 +52,37 @@ const MatchEnd = () => {
 
 	return (
 		<div className='end page'>
-			<div className='box header'>Match Over</div>
-			<span>{location.state.winner}</span>
+			<span className='result'>{location.state.winner}</span>
+			<div className='rewards'>
+				<p className='reward'>
+					XP :
+					<span>
+						{location.state.winner === 'Victory'
+							? '+ ' + cpu.xpReward
+							: location.state.winner === 'Defeat'
+							? 0
+							: '+ ' + Math.floor(cpu.xpReward / 2.5)}
+					</span>
+				</p>
+				<p className='reward'>
+					Coin :
+					<span>
+						{location.state.winner === 'Victory'
+							? '+ ' + cpu.coinReward
+							: location.state.winner === 'Defeat'
+							? 0
+							: '+ ' + Math.floor(cpu.coinReward / 2.5)}
+						<span> </span>
+						<img src={coin} alt='coin' />
+					</span>
+				</p>
+			</div>
 			<div className='box results'>
-				<img src={rank6} alt='rank 6' />
-
-				<div className='results__p1'>
-					<h1>{user.username}</h1>
-					<div className='score'>{location.state.p1Score}</div>
-					<div className='rewards'>
-						<p></p>
-						<p>{user.coin}</p>
-					</div>
+				<div className='player'>
+					<h1>{cpu.name}</h1>
+					<img className='player__image' src={cpu.image} alt='cpu image' />
 				</div>
+				<div className='score'>{location.state.p2Score}</div>
 				<div className='buttons'>
 					<button className='box' onClick={() => navigate('/match')}>
 						Rematch
@@ -79,15 +94,11 @@ const MatchEnd = () => {
 						Quit
 					</button>
 				</div>
-				<div className='results__p2'>
-					<h1>Player Two</h1>
-					<div className='score'>{location.state.p2Score}</div>
-					<div className='rewards'>
-						<p>XP: +5</p>
-						<p>Coin: +1</p>
-					</div>
+				<div className='score'>{location.state.p1Score}</div>
+				<div className='player'>
+					<h1>{user.username}</h1>
+					<img className='player__image' src={user.image} alt='cpu image' />
 				</div>
-				<img src={rank1} alt='rank 1' />
 			</div>
 		</div>
 	)

@@ -10,7 +10,7 @@ const Solo = () => {
 	const { setCPUOpponent } = useCPUCardContext()
 
 	useEffect(() => {
-		getUserDeck(), setCPUOpponent()
+		getUserDeck()
 	}, [])
 
 	return (

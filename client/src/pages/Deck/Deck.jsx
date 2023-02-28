@@ -382,6 +382,7 @@ const Deck = () => {
 								!card.selected ? markSelected(card) : removeSelection(card)
 							}
 							turn={true}
+							visibility={true}
 						/>
 
 						<p className='stars'>

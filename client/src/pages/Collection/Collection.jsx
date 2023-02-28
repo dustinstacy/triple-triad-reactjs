@@ -29,7 +29,12 @@ const Collection = () => {
 					{sortedCards.map((card) =>
 						userCards.find((userCard) => userCard.name === card.name) ? (
 							<div key={card.name} className='display'>
-								<Card card={card} player='p1' page='collection' />
+								<Card
+									card={card}
+									player='p1'
+									page='collection'
+									visibility={true}
+								/>
 								<div className='info'>
 									<p>
 										{card.number} / {allCards.length}

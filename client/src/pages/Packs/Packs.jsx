@@ -146,7 +146,7 @@ const Packs = () => {
 		<div className='packs page'>
 			<div className='contents'>
 				{packContents?.map((card, i) => (
-					<Card key={card._id + i} card={card} player='p1' />
+					<Card key={card._id + i} card={card} player='p1' visibility={true} />
 				))}
 				{pack && (
 					<button className='open box' onClick={(e) => openPack(e)}>

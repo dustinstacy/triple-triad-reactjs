@@ -4,7 +4,7 @@
 	"description": "",
 	"type": "module",
 	"scripts": {
-		"server": "nodemon server.js",
+		"server": "nodemon server.js --ignore client",
 		"client": "cd client && npm start",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"install-client": "cd client && npm install",

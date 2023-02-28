@@ -2,6 +2,9 @@ import express from 'express'
 import * as dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 import authRoute from './routes/auth.js'
 import cardsRoute from './routes/cards.js'
 import collectionRoute from './routes/collection.js'
@@ -11,6 +14,9 @@ import profileRoute from './routes/profile.js'
 dotenv.config()
 
 const app = express()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json({ limit: '50mb' }))
 app.use(cookieParser())
@@ -19,6 +25,11 @@ app.use('/api/cards', cardsRoute)
 app.use('/api/collection', collectionRoute)
 app.use('/api/deck', deckRoute)
 app.use('/api/profile', profileRoute)
+app.use(express.static(path.resolve(__dirname, './client/build')))
+
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
+})
 
 app.get('/', (req, res) => {
 	res.send('Server Running')

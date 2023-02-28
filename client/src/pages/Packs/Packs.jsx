@@ -23,7 +23,6 @@ const Packs = () => {
 
 	useEffect(() => {
 		getCurrentUser()
-		console.log(user)
 	}, [])
 
 	useEffect(() => {

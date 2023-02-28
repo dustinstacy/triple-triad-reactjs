@@ -9,7 +9,6 @@ import './Account.scss'
 const Account = () => {
 	const { user, getCurrentUser } = useGlobalContext()
 	const [userImage, setUserImage] = useState('')
-	console.log(userImage)
 
 	const updateUserImage = () => {
 		axios.put('./api/profile', {

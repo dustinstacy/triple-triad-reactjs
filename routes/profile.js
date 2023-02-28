@@ -41,7 +41,6 @@ router.put('/', requiresAuth, async (req, res) => {
 // @access Private
 router.put('/stats', requiresAuth, async (req, res) => {
 	try {
-		console.log(req.body)
 		const updatedProfile = await User.findOneAndUpdate(
 			{
 				_id: req.user._id,

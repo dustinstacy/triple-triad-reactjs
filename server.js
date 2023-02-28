@@ -27,10 +27,6 @@ app.use('/api/deck', deckRoute)
 app.use('/api/profile', profileRoute)
 app.use(express.static(path.resolve(__dirname, './client/build')))
 
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'))
-})
-
 app.get('/', (req, res) => {
 	res.send('Server Running')
 })
@@ -41,7 +37,7 @@ mongoose
 	.then(() => {
 		console.log('*****Connected to database*****')
 
-		app.listen(process.env.Port, () => {
+		app.listen(process.env.PORT, () => {
 			console.log(`Server running on http://localhost:${process.env.PORT}`)
 		})
 	})

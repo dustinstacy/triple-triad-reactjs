@@ -7,7 +7,7 @@ import { logo } from '../../assets/logos'
 import './LandingPage.scss'
 
 const LandingPage = ({ login, register }) => {
-	const { getCurrentUser, getAllCards, getUserCards } = useGlobalContext()
+	const { user, getCurrentUser, getAllCards, getUserCards } = useGlobalContext()
 	const navigate = useNavigate()
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
@@ -41,7 +41,7 @@ const LandingPage = ({ login, register }) => {
 		axios
 			.post(register ? '/api/auth/register' : '/api/auth/login', data)
 			.then(() => {
-				getCurrentUser(), getAllCards(), getUserCards(), navigate('/')
+				getCurrentUser(), getAllCards(), getUserCards(), navigate('/home')
 			})
 			.catch((error) => {
 				setLoading(false)
@@ -69,6 +69,10 @@ const LandingPage = ({ login, register }) => {
 	useEffect(() => {
 		reset()
 	}, [login, register])
+
+	useEffect(() => {
+		user && navigate('/home')
+	}, [])
 
 	return (
 		<div className='landing page'>

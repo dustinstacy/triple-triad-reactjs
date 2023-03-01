@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { TextInput } from '../../components'
@@ -15,8 +15,11 @@ const Account = () => {
 			image: userImage,
 		})
 		setUserImage('')
-		getCurrentUser()
 	}
+
+	useEffect(() => {
+		getCurrentUser()
+	}, [setUserImage])
 
 	return (
 		<div className='account page'>

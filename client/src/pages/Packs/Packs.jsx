@@ -12,7 +12,7 @@ const Packs = () => {
 	const { allCards, user, getCurrentUser } = useGlobalContext()
 	const [pack, setPack] = useState(0)
 	const [packContents, setPackContents] = useState([])
-	const [userCoin, setUserCoin] = useState(user.coin)
+	const [userCoin, setUserCoin] = useState(user?.coin)
 	const [cart, setCart] = useState({
 		total: 0,
 		packs: [],
@@ -26,10 +26,17 @@ const Packs = () => {
 	}, [])
 
 	useEffect(() => {
-		setUserCoin(user.coin)
-		setUserSmallPacks([...user.packs.filter((pack) => pack.name === 'small')])
-		setUserMediumPacks([...user.packs.filter((pack) => pack.name === 'medium')])
-		setUserLargePacks([...user.packs.filter((pack) => pack.name === 'large')])
+		setUserCoin(user?.coin)
+		user &&
+			(setUserSmallPacks([
+				...user.packs.filter((pack) => pack.name === 'small'),
+			]),
+			setUserMediumPacks([
+				...user.packs.filter((pack) => pack.name === 'medium'),
+			]),
+			setUserLargePacks([
+				...user.packs.filter((pack) => pack.name === 'large'),
+			]))
 	}, [getCurrentUser])
 
 	useEffect(() => {
@@ -145,8 +152,8 @@ const Packs = () => {
 	return (
 		<div className='packs page'>
 			<div className='contents'>
-				{packContents?.map((card, i) => (
-					<Card key={card._id + i} card={card} player='p1' visibility={true} />
+				{packContents.map((card, i) => (
+					<Card key={card._id} card={card} player='p1' visibility={true} />
 				))}
 				{pack && (
 					<button className='open box' onClick={(e) => openPack(e)}>
@@ -156,7 +163,7 @@ const Packs = () => {
 			</div>
 			<div className='packs__bar'>
 				<div className='coin'>
-					{user.coin}
+					{user?.coin}
 					<img src={coin} alt='coin' />
 				</div>
 				<div className='inventory'>

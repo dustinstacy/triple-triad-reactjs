@@ -27,7 +27,7 @@ const AccountBar = () => {
 	}, [])
 
 	useEffect(() => {
-		if (user?.xp > userNextLevel) {
+		if (user?.xp >= userNextLevel) {
 			axios.put('/api/profile', {
 				level: user.level + 1,
 			})
@@ -58,7 +58,7 @@ const AccountBar = () => {
 			</div>
 			<div className='accountBar__container'>
 				{user ? (
-					pathname === '/' ||
+					pathname === '/home' ||
 					pathname === '/solo' ||
 					pathname === '/arcaneum' ||
 					pathname === '/account' ? (

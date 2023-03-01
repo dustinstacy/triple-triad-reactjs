@@ -136,8 +136,8 @@ const MatchSetup = () => {
 			</div>
 
 			<div className='player box'>
-				<h1>{user.username}</h1>
-				<img className='player__image' src={user.image} alt='player image' />
+				<h1>{user?.username}</h1>
+				<img className='player__image' src={user?.image} alt='player image' />
 				<div className='player__info'>
 					<p>Deck Strength:</p>
 					<span>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, warning } from 'framer-motion'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { GiReturnArrow, GiHamburgerMenu } from 'react-icons/gi'
 import { coin, home, settings } from '../../assets/icons'
@@ -47,14 +47,17 @@ const AccountBar = () => {
 	return (
 		<div className='accountBar'>
 			<div className='accountBar__container'>
-				{user && pathname !== '/' && pathname !== '/match' && (
-					<div className='accountBar__nav'>
-						<img src={home} alt='home' onClick={() => navigate('/')} />
-						{pathname !== '/solo' && pathname !== '/arcaneum' && (
-							<GiReturnArrow className='back' onClick={() => goBack()} />
-						)}
-					</div>
-				)}
+				{user &&
+					pathname !== '/' &&
+					pathname !== '/match' &&
+					pathname !== '/home' && (
+						<div className='accountBar__nav'>
+							<img src={home} alt='home' onClick={() => navigate('/')} />
+							{pathname !== '/solo' && pathname !== '/arcaneum' && (
+								<GiReturnArrow className='back' onClick={() => goBack()} />
+							)}
+						</div>
+					)}
 			</div>
 			<div className='accountBar__container'>
 				{user ? (
@@ -96,7 +99,11 @@ const AccountBar = () => {
 								<motion.div
 									className='dropdown__menu'
 									initial={{ width: 0 }}
-									animate={{ width: '19.5vw' }}
+									animate={
+										window.innerWidth > 600
+											? { width: '22.5vw' }
+											: { width: '50vw' }
+									}
 									transition={{ duration: 0.5, ease: 'easeInOut' }}
 								>
 									<ul className='dropdown__links'>

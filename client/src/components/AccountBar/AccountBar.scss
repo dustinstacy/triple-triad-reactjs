@@ -43,18 +43,28 @@
 		}
 
 		img {
-			width: 4vw;
+			width: 64px;
 			cursor: pointer;
+
+			@media screen and (max-width: 900px) {
+				width: 36px;
+			}
 		}
 
 		svg.back {
-			height: 3vw;
-			width: 3vw;
+			height: 48px;
+			width: 48px;
 			background-color: var(--accent2-color);
 			border: 2px solid var(--primary-color);
-			border-radius: 1rem;
+			border-radius: 0.5rem;
 			color: var(--primary-color);
 			cursor: pointer;
+
+			@media screen and (max-width: 900px) {
+				height: 28px;
+				width: 28px;
+				border: 1px solid var(--primary-color);
+			}
 		}
 	}
 
@@ -63,7 +73,7 @@
 		@include main-gradient;
 		@include skew;
 		position: relative;
-		right: -15%;
+		right: -24px;
 		border-left: 3px solid var(--secondary-color);
 		border-bottom: 3px solid var(--secondary-color);
 		border-radius: 0 0 0 1rem;
@@ -79,7 +89,8 @@
 	}
 
 	&__login {
-		width: 10vw;
+		width: auto;
+		padding: 0 24px;
 		line-height: 1rem;
 		text-decoration: none;
 		cursor: pointer;
@@ -93,25 +104,38 @@
 	&__nav {
 		display: flex;
 		align-items: center;
-		gap: 1vw;
-		margin: 1rem;
+		gap: 16px;
+		margin: 12px 24px;
+
+		@media screen and (max-width: 900px) {
+			gap: 12px;
+			margin: 8px 16px;
+		}
 	}
 
 	&__main {
 		height: calc(var(--navbar-height) - 3px);
-		width: 30vw;
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 1rem;
-		padding: 0 5vw 0 1vw;
-		font-size: 1rem;
+		padding: 0 36px;
+		font-size: 16px;
+
+		@media screen and (max-width: 900px) {
+			height: calc(var(--navbar-height) - 23px);
+			font-size: 12px;
+		}
 
 		h2 {
 			@include unskew();
 			margin: 0;
 			text-align: center;
+
+			@media screen and (max-width: 900px) {
+				font-size: 16px;
+			}
 		}
 
 		p {
@@ -122,13 +146,15 @@
 			pointer-events: none;
 
 			img {
-				margin-left: 0.5vw;
+				margin-left: 8px;
 				pointer-events: none;
 			}
 		}
 
 		svg {
 			@include unskew();
+			height: 24px;
+			width: 24px;
 			cursor: pointer;
 		}
 	}
@@ -137,22 +163,22 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.25rem;
+		gap: 4px;
 		flex: 1;
 		img {
-			width: 1vw;
+			width: 14px;
 		}
 	}
 
 	.left__bottom {
 		display: flex;
-		line-height: 1rem;
+		line-height: 1;
 	}
 
 	&__image {
 		@include unskew();
-		height: 4vw;
-		width: 4vw;
+		height: 64px;
+		width: 64px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -171,15 +197,20 @@
 	.progressBar {
 		@include unskew();
 		height: 20px;
-		width: 100%;
+		width: 250px;
 		display: flex;
 		align-items: center;
 		border: 2px solid var(--primary-color);
 		border-radius: 1rem;
+
+		@media screen and (max-width: 900px) {
+			width: 150px;
+		}
+
 		span {
 			position: absolute;
 			width: 100%;
-			font-size: 0.8rem;
+			font-size: 12px;
 			text-align: center;
 		}
 
@@ -201,11 +232,14 @@
 		position: fixed;
 		top: calc(var(--navbar-height) - 5px);
 		right: 0;
-		height: 50vh;
 		border-left: 3px solid var(--secondary-color);
 		border-bottom: 3px solid var(--secondary-color);
 		border-radius: 0 0 0 1rem;
 		z-index: -1;
+
+		@media screen and (max-width: 900px) {
+			top: calc(var(--navbar-height) - 25px);
+		}
 	}
 
 	&__links {
@@ -213,11 +247,20 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
-		margin-top: 0;
-		padding: 2rem;
-		font-size: 1.5rem;
+		gap: 12px;
+		margin: 0;
+		padding: 24px;
+		font-size: 24px;
 		list-style: none;
+
+		@media screen and (max-width: 900px) {
+			font-size: 14px;
+			padding: 12px;
+		}
+
+		@media screen and (max-width: 600px) {
+			padding: 24px;
+		}
 
 		li {
 			width: 0;

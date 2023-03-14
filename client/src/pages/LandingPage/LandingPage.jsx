@@ -17,6 +17,19 @@ const LandingPage = ({ login, register }) => {
 	const [confirmpasswordVisible, setConfirmpasswordVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [errors, setErrors] = useState({})
+	const [dimensions, setDimensions] = useState({
+		height: window.innerHeight,
+		width: window.innerWidth,
+	})
+
+	const handleResize = () => {
+		setDimensions({
+			height: window.innerHeight,
+			width: window.innerWidth,
+		})
+	}
+
+	useEffect(() => {}, [])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -66,12 +79,15 @@ const LandingPage = ({ login, register }) => {
 		setErrors({})
 	}
 
+	const checkKey = () => {}
+
 	useEffect(() => {
 		reset()
 	}, [login, register])
 
 	useEffect(() => {
 		user && navigate('/home')
+		window.addEventListener('resize', handleResize, false)
 	}, [])
 
 	return (
@@ -158,6 +174,13 @@ const LandingPage = ({ login, register }) => {
 						onKeyDown
 					/>
 				</div>
+			)}
+			{dimensions.height !== window.screen.availHeight ? (
+				<div className='tip__fullscreen'>
+					*Press F11 for fullscreen experience.
+				</div>
+			) : (
+				<></>
 			)}
 		</div>
 	)

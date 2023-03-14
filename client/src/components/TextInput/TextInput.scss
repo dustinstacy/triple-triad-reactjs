@@ -3,6 +3,16 @@
 	width: 60%;
 	margin: 30px 5px 0 5px;
 
+	@media screen and (max-width: 900px) {
+		width: 75%;
+		margin: 20px 5px 0 5px;
+	}
+
+	@media screen and (max-width: 600px) {
+		width: 90%;
+		margin: 20px 5px 0 5px;
+	}
+
 	/* necessary to give position: relative to parent. */
 	input {
 		width: 100%;

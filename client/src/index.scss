@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300;1,500;1,700;1,900&display=swap');
 
+:root {
+	--primary-color: #857f0b;
+	--secondary-color: #d9b632;
+	--tertiary-color: #2c5364;
+	--accent-color: #454206;
+	--accent2-color: #0f2027;
+	--error-color: #8a091d;
+	--black-color: #040f0f;
+	--gray-color: #655e51;
+	--white-color: #faf0e1;
+
+	--navbar-height: 112px;
+	--footer-height: 80px;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
 html,
 body {
 	height: 100vh;
@@ -62,34 +83,10 @@ button.active {
 	background: var(--tertiary-color);
 }
 
-:root {
-	--primary-color: #857f0b;
-	--secondary-color: #d9b632;
-	--tertiary-color: #2c5364;
-	--accent-color: #454206;
-	--accent2-color: #0f2027;
-	--error-color: #8a091d;
-	--black-color: #040f0f;
-	--gray-color: #655e51;
-	--white-color: #faf0e1;
-
-	--navbar-height: 112px;
-	--footer-height: 80px;
-
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
-}
-
 .app {
-	height: 100%;
 	min-height: 100vh;
-	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 }
 
 .page {
@@ -104,7 +101,6 @@ button.active {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 5rem;
 
 		.disabled {
 			border: 2px solid var(--accent-color);
@@ -131,7 +127,7 @@ button.active {
 .box {
 	background-color: var(--accent2-color);
 	border: 2px solid var(--primary-color);
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
 		rgba(0, 0, 0, 0.15) -40px -36px 130px 0px inset,
 		rgba(0, 0, 0, 0.9) 0px -40px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,

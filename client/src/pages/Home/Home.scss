@@ -1,12 +1,29 @@
 .home {
 	align-items: center;
 	justify-content: center;
+	padding: 10vh 0;
+	box-sizing: border-box;
 	background-image: url('../../assets/pageImages/view.jpg');
-	background-position: center;
+	background-position: bottom;
 	background-size: cover;
+	background-attachment: fixed;
+	overflow: auto;
 
 	.menu {
-		width: 100%;
+		width: 90%;
+		gap: 4vw;
+
+		@media screen and (max-width: 900px) and (max-aspect-ratio: 3/4) {
+			flex-direction: column;
+			gap: 5vh;
+			margin-top: 18px;
+		}
+
+		@media screen and (max-width: 600px) {
+			flex-direction: column;
+			gap: 5vh;
+			margin-top: 5vh;
+		}
 
 		&__card,
 		&__info {
@@ -20,19 +37,67 @@
 			position: relative;
 			height: 500px;
 			width: 400px;
+
+			@media screen and (max-width: 1200px) {
+				height: 350px;
+				width: 280px;
+			}
+
+			@media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
+				margin-top: 64px;
+				height: 250px;
+				width: 250px;
+			}
+
+			@media screen and (max-width: 900px) and (max-aspect-ratio: 4/3) {
+				height: 200px;
+				width: 80vw;
+			}
+
+			@media screen and (max-width: 600px) {
+				height: 22.5vh;
+				width: 80vw;
+			}
 		}
 
 		&__info {
 			position: absolute;
-			bottom: 0;
-			height: 175px;
-			width: 100%;
-			box-sizing: border-box;
+			left: -2px;
+			bottom: -2px;
+			right: -2px;
+			height: 125px;
 			padding: 35px;
-			border-radius: 0 0 1rem 1rem;
+			border-radius: 0 0 0.5rem 0.5rem;
 			color: var(--white-color);
 			text-align: center;
-			font-size: 1.1rem;
+			font-size: 18px;
+
+			@media screen and (max-width: 1200px) {
+				height: 100px;
+				justify-content: flex-start;
+				padding: 20px;
+				font-size: 14px;
+			}
+
+			@media screen and (max-width: 900px) and (max-aspect-ratio: 4/3) {
+				top: -2px;
+				left: -2px;
+				bottom: -2px;
+				height: auto;
+				width: 25vw;
+				justify-content: center;
+				border-radius: 0.5rem 0 0 0.5rem;
+			}
+
+			@media screen and (max-width: 600px) {
+				top: -2px;
+				left: -2px;
+				bottom: -2px;
+				height: auto;
+				width: 25vw;
+				justify-content: center;
+				border-radius: 0.5rem 0 0 0.5rem;
+			}
 		}
 	}
 

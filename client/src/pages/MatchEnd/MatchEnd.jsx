@@ -13,7 +13,7 @@ const MatchEnd = () => {
 	const { cpu } = useCPUCardContext()
 
 	useEffect(() => {
-		getUserDeck(), updateStats()
+		getCurrentUser(), getUserDeck(), updateStats()
 	}, [])
 
 	const updateStats = async () => {

@@ -27,6 +27,7 @@ router.put('/', requiresAuth, async (req, res) => {
 				rank: req.body.rank,
 				level: req.body.level,
 				xp: req.body.xp,
+				firstDeck: req.body.firstDeck,
 			}
 		)
 		return res.json(updatedProfile)

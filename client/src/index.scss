@@ -23,12 +23,13 @@
 
 html,
 body {
-	height: 100vh;
-	max-width: 100vw;
+	height: 100svh;
+	max-width: 100svw;
 	margin: 0;
 	font-family: 'Poppins';
 	font-weight: 700;
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 a {

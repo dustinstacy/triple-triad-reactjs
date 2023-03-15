@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../../components'
 import { spellCircle } from '../../assets/misc'
-import { library2 } from '../../assets/pageImages'
 import './Arcaneum.scss'
+import { useGlobalContext } from '../../context/GlobalContext'
 
 const Arcaneum = () => {
+	const { getCurrentUser } = useGlobalContext()
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
+
 	return (
 		<div className='arcaneum page'>
 			<div className='menu'>

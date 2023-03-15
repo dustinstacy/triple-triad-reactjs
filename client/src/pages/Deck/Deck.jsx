@@ -31,6 +31,7 @@ const Deck = () => {
 	const rarityArray = []
 
 	useEffect(() => {
+		getCurrentUser()
 		getUserCards()
 	}, [])
 

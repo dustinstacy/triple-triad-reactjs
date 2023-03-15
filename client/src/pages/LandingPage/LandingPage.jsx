@@ -29,7 +29,15 @@ const LandingPage = ({ login, register }) => {
 		})
 	}
 
-	useEffect(() => {}, [])
+	useEffect(() => {
+		if (user) {
+			if (user?.firstDeck === false) {
+				navigate('/firstDeck')
+			} else {
+				navigate('/home')
+			}
+		}
+	}, [user])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -54,7 +62,7 @@ const LandingPage = ({ login, register }) => {
 		axios
 			.post(register ? '/api/auth/register' : '/api/auth/login', data)
 			.then(() => {
-				getCurrentUser(), getAllCards(), getUserCards(), navigate('/home')
+				getCurrentUser(), getAllCards(), getUserCards()
 			})
 			.catch((error) => {
 				setLoading(false)
@@ -79,14 +87,11 @@ const LandingPage = ({ login, register }) => {
 		setErrors({})
 	}
 
-	const checkKey = () => {}
-
 	useEffect(() => {
 		reset()
 	}, [login, register])
 
 	useEffect(() => {
-		user && navigate('/home')
 		window.addEventListener('resize', handleResize, false)
 	}, [])
 
@@ -175,7 +180,8 @@ const LandingPage = ({ login, register }) => {
 					/>
 				</div>
 			)}
-			{dimensions.height !== window.screen.availHeight ? (
+			{dimensions.width > 1200 &&
+			dimensions.height !== window.screen.availHeight ? (
 				<div className='tip__fullscreen'>
 					*Press F11 for fullscreen experience.
 				</div>

@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react'
+import React, { createContext, useContext, useReducer } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 const initialState = {
 	user: null,
@@ -50,12 +49,6 @@ const GlobalContext = createContext(initialState)
 
 export const GlobalProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(globalReducer, initialState)
-	const navigate = useNavigate()
-
-	useEffect(() => {
-		getCurrentUser()
-		getAllCards()
-	}, [])
 
 	const getCurrentUser = async () => {
 		try {
@@ -124,9 +117,7 @@ export const GlobalProvider = ({ children }) => {
 
 	const logout = async () => {
 		try {
-			await axios
-				.put('/api/auth/logout')
-				.then(() => getCurrentUser(), navigate('/'))
+			await axios.put('/api/auth/logout')
 			dispatch({ type: 'RESET_USER' })
 		} catch (error) {
 			console.log(error)

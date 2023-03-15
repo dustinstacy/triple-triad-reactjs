@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { assignRandomValues } from '../../../../utils/assignRandomValues'
@@ -9,9 +9,18 @@ import {
 } from '../../constants/preBuilts'
 import { scorchedEarth, hurricane, frozenCharge } from '../../assets/elements'
 import './FirstDeck.scss'
+import { useNavigate } from 'react-router-dom'
 
 const FirstDeck = () => {
+	const navigate = useNavigate()
 	const { user, allCards, getCurrentUser } = useGlobalContext()
+
+	useEffect(() => {
+		getCurrentUser()
+		if (user.firstDeck === true) {
+			navigate('/home')
+		}
+	}, [])
 
 	const selectDeck = (deck) => {
 		let prebuilt
@@ -40,6 +49,7 @@ const FirstDeck = () => {
 		)
 		axios.put('/api/profile', {
 			coin: 1000,
+			firstDeck: true,
 		})
 		axios.put('/api/profile/packs', {
 			packs: [{ name: 'small' }, { name: 'medium' }, { name: 'large' }],

@@ -10,6 +10,10 @@ const Account = () => {
 	const { user, getCurrentUser } = useGlobalContext()
 	const [userImage, setUserImage] = useState('')
 
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
+
 	const updateUserImage = () => {
 		axios.put('./api/profile', {
 			image: userImage,

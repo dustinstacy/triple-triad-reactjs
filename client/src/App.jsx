@@ -1,4 +1,7 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { CPUCardProvider } from './context/CPUCardContext'
+import { SettingsProvider } from './context/SettingsContext'
 import {
 	LandingPage,
 	Home,
@@ -13,14 +16,9 @@ import {
 	FirstDeck,
 	Account,
 } from './pages'
-import { CPUCardProvider } from './context/CPUCardContext'
-import { useGlobalContext } from './context/GlobalContext'
-import { SettingsProvider } from './context/SettingsContext'
 import { AccountBar } from './components'
 
 function App() {
-	const { user, userCards } = useGlobalContext()
-
 	return (
 		<div className='app'>
 			<AccountBar />
@@ -30,11 +28,8 @@ function App() {
 						<Route path='/' element={<LandingPage />} />
 						<Route path='/login' element={<LandingPage login />} />
 						<Route path='/register' element={<LandingPage register />} />
-						<Route
-							path='/home'
-							element={userCards.length === 0 ? <FirstDeck /> : <Home />}
-						/>
 						<Route path='/firstDeck' element={<FirstDeck />} />
+						<Route path='/home' element={<Home />} />
 						<Route path='/solo' element={<Solo />} />
 						<Route path='/matchSetup' element={<MatchSetup />} />
 						<Route path='/match' element={<Match />} />

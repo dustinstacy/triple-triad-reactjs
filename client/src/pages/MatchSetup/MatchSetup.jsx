@@ -8,9 +8,13 @@ import './MatchSetup.scss'
 
 const MatchSetup = () => {
 	const { cpu, cpuDeck } = useCPUCardContext()
-	const { user, userDeck, getUserDeck } = useGlobalContext()
+	const { user, userDeck, getCurrentUser } = useGlobalContext()
 	const { toggleElementsSetting, toggleSameSetting, elements, same } =
 		useSettingsContext()
+
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
 
 	return (
 		<div className='setup page'>

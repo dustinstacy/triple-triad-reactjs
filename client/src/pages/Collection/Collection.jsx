@@ -4,12 +4,14 @@ import { Card } from '../../components'
 import './Collection.scss'
 
 const Collection = () => {
-	const { allCards, user, userCards, getUserCards } = useGlobalContext()
+	const { allCards, getCurrentUser, userCards, getUserCards } =
+		useGlobalContext()
 	const sortedCards = allCards.sort((a, b) => a.number - b.number)
 	const cardNames = userCards.map((card) => card.name)
 	const uniqueCards = [...new Set(cardNames)]
 
 	useEffect(() => {
+		getCurrentUser()
 		getUserCards()
 	}, [])
 

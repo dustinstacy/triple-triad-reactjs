@@ -6,10 +6,10 @@ import { creature1, creature2, creature3 } from '../../assets/misc'
 import './Solo.scss'
 
 const Solo = () => {
-	const { getUserDeck } = useGlobalContext()
-	const { setCPUOpponent } = useCPUCardContext()
+	const { getCurrentUser, getUserDeck } = useGlobalContext()
 
 	useEffect(() => {
+		getCurrentUser()
 		getUserDeck()
 	}, [])
 

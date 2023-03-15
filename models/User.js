@@ -56,6 +56,10 @@ const UserSchema = new Schema(
 		backgrounds: [],
 		packs: [],
 		ingredients: [],
+		firstDeck: {
+			type: Boolean,
+			defauly: false,
+		},
 	},
 	{
 		timestamps: true,

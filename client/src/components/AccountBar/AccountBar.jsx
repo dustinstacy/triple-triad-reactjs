@@ -23,15 +23,14 @@ const AccountBar = () => {
 	}
 
 	useEffect(() => {
-		getCurrentUser()
-	}, [])
-
-	useEffect(() => {
 		if (user?.xp >= userNextLevel) {
 			axios.put('/api/profile', {
 				level: user.level + 1,
 			})
 			getCurrentUser()
+		}
+		if (!user) {
+			navigate('/')
 		}
 	}, [user])
 
@@ -50,7 +49,8 @@ const AccountBar = () => {
 				{user &&
 					pathname !== '/' &&
 					pathname !== '/match' &&
-					pathname !== '/home' && (
+					pathname !== '/home' &&
+					pathname !== '/firstDeck' && (
 						<div className='accountBar__nav'>
 							<img src={home} alt='home' onClick={() => navigate('/')} />
 							{pathname !== '/solo' && pathname !== '/arcaneum' && (
@@ -101,7 +101,7 @@ const AccountBar = () => {
 									initial={{ width: 0 }}
 									animate={
 										window.innerWidth > 600
-											? { width: '22.5vw' }
+											? { width: '20vw' }
 											: { width: '50vw' }
 									}
 									transition={{ duration: 0.5, ease: 'easeInOut' }}

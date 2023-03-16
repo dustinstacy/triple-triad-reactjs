@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { motion, warning } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { GiReturnArrow, GiHamburgerMenu } from 'react-icons/gi'
 import { coin, home, settings } from '../../assets/icons'
@@ -14,7 +14,6 @@ const AccountBar = () => {
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
 	const [toggle, setToggle] = useState(false)
-
 	const userNextLevel = levels[user?.level]
 
 	const xpPercentage = () => {
@@ -28,9 +27,6 @@ const AccountBar = () => {
 				level: user.level + 1,
 			})
 			getCurrentUser()
-		}
-		if (!user) {
-			navigate('/')
 		}
 	}, [user])
 
@@ -52,7 +48,7 @@ const AccountBar = () => {
 					pathname !== '/home' &&
 					pathname !== '/firstDeck' && (
 						<div className='accountBar__nav'>
-							<img src={home} alt='home' onClick={() => navigate('/')} />
+							<img src={home} alt='home' onClick={() => navigate('/home')} />
 							{pathname !== '/solo' && pathname !== '/arcaneum' && (
 								<GiReturnArrow className='back' onClick={() => goBack()} />
 							)}
@@ -119,7 +115,7 @@ const AccountBar = () => {
 										<li
 											className='logout'
 											onClick={() => {
-												logout(), setToggle(false)
+												logout(), setToggle(false), navigate('/')
 											}}
 										>
 											Logout

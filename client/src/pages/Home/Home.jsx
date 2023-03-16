@@ -5,11 +5,20 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import './Home.scss'
 
 const Home = () => {
-	const { getCurrentUser } = useGlobalContext()
+	const navigate = useNavigate()
+	const { user, getCurrentUser } = useGlobalContext()
 
 	useEffect(() => {
 		getCurrentUser()
 	}, [])
+
+	useEffect(() => {
+		if (user?.firstDeck === false) {
+			navigate('/firstDeck')
+		} else {
+			navigate('/home')
+		}
+	}, [user])
 
 	return (
 		<div className='home page'>

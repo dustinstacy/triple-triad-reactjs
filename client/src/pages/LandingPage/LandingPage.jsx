@@ -29,17 +29,7 @@ const LandingPage = ({ login, register }) => {
 		})
 	}
 
-	useEffect(() => {
-		if (user) {
-			if (user?.firstDeck === false) {
-				navigate('/firstDeck')
-			} else {
-				navigate('/home')
-			}
-		}
-	}, [user])
-
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setLoading(true)
 
@@ -59,7 +49,7 @@ const LandingPage = ({ login, register }) => {
 			}
 		}
 
-		axios
+		await axios
 			.post(register ? '/api/auth/register' : '/api/auth/login', data)
 			.then(() => {
 				getCurrentUser(), getAllCards(), getUserCards()
@@ -70,6 +60,7 @@ const LandingPage = ({ login, register }) => {
 					setErrors(error.response.data)
 				}
 			})
+		navigate('/home')
 	}
 
 	const handleKeyDown = (e) => {

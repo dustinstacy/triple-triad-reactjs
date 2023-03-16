@@ -22,7 +22,7 @@ const FirstDeck = () => {
 		}
 	}, [])
 
-	const selectDeck = (deck) => {
+	const selectDeck = async (deck) => {
 		let prebuilt
 		if (deck === 'Scorched Earth') {
 			prebuilt = scorchedEarthDeck
@@ -47,17 +47,17 @@ const FirstDeck = () => {
 				}
 			})
 		)
-		axios.put('/api/profile', {
-			coin: 1000,
+		await axios.put('/api/profile', {
 			firstDeck: true,
 		})
-		axios.put('/api/profile/packs', {
+		await axios.put('/api/profile/packs', {
 			packs: [{ name: 'small' }, { name: 'medium' }, { name: 'large' }],
 		})
-		axios.put('/api/profile/backgrounds', {
+		await axios.put('/api/profile/backgrounds', {
 			backgrounds: [{ name: 'blue1' }, { name: 'red1' }],
 		})
-		getCurrentUser()
+		await getCurrentUser()
+		navigate('/home')
 	}
 
 	return (

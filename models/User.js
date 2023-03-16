@@ -21,7 +21,7 @@ const UserSchema = new Schema(
 		},
 		coin: {
 			type: Number,
-			default: 0,
+			default: 1000,
 		},
 		rank: {
 			type: Number,
@@ -34,6 +34,10 @@ const UserSchema = new Schema(
 		xp: {
 			type: Number,
 			default: 0,
+		},
+		firstDeck: {
+			type: Boolean,
+			default: false,
 		},
 		stats: {
 			matches: {
@@ -56,10 +60,6 @@ const UserSchema = new Schema(
 		backgrounds: [],
 		packs: [],
 		ingredients: [],
-		firstDeck: {
-			type: Boolean,
-			defauly: false,
-		},
 	},
 	{
 		timestamps: true,

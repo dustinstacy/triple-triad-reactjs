@@ -3,11 +3,11 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { GiReturnArrow, GiHamburgerMenu } from 'react-icons/gi'
-import { coin, home, settings } from '../../assets/icons'
-import './AccountBar.scss'
+import { coin, home } from '../../assets/icons'
 import { levels } from '../../constants/levels'
 import axios from 'axios'
 import { navlinks } from '../../constants/navlinks'
+import './AccountBar.scss'
 
 const AccountBar = () => {
 	const { user, logout, getCurrentUser } = useGlobalContext()

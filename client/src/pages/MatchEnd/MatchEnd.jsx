@@ -90,7 +90,7 @@ const MatchEnd = () => {
 					<button className='box' onClick={() => navigate('/matchSetup')}>
 						Setup
 					</button>
-					<button className='box' onClick={() => navigate('/')}>
+					<button className='box' onClick={() => navigate('/home')}>
 						Quit
 					</button>
 				</div>

@@ -1,4 +1,8 @@
 export const assignRandomValues = (card) => {
+	const rarity = card.rarity
+	const maxValue = 10
+	let total
+
 	const randomIntFromInterval = (min, max) => {
 		return Math.floor(Math.random() * (max - min + 1) + min)
 	}
@@ -26,10 +30,6 @@ export const assignRandomValues = (card) => {
 		})
 		return values
 	}
-
-	const rarity = card.rarity
-	const maxValue = 10
-	let total
 
 	if (rarity === 'Common') {
 		total = randomIntFromInterval(8, 12)

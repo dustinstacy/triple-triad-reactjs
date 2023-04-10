@@ -97,29 +97,22 @@ button.active {
 	flex: 1;
 	flex-direction: column;
 
-	.menu {
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.disabled {
+		border: 2px solid var(--accent-color);
+		background-color: var(--black-color);
+		color: var(--gray-color);
+		pointer-events: none;
 
-		.disabled {
-			border: 2px solid var(--accent-color);
-			background-color: var(--black-color);
+		img {
+			filter: grayscale(0.8);
+		}
+
+		.button {
+			background-color: var(--accent-color);
 			color: var(--gray-color);
-			pointer-events: none;
 
-			img {
-				filter: grayscale(0.8);
-			}
-
-			.button {
-				background-color: var(--accent-color);
-				color: var(--gray-color);
-
-				svg {
-					visibility: hidden;
-				}
+			svg {
+				visibility: hidden;
 			}
 		}
 	}

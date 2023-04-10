@@ -1,28 +1,26 @@
 .home {
+	position: relative;
 	align-items: center;
 	justify-content: center;
-	padding: 10vh 0;
-	box-sizing: border-box;
 	background-image: url('../../assets/pageImages/view.jpg');
-	background-position: bottom;
+	background-position: center;
 	background-size: cover;
-	background-attachment: fixed;
-	overflow: auto;
 
 	.menu {
-		width: 90%;
-		gap: 4vw;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		gap: 1rem;
+		padding: 0 5rem;
+		overflow-y: auto;
 
-		@media screen and (max-width: 900px) and (max-aspect-ratio: 3/4) {
+		@media screen and (max-width: 900px) and (max-aspect-ratio: 1/1) {
 			flex-direction: column;
-			gap: 5vh;
-			margin-top: 18px;
-		}
-
-		@media screen and (max-width: 600px) {
-			flex-direction: column;
-			gap: 5vh;
-			margin-top: 5vh;
+			padding-top: 10vh;
 		}
 
 		&__card,
@@ -36,7 +34,7 @@
 		&__card {
 			position: relative;
 			height: 500px;
-			width: 400px;
+			width: 375px;
 
 			@media screen and (max-width: 1200px) {
 				height: 350px;

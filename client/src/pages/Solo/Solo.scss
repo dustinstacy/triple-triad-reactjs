@@ -1,4 +1,5 @@
 .solo {
+	position: relative;
 	align-items: center;
 	justify-content: center;
 	background-image: url('../../assets/pageImages/floating.jpg');
@@ -6,20 +7,49 @@
 	background-size: cover;
 
 	.menu {
-		width: 80%;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 80vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5vw;
+		padding: 0 5rem;
+		overflow-y: auto;
+		overflow-x: hidden;
 		flex-direction: column;
-		gap: 5vh;
 		color: var(--white-color);
 		font-size: 1.3rem;
 
+		@media screen and (max-width: 900px) {
+			font-size: 1rem;
+			justify-content: flex-start;
+			padding-top: 10rem;
+			gap: 10vh;
+			width: 90vw;
+		}
+
+		@media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
+			padding-bottom: 5rem;
+		}
+
 		&__bar {
 			position: relative;
-			height: 200px;
+			min-height: 200px;
 			width: 60vw;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-around;
+
+			@media screen and (max-width: 1200px) {
+				min-height: 150px;
+			}
+
+			@media screen and (max-width: 900px) {
+				width: 80vw;
+			}
 		}
 
 		&__creature {
@@ -30,14 +60,30 @@
 		&__text {
 			width: 50%;
 			font-weight: 500;
+
+			@media screen and (max-width: 1200px) {
+				width: 40%;
+			}
+
+			@media screen and (max-width: 900px) {
+				width: 30%;
+			}
 		}
 
 		.medium {
 			width: 300px;
+
+			@media screen and (max-width: 1200px) {
+				width: 200px;
+			}
 		}
 
 		.large {
 			width: 350px;
+
+			@media screen and (max-width: 1200px) {
+				width: 275px;
+			}
 		}
 
 		.left {
@@ -47,6 +93,10 @@
 			p {
 				align-self: flex-end;
 				padding-right: 5rem;
+
+				@media screen and (max-width: 900px) {
+					padding-right: 2rem;
+				}
 			}
 
 			.button {

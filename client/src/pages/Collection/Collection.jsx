@@ -17,8 +17,6 @@ const Collection = () => {
 
 	return (
 		<div className='collection page'>
-			<div className='background' />
-
 			<div className='list'>
 				<h1 className='header box'>
 					Collection

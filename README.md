@@ -1,3 +1,3 @@
 # Coming Soon!
 
-https://triple-triad.vercel.app/
+https://tripletriad.herokuapp.com/

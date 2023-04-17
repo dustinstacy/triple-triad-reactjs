@@ -7,11 +7,11 @@
 		"server": "cd server && npm run server",
 		"client": "cd client && npm start",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"install-client": "cd client && npm install",
-		"build": "cd client && npm run build",
-		"heroku-postbuild": "npm run install-client && npm run build",
-		"start": "cd server && npm start"
-	},
+		"start": "npm start --prefix server",
+		"install-client": "cd client && npm install && npm run build && cd ..",
+		"install-server": "cd server && npm install && cd .. ",
+		"heroku-postbuild": "npm run install-client && npm run install-server"
+    },
 	"keywords": [],
 	"author": "",
 	"license": "ISC",

@@ -12,6 +12,7 @@ coverage
 build
 dist
 dist-ssr
+
 # misc
 data
 .DS_Store

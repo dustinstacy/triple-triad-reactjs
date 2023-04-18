@@ -1,4 +1,33 @@
+@mixin main-gradient {
+	background: var(--accent2-color);
+	background: -webkit-linear-gradient(
+		45deg,
+		var(--accent2-color),
+		var(--tertiary-color)
+	);
+	background: linear-gradient(
+		45deg,
+		var(--accent2-color),
+		var(--tertiary-color)
+	);
+}
+
+@mixin secondary-gradient {
+	background: var(--primary-color);
+	background: -webkit-linear-gradient(
+		45deg,
+		var(--accent2-color),
+		var(--tertiary-color)
+	);
+	background: linear-gradient(
+		45deg,
+		var(--primary-color) 65%,
+		var(--secondary-color)
+	);
+}
+
 .button {
+	@include secondary-gradient();
 	position: absolute;
 	min-height: 1.5rem;
 	min-width: 150px;
@@ -7,11 +36,14 @@
 	justify-content: center;
 	margin-bottom: -1rem;
 	padding: 10px 20px;
-	background: var(--primary-color);
+	border: 1px solid var(--accent2-color);
 	border-radius: 0.5rem;
 	color: var(--white-color);
 	font-size: 20px;
 	text-decoration: none;
+	text-shadow: 0.5px 0.5px 2px var(--black-color),
+		-0.5px -0.5px 2px var(--black-color), 0.5px -0.5px 2px var(--black-color),
+		-0.5px 0.5px 2px var(--black-color);
 	box-shadow: 3px 3px 0 var(--black-color);
 	transition: 1s;
 	cursor: pointer;
@@ -21,6 +53,9 @@
 	}
 
 	&:hover {
+		@include main-gradient();
+		background-color: var(--accent2-color);
+		border: 1px solid var(--primary-color);
 		color: var(--secondary-color);
 		text-shadow: 1px 1px 5px var(--accent2-color);
 		box-shadow: 6px 6px 0 var(--secondary-color);

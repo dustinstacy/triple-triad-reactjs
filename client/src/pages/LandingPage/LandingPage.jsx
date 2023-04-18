@@ -165,7 +165,7 @@ const LandingPage = ({ login, register }) => {
 					<Button
 						label='Submit'
 						type='submit'
-						handleSubmit={handleSubmit}
+						handleClick={handleSubmit}
 						disabled={loading}
 						onKeyDown
 					/>

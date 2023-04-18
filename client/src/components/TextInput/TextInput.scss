@@ -1,33 +1,49 @@
 .input {
 	position: relative;
-	width: 60%;
+	width: 80%;
 	margin: 30px 5px 0 5px;
 
 	@media screen and (max-width: 900px) {
-		width: 75%;
 		margin: 20px 5px 0 5px;
 	}
 
 	@media screen and (max-width: 600px) {
 		width: 90%;
-		margin: 20px 5px 0 5px;
 	}
 
-	/* necessary to give position: relative to parent. */
 	input {
 		width: 100%;
 		box-sizing: border-box;
-		font: 15px/24px 'Lato', Arial, sans-serif;
 		color: var(--white-color);
-		letter-spacing: 1px;
+		font-size: 20px;
+		font-family: 'Poppins';
+		font-weight: 700;
+
+		@media screen and (max-width: 900px) {
+			font-size: 16px;
+		}
+
+		@media screen and (max-width: 600px) {
+			font-size: 14px;
+		}
 	}
 
 	svg {
 		position: absolute;
 		right: 1rem;
-		top: 0.75rem;
+		top: 12px;
 		color: var(--secondary-color);
-		font-size: 1.2rem;
+		font-size: 24px;
+
+		@media screen and (max-width: 900px) {
+			top: 10px;
+			font-size: 20px;
+		}
+
+		@media screen and (max-width: 600px) {
+			top: 9px;
+			font-size: 18px;
+		}
 	}
 
 	:focus {

@@ -2,18 +2,17 @@
 	position: relative;
 	align-items: center;
 	justify-content: center;
-	padding: 10vh 0;
+	padding: var(--navbar-height) 0;
 	box-sizing: border-box;
 	background-image: url('../../assets/pageImages/snakecave.jpg');
 	background-position: bottom;
 	background-size: cover;
-	background-attachment: fixed;
 	overflow-y: auto;
 
 	.auth {
 		position: relative;
 		height: 100%;
-		width: 30vw;
+		width: 540px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -24,13 +23,12 @@
 		}
 
 		@media screen and (max-width: 900px) {
-			width: 50vw;
-			padding: 1vh;
+			width: 480px;
+			padding: 18px;
 		}
 
 		@media screen and (max-width: 600px) {
 			width: 75vw;
-			padding: 2vh;
 		}
 
 		.logo {
@@ -69,18 +67,18 @@
 		}
 
 		&__footer {
-			margin: 15px 0;
+			margin: 24px 0;
 			color: var(--white-color);
+			font-size: 16px;
 
 			@media screen and (max-width: 900px) {
-				margin: 5px 0;
+				margin: 20px 0;
+				font-size: 14px;
 			}
 
 			@media screen and (max-width: 600px) {
-				width: 100%;
-				margin: 15px 0;
-				font-size: 14px;
-				text-align: center;
+				margin: 16px 0;
+				font-size: 12px;
 			}
 
 			a {

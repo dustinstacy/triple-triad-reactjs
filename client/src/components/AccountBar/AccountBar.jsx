@@ -49,9 +49,6 @@ const AccountBar = () => {
 					pathname !== '/firstDeck' && (
 						<div className='accountBar__nav'>
 							<img src={home} alt='home' onClick={() => navigate('/home')} />
-							{pathname !== '/solo' && pathname !== '/arcaneum' && (
-								<GiReturnArrow className='back' onClick={() => goBack()} />
-							)}
 						</div>
 					)}
 			</div>

@@ -23,20 +23,13 @@ const Home = () => {
 	return (
 		<div className='home page'>
 			<div className='menu'>
-				<div className='menu__card box solo'>
-					<div className='menu__info box'>
-						Single player matches across a variety of game modes
-					</div>
+				<div className='menu__card solo'>
 					<Button label='Solo' type='link' path='solo' />
 				</div>
-				<div className='menu__card box matchmaking disabled'>
-					<div className='menu__info box disabled'>Coming soon!</div>
+				<div className='menu__card matchmaking disabled'>
 					<Button label='Matchmaking' />
 				</div>
-				<div className='menu__card box arcaneum'>
-					<div className='menu__info box'>
-						View your cards, get new packs, and construct your deck
-					</div>
+				<div className='menu__card arcaneum'>
 					<Button label='Arcaneum' type='link' path='arcaneum' />
 				</div>
 			</div>

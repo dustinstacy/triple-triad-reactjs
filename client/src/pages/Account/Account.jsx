@@ -31,8 +31,8 @@ const Account = () => {
 				<div className='container'>
 					<h1>Account Details</h1>
 					<div className='box'>
-						<p>Username : {user.username}</p>
-						<p>Email : {user.email}</p>
+						<p>Username : {user?.username}</p>
+						<p>Email : {user?.email}</p>
 						<p>Password : ************</p>
 						<a>Edit Details</a>
 					</div>
@@ -42,17 +42,17 @@ const Account = () => {
 					<div className='stats box'>
 						<div className='stats__info'>
 							<p>
-								Record : {user.stats.wins} - {user.stats.losses} -{' '}
-								{user.stats.draws}
+								Record : {user?.stats.wins} - {user?.stats.losses} -{' '}
+								{user?.stats.draws}
 							</p>
-							<p>Matches : {user.stats.matches}</p>
-							<p>Wins : {user.stats.wins}</p>
-							<p>Losses : {user.stats.losses}</p>
-							<p>Draws : {user.stats.draws}</p>
+							<p>Matches : {user?.stats.matches}</p>
+							<p>Wins : {user?.stats.wins}</p>
+							<p>Losses : {user?.stats.losses}</p>
+							<p>Draws : {user?.stats.draws}</p>
 						</div>
 						<div className='stats__rank'>
 							<img src={rank1} alt='rank' />
-							<p>Rank : {user.rank}</p>
+							<p>Rank : {user?.rank}</p>
 						</div>
 					</div>
 				</div>
@@ -60,7 +60,7 @@ const Account = () => {
 					<h1>Customization</h1>
 					<div className='box'>
 						<p className='custom__image'>
-							Account Image : <img src={user.image} alt='user image' />
+							Account Image : <img src={user?.image} alt='user image' />
 						</p>
 						<div className='image__input'>
 							<TextInput
@@ -74,7 +74,7 @@ const Account = () => {
 							</button>
 						</div>
 
-						<p className='backgrounds'>
+						<div className='backgrounds'>
 							Backgrounds :{' '}
 							<div className='backgrounds__blue'>
 								<img src={blue1} alt='blue1' />
@@ -84,7 +84,7 @@ const Account = () => {
 								<img src={red1} alt='red1' />
 								<p>Red</p>
 							</div>
-						</p>
+						</div>
 					</div>
 				</div>
 			</div>

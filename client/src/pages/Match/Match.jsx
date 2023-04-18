@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useSettingsContext } from '../../context/SettingsContext'
-import { shuffleCards, dealCards } from '../../../utils/shuffleAndDeal'
+import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
 import { Card, Cell, TurnArrow } from '../../components'
 import './Match.scss'
 

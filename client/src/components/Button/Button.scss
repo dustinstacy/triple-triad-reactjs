@@ -1,7 +1,6 @@
 .button {
 	position: absolute;
-	bottom: 0;
-	height: 1.5rem;
+	min-height: 1.5rem;
 	min-width: 150px;
 	display: flex;
 	align-items: center;
@@ -9,26 +8,13 @@
 	margin-bottom: -1rem;
 	padding: 10px 20px;
 	background: var(--primary-color);
+	border-radius: 0.5rem;
 	color: var(--white-color);
 	font-size: 20px;
 	text-decoration: none;
-	box-shadow: 6px 6px 0 var(--black-color);
+	box-shadow: 3px 3px 0 var(--black-color);
 	transition: 1s;
-	transform: skewX(-20deg);
 	cursor: pointer;
-
-	span {
-		transform: skewX(15deg);
-	}
-
-	span:nth-child(2) {
-		position: relative;
-		top: 12%;
-		margin-right: 0px;
-		margin-left: 20px;
-		width: 10px;
-		transition: 0.5s;
-	}
 
 	&:focus {
 		outline: none;
@@ -37,52 +23,12 @@
 	&:hover {
 		color: var(--secondary-color);
 		text-shadow: 1px 1px 5px var(--accent2-color);
-		box-shadow: 10px 10px 0 var(--secondary-color);
+		box-shadow: 6px 6px 0 var(--secondary-color);
 		transition: 0.5s;
 
 		span:nth-child(2) {
 			margin-right: 15px;
 			transition: 0.5s;
 		}
-	}
-}
-
-/**************SVG****************/
-
-path.one {
-	transition: 0.4s;
-	transform: translateX(-60%);
-}
-
-path.two {
-	transition: 0.5s;
-	transform: translateX(-30%);
-}
-
-.button:hover path.three {
-	animation: color_anim 1s infinite 0.2s;
-}
-
-.button:hover path.one {
-	transform: translateX(0%);
-	animation: color_anim 1s infinite 0.6s;
-}
-
-.button:hover path.two {
-	transform: translateX(0%);
-	animation: color_anim 1s infinite 0.4s;
-}
-
-/* SVG animations */
-
-@keyframes color_anim {
-	0% {
-		fill: white;
-	}
-	50% {
-		fill: var(--secondary-color);
-	}
-	100% {
-		fill: white;
 	}
 }

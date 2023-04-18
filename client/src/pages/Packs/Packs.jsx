@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { assignRandomValues } from '../../../utils/assignRandomValues'
+import { assignRandomValues } from '../../utils/assignRandomValues'
 import { Card } from '../../components'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { smallPack, mediumPack, largePack } from '../../assets/packs'

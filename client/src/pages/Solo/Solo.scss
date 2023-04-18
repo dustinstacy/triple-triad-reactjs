@@ -10,111 +10,125 @@
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		width: 80vw;
+		width: 100%;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		gap: 5vw;
-		padding: 0 5rem;
+		padding: 0 10rem;
 		overflow-y: auto;
 		overflow-x: hidden;
-		flex-direction: column;
-		color: var(--white-color);
-		font-size: 1.3rem;
 
 		@media screen and (max-width: 900px) {
-			font-size: 1rem;
 			justify-content: flex-start;
-			padding-top: 10rem;
 			gap: 10vh;
-			width: 90vw;
+			padding-top: 10rem;
 		}
 
 		@media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
+			gap: 15vh;
 			padding-bottom: 5rem;
+		}
+
+		@media screen and (max-width: 600px) {
+			width: 90%;
 		}
 
 		&__bar {
 			position: relative;
 			min-height: 200px;
-			width: 60vw;
+			width: 50vw;
 			display: flex;
-			flex-direction: column;
 			align-items: center;
-			justify-content: space-around;
+			justify-content: center;
+
+			.button {
+				height: 60px;
+				width: 35%;
+				font-size: 28px;
+
+				@media screen and (max-width: 1200px) {
+					height: 48px;
+					font-size: 20px;
+				}
+
+				@media screen and (max-width: 600px) {
+					height: 30px;
+				}
+			}
 
 			@media screen and (max-width: 1200px) {
 				min-height: 150px;
+				width: 65vw;
 			}
 
-			@media screen and (max-width: 900px) {
-				width: 80vw;
+			@media screen and (max-width: 600px) {
+				width: 100%;
+				align-items: flex-end;
+			}
+		}
+
+		.left {
+			align-self: flex-start;
+			left: 5rem;
+
+			@media screen and (max-width: 1200px) {
+				left: 2.5rem;
+			}
+
+			@media screen and (max-width: 600px) {
+				left: 0;
+			}
+
+			.button {
+				right: -5rem;
+
+				@media screen and (max-width: 600px) {
+					right: initial;
+				}
+			}
+		}
+
+		.right {
+			align-self: flex-end;
+			right: 5rem;
+
+			@media screen and (max-width: 1200px) {
+				right: 2.5rem;
+			}
+
+			@media screen and (max-width: 600px) {
+				right: 0;
+			}
+
+			.button {
+				left: -5rem;
+
+				@media screen and (max-width: 600px) {
+					left: initial;
+				}
 			}
 		}
 
 		&__creature {
 			position: absolute;
 			bottom: 0;
-		}
 
-		&__text {
-			width: 50%;
-			font-weight: 500;
+			&.medium {
+				width: 300px;
 
-			@media screen and (max-width: 1200px) {
-				width: 40%;
-			}
-
-			@media screen and (max-width: 900px) {
-				width: 30%;
-			}
-		}
-
-		.medium {
-			width: 300px;
-
-			@media screen and (max-width: 1200px) {
-				width: 200px;
-			}
-		}
-
-		.large {
-			width: 350px;
-
-			@media screen and (max-width: 1200px) {
-				width: 275px;
-			}
-		}
-
-		.left {
-			align-self: flex-start;
-			left: 0;
-
-			p {
-				align-self: flex-end;
-				padding-right: 5rem;
-
-				@media screen and (max-width: 900px) {
-					padding-right: 2rem;
+				@media screen and (max-width: 1200px) {
+					width: 200px;
 				}
 			}
 
-			.button {
-				right: 5rem;
-			}
-		}
+			&.large {
+				width: 350px;
 
-		.right {
-			align-self: flex-end;
-			right: 0;
-
-			p {
-				align-self: flex-start;
-				padding-left: 5rem;
-			}
-
-			.button {
-				left: 5rem;
+				@media screen and (max-width: 1200px) {
+					width: 275px;
+				}
 			}
 		}
 	}

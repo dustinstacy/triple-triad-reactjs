@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { assignRandomValues } from '../../../utils/assignRandomValues'
+import { assignRandomValues } from '../../utils/assignRandomValues'
 import {
 	scorchedEarthDeck,
 	hurricaneDeck,

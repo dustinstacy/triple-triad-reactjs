@@ -1,12 +1,10 @@
 .account {
 	position: relative;
-	align-items: center;
-	justify-content: center;
 	background-image: url('../../assets/pageImages/shuxingli.jpg');
 	background-position: center;
 	background-size: cover;
 
-	.containers {
+	.container {
 		position: absolute;
 		top: 0;
 		bottom: 0;
@@ -15,110 +13,132 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 5rem;
-		padding: 10rem 0;
+		padding: var(--navbar-height) 0;
 		overflow-y: auto;
 
-		.container {
-			width: 50vw;
+		.section {
+			min-height: 20vh;
+			width: 60vw;
+			padding: 48px;
 
-			.box {
-				box-sizing: border-box;
-				min-height: 20vh;
-				padding: 2rem 4rem;
-				color: var(--white-color);
+			.custom-image {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				gap: 16px;
 
-				&.stats {
+				img {
+					height: 124px;
+					width: 124px;
+					background-color: var(--accent-color);
+					border: 2px solid var(--primary-color);
+					border-radius: 0.5rem;
+				}
+			}
+
+			.image-input {
+				position: relative;
+				display: flex;
+				align-items: center;
+				gap: 36px;
+
+				.input {
+					width: 45vw;
+					margin: 10px 0;
+
+					@media screen and (max-width: 1200px) {
+						width: 40vw;
+					}
+
+					@media screen and (max-width: 600px) {
+						width: 100%;
+						margin-bottom: 48px;
+					}
+				}
+
+				.button {
+					right: 0;
+					padding: 8px;
+					margin-bottom: 2px;
+
+					@media screen and (max-width: 900px) {
+						min-width: 100px;
+						padding: 6px;
+					}
+
+					@media screen and (max-width: 600px) {
+						bottom: 0;
+						left: 0;
+						right: initial;
+						min-width: 72px;
+						font-size: 16px;
+					}
+				}
+			}
+
+			.stats {
+				display: flex;
+				justify-content: space-evenly;
+
+				@media screen and (max-width: 600px) {
+					flex-direction: column;
+					gap: 24px;
+				}
+
+				&__rank {
 					display: flex;
-					justify-content: space-between;
-
-					.stats__info {
-						font-size: 1.25rem;
-					}
-
-					.stats__rank {
-						display: flex;
-						flex-direction: column;
-						align-items: center;
-						justify-content: center;
-						text-align: center;
-					}
+					flex-direction: column;
+					align-items: center;
+					justify-content: flex-end;
+					gap: 12px;
 
 					img {
 						height: 150px;
 					}
 				}
 
-				.image__input {
+				&__info {
 					display: flex;
-					align-items: flex-end;
-					gap: 2rem;
-				}
 
-				.userImage {
-					width: auto;
-					display: flex;
-					align-items: center;
-					padding: 0.5rem;
-					margin-bottom: 2px;
-					background-color: var(--primary-color);
-					border: 1px solid var(--secondary-color);
-					border-radius: 0.5rem;
-					font-size: 1.25rem;
-					color: var(--white-color);
-
-					&:hover {
-						background-color: var(--accent2-color);
-						border: 1px solid var(--primary-color);
-						color: var(--secondary-color);
-					}
-				}
-
-				.custom__image {
-					display: flex;
-					align-items: flex-start;
-					gap: 2rem;
-
-					.input {
-						width: 100%;
-					}
-
-					img {
-						height: 6vw;
-						width: 6vw;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						background-color: var(--accent-color);
-						border: 2px solid var(--primary-color);
-						border-radius: 1rem;
-					}
-				}
-
-				.backgrounds {
-					display: flex;
-					gap: 2rem;
-					margin-top: 6rem;
-
-					&__blue,
-					&__red {
+					tbody {
 						display: flex;
 						flex-direction: column;
-						align-items: center;
+						gap: 20px;
 					}
-					img {
-						height: 140px;
-						width: 100px;
-						border: 1px solid var(--white-color);
+
+					tr {
+						display: flex;
+						width: 250px;
+					}
+
+					th {
+						display: flex;
+						justify-content: flex-start;
+						width: 60%;
+					}
+
+					td {
+						width: 40%;
 					}
 				}
 			}
 
-			h1 {
-				margin: 0;
-				color: var(--white-color);
-				text-shadow: 2px 2px 1px var(--black-color),
-					-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
-					-1px 1px 1px var(--black-color);
+			.backgrounds {
+				display: flex;
+				gap: 36px;
+				margin-top: 16px;
+
+				&__blue,
+				&__red {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+				img {
+					height: 140px;
+					width: 100px;
+					border: 1px solid var(--white-color);
+				}
 			}
 		}
 	}

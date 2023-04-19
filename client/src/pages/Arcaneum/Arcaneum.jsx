@@ -12,26 +12,26 @@ const Arcaneum = () => {
 
 	return (
 		<div className='arcaneum page'>
-			<div className='menu'>
-				<div className='menu__top'>
-					<div className='menu__card box collection'>
+			<div className='container'>
+				<div className='top'>
+					<div className='card box collection'>
 						<Button label='Collection' type='link' path='collection' />
 					</div>
-					<div className='menu__card box deck'>
+					<div className='card box deck'>
 						<Button label='Deck' type='link' path='deck' />
 					</div>
 				</div>
-				<div className='menu__middle'>
-					<div className='menu__card box packs'>
+				<div className='middle'>
+					<div className='card box packs'>
 						<Button label='Packs' type='link' path='packs' />
 					</div>
-					<img className='menu__spell' src={spellCircle} alt='spell circle' />
-					<div className='menu__card box disabled'>
+					<img className='spell' src={spellCircle} alt='spell circle' />
+					<div className='card box disabled'>
 						<Button label='Fusion' type='link' path='arcaneum' />
 					</div>
 				</div>
-				<div className='menu__bottom'>
-					<div className='menu__card box disabled'>
+				<div className='bottom'>
+					<div className='card box disabled'>
 						<Button label='Market' type='link' path='arcaneum' />
 					</div>
 				</div>

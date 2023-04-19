@@ -17,42 +17,40 @@ const Collection = () => {
 
 	return (
 		<div className='collection page'>
-			<div className='list'>
-				<h1 className='header box'>
-					Collection
+			<div className='container'>
+				<div className='header box'>
+					<h1>Collection</h1>
 					<span>
 						Total Found : {uniqueCards.reduce((total) => total + 1, 0)} /{' '}
 						{allCards.length}
 					</span>
-				</h1>
-				<div className='container'>
-					{sortedCards.map((card) =>
-						userCards.find((userCard) => userCard.name === card.name) ? (
-							<div key={card.name} className='display'>
-								<Card
-									card={card}
-									player='p1'
-									page='collection'
-									visibility={true}
-								/>
-								<div className='info'>
-									<p>
-										{card.number} / {allCards.length}
-									</p>
-									<p>{card.name}</p>
-								</div>
-							</div>
-						) : (
-							<div key={card.name} className='display'>
-								<div className='card disabled' />
-								<div className='info'>
-									<p>??? / {allCards.length}</p>
-									<p>????????</p>
-								</div>
-							</div>
-						)
-					)}
 				</div>
+				{sortedCards.map((card) =>
+					userCards.find((userCard) => userCard.name === card.name) ? (
+						<div key={card.name} className='display'>
+							<Card
+								card={card}
+								player='p1'
+								page='collection'
+								visibility={true}
+							/>
+							<div className='info'>
+								<p>
+									{card.number} / {allCards.length}
+								</p>
+								<p>{card.name}</p>
+							</div>
+						</div>
+					) : (
+						<div key={card.name} className='display'>
+							<div className='card disabled' />
+							<div className='info'>
+								<p>??? / {allCards.length}</p>
+								<p>????????</p>
+							</div>
+						</div>
+					)
+				)}
 			</div>
 		</div>
 	)

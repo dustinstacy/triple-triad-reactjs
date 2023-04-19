@@ -8,6 +8,7 @@ import {
 	Solo,
 	Match,
 	MatchEnd,
+	Matchmaking,
 	MatchSetup,
 	Arcaneum,
 	Collection,
@@ -34,6 +35,7 @@ function App() {
 						<Route path='/matchSetup' element={<MatchSetup />} />
 						<Route path='/match' element={<Match />} />
 						<Route path='/matchEnd' element={<MatchEnd />} />
+						<Route path='/matchmaking' element={<Matchmaking />} />
 						<Route path='/arcaneum' element={<Arcaneum />} />
 						<Route path='/collection' element={<Collection />} />
 						<Route path='/deck' element={<Deck />} />

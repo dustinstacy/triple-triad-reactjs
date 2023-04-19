@@ -22,14 +22,19 @@ const Home = () => {
 
 	return (
 		<div className='home page'>
-			<div className='menu'>
-				<div className='menu__card solo'>
+			<div className='container'>
+				<div className='option solo'>
 					<Button label='Solo' type='link' path='solo' />
 				</div>
-				<div className='menu__card matchmaking disabled'>
-					<Button label='Matchmaking' />
+				<div className='option matchmaking'>
+					<Button
+						label='Matchmaking'
+						type='link'
+						path='matchmaking'
+						disabled='disabled'
+					/>
 				</div>
-				<div className='menu__card arcaneum'>
+				<div className='option arcaneum'>
 					<Button label='Arcaneum' type='link' path='arcaneum' />
 				</div>
 			</div>

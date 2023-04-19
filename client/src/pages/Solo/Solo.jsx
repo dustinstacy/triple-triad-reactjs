@@ -15,30 +15,35 @@ const Solo = () => {
 
 	return (
 		<div className='solo page'>
-			<div className='menu'>
-				<div className='menu__bar box left'>
+			<div className='container'>
+				<div className='bar box left'>
 					<img
-						className='menu__creature large left'
+						className='creature large left'
 						src={creature1}
 						alt='creature1'
 					/>
 					<Button label='Single Match' type='link' path='matchSetup' />
 				</div>
-				<div className='menu__bar box right disabled'>
+				<div className='bar box right disabled'>
 					<img
-						className='menu__creature medium right'
+						className='creature medium right'
 						src={creature2}
 						alt='creature2'
 					/>
-					<Button label='Challenges' type='link' path='challenges' />
+					<Button
+						label='Challenges'
+						type='link'
+						path='challenges'
+						disabled='disabled'
+					/>
 				</div>
-				<div className='menu__bar box left disabled'>
+				<div className='bar box left disabled'>
 					<img
-						className='menu__creature medium left'
+						className='creature medium left'
 						src={creature3}
 						alt='creature3'
 					/>
-					<Button label='Story' type='link' path='story' />
+					<Button label='Story' type='link' path='story' disabled='disabled' />
 				</div>
 			</div>
 		</div>

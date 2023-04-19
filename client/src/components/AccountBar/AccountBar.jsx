@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import { motion } from 'framer-motion'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { GiReturnArrow, GiHamburgerMenu } from 'react-icons/gi'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import { coin, home } from '../../assets/icons'
 import { levels } from '../../constants/levels'
-import axios from 'axios'
 import { navlinks } from '../../constants/navlinks'
 import './AccountBar.scss'
 
@@ -13,7 +13,9 @@ const AccountBar = () => {
 	const { user, logout, getCurrentUser } = useGlobalContext()
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
+
 	const [toggle, setToggle] = useState(false)
+
 	const userNextLevel = levels[user?.level]
 
 	const xpPercentage = () => {
@@ -30,10 +32,6 @@ const AccountBar = () => {
 		}
 	}, [user])
 
-	const goBack = () => {
-		navigate(-1)
-	}
-
 	const dropDownNavigate = (link) => {
 		setToggle(false)
 		navigate(link.path)
@@ -41,27 +39,30 @@ const AccountBar = () => {
 
 	return (
 		<div className='accountBar'>
-			<div className='accountBar__container'>
+			<div style={{ display: 'flex' }}>
 				{user &&
 					pathname !== '/' &&
 					pathname !== '/match' &&
 					pathname !== '/home' &&
-					pathname !== '/firstDeck' && (
-						<div className='accountBar__nav'>
+					pathname !== '/firstDeck' &&
+					pathname !== '/matchEnd' && (
+						<div className='accountBar__home'>
 							<img src={home} alt='home' onClick={() => navigate('/home')} />
 						</div>
 					)}
 			</div>
-			<div className='accountBar__container'>
+
+			<div style={{ display: 'flex' }}>
 				{user ? (
 					pathname === '/home' ||
 					pathname === '/solo' ||
 					pathname === '/arcaneum' ||
 					pathname === '/account' ? (
 						<>
-							<div className='accountBar__main'>
-								<div className='main__left'>
+							<div className='accountBar__player'>
+								<div className='info'>
 									<h2>{user.username}</h2>
+
 									<div className='progressBar'>
 										<span>
 											xp: {user.xp} / {userNextLevel}
@@ -72,7 +73,7 @@ const AccountBar = () => {
 										></div>
 									</div>
 
-									<div className='left__bottom'>
+									<div style={{ display: 'flex', lineHeight: '1' }}>
 										<p>Lvl. {user.level}</p>
 										<p>
 											{user.coin} <img src={coin} alt='coin' />
@@ -83,11 +84,13 @@ const AccountBar = () => {
 								<div className='accountBar__image'>
 									<img src={user.image} alt='user image' />
 								</div>
+
 								<GiHamburgerMenu
 									className='dropdown'
 									onClick={() => setToggle((current) => !current)}
 								/>
 							</div>
+
 							{toggle && (
 								<motion.div
 									className='dropdown__menu'

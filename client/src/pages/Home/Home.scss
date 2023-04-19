@@ -1,28 +1,27 @@
 .home {
-	position: relative;
-
-	.menu {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		width: 100%;
-		display: flex;
+	.container {
+		height: 100vh;
+		padding: 0;
+		flex-direction: row;
 
 		@media screen and (max-width: 900px) and (max-aspect-ratio: 1/1) {
 			flex-direction: column;
 		}
 
-		&__card {
+		.option {
 			position: relative;
 			height: 100%;
+			width: 100%;
 			display: flex;
 			flex: 1;
 			box-sizing: border-box;
+			border-radius: 0;
+			z-index: 0;
 
 			.button {
 				bottom: 15%;
-				height: 60px;
-				width: 60%;
+				height: 3vw;
+				width: 20vw;
 				font-size: 36px;
 
 				@media screen and (max-width: 1200px) {
@@ -30,18 +29,13 @@
 				}
 
 				@media screen and (max-width: 900px) {
-					height: 45px;
-					font-size: 24px;
+					font-size: 22px;
+				}
+
+				@media screen and (max-width: 900px) and (max-aspect-ratio: 1/1) {
+					width: 30vw;
 				}
 			}
 		}
-	}
-
-	.matchmaking {
-		justify-content: center;
-		background-image: url('../../assets/pageImages/darkportal.jpg');
-		background-position: center;
-		background-size: cover;
-		filter: grayscale(0.7);
 	}
 }

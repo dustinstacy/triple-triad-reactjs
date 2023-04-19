@@ -28,10 +28,7 @@ body {
 	font-weight: 700;
 	scroll-behavior: smooth;
 	overflow-x: hidden;
-}
-
-body {
-	touch-action: none;
+	background-color: var(--accent2-color);
 }
 
 a {
@@ -40,12 +37,6 @@ a {
 
 	&:hover {
 		color: var(--secondary-color);
-	}
-}
-
-button {
-	.disabled {
-		pointer-events: none;
 	}
 }
 
@@ -86,31 +77,24 @@ h1 {
 }
 
 .page {
+	position: relative;
 	min-height: calc(100vh - (var(--navbar-height) + 3px));
 	width: 100%;
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+}
 
-	.disabled {
-		border: 2px solid var(--accent-color);
-		background-color: var(--black-color);
-		color: var(--gray-color);
-		pointer-events: none;
-
-		img {
-			filter: grayscale(0.8);
-		}
-
-		.button {
-			background-color: var(--accent-color);
-			color: var(--gray-color);
-
-			svg {
-				visibility: hidden;
-			}
-		}
-	}
+.container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .box {

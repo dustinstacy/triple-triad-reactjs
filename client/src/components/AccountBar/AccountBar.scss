@@ -34,42 +34,8 @@
 	overflow: hidden;
 	z-index: 10;
 
-	&__container {
-		display: flex;
-
-		.disabled {
-			opacity: 0.3;
-			pointer-events: none;
-		}
-
-		img {
-			width: 64px;
-			cursor: pointer;
-
-			@media screen and (max-width: 900px) {
-				width: 36px;
-			}
-		}
-
-		svg.back {
-			height: 48px;
-			width: 48px;
-			background-color: var(--accent2-color);
-			border: 2px solid var(--primary-color);
-			border-radius: 0.5rem;
-			color: var(--primary-color);
-			cursor: pointer;
-
-			@media screen and (max-width: 900px) {
-				height: 28px;
-				width: 28px;
-				border: 1px solid var(--primary-color);
-			}
-		}
-	}
-
 	&__login,
-	&__main {
+	&__player {
 		@include main-gradient;
 		@include skew;
 		position: relative;
@@ -89,6 +55,7 @@
 	}
 
 	&__login {
+		min-width: 10vw;
 		width: auto;
 		padding: 0 24px;
 		line-height: 1rem;
@@ -101,25 +68,33 @@
 		}
 	}
 
-	&__nav {
+	&__home {
 		display: flex;
 		align-items: center;
-		gap: 16px;
-		margin: 12px 24px;
+		padding: 24px 24px;
 
-		@media screen and (max-width: 900px) {
-			gap: 12px;
-			margin: 8px 16px;
+		img {
+			width: 64px;
+			cursor: pointer;
+
+			@media screen and (max-width: 900px) {
+				width: 48px;
+			}
+
+			@media screen and (max-width: 600px) {
+				width: 36px;
+			}
 		}
 
 		@media screen and (max-width: 600px) {
-			gap: 0;
-			margin: 8px 8px;
+			margin-right: -8px;
+			padding: 24px 0 0 8px;
 		}
 	}
 
-	&__main {
+	&__player {
 		height: calc(var(--navbar-height) - 3px);
+		width: 40vw;
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
@@ -130,11 +105,13 @@
 
 		@media screen and (max-width: 900px) {
 			height: calc(var(--navbar-height) - 23px);
+			width: 60vw;
 			font-size: 12px;
 		}
 
 		@media screen and (max-width: 600px) {
-			padding-left: 18px;
+			width: 90vw;
+			padding-right: 42px;
 		}
 
 		h2 {
@@ -168,7 +145,7 @@
 		}
 	}
 
-	.main__left {
+	.info {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -179,21 +156,18 @@
 		}
 	}
 
-	.left__bottom {
-		display: flex;
-		line-height: 1;
-	}
-
 	&__image {
 		@include unskew();
 		height: 64px;
 		width: 64px;
 		display: flex;
-		align-items: center;
-		justify-content: center;
 		background-color: var(--accent-color);
 		border: 2px solid var(--primary-color);
 		border-radius: 1rem;
+
+		@media screen and (max-width: 350px) {
+			display: none;
+		}
 
 		img {
 			height: 100%;
@@ -206,15 +180,11 @@
 	.progressBar {
 		@include unskew();
 		height: 20px;
-		width: 250px;
+		width: 100%;
 		display: flex;
 		align-items: center;
 		border: 2px solid var(--primary-color);
 		border-radius: 1rem;
-
-		@media screen and (max-width: 900px) {
-			width: 150px;
-		}
 
 		span {
 			position: absolute;

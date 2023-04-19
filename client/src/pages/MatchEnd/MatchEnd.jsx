@@ -5,6 +5,7 @@ import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { coin } from '../../assets/icons'
 import './MatchEnd.scss'
+import { Button } from '../../components'
 
 const MatchEnd = () => {
 	const navigate = useNavigate()
@@ -78,26 +79,25 @@ const MatchEnd = () => {
 				</p>
 			</div>
 			<div className='box results'>
-				<div className='player'>
-					<h1>{cpu.name}</h1>
-					<img className='player__image' src={cpu.image} alt='cpu image' />
+				<div className='one'>
+					<div className='player'>
+						<h1>{cpu.name}</h1>
+						<img className='player__image' src={cpu.image} alt='cpu image' />
+					</div>
+					<div className='score'>{location.state.p2Score}</div>
 				</div>
-				<div className='score'>{location.state.p2Score}</div>
+
 				<div className='buttons'>
-					<button className='box' onClick={() => navigate('/match')}>
-						Rematch
-					</button>
-					<button className='box' onClick={() => navigate('/matchSetup')}>
-						Setup
-					</button>
-					<button className='box' onClick={() => navigate('/home')}>
-						Quit
-					</button>
+					<Button label='Rematch' type='link' path='/match' />
+					<Button label='Setup' type='link' path='/matchSetup' />
+					<Button label='End Game' type='link' path='/home' />
 				</div>
-				<div className='score'>{location.state.p1Score}</div>
-				<div className='player'>
-					<h1>{user.username}</h1>
-					<img className='player__image' src={user.image} alt='cpu image' />
+				<div className='two'>
+					<div className='score'>{location.state.p1Score}</div>
+					<div className='player'>
+						<h1>{user.username}</h1>
+						<img className='player__image' src={user.image} alt='cpu image' />
+					</div>
 				</div>
 			</div>
 		</div>

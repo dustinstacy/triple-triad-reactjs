@@ -17,6 +17,7 @@ const LandingPage = ({ login, register }) => {
 	const [confirmpasswordVisible, setConfirmpasswordVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [errors, setErrors] = useState({})
+	const [authed, setAuthed] = useState(false)
 	const [dimensions, setDimensions] = useState({
 		height: window.innerHeight,
 		width: window.innerWidth,
@@ -32,6 +33,7 @@ const LandingPage = ({ login, register }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setLoading(true)
+		setAuthed(false)
 
 		let data = {}
 
@@ -52,7 +54,7 @@ const LandingPage = ({ login, register }) => {
 		await axios
 			.post(register ? '/api/auth/register' : '/api/auth/login', data)
 			.then(() => {
-				getCurrentUser(), getAllCards(), getUserCards()
+				getCurrentUser(), getAllCards(), getUserCards(), navigate('/home')
 			})
 			.catch((error) => {
 				setLoading(false)
@@ -60,7 +62,6 @@ const LandingPage = ({ login, register }) => {
 					setErrors(error.response.data)
 				}
 			})
-		navigate('/home')
 	}
 
 	const handleKeyDown = (e) => {
@@ -165,7 +166,7 @@ const LandingPage = ({ login, register }) => {
 					<Button
 						label='Submit'
 						type='submit'
-						handleClick={handleSubmit}
+						handleSubmit={handleSubmit}
 						disabled={loading}
 						onKeyDown
 					/>

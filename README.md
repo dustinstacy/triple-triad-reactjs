@@ -31,7 +31,7 @@ Website: https://tripletriad.herokuapp.com/
 
 
 ## Description
-This web app is a playable card game that allows users to collect and upgrade cards, construct a deck, and compete in various game modes. Based on the eponymous minigame from Final Fantasy VIII, I was inspired to recreate it and give it a modern twist. Progress is ongoing, with numerous planned updates in the near future to enhance the user experience, add features, and increase replayability.
+This web app is a playable card game that allows users to collect and upgrade cards, construct a deck, and compete in various game modes. Based on the eponymous [minigame](https://finalfantasy.fandom.com/wiki/Triple_Triad) from Final Fantasy VIII, I was inspired to recreate it and give it a modern twist. Progress is ongoing, with numerous planned updates in the near future to enhance the user experience, add features, and increase replayability.
 
 In it's current iteration, users can create an account, construct a deck, view their collection, open and purchase packs using currency collected from winning matches, and play a match against a AI opponent built using a heuristic customized for average difficulty.
 

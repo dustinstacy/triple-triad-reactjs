@@ -15,7 +15,7 @@ Triple Triad
   <a href="#description">Description</a> •
   <a href="#rules">Rules</a> •
   <a href="#planned-updates">Planned Updates</a> •
-  <a href="#how-to-use">How To Use</a> •
+  <a href="#local-setup">Local Setup</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#credits">Credits</a> •
   <a href="#license">License</a>
@@ -33,7 +33,7 @@ Website: https://tripletriad.herokuapp.com/
 ## Description
 This web app is a playable card game that allows users to collect and upgrade cards, construct a deck, and compete in various game modes. Based on the eponymous minigame from Final Fantasy VIII, I was inspired to recreate it and give it a modern twist. Progress is ongoing, with numerous planned updates in the near future to enhance the user experience, add features, and increase replayability.
 
-In it's current iteration, users will be able to create an account, construct a deck, view their collection, open and purchase packs using currency collected from winning matches, and play a match against a AI opponent built using a heuristic customized for average difficulty.
+In it's current iteration, users can create an account, construct a deck, view their collection, open and purchase packs using currency collected from winning matches, and play a match against a AI opponent built using a heuristic customized for average difficulty.
 
 ## Rules
 Triple Triad is played on a 3x3 grid of blank spaces where the cards will be placed. Each card has four ranks placed along each side. The ranks range from one to ten, with the letter A representing ten. The top left corner of the card has an elemental symbol representing the card's element. Each card will also have a background color to signal which player the card belongs to.
@@ -50,29 +50,29 @@ To win, a majority of the total ten cards played (including the one card that is
 - Expanded Ruleset
 - Multiple Difficulties
 
-## How To Use
+## Local Setup
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/dustinstacy/triple-triad-reactjs.git
+git clone https://github.com/dustinstacy/triple-triad-reactjs.git
 
 # Go into the repository
-$ cd triple-triad-reactjs
+cd triple-triad-reactjs
 
 # Install dependencies
-$ npm install
+npm install
 
 # Run the app
-$ npm start
+npm start
 ```
 
 ## Contributing
 1. Fork it!
-2. Create your feature branch: git checkout -b my-new-feature
-3. Commit your changes: git commit -m 'Add some feature'
-4. Push to the branch: git push origin my-new-feature
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
 
 ## Credits
@@ -91,11 +91,7 @@ The MIT License (MIT)
 
 Copyright (c) 2023 Dustin Stacy
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 

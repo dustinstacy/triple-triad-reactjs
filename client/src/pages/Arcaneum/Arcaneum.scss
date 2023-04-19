@@ -5,43 +5,75 @@
 	background-position: center;
 	background-size: cover;
 
-	.menu {
+	.container {
 		position: relative;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 5vh;
-		padding-bottom: 2rem;
+		gap: 48px;
+		padding-top: 5rem;
 
-		&__top,
-		&__middle {
+		@media screen and (max-width: 900px) {
+			padding: 7.5rem 0 2.5rem 0;
+		}
+
+		.top,
+		.middle,
+		.bottom {
 			display: flex;
+
+			@media screen and (max-width: 900px) {
+				width: 75vw;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			@media screen and (max-width: 600px) {
+				flex-direction: column;
+			}
 		}
 
-		&__top {
-			gap: 6rem;
+		.top {
+			gap: 64px;
+
+			@media screen and (max-width: 600px) {
+				gap: 48px;
+			}
 		}
 
-		&__middle {
+		.middle {
 			gap: 24rem;
+
+			@media screen and (max-width: 900px) {
+				gap: 48px;
+			}
 		}
 
-		&__bottom {
+		.bottom {
 			margin-top: -4rem;
+
+			@media screen and (max-width: 900px) {
+				justify-content: flex-start;
+				margin-top: 0;
+			}
 		}
 
-		&__spell {
+		.spell {
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			width: 600px;
 			transform: translate(-50%, -50%);
 			z-index: 0;
+
+			@media screen and (max-width: 1200px) {
+				width: 500px;
+			}
 		}
 
-		&__card {
+		.card {
 			position: relative;
 			height: 260px;
 			width: 250px;
@@ -51,6 +83,29 @@
 			justify-content: space-around;
 			border: 3px solid var(--primary-color);
 			z-index: 1;
+
+			@media screen and (max-width: 1200px) {
+				height: 210px;
+				width: 200px;
+			}
+
+			@media screen and (max-width: 900px) {
+				flex: 1;
+			}
+
+			@media screen and (max-width: 600px) {
+				width: 100%;
+				flex: initial;
+			}
+
+			.button {
+				bottom: 10%;
+
+				@media screen and (max-width: 1200px) {
+					min-width: 125px;
+					padding: 6px;
+				}
+			}
 		}
 
 		.collection {

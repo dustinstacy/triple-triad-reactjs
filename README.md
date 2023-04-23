@@ -1,4 +1,7 @@
-<h1 align="center">Triple Triad</h1>
+<h1 align="center">
+Triple Triad
+</h1>
+
 
 <p align="center">
   <a href="https://github.com/dustinstacy/triple-triad-reactjs/issues">
@@ -38,8 +41,12 @@ In it's current iteration, users can create an account, construct a deck, view
 their collection, open and purchase packs using currency collected from winning
 matches, and play a match against a AI opponent built using a heuristic
 customized for average difficulty.
+=======
+----
 
-## Rules
+![match screen](https://www.thedustinstacy.com/static/media/triad.059953b9c512112c1e39.png)
+
+Website: https://tripletriad.herokuapp.com/
 
 Triple Triad is played on a 3x3 grid of blank spaces where the cards will be
 placed. Each card has four ranks placed along each side. The ranks range from
@@ -84,6 +91,17 @@ git clone https://github.com/dustinstacy/triple-triad-reactjs.git
 cd triple-triad-reactjs
 # Install dependencies
 npm install
+=======
+```bash
+# Clone this repository
+git clone https://github.com/dustinstacy/triple-triad-reactjs.git
+
+# Go into the repository
+cd triple-triad-reactjs
+
+# Install dependencies
+npm install
+
 # Run the app
 npm start
 ```

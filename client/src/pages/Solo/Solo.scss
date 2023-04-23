@@ -1,124 +1,124 @@
 .solo {
-	position: relative;
-	align-items: center;
-	justify-content: center;
-	background-image: url('../../assets/pageImages/floating.jpg');
-	background-position: center;
-	background-size: cover;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../assets/pageImages/floating.jpg');
+    background-position: center;
+    background-size: cover;
 
-	.container {
-		gap: 64px;
-		padding-top: 10rem;
+    .container {
+        gap: 64px;
+        padding-top: 10rem;
 
-		@media screen and (max-width: 1200px) {
-			gap: 96px;
-			padding-top: 15rem;
-		}
+        @media screen and (max-width: 1200px) {
+            gap: 96px;
+            padding-top: 15rem;
+        }
 
-		@media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
-			padding: 10rem 10rem 5rem 10rem;
-		}
+        @media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
+            padding: 10rem 10rem 5rem 10rem;
+        }
 
-		@media screen and (max-width: 600px) {
-			padding: 10rem 10rem 0 10rem;
-			width: 90%;
-		}
+        @media screen and (max-width: 600px) {
+            padding: 10rem 10rem 0 10rem;
+            width: 90%;
+        }
 
-		.bar {
-			position: relative;
-			min-height: 200px;
-			width: 50vw;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+        .bar {
+            position: relative;
+            min-height: 200px;
+            width: 50vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-			.button {
-				height: 60px;
-				width: 35%;
-				font-size: 28px;
+            .button {
+                height: 60px;
+                width: 35%;
+                font-size: 28px;
 
-				@media screen and (max-width: 1200px) {
-					height: 48px;
-					font-size: 20px;
-				}
+                @media screen and (max-width: 1200px) {
+                    height: 48px;
+                    font-size: 20px;
+                }
 
-				@media screen and (max-width: 600px) {
-					height: 30px;
-				}
-			}
+                @media screen and (max-width: 600px) {
+                    height: 30px;
+                }
+            }
 
-			@media screen and (max-width: 1200px) {
-				min-height: 150px;
-				width: 65vw;
-			}
+            @media screen and (max-width: 1200px) {
+                min-height: 150px;
+                width: 65vw;
+            }
 
-			@media screen and (max-width: 600px) {
-				width: 100%;
-				align-items: flex-end;
-			}
-		}
+            @media screen and (max-width: 600px) {
+                width: 100%;
+                align-items: flex-end;
+            }
+        }
 
-		.left {
-			align-self: flex-start;
-			left: 5rem;
+        .left {
+            align-self: flex-start;
+            left: 5rem;
 
-			@media screen and (max-width: 1200px) {
-				left: 2.5rem;
-			}
+            @media screen and (max-width: 1200px) {
+                left: 2.5rem;
+            }
 
-			@media screen and (max-width: 600px) {
-				left: 0;
-			}
+            @media screen and (max-width: 600px) {
+                left: 0;
+            }
 
-			.button {
-				right: -5rem;
+            .button {
+                right: -5rem;
 
-				@media screen and (max-width: 600px) {
-					right: initial;
-				}
-			}
-		}
+                @media screen and (max-width: 600px) {
+                    right: initial;
+                }
+            }
+        }
 
-		.right {
-			align-self: flex-end;
-			right: 5rem;
+        .right {
+            align-self: flex-end;
+            right: 5rem;
 
-			@media screen and (max-width: 1200px) {
-				right: 2.5rem;
-			}
+            @media screen and (max-width: 1200px) {
+                right: 2.5rem;
+            }
 
-			@media screen and (max-width: 600px) {
-				right: 0;
-			}
+            @media screen and (max-width: 600px) {
+                right: 0;
+            }
 
-			.button {
-				left: -5rem;
+            .button {
+                left: -5rem;
 
-				@media screen and (max-width: 600px) {
-					left: initial;
-				}
-			}
-		}
+                @media screen and (max-width: 600px) {
+                    left: initial;
+                }
+            }
+        }
 
-		.creature {
-			position: absolute;
-			bottom: 0;
+        .creature {
+            position: absolute;
+            bottom: 0;
 
-			&.medium {
-				width: 300px;
+            &.medium {
+                width: 300px;
 
-				@media screen and (max-width: 1200px) {
-					width: 200px;
-				}
-			}
+                @media screen and (max-width: 1200px) {
+                    width: 200px;
+                }
+            }
 
-			&.large {
-				width: 350px;
+            &.large {
+                width: 350px;
 
-				@media screen and (max-width: 1200px) {
-					width: 275px;
-				}
-			}
-		}
-	}
+                @media screen and (max-width: 1200px) {
+                    width: 275px;
+                }
+            }
+        }
+    }
 }

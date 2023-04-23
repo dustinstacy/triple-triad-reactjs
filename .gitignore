@@ -41,4 +41,5 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+.markdownlint.json
 

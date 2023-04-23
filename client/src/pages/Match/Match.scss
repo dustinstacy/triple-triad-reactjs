@@ -1,105 +1,107 @@
 .match {
-	flex-direction: row !important;
-	align-items: center;
-	justify-content: space-between;
-	background-color: var(--accent2-color);
-	background-image: url('../../assets/pageImages/darkportal.jpg');
-	background-position: top;
-	background-size: cover;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--accent2-color);
+    background-image: url('../../assets/pageImages/darkportal.jpg');
+    background-position: top;
+    background-size: cover;
 
-	.column {
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: flex-start;
-		gap: 1rem;
-	}
+    .column {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
 
-	&__score {
-		width: 5vw;
-		align-self: flex-start;
-		margin-top: 1rem;
-		background-color: var(--accent2-color);
-		border: 2px solid var(--primary-color);
-		border-radius: 1rem;
-		color: var(--white-color);
-		font-size: 4rem;
-		text-align: center;
-	}
+    &__score {
+        width: 5vw;
+        align-self: flex-start;
+        margin-top: 1rem;
+        background-color: var(--accent2-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 1rem;
+        color: var(--white-color);
+        font-size: 4rem;
+        text-align: center;
+    }
 
-	.space {
-		width: 40vw;
-	}
+    .space {
+        width: 40vw;
+    }
 
-	.board {
-		position: absolute;
-		left: 50%;
-		height: 900px;
-		transform: translatex(-50%);
-		pointer-events: none;
-	}
+    .board {
+        position: absolute;
+        left: 50%;
+        height: 900px;
+        transform: translatex(-50%);
+        pointer-events: none;
+    }
 
-	.grid {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		height: 95vh;
-		width: 40vw;
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		align-content: center;
-		justify-content: center;
-		background-color: var(--accent2-color);
-		border: 3px solid var(--tertiary-color);
-		border-radius: 1rem;
-		opacity: 0.975;
-	}
+    .grid {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 95vh;
+        width: 40vw;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        background-color: var(--accent2-color);
+        border: 3px solid var(--tertiary-color);
+        border-radius: 1rem;
+        opacity: 0.975;
+    }
 
-	.player,
-	.cpu {
-		height: 90vh;
-		width: 300px;
-		display: flex;
-		justify-content: center;
-		margin-top: 2rem;
-	}
+    .player,
+    .cpu {
+        height: 90vh;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+    }
 
-	.card.active {
-		border: 8px solid var(--secondary-color);
-	}
+    .card.active {
+        border: 8px solid var(--secondary-color);
+    }
 
-	.cpu,
-	.player {
-		position: relative;
+    .cpu,
+    .player {
+        position: relative;
 
-		.card:nth-child(1) {
-			position: absolute;
-			top: 4%;
-		}
-		.card:nth-child(2) {
-			position: absolute;
-			top: 18%;
-		}
-		.card:nth-child(3) {
-			position: absolute;
-			top: 32%;
-		}
-		.card:nth-child(4) {
-			position: absolute;
-			top: 46%;
-		}
-		.card:nth-child(5) {
-			position: absolute;
-			top: 60%;
-		}
-	}
+        .card:nth-child(1) {
+            position: absolute;
+            top: 4%;
+        }
+        .card:nth-child(2) {
+            position: absolute;
+            top: 18%;
+        }
+        .card:nth-child(3) {
+            position: absolute;
+            top: 32%;
+        }
+        .card:nth-child(4) {
+            position: absolute;
+            top: 46%;
+        }
+        .card:nth-child(5) {
+            position: absolute;
+            top: 60%;
+        }
+    }
 
-	.selected {
-		box-shadow: var(--secondary-color) 0px 10px 10px,
-			var(--secondary-color) 0px -10px 10px, var(--secondary-color) 0px 5px 5px,
-			var(--secondary-color) 0px 5px 5px, var(--secondary-color) 0px -5px 5px;
-	}
+    .selected {
+        box-shadow: var(--secondary-color) 0px 10px 10px,
+            var(--secondary-color) 0px -10px 10px,
+            var(--secondary-color) 0px 5px 5px,
+            var(--secondary-color) 0px 5px 5px,
+            var(--secondary-color) 0px -5px 5px;
+    }
 }

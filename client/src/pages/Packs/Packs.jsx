@@ -8,13 +8,8 @@ import './Packs.scss'
 
 const Packs = () => {
     const { allCards, user, getCurrentUser } = useGlobalContext()
-    const [pack, setPack] = useState(0)
+    const [pack, setPack] = useState('')
     const [packContents, setPackContents] = useState([])
-    const [userCoin, setUserCoin] = useState(user?.coin)
-    const [cart, setCart] = useState({
-        total: 0,
-        packs: [],
-    })
     const [userSmallPacks, setUserSmallPacks] = useState([])
     const [userMediumPacks, setUserMediumPacks] = useState([])
     const [userLargePacks, setUserLargePacks] = useState([])
@@ -24,7 +19,6 @@ const Packs = () => {
     }, [])
 
     useEffect(() => {
-        setUserCoin(user?.coin)
         user &&
             (setUserSmallPacks([
                 ...user.packs.filter((pack) => pack.name === 'small'),
@@ -142,7 +136,7 @@ const Packs = () => {
                                 setPack('small'), setPackContents([])
                             }}
                         >
-                            Select
+                            {pack === 'small' ? 'Selected' : 'Select'}
                         </button>
                     </div>
                     <div className='pack'>
@@ -159,7 +153,7 @@ const Packs = () => {
                                 setPack('medium'), setPackContents([])
                             }}
                         >
-                            Select
+                            {pack === 'medium' ? 'Selected' : 'Select'}
                         </button>
                     </div>
                     <div className='pack'>
@@ -176,7 +170,7 @@ const Packs = () => {
                                 setPack('large'), setPackContents([])
                             }}
                         >
-                            Select
+                            {pack === 'large' ? 'Selected' : 'Select'}
                         </button>
                     </div>
                 </div>

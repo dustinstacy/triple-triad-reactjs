@@ -5,38 +5,62 @@
     background-size: cover;
     color: var(--white-color);
 
-    > div {
-        border: 1px solid yellow;
+    @media screen and (max-width: 600px) {
+        flex-direction: column !important;
     }
 
     .contents {
         position: relative;
         box-sizing: border-box;
         height: 100vh;
+        width: 100%;
         display: flex;
+        flex-direction: column;
         flex: 3;
 
-        .container {
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-content: flex-start;
-            justify-content: space-evenly;
-            padding-top: var(--navbar-height);
-            overflow-y: auto;
+        @media screen and (max-width: 600px) {
+            flex: 4;
         }
 
-        .card {
-            margin: 24px 0;
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 225px);
+            grid-gap: 12px;
+            justify-content: center;
+            padding: var(--navbar-height) 36px;
+            box-sizing: border-box;
+            overflow-y: auto;
+
+            @media screen and (max-width: 600px) {
+                padding: var(--navbar-height) 18px;
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .card {
+                height: 300px;
+                width: calc(300px * 0.725);
+            }
         }
 
         .open {
             position: absolute;
+            left: 50%;
             bottom: 5%;
+            transform: translate(-50%, -50%);
             width: auto;
             height: auto;
             padding: 0.5rem 2rem;
             font-size: 2rem;
             z-index: 100;
+
+            @media screen and (max-width: 600px) {
+                bottom: 0;
+                width: 80vw;
+            }
         }
     }
 
@@ -48,6 +72,10 @@
         flex: 1;
         flex-direction: column;
         justify-content: center;
+
+        @media screen and (max-width: 600px) {
+            flex: 0.4;
+        }
 
         .disabled {
             pointer-events: none;
@@ -61,6 +89,15 @@
         align-items: center;
         justify-content: center;
         gap: 48px;
+
+        @media screen and (max-width: 900px) {
+            gap: 0;
+        }
+
+        @media screen and (max-width: 600px) {
+            flex-direction: row;
+            gap: 0;
+        }
     }
 
     .pack {
@@ -75,16 +112,23 @@
             margin: 24px 0;
         }
 
+        @media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
+            gap: 8px;
+        }
+
+        @media screen and (max-width: 600px) {
+            margin: 0;
+        }
+
         .count {
             display: flex;
             align-items: flex-end;
             gap: 18px;
             margin-right: 36px;
-        }
 
-        svg {
-            color: var(--secondary-color);
-            font-size: 1.75rem;
+            @media screen and (max-width: 600px) {
+                margin-right: 18px;
+            }
         }
 
         img {
@@ -93,6 +137,26 @@
             @media screen and (max-width: 900px) {
                 width: 72px;
             }
+
+            @media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
+                width: 36px;
+            }
+
+            @media screen and (max-width: 600px) {
+                width: 56px;
+            }
         }
+
+        button {
+            width: 96px;
+        }
+    }
+
+    .active {
+        box-shadow: var(--secondary-color) 0px 3px 3px,
+            var(--secondary-color) 0px -3px 3px,
+            var(--secondary-color) 0px 1.5px 1.5px,
+            var(--secondary-color) 0px 1.5px 1.5px,
+            var(--secondary-color) 0px -1.5px 1.5px;
     }
 }

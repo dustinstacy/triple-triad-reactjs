@@ -6,7 +6,7 @@ Triple Triad
   <a href="https://github.com/dustinstacy/triple-triad-reactjs/issues">
     <img src="https://img.shields.io/badge/Issues-5-yellow" alt="Issues">
   </a>
-  <a href="#license">
+   <a href="#license">
     <img src="https://img.shields.io/badge/License-MIT-brightgreen" alt="License">
   </a>
 </p>
@@ -31,21 +31,17 @@ Website: <https://tripletriad.herokuapp.com/>
 
 This web app is a playable card game that allows users to collect and upgrade
 cards, construct a deck, and compete in various game modes. Based on the
-eponymous minigame from Final Fantasy VIII, I was inspired to recreate it and
-give it a modern twist. Progress is ongoing, with numerous planned updates in
-the near future to enhance the user experience, add features, and increase
-replayability.
+eponymous [minigame](https://finalfantasy.fandom.com/wiki/Triple_Triad) from
+Final Fantasy VIII, I was inspired to recreate it and give it a modern twist.
+Progress is ongoing, with numerous planned updates in the near future to enhance
+the user experience, add features, and increase replayability.
 
 In it's current iteration, users can create an account, construct a deck, view
 their collection, open and purchase packs using currency collected from winning
 matches, and play a match against a AI opponent built using a heuristic
 customized for average difficulty.
 
----
-
-![match screen](https://www.thedustinstacy.com/static/media/triad.059953b9c512112c1e39.png)
-
-Website: https://tripletriad.herokuapp.com/
+## Rules
 
 Triple Triad is played on a 3x3 grid of blank spaces where the cards will be
 placed. Each card has four ranks placed along each side. The ranks range from
@@ -64,7 +60,7 @@ To win, a majority of the total ten cards played (including the one card that is
 not placed on the board) must be of the player's card color. To capture a card,
 the active player places a card adjacent to the opponent's card. If the rank
 touching the opponent's card is higher, the opponent's card will be captured and
-flipped into the active player's background color. he player who goes second
+flipped into the active player's background color. The player who goes second
 will have a card remaining in their hand and that card will count towards their
 ending score.
 
@@ -83,14 +79,6 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and
 [Node.js](https://nodejs.org/en/download/) (which comes with
 [npm](http://npmjs.com)) installed on your computer. From your command line:
 
-````bash
-# Clone this repository
-git clone https://github.com/dustinstacy/triple-triad-reactjs.git
-# Go into the repository
-cd triple-triad-reactjs
-# Install dependencies
-npm install
-=======
 ```bash
 # Clone this repository
 git clone https://github.com/dustinstacy/triple-triad-reactjs.git
@@ -103,7 +91,7 @@ npm install
 
 # Run the app
 npm start
-````
+```
 
 ## Contributing
 

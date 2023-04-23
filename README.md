@@ -2,7 +2,6 @@
 Triple Triad
 </h1>
 
-
 <p align="center">
   <a href="https://github.com/dustinstacy/triple-triad-reactjs/issues">
     <img src="https://img.shields.io/badge/Issues-5-yellow" alt="Issues">
@@ -41,8 +40,8 @@ In it's current iteration, users can create an account, construct a deck, view
 their collection, open and purchase packs using currency collected from winning
 matches, and play a match against a AI opponent built using a heuristic
 customized for average difficulty.
-=======
-----
+
+---
 
 ![match screen](https://www.thedustinstacy.com/static/media/triad.059953b9c512112c1e39.png)
 
@@ -84,7 +83,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and
 [Node.js](https://nodejs.org/en/download/) (which comes with
 [npm](http://npmjs.com)) installed on your computer. From your command line:
 
-```bash
+````bash
 # Clone this repository
 git clone https://github.com/dustinstacy/triple-triad-reactjs.git
 # Go into the repository
@@ -104,7 +103,7 @@ npm install
 
 # Run the app
 npm start
-```
+````
 
 ## Contributing
 

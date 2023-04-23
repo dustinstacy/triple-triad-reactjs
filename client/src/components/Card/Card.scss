@@ -1,106 +1,106 @@
 .card {
-	position: relative;
-	height: 30vh;
-	width: calc(30vh * 0.725);
-	border-radius: 1rem;
-	cursor: pointer;
-	z-index: 1;
+    position: relative;
+    height: 30vh;
+    width: calc(30vh * 0.725);
+    border-radius: 1rem;
+    cursor: pointer;
+    z-index: 1;
 
-	&:hover {
-		z-index: 10;
-	}
+    &:hover {
+        z-index: 10;
+    }
 
-	&.blue {
-		background-image: url('../../assets/backgrounds/blue1.jpg');
-	}
+    &.blue {
+        background-image: url('../../assets/backgrounds/blue1.jpg');
+    }
 
-	&.red {
-		background-image: url('../../assets/backgrounds/red1.jpg');
-	}
+    &.red {
+        background-image: url('../../assets/backgrounds/red1.jpg');
+    }
 
-	&.transparent {
-		background: none;
-	}
+    &.transparent {
+        background: none;
+    }
 
-	&.not__user {
-		pointer-events: none;
-	}
+    &.not__user {
+        pointer-events: none;
+    }
 
-	&.harmony {
-		.card__values {
-			color: var(--secondary-color);
-		}
-	}
+    &.harmony {
+        .card__values {
+            color: var(--secondary-color);
+        }
+    }
 
-	&__image {
-		height: 100%;
-		border-radius: 1rem;
-		pointer-events: none;
-	}
+    &__image {
+        height: 100%;
+        border-radius: 1rem;
+        pointer-events: none;
+    }
 
-	&__values {
-		display: flex;
-		flex-direction: column;
-		color: var(--white-color);
-		text-shadow: 2px 2px 1px var(--black-color),
-			-1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
-			-1px 1px 1px var(--black-color);
-		font-size: 26px;
-		pointer-events: none;
+    &__values {
+        display: flex;
+        flex-direction: column;
+        color: var(--white-color);
+        text-shadow: 2px 2px 1px var(--black-color),
+            -1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
+            -1px 1px 1px var(--black-color);
+        font-size: 26px;
+        pointer-events: none;
 
-		.up {
-			position: absolute;
-			top: 0;
-			left: 50%;
-			transform: translateX(-50%);
-		}
+        .up {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-		.right {
-			position: absolute;
-			right: 5%;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+        .right {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
-		.left {
-			position: absolute;
-			left: 5%;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+        .left {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
-		.down {
-			position: absolute;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%);
-		}
-	}
+        .down {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
 
-	.checkbox {
-		position: absolute;
-		top: 5%;
-		right: 8%;
-		z-index: 2;
+    .checkbox {
+        position: absolute;
+        top: 5%;
+        right: 8%;
+        z-index: 2;
 
-		font-size: 2rem;
+        font-size: 2rem;
 
-		.check {
-			color: var(--secondary-color);
-		}
+        .check {
+            color: var(--secondary-color);
+        }
 
-		.uncheck {
-			color: var(--accent2-color);
-		}
+        .uncheck {
+            color: var(--accent2-color);
+        }
 
-		svg {
-			border-radius: 0.4rem;
-			cursor: pointer;
-		}
+        svg {
+            border-radius: 0.4rem;
+            cursor: pointer;
+        }
 
-		svg.check {
-			border: 3px solid var(--accent2-color);
-			font-size: 1.6rem;
-		}
-	}
+        svg.check {
+            border: 3px solid var(--accent2-color);
+            font-size: 1.6rem;
+        }
+    }
 }

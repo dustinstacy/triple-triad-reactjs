@@ -1,255 +1,255 @@
 @mixin main-gradient {
-	background: var(--accent2-color);
-	background: -webkit-linear-gradient(
-		45deg,
-		var(--accent2-color),
-		var(--tertiary-color)
-	);
-	background: linear-gradient(
-		45deg,
-		var(--accent2-color),
-		var(--tertiary-color)
-	);
+    background: var(--accent2-color);
+    background: -webkit-linear-gradient(
+        45deg,
+        var(--accent2-color),
+        var(--tertiary-color)
+    );
+    background: linear-gradient(
+        45deg,
+        var(--accent2-color),
+        var(--tertiary-color)
+    );
 }
 
 @mixin skew {
-	transform: skew(20deg);
+    transform: skew(20deg);
 }
 
 @mixin unskew {
-	transform: skew(-20deg);
+    transform: skew(-20deg);
 }
 
 /*-------------Nav-------------*/
 .accountBar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: var(--navbar-height);
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	background: transparent;
-	overflow: hidden;
-	z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: transparent;
+    overflow: hidden;
+    z-index: 10;
 
-	&__login,
-	&__player {
-		@include main-gradient;
-		@include skew;
-		position: relative;
-		right: -24px;
-		border-left: 3px solid var(--secondary-color);
-		border-bottom: 3px solid var(--secondary-color);
-		border-radius: 0 0 0 1rem;
-		color: var(--white-color);
-		font-size: 1.75rem;
-		white-space: nowrap;
+    &__login,
+    &__player {
+        @include main-gradient;
+        @include skew;
+        position: relative;
+        right: -24px;
+        border-left: 3px solid var(--secondary-color);
+        border-bottom: 3px solid var(--secondary-color);
+        border-radius: 0 0 0 1rem;
+        color: var(--white-color);
+        font-size: 1.75rem;
+        white-space: nowrap;
 
-		p {
-			@include unskew;
-			padding: 0 1rem 0 0;
-			text-align: center;
-		}
-	}
+        p {
+            @include unskew;
+            padding: 0 1rem 0 0;
+            text-align: center;
+        }
+    }
 
-	&__login {
-		min-width: 10vw;
-		width: auto;
-		padding: 0 24px;
-		line-height: 1rem;
-		text-decoration: none;
-		cursor: pointer;
+    &__login {
+        min-width: 10vw;
+        width: auto;
+        padding: 0 24px;
+        line-height: 1rem;
+        text-decoration: none;
+        cursor: pointer;
 
-		&:hover {
-			color: var(--secondary-color);
-			text-shadow: 1px 1px 5px var(--accent2-color);
-		}
-	}
+        &:hover {
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 5px var(--accent2-color);
+        }
+    }
 
-	&__home {
-		display: flex;
-		align-items: center;
-		padding: 24px 24px;
+    &__home {
+        display: flex;
+        align-items: center;
+        padding: 24px 24px;
 
-		img {
-			width: 64px;
-			cursor: pointer;
-			z-index: 20;
+        img {
+            width: 64px;
+            cursor: pointer;
+            z-index: 20;
 
-			@media screen and (max-width: 900px) {
-				width: 48px;
-			}
+            @media screen and (max-width: 900px) {
+                width: 48px;
+            }
 
-			@media screen and (max-width: 600px) {
-				width: 36px;
-			}
-		}
+            @media screen and (max-width: 600px) {
+                width: 36px;
+            }
+        }
 
-		@media screen and (max-width: 600px) {
-			margin-right: -8px;
-			padding: 24px 0 0 8px;
-		}
-	}
+        @media screen and (max-width: 600px) {
+            margin-right: -8px;
+            padding: 24px 0 0 8px;
+        }
+    }
 
-	&__player {
-		height: calc(var(--navbar-height) - 3px);
-		width: 40vw;
-		box-sizing: border-box;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		padding: 0 36px;
-		font-size: 16px;
+    &__player {
+        height: calc(var(--navbar-height) - 3px);
+        width: 40vw;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0 36px;
+        font-size: 16px;
 
-		@media screen and (max-width: 900px) {
-			height: calc(var(--navbar-height) - 23px);
-			width: 60vw;
-			font-size: 12px;
-		}
+        @media screen and (max-width: 900px) {
+            height: calc(var(--navbar-height) - 23px);
+            width: 60vw;
+            font-size: 12px;
+        }
 
-		@media screen and (max-width: 600px) {
-			width: 90vw;
-			padding-right: 42px;
-		}
+        @media screen and (max-width: 600px) {
+            width: 90vw;
+            padding-right: 42px;
+        }
 
-		h2 {
-			@include unskew();
-			margin: 0;
-			text-align: center;
+        h2 {
+            @include unskew();
+            margin: 0;
+            text-align: center;
 
-			@media screen and (max-width: 900px) {
-				font-size: 16px;
-			}
-		}
+            @media screen and (max-width: 900px) {
+                font-size: 16px;
+            }
+        }
 
-		p {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin: 0.3rem;
-			pointer-events: none;
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.3rem;
+            pointer-events: none;
 
-			img {
-				margin-left: 8px;
-				pointer-events: none;
-			}
-		}
+            img {
+                margin-left: 8px;
+                pointer-events: none;
+            }
+        }
 
-		svg {
-			@include unskew();
-			height: 24px;
-			width: 24px;
-			cursor: pointer;
-		}
-	}
+        svg {
+            @include unskew();
+            height: 24px;
+            width: 24px;
+            cursor: pointer;
+        }
+    }
 
-	.info {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 4px;
-		flex: 1;
-		img {
-			width: 14px;
-		}
-	}
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        flex: 1;
+        img {
+            width: 14px;
+        }
+    }
 
-	&__image {
-		@include unskew();
-		height: 64px;
-		width: 64px;
-		display: flex;
-		background-color: var(--accent-color);
-		border: 2px solid var(--primary-color);
-		border-radius: 1rem;
+    &__image {
+        @include unskew();
+        height: 64px;
+        width: 64px;
+        display: flex;
+        background-color: var(--accent-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 1rem;
 
-		@media screen and (max-width: 350px) {
-			display: none;
-		}
+        @media screen and (max-width: 350px) {
+            display: none;
+        }
 
-		img {
-			height: 100%;
-			width: 100%;
-			border-radius: inherit;
-			pointer-events: none;
-		}
-	}
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+    }
 
-	.progressBar {
-		@include unskew();
-		height: 20px;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		border: 2px solid var(--primary-color);
-		border-radius: 1rem;
+    .progressBar {
+        @include unskew();
+        height: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border: 2px solid var(--primary-color);
+        border-radius: 1rem;
 
-		span {
-			position: absolute;
-			width: 100%;
-			font-size: 12px;
-			text-align: center;
-		}
+        span {
+            position: absolute;
+            width: 100%;
+            font-size: 12px;
+            text-align: center;
+        }
 
-		&__inner {
-			height: 100%;
-			display: flex;
-			align-items: flex-start;
-			background-color: var(--accent-color);
-			border-radius: inherit;
-		}
-	}
+        &__inner {
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            background-color: var(--accent-color);
+            border-radius: inherit;
+        }
+    }
 }
 
 .dropdown {
-	position: relative;
+    position: relative;
 
-	&__menu {
-		@include main-gradient();
-		position: fixed;
-		top: calc(var(--navbar-height) - 5px);
-		right: 0;
-		border-left: 3px solid var(--secondary-color);
-		border-bottom: 3px solid var(--secondary-color);
-		border-radius: 0 0 0 1rem;
-		z-index: -1;
+    &__menu {
+        @include main-gradient();
+        position: fixed;
+        top: calc(var(--navbar-height) - 5px);
+        right: 0;
+        border-left: 3px solid var(--secondary-color);
+        border-bottom: 3px solid var(--secondary-color);
+        border-radius: 0 0 0 1rem;
+        z-index: -1;
 
-		@media screen and (max-width: 900px) {
-			top: calc(var(--navbar-height) - 25px);
-		}
-	}
+        @media screen and (max-width: 900px) {
+            top: calc(var(--navbar-height) - 25px);
+        }
+    }
 
-	&__links {
-		height: 100%;
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-		margin: 0;
-		padding: 24px;
-		font-size: 24px;
-		list-style: none;
+    &__links {
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 0;
+        padding: 24px;
+        font-size: 24px;
+        list-style: none;
 
-		@media screen and (max-width: 900px) {
-			font-size: 14px;
-			padding: 12px;
-		}
+        @media screen and (max-width: 900px) {
+            font-size: 14px;
+            padding: 12px;
+        }
 
-		@media screen and (max-width: 600px) {
-			padding: 24px;
-		}
+        @media screen and (max-width: 600px) {
+            padding: 24px;
+        }
 
-		li {
-			width: 0;
-			color: var(--white-color);
-			cursor: pointer;
+        li {
+            width: 0;
+            color: var(--white-color);
+            cursor: pointer;
 
-			&:hover {
-				color: var(--secondary-color);
-			}
-		}
-	}
+            &:hover {
+                color: var(--secondary-color);
+            }
+        }
+    }
 }

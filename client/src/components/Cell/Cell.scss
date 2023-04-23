@@ -1,18 +1,18 @@
 .cell {
-	height: calc(30vh - 4px);
-	width: calc((30vh * 0.725) - 4px);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: rgba(0, 0, 0, 0.4);
-	border: 2px solid var(--primary-color);
-	border-radius: 1rem;
-	color: var(--white-color);
-	box-shadow: rgba(240, 240, 240, 0.25) 10px 10px 20px -12px inset,
-		rgba(240, 240, 240, 0.3) -10px 10px 36px -18px inset;
+    height: calc(30vh - 4px);
+    width: calc((30vh * 0.725) - 4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--primary-color);
+    border-radius: 1rem;
+    color: var(--white-color);
+    box-shadow: rgba(240, 240, 240, 0.25) 10px 10px 20px -12px inset,
+        rgba(240, 240, 240, 0.3) -10px 10px 36px -18px inset;
 
-	.element {
-		width: 3vw;
-		pointer-events: none;
-	}
+    .element {
+        width: 3vw;
+        pointer-events: none;
+    }
 }

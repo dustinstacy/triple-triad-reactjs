@@ -1,2811 +1,3093 @@
-[{
-  "_id": {
-    "$oid": "63e54e5d10e0f8dc3e17b8e9"
-  },
-  "number": "1",
-  "name": "Anomalocaris",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/ancient_sea_creature_b_bezo3v.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e54ea610e0f8dc3e17b8ee"
-  },
-  "number": "13",
-  "name": "Baetylus",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/baetylus_rnxjng.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e54ef010e0f8dc3e17b8f1"
-  },
-  "number": "25",
-  "name": "Dunkleosteus",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/ancient_sea_creature_a_lhku8v.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e54f4310e0f8dc3e17b8f6"
-  },
-  "number": "37",
-  "name": "Stone Knight",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/stone_knight_alxu56.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e54f7710e0f8dc3e17b8f9"
-  },
-  "number": "49",
-  "name": "Ancient Owl",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/ancient_owl_b_biuct0.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e54fa510e0f8dc3e17b8fc"
-  },
-  "number": "61",
-  "name": "Ice Demon Aura",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/aura_lzolaq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e54fe310e0f8dc3e17b8ff"
-  },
-  "number": "73",
-  "name": "Insect Automaton A",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/automaton_insect_a_kqvcgp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5500b10e0f8dc3e17b902"
-  },
-  "number": "85",
-  "name": "Holy Slime",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/holy_slime_jopdev.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5503810e0f8dc3e17b905"
-  },
-  "number": "98",
-  "name": "Hades",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/hades_yp2ohy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5508910e0f8dc3e17b908"
-  },
-  "number": "110",
-  "name": "Jaguar",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/jaguar_cjkhwu.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e550c810e0f8dc3e17b90b"
-  },
-  "number": "118",
-  "name": "Ascended Daimyo",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/daimyo_bxavug.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e550fa10e0f8dc3e17b90e"
-  },
-  "number": "126",
-  "name": "Calthusian Sea Dragon",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/calthusian_j8cxkb.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5512c10e0f8dc3e17b911"
-  },
-  "number": "134",
-  "name": "Queen Bee",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/queen_bee_xli9ke.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5515710e0f8dc3e17b914"
-  },
-  "number": "142",
-  "name": "Gabriel",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/gabriel_hqbdst.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5518710e0f8dc3e17b917"
-  },
-  "number": "150",
-  "name": "Azathoth",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/azathoth_dq9sc8.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e551b710e0f8dc3e17b91a"
-  },
-  "number": "158",
-  "name": "Manticore",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/manticora_ixqeqz.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e551ed10e0f8dc3e17b91d"
-  },
-  "number": "166",
-  "name": "Crimson Knight Lucifer",
-  "rarity": "Uncommon",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/lucifer_mamd1j.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5521c10e0f8dc3e17b920"
-  },
-  "number": "173",
-  "name": "Archfiend",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/archfiend_b_yj2ggs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5525410e0f8dc3e17b923"
-  },
-  "number": "181",
-  "name": "Cerberus",
-  "rarity": "Rare",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/ptolemaios_mia4ln.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e552c110e0f8dc3e17b926"
-  },
-  "number": "186",
-  "name": "Millenium Zalarus",
-  "rarity": "Rare",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/zalaras_hwv3xt.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e552f010e0f8dc3e17b929"
-  },
-  "number": "191",
-  "name": "Acended Shogun",
-  "rarity": "Rare",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/ascended_shogun_qllmpq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5532310e0f8dc3e17b92c"
-  },
-  "number": "196",
-  "name": "Mushroom Troll",
-  "rarity": "Rare",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/mushroom_troll_tecxof.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5536210e0f8dc3e17b92f"
-  },
-  "number": "201",
-  "name": "Asmodeus",
-  "rarity": "Rare",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/asmodeus_bkpodp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5539110e0f8dc3e17b932"
-  },
-  "number": "206",
-  "name": "Frost Lich",
-  "rarity": "Rare",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/frost_lich_c0da3f.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e553ca10e0f8dc3e17b935"
-  },
-  "number": "211",
-  "name": "Clockwork Queen",
-  "rarity": "Rare",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/clockwork_queen_rwuti6.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5540110e0f8dc3e17b938"
-  },
-  "number": "216",
-  "name": "Uriel",
-  "rarity": "Rare",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/uriel_vhpy0v.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5542410e0f8dc3e17b93b"
-  },
-  "number": "221",
-  "name": "Amalgamate",
-  "rarity": "Rare",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/amalgamate_uh4fo4.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5547c10e0f8dc3e17b93e"
-  },
-  "number": "226",
-  "name": "Jubokin",
-  "rarity": "Rare",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/jubokin_cxevc5.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e554d110e0f8dc3e17b943"
-  },
-  "number": "231",
-  "name": "King Sobek",
-  "rarity": "Epic",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/sobek_k3vqbs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e554fc10e0f8dc3e17b946"
-  },
-  "number": "234",
-  "name": "Draegith",
-  "rarity": "Epic",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/draegith_luh5ae.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5552e10e0f8dc3e17b949"
-  },
-  "number": "237",
-  "name": "Ghalworn the Drowned One",
-  "rarity": "Epic",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/ghalworn_jzajp5.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5556010e0f8dc3e17b94c"
-  },
-  "number": "240",
-  "name": "Corpse Flower",
-  "rarity": "Epic",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/corpse_flower_ekkcnk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e555bb10e0f8dc3e17b94f"
-  },
-  "number": "243",
-  "name": "Boar Gorilla",
-  "rarity": "Epic",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/boar_gorilla_enntmp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e555dc10e0f8dc3e17b952"
-  },
-  "number": "246",
-  "name": "Ice Wolf",
-  "rarity": "Epic",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/ice_wolf_fg42rj.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5560810e0f8dc3e17b955"
-  },
-  "number": "249",
-  "name": "Digital Devil",
-  "rarity": "Epic",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/digital_devil_v9lsms.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5564910e0f8dc3e17b958"
-  },
-  "number": "252",
-  "name": "Anubis",
-  "rarity": "Epic",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/anubis_s04rqz.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5566a10e0f8dc3e17b95b"
-  },
-  "number": "255",
-  "name": "Eldritch Dragon",
-  "rarity": "Epic",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/eldritch_dragon_yi5llp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5568910e0f8dc3e17b95e"
-  },
-  "number": "258",
-  "name": "Flying Devourer",
-  "rarity": "Epic",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/flying_devourer_rmvfx1.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e556b710e0f8dc3e17b961"
-  },
-  "number": "261",
-  "name": "Elirabeth, The Queen Rat",
-  "rarity": "Legendary",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/elirabeth_cyaris.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e556e110e0f8dc3e17b964"
-  },
-  "number": "263",
-  "name": "Sacred Tiger",
-  "rarity": "Legendary",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/sacred_beast_tiger_doai7c.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e556ff10e0f8dc3e17b967"
-  },
-  "number": "265",
-  "name": "Sacred Dragon",
-  "rarity": "Legendary",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/sacred_beasts_dragon_wh24ts.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5573010e0f8dc3e17b96a"
-  },
-  "number": "267",
-  "name": "Jormungandr",
-  "rarity": "Legendary",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/jormungandr_npcko5.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5575610e0f8dc3e17b96d"
-  },
-  "number": "269",
-  "name": "Wind Titan Ventos",
-  "rarity": "Legendary",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970332/ventos_ev1xd2.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5577b10e0f8dc3e17b970"
-  },
-  "number": "271",
-  "name": "Ravus",
-  "rarity": "Legendary",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/ravus_qamdii.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5579f10e0f8dc3e17b973"
-  },
-  "number": "273",
-  "name": "Metal Dragoon",
-  "rarity": "Legendary",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/metal_dragon_a2ebko.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5584510e0f8dc3e17b976"
-  },
-  "number": "275",
-  "name": "Father Time",
-  "rarity": "Legendary",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/father_time_nhdpmj.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e5588810e0f8dc3e17b979"
-  },
-  "number": "277",
-  "name": "Eldritch Abomination Doom",
-  "rarity": "Legendary",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/doom_sieqpb.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e558d210e0f8dc3e17b97c"
-  },
-  "number": "279",
-  "name": "Quetzalcoatl, The Feathered Serpent God",
-  "rarity": "Legendary",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/quetzacoatl_a6nez9.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e704d35c7dd4ce3bff29b9"
-  },
-  "number": "99",
-  "name": "Dante",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/dante_ovqcsn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e704ea5c7dd4ce3bff29bc"
-  },
-  "number": "100",
-  "name": "Nyarlathotep",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/nyarlathotep_lvpxeo.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e705055c7dd4ce3bff29bf"
-  },
-  "number": "101",
-  "name": "Slime Dragon Quolot",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/quolot_eywlac.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e705225c7dd4ce3bff29c2"
-  },
-  "number": "102",
-  "name": "Corrupted Spider",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/corrupted_spider_pb1onu.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e705395c7dd4ce3bff29c5"
-  },
-  "number": "103",
-  "name": "Darkness Flame",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/darkness_flame_eygcno.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e705615c7dd4ce3bff29c8"
-  },
-  "number": "104",
-  "name": "Eldritch Corruption Plague Spreader",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/plague_spreader_ar35le.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e705785c7dd4ce3bff29cb"
-  },
-  "number": "105",
-  "name": "Eldritch Boar",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/regulus_de73mx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e7058a5c7dd4ce3bff29ce"
-  },
-  "number": "106",
-  "name": "Mimic",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/mimic_fs8se5.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e7059d5c7dd4ce3bff29d1"
-  },
-  "number": "107",
-  "name": "Shadow Beast Cat",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/shadow_beast_cat_tnwbgt.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e705b25c7dd4ce3bff29d4"
-  },
-  "number": "108",
-  "name": "Shadow of the Night Goblin",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/shadow_goblin_huympo.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e707c55c7dd4ce3bff2a65"
-  },
-  "number": "38",
-  "name": "Belzebub",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/belzebub_fkgtpb.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e707d55c7dd4ce3bff2a68"
-  },
-  "number": "39",
-  "name": "War Mammoth",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/war_mammoth_z6qmeh.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e707e75c7dd4ce3bff2a6b"
-  },
-  "number": "40",
-  "name": "Earth Drake",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/earth_drake_c6jasx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e70f335c7dd4ce3bff2c57"
-  },
-  "number": "109",
-  "name": "Dark Slime",
-  "rarity": "Common",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/dark_slime_hewumm.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e711255c7dd4ce3bff2c63"
-  },
-  "number": "41",
-  "name": "Dryad Dog",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/dryad_dog_gvptgk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e711405c7dd4ce3bff2c66"
-  },
-  "number": "42",
-  "name": "Eldritch Corruption Deer",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/corruption_deer_dozuqp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e711725c7dd4ce3bff2c6f"
-  },
-  "number": "43",
-  "name": "Shroomy",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/forest_shroomy_zy0cym.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e711825c7dd4ce3bff2c72"
-  },
-  "number": "44",
-  "name": "Grizzly",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087555/grizzly_bhze4v.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e711925c7dd4ce3bff2c75"
-  },
-  "number": "45",
-  "name": "Earth Slime",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/earth_slime_vmmg9v.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e711a15c7dd4ce3bff2c78"
-  },
-  "number": "46",
-  "name": "Zombie Spider",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087555/zombie_spider_tdamo6.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e711ae5c7dd4ce3bff2c7b"
-  },
-  "number": "47",
-  "name": "Beet Rabbit",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/beet_rabbit_nfkrov.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e712b15c7dd4ce3bff2cf7"
-  },
-  "number": "48",
-  "name": "Toxic exotic",
-  "rarity": "Common",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/exotic_plant_flyer_syimt7.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e93dcf33e38625436b6855"
-  },
-  "number": "2",
-  "name": "Colossal Frog",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/frog_yhj9fn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e93e1133e38625436b6858"
-  },
-  "number": "3",
-  "name": "Enchanted Chess Piece Knight",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/horse_an2xj4.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e93e2633e38625436b685b"
-  },
-  "number": "4",
-  "name": "Enchanted Chess Piece Bishop",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/knight_ctzyni.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e93e3c33e38625436b685e"
-  },
-  "number": "5",
-  "name": "Enchanted Chess Piece Rook",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/rook_am7xzd.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63e93e5a33e38625436b6861"
-  },
-  "number": "6",
-  "name": "Chicken",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/chicken_z50d2i.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec4fd5aaa9185df9f69a91"
-  },
-  "number": "7",
-  "name": "Rei",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/rei_p5j3c2.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec4fecaaa9185df9f69a94"
-  },
-  "number": "8",
-  "name": "Spear Mercenary",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/mercenary_aa3int.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec500daaa9185df9f69a97"
-  },
-  "number": "9",
-  "name": "Mounted Samurai Archer",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/samurai_archer_estsow.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec502faaa9185df9f69a9a"
-  },
-  "number": "10",
-  "name": "Mounted Samurai Sharpshooter",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/samurai_sharpshooter_jdpfen.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5040aaa9185df9f69a9d"
-  },
-  "number": "11",
-  "name": "Slime",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/slime_abddp6.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5054aaa9185df9f69aa0"
-  },
-  "number": "12",
-  "name": "Undead Gunner",
-  "rarity": "Common",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/undead_gunner_f1i0zx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5094aaa9185df9f69aa3"
-  },
-  "number": "14",
-  "name": "Crimson Knight Archer",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/archer_uucfgl.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec50a9aaa9185df9f69aa6"
-  },
-  "number": "15",
-  "name": "Fire Drake",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/fire_drake_vlbjio.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec50c5aaa9185df9f69aa9"
-  },
-  "number": "16",
-  "name": "Eldritch Corruption Obelisk",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/obelisk_knvkoa.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec50d6aaa9185df9f69aac"
-  },
-  "number": "17",
-  "name": "Goblin Pet",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/goblin_pet_jgqg2v.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec50e8aaa9185df9f69aaf"
-  },
-  "number": "18",
-  "name": "Goblin Spider Rider",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/spider_rider_usuffz.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec50ffaaa9185df9f69ab2"
-  },
-  "number": "19",
-  "name": "Duelist Natalia",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/natalia_tpklms.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5128aaa9185df9f69ab5"
-  },
-  "number": "20",
-  "name": "Samurai",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/samurai_katana_kgiz8a.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec513baaa9185df9f69ab8"
-  },
-  "number": "21",
-  "name": "Naginata Samurai",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/samurai_naginata_tjw3iq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5150aaa9185df9f69abb"
-  },
-  "number": "22",
-  "name": "Samurai Archer",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/samurai_yumi_ydfcpy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5161aaa9185df9f69abe"
-  },
-  "number": "23",
-  "name": "Fire Slime",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/fire_slime_tbh82k.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec517caaa9185df9f69ac1"
-  },
-  "number": "24",
-  "name": "Town Guard",
-  "rarity": "Common",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/town_guard_slqhdq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5213aaa9185df9f69ad8"
-  },
-  "number": "26",
-  "name": "Water Golem",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/water_golem_zul7ks.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5224aaa9185df9f69adb"
-  },
-  "number": "27",
-  "name": "Poseidon",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/poseidon_yrpzio.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec524aaaa9185df9f69ade"
-  },
-  "number": "28",
-  "name": "Great Naga",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/naga_shark_oawcot.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5260aaa9185df9f69ae1"
-  },
-  "number": "29",
-  "name": "Medusa",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/medusa_jk4969.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5272aaa9185df9f69ae4"
-  },
-  "number": "30",
-  "name": "Water Priestess",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/water_priestess_mjtimy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5281aaa9185df9f69ae7"
-  },
-  "number": "31",
-  "name": "Kraken",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/gemstone_kraken_hanquw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec52a0aaa9185df9f69aea"
-  },
-  "number": "32",
-  "name": "Archer Princess",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/archer_princess_ddvjzo.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec52b5aaa9185df9f69aed"
-  },
-  "number": "33",
-  "name": "Sea Spehria",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/sea_spheria_socf7t.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec52c7aaa9185df9f69af0"
-  },
-  "number": "34",
-  "name": "Water Slime",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/water_slime_rzd1p8.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec52dfaaa9185df9f69af3"
-  },
-  "number": "35",
-  "name": "Hammerhead Warrior",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/hammerhead_uo6wnm.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec52fdaaa9185df9f69af6"
-  },
-  "number": "36",
-  "name": "Great White Warrior",
-  "rarity": "Common",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/great_white_oir8uq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5355aaa9185df9f69af9"
-  },
-  "number": "50",
-  "name": "Mountoll",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/mountoll_hffh6o.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5364aaa9185df9f69afc"
-  },
-  "number": "51",
-  "name": "Jubokko",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/jubokko_salmfj.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec537faaa9185df9f69aff"
-  },
-  "number": "52",
-  "name": "Colossal Crow",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/crow_logqgg.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5392aaa9185df9f69b02"
-  },
-  "number": "53",
-  "name": "Wind Mage",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wind_mage_znpn6n.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec53b6aaa9185df9f69b05"
-  },
-  "number": "54",
-  "name": "Tricacti",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/tricacti_jqs1jw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec53c6aaa9185df9f69b08"
-  },
-  "number": "55",
-  "name": "Elven Mage",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/elvem_mage_wbcagj.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec53e2aaa9185df9f69b0b"
-  },
-  "number": "56",
-  "name": "Wind Fairy",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wind_faerie_r5uf32.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec53f1aaa9185df9f69b0e"
-  },
-  "number": "57",
-  "name": "Wind Slime",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wind_slime_yarkho.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5417aaa9185df9f69b11"
-  },
-  "number": "58",
-  "name": "Undead Shinobi",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/undead_shinobi_xekgwi.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5424aaa9185df9f69b14"
-  },
-  "number": "59",
-  "name": "Wyvern",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wyvern_gzwzc7.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5437aaa9185df9f69b17"
-  },
-  "number": "60",
-  "name": "Ophiuchus",
-  "rarity": "Common",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/ophiuchus_v2zrgg.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5473aaa9185df9f69b1a"
-  },
-  "number": "62",
-  "name": "Royal Guardsmen",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_knight_axe_upkxrw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5482aaa9185df9f69b1d"
-  },
-  "number": "63",
-  "name": "Royal Archer",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_knight_bow_kfqpqw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5491aaa9185df9f69b20"
-  },
-  "number": "64",
-  "name": "Undeen",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_mermaid_kvf8ax.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec54b1aaa9185df9f69b23"
-  },
-  "number": "65",
-  "name": "Winter Spirit Yukino",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/yukino_sx1tsw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec54c4aaa9185df9f69b26"
-  },
-  "number": "66",
-  "name": "Ice Mage",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_mage_pftz02.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec54d1aaa9185df9f69b29"
-  },
-  "number": "67",
-  "name": "Ice Drake",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_drake_paypnv.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5506aaa9185df9f69b2c"
-  },
-  "number": "68",
-  "name": "Ice Fairy",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_faerie_fwnsfs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5530aaa9185df9f69b2f"
-  },
-  "number": "69",
-  "name": "Frostbitten Skeleton",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_skeleton_dagger_au8fov.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5543aaa9185df9f69b32"
-  },
-  "number": "70",
-  "name": "Frostbitten Skeleton Mage",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_skeleton_enchanted_daggers_chy9na.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5555aaa9185df9f69b35"
-  },
-  "number": "71",
-  "name": "Frostbitten Skeleton Captain",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_skeleton_spear_wauepk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5566aaa9185df9f69b38"
-  },
-  "number": "72",
-  "name": "Ice Slime",
-  "rarity": "Common",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_slime_ipydwf.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5593aaa9185df9f69b3b"
-  },
-  "number": "74",
-  "name": "Insect Automaton B",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/insect_automaton_b_gprezr.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec55a0aaa9185df9f69b3e"
-  },
-  "number": "75",
-  "name": "Insect Automaton C",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/insect_automaton_c_nqcxbh.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec55b5aaa9185df9f69b41"
-  },
-  "number": "76",
-  "name": "Cyberwolf",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/cyberwolf_dxam2m.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec562aaaa9185df9f69b44"
-  },
-  "number": "77",
-  "name": "Gwyndreth",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/lightning_princess_wzdpyy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5659aaa9185df9f69b47"
-  },
-  "number": "78",
-  "name": "Current",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/tricorn_wevo0h.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5669aaa9185df9f69b4a"
-  },
-  "number": "79",
-  "name": "Cockatrice",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/cockatrice_s7ehs5.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec567faaa9185df9f69b4d"
-  },
-  "number": "80",
-  "name": "Bighorn",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/bighorn_t1s9wn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec56aeaaa9185df9f69b50"
-  },
-  "number": "81",
-  "name": "Roachlion",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/lionroach_xbutzw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec56c1aaa9185df9f69b53"
-  },
-  "number": "82",
-  "name": "Brute Mercenary",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/sword_brute_jschun.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec56d1aaa9185df9f69b56"
-  },
-  "number": "83",
-  "name": "Lightning Slime",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/lightning_slime_fba3q4.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec56ddaaa9185df9f69b59"
-  },
-  "number": "84",
-  "name": "Rigel",
-  "rarity": "Common",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/rigel_d7ywre.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5705aaa9185df9f69b5c"
-  },
-  "number": "86",
-  "name": "Aquarius",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/aquarius_qff8od.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5718aaa9185df9f69b5f"
-  },
-  "number": "87",
-  "name": "Cancer",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/cancer_sz74p7.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5727aaa9185df9f69b62"
-  },
-  "number": "88",
-  "name": "Capricorn",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/capricorn_cvqo07.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5735aaa9185df9f69b65"
-  },
-  "number": "89",
-  "name": "Gemini",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/gemini_qildfy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5746aaa9185df9f69b68"
-  },
-  "number": "90",
-  "name": "Libra",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/libra_espk4c.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5757aaa9185df9f69b6b"
-  },
-  "number": "91",
-  "name": "Pisces",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/pisces_ilij27.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5767aaa9185df9f69b6e"
-  },
-  "number": "92",
-  "name": "Scorpio",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/scorpio_ilfmjc.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec577caaa9185df9f69b71"
-  },
-  "number": "93",
-  "name": "Taurus",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/taurus_uugi9u.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec578baaa9185df9f69b74"
-  },
-  "number": "94",
-  "name": "Virgo",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/virgo_jh0mbj.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec579baaa9185df9f69b77"
-  },
-  "number": "95",
-  "name": "Aries",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/aries_cul2e4.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec57b1aaa9185df9f69b7a"
-  },
-  "number": "96",
-  "name": "Leo",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/leo_rj3qse.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec57c1aaa9185df9f69b7d"
-  },
-  "number": "97",
-  "name": "Saggitarius",
-  "rarity": "Common",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/saggitarius_hd3pmk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5da1aaa9185df9f69b82"
-  },
-  "number": "262",
-  "name": "Marrah, Queen of Dolls",
-  "rarity": "Legendary",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Marrah_Queen_of_Dolls_gu4vfe.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5dbfaaa9185df9f69b85"
-  },
-  "number": "264",
-  "name": "Warden of Hell Fire",
-  "rarity": "Legendary",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Warden_of_Hell_Fire_upg3bu.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5dd7aaa9185df9f69b88"
-  },
-  "number": "266",
-  "name": "Warden of Hell Water",
-  "rarity": "Legendary",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Warden_of_Hell_Water_pu9dxk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5df0aaa9185df9f69b8b"
-  },
-  "number": "268",
-  "name": "Moon Golem",
-  "rarity": "Legendary",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Moon_Golem_aolfjm.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5e10aaa9185df9f69b8e"
-  },
-  "number": "270",
-  "name": "Warden of Hell Wind",
-  "rarity": "Legendary",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Warden_of_Hell_Wind_ho30zw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5e2caaa9185df9f69b91"
-  },
-  "number": "272",
-  "name": "Sacred Polar Bear",
-  "rarity": "Legendary",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Sacred_Polar_Bear_tuemfw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5e45aaa9185df9f69b94"
-  },
-  "number": "274",
-  "name": "Sacred Serpent",
-  "rarity": "Legendary",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Sacred_Serpent_brvxhw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5e62aaa9185df9f69b97"
-  },
-  "number": "276",
-  "name": "Yokai Tengu",
-  "rarity": "Legendary",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Yokai_Tengu_uqh08l.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5e88aaa9185df9f69b9a"
-  },
-  "number": "278",
-  "name": "Fallen God Satanael",
-  "rarity": "Legendary",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Fallen_God_Satanael_gf8e33.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5eadaaa9185df9f69b9d"
-  },
-  "number": "280",
-  "name": "Kirin",
-  "rarity": "Legendary",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Kirin_eafbd6.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ec5ec1aaa9185df9f69ba0"
-  },
-  "number": "281",
-  "name": "The Originator",
-  "rarity": "Legendary",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/The_Originator_kcfukx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3868b8687cd7e9dd7110"
-  },
-  "number": "232",
-  "name": "Cultist Warlock",
-  "rarity": "Epic",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/Cultist_Warlock_rjqxdn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3888b8687cd7e9dd7113"
-  },
-  "number": "233",
-  "name": "Oculus",
-  "rarity": "Epic",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/eye_golem_zburcy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed38b6b8687cd7e9dd7116"
-  },
-  "number": "235",
-  "name": "Solaris",
-  "rarity": "Epic",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/sun_golem_r3psr3.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed38d4b8687cd7e9dd7119"
-  },
-  "number": "236",
-  "name": "Phoenix",
-  "rarity": "Epic",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/phoenix_tukw0m.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed38f7b8687cd7e9dd711c"
-  },
-  "number": "238",
-  "name": "Megalodile",
-  "rarity": "Epic",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/megalodile_qns81r.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3914b8687cd7e9dd711f"
-  },
-  "number": "239",
-  "name": "Sea Calamity Urmica",
-  "rarity": "Epic",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/Sea_Calamity_Urmica_fgf1sn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3937b8687cd7e9dd7122"
-  },
-  "number": "241",
-  "name": "Gigalizard",
-  "rarity": "Epic",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/gigalizard_umfvex.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed394bb8687cd7e9dd7125"
-  },
-  "number": "242",
-  "name": "Eldritch Corruption Earth Elemental",
-  "rarity": "Epic",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/earth_elemental_v8c5tg.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3974b8687cd7e9dd7128"
-  },
-  "number": "244",
-  "name": "Boarilla",
-  "rarity": "Epic",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/boarilla_e09fcg.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed39c1b8687cd7e9dd712b"
-  },
-  "number": "245",
-  "name": "Yoshimitsu",
-  "rarity": "Epic",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/yoshimitsu_wk9mbg.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed39deb8687cd7e9dd712e"
-  },
-  "number": "247",
-  "name": "Tantalus",
-  "rarity": "Epic",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/tantalus_ej304c.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed39fab8687cd7e9dd7131"
-  },
-  "number": "248",
-  "name": "Frost Baron",
-  "rarity": "Epic",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/frost_baron_fcmhkp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3a1cb8687cd7e9dd7134"
-  },
-  "number": "250",
-  "name": "Clockwork King",
-  "rarity": "Epic",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/clockwork_king_gvcoyx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3a33b8687cd7e9dd7137"
-  },
-  "number": "251",
-  "name": "Legendary Knight Pizzaro",
-  "rarity": "Epic",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/pizarro_oalcer.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3a54b8687cd7e9dd713a"
-  },
-  "number": "253",
-  "name": "King Arthur",
-  "rarity": "Epic",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/king_arthur_wr3y54.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3a63b8687cd7e9dd713d"
-  },
-  "number": "254",
-  "name": "Life Reaper",
-  "rarity": "Epic",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/lifereaper_vdijs5.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3a88b8687cd7e9dd7140"
-  },
-  "number": "256",
-  "name": "Eldritch Corruption Anaconda",
-  "rarity": "Epic",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/anaconda_b6avax.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3ab8b8687cd7e9dd7143"
-  },
-  "number": "257",
-  "name": "Skull Knight Xoer",
-  "rarity": "Epic",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/xoer_p7ofwk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3ae5b8687cd7e9dd7146"
-  },
-  "number": "259",
-  "name": "Zhu, Great Beast of the Sky",
-  "rarity": "Epic",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/zhu_pyz2bs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3b04b8687cd7e9dd7149"
-  },
-  "number": "260",
-  "name": "Labors of Regulus Hoarfrost Hind",
-  "rarity": "Epic",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/regulus_n2zru6.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3b3db8687cd7e9dd714c"
-  },
-  "number": "182",
-  "name": "Craboon",
-  "rarity": "Rare",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/craboon_w9gnaf.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3b4cb8687cd7e9dd714f"
-  },
-  "number": "183",
-  "name": "Slime Guardian",
-  "rarity": "Rare",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/slime_guardian_e0tpog.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3b5cb8687cd7e9dd7152"
-  },
-  "number": "184",
-  "name": "Ghost Puppet Pailo",
-  "rarity": "Rare",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/pailo_qlocoh.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3b6fb8687cd7e9dd7155"
-  },
-  "number": "185",
-  "name": "Slime Golem",
-  "rarity": "Rare",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/slime_golem_bkezji.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3b92b8687cd7e9dd7158"
-  },
-  "number": "187",
-  "name": "Primal Demon",
-  "rarity": "Rare",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/primal_demon_vagbwv.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3ba8b8687cd7e9dd715b"
-  },
-  "number": "188",
-  "name": "Undead Samurai Supreme",
-  "rarity": "Rare",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/undead_samurai_kepe14.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3bc1b8687cd7e9dd715e"
-  },
-  "number": "189",
-  "name": "Fire Gemstone Dragon",
-  "rarity": "Rare",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/gemstone_dragon_fire_ronmwv.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3bd4b8687cd7e9dd7161"
-  },
-  "number": "190",
-  "name": "Sensei Reishi",
-  "rarity": "Rare",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/sensei_reishi_lghgy2.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3bf5b8687cd7e9dd7164"
-  },
-  "number": "192",
-  "name": "Khronos",
-  "rarity": "Rare",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/khronos_qe2sdy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3c07b8687cd7e9dd7167"
-  },
-  "number": "193",
-  "name": "Ydro",
-  "rarity": "Rare",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/ydro_xs5naw.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3c19b8687cd7e9dd716a"
-  },
-  "number": "194",
-  "name": "Boitata",
-  "rarity": "Rare",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/boitata_ambzwn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3c2ab8687cd7e9dd716d"
-  },
-  "number": "195",
-  "name": "Water Gemstone Dragon",
-  "rarity": "Rare",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/gemstone_dragon_water_qjbhg2.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3c79b8687cd7e9dd7170"
-  },
-  "number": "198",
-  "name": "Eldritch Corruption Gorilla",
-  "rarity": "Rare",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/ec_gorilla_xv2arh.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3c89b8687cd7e9dd7173"
-  },
-  "number": "197",
-  "name": "Hakan",
-  "rarity": "Rare",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/hakan_ihilhs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3c9bb8687cd7e9dd7176"
-  },
-  "number": "199",
-  "name": "Toxic Spreader",
-  "rarity": "Rare",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/toxic_spreader_rjeyyf.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3cbbb8687cd7e9dd7179"
-  },
-  "number": "200",
-  "name": "Poison Lord",
-  "rarity": "Rare",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/poison_lord_gahq8n.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3ce9b8687cd7e9dd717c"
-  },
-  "number": "202",
-  "name": "Duesa",
-  "rarity": "Rare",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487275/duesa_xni8lx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3d03b8687cd7e9dd717f"
-  },
-  "number": "203",
-  "name": "Scarlet Wyrm",
-  "rarity": "Rare",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487274/scarlet_wyrm_htmkzu.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3d15b8687cd7e9dd7182"
-  },
-  "number": "204",
-  "name": "Gemstone Cyclops",
-  "rarity": "Rare",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487274/Cyclops_agfbkg.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3d23b8687cd7e9dd7185"
-  },
-  "number": "205",
-  "name": "Wind Gemstone Dragon",
-  "rarity": "Rare",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487275/gemstone_dragon_wind_gckx68.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3d49b8687cd7e9dd7188"
-  },
-  "number": "207",
-  "name": "Giant Serpent Snek",
-  "rarity": "Rare",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/snek_hdh31i.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3d5fb8687cd7e9dd718b"
-  },
-  "number": "208",
-  "name": "Mantis Head Hunter",
-  "rarity": "Rare",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/mantis_r1p29c.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3d72b8687cd7e9dd718e"
-  },
-  "number": "209",
-  "name": "Nihilo",
-  "rarity": "Rare",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/nihilo_rsfe3q.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3d8db8687cd7e9dd7191"
-  },
-  "number": "210",
-  "name": "Blizzard Spider",
-  "rarity": "Rare",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/angel_spider_xyxm6q.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3dc8b8687cd7e9dd7194"
-  },
-  "number": "212",
-  "name": "Voltamecia",
-  "rarity": "Rare",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/gigandeath_wzuhpq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3ddab8687cd7e9dd7197"
-  },
-  "number": "213",
-  "name": "Apex Weapon",
-  "rarity": "Rare",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/apex_ec1vjk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3decb8687cd7e9dd719a"
-  },
-  "number": "214",
-  "name": "Sensayu",
-  "rarity": "Rare",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/sensayu_zq0wjt.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3dfdb8687cd7e9dd719d"
-  },
-  "number": "215",
-  "name": "Dracomantis",
-  "rarity": "Rare",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/dracomantis_o6krdk.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3f7978423983bebc8afa"
-  },
-  "number": "217",
-  "name": "Ogmios",
-  "rarity": "Rare",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/ogmios_pvcw7h.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3f9278423983bebc8afd"
-  },
-  "number": "218",
-  "name": "Lich Warlord",
-  "rarity": "Rare",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/lich_warlord_sg12mc.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3fa378423983bebc8b00"
-  },
-  "number": "219",
-  "name": "Nubra Lion",
-  "rarity": "Rare",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/nubra_lion_ldhumb.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3fb778423983bebc8b03"
-  },
-  "number": "220",
-  "name": "Heavy Crimson Knight",
-  "rarity": "Rare",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/crimson_heavy_fbbwnq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed3fe078423983bebc8b06"
-  },
-  "number": "222",
-  "name": "Yrogerg",
-  "rarity": "Rare",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/Yrogerg_zyawdo.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed400178423983bebc8b09"
-  },
-  "number": "223",
-  "name": "Skeletal Drake",
-  "rarity": "Rare",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/skeletal_drake_wlozet.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed403b78423983bebc8b0c"
-  },
-  "number": "224",
-  "name": "Nocturnal Summoner",
-  "rarity": "Rare",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/Lady_Ultima_ikyji9.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed404e78423983bebc8b0f"
-  },
-  "number": "225",
-  "name": "Legendary Knight Serat",
-  "rarity": "Rare",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/serat_ejye1u.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed407a78423983bebc8b12"
-  },
-  "number": "227",
-  "name": "Midgardsormr",
-  "rarity": "Rare",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/midgardsormr_tckuli.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed409478423983bebc8b15"
-  },
-  "number": "228",
-  "name": "Universal Gemstone Golem",
-  "rarity": "Rare",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/gemstone_golem_llbn2f.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed40a978423983bebc8b18"
-  },
-  "number": "229",
-  "name": "Cosmic Fox",
-  "rarity": "Rare",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/space_fox_l0ptfl.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed40c378423983bebc8b1b"
-  },
-  "number": "230",
-  "name": "Universal Slime",
-  "rarity": "Rare",
-  "element": "Universal",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/crystal_slime_bf9cor.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed411378423983bebc8b20"
-  },
-  "number": "111",
-  "name": "Gawain",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/gawain_s8jbog.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed412978423983bebc8b23"
-  },
-  "number": "112",
-  "name": "Gigagazer",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/gigagazer_yfchq3.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed413778423983bebc8b26"
-  },
-  "number": "113",
-  "name": "Minotaur",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/minotaur_gxppa0.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed414e78423983bebc8b29"
-  },
-  "number": "114",
-  "name": "Enchanted Axe",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/enchanted_axe_sssncy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed486878423983bebc8b2c"
-  },
-  "number": "115",
-  "name": "Enchanted Bow",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/enchanted_bow_dvoppt.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed487d78423983bebc8b2f"
-  },
-  "number": "116",
-  "name": "Enchanted Sword",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/enchanted_sword_hlzvd4.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed489578423983bebc8b32"
-  },
-  "number": "117",
-  "name": "Gnoll",
-  "rarity": "Uncommon",
-  "element": "Neutral",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/gnoll_qrfzxn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed48b878423983bebc8b35"
-  },
-  "number": "119",
-  "name": "Goblin King",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/goblin_king_z5e9kt.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed48d778423983bebc8b38"
-  },
-  "number": "120",
-  "name": "Fire Hydra",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/fire_hydra_nnbrh1.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed48f278423983bebc8b3b"
-  },
-  "number": "121",
-  "name": "Inferno",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/fire_horse_eodtdc.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed490778423983bebc8b3e"
-  },
-  "number": "122",
-  "name": "Lava Worm",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/lava_worm_stusgc.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed491a78423983bebc8b41"
-  },
-  "number": "123",
-  "name": "Magma Golem",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/magma_golem_zvft9i.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed492a78423983bebc8b44"
-  },
-  "number": "124",
-  "name": "Fire Elemental Wolf",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/fire_wolf_uluaxo.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed496b78423983bebc8b4c"
-  },
-  "number": "125",
-  "name": "Yokai Kamikiri",
-  "rarity": "Uncommon",
-  "element": "Fire",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/yokai_kamikiri_xrjkat.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed499e78423983bebc8b4f"
-  },
-  "number": "127",
-  "name": "Conglomerate, Lord of Depths",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/conglomerate_yy8mqb.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed49bb78423983bebc8b52"
-  },
-  "number": "128",
-  "name": "Water Titan Aquos",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/aquos_xdn1jb.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed49c978423983bebc8b55"
-  },
-  "number": "129",
-  "name": "Capelobo",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/capelobo_eeadrh.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed49dd78423983bebc8b58"
-  },
-  "number": "130",
-  "name": "Tentacle Fish",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/tentacle_fish_vrmlpb.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4a0078423983bebc8b5b"
-  },
-  "number": "131",
-  "name": "Leviathan",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/heaven_beast_dragon_pbkvtn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4a1578423983bebc8b5e"
-  },
-  "number": "132",
-  "name": "Yokai Kappa",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/yokai_kappa_dhybbu.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4a2878423983bebc8b61"
-  },
-  "number": "133",
-  "name": "Yokai Kasa",
-  "rarity": "Uncommon",
-  "element": "Water",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/yokai_kasa_aapitf.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4a4f78423983bebc8b64"
-  },
-  "number": "135",
-  "name": "Earth Hydra",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/earth_hydra_hcgwsy.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4a6678423983bebc8b67"
-  },
-  "number": "136",
-  "name": "Dryad Harvester",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/Dryad_harvester_bdlmpx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4a7678423983bebc8b6a"
-  },
-  "number": "137",
-  "name": "Dryad Huntress",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/dryad_huntress_akz5c0.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4a8e78423983bebc8b6d"
-  },
-  "number": "138",
-  "name": "Eldritch Corruption Wolf",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/ec_wolf_fpjrrx.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4ab178423983bebc8b70"
-  },
-  "number": "139",
-  "name": "Terra",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/earth_horse_vokasi.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4ac378423983bebc8b73"
-  },
-  "number": "140",
-  "name": "Earth Elemental Wolf",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/earth_wolf_btydyh.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4ad578423983bebc8b76"
-  },
-  "number": "141",
-  "name": "Yokai Ushioni",
-  "rarity": "Uncommon",
-  "element": "Earth",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/yokai_ushioni_yxufzo.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4af978423983bebc8b79"
-  },
-  "number": "143",
-  "name": "Storm Hawk",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/storm_hawk_e1cwjz.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4b0d78423983bebc8b7c"
-  },
-  "number": "144",
-  "name": "Dragoon Slime",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/dragoon_slime_qgpy5h.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4b2c78423983bebc8b7f"
-  },
-  "number": "145",
-  "name": "Gryphon",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/gryphon_ulwgnl.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4b4178423983bebc8b82"
-  },
-  "number": "146",
-  "name": "Crimson Knight Spear Master",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/crimson_knight_spear_master_er7jjt.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4b5178423983bebc8b85"
-  },
-  "number": "147",
-  "name": "Caster Dunia",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/caster_dunia_dvftmp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4b6178423983bebc8b88"
-  },
-  "number": "148",
-  "name": "Genji",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/genji_kayfch.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4b7978423983bebc8b8b"
-  },
-  "number": "149",
-  "name": "Mounted Samurai",
-  "rarity": "Uncommon",
-  "element": "Wind",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/mounted_samurai_a8mp1y.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4b9978423983bebc8b8e"
-  },
-  "number": "151",
-  "name": "Ice Hydra",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/ice_hydra_d2tpo7.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4bb178423983bebc8b91"
-  },
-  "number": "152",
-  "name": "Eldritch Ice",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/eldritch_ide_cftgxq.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4bd978423983bebc8b94"
-  },
-  "number": "153",
-  "name": "Avalanche",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/ice_horse_g7xlgz.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4bf678423983bebc8b97"
-  },
-  "number": "154",
-  "name": "Ice Witch",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/sea_witch_weep3o.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4c0678423983bebc8b9a"
-  },
-  "number": "155",
-  "name": "Shadow Shielder",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/shadow_shielder_jwayoa.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4c1f78423983bebc8b9d"
-  },
-  "number": "156",
-  "name": "Soulless Minion",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/soulless_minion_olpwig.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4c2f78423983bebc8ba0"
-  },
-  "number": "157",
-  "name": "Ice Elemental Wolf",
-  "rarity": "Uncommon",
-  "element": "Ice",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/ice_wolf_s8nnpi.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4c6d78423983bebc8ba3"
-  },
-  "number": "159",
-  "name": "Princess Orchid",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/princess_orchid_oojgfn.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4c7e78423983bebc8ba6"
-  },
-  "number": "160",
-  "name": "Mech Enjin",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/mech_enjin_u8ubar.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4c9b78423983bebc8ba9"
-  },
-  "number": "161",
-  "name": "Clockwork Tarantula",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/clockwork_spider_mgyjsj.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4caa78423983bebc8bac"
-  },
-  "number": "162",
-  "name": "Feral Shaman",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/feral_shaman_slwio7.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4cbd78423983bebc8baf"
-  },
-  "number": "163",
-  "name": "Kawabun",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/kawabun_pfyqvs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4d2678423983bebc8bb2"
-  },
-  "number": "164",
-  "name": "Voltiger",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/heaven_beast_tiger_lj7e8m.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4d3978423983bebc8bb5"
-  },
-  "number": "165",
-  "name": "Undead Samurai",
-  "rarity": "Uncommon",
-  "element": "Lightning",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490237/undead_samurai_yrwzcs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4d6a78423983bebc8bb8"
-  },
-  "number": "167",
-  "name": "Gigandeath",
-  "rarity": "Uncommon",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/gigandeath_nozi9q.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4d7a78423983bebc8bbb"
-  },
-  "number": "168",
-  "name": "Pandora",
-  "rarity": "Uncommon",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/pandora_h1merc.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4d8a78423983bebc8bbe"
-  },
-  "number": "169",
-  "name": "Lucius",
-  "rarity": "Uncommon",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/lucius_ye5wh1.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4da978423983bebc8bc1"
-  },
-  "number": "170",
-  "name": "Male Anubis Warrior",
-  "rarity": "Uncommon",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/Anubis_warrior_male_oxbscp.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4db978423983bebc8bc4"
-  },
-  "number": "171",
-  "name": "Female Anubis Warrior",
-  "rarity": "Uncommon",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/anubis_warrior_female_vqy8wt.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4dcc78423983bebc8bc7"
-  },
-  "number": "172",
-  "name": "Golden Chicken",
-  "rarity": "Uncommon",
-  "element": "Holy",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/golden_chicken_qpllvs.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4dec78423983bebc8bca"
-  },
-  "number": "174",
-  "name": "Darklord Excelsios",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/excelsios_v8vlkz.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4dff78423983bebc8bcd"
-  },
-  "number": "175",
-  "name": "Ella, Sovereign of Darkness",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/ella_uysf0w.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4e1578423983bebc8bd0"
-  },
-  "number": "176",
-  "name": "Dark Armor Golem",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/dark_golem_onqqan.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4e2578423983bebc8bd3"
-  },
-  "number": "177",
-  "name": "Greater Mimic",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/greater_mimic_nfgvqc.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4e3a78423983bebc8bd6"
-  },
-  "number": "178",
-  "name": "Shaccad'Yoggoth",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/shaccad_bsxvim.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4e5078423983bebc8bd9"
-  },
-  "number": "179",
-  "name": "Shadow of the Night Scythe",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/shadow_scythe_pfgfsz.png",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ed4e6478423983bebc8bdc"
-  },
-  "number": "180",
-  "name": "Shadow tiger",
-  "rarity": "Uncommon",
-  "element": "Dark",
-  "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490584/shadow_tiger_oejvqp.png",
-  "__v": 0
-}]
+[
+    {
+        "_id": {
+            "$oid": "63e54e5d10e0f8dc3e17b8e9"
+        },
+        "number": "1",
+        "name": "Anomalocaris",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/ancient_sea_creature_b_bezo3v.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e54ea610e0f8dc3e17b8ee"
+        },
+        "number": "13",
+        "name": "Baetylus",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/baetylus_rnxjng.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e54ef010e0f8dc3e17b8f1"
+        },
+        "number": "25",
+        "name": "Dunkleosteus",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/ancient_sea_creature_a_lhku8v.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e54f4310e0f8dc3e17b8f6"
+        },
+        "number": "37",
+        "name": "Stone Knight",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/stone_knight_alxu56.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e54f7710e0f8dc3e17b8f9"
+        },
+        "number": "49",
+        "name": "Ancient Owl",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/ancient_owl_b_biuct0.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e54fa510e0f8dc3e17b8fc"
+        },
+        "number": "61",
+        "name": "Ice Demon Aura",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/aura_lzolaq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e54fe310e0f8dc3e17b8ff"
+        },
+        "number": "73",
+        "name": "Insect Automaton A",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/automaton_insect_a_kqvcgp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5500b10e0f8dc3e17b902"
+        },
+        "number": "85",
+        "name": "Holy Slime",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/holy_slime_jopdev.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5503810e0f8dc3e17b905"
+        },
+        "number": "98",
+        "name": "Hades",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/hades_yp2ohy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5508910e0f8dc3e17b908"
+        },
+        "number": "110",
+        "name": "Jaguar",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/jaguar_cjkhwu.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e550c810e0f8dc3e17b90b"
+        },
+        "number": "118",
+        "name": "Ascended Daimyo",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/daimyo_bxavug.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e550fa10e0f8dc3e17b90e"
+        },
+        "number": "126",
+        "name": "Calthusian Sea Dragon",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/calthusian_j8cxkb.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5512c10e0f8dc3e17b911"
+        },
+        "number": "134",
+        "name": "Queen Bee",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/queen_bee_xli9ke.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5515710e0f8dc3e17b914"
+        },
+        "number": "142",
+        "name": "Gabriel",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/gabriel_hqbdst.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5518710e0f8dc3e17b917"
+        },
+        "number": "150",
+        "name": "Azathoth",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/azathoth_dq9sc8.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e551b710e0f8dc3e17b91a"
+        },
+        "number": "158",
+        "name": "Manticore",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/manticora_ixqeqz.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e551ed10e0f8dc3e17b91d"
+        },
+        "number": "166",
+        "name": "Crimson Knight Lucifer",
+        "rarity": "Uncommon",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/lucifer_mamd1j.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5521c10e0f8dc3e17b920"
+        },
+        "number": "173",
+        "name": "Archfiend",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/archfiend_b_yj2ggs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5525410e0f8dc3e17b923"
+        },
+        "number": "181",
+        "name": "Cerberus",
+        "rarity": "Rare",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/ptolemaios_mia4ln.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e552c110e0f8dc3e17b926"
+        },
+        "number": "186",
+        "name": "Millenium Zalarus",
+        "rarity": "Rare",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/zalaras_hwv3xt.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e552f010e0f8dc3e17b929"
+        },
+        "number": "191",
+        "name": "Acended Shogun",
+        "rarity": "Rare",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/ascended_shogun_qllmpq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5532310e0f8dc3e17b92c"
+        },
+        "number": "196",
+        "name": "Mushroom Troll",
+        "rarity": "Rare",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/mushroom_troll_tecxof.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5536210e0f8dc3e17b92f"
+        },
+        "number": "201",
+        "name": "Asmodeus",
+        "rarity": "Rare",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/asmodeus_bkpodp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5539110e0f8dc3e17b932"
+        },
+        "number": "206",
+        "name": "Frost Lich",
+        "rarity": "Rare",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/frost_lich_c0da3f.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e553ca10e0f8dc3e17b935"
+        },
+        "number": "211",
+        "name": "Clockwork Queen",
+        "rarity": "Rare",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/clockwork_queen_rwuti6.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5540110e0f8dc3e17b938"
+        },
+        "number": "216",
+        "name": "Uriel",
+        "rarity": "Rare",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/uriel_vhpy0v.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5542410e0f8dc3e17b93b"
+        },
+        "number": "221",
+        "name": "Amalgamate",
+        "rarity": "Rare",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/amalgamate_uh4fo4.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5547c10e0f8dc3e17b93e"
+        },
+        "number": "226",
+        "name": "Jubokin",
+        "rarity": "Rare",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/jubokin_cxevc5.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e554d110e0f8dc3e17b943"
+        },
+        "number": "231",
+        "name": "King Sobek",
+        "rarity": "Epic",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/sobek_k3vqbs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e554fc10e0f8dc3e17b946"
+        },
+        "number": "234",
+        "name": "Draegith",
+        "rarity": "Epic",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/draegith_luh5ae.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5552e10e0f8dc3e17b949"
+        },
+        "number": "237",
+        "name": "Ghalworn the Drowned One",
+        "rarity": "Epic",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/ghalworn_jzajp5.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5556010e0f8dc3e17b94c"
+        },
+        "number": "240",
+        "name": "Corpse Flower",
+        "rarity": "Epic",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/corpse_flower_ekkcnk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e555bb10e0f8dc3e17b94f"
+        },
+        "number": "243",
+        "name": "Boar Gorilla",
+        "rarity": "Epic",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/boar_gorilla_enntmp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e555dc10e0f8dc3e17b952"
+        },
+        "number": "246",
+        "name": "Ice Wolf",
+        "rarity": "Epic",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/ice_wolf_fg42rj.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5560810e0f8dc3e17b955"
+        },
+        "number": "249",
+        "name": "Digital Devil",
+        "rarity": "Epic",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/digital_devil_v9lsms.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5564910e0f8dc3e17b958"
+        },
+        "number": "252",
+        "name": "Anubis",
+        "rarity": "Epic",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/anubis_s04rqz.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5566a10e0f8dc3e17b95b"
+        },
+        "number": "255",
+        "name": "Eldritch Dragon",
+        "rarity": "Epic",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/eldritch_dragon_yi5llp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5568910e0f8dc3e17b95e"
+        },
+        "number": "258",
+        "name": "Flying Devourer",
+        "rarity": "Epic",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/flying_devourer_rmvfx1.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e556b710e0f8dc3e17b961"
+        },
+        "number": "261",
+        "name": "Elirabeth, The Queen Rat",
+        "rarity": "Legendary",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/elirabeth_cyaris.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e556e110e0f8dc3e17b964"
+        },
+        "number": "263",
+        "name": "Sacred Tiger",
+        "rarity": "Legendary",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/sacred_beast_tiger_doai7c.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e556ff10e0f8dc3e17b967"
+        },
+        "number": "265",
+        "name": "Sacred Dragon",
+        "rarity": "Legendary",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/sacred_beasts_dragon_wh24ts.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5573010e0f8dc3e17b96a"
+        },
+        "number": "267",
+        "name": "Jormungandr",
+        "rarity": "Legendary",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/jormungandr_npcko5.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5575610e0f8dc3e17b96d"
+        },
+        "number": "269",
+        "name": "Wind Titan Ventos",
+        "rarity": "Legendary",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970332/ventos_ev1xd2.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5577b10e0f8dc3e17b970"
+        },
+        "number": "271",
+        "name": "Ravus",
+        "rarity": "Legendary",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/ravus_qamdii.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5579f10e0f8dc3e17b973"
+        },
+        "number": "273",
+        "name": "Metal Dragoon",
+        "rarity": "Legendary",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/metal_dragon_a2ebko.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5584510e0f8dc3e17b976"
+        },
+        "number": "275",
+        "name": "Father Time",
+        "rarity": "Legendary",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970330/father_time_nhdpmj.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e5588810e0f8dc3e17b979"
+        },
+        "number": "277",
+        "name": "Eldritch Abomination Doom",
+        "rarity": "Legendary",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970329/doom_sieqpb.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e558d210e0f8dc3e17b97c"
+        },
+        "number": "279",
+        "name": "Quetzalcoatl, The Feathered Serpent God",
+        "rarity": "Legendary",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1675970331/quetzacoatl_a6nez9.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e704d35c7dd4ce3bff29b9"
+        },
+        "number": "99",
+        "name": "Dante",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/dante_ovqcsn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e704ea5c7dd4ce3bff29bc"
+        },
+        "number": "100",
+        "name": "Nyarlathotep",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/nyarlathotep_lvpxeo.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e705055c7dd4ce3bff29bf"
+        },
+        "number": "101",
+        "name": "Slime Dragon Quolot",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/quolot_eywlac.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e705225c7dd4ce3bff29c2"
+        },
+        "number": "102",
+        "name": "Corrupted Spider",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/corrupted_spider_pb1onu.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e705395c7dd4ce3bff29c5"
+        },
+        "number": "103",
+        "name": "Darkness Flame",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/darkness_flame_eygcno.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e705615c7dd4ce3bff29c8"
+        },
+        "number": "104",
+        "name": "Eldritch Corruption Plague Spreader",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/plague_spreader_ar35le.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e705785c7dd4ce3bff29cb"
+        },
+        "number": "105",
+        "name": "Eldritch Boar",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/regulus_de73mx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e7058a5c7dd4ce3bff29ce"
+        },
+        "number": "106",
+        "name": "Mimic",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/mimic_fs8se5.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e7059d5c7dd4ce3bff29d1"
+        },
+        "number": "107",
+        "name": "Shadow Beast Cat",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/shadow_beast_cat_tnwbgt.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e705b25c7dd4ce3bff29d4"
+        },
+        "number": "108",
+        "name": "Shadow of the Night Goblin",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/shadow_goblin_huympo.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e707c55c7dd4ce3bff2a65"
+        },
+        "number": "38",
+        "name": "Belzebub",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/belzebub_fkgtpb.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e707d55c7dd4ce3bff2a68"
+        },
+        "number": "39",
+        "name": "War Mammoth",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086697/war_mammoth_z6qmeh.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e707e75c7dd4ce3bff2a6b"
+        },
+        "number": "40",
+        "name": "Earth Drake",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/earth_drake_c6jasx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e70f335c7dd4ce3bff2c57"
+        },
+        "number": "109",
+        "name": "Dark Slime",
+        "rarity": "Common",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676086696/dark_slime_hewumm.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e711255c7dd4ce3bff2c63"
+        },
+        "number": "41",
+        "name": "Dryad Dog",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/dryad_dog_gvptgk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e711405c7dd4ce3bff2c66"
+        },
+        "number": "42",
+        "name": "Eldritch Corruption Deer",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/corruption_deer_dozuqp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e711725c7dd4ce3bff2c6f"
+        },
+        "number": "43",
+        "name": "Shroomy",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/forest_shroomy_zy0cym.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e711825c7dd4ce3bff2c72"
+        },
+        "number": "44",
+        "name": "Grizzly",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087555/grizzly_bhze4v.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e711925c7dd4ce3bff2c75"
+        },
+        "number": "45",
+        "name": "Earth Slime",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/earth_slime_vmmg9v.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e711a15c7dd4ce3bff2c78"
+        },
+        "number": "46",
+        "name": "Zombie Spider",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087555/zombie_spider_tdamo6.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e711ae5c7dd4ce3bff2c7b"
+        },
+        "number": "47",
+        "name": "Beet Rabbit",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/beet_rabbit_nfkrov.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e712b15c7dd4ce3bff2cf7"
+        },
+        "number": "48",
+        "name": "Toxic exotic",
+        "rarity": "Common",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676087554/exotic_plant_flyer_syimt7.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e93dcf33e38625436b6855"
+        },
+        "number": "2",
+        "name": "Colossal Frog",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/frog_yhj9fn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e93e1133e38625436b6858"
+        },
+        "number": "3",
+        "name": "Enchanted Chess Piece Knight",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/horse_an2xj4.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e93e2633e38625436b685b"
+        },
+        "number": "4",
+        "name": "Enchanted Chess Piece Bishop",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/knight_ctzyni.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e93e3c33e38625436b685e"
+        },
+        "number": "5",
+        "name": "Enchanted Chess Piece Rook",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/rook_am7xzd.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63e93e5a33e38625436b6861"
+        },
+        "number": "6",
+        "name": "Chicken",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/chicken_z50d2i.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec4fd5aaa9185df9f69a91"
+        },
+        "number": "7",
+        "name": "Rei",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/rei_p5j3c2.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec4fecaaa9185df9f69a94"
+        },
+        "number": "8",
+        "name": "Spear Mercenary",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/mercenary_aa3int.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec500daaa9185df9f69a97"
+        },
+        "number": "9",
+        "name": "Mounted Samurai Archer",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/samurai_archer_estsow.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec502faaa9185df9f69a9a"
+        },
+        "number": "10",
+        "name": "Mounted Samurai Sharpshooter",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/samurai_sharpshooter_jdpfen.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5040aaa9185df9f69a9d"
+        },
+        "number": "11",
+        "name": "Slime",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/slime_abddp6.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5054aaa9185df9f69aa0"
+        },
+        "number": "12",
+        "name": "Undead Gunner",
+        "rarity": "Common",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139341/undead_gunner_f1i0zx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5094aaa9185df9f69aa3"
+        },
+        "number": "14",
+        "name": "Crimson Knight Archer",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/archer_uucfgl.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec50a9aaa9185df9f69aa6"
+        },
+        "number": "15",
+        "name": "Fire Drake",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/fire_drake_vlbjio.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec50c5aaa9185df9f69aa9"
+        },
+        "number": "16",
+        "name": "Eldritch Corruption Obelisk",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/obelisk_knvkoa.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec50d6aaa9185df9f69aac"
+        },
+        "number": "17",
+        "name": "Goblin Pet",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/goblin_pet_jgqg2v.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec50e8aaa9185df9f69aaf"
+        },
+        "number": "18",
+        "name": "Goblin Spider Rider",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/spider_rider_usuffz.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec50ffaaa9185df9f69ab2"
+        },
+        "number": "19",
+        "name": "Duelist Natalia",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/natalia_tpklms.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5128aaa9185df9f69ab5"
+        },
+        "number": "20",
+        "name": "Samurai",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/samurai_katana_kgiz8a.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec513baaa9185df9f69ab8"
+        },
+        "number": "21",
+        "name": "Naginata Samurai",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/samurai_naginata_tjw3iq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5150aaa9185df9f69abb"
+        },
+        "number": "22",
+        "name": "Samurai Archer",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/samurai_yumi_ydfcpy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5161aaa9185df9f69abe"
+        },
+        "number": "23",
+        "name": "Fire Slime",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/fire_slime_tbh82k.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec517caaa9185df9f69ac1"
+        },
+        "number": "24",
+        "name": "Town Guard",
+        "rarity": "Common",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/town_guard_slqhdq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5213aaa9185df9f69ad8"
+        },
+        "number": "26",
+        "name": "Water Golem",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/water_golem_zul7ks.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5224aaa9185df9f69adb"
+        },
+        "number": "27",
+        "name": "Poseidon",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/poseidon_yrpzio.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec524aaaa9185df9f69ade"
+        },
+        "number": "28",
+        "name": "Great Naga",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/naga_shark_oawcot.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5260aaa9185df9f69ae1"
+        },
+        "number": "29",
+        "name": "Medusa",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/medusa_jk4969.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5272aaa9185df9f69ae4"
+        },
+        "number": "30",
+        "name": "Water Priestess",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/water_priestess_mjtimy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5281aaa9185df9f69ae7"
+        },
+        "number": "31",
+        "name": "Kraken",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/gemstone_kraken_hanquw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec52a0aaa9185df9f69aea"
+        },
+        "number": "32",
+        "name": "Archer Princess",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/archer_princess_ddvjzo.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec52b5aaa9185df9f69aed"
+        },
+        "number": "33",
+        "name": "Sea Spehria",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/sea_spheria_socf7t.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec52c7aaa9185df9f69af0"
+        },
+        "number": "34",
+        "name": "Water Slime",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139405/water_slime_rzd1p8.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec52dfaaa9185df9f69af3"
+        },
+        "number": "35",
+        "name": "Hammerhead Warrior",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/hammerhead_uo6wnm.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec52fdaaa9185df9f69af6"
+        },
+        "number": "36",
+        "name": "Great White Warrior",
+        "rarity": "Common",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139404/great_white_oir8uq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5355aaa9185df9f69af9"
+        },
+        "number": "50",
+        "name": "Mountoll",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/mountoll_hffh6o.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5364aaa9185df9f69afc"
+        },
+        "number": "51",
+        "name": "Jubokko",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/jubokko_salmfj.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec537faaa9185df9f69aff"
+        },
+        "number": "52",
+        "name": "Colossal Crow",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/crow_logqgg.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5392aaa9185df9f69b02"
+        },
+        "number": "53",
+        "name": "Wind Mage",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wind_mage_znpn6n.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec53b6aaa9185df9f69b05"
+        },
+        "number": "54",
+        "name": "Tricacti",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/tricacti_jqs1jw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec53c6aaa9185df9f69b08"
+        },
+        "number": "55",
+        "name": "Elven Mage",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/elvem_mage_wbcagj.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec53e2aaa9185df9f69b0b"
+        },
+        "number": "56",
+        "name": "Wind Fairy",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wind_faerie_r5uf32.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec53f1aaa9185df9f69b0e"
+        },
+        "number": "57",
+        "name": "Wind Slime",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wind_slime_yarkho.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5417aaa9185df9f69b11"
+        },
+        "number": "58",
+        "name": "Undead Shinobi",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/undead_shinobi_xekgwi.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5424aaa9185df9f69b14"
+        },
+        "number": "59",
+        "name": "Wyvern",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/wyvern_gzwzc7.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5437aaa9185df9f69b17"
+        },
+        "number": "60",
+        "name": "Ophiuchus",
+        "rarity": "Common",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139440/ophiuchus_v2zrgg.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5473aaa9185df9f69b1a"
+        },
+        "number": "62",
+        "name": "Royal Guardsmen",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_knight_axe_upkxrw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5482aaa9185df9f69b1d"
+        },
+        "number": "63",
+        "name": "Royal Archer",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_knight_bow_kfqpqw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5491aaa9185df9f69b20"
+        },
+        "number": "64",
+        "name": "Undeen",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_mermaid_kvf8ax.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec54b1aaa9185df9f69b23"
+        },
+        "number": "65",
+        "name": "Winter Spirit Yukino",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/yukino_sx1tsw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec54c4aaa9185df9f69b26"
+        },
+        "number": "66",
+        "name": "Ice Mage",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_mage_pftz02.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec54d1aaa9185df9f69b29"
+        },
+        "number": "67",
+        "name": "Ice Drake",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_drake_paypnv.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5506aaa9185df9f69b2c"
+        },
+        "number": "68",
+        "name": "Ice Fairy",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_faerie_fwnsfs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5530aaa9185df9f69b2f"
+        },
+        "number": "69",
+        "name": "Frostbitten Skeleton",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_skeleton_dagger_au8fov.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5543aaa9185df9f69b32"
+        },
+        "number": "70",
+        "name": "Frostbitten Skeleton Mage",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_skeleton_enchanted_daggers_chy9na.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5555aaa9185df9f69b35"
+        },
+        "number": "71",
+        "name": "Frostbitten Skeleton Captain",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_skeleton_spear_wauepk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5566aaa9185df9f69b38"
+        },
+        "number": "72",
+        "name": "Ice Slime",
+        "rarity": "Common",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676139524/ice_slime_ipydwf.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5593aaa9185df9f69b3b"
+        },
+        "number": "74",
+        "name": "Insect Automaton B",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/insect_automaton_b_gprezr.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec55a0aaa9185df9f69b3e"
+        },
+        "number": "75",
+        "name": "Insect Automaton C",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/insect_automaton_c_nqcxbh.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec55b5aaa9185df9f69b41"
+        },
+        "number": "76",
+        "name": "Cyberwolf",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/cyberwolf_dxam2m.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec562aaaa9185df9f69b44"
+        },
+        "number": "77",
+        "name": "Gwyndreth",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/lightning_princess_wzdpyy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5659aaa9185df9f69b47"
+        },
+        "number": "78",
+        "name": "Current",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/tricorn_wevo0h.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5669aaa9185df9f69b4a"
+        },
+        "number": "79",
+        "name": "Cockatrice",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/cockatrice_s7ehs5.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec567faaa9185df9f69b4d"
+        },
+        "number": "80",
+        "name": "Bighorn",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/bighorn_t1s9wn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec56aeaaa9185df9f69b50"
+        },
+        "number": "81",
+        "name": "Roachlion",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/lionroach_xbutzw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec56c1aaa9185df9f69b53"
+        },
+        "number": "82",
+        "name": "Brute Mercenary",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/sword_brute_jschun.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec56d1aaa9185df9f69b56"
+        },
+        "number": "83",
+        "name": "Lightning Slime",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/lightning_slime_fba3q4.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec56ddaaa9185df9f69b59"
+        },
+        "number": "84",
+        "name": "Rigel",
+        "rarity": "Common",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170736/rigel_d7ywre.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5705aaa9185df9f69b5c"
+        },
+        "number": "86",
+        "name": "Aquarius",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/aquarius_qff8od.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5718aaa9185df9f69b5f"
+        },
+        "number": "87",
+        "name": "Cancer",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/cancer_sz74p7.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5727aaa9185df9f69b62"
+        },
+        "number": "88",
+        "name": "Capricorn",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/capricorn_cvqo07.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5735aaa9185df9f69b65"
+        },
+        "number": "89",
+        "name": "Gemini",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/gemini_qildfy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5746aaa9185df9f69b68"
+        },
+        "number": "90",
+        "name": "Libra",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/libra_espk4c.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5757aaa9185df9f69b6b"
+        },
+        "number": "91",
+        "name": "Pisces",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/pisces_ilij27.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5767aaa9185df9f69b6e"
+        },
+        "number": "92",
+        "name": "Scorpio",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/scorpio_ilfmjc.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec577caaa9185df9f69b71"
+        },
+        "number": "93",
+        "name": "Taurus",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/taurus_uugi9u.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec578baaa9185df9f69b74"
+        },
+        "number": "94",
+        "name": "Virgo",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/virgo_jh0mbj.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec579baaa9185df9f69b77"
+        },
+        "number": "95",
+        "name": "Aries",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/aries_cul2e4.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec57b1aaa9185df9f69b7a"
+        },
+        "number": "96",
+        "name": "Leo",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/leo_rj3qse.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec57c1aaa9185df9f69b7d"
+        },
+        "number": "97",
+        "name": "Saggitarius",
+        "rarity": "Common",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676170756/saggitarius_hd3pmk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5da1aaa9185df9f69b82"
+        },
+        "number": "262",
+        "name": "Marrah, Queen of Dolls",
+        "rarity": "Legendary",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Marrah_Queen_of_Dolls_gu4vfe.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5dbfaaa9185df9f69b85"
+        },
+        "number": "264",
+        "name": "Warden of Hell Fire",
+        "rarity": "Legendary",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Warden_of_Hell_Fire_upg3bu.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5dd7aaa9185df9f69b88"
+        },
+        "number": "266",
+        "name": "Warden of Hell Water",
+        "rarity": "Legendary",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Warden_of_Hell_Water_pu9dxk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5df0aaa9185df9f69b8b"
+        },
+        "number": "268",
+        "name": "Moon Golem",
+        "rarity": "Legendary",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Moon_Golem_aolfjm.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5e10aaa9185df9f69b8e"
+        },
+        "number": "270",
+        "name": "Warden of Hell Wind",
+        "rarity": "Legendary",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Warden_of_Hell_Wind_ho30zw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5e2caaa9185df9f69b91"
+        },
+        "number": "272",
+        "name": "Sacred Polar Bear",
+        "rarity": "Legendary",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Sacred_Polar_Bear_tuemfw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5e45aaa9185df9f69b94"
+        },
+        "number": "274",
+        "name": "Sacred Serpent",
+        "rarity": "Legendary",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Sacred_Serpent_brvxhw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5e62aaa9185df9f69b97"
+        },
+        "number": "276",
+        "name": "Yokai Tengu",
+        "rarity": "Legendary",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Yokai_Tengu_uqh08l.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5e88aaa9185df9f69b9a"
+        },
+        "number": "278",
+        "name": "Fallen God Satanael",
+        "rarity": "Legendary",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Fallen_God_Satanael_gf8e33.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5eadaaa9185df9f69b9d"
+        },
+        "number": "280",
+        "name": "Kirin",
+        "rarity": "Legendary",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/Kirin_eafbd6.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ec5ec1aaa9185df9f69ba0"
+        },
+        "number": "281",
+        "name": "The Originator",
+        "rarity": "Legendary",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676434832/The_Originator_kcfukx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3868b8687cd7e9dd7110"
+        },
+        "number": "232",
+        "name": "Cultist Warlock",
+        "rarity": "Epic",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/Cultist_Warlock_rjqxdn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3888b8687cd7e9dd7113"
+        },
+        "number": "233",
+        "name": "Oculus",
+        "rarity": "Epic",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/eye_golem_zburcy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed38b6b8687cd7e9dd7116"
+        },
+        "number": "235",
+        "name": "Solaris",
+        "rarity": "Epic",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/sun_golem_r3psr3.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed38d4b8687cd7e9dd7119"
+        },
+        "number": "236",
+        "name": "Phoenix",
+        "rarity": "Epic",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/phoenix_tukw0m.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed38f7b8687cd7e9dd711c"
+        },
+        "number": "238",
+        "name": "Megalodile",
+        "rarity": "Epic",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/megalodile_qns81r.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3914b8687cd7e9dd711f"
+        },
+        "number": "239",
+        "name": "Sea Calamity Urmica",
+        "rarity": "Epic",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/Sea_Calamity_Urmica_fgf1sn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3937b8687cd7e9dd7122"
+        },
+        "number": "241",
+        "name": "Gigalizard",
+        "rarity": "Epic",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/gigalizard_umfvex.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed394bb8687cd7e9dd7125"
+        },
+        "number": "242",
+        "name": "Eldritch Corruption Earth Elemental",
+        "rarity": "Epic",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/earth_elemental_v8c5tg.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3974b8687cd7e9dd7128"
+        },
+        "number": "244",
+        "name": "Boarilla",
+        "rarity": "Epic",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/boarilla_e09fcg.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed39c1b8687cd7e9dd712b"
+        },
+        "number": "245",
+        "name": "Yoshimitsu",
+        "rarity": "Epic",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/yoshimitsu_wk9mbg.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed39deb8687cd7e9dd712e"
+        },
+        "number": "247",
+        "name": "Tantalus",
+        "rarity": "Epic",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/tantalus_ej304c.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed39fab8687cd7e9dd7131"
+        },
+        "number": "248",
+        "name": "Frost Baron",
+        "rarity": "Epic",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/frost_baron_fcmhkp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3a1cb8687cd7e9dd7134"
+        },
+        "number": "250",
+        "name": "Clockwork King",
+        "rarity": "Epic",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/clockwork_king_gvcoyx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3a33b8687cd7e9dd7137"
+        },
+        "number": "251",
+        "name": "Legendary Knight Pizzaro",
+        "rarity": "Epic",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/pizarro_oalcer.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3a54b8687cd7e9dd713a"
+        },
+        "number": "253",
+        "name": "King Arthur",
+        "rarity": "Epic",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/king_arthur_wr3y54.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3a63b8687cd7e9dd713d"
+        },
+        "number": "254",
+        "name": "Life Reaper",
+        "rarity": "Epic",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/lifereaper_vdijs5.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3a88b8687cd7e9dd7140"
+        },
+        "number": "256",
+        "name": "Eldritch Corruption Anaconda",
+        "rarity": "Epic",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464676/anaconda_b6avax.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3ab8b8687cd7e9dd7143"
+        },
+        "number": "257",
+        "name": "Skull Knight Xoer",
+        "rarity": "Epic",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/xoer_p7ofwk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3ae5b8687cd7e9dd7146"
+        },
+        "number": "259",
+        "name": "Zhu, Great Beast of the Sky",
+        "rarity": "Epic",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/zhu_pyz2bs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3b04b8687cd7e9dd7149"
+        },
+        "number": "260",
+        "name": "Labors of Regulus Hoarfrost Hind",
+        "rarity": "Epic",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676464677/regulus_n2zru6.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3b3db8687cd7e9dd714c"
+        },
+        "number": "182",
+        "name": "Craboon",
+        "rarity": "Rare",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/craboon_w9gnaf.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3b4cb8687cd7e9dd714f"
+        },
+        "number": "183",
+        "name": "Slime Guardian",
+        "rarity": "Rare",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/slime_guardian_e0tpog.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3b5cb8687cd7e9dd7152"
+        },
+        "number": "184",
+        "name": "Ghost Puppet Pailo",
+        "rarity": "Rare",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/pailo_qlocoh.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3b6fb8687cd7e9dd7155"
+        },
+        "number": "185",
+        "name": "Slime Golem",
+        "rarity": "Rare",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487199/slime_golem_bkezji.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3b92b8687cd7e9dd7158"
+        },
+        "number": "187",
+        "name": "Primal Demon",
+        "rarity": "Rare",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/primal_demon_vagbwv.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3ba8b8687cd7e9dd715b"
+        },
+        "number": "188",
+        "name": "Undead Samurai Supreme",
+        "rarity": "Rare",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/undead_samurai_kepe14.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3bc1b8687cd7e9dd715e"
+        },
+        "number": "189",
+        "name": "Fire Gemstone Dragon",
+        "rarity": "Rare",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/gemstone_dragon_fire_ronmwv.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3bd4b8687cd7e9dd7161"
+        },
+        "number": "190",
+        "name": "Sensei Reishi",
+        "rarity": "Rare",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487222/sensei_reishi_lghgy2.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3bf5b8687cd7e9dd7164"
+        },
+        "number": "192",
+        "name": "Khronos",
+        "rarity": "Rare",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/khronos_qe2sdy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3c07b8687cd7e9dd7167"
+        },
+        "number": "193",
+        "name": "Ydro",
+        "rarity": "Rare",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/ydro_xs5naw.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3c19b8687cd7e9dd716a"
+        },
+        "number": "194",
+        "name": "Boitata",
+        "rarity": "Rare",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/boitata_ambzwn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3c2ab8687cd7e9dd716d"
+        },
+        "number": "195",
+        "name": "Water Gemstone Dragon",
+        "rarity": "Rare",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487237/gemstone_dragon_water_qjbhg2.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3c79b8687cd7e9dd7170"
+        },
+        "number": "198",
+        "name": "Eldritch Corruption Gorilla",
+        "rarity": "Rare",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/ec_gorilla_xv2arh.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3c89b8687cd7e9dd7173"
+        },
+        "number": "197",
+        "name": "Hakan",
+        "rarity": "Rare",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/hakan_ihilhs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3c9bb8687cd7e9dd7176"
+        },
+        "number": "199",
+        "name": "Toxic Spreader",
+        "rarity": "Rare",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/toxic_spreader_rjeyyf.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3cbbb8687cd7e9dd7179"
+        },
+        "number": "200",
+        "name": "Poison Lord",
+        "rarity": "Rare",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487259/poison_lord_gahq8n.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3ce9b8687cd7e9dd717c"
+        },
+        "number": "202",
+        "name": "Duesa",
+        "rarity": "Rare",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487275/duesa_xni8lx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3d03b8687cd7e9dd717f"
+        },
+        "number": "203",
+        "name": "Scarlet Wyrm",
+        "rarity": "Rare",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487274/scarlet_wyrm_htmkzu.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3d15b8687cd7e9dd7182"
+        },
+        "number": "204",
+        "name": "Gemstone Cyclops",
+        "rarity": "Rare",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487274/Cyclops_agfbkg.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3d23b8687cd7e9dd7185"
+        },
+        "number": "205",
+        "name": "Wind Gemstone Dragon",
+        "rarity": "Rare",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487275/gemstone_dragon_wind_gckx68.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3d49b8687cd7e9dd7188"
+        },
+        "number": "207",
+        "name": "Giant Serpent Snek",
+        "rarity": "Rare",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/snek_hdh31i.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3d5fb8687cd7e9dd718b"
+        },
+        "number": "208",
+        "name": "Mantis Head Hunter",
+        "rarity": "Rare",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/mantis_r1p29c.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3d72b8687cd7e9dd718e"
+        },
+        "number": "209",
+        "name": "Nihilo",
+        "rarity": "Rare",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/nihilo_rsfe3q.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3d8db8687cd7e9dd7191"
+        },
+        "number": "210",
+        "name": "Blizzard Spider",
+        "rarity": "Rare",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487301/angel_spider_xyxm6q.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3dc8b8687cd7e9dd7194"
+        },
+        "number": "212",
+        "name": "Voltamecia",
+        "rarity": "Rare",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/gigandeath_wzuhpq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3ddab8687cd7e9dd7197"
+        },
+        "number": "213",
+        "name": "Apex Weapon",
+        "rarity": "Rare",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/apex_ec1vjk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3decb8687cd7e9dd719a"
+        },
+        "number": "214",
+        "name": "Sensayu",
+        "rarity": "Rare",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/sensayu_zq0wjt.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3dfdb8687cd7e9dd719d"
+        },
+        "number": "215",
+        "name": "Dracomantis",
+        "rarity": "Rare",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487322/dracomantis_o6krdk.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3f7978423983bebc8afa"
+        },
+        "number": "217",
+        "name": "Ogmios",
+        "rarity": "Rare",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/ogmios_pvcw7h.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3f9278423983bebc8afd"
+        },
+        "number": "218",
+        "name": "Lich Warlord",
+        "rarity": "Rare",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/lich_warlord_sg12mc.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3fa378423983bebc8b00"
+        },
+        "number": "219",
+        "name": "Nubra Lion",
+        "rarity": "Rare",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/nubra_lion_ldhumb.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3fb778423983bebc8b03"
+        },
+        "number": "220",
+        "name": "Heavy Crimson Knight",
+        "rarity": "Rare",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487335/crimson_heavy_fbbwnq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed3fe078423983bebc8b06"
+        },
+        "number": "222",
+        "name": "Yrogerg",
+        "rarity": "Rare",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/Yrogerg_zyawdo.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed400178423983bebc8b09"
+        },
+        "number": "223",
+        "name": "Skeletal Drake",
+        "rarity": "Rare",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/skeletal_drake_wlozet.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed403b78423983bebc8b0c"
+        },
+        "number": "224",
+        "name": "Nocturnal Summoner",
+        "rarity": "Rare",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/Lady_Ultima_ikyji9.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed404e78423983bebc8b0f"
+        },
+        "number": "225",
+        "name": "Legendary Knight Serat",
+        "rarity": "Rare",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487348/serat_ejye1u.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed407a78423983bebc8b12"
+        },
+        "number": "227",
+        "name": "Midgardsormr",
+        "rarity": "Rare",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/midgardsormr_tckuli.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed409478423983bebc8b15"
+        },
+        "number": "228",
+        "name": "Universal Gemstone Golem",
+        "rarity": "Rare",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/gemstone_golem_llbn2f.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed40a978423983bebc8b18"
+        },
+        "number": "229",
+        "name": "Cosmic Fox",
+        "rarity": "Rare",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/space_fox_l0ptfl.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed40c378423983bebc8b1b"
+        },
+        "number": "230",
+        "name": "Universal Slime",
+        "rarity": "Rare",
+        "element": "Universal",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676487364/crystal_slime_bf9cor.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed411378423983bebc8b20"
+        },
+        "number": "111",
+        "name": "Gawain",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/gawain_s8jbog.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed412978423983bebc8b23"
+        },
+        "number": "112",
+        "name": "Gigagazer",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/gigagazer_yfchq3.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed413778423983bebc8b26"
+        },
+        "number": "113",
+        "name": "Minotaur",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/minotaur_gxppa0.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed414e78423983bebc8b29"
+        },
+        "number": "114",
+        "name": "Enchanted Axe",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/enchanted_axe_sssncy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed486878423983bebc8b2c"
+        },
+        "number": "115",
+        "name": "Enchanted Bow",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/enchanted_bow_dvoppt.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed487d78423983bebc8b2f"
+        },
+        "number": "116",
+        "name": "Enchanted Sword",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/enchanted_sword_hlzvd4.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed489578423983bebc8b32"
+        },
+        "number": "117",
+        "name": "Gnoll",
+        "rarity": "Uncommon",
+        "element": "Neutral",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/gnoll_qrfzxn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed48b878423983bebc8b35"
+        },
+        "number": "119",
+        "name": "Goblin King",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/goblin_king_z5e9kt.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed48d778423983bebc8b38"
+        },
+        "number": "120",
+        "name": "Fire Hydra",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/fire_hydra_nnbrh1.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed48f278423983bebc8b3b"
+        },
+        "number": "121",
+        "name": "Inferno",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/fire_horse_eodtdc.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed490778423983bebc8b3e"
+        },
+        "number": "122",
+        "name": "Lava Worm",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/lava_worm_stusgc.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed491a78423983bebc8b41"
+        },
+        "number": "123",
+        "name": "Magma Golem",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/magma_golem_zvft9i.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed492a78423983bebc8b44"
+        },
+        "number": "124",
+        "name": "Fire Elemental Wolf",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488126/fire_wolf_uluaxo.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed496b78423983bebc8b4c"
+        },
+        "number": "125",
+        "name": "Yokai Kamikiri",
+        "rarity": "Uncommon",
+        "element": "Fire",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488127/yokai_kamikiri_xrjkat.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed499e78423983bebc8b4f"
+        },
+        "number": "127",
+        "name": "Conglomerate, Lord of Depths",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/conglomerate_yy8mqb.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed49bb78423983bebc8b52"
+        },
+        "number": "128",
+        "name": "Water Titan Aquos",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/aquos_xdn1jb.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed49c978423983bebc8b55"
+        },
+        "number": "129",
+        "name": "Capelobo",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/capelobo_eeadrh.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed49dd78423983bebc8b58"
+        },
+        "number": "130",
+        "name": "Tentacle Fish",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/tentacle_fish_vrmlpb.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4a0078423983bebc8b5b"
+        },
+        "number": "131",
+        "name": "Leviathan",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/heaven_beast_dragon_pbkvtn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4a1578423983bebc8b5e"
+        },
+        "number": "132",
+        "name": "Yokai Kappa",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/yokai_kappa_dhybbu.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4a2878423983bebc8b61"
+        },
+        "number": "133",
+        "name": "Yokai Kasa",
+        "rarity": "Uncommon",
+        "element": "Water",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/yokai_kasa_aapitf.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4a4f78423983bebc8b64"
+        },
+        "number": "135",
+        "name": "Earth Hydra",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/earth_hydra_hcgwsy.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4a6678423983bebc8b67"
+        },
+        "number": "136",
+        "name": "Dryad Harvester",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/Dryad_harvester_bdlmpx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4a7678423983bebc8b6a"
+        },
+        "number": "137",
+        "name": "Dryad Huntress",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/dryad_huntress_akz5c0.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4a8e78423983bebc8b6d"
+        },
+        "number": "138",
+        "name": "Eldritch Corruption Wolf",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/ec_wolf_fpjrrx.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4ab178423983bebc8b70"
+        },
+        "number": "139",
+        "name": "Terra",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/earth_horse_vokasi.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4ac378423983bebc8b73"
+        },
+        "number": "140",
+        "name": "Earth Elemental Wolf",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/earth_wolf_btydyh.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4ad578423983bebc8b76"
+        },
+        "number": "141",
+        "name": "Yokai Ushioni",
+        "rarity": "Uncommon",
+        "element": "Earth",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/yokai_ushioni_yxufzo.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4af978423983bebc8b79"
+        },
+        "number": "143",
+        "name": "Storm Hawk",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/storm_hawk_e1cwjz.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4b0d78423983bebc8b7c"
+        },
+        "number": "144",
+        "name": "Dragoon Slime",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/dragoon_slime_qgpy5h.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4b2c78423983bebc8b7f"
+        },
+        "number": "145",
+        "name": "Gryphon",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/gryphon_ulwgnl.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4b4178423983bebc8b82"
+        },
+        "number": "146",
+        "name": "Crimson Knight Spear Master",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/crimson_knight_spear_master_er7jjt.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4b5178423983bebc8b85"
+        },
+        "number": "147",
+        "name": "Caster Dunia",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/caster_dunia_dvftmp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4b6178423983bebc8b88"
+        },
+        "number": "148",
+        "name": "Genji",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/genji_kayfch.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4b7978423983bebc8b8b"
+        },
+        "number": "149",
+        "name": "Mounted Samurai",
+        "rarity": "Uncommon",
+        "element": "Wind",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/mounted_samurai_a8mp1y.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4b9978423983bebc8b8e"
+        },
+        "number": "151",
+        "name": "Ice Hydra",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/ice_hydra_d2tpo7.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4bb178423983bebc8b91"
+        },
+        "number": "152",
+        "name": "Eldritch Ice",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/eldritch_ide_cftgxq.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4bd978423983bebc8b94"
+        },
+        "number": "153",
+        "name": "Avalanche",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/ice_horse_g7xlgz.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4bf678423983bebc8b97"
+        },
+        "number": "154",
+        "name": "Ice Witch",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/sea_witch_weep3o.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4c0678423983bebc8b9a"
+        },
+        "number": "155",
+        "name": "Shadow Shielder",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/shadow_shielder_jwayoa.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4c1f78423983bebc8b9d"
+        },
+        "number": "156",
+        "name": "Soulless Minion",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/soulless_minion_olpwig.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4c2f78423983bebc8ba0"
+        },
+        "number": "157",
+        "name": "Ice Elemental Wolf",
+        "rarity": "Uncommon",
+        "element": "Ice",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676489709/ice_wolf_s8nnpi.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4c6d78423983bebc8ba3"
+        },
+        "number": "159",
+        "name": "Princess Orchid",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/princess_orchid_oojgfn.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4c7e78423983bebc8ba6"
+        },
+        "number": "160",
+        "name": "Mech Enjin",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/mech_enjin_u8ubar.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4c9b78423983bebc8ba9"
+        },
+        "number": "161",
+        "name": "Clockwork Tarantula",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/clockwork_spider_mgyjsj.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4caa78423983bebc8bac"
+        },
+        "number": "162",
+        "name": "Feral Shaman",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/feral_shaman_slwio7.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4cbd78423983bebc8baf"
+        },
+        "number": "163",
+        "name": "Kawabun",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/kawabun_pfyqvs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4d2678423983bebc8bb2"
+        },
+        "number": "164",
+        "name": "Voltiger",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/heaven_beast_tiger_lj7e8m.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4d3978423983bebc8bb5"
+        },
+        "number": "165",
+        "name": "Undead Samurai",
+        "rarity": "Uncommon",
+        "element": "Lightning",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490237/undead_samurai_yrwzcs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4d6a78423983bebc8bb8"
+        },
+        "number": "167",
+        "name": "Gigandeath",
+        "rarity": "Uncommon",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/gigandeath_nozi9q.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4d7a78423983bebc8bbb"
+        },
+        "number": "168",
+        "name": "Pandora",
+        "rarity": "Uncommon",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/pandora_h1merc.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4d8a78423983bebc8bbe"
+        },
+        "number": "169",
+        "name": "Lucius",
+        "rarity": "Uncommon",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/lucius_ye5wh1.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4da978423983bebc8bc1"
+        },
+        "number": "170",
+        "name": "Male Anubis Warrior",
+        "rarity": "Uncommon",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/Anubis_warrior_male_oxbscp.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4db978423983bebc8bc4"
+        },
+        "number": "171",
+        "name": "Female Anubis Warrior",
+        "rarity": "Uncommon",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/anubis_warrior_female_vqy8wt.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4dcc78423983bebc8bc7"
+        },
+        "number": "172",
+        "name": "Golden Chicken",
+        "rarity": "Uncommon",
+        "element": "Holy",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/golden_chicken_qpllvs.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4dec78423983bebc8bca"
+        },
+        "number": "174",
+        "name": "Darklord Excelsios",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/excelsios_v8vlkz.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4dff78423983bebc8bcd"
+        },
+        "number": "175",
+        "name": "Ella, Sovereign of Darkness",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/ella_uysf0w.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4e1578423983bebc8bd0"
+        },
+        "number": "176",
+        "name": "Dark Armor Golem",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/dark_golem_onqqan.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4e2578423983bebc8bd3"
+        },
+        "number": "177",
+        "name": "Greater Mimic",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/greater_mimic_nfgvqc.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4e3a78423983bebc8bd6"
+        },
+        "number": "178",
+        "name": "Shaccad'Yoggoth",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/shaccad_bsxvim.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4e5078423983bebc8bd9"
+        },
+        "number": "179",
+        "name": "Shadow of the Night Scythe",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/shadow_scythe_pfgfsz.png",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ed4e6478423983bebc8bdc"
+        },
+        "number": "180",
+        "name": "Shadow tiger",
+        "rarity": "Uncommon",
+        "element": "Dark",
+        "image": "https://res.cloudinary.com/dhsflmylz/image/upload/v1676490584/shadow_tiger_oejvqp.png",
+        "__v": 0
+    }
+]

@@ -1,148 +1,145 @@
 .input {
-	position: relative;
-	width: 80%;
-	margin: 30px 5px 0 5px;
+    position: relative;
+    width: 80%;
+    margin: 30px 5px 0 5px;
 
-	@media screen and (max-width: 900px) {
-		margin: 20px 5px 0 5px;
-	}
+    @media screen and (max-width: 900px) {
+        margin: 20px 5px 0 5px;
+    }
 
-	@media screen and (max-width: 600px) {
-		width: 90%;
-	}
+    @media screen and (max-width: 600px) {
+        width: 90%;
+    }
 
-	input {
-		width: 100%;
-		box-sizing: border-box;
-		color: var(--white-color);
-		font-size: 20px;
-		font-family: 'Poppins';
-		font-weight: 700;
+    &__text {
+        width: 100%;
+        padding: 7px 14px;
+        background: transparent;
+        border: 2px solid var(--accent-color);
+        border-radius: 5px;
+        box-sizing: border-box;
+        color: var(--white-color);
+        font-family: 'Poppins';
+        font-size: 20px;
+        font-weight: 700;
+        transition: 0.4s;
 
-		@media screen and (max-width: 900px) {
-			font-size: 16px;
-		}
+        @media screen and (max-width: 900px) {
+            font-size: 16px;
+        }
 
-		@media screen and (max-width: 600px) {
-			font-size: 14px;
-		}
-	}
+        @media screen and (max-width: 600px) {
+            font-size: 14px;
+        }
+    }
 
-	svg {
-		position: absolute;
-		right: 1rem;
-		top: 12px;
-		color: var(--secondary-color);
-		font-size: 24px;
+    svg {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        color: var(--secondary-color);
+        font-size: 24px;
 
-		@media screen and (max-width: 900px) {
-			top: 10px;
-			font-size: 20px;
-		}
+        @media screen and (max-width: 900px) {
+            top: 10px;
+            font-size: 20px;
+        }
 
-		@media screen and (max-width: 600px) {
-			top: 9px;
-			font-size: 18px;
-		}
-	}
+        @media screen and (max-width: 600px) {
+            top: 9px;
+            font-size: 18px;
+        }
+    }
 
-	:focus {
-		outline: none;
-	}
+    :focus {
+        outline: none;
+    }
 
-	&__text {
-		padding: 7px 14px;
-		background: transparent;
-		border: 2px solid var(--accent-color);
-		border-radius: 5px;
-		transition: 0.4s;
-	}
+    &__text ~ .focus-border:before,
+    &__text ~ .focus-border:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--secondary-color);
+        transition: 0.2s;
+        transition-delay: 0.2s;
+    }
 
-	&__text ~ .focus-border:before,
-	&__text ~ .focus-border:after {
-		content: '';
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 0;
-		height: 2px;
-		background-color: var(--secondary-color);
-		transition: 0.2s;
-		transition-delay: 0.2s;
-	}
+    &__text ~ .focus-border:after {
+        top: auto;
+        bottom: 0;
+        right: auto;
+        left: 0;
+        transition-delay: 0.6s;
+    }
 
-	&__text ~ .focus-border:after {
-		top: auto;
-		bottom: 0;
-		right: auto;
-		left: 0;
-		transition-delay: 0.6s;
-	}
+    &__text ~ .focus-border i:before,
+    &__text ~ .focus-border i:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 0;
+        background-color: var(--secondary-color);
+        transition: 0.2s;
+    }
 
-	&__text ~ .focus-border i:before,
-	&__text ~ .focus-border i:after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 2px;
-		height: 0;
-		background-color: var(--secondary-color);
-		transition: 0.2s;
-	}
+    &__text ~ .focus-border i:after {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: 0;
+        transition-delay: 0.4s;
+    }
 
-	&__text ~ .focus-border i:after {
-		left: auto;
-		right: 0;
-		top: auto;
-		bottom: 0;
-		transition-delay: 0.4s;
-	}
+    &__text:focus ~ .focus-border:before,
+    &__text:focus ~ .focus-border:after,
+    &__text.has-content ~ .focus-border:before,
+    &__text.has-content ~ .focus-border:after {
+        width: 100%;
+        transition: 0.2s;
+        transition-delay: 0.6s;
+    }
 
-	&__text:focus ~ .focus-border:before,
-	&__text:focus ~ .focus-border:after,
-	&__text.has-content ~ .focus-border:before,
-	&__text.has-content ~ .focus-border:after {
-		width: 100%;
-		transition: 0.2s;
-		transition-delay: 0.6s;
-	}
+    &__text:focus ~ .focus-border:after,
+    &__text.has-content ~ .focus-border:after {
+        transition-delay: 0.2s;
+    }
 
-	&__text:focus ~ .focus-border:after,
-	&__text.has-content ~ .focus-border:after {
-		transition-delay: 0.2s;
-	}
+    &__text:focus ~ .focus-border i:before,
+    &__text:focus ~ .focus-border i:after,
+    &__text.has-content ~ .focus-border i:before,
+    &__text.has-content ~ .focus-border i:after {
+        height: 100%;
+        transition: 0.2s;
+    }
 
-	&__text:focus ~ .focus-border i:before,
-	&__text:focus ~ .focus-border i:after,
-	&__text.has-content ~ .focus-border i:before,
-	&__text.has-content ~ .focus-border i:after {
-		height: 100%;
-		transition: 0.2s;
-	}
+    &__text:focus ~ .focus-border i:after,
+    &__text.has-conten ~ .focus-border i:after {
+        transition-delay: 0.4s;
+    }
 
-	&__text:focus ~ .focus-border i:after,
-	&__text.has-conten ~ .focus-border i:after {
-		transition-delay: 0.4s;
-	}
+    &__text ~ label {
+        position: absolute;
+        left: 14px;
+        width: 100%;
+        top: 8px;
+        color: var(--white-color);
+        transition: 0.3s;
+        letter-spacing: 0.5px;
+        pointer-events: none;
+    }
 
-	&__text ~ label {
-		position: absolute;
-		left: 14px;
-		width: 100%;
-		top: 8px;
-		color: var(--white-color);
-		transition: 0.3s;
-		letter-spacing: 0.5px;
-		pointer-events: none;
-	}
-
-	&__text:focus ~ label,
-	.has-content ~ label {
-		top: -18px;
-		left: 0;
-		font-size: 12px;
-		color: var(--secondary-color);
-		transition: 0.3s;
-	}
+    &__text:focus ~ label,
+    .has-content ~ label {
+        top: -18px;
+        left: 0;
+        font-size: 12px;
+        color: var(--secondary-color);
+        transition: 0.3s;
+    }
 }

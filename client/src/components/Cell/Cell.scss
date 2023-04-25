@@ -1,15 +1,16 @@
 .cell {
-    height: calc(30vh - 4px);
-    width: calc((30vh * 0.725) - 4px);
+    height: 300px;
+    width: calc(300px * 0.725);
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.4);
     border: 2px solid var(--primary-color);
-    border-radius: 1rem;
-    color: var(--white-color);
+    border-radius: 16px;
     box-shadow: rgba(240, 240, 240, 0.25) 10px 10px 20px -12px inset,
         rgba(240, 240, 240, 0.3) -10px 10px 36px -18px inset;
+    box-sizing: border-box;
+    color: var(--white-color);
 
     .element {
         width: 3vw;

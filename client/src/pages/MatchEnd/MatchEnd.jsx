@@ -92,9 +92,9 @@ const MatchEnd = () => {
                 </div>
 
                 <div className='buttons'>
-                    <Button label='Rematch' type='link' path='/match' />
-                    <Button label='Setup' type='link' path='/matchSetup' />
-                    <Button label='End Game' type='link' path='/home' />
+                    <Button label='Rematch' type='link' path='match' />
+                    <Button label='Setup' type='link' path='matchSetup' />
+                    <Button label='End Game' type='link' path='home' />
                 </div>
                 <div className='two'>
                     <div className='score'>{location.state.p1Score}</div>

@@ -3,7 +3,7 @@ import './TurnArrow.scss'
 
 const TurnArrow = ({ turn }) => {
     return (
-        <div className='turn__arrow'>
+        <div className='turn-arrow'>
             <svg
                 width='40px'
                 height='40px'

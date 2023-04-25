@@ -5,8 +5,8 @@
     background-size: cover;
 
     .container {
-        gap: 5rem;
-        padding: 10rem 10rem 5rem 0.5rem;
+        gap: 80px;
+        padding: 160px 160px 80px 8px;
 
         .section {
             min-height: 20vh;
@@ -24,7 +24,7 @@
                     width: 124px;
                     background-color: var(--accent-color);
                     border: 2px solid var(--primary-color);
-                    border-radius: 0.5rem;
+                    border-radius: 8px;
                 }
             }
 

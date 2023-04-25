@@ -12,6 +12,21 @@
     box-sizing: border-box;
     color: var(--white-color);
 
+    @media screen and (max-width: 1200px) {
+        height: 225px;
+        width: calc(225px * 0.725);
+    }
+
+    @media screen and (max-width: 900px) {
+        height: 200px;
+        width: calc(200px * 0.725);
+    }
+
+    @media screen and (max-width: 600px) {
+        height: 150px;
+        width: calc(150px * 0.725);
+    }
+
     .element {
         width: 3vw;
         pointer-events: none;

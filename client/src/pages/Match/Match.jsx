@@ -40,7 +40,7 @@ const Match = () => {
 
     let p1ScoreCounter = 0
     let p2ScoreCounter = 0
-    let winner = 'Stalemate'
+    let winner = 'Draw'
 
     const newGame = () => {
         const p1DealtCards = []
@@ -411,60 +411,61 @@ const Match = () => {
 
     return (
         <div className='match page'>
-            <div className='cpu'>
-                {p2Hand.map((card, i) => (
-                    <Card
-                        key={card._id + i}
-                        card={card}
-                        player={p2}
-                        turn={!isP1Turn}
-                        visibility={false}
-                    />
-                ))}
-            </div>
-            <div className='column'>
-                <span className='match__score'>{p2Score} </span>
-                {!isP1Turn && emptyCells.length > 0 && (
-                    <TurnArrow turn={isP1Turn} />
-                )}
-            </div>
-            <div className='space' />
-            <div className='grid'>
-                {boardArray.map((cell, i) =>
-                    cell === 'empty' ? (
-                        <Cell
-                            key={i}
-                            id={i}
-                            handleClick={(e) => placeCard(e)}
-                            element={elements && randomElementArray[i]}
-                        />
-                    ) : (
+            <div className='board'>
+                <div className='cpu'>
+                    {p2Hand.map((card, i) => (
                         <Card
-                            key={i}
-                            card={cell}
-                            player={cell.user === 'cpu' ? p2 : p1}
+                            key={card._id + i}
+                            card={card}
+                            player={p2}
+                            turn={!isP1Turn}
+                            visibility={false}
+                        />
+                    ))}
+                </div>
+                <div className='column'>
+                    <span className='match__score'>{p2Score} </span>
+                    {!isP1Turn && emptyCells.length > 0 && (
+                        <TurnArrow turn={isP1Turn} />
+                    )}
+                </div>
+                <div className='grid'>
+                    {boardArray.map((cell, i) =>
+                        cell === 'empty' ? (
+                            <Cell
+                                key={i}
+                                id={i}
+                                handleClick={(e) => placeCard(e)}
+                                element={elements && randomElementArray[i]}
+                            />
+                        ) : (
+                            <Card
+                                key={i}
+                                card={cell}
+                                player={cell.user === 'cpu' ? p2 : p1}
+                                visibility={true}
+                            />
+                        )
+                    )}
+                </div>
+                <div className='column'>
+                    <span className='match__score'>{p1Score} </span>
+                    {isP1Turn && emptyCells.length > 0 && (
+                        <TurnArrow turn={isP1Turn} />
+                    )}
+                </div>
+                <div className='player'>
+                    {p1Hand.map((card, i) => (
+                        <Card
+                            key={card._id + i}
+                            card={card}
+                            player={p1}
+                            handleClick={(e) => selectCard(e, card)}
+                            turn={isP1Turn}
                             visibility={true}
                         />
-                    )
-                )}
-            </div>
-            <div className='column'>
-                <span className='match__score'>{p1Score} </span>
-                {isP1Turn && emptyCells.length > 0 && (
-                    <TurnArrow turn={isP1Turn} />
-                )}
-            </div>
-            <div className='player'>
-                {p1Hand.map((card, i) => (
-                    <Card
-                        key={card._id + i}
-                        card={card}
-                        player={p1}
-                        handleClick={(e) => selectCard(e, card)}
-                        turn={isP1Turn}
-                        visibility={true}
-                    />
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     )

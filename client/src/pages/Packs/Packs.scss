@@ -33,16 +33,7 @@
 
             @media screen and (max-width: 600px) {
                 padding: var(--navbar-height) 18px;
-                display: flex;
-                flex-direction: row;
-                overflow-x: auto;
-                align-items: center;
-                justify-content: flex-start;
-            }
-
-            .card {
-                height: 300px;
-                width: calc(300px * 0.725);
+                grid-template-columns: repeat(auto-fit, 120px);
             }
         }
 

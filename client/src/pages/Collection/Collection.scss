@@ -58,25 +58,6 @@
             }
         }
 
-        .card {
-            height: 300px;
-            width: calc(300px * 0.725);
-
-            @media screen and (max-width: 900px) {
-                height: 200px;
-                width: calc(200px * 0.725);
-
-                img {
-                    border-radius: 8px;
-                }
-            }
-
-            @media screen and (max-width: 600px) {
-                height: 150px;
-                width: calc(150px * 0.725);
-            }
-        }
-
         .display {
             width: calc(300px * 0.725);
             display: flex;

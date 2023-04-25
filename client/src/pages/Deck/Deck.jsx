@@ -211,7 +211,7 @@ const Deck = () => {
                                 } box`}
                                 onClick={() => setDeckFilter('Show All')}
                             >
-                                Show All
+                                All
                             </button>
                             <button
                                 className={`${
@@ -219,7 +219,7 @@ const Deck = () => {
                                 } box`}
                                 onClick={() => setDeckFilter('Selected')}
                             >
-                                Show Selected
+                                Selected
                             </button>
                             <button
                                 className={`${
@@ -227,7 +227,7 @@ const Deck = () => {
                                 } box`}
                                 onClick={() => setDeckFilter('Unselected')}
                             >
-                                Show Unselected
+                                Unselected
                             </button>
                         </div>
                         <div className='section__header'>
@@ -316,9 +316,9 @@ const Deck = () => {
                     </div>
                 </div>
             </div>
-            <div className='list'>
-                <div className='deck__details box'>
-                    <div className='top'>
+            <div className='details box'>
+                <div className='top'>
+                    <div className='text'>
                         <div className='counter'>
                             <p>Cards in Deck</p>
                             <p>
@@ -348,122 +348,121 @@ const Deck = () => {
                                 0
                             )}
                         </div>
-                        <div className='section'>
-                            <button className='box' onClick={() => autoBuild()}>
-                                Auto Build
-                            </button>
-                            <button
-                                className='box'
-                                onClick={() => unSelectAll()}
-                            >
-                                Unselect All
-                            </button>
-                        </div>
                     </div>
-                    <div className='bottom'>
-                        <div className='element'>
-                            <img src={Neutral} alt='Neutral' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Neutral'
-                                    ).length
-                                }
-                            </span>
-                        </div>
-                        <div className='element'>
-                            <img src={Fire} alt='Fire' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Fire'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Water} alt='Water' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Water'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Earth} alt='Earth' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Earth'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Wind} alt='Wind' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Wind'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Ice} alt='Ice' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Ice'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Lightning} alt='Lightning' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Lightning'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Holy} alt='Holy' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Holy'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Dark} alt='Dark' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Dark'
-                                    ).length
-                                }
-                            </span>
-                        </div>{' '}
-                        <div className='element'>
-                            <img src={Universal} alt='Universal' />
-                            <span>
-                                {
-                                    userDeck.filter(
-                                        (card) => card.element === 'Universal'
-                                    ).length
-                                }
-                            </span>
-                        </div>
+
+                    <div className='section'>
+                        <button className='box' onClick={() => autoBuild()}>
+                            Auto Build
+                        </button>
+                        <button className='box' onClick={() => unSelectAll()}>
+                            Unselect All
+                        </button>
                     </div>
                 </div>
-
+                <div className='bottom'>
+                    <div className='element'>
+                        <img src={Neutral} alt='Neutral' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Neutral'
+                                ).length
+                            }
+                        </span>
+                    </div>
+                    <div className='element'>
+                        <img src={Fire} alt='Fire' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Fire'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Water} alt='Water' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Water'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Earth} alt='Earth' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Earth'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Wind} alt='Wind' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Wind'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Ice} alt='Ice' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Ice'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Lightning} alt='Lightning' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Lightning'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Holy} alt='Holy' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Holy'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Dark} alt='Dark' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Dark'
+                                ).length
+                            }
+                        </span>
+                    </div>{' '}
+                    <div className='element'>
+                        <img src={Universal} alt='Universal' />
+                        <span>
+                            {
+                                userDeck.filter(
+                                    (card) => card.element === 'Universal'
+                                ).length
+                            }
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div className='list'>
                 {filterCards().map((card) => (
                     <div key={card._id} className='display'>
                         <Card

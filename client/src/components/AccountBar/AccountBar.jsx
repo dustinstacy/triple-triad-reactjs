@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import axios from 'axios'
 import { motion } from 'framer-motion'
+
 import { useGlobalContext } from '../../context/GlobalContext'
-import { GiHamburgerMenu } from 'react-icons/gi'
 import { coin, home } from '../../assets/icons'
 import { levels } from '../../constants/levels'
 import { navlinks } from '../../constants/navlinks'
@@ -91,7 +92,7 @@ const AccountBar = () => {
                                     </div>
                                 </div>
 
-                                <div className='accountBar__image'>
+                                <div className='image'>
                                     <img src={user.image} alt='user image' />
                                 </div>
 

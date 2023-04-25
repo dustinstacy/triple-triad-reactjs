@@ -63,8 +63,11 @@ const FirstDeck = () => {
     return (
         <div className='first page'>
             <div className='intro box'>
-                <h1>Welcome to the world of Triple Triad</h1>
-                <p>Please select a deck to begin your journey</p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <h1>Welcome to the world of Triple Triad</h1>
+                    <p>Please select a deck to begin your journey</p>
+                </div>
+
                 <div className='decks'>
                     <div className='starter'>
                         <img

@@ -13,10 +13,10 @@
         justify-content: center;
         align-items: center;
         gap: 48px;
-        padding-top: 5rem;
+        padding-top: 80px;
 
         @media screen and (max-width: 900px) {
-            padding: 7.5rem 0 2.5rem 0;
+            padding: 120px 0 40px 0;
         }
 
         .top,
@@ -44,7 +44,7 @@
         }
 
         .middle {
-            gap: 24rem;
+            gap: 384px;
 
             @media screen and (max-width: 900px) {
                 gap: 48px;
@@ -52,7 +52,7 @@
         }
 
         .bottom {
-            margin-top: -4rem;
+            margin-top: -64px;
 
             @media screen and (max-width: 900px) {
                 justify-content: flex-start;

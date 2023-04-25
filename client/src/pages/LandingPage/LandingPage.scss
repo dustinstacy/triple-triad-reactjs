@@ -33,7 +33,7 @@
         .logo {
             &__large {
                 width: 80%;
-                margin: 2em 0;
+                margin: 32px 0;
 
                 @media screen and (max-width: 900px) {
                     width: 50%;
@@ -42,7 +42,7 @@
 
             &__medium {
                 width: 70%;
-                margin: 1rem 0;
+                margin: 16px 0;
 
                 @media screen and (max-width: 900px) {
                     width: 40%;
@@ -57,7 +57,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 2rem;
+            margin-bottom: 32px;
         }
 
         &__error {

@@ -31,6 +31,7 @@
         border-top: none;
         border-left: none;
         border-bottom: none;
+        box-sizing: border-box;
         color: var(--white-color);
         overflow-y: scroll;
         z-index: 5;
@@ -103,7 +104,7 @@
         border-right: none;
         box-sizing: border-box;
         color: var(--white-color);
-        z-index: 1;
+        z-index: 100;
 
         @media screen and (max-width: 600px) {
             height: 120px;
@@ -241,7 +242,7 @@
                 width: calc(200px * 0.725);
 
                 img {
-                    border-radius: 0.5rem;
+                    border-radius: 8px;
                 }
             }
 
@@ -258,7 +259,7 @@
                     width: calc(200px * 0.725);
 
                     img {
-                        border-radius: 0.5rem;
+                        border-radius: 8px;
                     }
 
                     span {

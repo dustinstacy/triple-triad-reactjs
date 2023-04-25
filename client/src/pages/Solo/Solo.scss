@@ -8,19 +8,19 @@
 
     .container {
         gap: 64px;
-        padding-top: 10rem;
+        padding-top: 160px;
 
         @media screen and (max-width: 1200px) {
             gap: 96px;
-            padding-top: 15rem;
+            padding-top: 240px;
         }
 
         @media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
-            padding: 10rem 10rem 5rem 10rem;
+            padding: 160px 160px 80px 160px;
         }
 
         @media screen and (max-width: 600px) {
-            padding: 10rem 10rem 0 10rem;
+            padding: 160px 160px 0 160px;
             width: 90%;
         }
 
@@ -60,10 +60,10 @@
 
         .left {
             align-self: flex-start;
-            left: 5rem;
+            left: 80px;
 
             @media screen and (max-width: 1200px) {
-                left: 2.5rem;
+                left: 40px;
             }
 
             @media screen and (max-width: 600px) {
@@ -71,7 +71,7 @@
             }
 
             .button {
-                right: -5rem;
+                right: -80px;
 
                 @media screen and (max-width: 600px) {
                     right: initial;
@@ -81,10 +81,10 @@
 
         .right {
             align-self: flex-end;
-            right: 5rem;
+            right: 80px;
 
             @media screen and (max-width: 1200px) {
-                right: 2.5rem;
+                right: 40px;
             }
 
             @media screen and (max-width: 600px) {
@@ -92,7 +92,7 @@
             }
 
             .button {
-                left: -5rem;
+                left: -80px;
 
                 @media screen and (max-width: 600px) {
                     left: initial;

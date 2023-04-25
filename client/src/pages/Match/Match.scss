@@ -1,11 +1,22 @@
 .match {
-    flex-direction: row !important;
     align-items: center;
     justify-content: space-between;
     background-color: var(--accent2-color);
     background-image: url('../../assets/pageImages/darkportal.jpg');
     background-position: top;
     background-size: cover;
+
+    .board {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
+    }
 
     .column {
         height: 100vh;
@@ -14,39 +25,31 @@
         align-items: center;
         justify-content: flex-start;
         gap: 16px;
+
+        @media screen and (max-width: 1400px) {
+            display: none;
+        }
     }
 
     &__score {
-        width: 5vw;
+        height: 80px;
+        width: 80px;
         align-self: flex-start;
+        align-content: center;
         margin-top: 16px;
+        padding: 0;
         background-color: var(--accent2-color);
         border: 2px solid var(--primary-color);
         border-radius: 16px;
         color: var(--white-color);
         font-size: 64px;
+        line-height: 1.3;
         text-align: center;
     }
 
-    .space {
-        width: 40vw;
-    }
-
-    .board {
-        position: absolute;
-        left: 50%;
-        height: 900px;
-        transform: translatex(-50%);
-        pointer-events: none;
-    }
-
     .grid {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 95vh;
-        width: 40vw;
+        height: 920px;
+        width: 680px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -56,44 +59,95 @@
         border: 3px solid var(--tertiary-color);
         border-radius: 16px;
         opacity: 0.975;
+
+        @media screen and (max-width: 1200px) {
+            height: 748px;
+            width: 532px;
+        }
+
+        @media screen and (max-width: 900px) {
+            height: 640px;
+        }
+
+        @media screen and (max-width: 600px) {
+            height: 520px;
+            width: 340px;
+        }
     }
 
     .player,
     .cpu {
-        height: 90vh;
-        width: 300px;
-        display: flex;
-        justify-content: center;
-        margin-top: 32px;
-    }
-
-    .card.active {
-        border: 8px solid var(--secondary-color);
-    }
-
-    .cpu,
-    .player {
         position: relative;
+        height: 100vh;
+        width: 240px;
+        display: flex;
+        align-self: flex-end;
+        box-sizing: border-box;
 
         .card:nth-child(1) {
             position: absolute;
-            top: 4%;
+            top: 5%;
         }
         .card:nth-child(2) {
             position: absolute;
-            top: 18%;
+            top: 20%;
         }
         .card:nth-child(3) {
             position: absolute;
-            top: 32%;
+            top: 35%;
         }
         .card:nth-child(4) {
             position: absolute;
-            top: 46%;
+            top: 50%;
         }
         .card:nth-child(5) {
             position: absolute;
-            top: 60%;
+            top: 65%;
+        }
+
+        @media screen and (max-width: 1200px) {
+            height: 95vh;
+            width: 180px;
+        }
+
+        @media screen and (max-width: 900px) {
+            margin-top: 20px;
+            height: 220px;
+            width: 100%;
+
+            .card:nth-child(1) {
+                top: 0;
+                right: 10%;
+            }
+            .card:nth-child(2) {
+                top: 0;
+                right: 25%;
+            }
+            .card:nth-child(3) {
+                top: 0;
+                right: 40%;
+            }
+            .card:nth-child(4) {
+                top: 0;
+                right: 55%;
+            }
+            .card:nth-child(5) {
+                top: 0;
+                right: 70%;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            width: 90%;
+            height: 165px;
+        }
+    }
+
+    .cpu {
+        justify-content: flex-end;
+
+        @media screen and (max-width: 900px) {
+            justify-content: flex-start;
         }
     }
 

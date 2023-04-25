@@ -251,21 +251,7 @@
             }
 
             .card {
-                height: 300px;
-                width: calc(300px * 0.725);
-
                 @media screen and (max-width: 900px) {
-                    height: 200px;
-                    width: calc(200px * 0.725);
-
-                    img {
-                        border-radius: 8px;
-                    }
-
-                    span {
-                        font-size: 18px;
-                    }
-
                     .checkbox {
                         font-size: 24px;
 
@@ -276,13 +262,6 @@
                 }
 
                 @media screen and (max-width: 600px) {
-                    height: 150px;
-                    width: calc(150px * 0.725);
-
-                    span {
-                        font-size: 14px;
-                    }
-
                     .checkbox {
                         font-size: 20px;
 

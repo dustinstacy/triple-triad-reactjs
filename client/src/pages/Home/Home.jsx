@@ -23,9 +23,9 @@ const Home = () => {
     return (
         <div className='home page'>
             <div className='container'>
-                <div className='option solo'>
-                    <Button label='Solo' type='link' path='solo' />
-                </div>
+                <Button label='Solo' type='link' path='match' />
+                <Button label='Deck' type='link' path='deck' />
+                <Button label='Packs' type='link' path='packs' />
             </div>
         </div>
     )

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
-import { rank1 } from '../../assets/ranks'
 import './MatchSetup.scss'
 
 const MatchSetup = () => {
@@ -41,9 +40,6 @@ const MatchSetup = () => {
                             )}
                         </span>
                     </div>
-                    <div className='player__rank'>
-                        <img src={rank1} alt='rank6' />
-                    </div>
                 </div>
 
                 <h1 className='versus'>VS.</h1>
@@ -69,9 +65,6 @@ const MatchSetup = () => {
                                 0
                             )}
                         </span>
-                    </div>
-                    <div className='player__rank'>
-                        <img src={rank1} alt='rank1' />
                     </div>
                 </div>
 

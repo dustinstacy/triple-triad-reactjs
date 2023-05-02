@@ -8,14 +8,6 @@ export const navlinks = [
         path: '/solo',
     },
     {
-        name: 'Arcaneum',
-        path: '/arcaneum',
-    },
-    {
-        name: 'Collection',
-        path: '/collection',
-    },
-    {
         name: 'Deck',
         path: '/deck',
     },

@@ -61,7 +61,6 @@ const AccountBar = () => {
                 {user ? (
                     pathname === '/home' ||
                     pathname === '/solo' ||
-                    pathname === '/arcaneum' ||
                     pathname === '/account' ? (
                         <>
                             <div className='accountBar__player'>

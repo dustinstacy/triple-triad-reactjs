@@ -4,7 +4,7 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
-import { Card, Cell, TurnArrow } from '../../components'
+import { Card, Cell } from '../../components'
 import './Match.scss'
 
 const width = 3
@@ -425,9 +425,6 @@ const Match = () => {
                 </div>
                 <div className='column'>
                     <span className='match__score'>{p2Score} </span>
-                    {!isP1Turn && emptyCells.length > 0 && (
-                        <TurnArrow turn={isP1Turn} />
-                    )}
                 </div>
                 <div className='grid'>
                     {boardArray.map((cell, i) =>
@@ -450,9 +447,6 @@ const Match = () => {
                 </div>
                 <div className='column'>
                     <span className='match__score'>{p1Score} </span>
-                    {isP1Turn && emptyCells.length > 0 && (
-                        <TurnArrow turn={isP1Turn} />
-                    )}
                 </div>
                 <div className='player'>
                     {p1Hand.map((card, i) => (

@@ -54,7 +54,7 @@ const FirstDeck = () => {
             packs: [{ name: 'small' }, { name: 'medium' }, { name: 'large' }],
         })
         await axios.put('/api/profile/backgrounds', {
-            backgrounds: [{ name: 'blue1' }, { name: 'red1' }],
+            backgrounds: [{ name: 'blue' }, { name: 'red' }],
         })
         await getCurrentUser()
         navigate('/home')

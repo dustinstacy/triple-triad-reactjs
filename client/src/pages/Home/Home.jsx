@@ -26,17 +26,6 @@ const Home = () => {
                 <div className='option solo'>
                     <Button label='Solo' type='link' path='solo' />
                 </div>
-                <div className='option matchmaking'>
-                    <Button
-                        label='Matchmaking'
-                        type='link'
-                        path='matchmaking'
-                        disabled='disabled'
-                    />
-                </div>
-                <div className='option arcaneum'>
-                    <Button label='Arcaneum' type='link' path='arcaneum' />
-                </div>
             </div>
         </div>
     )

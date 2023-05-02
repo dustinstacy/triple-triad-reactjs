@@ -30,23 +30,25 @@ app.use('/api/profile', profileRoute)
 app.use(express.static(path.resolve(__dirname, '../client/dist')))
 
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
+    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
 })
 
 app.get('/', (req, res) => {
-	res.send('Server Running')
+    res.send('Server Running')
 })
 
 mongoose.set('strictQuery', true)
 mongoose
-	.connect(process.env.MONGO_URI)
-	.then(() => {
-		console.log('*****Connected to database*****')
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log('*****Connected to database*****')
 
-		app.listen(process.env.PORT, () => {
-			console.log(`Server running on http://localhost:${process.env.PORT}`)
-		})
-	})
-	.catch((error) => {
-		console.log(error)
-	})
+        app.listen(process.env.PORT, () => {
+            console.log(
+                `Server running on http://localhost:${process.env.PORT}`
+            )
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+    })

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, TextInput } from '../../components'
-import { blue1, red1 } from '../../assets/backgrounds'
-import { rank1 } from '../../assets/ranks'
 import './Account.scss'
 
 const Account = () => {
@@ -60,10 +58,6 @@ const Account = () => {
                     <h1>Stats</h1>
                     <div className='section box'>
                         <div className='stats'>
-                            <div className='stats__rank'>
-                                <img src={rank1} alt='rank' />
-                                <p>Rank : {user?.rank}</p>
-                            </div>
                             <div className='stats__info'>
                                 <table>
                                     <tbody>
@@ -93,23 +87,6 @@ const Account = () => {
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h1>Customization</h1>
-                    <div className='section box'>
-                        Backgrounds :
-                        <div className='backgrounds'>
-                            <div className='backgrounds__blue'>
-                                <img src={blue1} alt='blue1' />
-                                <p>Blue</p>
-                            </div>
-                            <div className='backgrounds__blue'>
-                                <img src={red1} alt='red1' />
-                                <p>Red</p>
                             </div>
                         </div>
                     </div>

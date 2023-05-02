@@ -1,5 +1,5 @@
-import blue1 from './blue1.jpg'
+import blue from './blue.jpg'
 import cardback from './cardback.png'
-import red1 from './red1.jpg'
+import red from './red.jpg'
 
-export { blue1, cardback, red1 }
+export { blue, cardback, red }

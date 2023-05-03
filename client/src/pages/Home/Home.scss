@@ -1,32 +1,20 @@
 .home {
+    background: rgb(0, 19, 35);
+
     .container {
         height: 100vh;
-        padding: 0;
         flex-direction: row;
+        align-items: center;
         justify-content: space-evenly;
 
-        @media screen and (max-width: 900px) and (max-aspect-ratio: 1/1) {
+        @media screen and (max-width: 768px) {
             flex-direction: column;
         }
 
         .button {
             position: static;
-            bottom: 15%;
-            height: 3vw;
-            width: 20vw;
+            width: 15vw;
             font-size: 36px;
-
-            @media screen and (max-width: 1200px) {
-                font-size: 28px;
-            }
-
-            @media screen and (max-width: 900px) {
-                font-size: 22px;
-            }
-
-            @media screen and (max-width: 900px) and (max-aspect-ratio: 1/1) {
-                width: 30vw;
-            }
         }
     }
 }

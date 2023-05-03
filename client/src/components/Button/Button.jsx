@@ -19,17 +19,8 @@ const Button = ({ label, type, path, handleSubmit, disabled }) => {
 
     return (
         <div
-            className='button'
+            className={`button center ${disabled ? 'disabled' : ''}`}
             onClick={(e) => handleClick(e)}
-            style={
-                disabled
-                    ? {
-                          pointerEvents: 'none',
-                          filter: 'grayscale(0.8) blur(.5px)',
-                          opacity: '.9',
-                      }
-                    : {}
-            }
         >
             <span>{label}</span>
         </div>

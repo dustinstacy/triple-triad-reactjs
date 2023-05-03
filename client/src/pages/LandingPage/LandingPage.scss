@@ -1,88 +1,35 @@
 .landing {
     align-items: center;
     justify-content: center;
-    padding: var(--navbar-height) 0;
-    box-sizing: border-box;
-    background-image: url('../../assets/pageImages/snakecave.jpg');
-    background-position: bottom;
-    background-size: cover;
-    overflow-y: auto;
+    padding: 80px 0;
 
     .auth {
         position: relative;
         height: 100%;
-        width: 540px;
+        width: 600px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
 
-        .button {
-            bottom: 0;
-        }
-
-        @media screen and (max-width: 900px) {
-            width: 480px;
-            padding: 18px;
-        }
-
-        @media screen and (max-width: 600px) {
-            width: 75vw;
+        @media screen and (max-width: 768px) {
+            min-height: 70vh;
+            width: 100vw;
         }
 
         .logo {
-            &__large {
-                width: 80%;
-                margin: 32px 0;
+            margin: 16px 0;
 
-                @media screen and (max-width: 900px) {
-                    width: 50%;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+            }
+
+            &-register {
+                width: 600px;
+
+                @media screen and (max-width: 768px) {
+                    width: 100%;
                 }
-            }
-
-            &__medium {
-                width: 70%;
-                margin: 16px 0;
-
-                @media screen and (max-width: 900px) {
-                    width: 40%;
-                    margin: 0;
-                }
-            }
-        }
-
-        &__form {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-bottom: 32px;
-        }
-
-        &__error {
-            margin: 5px 0;
-            color: var(--error-color);
-        }
-
-        &__footer {
-            margin: 24px 0;
-            color: var(--white-color);
-            font-size: 16px;
-
-            @media screen and (max-width: 900px) {
-                margin: 20px 0;
-                font-size: 14px;
-            }
-
-            @media screen and (max-width: 600px) {
-                margin: 16px 0;
-                font-size: 12px;
-            }
-
-            a {
-                margin-left: 6px;
-                text-decoration: none;
             }
         }
     }

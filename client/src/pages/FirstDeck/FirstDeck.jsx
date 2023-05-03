@@ -53,7 +53,7 @@ const FirstDeck = () => {
         await axios.put('/api/profile/packs', {
             packs: [{ name: 'small' }, { name: 'medium' }, { name: 'large' }],
         })
-        await axios.put('/api/profile/backgrounds', {
+        await axios.put('/api/profile/cards', {
             backgrounds: [{ name: 'blue' }, { name: 'red' }],
         })
         await getCurrentUser()

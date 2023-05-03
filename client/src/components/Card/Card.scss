@@ -2,7 +2,7 @@
     position: relative;
     height: 300px;
     width: calc(300px * 0.725);
-    border-radius: 16px;
+    border-radius: 8px;
     cursor: pointer;
     z-index: 1;
 
@@ -25,7 +25,7 @@
         width: calc(200px * 0.725);
 
         img {
-            border-radius: 8px;
+            border-radius: 4px;
         }
 
         span {
@@ -63,11 +63,11 @@
     }
 
     &.blue {
-        background-image: url('../../assets/backgrounds/blue.jpg');
+        background-image: url('../../assets/cards/blue.jpg');
     }
 
     &.red {
-        background-image: url('../../assets/backgrounds/red.jpg');
+        background-image: url('../../assets/cards/red.jpg');
     }
 
     &.transparent {
@@ -80,13 +80,13 @@
 
     &.harmony {
         .card__values {
-            color: var(--secondary-color);
+            color: var(--primary2-color);
         }
     }
 
     &__image {
         height: 100%;
-        border-radius: 16px;
+        border-radius: 8px;
         pointer-events: none;
     }
 
@@ -94,10 +94,12 @@
         display: flex;
         flex-direction: column;
         color: var(--white-color);
-        text-shadow: 2px 2px 1px var(--black-color),
-            -1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
-            -1px 1px 1px var(--black-color);
-        font-size: 26px;
+        line-height: 1.4;
+        text-shadow: 1.25px 1.25px 1.25px var(--black-color),
+            -1.25px -1.25px 1.25px var(--black-color),
+            1.25px -1.25px 1.25px var(--black-color),
+            -1.25px 1.25px 1.25px var(--black-color);
+        font-size: 28px;
         pointer-events: none;
 
         .up {
@@ -138,11 +140,11 @@
         font-size: 32px;
 
         .check {
-            color: var(--secondary-color);
+            color: var(--primary2-color);
         }
 
         .uncheck {
-            color: var(--accent2-color);
+            color: var(--background-color);
         }
 
         svg {
@@ -151,7 +153,7 @@
         }
 
         svg.check {
-            border: 3px solid var(--accent2-color);
+            border: 3px solid var(--background-color);
             font-size: 26px;
         }
     }

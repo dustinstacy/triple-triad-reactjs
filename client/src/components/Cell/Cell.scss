@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.4);
-    border: 2px solid var(--primary-color);
-    border-radius: 16px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
     box-shadow: rgba(240, 240, 240, 0.25) 10px 10px 20px -12px inset,
         rgba(240, 240, 240, 0.3) -10px 10px 36px -18px inset;
     box-sizing: border-box;
@@ -25,10 +25,5 @@
     @media screen and (max-width: 600px) {
         height: 150px;
         width: calc(150px * 0.725);
-    }
-
-    .element {
-        width: 3vw;
-        pointer-events: none;
     }
 }

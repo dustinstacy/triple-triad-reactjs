@@ -146,20 +146,8 @@ const AccountBar = () => {
                     ) : (
                         <></>
                     )
-                ) : pathname === '/' ? (
-                    <NavLink to='/login' className='accountBar__login'>
-                        <p>Login</p>
-                    </NavLink>
-                ) : pathname === '/register' ? (
-                    <NavLink to='/login' className='accountBar__login'>
-                        <p>Login</p>
-                    </NavLink>
-                ) : pathname === '/deck' ? (
-                    <></>
                 ) : (
-                    <NavLink to='/register' className='accountBar__login'>
-                        <p>Register</p>
-                    </NavLink>
+                    <></>
                 )}
             </div>
         </div>

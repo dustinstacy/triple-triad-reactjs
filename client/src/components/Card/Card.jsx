@@ -1,6 +1,6 @@
 import React from 'react'
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
-import { cardback } from '../../assets/backgrounds'
+import { cardback } from '../../assets/card'
 import './Card.scss'
 
 const Card = ({ card, player, turn, handleClick, page, visibility }) => {

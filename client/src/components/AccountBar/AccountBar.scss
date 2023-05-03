@@ -64,9 +64,9 @@
         @include skew;
         position: relative;
         right: -24px;
-        border-bottom: 3px solid var(--secondary-color);
-        border-left: 3px solid var(--secondary-color);
-        border-radius: 0 0 0 16px;
+        border-bottom: 2px solid var(--primary-color);
+        border-left: 3px solid var(--primary-color);
+        border-radius: 0 0 0 8px;
         color: var(--white-color);
         font-size: 28px;
         white-space: nowrap;
@@ -87,7 +87,7 @@
         cursor: pointer;
 
         &:hover {
-            color: var(--secondary-color);
+            color: var(--primary-color);
             text-shadow: 1px 1px 5px var(--background-color);
         }
     }
@@ -155,8 +155,8 @@
             width: 100%;
             display: flex;
             align-items: center;
-            border: 2px solid var(--primary-color);
-            border-radius: 16px;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
 
             span {
                 position: absolute;
@@ -169,7 +169,7 @@
                 height: 100%;
                 display: flex;
                 align-items: flex-start;
-                background-color: var(--tertiary-color);
+                background-color: var(--secondary2-color);
                 border-radius: inherit;
             }
         }
@@ -179,9 +179,9 @@
             height: 64px;
             width: 64px;
             display: flex;
-            background-color: var(--tertiary-color);
-            border: 2px solid var(--primary-color);
-            border-radius: 16px;
+            background-color: var(--secondary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
 
             @media screen and (max-width: 350px) {
                 display: none;
@@ -212,9 +212,9 @@
         position: fixed;
         top: calc(var(--navbar-height) - 5px);
         right: 0;
-        border-left: 3px solid var(--secondary-color);
-        border-bottom: 3px solid var(--secondary-color);
-        border-radius: 0 0 0 16px;
+        border-left: 3px solid var(--primary2-color);
+        border-bottom: 3px solid var(--primary2-color);
+        border-radius: 0 0 0 8px;
         z-index: -1;
 
         @media screen and (max-width: 900px) {
@@ -248,7 +248,7 @@
             cursor: pointer;
 
             &:hover {
-                color: var(--secondary-color);
+                color: var(--primary2-color);
             }
         }
     }

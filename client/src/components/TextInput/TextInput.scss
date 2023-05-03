@@ -1,54 +1,32 @@
 .input {
     position: relative;
-    width: 80%;
-    margin: 30px 5px 0 5px;
+    margin: 20px 5px;
 
-    @media screen and (max-width: 900px) {
-        margin: 20px 5px 0 5px;
-    }
-
-    @media screen and (max-width: 600px) {
-        width: 90%;
+    @media screen and (max-width: 768px) {
+        margin: 15px 5px;
     }
 
     &__text {
         width: 100%;
         padding: 7px 14px;
         background: transparent;
-        border: 2px solid var(--tertiary-color);
-        border-radius: 5px;
-        box-sizing: border-box;
+        border: 1.5px solid var(--secondary2-color);
+        border-radius: 4px;
         color: var(--white-color);
-        font-family: 'Poppins';
+        font-family: 'Open Sans';
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 500;
         transition: 0.4s;
-
-        @media screen and (max-width: 900px) {
-            font-size: 16px;
-        }
-
-        @media screen and (max-width: 600px) {
-            font-size: 14px;
-        }
     }
 
     svg {
         position: absolute;
-        top: 12px;
-        right: 16px;
-        color: var(--secondary-color);
-        font-size: 24px;
-
-        @media screen and (max-width: 900px) {
-            top: 10px;
-            font-size: 20px;
-        }
-
-        @media screen and (max-width: 600px) {
-            top: 9px;
-            font-size: 18px;
-        }
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        color: var(--primary-color);
+        font-size: 20px;
+        cursor: pointer;
     }
 
     :focus {
@@ -61,17 +39,17 @@
         position: absolute;
         top: 0;
         right: 0;
+        height: 1px;
         width: 0;
-        height: 2px;
-        background-color: var(--secondary-color);
+        background-color: var(--primary-color);
         transition: 0.2s;
         transition-delay: 0.2s;
     }
 
     &__text ~ .focus-border:after {
         top: auto;
-        bottom: 0;
         right: auto;
+        bottom: 0;
         left: 0;
         transition-delay: 0.6s;
     }
@@ -82,17 +60,17 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 2px;
         height: 0;
-        background-color: var(--secondary-color);
+        width: 1px;
+        background-color: var(--primary-color);
         transition: 0.2s;
     }
 
     &__text ~ .focus-border i:after {
-        left: auto;
-        right: 0;
         top: auto;
+        right: 0;
         bottom: 0;
+        left: auto;
         transition-delay: 0.4s;
     }
 
@@ -125,21 +103,21 @@
 
     &__text ~ label {
         position: absolute;
-        left: 14px;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
         width: 100%;
-        top: 8px;
         color: var(--white-color);
         transition: 0.3s;
-        letter-spacing: 0.5px;
         pointer-events: none;
     }
 
     &__text:focus ~ label,
     .has-content ~ label {
-        top: -18px;
+        top: -12px;
         left: 0;
-        font-size: 12px;
-        color: var(--secondary-color);
+        font-size: 14px;
+        color: var(--primary-color);
         transition: 0.3s;
     }
 }

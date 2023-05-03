@@ -14,7 +14,7 @@ router.get('/test', (req, res) => {
 // @route GET /api/cards
 // @desc Get all released cards
 // @access Private
-router.get('/', requiresAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const cards = await Card.find({ ...Card })
 

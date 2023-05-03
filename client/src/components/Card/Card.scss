@@ -2,7 +2,7 @@
     position: relative;
     height: 300px;
     width: calc(300px * 0.725);
-    border-radius: 16px;
+    border-radius: 8px;
     cursor: pointer;
     z-index: 1;
 
@@ -25,7 +25,7 @@
         width: calc(200px * 0.725);
 
         img {
-            border-radius: 8px;
+            border-radius: 4px;
         }
 
         span {
@@ -80,13 +80,13 @@
 
     &.harmony {
         .card__values {
-            color: var(--secondary-color);
+            color: var(--primary2-color);
         }
     }
 
     &__image {
         height: 100%;
-        border-radius: 16px;
+        border-radius: 8px;
         pointer-events: none;
     }
 
@@ -140,7 +140,7 @@
         font-size: 32px;
 
         .check {
-            color: var(--secondary-color);
+            color: var(--primary2-color);
         }
 
         .uncheck {

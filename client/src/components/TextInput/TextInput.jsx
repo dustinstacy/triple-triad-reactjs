@@ -1,15 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import './TextInput.scss'
 
-const TextInput = ({
-    label,
-    value,
-    setState,
-    loading,
-    passwordVisibility,
-    setPasswordVisibility,
-}) => {
+const TextInput = ({ label, value, setState, loading, autofocus }) => {
+    const [passwordVisible, setPasswordVisible] = useState(false)
+
     return (
         <div className='input'>
             <input
@@ -17,27 +12,30 @@ const TextInput = ({
                     value.length > 0 ? 'has-content' : ''
                 }`}
                 type={
-                    label.includes('Password')
-                        ? !passwordVisibility
-                            ? 'password'
-                            : 'text'
+                    label.includes('Password') && !passwordVisible
+                        ? 'password'
                         : 'text'
                 }
                 value={value}
                 onChange={(e) => setState(e.target.value)}
                 disabled={loading}
+                autoFocus={autofocus}
             />
-            {passwordVisibility === true ? (
-                <AiFillEye
-                    onClick={() => setPasswordVisibility((current) => !current)}
-                />
-            ) : passwordVisibility === false ? (
-                <AiFillEyeInvisible
-                    onClick={() => setPasswordVisibility((current) => !current)}
-                />
-            ) : (
-                <></>
-            )}
+            {label.includes('Password') &&
+                (passwordVisible ? (
+                    <AiFillEye
+                        onClick={() =>
+                            setPasswordVisible((current) => !current)
+                        }
+                    />
+                ) : (
+                    <AiFillEyeInvisible
+                        onClick={() =>
+                            setPasswordVisible((current) => !current)
+                        }
+                    />
+                ))}
+
             <label>{label}</label>
             <span className='focus-border'>
                 <i></i>

@@ -1,0 +1,37 @@
+.form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .input {
+        width: 65%;
+    }
+
+    .error {
+        width: 65%;
+        margin-top: 0;
+        color: var(--error-color);
+        text-align: center;
+    }
+
+    .footer {
+        margin: 24px 0 36px 0;
+        color: var(--white-color);
+        font-size: 16px;
+
+        a {
+            margin-left: 6px;
+            text-decoration: none;
+        }
+    }
+}
+
+.button {
+    position: absolute;
+    bottom: -22px;
+    width: 250px;
+    padding: 5px;
+    font-size: 24px;
+}

@@ -1,8 +1,4 @@
 .deck {
-    background-image: url('../../assets/pageImages/library1.jpg');
-    background-position: center;
-    background-size: cover;
-
     button {
         width: 160px;
         margin: 4px;
@@ -297,6 +293,6 @@
             var(--secondary-color) 0px 1.5px 1.5px,
             var(--secondary-color) 0px 1.5px 1.5px,
             var(--secondary-color) 0px -1.5px 1.5px;
-        background-color: var(--accent-color);
+        background-color: var(--tertiary-color);
     }
 }

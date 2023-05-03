@@ -1,8 +1,5 @@
 .account {
     position: relative;
-    background-image: url('../../assets/pageImages/shuxingli.jpg');
-    background-position: center;
-    background-size: cover;
 
     .container {
         gap: 80px;
@@ -22,7 +19,7 @@
                 img {
                     height: 124px;
                     width: 124px;
-                    background-color: var(--accent-color);
+                    background-color: var(--tertiary-color);
                     border: 2px solid var(--primary-color);
                     border-radius: 8px;
                 }

@@ -1,14 +1,14 @@
 @mixin main-gradient {
-    background: var(--accent2-color);
+    background: var(--background-color);
     background: -webkit-linear-gradient(
         45deg,
-        var(--accent2-color),
-        var(--tertiary-color)
+        var(--background-color),
+        var(--tertiary2-color)
     );
     background: linear-gradient(
         45deg,
-        var(--accent2-color),
-        var(--tertiary-color)
+        var(--background-color),
+        var(--tertiary2-color)
     );
 }
 
@@ -16,13 +16,13 @@
     background: var(--primary-color);
     background: -webkit-linear-gradient(
         45deg,
-        var(--accent2-color),
-        var(--tertiary-color)
+        var(--background-color),
+        var(--tertiary2-color)
     );
     background: linear-gradient(
         45deg,
-        var(--primary-color) 65%,
-        var(--secondary-color)
+        var(--primary-color) 20%,
+        var(--secondary-color) 80%
     );
 }
 
@@ -36,7 +36,7 @@
     justify-content: center;
     margin-bottom: -16px;
     padding: 10px 20px;
-    border: 1px solid var(--accent2-color);
+    border: 1px solid var(--background-color);
     border-radius: 8px;
     box-shadow: 3px 3px 0 var(--black-color);
     color: var(--white-color);
@@ -54,11 +54,11 @@
 
     &:hover {
         @include main-gradient();
-        background-color: var(--accent2-color);
+        background-color: var(--background-color);
         border: 1px solid var(--primary-color);
         box-shadow: 6px 6px 0 var(--secondary-color);
         color: var(--secondary-color);
-        text-shadow: 1px 1px 5px var(--accent2-color);
+        text-shadow: 1px 1px 5px var(--background-color);
         transition: 0.5s;
 
         span:nth-child(2) {

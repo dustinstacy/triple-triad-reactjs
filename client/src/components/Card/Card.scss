@@ -63,11 +63,11 @@
     }
 
     &.blue {
-        background-image: url('../../assets/backgrounds/blue.jpg');
+        background-image: url('../../assets/cards/blue.jpg');
     }
 
     &.red {
-        background-image: url('../../assets/backgrounds/red.jpg');
+        background-image: url('../../assets/cards/red.jpg');
     }
 
     &.transparent {
@@ -94,10 +94,12 @@
         display: flex;
         flex-direction: column;
         color: var(--white-color);
-        text-shadow: 2px 2px 1px var(--black-color),
-            -1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
-            -1px 1px 1px var(--black-color);
-        font-size: 26px;
+        line-height: 1.4;
+        text-shadow: 1.25px 1.25px 1.25px var(--black-color),
+            -1.25px -1.25px 1.25px var(--black-color),
+            1.25px -1.25px 1.25px var(--black-color),
+            -1.25px 1.25px 1.25px var(--black-color);
+        font-size: 28px;
         pointer-events: none;
 
         .up {
@@ -142,7 +144,7 @@
         }
 
         .uncheck {
-            color: var(--accent2-color);
+            color: var(--background-color);
         }
 
         svg {
@@ -151,7 +153,7 @@
         }
 
         svg.check {
-            border: 3px solid var(--accent2-color);
+            border: 3px solid var(--background-color);
             font-size: 26px;
         }
     }

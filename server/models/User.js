@@ -21,7 +21,11 @@ const UserSchema = new Schema(
         },
         coin: {
             type: Number,
-            default: 1000,
+            default: 0,
+        },
+        artifacts: {
+            type: Number,
+            default: 0,
         },
         level: {
             type: Number,
@@ -30,10 +34,6 @@ const UserSchema = new Schema(
         xp: {
             type: Number,
             default: 0,
-        },
-        firstDeck: {
-            type: Boolean,
-            default: false,
         },
         stats: {
             matches: {
@@ -54,6 +54,24 @@ const UserSchema = new Schema(
             },
         },
         packs: [],
+        onboarding: {
+            firstLogin: {
+                type: Boolean,
+                default: true,
+            },
+            firstDeck: {
+                type: Boolean,
+                default: true,
+            },
+            firstPack: {
+                type: Boolean,
+                default: true,
+            },
+            firstMatch: {
+                type: Boolean,
+                default: true,
+            },
+        },
     },
     {
         timestamps: true,

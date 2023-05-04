@@ -15,13 +15,15 @@ const CardSchema = new Schema(
             type: String,
             required: true,
         },
-        element: {
-            type: String,
-            required: true,
-        },
         image: {
             type: String,
             required: true,
+        },
+        element: {
+            type: String,
+        },
+        weakness: {
+            type: String,
         },
     },
     {

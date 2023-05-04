@@ -19,10 +19,6 @@ const CollectionSchema = new Schema(
             type: String,
             required: true,
         },
-        element: {
-            type: String,
-            required: true,
-        },
         image: {
             type: String,
             required: true,
@@ -33,9 +29,19 @@ const CollectionSchema = new Schema(
                 required: true,
             },
         ],
+        level: {
+            type: Number,
+            default: 1,
+        },
         selected: {
             type: Boolean,
             default: false,
+        },
+        element: {
+            type: String,
+        },
+        weakness: {
+            type: String,
         },
     },
     {

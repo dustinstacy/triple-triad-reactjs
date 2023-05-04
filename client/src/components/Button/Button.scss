@@ -1,37 +1,8 @@
-@mixin main-gradient {
-    background: var(--background-color);
-    background: -webkit-linear-gradient(
-        45deg,
-        var(--background-color),
-        var(--background2-color)
-    );
-    background: linear-gradient(
-        45deg,
-        var(--background-color),
-        var(--background2-color)
-    );
-}
-
-@mixin primary2-gradient {
-    background: var(--primary-color);
-    background: -webkit-linear-gradient(
-        45deg,
-        var(--background-color),
-        var(--background2-color)
-    );
-    background: linear-gradient(
-        45deg,
-        var(--primary-color) 20%,
-        var(--primary2-color) 80%
-    );
-}
-
 .button {
     background-color: var(--secondary2-color);
     border: 1.5px solid var(--primary-color);
     border-radius: 4px;
     box-shadow: inset 0 0 3px 1px var(--background2-color);
-    color: var(--white-color);
     text-decoration: none;
     text-shadow: 0.5px 0.5px 2px var(--black-color),
         -0.5px -0.5px 2px var(--black-color),

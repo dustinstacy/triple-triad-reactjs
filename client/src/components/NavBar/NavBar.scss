@@ -12,37 +12,26 @@
     );
 }
 
-@mixin gold-effect {
-    background: linear-gradient(
-        to right,
-        #554903 0,
-        #cb9b51 22%,
-        #f6e27a 45%,
-        #f6f2c0 50%,
-        #f6e27a 55%,
-        #cb9b51 78%,
-        #554903 100%
-    );
-}
-
 .navbar {
     @include main-gradient;
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
     height: var(--navbar-height);
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 6px 18px;
-    color: var(--white-color);
-    font-size: 14px;
     font-weight: 500;
+    z-index: 10;
 
     &__logo {
-        padding-right: 3vw;
+        padding-right: 2vw;
 
         img {
             height: 64px;
+            cursor: pointer;
         }
     }
 
@@ -50,11 +39,34 @@
         height: 100%;
         display: flex;
         flex: 1;
-        align-items: flex-end;
-        gap: 3vw;
+        gap: 1vw;
 
         @media screen and (max-width: 1080px) {
             display: none;
+        }
+
+        .navbar-link {
+            height: 100%;
+            width: 60px;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 6px;
+            font-size: 11px;
+
+            p {
+                visibility: hidden;
+                color: var(--primary-color);
+            }
+
+            svg {
+                font-size: 24px;
+            }
+
+            &:hover {
+                p {
+                    visibility: visible;
+                }
+            }
         }
     }
 
@@ -94,17 +106,17 @@
             }
 
             .coin {
-                display: flex;
+                font-size: 15px;
                 gap: 8px;
 
                 img {
-                    width: 18px;
+                    height: 18px;
                 }
             }
         }
 
         .info {
-            height: 100%;
+            height: 110%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -133,54 +145,64 @@
             }
 
             .xp {
-                font-weight: 600;
+                font-size: 15px;
             }
         }
 
         .image {
             height: 100%;
             width: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+            .image-inner {
+                position: relative;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                img {
+                    height: 64px;
+                    width: 64px;
+                    background-color: var(--tertiary2-color);
+                    border: 2px solid var(--primary-color);
+                    border-radius: 12px;
+                    cursor: pointer;
+                }
+
+                .level {
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 54px;
+                    font-size: 11px;
+                    font-weight: 700;
+                    text-align: center;
+                    pointer-events: none;
+                }
+
+                .user-menu {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    margin: 12px 12px 0 0;
+                    padding: 12px;
+                    background: var(--secondary2-color);
+                    font-size: 18px;
+                    z-index: 10;
+
+                    .image-link {
+                        gap: 8px;
+                    }
+                }
+            }
         }
+    }
 
-        .image-inner {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            .user-name {
-                position: absolute;
-                top: -20px;
-                font-size: 14px;
-            }
-
-            img {
-                height: 64px;
-                width: 64px;
-                background-color: var(--tertiary2-color);
-                border: 2px solid var(--primary-color);
-                border-radius: 12px;
-                cursor: pointer;
-            }
-
-            .level {
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 54px;
-                background: var(--secondary2-color);
-                border: 1px solid var(--primary-color);
-                font-size: 11px;
-                font-weight: 700;
-                text-align: center;
-            }
-        }
+    .login {
+        font-size: 24px;
+        font-weight: 600;
     }
 
     .dropdown {
@@ -194,6 +216,8 @@
         svg {
             height: 24px;
             width: 24px;
+            font-size: 24px;
+
             cursor: pointer;
         }
 
@@ -201,41 +225,22 @@
             @include main-gradient();
             position: fixed;
             top: var(--navbar-height);
-            left: 0;
+            left: -2px;
+            padding: 12px 0;
             border-right: 2px solid var(--primary2-color);
             border-bottom: 2px solid var(--primary2-color);
             border-radius: 0 0 4px 0;
 
             .links {
                 height: 100%;
+                width: 90%;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
                 gap: 12px;
-                margin: 0;
-                padding: 24px;
-                font-size: 24px;
+                font-size: 20px;
                 list-style: none;
-
-                li {
-                    cursor: pointer;
-
-                    &:hover {
-                        color: var(--primary-color);
-                    }
-                }
             }
         }
-    }
-
-    .border-bottom {
-        @include gold-effect();
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        margin: 0;
-        border: 0;
     }
 }

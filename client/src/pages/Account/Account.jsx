@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { Button, TextInput } from '../../components'
+import { Button, NavBar, TextInput } from '../../components'
 import './Account.scss'
 
 const Account = () => {

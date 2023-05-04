@@ -1,13 +1,13 @@
 import React from 'react'
 
-import './Solo.scss'
+import './Battle.scss'
 
-const Solo = () => {
+const Battle = () => {
     return (
-        <div className='solo page'>
+        <div className='battle page'>
             <div className='container'></div>
         </div>
     )
 }
 
-export default Solo
+export default Battle

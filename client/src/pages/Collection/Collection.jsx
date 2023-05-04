@@ -16,9 +16,9 @@ import {
     Dark,
     Universal,
 } from '../../assets/elements'
-import './Deck.scss'
+import './Collection.scss'
 
-const Deck = () => {
+const Collection = () => {
     const {
         getCurrentUser,
         user,
@@ -492,4 +492,4 @@ const Deck = () => {
     )
 }
 
-export default Deck
+export default Collection

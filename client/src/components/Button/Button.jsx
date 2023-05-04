@@ -2,6 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Button.scss'
 
+const a = () => {
+    return 1
+}
+
 const Button = ({ label, type, path, handleSubmit, disabled }) => {
     const navigate = useNavigate()
 

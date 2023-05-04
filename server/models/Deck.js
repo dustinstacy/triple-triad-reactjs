@@ -11,7 +11,15 @@ const DeckSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Collection',
         },
-        element: {
+        number: {
+            type: String,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+        rarity: {
             type: String,
             required: true,
         },
@@ -25,6 +33,16 @@ const DeckSchema = new Schema(
                 required: true,
             },
         ],
+        level: {
+            type: Number,
+            required: true,
+        },
+        element: {
+            type: String,
+        },
+        weakness: {
+            type: String,
+        },
     },
     {
         timestamps: true,

@@ -66,7 +66,6 @@ const Match = () => {
     const placeCard = (e) => {
         const index = parseInt(e.target.id)
         if (cardSelected) {
-            checkElements(index, cardSelected)
             boardArray.splice(index, 1, cardSelected)
             processBattles(index, cardSelected)
             p1Hand.forEach((card, i) =>

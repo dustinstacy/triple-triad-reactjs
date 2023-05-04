@@ -13,7 +13,7 @@ export const navlinks = [
     },
     {
         name: 'Battle',
-        path: '/battle',
+        path: '/match',
         image: <GiAbstract062 />,
     },
     {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
 import { CPUCardProvider } from './context/CPUCardContext'
 import { useGlobalContext } from './context/GlobalContext'
@@ -21,6 +21,7 @@ import './App.scss'
 
 function App() {
     const { getAllCards, allCards } = useGlobalContext()
+    const { pathname } = useLocation()
 
     useEffect(() => {
         if (allCards.length === 0) {
@@ -30,7 +31,7 @@ function App() {
 
     return (
         <CPUCardProvider>
-            <NavBar />
+            {pathname !== '/match' && pathname !== 'matchEnd' && <NavBar />}
             <Routes>
                 <Route path='/' element={<LandingPage />} />
                 <Route path='/register' element={<LandingPage register />} />

@@ -29,7 +29,7 @@
     --gray-color: #655e51;
     --white-color: #faf0e1;
 
-    --navbar-height: 112px;
+    --navbar-height: 80px;
     --footer-height: 80px;
 
     font-synthesis: none;
@@ -52,7 +52,7 @@ body {
     margin: 0;
     background-color: var(--background-color);
     font-family: 'Open Sans';
-    font-weight: 700;
+    font-weight: 500;
     scroll-behavior: smooth;
 }
 
@@ -91,12 +91,14 @@ body {
 }
 
 /******* Standard elements ********/
-a {
-    color: var(--primary-color);
+a,
+.navlink {
+    color: var(--white-color);
+    text-decoration: none;
     cursor: pointer;
 
     &:hover {
-        color: var(--primary2-color);
+        color: var(--primary-color);
     }
 }
 
@@ -104,7 +106,11 @@ button {
     cursor: pointer;
 }
 
-h1 {
+h1,
+h2,
+h3,
+p,
+span {
     margin: 0;
     color: var(--white-color);
     text-shadow: 2px 2px 1px var(--black-color),

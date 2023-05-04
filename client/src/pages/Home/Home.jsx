@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, AccountBar } from '../../components'
+import { Button, NavBar } from '../../components'
 import { useGlobalContext } from '../../context/GlobalContext'
 import './Home.scss'
 
@@ -12,7 +12,7 @@ const Home = () => {
 
     return (
         <div className='home page'>
-            <AccountBar />
+            <NavBar />
             <div className='container'>
                 <Button label='Solo' type='link' path='match' />
                 <Button label='Deck' type='link' path='deck' />

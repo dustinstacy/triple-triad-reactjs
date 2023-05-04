@@ -13,10 +13,10 @@ export const navlinks = [
     },
     {
         name: 'Packs',
-        path: 'packs',
+        path: '/packs',
     },
     {
         name: 'Account',
-        path: 'account',
+        path: '/account',
     },
 ]

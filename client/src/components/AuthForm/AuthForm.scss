@@ -23,7 +23,11 @@
 
         a {
             margin-left: 6px;
-            text-decoration: none;
+            color: var(--primary-color);
+
+            &:hover {
+                color: var(--secondary-color);
+            }
         }
     }
 }

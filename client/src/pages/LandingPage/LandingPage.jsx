@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AuthForm } from '../../components'
+import { AuthForm, NavBar } from '../../components'
 import { logo } from '../../assets/logos'
 import './LandingPage.scss'
 
@@ -22,6 +22,7 @@ const LandingPage = ({ register }) => {
 
     return (
         <div className='landing page'>
+            <NavBar landing />
             <div className='auth box'>
                 <img
                     className={`${register ? 'logo-register' : 'logo'}`}

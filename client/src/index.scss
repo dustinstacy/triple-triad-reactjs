@@ -1,33 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap');
 
-@mixin gold-effect {
-    background: linear-gradient(
-        to right,
-        #554903 0,
-        #cb9b51 22%,
-        #f6e27a 45%,
-        #f6f2c0 50%,
-        #f6e27a 55%,
-        #cb9b51 78%,
-        #554903 100%
-    );
-}
-
 :root {
-    --primary-color: #eba902;
-    --primary2-color: #7c5b07;
+    --primary-color: rgb(235, 169, 2);
+    --primary2-color: rgb(124, 91, 7);
 
-    --secondary-color: #0061b0;
-    --secondary2-color: #54616d;
+    --secondary-color: rgb(0, 97, 176);
+    --secondary2-color: rgb(84, 97, 109);
 
-    --background-color: #001323;
-    --background2-color: #03303b;
+    --background-color: rgb(0, 19, 35);
+    --background2-color: rgb(3, 48, 59);
 
-    --error-color: #9e0e24;
+    --error-color: rgb(158, 14, 36);
 
-    --black-color: #0e0f0f;
-    --gray-color: #655e51;
-    --white-color: #faf0e1;
+    --black-color: rgb(14, 15, 15);
+    --gray-color: rgb(101, 94, 81);
+    --white-color: rgb(250, 240, 225);
 
     --navbar-height: 80px;
     --footer-height: 80px;
@@ -39,11 +26,10 @@
     -webkit-text-size-adjust: 100%;
 }
 
+/******* Universal Styling ********/
 * {
     box-sizing: border-box;
 }
-
-/******* containers ********/
 
 html,
 body {
@@ -51,54 +37,26 @@ body {
     max-width: 100vw;
     margin: 0;
     background-color: var(--background-color);
+    color: var(--white-color);
     font-family: 'Open Sans';
     font-weight: 500;
     scroll-behavior: smooth;
-}
-
-.app,
-.page {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
     overflow-x: hidden;
 }
 
-.page {
-    position: relative;
-}
-
-.container {
-    width: 100%;
-    display: flex;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.box {
-    background-color: var(--background-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
-        rgba(0, 0, 0, 0.15) -40px -36px 130px 0px inset,
-        rgba(0, 0, 0, 0.9) 0px -40px 40px 0px inset,
-        rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
-        rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
-        rgba(0, 0, 0, 0.09) 0px 32px 16px;
-    color: var(--white-color);
-}
-
-/******* Standard elements ********/
 a,
 .navlink {
     color: var(--white-color);
     text-decoration: none;
+    text-transform: uppercase;
     cursor: pointer;
 
     &:hover {
         color: var(--primary-color);
+    }
+
+    &:active {
+        color: var(--secondary2-color);
     }
 }
 
@@ -116,13 +74,6 @@ span {
     text-shadow: 2px 2px 1px var(--black-color),
         -1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
         -1px 1px 1px var(--black-color);
-}
-
-/******* Custom Reusable Stylings *******/
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /******* Scrollbar ********/

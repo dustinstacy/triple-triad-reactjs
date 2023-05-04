@@ -7,7 +7,7 @@ import { Button, TextInput } from '../../components'
 import './AuthForm.scss'
 
 const AuthForm = ({ register }) => {
-    const { getCurrentUser, getAllCards, getUserCards } = useGlobalContext()
+    const { getCurrentUser } = useGlobalContext()
 
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -69,8 +69,8 @@ const AuthForm = ({ register }) => {
     }, [register])
 
     return (
-        <>
-            <form className='form' onKeyDown={(e) => handleKeyDown(e)}>
+        <div className='auth-form center'>
+            <form className='form center' onKeyDown={(e) => handleKeyDown(e)}>
                 <TextInput
                     label='Username'
                     value={username}
@@ -78,7 +78,9 @@ const AuthForm = ({ register }) => {
                     loading={loading}
                     autofocus
                 />
-                {errors.username && <p className='error'>{errors.username}</p>}
+                {errors.username && (
+                    <p className='form__error'>{errors.username}</p>
+                )}
                 {register && (
                     <TextInput
                         label='Email'
@@ -87,14 +89,16 @@ const AuthForm = ({ register }) => {
                         loading={loading}
                     />
                 )}
-                {errors.email && <p className='error'>{errors.email}</p>}
+                {errors.email && <p className='form__error'>{errors.email}</p>}
                 <TextInput
                     label='Password'
                     value={password}
                     setState={setPassword}
                     loading={loading}
                 />
-                {errors.password && <p className='error'>{errors.password}</p>}
+                {errors.password && (
+                    <p className='form__error'>{errors.password}</p>
+                )}
                 {register && (
                     <TextInput
                         label='Confirm Password'
@@ -104,20 +108,20 @@ const AuthForm = ({ register }) => {
                     />
                 )}
                 {errors.confirmPassword && (
-                    <p className='error'>{errors.confirmPassword}</p>
+                    <p className='form__error'>{errors.confirmPassword}</p>
                 )}
 
                 {Object.keys(errors).length > 0 && !register && (
-                    <p className='error'>Nope. Try Again.</p>
+                    <p className='form__error'>Nope. Try Again.</p>
                 )}
 
                 {register ? (
-                    <div className='footer'>
+                    <div className='form__footer'>
                         <span>Already have an account? </span>
                         <NavLink to='/'>Login</NavLink>
                     </div>
                 ) : (
-                    <div className='footer'>
+                    <div className='form__footer'>
                         <span>Need an account? </span>
                         <NavLink to='/register'>Sign up</NavLink>
                     </div>
@@ -130,7 +134,7 @@ const AuthForm = ({ register }) => {
                 disabled={loading}
                 onKeyDown
             />
-        </>
+        </div>
     )
 }
 

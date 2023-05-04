@@ -1,41 +1,40 @@
-.form {
+.auth-form {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 
-    .input {
-        width: 65%;
-    }
+    .form {
+        width: 100%;
+        flex-direction: column;
 
-    .error {
-        width: 65%;
-        margin-top: 0;
-        color: var(--error-color);
-        text-align: center;
-    }
+        .input {
+            width: 65%;
+        }
 
-    .footer {
-        margin: 24px 0 36px 0;
-        color: var(--white-color);
-        font-size: 16px;
+        &__error {
+            width: 65%;
+            margin-top: 0;
+            color: var(--error-color);
+            text-align: center;
+        }
 
-        a {
-            margin-left: 6px;
-            color: var(--primary-color);
+        &__footer {
+            margin: 24px 0 36px 0;
 
-            &:hover {
-                color: var(--secondary-color);
+            a {
+                margin-left: 6px;
+                color: var(--primary-color);
+
+                &:hover {
+                    color: var(--secondary-color);
+                }
             }
         }
     }
-}
 
-.button {
-    position: absolute;
-    bottom: -22px;
-    width: 250px;
-    padding: 5px;
-    font-size: 24px;
+    .button {
+        position: absolute;
+        bottom: -22px;
+        width: 250px;
+        padding: 5px;
+        font-size: 24px;
+    }
 }

@@ -3,7 +3,7 @@ import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { cardback } from '../../assets/card'
 import './Card.scss'
 
-const Card = ({ card, player, turn, handleClick, page, visibility }) => {
+const Card = ({ card, player, turn, handleClick, visibility, page }) => {
     return (
         <div
             className={`card ${player === 'p1' ? 'blue' : 'red'} ${
@@ -11,7 +11,6 @@ const Card = ({ card, player, turn, handleClick, page, visibility }) => {
             } ${card.power} ${!visibility && 'transparent'}`}
             id={card._id}
             onClick={(e) => handleClick(e)}
-            onDrag={(e) => handleDrag(e)}
             owner={player}
         >
             <img
@@ -27,7 +26,7 @@ const Card = ({ card, player, turn, handleClick, page, visibility }) => {
                     <span className='left'>{card.values[3]}</span>
                 </div>
             )}
-            {page === 'deck' && (
+            {page === 'collection' && (
                 <div className='checkbox'>
                     {card.selected ? (
                         <ImCheckboxChecked className='check' />

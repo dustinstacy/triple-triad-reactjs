@@ -4,18 +4,20 @@ import { Routes, Route } from 'react-router-dom'
 import { CPUCardProvider } from './context/CPUCardContext'
 import { useGlobalContext } from './context/GlobalContext'
 
+import { NavBar } from './components'
 import {
     LandingPage,
     Home,
-    Solo,
+    Battle,
     Match,
     MatchEnd,
     MatchSetup,
-    Deck,
+    Collection,
     Packs,
     FirstDeck,
     Account,
 } from './pages'
+import './App.scss'
 
 function App() {
     const { getAllCards, allCards } = useGlobalContext()
@@ -27,26 +29,22 @@ function App() {
     }, [])
 
     return (
-        <div className='app'>
-            <CPUCardProvider>
-                <Routes>
-                    <Route path='/' element={<LandingPage />} />
-                    <Route
-                        path='/register'
-                        element={<LandingPage register />}
-                    />
-                    <Route path='/firstDeck' element={<FirstDeck />} />
-                    <Route path='/home' element={<Home />} />
-                    <Route path='/solo' element={<Solo />} />
-                    <Route path='/matchSetup' element={<MatchSetup />} />
-                    <Route path='/match' element={<Match />} />
-                    <Route path='/matchEnd' element={<MatchEnd />} />
-                    <Route path='/deck' element={<Deck />} />
-                    <Route path='/packs' element={<Packs />} />
-                    <Route path='/account' element={<Account />} />
-                </Routes>
-            </CPUCardProvider>
-        </div>
+        <CPUCardProvider>
+            <NavBar />
+            <Routes>
+                <Route path='/' element={<LandingPage />} />
+                <Route path='/register' element={<LandingPage register />} />
+                <Route path='/firstDeck' element={<FirstDeck />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/battle' element={<Battle />} />
+                <Route path='/matchSetup' element={<MatchSetup />} />
+                <Route path='/match' element={<Match />} />
+                <Route path='/matchEnd' element={<MatchEnd />} />
+                <Route path='/collection' element={<Collection />} />
+                <Route path='/packs' element={<Packs />} />
+                <Route path='/account' element={<Account />} />
+            </Routes>
+        </CPUCardProvider>
     )
 }
 

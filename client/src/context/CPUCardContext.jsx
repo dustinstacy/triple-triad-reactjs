@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react'
 import { assignRandomValues } from '../utils/assignRandomValues'
 import { useGlobalContext } from './GlobalContext'
-import { hades } from '../constants/opponents'
+import { goblin } from '../constants/opponents'
 
 const initialState = {
-    cpu: hades,
+    cpu: goblin,
     cpuDeck: [],
 }
 

@@ -6,9 +6,10 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, TextInput } from '../../components'
 import './AuthForm.scss'
 
+// "register" prop provides toggle between login & signup form
 const AuthForm = ({ register }) => {
     const { getCurrentUser } = useGlobalContext()
-    const [inputs, setInputs] = useState({
+    const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
@@ -17,19 +18,34 @@ const AuthForm = ({ register }) => {
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
+    // Define the form fields to be rendered based on the value of "register" prop
+    const formFields = ['Username', 'Password']
+    if (register) {
+        formFields.splice(1, 0, 'Email')
+        formFields.splice(3, 0, 'Confirm Password')
+    }
+
     const navigate = useNavigate()
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target
+        setFormData({ ...formData, [name]: value })
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
 
-        const { username, email, password, confirmPassword } = inputs
+        // Deconstruct formData to select values for POST request
+        const { username, email, password, confirmPassword } = formData
 
+        // Set the data object based on the value of "register" prop
         const data = register
             ? { username, email, password, confirmPassword }
             : { username, password }
 
         try {
+            // Send a POST request to the appropriate endpoint based on the value of "register" prop
             await axios.post(
                 register ? '/api/auth/register' : '/api/auth/login',
                 data
@@ -52,7 +68,7 @@ const AuthForm = ({ register }) => {
     }
 
     const reset = () => {
-        setInputs({
+        setFormData({
             username: '',
             email: '',
             password: '',
@@ -62,82 +78,44 @@ const AuthForm = ({ register }) => {
         setErrors({})
     }
 
+    // Reset the form data, loading state, and errors when the "register" prop changes
     useEffect(() => {
         reset()
     }, [register])
 
+    // Define a function to convert string to Camelcase
+    // Provide the capability to map TextInput elements
+    const toCamelCase = (str) => {
+        return str
+            .replace(/\s(.)/g, function (a) {
+                return a.toUpperCase()
+            })
+            .replace(/\s/g, '')
+            .replace(/^(.)/, function (b) {
+                return b.toLowerCase()
+            })
+    }
+
     return (
         <div className='auth-form center'>
             <form className='form center' onKeyDown={(e) => handleKeyDown(e)}>
-                <TextInput
-                    label='Username'
-                    value={inputs.username}
-                    setValue={(value) =>
-                        setInputs((prevState) => ({
-                            ...prevState,
-                            username: value,
-                        }))
-                    }
-                    loading={loading}
-                    autofocus
-                />
-                {errors.username && (
-                    <p className='form__error'>{errors.username}</p>
-                )}
-                {register && (
-                    <>
+                {formFields.map((field) => (
+                    <React.Fragment key={field}>
                         <TextInput
-                            label='Email'
-                            value={inputs.email}
-                            setValue={(value) =>
-                                setInputs((prevState) => ({
-                                    ...prevState,
-                                    email: value,
-                                }))
-                            }
+                            label={field}
+                            name={toCamelCase(field)}
+                            value={formData[toCamelCase(field)]}
+                            onChange={handleInputChange}
                             loading={loading}
+                            autofocus={field === 'Username'}
                         />
-                        {errors.email && (
-                            <p className='form__error'>{errors.email}</p>
-                        )}
-                    </>
-                )}
-                <TextInput
-                    label='Password'
-                    value={inputs.password}
-                    setValue={(value) =>
-                        setInputs((prevState) => ({
-                            ...prevState,
-                            password: value,
-                        }))
-                    }
-                    loading={loading}
-                />
-
-                {errors.password && (
-                    <p className='form__error'>{errors.password}</p>
-                )}
-                {register && (
-                    <>
-                        {' '}
-                        <TextInput
-                            label='Confirm Password'
-                            value={inputs.confirmPassword}
-                            setValue={(value) =>
-                                setInputs((prevState) => ({
-                                    ...prevState,
-                                    confirmPassword: value,
-                                }))
-                            }
-                            loading={loading}
-                        />
-                        {errors.confirmPassword && (
+                        {errors[toCamelCase(field)] && (
                             <p className='form__error'>
-                                {errors.confirmPassword}
+                                {errors[toCamelCase(field)]}
                             </p>
                         )}
-                    </>
-                )}
+                    </React.Fragment>
+                ))}
 
                 {Object.keys(errors).length > 0 && !register && (
                     <p className='form__error'>Nope. Try Again.</p>
@@ -156,7 +134,7 @@ const AuthForm = ({ register }) => {
             <Button
                 label='Submit'
                 type='submit'
-                handleSubmit={handleSubmit}
+                onClick={handleSubmit}
                 disabled={loading}
                 onKeyDown
             />

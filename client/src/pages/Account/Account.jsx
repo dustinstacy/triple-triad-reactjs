@@ -43,7 +43,7 @@ const Account = () => {
                             <Button
                                 label='Submit'
                                 type='submit'
-                                handleClick={updateUserImage}
+                                onClick={updateUserImage}
                             />
                         </div>
                         <br />

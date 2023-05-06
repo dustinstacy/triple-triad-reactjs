@@ -208,7 +208,7 @@
     }
 }
 
-.dropdown {
+.burger-menu {
     width: 80px;
     display: flex;
 
@@ -217,14 +217,11 @@
     }
 
     svg {
-        height: 24px;
-        width: 24px;
         font-size: 24px;
-
         cursor: pointer;
     }
 
-    &__menu {
+    .menu {
         @include main-gradient();
         position: fixed;
         top: var(--navbar-height);

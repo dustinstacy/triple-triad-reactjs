@@ -14,24 +14,26 @@ import { navlinks } from '../../constants/navlinks'
 import './NavBar.scss'
 
 const BurgerMenu = () => {
-    const [toggle, setToggle] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+
+    const handleToggle = () => {
+        setIsOpen((isOpen) => !isOpen)
+    }
 
     return (
-        <div className='dropdown'>
-            {!toggle ? (
-                <MdMenu onClick={() => setToggle((current) => !current)} />
+        <div className='burger-menu'>
+            {!isOpen ? (
+                <MdMenu onClick={() => handleToggle()} />
             ) : (
-                <MdOutlineClose
-                    onClick={() => setToggle((current) => !current)}
-                />
+                <MdOutlineClose onClick={() => handleToggle()} />
             )}
             <motion.div
-                className='dropdown__menu'
+                className='menu'
                 initial={{ width: 0 }}
                 animate={
                     window.innerWidth > 600
-                        ? { width: toggle ? '25vw' : '0' }
-                        : { width: toggle ? '50vw' : '0' }
+                        ? { width: isOpen ? '25vw' : '0' }
+                        : { width: isOpen ? '50vw' : '0' }
                 }
                 transition={{
                     duration: 0.3,
@@ -40,9 +42,13 @@ const BurgerMenu = () => {
             >
                 <div className='links'>
                     {navlinks.map((link) => (
-                        <a key={link.name} href={link.path}>
+                        <NavLink
+                            key={link.name}
+                            to={link.path}
+                            onClick={() => setIsOpen(false)}
+                        >
                             {link.name}
-                        </a>
+                        </NavLink>
                     ))}
                 </div>
             </motion.div>
@@ -75,12 +81,22 @@ const User = () => {
 
     useEffect(() => {
         if (user?.xp >= userNextLevel) {
-            axios.put('/api/profile', {
-                level: user.level + 1,
-            })
-            getCurrentUser()
+            axios
+                .put('/api/profile', {
+                    level: user.level + 1,
+                })
+                .then(() => {
+                    getCurrentUser()
+                })
         }
-    }, [user])
+    }, [user, getCurrentUser, userNextLevel])
+
+    const handleLogout = () => {
+        logout().then(() => {
+            setToggle(false)
+            navigate('/')
+        })
+    }
 
     return (
         <div className='user'>
@@ -118,12 +134,7 @@ const User = () => {
                             <a href='/account'>Account</a>
                             <a
                                 className='user-link center'
-                                onClick={() =>
-                                    logout().then(
-                                        setToggle(false),
-                                        navigate('/')
-                                    )
-                                }
+                                onClick={() => handleLogout()}
                             >
                                 Logout <MdLogout />
                             </a>
@@ -136,8 +147,8 @@ const User = () => {
 }
 
 const NavBar = ({ landing }) => {
-    const navigate = useNavigate()
     const { user } = useGlobalContext()
+    const navigate = useNavigate()
 
     return (
         <div className='navbar'>
@@ -149,14 +160,15 @@ const NavBar = ({ landing }) => {
                 onClick={() => navigate('/home')}
             />
             <Links />
-            {!landing &&
-                (user ? (
-                    <User />
-                ) : (
+            {user ? (
+                <User />
+            ) : (
+                !landing && (
                     <a className='navbar__login box' href='/'>
                         Login
                     </a>
-                ))}
+                )
+            )}
 
             <hr className='gold-border-bottom' />
         </div>

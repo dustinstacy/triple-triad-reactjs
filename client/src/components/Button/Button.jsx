@@ -11,14 +11,7 @@ const Button = ({ label, type, path, handleSubmit, disabled }) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-
-        if (type === 'link') {
-            navigate(`/${path}`)
-        }
-
-        if (type === 'submit') {
-            handleSubmit(e)
-        }
+        type === 'link' ? navigate(`/${path}`) : handleSubmit(e)
     }
 
     return (

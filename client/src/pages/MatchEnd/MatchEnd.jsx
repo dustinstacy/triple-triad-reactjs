@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { coin } from '../../assets/icons'
+import { coinImage } from '../../assets/icons'
 import './MatchEnd.scss'
 import { Button } from '../../components'
 
@@ -74,7 +74,7 @@ const MatchEnd = () => {
                             ? 0
                             : '+ ' + Math.floor(cpu.coinReward / 2.5)}
                         <span> </span>
-                        <img src={coin} alt='coin' />
+                        <img src={coinImage} alt='coin' />
                     </span>
                 </p>
             </div>

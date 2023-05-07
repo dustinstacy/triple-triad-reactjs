@@ -6,7 +6,7 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, TextInput } from '../../components'
 import './AuthForm.scss'
 
-// "register" prop provides toggle between login & signup form
+// The register prop is used to toggle between login and signup form
 const AuthForm = ({ register }) => {
     const { getCurrentUser } = useGlobalContext()
     const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const AuthForm = ({ register }) => {
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
-    // Define the form fields to be rendered based on the value of "register" prop
+    // Define the form fields to be rendered based on the value of register prop
     const formFields = ['Username', 'Password']
     if (register) {
         formFields.splice(1, 0, 'Email')
@@ -36,16 +36,16 @@ const AuthForm = ({ register }) => {
         e.preventDefault()
         setLoading(true)
 
-        // Deconstruct formData to select values for POST request
+        // Deconstruct the formData object to extract values needed for the POST request
         const { username, email, password, confirmPassword } = formData
 
-        // Set the data object based on the value of "register" prop
+        // Set the data object based on the value of register prop
         const data = register
             ? { username, email, password, confirmPassword }
             : { username, password }
 
         try {
-            // Send a POST request to the appropriate endpoint based on the value of "register" prop
+            // Send a POST request to the appropriate endpoint based on the value of register prop
             await axios.post(
                 register ? '/api/auth/register' : '/api/auth/login',
                 data
@@ -78,13 +78,13 @@ const AuthForm = ({ register }) => {
         setErrors({})
     }
 
-    // Reset the form data, loading state, and errors when the "register" prop changes
+    // Reset the form data, loading state, and errors when the register prop changes
     useEffect(() => {
         reset()
     }, [register])
 
-    // Define a function to convert string to Camelcase
-    // Provide the capability to map TextInput elements
+    // This function takes in a string and converts it to CamelCase format
+    // This capability is used to map TextInput elements to their corresponding labels
     const toCamelCase = (str) => {
         return str
             .replace(/\s(.)/g, function (a) {

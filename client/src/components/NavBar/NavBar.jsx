@@ -16,6 +16,8 @@ import { navlinks } from '../../constants/navlinks'
 
 import './NavBar.scss'
 
+// The list of links is memoized to avoid unnecessary re-rendering.
+// The menu and onClick props are used to add CSS class names and customize functionality of the links.
 const Links = ({ menu, onClick }) => {
     const linkItems = useMemo(
         () =>
@@ -76,7 +78,10 @@ const BurgerMenu = () => {
 }
 
 const UserInventory = ({ user }) => {
+    // Destructured using nullish coalescence to return empty object if user is null or undefined
+    // Prevents errors generated from attempting to access properties on a null or undefined object
     const { coin } = user ?? {}
+
     return (
         <div className='user-inventory'>
             <p className='coin center'>
@@ -86,6 +91,8 @@ const UserInventory = ({ user }) => {
     )
 }
 
+// This component displays the username, XP progress bar, and current XP / next level XP
+// It also handles level up logic by making an API call when user XP exceeds the XP required for their current level.
 const UserInfo = ({ user }) => {
     const { getCurrentUser } = useGlobalContext()
     const { username, xp, level } = user ?? {}
@@ -142,6 +149,7 @@ const UserImage = ({ user }) => {
     )
 }
 
+// This component is the menu that is displayed when the user clicks on their image.
 const UserMenu = ({ isOpen, setIsOpen }) => {
     const { logout } = useGlobalContext()
 
@@ -168,6 +176,7 @@ const UserMenu = ({ isOpen, setIsOpen }) => {
     )
 }
 
+// This component acts as the parent component for all User-related components
 const UserSection = ({ user }) => {
     return (
         <div className='user'>
@@ -179,6 +188,7 @@ const UserSection = ({ user }) => {
     )
 }
 
+// The landing prop is used to conditionally render the login NavLink on the NavBar component.
 const NavBar = ({ landing }) => {
     const { user } = useGlobalContext()
     const navigate = useNavigate()

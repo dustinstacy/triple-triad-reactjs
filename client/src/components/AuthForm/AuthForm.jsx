@@ -123,8 +123,8 @@ const AuthForm = ({ register }) => {
                 <div className='form__footer'>
                     <span>
                         {register
-                            ? 'Already have an account? '
-                            : 'Need an account? '}
+                            ? 'Already Have An Account? '
+                            : 'Need An AccOunt? '}
                     </span>
                     <NavLink to={register ? '/' : '/register'}>
                         {register ? 'Login' : 'Sign up'}

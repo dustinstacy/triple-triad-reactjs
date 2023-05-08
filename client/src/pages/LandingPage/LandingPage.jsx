@@ -21,7 +21,7 @@ const LandingPage = ({ register }) => {
     }, [])
 
     return (
-        <div className='landing page'>
+        <div className='landing page center'>
             <NavBar landing />
             <div className='auth box'>
                 <img

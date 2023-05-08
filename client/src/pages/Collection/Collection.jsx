@@ -4,18 +4,6 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import { Card } from '../../components'
 import { FaStar, FaRegStar } from 'react-icons/fa'
 
-import {
-    Neutral,
-    Fire,
-    Water,
-    Earth,
-    Wind,
-    Ice,
-    Lightning,
-    Holy,
-    Dark,
-    Universal,
-} from '../../assets/elements'
 import './Collection.scss'
 
 const Collection = () => {
@@ -29,14 +17,12 @@ const Collection = () => {
     } = useGlobalContext()
     const [deckFilter, setDeckFilter] = useState('Show All')
     const [rarityFilter, setRarityFilter] = useState(null)
-    const [elementFilter, setElementFilter] = useState(null)
     const [sortingFilter, setSortingFilter] = useState(null)
 
     const cardNames = userCards.map((card) => card.name)
     const uniqueCards = [...new Set(cardNames)]
 
     const valuesArray = ['Up', 'Right', 'Down', 'Left']
-    const elementArray = []
     const rarityArray = []
 
     useEffect(() => {
@@ -45,9 +31,6 @@ const Collection = () => {
     }, [])
 
     allCards.forEach((card) => {
-        if (!elementArray.includes(card.element)) {
-            elementArray.push(card.element)
-        }
         if (!rarityArray.includes(card.rarity)) {
             rarityArray.push(card.rarity)
         }
@@ -229,7 +212,7 @@ const Collection = () => {
                         turn={true}
                         visibility={true}
                     />
-                    Newest Card
+                    Most Captures
                 </div>
             </div>
             {/* <div className='current-deck box center'>

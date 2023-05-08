@@ -11,11 +11,11 @@ const TextInput = ({ label, name, value, onChange, loading, autofocus }) => {
     }
 
     return (
-        <div className='input'>
+        <div className='text-input'>
             <input
                 type={isPasswordInput && !passwordVisible ? 'password' : 'text'}
                 id={name}
-                className={`input__text ${value ? 'has-content' : ''}`}
+                className={`input ${value ? 'has-content' : ''}`}
                 name={name}
                 value={value}
                 onChange={(e) => onChange(e)}

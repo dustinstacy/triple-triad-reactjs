@@ -1,4 +1,3 @@
-import coinImage from './coinImage2.png'
-import home from './home.png'
+import coinImage from './coinImage.png'
 
-export { coinImage, home }
+export { coinImage }

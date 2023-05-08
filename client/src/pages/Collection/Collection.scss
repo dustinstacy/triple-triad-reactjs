@@ -1,298 +1,44 @@
-.deck {
-    button {
-        width: 160px;
-        margin: 4px;
-        padding: 2px 0;
-        font-size: 16px;
+.collection {
+    margin-top: var(--navbar-height);
+    align-items: center;
 
-        @media screen and (max-width: 600px) {
-            height: 42px;
-            width: 84px;
-            font-size: 12px;
-        }
-    }
-
-    .sidebar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 30vw;
+    .user-collection {
+        height: 600px;
+        width: 60vw;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-        padding-top: var(--navbar-height);
-        border-radius: 0;
-        border-top: none;
-        border-left: none;
-        border-bottom: none;
-        box-sizing: border-box;
-        color: var(--white-color);
-        overflow-y: scroll;
-        z-index: 5;
 
-        .filters {
+        .user-info {
+            width: 50%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding-bottom: 16px;
+            gap: 18px;
 
-            &__section {
-                width: 25vw;
+            .user-details {
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                .section__header {
-                    width: 100%;
-                    text-align: center;
-                    line-height: 12px;
-
-                    hr {
-                        height: 2px;
-                        background-color: var(--primary-color);
-                        border: none;
-                    }
-
-                    h3 {
-                        display: flex;
-                        margin: 0;
-                        padding-left: 16px;
-
-                        @media screen and (max-width: 600px) {
-                            display: inline;
-                            padding-left: 0;
-                            line-height: 16px;
-                        }
-                    }
-                }
-
-                .section__options {
-                    width: 100%;
-                    display: grid;
-                    justify-content: center;
-                    grid-template-columns: repeat(auto-fit, 172px);
-                    grid-gap: 0 12px;
-                    padding-bottom: 16px;
-                    box-sizing: border-box;
-
-                    @media screen and (max-width: 600px) {
-                        grid-template-columns: repeat(auto-fit, 92px);
-                    }
-                }
             }
+
+            .numbers {
+                display: flex;
+            }
+
+            img {
+                height: 124px;
+                width: 124px;
+                border-radius: 50%;
+            }
+        }
+
+        .card {
+            display: flex;
+            flex: 1;
         }
     }
 
-    .details {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 150px;
-        width: 70vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        border-radius: 0;
-        border-top: none;
-        border-right: none;
-        box-sizing: border-box;
-        color: var(--white-color);
-        z-index: 100;
-
-        @media screen and (max-width: 600px) {
-            height: 120px;
-            justify-content: space-around;
-        }
-
-        .counter,
-        .strength {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 22px;
-
-            @media screen and (max-width: 1200px) {
-                font-size: 18px;
-            }
-
-            @media screen and (max-width: 600px) {
-                font-size: 14px;
-            }
-
-            p {
-                margin: 0;
-            }
-
-            span {
-                margin-right: 8px;
-            }
-
-            .invalid {
-                color: var(--error-color);
-            }
-
-            .valid {
-                color: var(--primary2-color);
-            }
-        }
-
-        .top {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-
-            @media screen and (max-width: 900px) {
-                flex-direction: column;
-                gap: 12px;
-
-                .text {
-                    display: flex;
-                    gap: 12px;
-                }
-            }
-
-            .text {
-                width: 50%;
-                display: flex;
-                justify-content: space-evenly;
-
-                @media screen and (max-width: 600px) {
-                    width: 80%;
-                    justify-content: space-around;
-                }
-            }
-        }
-
-        .bottom {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-
-            @media screen and (max-width: 1200px) {
-                gap: 22px;
-                font-size: 16px;
-            }
-
-            @media screen and (max-width: 900px) {
-                gap: 12px;
-                font-size: 12px;
-            }
-
-            .element {
-                display: flex;
-                align-items: flex-end;
-                gap: 6px;
-
-                img {
-                    height: 32px;
-
-                    @media screen and (max-width: 1200px) {
-                        height: 28px;
-                    }
-
-                    @media screen and (max-width: 900px) {
-                        height: 22px;
-                    }
-                }
-
-                @media screen and (max-width: 600px) {
-                    display: none;
-                }
-            }
-        }
+    .filters {
+        height: 300px;
     }
 
-    .list {
-        position: relative;
-        height: calc(100vh - 150px);
-        width: 70vw;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, 225px);
-        gap: 24px;
-        align-self: flex-end;
-        justify-content: center;
-        box-sizing: border-box;
-        margin-top: 150px;
-        padding: 36px;
-        box-sizing: border-box;
-        overflow-y: auto;
-
-        @media screen and (max-width: 900px) {
-            grid-template-columns: repeat(auto-fit, 140px);
-        }
-
-        @media screen and (max-width: 600px) {
-            margin-top: 120px;
-            grid-template-columns: repeat(auto-fit, 110px);
-            gap: 12px;
-            padding: 24px 8px;
-        }
-
-        .display {
-            width: calc(300px * 0.725);
-
-            @media screen and (max-width: 900px) {
-                width: calc(200px * 0.725);
-
-                img {
-                    border-radius: 4px;
-                }
-            }
-
-            @media screen and (max-width: 600px) {
-                width: calc(150px * 0.725);
-            }
-
-            .card {
-                @media screen and (max-width: 900px) {
-                    .checkbox {
-                        font-size: 24px;
-
-                        svg.check {
-                            font-size: 20px;
-                        }
-                    }
-                }
-
-                @media screen and (max-width: 600px) {
-                    .checkbox {
-                        font-size: 20px;
-
-                        svg.check {
-                            font-size: 16px;
-                        }
-                    }
-                }
-            }
-
-            p {
-                margin: 0;
-                color: var(--primary2-color);
-                font-size: 24px;
-                text-align: center;
-
-                @media screen and (max-width: 900px) {
-                    width: calc(200px * 0.725);
-                    font-size: 20px;
-                }
-
-                @media screen and (max-width: 600px) {
-                    width: calc(150px * 0.725);
-                    font-size: 16px;
-                }
-            }
-        }
-    }
-
-    .active {
-        box-shadow: var(--primary2-color) 0px 3px 3px,
-            var(--primary2-color) 0px -3px 3px,
-            var(--primary2-color) 0px 1.5px 1.5px,
-            var(--primary2-color) 0px 1.5px 1.5px,
-            var(--primary2-color) 0px -1.5px 1.5px;
-        background-color: var(--secondary-color);
+    .collection {
+        min-height: 100vh;
     }
 }

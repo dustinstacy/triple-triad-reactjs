@@ -32,6 +32,9 @@ const Collection = () => {
     const [elementFilter, setElementFilter] = useState(null)
     const [sortingFilter, setSortingFilter] = useState(null)
 
+    const cardNames = userCards.map((card) => card.name)
+    const uniqueCards = [...new Set(cardNames)]
+
     const valuesArray = ['Up', 'Right', 'Down', 'Left']
     const elementArray = []
     const rarityArray = []
@@ -50,117 +53,117 @@ const Collection = () => {
         }
     })
 
-    const filterCards = () => {
-        let filteredCards = []
+    // const filterCards = () => {
+    //     let filteredCards = []
 
-        if (deckFilter === 'Show All') {
-            filteredCards = [...userCards.sort((a, b) => a.number - b.number)]
-        }
+    //     if (deckFilter === 'Show All') {
+    //         filteredCards = [...userCards.sort((a, b) => a.number - b.number)]
+    //     }
 
-        if (deckFilter === 'Selected') {
-            filteredCards = [
-                ...userCards.filter((card) =>
-                    userDeck.find(({ _id }) => card._id === _id)
-                ),
-            ]
-        }
+    //     if (deckFilter === 'Selected') {
+    //         filteredCards = [
+    //             ...userCards.filter((card) =>
+    //                 userDeck.find(({ _id }) => card._id === _id)
+    //             ),
+    //         ]
+    //     }
 
-        if (deckFilter === 'Unselected') {
-            filteredCards = [
-                ...userCards.filter(
-                    (card) => !userDeck.find(({ _id }) => card._id === _id)
-                ),
-            ]
-        }
-        if (rarityFilter) {
-            filteredCards = [
-                ...filteredCards.filter((card) => card.rarity === rarityFilter),
-            ]
-        }
+    //     if (deckFilter === 'Unselected') {
+    //         filteredCards = [
+    //             ...userCards.filter(
+    //                 (card) => !userDeck.find(({ _id }) => card._id === _id)
+    //             ),
+    //         ]
+    //     }
+    //     if (rarityFilter) {
+    //         filteredCards = [
+    //             ...filteredCards.filter((card) => card.rarity === rarityFilter),
+    //         ]
+    //     }
 
-        if (elementFilter) {
-            filteredCards = [
-                ...filteredCards.filter(
-                    (card) => card.element === elementFilter
-                ),
-            ]
-        }
+    //     if (elementFilter) {
+    //         filteredCards = [
+    //             ...filteredCards.filter(
+    //                 (card) => card.element === elementFilter
+    //             ),
+    //         ]
+    //     }
 
-        if (sortingFilter === 'Reset') {
-            filteredCards.sort((a, b) => a.number - b.number)
-        }
-        if (sortingFilter === 'Up') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[0].replace(/A/g, 10) -
-                    a.values[0].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Right') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[1].replace(/A/g, 10) -
-                    a.values[1].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Down') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[2].replace(/A/g, 10) -
-                    a.values[2].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Left') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[3].replace(/A/g, 10) -
-                    a.values[3].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Total') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    ) -
-                    a.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    )
-            )
-        }
-        return filteredCards
-    }
+    //     if (sortingFilter === 'Reset') {
+    //         filteredCards.sort((a, b) => a.number - b.number)
+    //     }
+    //     if (sortingFilter === 'Up') {
+    //         filteredCards.sort(
+    //             (a, b) =>
+    //                 b.values[0].replace(/A/g, 10) -
+    //                 a.values[0].replace(/A/g, 10)
+    //         )
+    //     }
+    //     if (sortingFilter === 'Right') {
+    //         filteredCards.sort(
+    //             (a, b) =>
+    //                 b.values[1].replace(/A/g, 10) -
+    //                 a.values[1].replace(/A/g, 10)
+    //         )
+    //     }
+    //     if (sortingFilter === 'Down') {
+    //         filteredCards.sort(
+    //             (a, b) =>
+    //                 b.values[2].replace(/A/g, 10) -
+    //                 a.values[2].replace(/A/g, 10)
+    //         )
+    //     }
+    //     if (sortingFilter === 'Left') {
+    //         filteredCards.sort(
+    //             (a, b) =>
+    //                 b.values[3].replace(/A/g, 10) -
+    //                 a.values[3].replace(/A/g, 10)
+    //         )
+    //     }
+    //     if (sortingFilter === 'Total') {
+    //         filteredCards.sort(
+    //             (a, b) =>
+    //                 b.values.reduce(
+    //                     (sum, current) =>
+    //                         parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+    //                     0
+    //                 ) -
+    //                 a.values.reduce(
+    //                     (sum, current) =>
+    //                         parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+    //                     0
+    //                 )
+    //         )
+    //     }
+    //     return filteredCards
+    // }
 
-    const markSelected = async (card) => {
-        if (userDeck.length < 35) {
-            await axios.put(`/api/collection/${card._id}/selected`)
-            await axios.post('/api/deck/add', {
-                user: user._id,
-                _id: card._id,
-                number: card.number,
-                name: card.name,
-                rarity: card.rarity,
-                element: card.element,
-                image: card.image,
-                values: card.values,
-            })
-            getCurrentUser()
-        } else {
-            alert('Your deck is currently full')
-        }
-    }
+    // const markSelected = async (card) => {
+    //     if (userDeck.length < 35) {
+    //         await axios.put(`/api/collection/${card._id}/selected`)
+    //         await axios.post('/api/deck/add', {
+    //             user: user._id,
+    //             _id: card._id,
+    //             number: card.number,
+    //             name: card.name,
+    //             rarity: card.rarity,
+    //             element: card.element,
+    //             image: card.image,
+    //             values: card.values,
+    //         })
+    //         getCurrentUser()
+    //     } else {
+    //         alert('Your deck is currently full')
+    //     }
+    // }
 
-    const removeSelection = async (card) => {
-        await axios.put(`/api/collection/${card._id}/removeSelection`)
-        await axios.delete(`/api/deck/${card._id}/remove`, {
-            user: user._id,
-        })
-        getCurrentUser()
-    }
+    // const removeSelection = async (card) => {
+    //     await axios.put(`/api/collection/${card._id}/removeSelection`)
+    //     await axios.delete(`/api/deck/${card._id}/remove`, {
+    //         user: user._id,
+    //     })
+    //     getCurrentUser()
+    // }
 
     const autoBuild = async () => {
         const emptySlots = 35 - userDeck.length
@@ -194,9 +197,83 @@ const Collection = () => {
     }
 
     return (
-        <div className='deck page'>
-            <div className='sidebar box'>
-                <div className='filters'>
+        <div className='collection page'>
+            <div className='user-collection box center'>
+                <div className='user-info'>
+                    <div className='user-details'>
+                        <h1>{user?.username}</h1>
+                        <img
+                            className='user-image'
+                            src={user?.image}
+                            alt='user image'
+                        />
+                    </div>
+
+                    <section className='numbers'>
+                        <div className='stats'>
+                            Wins: &nbsp; {user?.stats.wins} <br />
+                            Losses: &nbsp; {user?.stats.losses} <br />
+                            Draws: &nbsp; {user?.stats.draws} <br />
+                            Matches: &nbsp; {user?.stats.matches}
+                        </div>
+                        <div className='card-count'>
+                            Total Cards: &nbsp; {userCards?.length} <br />
+                            Unique Cards: &nbsp; {uniqueCards.length}
+                        </div>
+                    </section>
+                </div>
+                <div className='best-card'>
+                    <Card
+                        card={userCards[333]}
+                        player='p1'
+                        turn={true}
+                        visibility={true}
+                    />
+                    Newest Card
+                </div>
+            </div>
+            {/* <div className='current-deck box center'>
+                Current Deck{' '}
+                <div className='counter'>
+                    <p>Cards in Deck</p>
+                    <p>
+                        <span
+                            className={
+                                userDeck.length < 35 ? 'invalid' : 'valid'
+                            }
+                        >
+                            {userDeck.length}
+                        </span>
+                        / 35
+                    </p>
+                </div>
+                <div className='strength'>
+                    <p>Deck Strength</p>
+                    {userDeck.reduce(
+                        (total, card) =>
+                            total +
+                            card.values.reduce(
+                                (sum, current) =>
+                                    parseInt(sum) +
+                                    parseInt(current.replace(/A/g, 10)),
+                                0
+                            ),
+                        0
+                    )}
+                </div>
+                                <div className='section'>
+                    <button className='box' onClick={() => autoBuild()}>
+                        Auto Build
+                    </button>
+                    <button className='box' onClick={() => unSelectAll()}>
+                        Unselect All
+                    </button>
+                </div>
+            </div> */}
+
+            {/* <div className='filters box center'>
+                Filters
+                 <div className='filters'>
                     <div className='filters__section box'>
                         <h1>Filter</h1>
                         <div className='section__header'>
@@ -316,154 +393,10 @@ const Collection = () => {
                     </div>
                 </div>
             </div>
-            <div className='details box'>
-                <div className='top'>
-                    <div className='text'>
-                        <div className='counter'>
-                            <p>Cards in Deck</p>
-                            <p>
-                                <span
-                                    className={
-                                        userDeck.length < 35
-                                            ? 'invalid'
-                                            : 'valid'
-                                    }
-                                >
-                                    {userDeck.length}
-                                </span>
-                                / 35
-                            </p>
-                        </div>
-                        <div className='strength'>
-                            <p>Deck Strength</p>
-                            {userDeck.reduce(
-                                (total, card) =>
-                                    total +
-                                    card.values.reduce(
-                                        (sum, current) =>
-                                            parseInt(sum) +
-                                            parseInt(current.replace(/A/g, 10)),
-                                        0
-                                    ),
-                                0
-                            )}
-                        </div>
-                    </div>
 
-                    <div className='section'>
-                        <button className='box' onClick={() => autoBuild()}>
-                            Auto Build
-                        </button>
-                        <button className='box' onClick={() => unSelectAll()}>
-                            Unselect All
-                        </button>
-                    </div>
-                </div>
-                <div className='bottom'>
-                    <div className='element'>
-                        <img src={Neutral} alt='Neutral' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Neutral'
-                                ).length
-                            }
-                        </span>
-                    </div>
-                    <div className='element'>
-                        <img src={Fire} alt='Fire' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Fire'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Water} alt='Water' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Water'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Earth} alt='Earth' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Earth'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Wind} alt='Wind' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Wind'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Ice} alt='Ice' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Ice'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Lightning} alt='Lightning' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Lightning'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Holy} alt='Holy' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Holy'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Dark} alt='Dark' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Dark'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Universal} alt='Universal' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Universal'
-                                ).length
-                            }
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div className='list'>
-                {filterCards().map((card) => (
+            <div className='collection box center'>
+                Collection
+                 {filterCards().map((card) => (
                     <div key={card._id} className='display'>
                         <Card
                             card={card}
@@ -487,7 +420,7 @@ const Collection = () => {
                         </p>
                     </div>
                 ))}
-            </div>
+            </div>*/}
         </div>
     )
 }

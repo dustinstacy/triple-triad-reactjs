@@ -68,6 +68,10 @@ a,
     }
 }
 
+.active > * {
+    color: var(--primary-color);
+}
+
 button {
     cursor: pointer;
 }

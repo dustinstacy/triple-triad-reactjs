@@ -93,7 +93,7 @@ const UserInventory = ({ user }) => {
 
 // This component displays the username, XP progress bar, and current XP / next level XP
 // It also handles level up logic by making an API call when user XP exceeds the XP required for their current level.
-const UserInfo = ({ user }) => {
+const UserXP = ({ user }) => {
     const { getCurrentUser } = useGlobalContext()
     const { username, xp, level } = user ?? {}
     const userNextLevel = levels[level]
@@ -115,7 +115,7 @@ const UserInfo = ({ user }) => {
     }, [xp, userNextLevel])
 
     return (
-        <div className='user-info'>
+        <div className='user-xp'>
             <h2>{username}</h2>
             <div className='progressBar'>
                 <div
@@ -182,7 +182,7 @@ const UserSection = ({ user }) => {
         <div className='user'>
             <hr />
             <UserInventory user={user} />
-            <UserInfo user={user} />
+            <UserXP user={user} />
             <UserImage user={user} />
         </div>
     )

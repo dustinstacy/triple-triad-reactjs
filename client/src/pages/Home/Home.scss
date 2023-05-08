@@ -1,20 +1,41 @@
 .home {
-    background: rgb(0, 19, 35);
+    margin-top: var(--navbar-height);
 
     .container {
-        height: 100vh;
-        flex-direction: row;
+        position: relative;
+        min-height: 720px;
+        display: flex;
         align-items: center;
-        justify-content: space-evenly;
 
         @media screen and (max-width: 768px) {
             flex-direction: column;
         }
 
-        .button {
-            position: static;
-            width: 15vw;
-            font-size: 36px;
+        .box {
+            position: relative;
+            height: 500px;
+            width: 860px;
+
+            .button {
+                position: absolute;
+                bottom: 5%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                padding: 4px;
+                font-size: 36px;
+            }
         }
+    }
+
+    .right {
+        background-color: var(--gray-color);
+        justify-content: flex-end;
+        padding-right: 48px;
+    }
+
+    .left {
+        justify-content: flex-start;
+        padding-left: 48px;
     }
 }

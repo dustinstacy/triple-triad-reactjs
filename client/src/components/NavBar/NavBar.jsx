@@ -60,7 +60,7 @@ const BurgerMenu = () => {
                 initial={{ width: 0 }}
                 animate={
                     isSmallScreen
-                        ? { width: isMenuOpen ? '30vw' : '0' }
+                        ? { width: isMenuOpen ? '40vw' : '0' }
                         : { width: isMenuOpen ? '60vw' : '0' }
                 }
                 transition={{
@@ -142,7 +142,7 @@ const UserImage = ({ user }) => {
                     alt='user image'
                     onClick={() => handleToggle(setIsOpen)}
                 />
-                <p className='level box'>LVL {level}</p>
+                <p className='level box'>LVL &nbsp;{level}</p>
                 <UserMenu isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
         </div>

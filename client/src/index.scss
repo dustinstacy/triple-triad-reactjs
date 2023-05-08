@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Cinzel+Decorative:wght@400;700;900&family=Eczar:wght@400;500;600;700&family=Josefin+Sans:wght@400;500;600;700&family=Jost:ital,wght@0,400;0,500;0,600;1,700;1,800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 :root {
     --primary-color: rgb(235, 169, 2);
     --primary2-color: rgb(124, 91, 7);
@@ -6,13 +8,14 @@
     --secondary2-color: rgb(84, 97, 109);
 
     --background-color: rgb(0, 19, 35);
+    --background-colorOpacity: rgba(0, 19, 35, 0.9);
     --background2-color: rgb(3, 48, 59);
 
     --error-color: rgb(158, 14, 36);
 
     --black-color: rgb(14, 15, 15);
-    --gray-color: rgb(101, 94, 81);
-    --white-color: rgb(250, 240, 225);
+    --gray-color: rgb(162, 162, 165);
+    --white-color: rgb(243, 244, 248);
 
     --navbar-height: 80px;
     --footer-height: 80px;
@@ -29,6 +32,14 @@
     box-sizing: border-box;
 }
 
+/* Fonts current available for styling
+Open Sans 3 4 5 6 7 8 3i 4i 5i 6i 7i 8i
+Jost 4 5 6 7 8 6i 7i
+Josefin Sans 4 5 6 7
+Aclonica 4
+Cinzel Decorative 4 7 9
+*/
+
 html,
 body {
     min-height: 100vh;
@@ -36,8 +47,8 @@ body {
     margin: 0;
     background-color: var(--background-color);
     color: var(--white-color);
-    font-family: 'Open Sans';
-    font-weight: 500;
+    font-family: 'Cinzel Decorative';
+    font-weight: 700;
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
@@ -46,7 +57,6 @@ a,
 .navlink {
     color: var(--white-color);
     text-decoration: none;
-    text-transform: uppercase;
     cursor: pointer;
 
     &:hover {

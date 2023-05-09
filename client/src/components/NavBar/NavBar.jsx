@@ -103,7 +103,7 @@ const UserSection = ({ user }) => {
                 <ExperienceBar user={user} />
             </div>
 
-            <Avatar user={user} menuAvailable={true} />
+            <Avatar user={user} navbar={true} />
         </div>
     )
 }

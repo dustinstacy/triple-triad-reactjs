@@ -1,4 +1,5 @@
 export { default as AuthForm } from './AuthForm/AuthForm'
+export { default as Avatar } from './Avatar/Avatar'
 export { default as Button } from './Button/Button'
 export { default as Card } from './Card/Card'
 export { default as Cell } from './Cell/Cell'

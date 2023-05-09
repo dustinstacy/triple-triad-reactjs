@@ -5,6 +5,7 @@ import { handleToggle } from '../../utils/handleToggle'
 import { MdLogout } from 'react-icons/md'
 
 import './Avatar.scss'
+import { smlogo } from '../../assets/logos'
 
 // This component is the menu that is displayed when the user clicks on their image.
 const AvatarMenu = ({ isOpen, setIsOpen }) => {
@@ -36,7 +37,7 @@ const AvatarMenu = ({ isOpen, setIsOpen }) => {
     )
 }
 
-const Avatar = ({ user, menuAvailable }) => {
+const Avatar = ({ user, navbar }) => {
     const { image, level } = user ?? {}
     const [isOpen, setIsOpen] = useState(false)
 
@@ -44,14 +45,16 @@ const Avatar = ({ user, menuAvailable }) => {
         <div className='avatar-image'>
             <div className='image-inner '>
                 <img
-                    src={image}
+                    src={image ?? smlogo}
                     alt='user image'
-                    onClick={
-                        menuAvailable ? () => handleToggle(setIsOpen) : null
-                    }
+                    onClick={navbar ? () => handleToggle(setIsOpen) : null}
                 />
-                <p className='level box'>LVL &nbsp;{level}</p>
-                <AvatarMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+                {navbar && (
+                    <>
+                        <p className='level box'>LVL &nbsp;{level}</p>
+                        <AvatarMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+                    </>
+                )}
             </div>
         </div>
     )

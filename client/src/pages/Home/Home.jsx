@@ -15,17 +15,17 @@ const Home = () => {
 
     return (
         <div className='home page'>
-            <div className={`container gray ${isLargeScreen ? 'right' : ''}`}>
+            <div className={`section gray ${isLargeScreen ? 'right' : ''}`}>
                 <div className='box'>
                     <Button label='Battle' type='link' path='match' />
                 </div>
             </div>
-            <div className={`container ${isLargeScreen ? 'left' : ''}`}>
+            <div className={`section ${isLargeScreen ? 'left' : ''}`}>
                 <div className='box'>
                     <Button label='COllectiON' type='link' path='collection' />
                 </div>
             </div>
-            <div className={`container gray ${isLargeScreen ? 'right' : ''}`}>
+            <div className={`section gray ${isLargeScreen ? 'right' : ''}`}>
                 <div className='box'>
                     <Button label='MarKet' type='link' path='packs' />
                 </div>

@@ -11,10 +11,10 @@ import { handleToggle } from '../../utils/handleToggle'
 
 import { logo } from '../../assets/logos'
 import { coinImage } from '../../assets/icons'
-import { levels } from '../../constants/levels'
 import { navlinks } from '../../constants/navlinks'
 
 import './NavBar.scss'
+import ExperienceBar from '../ExperienceBar/ExperienceBar'
 
 // The list of links is memoized to avoid unnecessary re-rendering.
 // The menu and onClick props are used to add CSS class names and customize functionality of the links.
@@ -91,45 +91,6 @@ const UserInventory = ({ user }) => {
     )
 }
 
-// This component displays the username, XP progress bar, and current XP / next level XP
-// It also handles level up logic by making an API call when user XP exceeds the XP required for their current level.
-const UserXP = ({ user }) => {
-    const { getCurrentUser } = useGlobalContext()
-    const { username, xp, level } = user ?? {}
-    const userNextLevel = levels[level]
-
-    const xpPercentage = () => {
-        return `${(xp / userNextLevel) * 100}%`
-    }
-
-    const handleLevelUp = () => {
-        axios
-            .put('/api/profile', { level: level + 1 })
-            .then(() => getCurrentUser())
-    }
-
-    useEffect(() => {
-        if (xp >= userNextLevel) {
-            handleLevelUp()
-        }
-    }, [xp, userNextLevel])
-
-    return (
-        <div className='user-xp'>
-            <h2>{username}</h2>
-            <div className='progressBar'>
-                <div
-                    className='progressBar__inner'
-                    style={{ width: xpPercentage() }}
-                ></div>
-            </div>
-            <span className='xp'>
-                XP {xp} / {userNextLevel}
-            </span>
-        </div>
-    )
-}
-
 const UserImage = ({ user }) => {
     const { image, level } = user ?? {}
     const [isOpen, setIsOpen] = useState(false)
@@ -178,11 +139,16 @@ const UserMenu = ({ isOpen, setIsOpen }) => {
 
 // This component acts as the parent component for all User-related components
 const UserSection = ({ user }) => {
+    const { username } = user ?? {}
     return (
         <div className='user'>
             <hr />
             <UserInventory user={user} />
-            <UserXP user={user} />
+            <div className='user__middle'>
+                <h2>{username}</h2>
+                <ExperienceBar user={user} />
+            </div>
+
             <UserImage user={user} />
         </div>
     )

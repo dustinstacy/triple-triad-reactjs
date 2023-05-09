@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { Avatar, Card, ExperienceBar } from '../../components'
+import { Avatar, Button, Card, ExperienceBar } from '../../components'
 import { TbPlayCard } from 'react-icons/tb'
 import axios from 'axios'
 import { FaStar, FaRegStar } from 'react-icons/fa'
@@ -63,7 +63,7 @@ const UserSection = ({ userCards, user }) => {
                 </div>
             </div>
 
-            {userCards.length && (
+            {userCards.length > 0 && (
                 <div className='main-card'>
                     <Card
                         card={userCards[0]}
@@ -88,36 +88,50 @@ const Filters = ({
 }) => {
     return (
         <div className='filters'>
-            <select
-                value={deckFilter}
-                onChange={(e) => setDeckFilter(e.target.value)}
-            >
-                <option value='Show All'>Show All</option>
-                <option value='In Deck'>In Deck</option>
-                <option value='Not In Deck'>Not In Deck</option>
-            </select>
-            <select
-                value={rarityFilter}
-                onChange={(e) => setRarityFilter(e.target.value)}
-            >
-                <option value='None'>-</option>
-                <option value='Common'>Common</option>
-                <option value='Uncommon'>Uncommon</option>
-                <option value='Rare'>Rare</option>
-                <option value='Epic'>Epic</option>
-                <option value='Legendary'>Legendary</option>
-            </select>
-            <select
-                value={valueFilter}
-                onChange={(e) => setValueFilter(e.target.value)}
-            >
-                <option value='None'>-</option>
-                <option value='Up'>Up</option>
-                <option value='Down'>Down</option>
-                <option value='Left'>Left</option>
-                <option value='Right'>Right</option>
-                <option value='Total'>Total</option>
-            </select>
+            <div className='filter'>
+                <label for='deck-filter'>Cards Filter</label>
+                <select
+                    id='deck-filter'
+                    value={deckFilter}
+                    onChange={(e) => setDeckFilter(e.target.value)}
+                >
+                    <option value='Show All'>Show All</option>
+                    <option value='In Deck'>In Deck</option>
+                    <option value='Not In Deck'>Not In Deck</option>
+                </select>
+            </div>
+
+            <div className='filter'>
+                <label for='rarity-filter'>Rarity Filter</label>
+                <select
+                    id='rarity-filter'
+                    value={rarityFilter}
+                    onChange={(e) => setRarityFilter(e.target.value)}
+                >
+                    <option value='None'>-</option>
+                    <option value='Common'>Common</option>
+                    <option value='Uncommon'>Uncommon</option>
+                    <option value='Rare'>Rare</option>
+                    <option value='Epic'>Epic</option>
+                    <option value='Legendary'>Legendary</option>
+                </select>
+            </div>
+
+            <div className='filter'>
+                <label for='value-filter'>Value Filter</label>
+                <select
+                    id='value-filter'
+                    value={valueFilter}
+                    onChange={(e) => setValueFilter(e.target.value)}
+                >
+                    <option value='None'>-</option>
+                    <option value='Up'>Up</option>
+                    <option value='Down'>Down</option>
+                    <option value='Left'>Left</option>
+                    <option value='Right'>Right</option>
+                    <option value='Total'>Total</option>
+                </select>
+            </div>
         </div>
     )
 }
@@ -160,7 +174,7 @@ const DeckBar = ({
     }
 
     return (
-        <div className='top'>
+        <div className='deck'>
             <div className='counter'>
                 <p>Cards in Deck</p>
                 <p>
@@ -186,13 +200,10 @@ const DeckBar = ({
                     0
                 )}
             </div>
+
             <div className='section'>
-                <button className='box' onClick={() => autoBuild()}>
-                    Auto Build
-                </button>
-                <button className='box' onClick={() => unSelectAll()}>
-                    Unselect All
-                </button>
+                <Button onClick={autoBuild} label='Auto Build' />
+                <Button onClick={unSelectAll} label='Clear Deck' />
             </div>
         </div>
     )
@@ -313,14 +324,6 @@ const Collection = () => {
     return (
         <div className='collection page'>
             <UserSection user={user} userCards={userCards ?? []} />
-            <Filters
-                deckFilter={deckFilter}
-                rarityFilter={rarityFilter}
-                valueFilter={valueFilter}
-                setDeckFilter={setDeckFilter}
-                setRarityFilter={setRarityFilter}
-                setValueFilter={setValueFilter}
-            />
             <DeckBar
                 user={user}
                 userCards={userCards}
@@ -328,6 +331,14 @@ const Collection = () => {
                 getCurrentUser={getCurrentUser}
                 markSelected={markSelected}
                 removeSelection={removeSelection}
+            />
+            <Filters
+                deckFilter={deckFilter}
+                rarityFilter={rarityFilter}
+                valueFilter={valueFilter}
+                setDeckFilter={setDeckFilter}
+                setRarityFilter={setRarityFilter}
+                setValueFilter={setValueFilter}
             />
             <CardCollection
                 userCards={userCards ?? []}

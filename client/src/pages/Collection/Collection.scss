@@ -107,6 +107,65 @@
         }
     }
 
+    .deck {
+        min-height: 150px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 5vw;
+        font-size: 22px;
+
+        .counter,
+        .strength {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+
+            .button {
+                height: 40px;
+                min-width: 200px;
+            }
+        }
+    }
+
+    .filters {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        gap: 5vw;
+
+        .filter {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            select {
+                width: 250px;
+                margin-top: 4px;
+                padding: 2px 6px;
+                background: transparent;
+                border-radius: 4px;
+                color: var(--primary-color);
+                font-family: 'Jost';
+                font-size: 22px;
+                cursor: pointer;
+
+                &:focus {
+                    background-color: var(--background3-color);
+                    box-shadow: 0 0 0 2px #1e90ff;
+                    outline: none;
+                }
+            }
+        }
+    }
+
     .card-collection {
         min-height: 100vh;
         width: 100%;

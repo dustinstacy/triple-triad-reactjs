@@ -29,7 +29,9 @@
 }
 
 /******* Universal Styling ********/
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 

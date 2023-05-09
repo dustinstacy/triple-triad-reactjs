@@ -122,35 +122,80 @@ const Filters = ({
     )
 }
 
-const DeckBar = () => {
-    // const autoBuild = async () => {
-    //     const emptySlots = 35 - userDeck.length
-    //     const totalValueArray = userCards
-    //         .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
-    //         .sort(
-    //             (a, b) =>
-    //                 b.values.reduce(
-    //                     (sum, current) =>
-    //                         parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-    //                     0
-    //                 ) -
-    //                 a.values.reduce(
-    //                     (sum, current) =>
-    //                         parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-    //                     0
-    //                 )
-    //         )
-    //     for (let i = 0; i < emptySlots; i++) {
-    //         markSelected(totalValueArray[i])
-    //     }
-    //     getCurrentUser()
-    // }
-    // const unSelectAll = () => {
-    //     userDeck.forEach((deckCard) => {
-    //         removeSelection(deckCard)
-    //     })
-    //     getCurrentUser()
-    // }
+const DeckBar = ({
+    userCards,
+    userDeck,
+    getCurrentUser,
+    markSelected,
+    removeSelection,
+}) => {
+    const autoBuild = async () => {
+        const emptySlots = 15 - userDeck.length
+        const totalValueArray = userCards
+            .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
+            .sort(
+                (a, b) =>
+                    b.values.reduce(
+                        (sum, current) =>
+                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+                        0
+                    ) -
+                    a.values.reduce(
+                        (sum, current) =>
+                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+                        0
+                    )
+            )
+        for (let i = 0; i < emptySlots; i++) {
+            markSelected(totalValueArray[i])
+        }
+        getCurrentUser()
+    }
+
+    const unSelectAll = () => {
+        userDeck.forEach((deckCard) => {
+            removeSelection(deckCard)
+        })
+        getCurrentUser()
+    }
+
+    return (
+        <div className='top'>
+            <div className='counter'>
+                <p>Cards in Deck</p>
+                <p>
+                    <span
+                        className={userDeck?.length < 15 ? 'invalid' : 'valid'}
+                    >
+                        {userDeck.length}
+                    </span>
+                    / 15
+                </p>
+            </div>
+            <div className='strength'>
+                <p>Deck Strength</p>
+                {userDeck.reduce(
+                    (total, card) =>
+                        total +
+                        card.values.reduce(
+                            (sum, current) =>
+                                parseInt(sum) +
+                                parseInt(current.replace(/A/g, 10)),
+                            0
+                        ),
+                    0
+                )}
+            </div>
+            <div className='section'>
+                <button className='box' onClick={() => autoBuild()}>
+                    Auto Build
+                </button>
+                <button className='box' onClick={() => unSelectAll()}>
+                    Unselect All
+                </button>
+            </div>
+        </div>
+    )
 }
 
 const CardCollection = ({
@@ -160,6 +205,8 @@ const CardCollection = ({
     rarityFilter,
     valueFilter,
     valuesArray,
+    markSelected,
+    removeSelection,
 }) => {
     const [filteredCards, setFilteredCards] = useState([])
 
@@ -206,39 +253,19 @@ const CardCollection = ({
                 <Card
                     key={card._id}
                     card={card}
+                    player='p1'
+                    turn={true}
                     visibility={true}
                     selector={true}
+                    handleClick={() =>
+                        !card.selected
+                            ? markSelected(card)
+                            : removeSelection(card)
+                    }
                 />
             ))}
         </div>
     )
-}
-
-const markSelected = async (card) => {
-    if (userDeck.length < 35) {
-        await axios.put(`/api/collection/${card._id}/selected`)
-        await axios.post('/api/deck/add', {
-            user: user._id,
-            _id: card._id,
-            number: card.number,
-            name: card.name,
-            rarity: card.rarity,
-            element: card.element,
-            image: card.image,
-            values: card.values,
-        })
-        getCurrentUser()
-    } else {
-        alert('Your deck is currently full')
-    }
-}
-
-const removeSelection = async (card) => {
-    await axios.put(`/api/collection/${card._id}/removeSelection`)
-    await axios.delete(`/api/deck/${card._id}/remove`, {
-        user: user._id,
-    })
-    getCurrentUser()
 }
 
 const Collection = () => {
@@ -255,6 +282,34 @@ const Collection = () => {
         getUserCards()
     }, [])
 
+    const markSelected = async (card) => {
+        if (userDeck.length < 15) {
+            await axios.put(`/api/collection/${card._id}/selected`)
+            await axios.post('/api/deck/add', {
+                user: user._id,
+                _id: card._id,
+                number: card.number,
+                name: card.name,
+                level: card.level,
+                rarity: card.rarity,
+                element: card.element,
+                image: card.image,
+                values: card.values,
+            })
+            getCurrentUser()
+        } else {
+            alert('Your deck is currently full')
+        }
+    }
+
+    const removeSelection = async (card) => {
+        await axios.put(`/api/collection/${card._id}/removeSelection`)
+        await axios.delete(`/api/deck/${card._id}/remove`, {
+            user: user._id,
+        })
+        getCurrentUser()
+    }
+
     return (
         <div className='collection page'>
             <UserSection user={user} userCards={userCards ?? []} />
@@ -266,7 +321,14 @@ const Collection = () => {
                 setRarityFilter={setRarityFilter}
                 setValueFilter={setValueFilter}
             />
-            <DeckBar />
+            <DeckBar
+                user={user}
+                userCards={userCards}
+                userDeck={userDeck}
+                getCurrentUser={getCurrentUser}
+                markSelected={markSelected}
+                removeSelection={removeSelection}
+            />
             <CardCollection
                 userCards={userCards ?? []}
                 userDeck={userDeck ?? []}
@@ -274,6 +336,8 @@ const Collection = () => {
                 rarityFilter={rarityFilter}
                 valueFilter={valueFilter}
                 valuesArray={valuesArray}
+                markSelected={markSelected}
+                removeSelection={removeSelection}
             />
         </div>
     )

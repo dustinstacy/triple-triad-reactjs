@@ -6,6 +6,7 @@
         min-height: 720px;
         display: flex;
         align-items: center;
+        justify-content: center;
 
         @media screen and (max-width: 768px) {
             flex-direction: column;
@@ -15,6 +16,11 @@
             position: relative;
             height: 500px;
             width: 860px;
+
+            @media screen and (max-width: 900px) {
+                height: 720px;
+                width: 100vw;
+            }
 
             .button {
                 position: absolute;
@@ -26,16 +32,19 @@
                 font-size: 36px;
             }
         }
+
+        &.right {
+            justify-content: flex-end;
+            padding-right: 48px;
+        }
+
+        &.left {
+            justify-content: flex-start;
+            padding-left: 48px;
+        }
     }
 
-    .right {
+    .gray {
         background-color: var(--gray-color);
-        justify-content: flex-end;
-        padding-right: 48px;
-    }
-
-    .left {
-        justify-content: flex-start;
-        padding-left: 48px;
     }
 }

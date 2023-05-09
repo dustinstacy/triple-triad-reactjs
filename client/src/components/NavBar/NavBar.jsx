@@ -98,7 +98,7 @@ const UserSection = ({ user }) => {
         <div className='user'>
             <hr />
             <UserInventory user={user} />
-            <div className='user__middle'>
+            <div className='user-info'>
                 <h2>{username}</h2>
                 <ExperienceBar user={user} />
             </div>

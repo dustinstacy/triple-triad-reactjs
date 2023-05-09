@@ -133,28 +133,6 @@
     }
 }
 
-.user-inventory {
-    height: 80%;
-    width: 64px;
-    display: flex;
-    align-items: flex-end;
-    margin-right: 1vw;
-
-    @media screen and (max-width: 1080px) {
-        display: none;
-    }
-
-    .coin {
-        font-size: 16px;
-        letter-spacing: 1px;
-        gap: 8px;
-
-        img {
-            height: 18px;
-        }
-    }
-}
-
 .navbar > .user {
     height: 100%;
     max-width: 600px;
@@ -167,12 +145,39 @@
         justify-content: center;
     }
 
+    .user-inventory {
+        height: 80%;
+        width: 64px;
+        display: flex;
+        align-items: flex-end;
+        margin-right: 1vw;
+
+        @media screen and (max-width: 1080px) {
+            display: none;
+        }
+
+        .coin {
+            font-size: 16px;
+            letter-spacing: 1px;
+            gap: 8px;
+
+            img {
+                height: 18px;
+            }
+        }
+    }
+
     & .experience-bar {
         gap: 4px;
         font-size: 14px;
     }
 
-    &__middle {
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+
         @media screen and (max-width: 768px) {
             display: none;
         }

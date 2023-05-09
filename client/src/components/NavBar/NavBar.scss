@@ -12,6 +12,33 @@
     );
 }
 
+.navbar {
+    @include main-gradient;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 18px;
+    z-index: 10;
+
+    &__logo {
+        height: 64px;
+        padding-right: 2vw;
+        cursor: pointer;
+    }
+
+    &__login {
+        font-size: 24px;
+        font-weight: 600;
+        text-transform: capitalize;
+        padding: 6px 12px;
+    }
+}
+
 .navbar-links,
 .burger-menu-links {
     height: 100%;
@@ -128,57 +155,7 @@
     }
 }
 
-.user-image {
-    height: 100%;
-    width: 80px;
-
-    .image-inner {
-        position: relative;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        img {
-            height: 64px;
-            width: 64px;
-            background-color: var(--tertiary2-color);
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .level {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 54px;
-            font-size: 11px;
-            font-weight: 700;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .user-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin: 12px 12px 0 0;
-            padding: 12px;
-            background: var(--secondary2-color);
-            font-size: 18px;
-            z-index: 10;
-
-            .user-link {
-                gap: 8px;
-            }
-        }
-    }
-}
-
-.user {
+.navbar > .user {
     height: 100%;
     max-width: 600px;
     display: flex;
@@ -188,6 +165,11 @@
 
     @media screen and (max-width: 1080px) {
         justify-content: center;
+    }
+
+    & .experience-bar {
+        gap: 4px;
+        font-size: 14px;
     }
 
     &__middle {
@@ -207,32 +189,5 @@
         @media screen and (max-width: 768px) {
             display: none;
         }
-    }
-}
-
-.navbar {
-    @include main-gradient;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: var(--navbar-height);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 18px;
-    z-index: 10;
-
-    &__logo {
-        height: 64px;
-        padding-right: 2vw;
-        cursor: pointer;
-    }
-
-    &__login {
-        font-size: 24px;
-        font-weight: 600;
-        text-transform: capitalize;
-        padding: 6px 12px;
     }
 }

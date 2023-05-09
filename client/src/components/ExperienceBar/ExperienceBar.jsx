@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import axios from 'axios'
+
 import { useGlobalContext } from '../../context/GlobalContext'
 import { levels } from '../../constants/levels'
 
@@ -28,14 +30,14 @@ const ExperienceBar = () => {
     }, [xp, userNextLevel])
 
     return (
-        <div className='user-xp'>
-            <div className='progressBar'>
+        <div className='experience-bar'>
+            <div className='progress-bar'>
                 <div
-                    className='progressBar__inner'
+                    className='progress-bar__inner'
                     style={{ width: xpPercentage() }}
                 ></div>
             </div>
-            <span className='xp'>
+            <span>
                 XP {xp} / {userNextLevel}
             </span>
         </div>

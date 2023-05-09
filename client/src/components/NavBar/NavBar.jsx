@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { MdOutlineClose, MdLogout, MdMenu } from 'react-icons/md'
 
-import axios from 'axios'
 import { motion } from 'framer-motion'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
@@ -15,6 +14,7 @@ import { navlinks } from '../../constants/navlinks'
 
 import './NavBar.scss'
 import ExperienceBar from '../ExperienceBar/ExperienceBar'
+import Avatar from '../Avatar/Avatar'
 
 // The list of links is memoized to avoid unnecessary re-rendering.
 // The menu and onClick props are used to add CSS class names and customize functionality of the links.
@@ -91,52 +91,6 @@ const UserInventory = ({ user }) => {
     )
 }
 
-const UserImage = ({ user }) => {
-    const { image, level } = user ?? {}
-    const [isOpen, setIsOpen] = useState(false)
-
-    return (
-        <div className='user-image'>
-            <div className='image-inner '>
-                <img
-                    src={image}
-                    alt='user image'
-                    onClick={() => handleToggle(setIsOpen)}
-                />
-                <p className='level box'>LVL &nbsp;{level}</p>
-                <UserMenu isOpen={isOpen} setIsOpen={setIsOpen} />
-            </div>
-        </div>
-    )
-}
-
-// This component is the menu that is displayed when the user clicks on their image.
-const UserMenu = ({ isOpen, setIsOpen }) => {
-    const { logout } = useGlobalContext()
-
-    const navigate = useNavigate()
-
-    const handleLogout = () => {
-        logout().then(() => {
-            handleToggle(setIsOpen)
-            navigate('/')
-        })
-    }
-
-    return (
-        isOpen && (
-            <div className='user-menu box'>
-                <NavLink to='/account' onClick={() => handleToggle(setIsOpen)}>
-                    Account
-                </NavLink>
-                <a className='user-link center' onClick={() => handleLogout()}>
-                    Logout <MdLogout />
-                </a>
-            </div>
-        )
-    )
-}
-
 // This component acts as the parent component for all User-related components
 const UserSection = ({ user }) => {
     const { username } = user ?? {}
@@ -149,7 +103,7 @@ const UserSection = ({ user }) => {
                 <ExperienceBar user={user} />
             </div>
 
-            <UserImage user={user} />
+            <Avatar user={user} menuAvailable={true} />
         </div>
     )
 }

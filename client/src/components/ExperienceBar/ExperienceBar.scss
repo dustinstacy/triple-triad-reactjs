@@ -1,18 +1,16 @@
-.user-xp {
+.experience-bar {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    font-size: 14px;
 
-    .progressBar {
+    .progress-bar {
         min-height: 10px;
         min-width: 250px;
         display: flex;
         align-items: center;
         border: 1px solid var(--primary-color);
-        border-radius: 6px;
+        border-radius: 4px;
 
         &__inner {
             height: 100%;
@@ -22,10 +20,5 @@
             border-radius: inherit;
             box-shadow: 1.5px 0px 1px var(--white-color);
         }
-    }
-
-    .xp {
-        font-size: 15px;
-        font-weight: 400;
     }
 }

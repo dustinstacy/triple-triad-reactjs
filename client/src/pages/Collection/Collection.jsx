@@ -91,7 +91,7 @@ const Filters = ({
     return (
         <div className='filters'>
             <div className='filter'>
-                <label for='deck-filter'>Cards Filter</label>
+                <label htmlFor='deck-filter'>Cards Filter</label>
                 <select
                     id='deck-filter'
                     value={deckFilter}
@@ -104,7 +104,7 @@ const Filters = ({
             </div>
 
             <div className='filter'>
-                <label for='rarity-filter'>Rarity Filter</label>
+                <label htmlFor='rarity-filter'>Rarity Filter</label>
                 <select
                     id='rarity-filter'
                     value={rarityFilter}
@@ -120,7 +120,7 @@ const Filters = ({
             </div>
 
             <div className='filter'>
-                <label for='value-filter'>Value Filter</label>
+                <label htmlFor='value-filter'>Value Filter</label>
                 <select
                     id='value-filter'
                     value={valueFilter}

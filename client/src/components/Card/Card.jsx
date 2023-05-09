@@ -12,7 +12,6 @@ const Card = ({ card, player, turn, handleClick, visibility, selector }) => {
                 !turn ? 'not__user' : ''
             } ${power} ${!visibility && 'transparent'}`}
             id={_id}
-            onClick={(e) => handleClick(e)}
             owner={player}
         >
             <img
@@ -29,7 +28,7 @@ const Card = ({ card, player, turn, handleClick, visibility, selector }) => {
             </div>
 
             {selector && (
-                <div className='checkbox'>
+                <div className='checkbox' onClick={(e) => handleClick(e)}>
                     {selected ? (
                         <ImCheckboxChecked className='check' />
                     ) : (

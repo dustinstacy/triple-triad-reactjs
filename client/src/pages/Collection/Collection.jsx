@@ -63,17 +63,19 @@ const UserSection = ({ userCards, user }) => {
                 </div>
             </div>
 
-            {userCards.length > 0 && (
-                <div className='main-card'>
-                    <Card
-                        card={userCards[0]}
-                        player='p1'
-                        turn={true}
-                        visibility={true}
-                    />
-                    <h3>Most CaptuRes</h3>
-                </div>
-            )}
+            <div className='main-card'>
+                {userCards.length > 0 && (
+                    <>
+                        <Card
+                            card={userCards[0]}
+                            player='p1'
+                            turn={true}
+                            visibility={true}
+                        />
+                        <h3>Most CaptuRes</h3>
+                    </>
+                )}
+            </div>
         </div>
     )
 }
@@ -108,7 +110,7 @@ const Filters = ({
                     value={rarityFilter}
                     onChange={(e) => setRarityFilter(e.target.value)}
                 >
-                    <option value='None'>-</option>
+                    <option value='-'>-</option>
                     <option value='Common'>Common</option>
                     <option value='Uncommon'>Uncommon</option>
                     <option value='Rare'>Rare</option>
@@ -124,7 +126,7 @@ const Filters = ({
                     value={valueFilter}
                     onChange={(e) => setValueFilter(e.target.value)}
                 >
-                    <option value='None'>-</option>
+                    <option value='-'>-</option>
                     <option value='Up'>Up</option>
                     <option value='Down'>Down</option>
                     <option value='Left'>Left</option>
@@ -174,7 +176,7 @@ const DeckBar = ({
     }
 
     return (
-        <div className='deck'>
+        <div className='deck center'>
             <div className='counter'>
                 <p>Cards in Deck</p>
                 <p>
@@ -260,21 +262,27 @@ const CardCollection = ({
 
     return (
         <div className='card-collection'>
-            {filteredCards?.map((card) => (
-                <Card
-                    key={card._id}
-                    card={card}
-                    player='p1'
-                    turn={true}
-                    visibility={true}
-                    selector={true}
-                    handleClick={() =>
-                        !card.selected
-                            ? markSelected(card)
-                            : removeSelection(card)
-                    }
-                />
-            ))}
+            <div className='header'>
+                <h1>Cards</h1>
+                <hr />
+            </div>
+            <div className='card-list'>
+                {filteredCards?.map((card) => (
+                    <Card
+                        key={card._id}
+                        card={card}
+                        player='p1'
+                        turn={true}
+                        visibility={true}
+                        selector={true}
+                        handleClick={() =>
+                            !card.selected
+                                ? markSelected(card)
+                                : removeSelection(card)
+                        }
+                    />
+                ))}
+            </div>
         </div>
     )
 }

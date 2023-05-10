@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react'
+import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Avatar, Button, Card, ExperienceBar } from '../../components'
 import { TbPlayCard } from 'react-icons/tb'
-import axios from 'axios'
+
 import './Collection.scss'
 
 const UserSection = ({ userCards, user }) => {
@@ -237,7 +238,21 @@ const CardCollection = ({
             filtered = filtered.filter((card) => card.rarity === rarityFilter)
         }
 
-        if (valueFilter && valueFilter !== '-') {
+        if (valueFilter == 'Total') {
+            filtered = filtered.sort(
+                (a, b) =>
+                    b.values.reduce(
+                        (sum, current) =>
+                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+                        0
+                    ) -
+                    a.values.reduce(
+                        (sum, current) =>
+                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+                        0
+                    )
+            )
+        } else if (valueFilter && valueFilter !== '-') {
             const valueIndex = valuesArray.indexOf(valueFilter)
             filtered = filtered.sort((a, b) => {
                 const aValue = a.values[valueIndex]

@@ -1,5 +1,5 @@
 <h1 align="center">
-⚠️ Under Maintainence ⚠️
+⚠️ Under Maintenance ⚠️
 </h1>
 
 <h1 align="center">

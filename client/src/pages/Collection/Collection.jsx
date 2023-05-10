@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Avatar, Button, Card, ExperienceBar } from '../../components'
 import { TbPlayCard } from 'react-icons/tb'
-import axios from 'axios'
-import { FaStar, FaRegStar } from 'react-icons/fa'
+
 import './Collection.scss'
 
 const UserSection = ({ userCards, user }) => {
     const { level, stats, username } = user ?? {}
-    const cardNames = userCards?.map((card) => card.name)
+    const cardNames = userCards.map((card) => card.name)
     const uniqueCards = [...new Set(cardNames)]
 
     return (
@@ -17,8 +17,8 @@ const UserSection = ({ userCards, user }) => {
             <div className='user'>
                 <div className='user__details'>
                     <div className='top'>
-                        <h1>{username ?? 'User'}</h1>
-                        <h1>LVL &nbsp; {level ?? ''}</h1>
+                        <h1>{username}</h1>
+                        <h1>LVL &nbsp; {level}</h1>
                     </div>
                     <hr />
                     <ExperienceBar />
@@ -28,19 +28,19 @@ const UserSection = ({ userCards, user }) => {
                         <tbody>
                             <tr>
                                 <th>Total MatcHes :</th>
-                                <td>{stats?.matches ?? 0}</td>
+                                <td>{stats?.matches}</td>
                             </tr>
                             <tr>
                                 <th>Wins :</th>
-                                <td>{stats?.wins ?? 0}</td>
+                                <td>{stats?.wins}</td>
                             </tr>
                             <tr>
                                 <th>Losses :</th>
-                                <td>{stats?.losses ?? 0}</td>
+                                <td>{stats?.losses}</td>
                             </tr>
                             <tr>
                                 <th>Draws :</th>
-                                <td>{stats?.draws ?? 0}</td>
+                                <td>{stats?.draws}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -221,14 +221,10 @@ const CardCollection = ({
     markSelected,
     removeSelection,
 }) => {
-    const [filteredCards, setFilteredCards] = useState([])
+    const filteredCards = useMemo(() => {
+        let filtered = [...userCards].sort((a, b) => a.number - b.number)
 
-    useEffect(() => {
-        let filtered = [...userCards]
-
-        if (deckFilter === 'Show All') {
-            filtered = [...userCards]
-        } else if (deckFilter === 'In Deck') {
+        if (deckFilter === 'In Deck') {
             filtered = userCards.filter((card) =>
                 userDeck.find(({ _id }) => card._id === _id)
             )
@@ -238,26 +234,37 @@ const CardCollection = ({
             )
         }
 
-        if (rarityFilter == '-') {
-            filtered.sort((a, b) => a.number - b.number)
-        } else if (rarityFilter) {
+        if (rarityFilter && rarityFilter !== '-') {
             filtered = filtered.filter((card) => card.rarity === rarityFilter)
         }
 
-        if (valueFilter == '-') {
-            filtered.sort((a, b) => a.number - b.number)
-        } else if (valueFilter) {
+        if (valueFilter == 'Total') {
+            filtered = filtered.sort(
+                (a, b) =>
+                    b.values.reduce(
+                        (sum, current) =>
+                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+                        0
+                    ) -
+                    a.values.reduce(
+                        (sum, current) =>
+                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
+                        0
+                    )
+            )
+        } else if (valueFilter && valueFilter !== '-') {
+            const valueIndex = valuesArray.indexOf(valueFilter)
             filtered = filtered.sort((a, b) => {
-                const aVal = a.values[valuesArray.indexOf(valueFilter)]
-                const bVal = b.values[valuesArray.indexOf(valueFilter)]
+                const aValue = a.values[valueIndex]
+                const bValue = b.values[valueIndex]
                 return (
-                    parseInt(bVal.replace(/A/g, 10)) -
-                    parseInt(aVal.replace(/A/g, 10))
+                    parseInt(bValue.replace(/A/g, 10)) -
+                    parseInt(aValue.replace(/A/g, 10))
                 )
             })
         }
 
-        setFilteredCards(filtered)
+        return filtered
     }, [userCards, deckFilter, rarityFilter, valueFilter, userDeck])
 
     return (

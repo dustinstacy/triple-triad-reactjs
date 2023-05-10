@@ -22,9 +22,6 @@ const Match = () => {
     const [emptyCells, setEmptyCells] = useState(
         [...new Array(width * width).keys()].map((x) => x - 1 + 1)
     )
-    const [randomElementArray, setRandomElementArray] = useState([
-        ...new Array(width * width),
-    ])
     const [cardSelected, setCardSelected] = useState(null)
     const [isP1Turn, setisP1Turn] = useState(Math.random() < 0.5 ? true : false)
     const [p1Score, setP1Score] = useState(5)
@@ -35,13 +32,13 @@ const Match = () => {
     const p2 = 'cpu'
     const leftColumn = [0, width, width * 2]
     const rightColumn = [width - 1, width * 2 - 1, width * 3 - 1]
-    const elementArray = []
 
     let p1ScoreCounter = 0
     let p2ScoreCounter = 0
     let winner = 'Draw'
 
     const newGame = () => {
+        console.log(userDeck, cpuDeck)
         const p1DealtCards = []
         const p2DealtCards = []
         shuffleCards(userDeck)
@@ -54,6 +51,7 @@ const Match = () => {
 
     useEffect(() => {
         newGame()
+        console.log(table)
     }, [])
 
     const selectCard = (e, card) => {

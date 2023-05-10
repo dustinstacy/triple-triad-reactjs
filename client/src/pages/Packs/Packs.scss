@@ -9,11 +9,12 @@
     .contents {
         position: relative;
         box-sizing: border-box;
-        height: 100vh;
+        height: calc(100vh - var(--navbar-height));
         width: 100%;
         display: flex;
         flex-direction: column;
         flex: 3;
+        margin-top: var(--navbar-height);
 
         @media screen and (max-width: 600px) {
             flex: 4;

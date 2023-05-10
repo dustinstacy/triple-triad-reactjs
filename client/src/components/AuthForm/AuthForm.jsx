@@ -51,7 +51,16 @@ const AuthForm = ({ register }) => {
                 data
             )
 
-            await getCurrentUser().then(navigate('/home'))
+            await getCurrentUser()
+            await axios
+                .put('api/profile/packs', {
+                    packs: [
+                        { name: 'small' },
+                        { name: 'medium' },
+                        { name: 'large' },
+                    ],
+                })
+                .then(navigate('/home'))
         } catch (error) {
             if (error?.response?.data) {
                 setErrors(error.response.data)

@@ -1,124 +1,155 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { Card } from '../../components'
+import { Avatar, Button, Card, ExperienceBar } from '../../components'
+import { TbPlayCard } from 'react-icons/tb'
+import axios from 'axios'
 import { FaStar, FaRegStar } from 'react-icons/fa'
-
-import {
-    Neutral,
-    Fire,
-    Water,
-    Earth,
-    Wind,
-    Ice,
-    Lightning,
-    Holy,
-    Dark,
-    Universal,
-} from '../../assets/elements'
 import './Collection.scss'
 
-const Collection = () => {
-    const {
-        getCurrentUser,
-        user,
-        getUserCards,
-        userCards,
-        userDeck,
-        allCards,
-    } = useGlobalContext()
-    const [deckFilter, setDeckFilter] = useState('Show All')
-    const [rarityFilter, setRarityFilter] = useState(null)
-    const [elementFilter, setElementFilter] = useState(null)
-    const [sortingFilter, setSortingFilter] = useState(null)
+const UserSection = ({ userCards, user }) => {
+    const { level, stats, username } = user ?? {}
+    const cardNames = userCards?.map((card) => card.name)
+    const uniqueCards = [...new Set(cardNames)]
 
-    const valuesArray = ['Up', 'Right', 'Down', 'Left']
-    const elementArray = []
-    const rarityArray = []
+    return (
+        <div className='user-section center'>
+            <Avatar user={user} navbar={false} />
+            <div className='user'>
+                <div className='user__details'>
+                    <div className='top'>
+                        <h1>{username ?? 'User'}</h1>
+                        <h1>LVL &nbsp; {level ?? ''}</h1>
+                    </div>
+                    <hr />
+                    <ExperienceBar />
+                </div>
+                <div className='user__stats'>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Total MatcHes :</th>
+                                <td>{stats?.matches ?? 0}</td>
+                            </tr>
+                            <tr>
+                                <th>Wins :</th>
+                                <td>{stats?.wins ?? 0}</td>
+                            </tr>
+                            <tr>
+                                <th>Losses :</th>
+                                <td>{stats?.losses ?? 0}</td>
+                            </tr>
+                            <tr>
+                                <th>Draws :</th>
+                                <td>{stats?.draws ?? 0}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    Total <TbPlayCard /> :
+                                </th>
+                                <td>{userCards.length}</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Unique <TbPlayCard /> :
+                                </th>
+                                <td>{uniqueCards.length}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    useEffect(() => {
-        getCurrentUser()
-        getUserCards()
-    }, [])
+            <div className='main-card'>
+                {userCards.length > 0 && (
+                    <>
+                        <Card
+                            card={userCards[0]}
+                            player='p1'
+                            turn={true}
+                            visibility={true}
+                        />
+                        <h3>Most CaptuRes</h3>
+                    </>
+                )}
+            </div>
+        </div>
+    )
+}
 
-    allCards.forEach((card) => {
-        if (!elementArray.includes(card.element)) {
-            elementArray.push(card.element)
-        }
-        if (!rarityArray.includes(card.rarity)) {
-            rarityArray.push(card.rarity)
-        }
-    })
+const Filters = ({
+    deckFilter,
+    setDeckFilter,
+    rarityFilter,
+    setRarityFilter,
+    valueFilter,
+    setValueFilter,
+}) => {
+    return (
+        <div className='filters'>
+            <div className='filter'>
+                <label htmlFor='deck-filter'>Cards Filter</label>
+                <select
+                    id='deck-filter'
+                    value={deckFilter}
+                    onChange={(e) => setDeckFilter(e.target.value)}
+                >
+                    <option value='Show All'>Show All</option>
+                    <option value='In Deck'>In Deck</option>
+                    <option value='Not In Deck'>Not In Deck</option>
+                </select>
+            </div>
 
-    const filterCards = () => {
-        let filteredCards = []
+            <div className='filter'>
+                <label htmlFor='rarity-filter'>Rarity Filter</label>
+                <select
+                    id='rarity-filter'
+                    value={rarityFilter}
+                    onChange={(e) => setRarityFilter(e.target.value)}
+                >
+                    <option value='-'>-</option>
+                    <option value='Common'>Common</option>
+                    <option value='Uncommon'>Uncommon</option>
+                    <option value='Rare'>Rare</option>
+                    <option value='Epic'>Epic</option>
+                    <option value='Legendary'>Legendary</option>
+                </select>
+            </div>
 
-        if (deckFilter === 'Show All') {
-            filteredCards = [...userCards.sort((a, b) => a.number - b.number)]
-        }
+            <div className='filter'>
+                <label htmlFor='value-filter'>Value Filter</label>
+                <select
+                    id='value-filter'
+                    value={valueFilter}
+                    onChange={(e) => setValueFilter(e.target.value)}
+                >
+                    <option value='-'>-</option>
+                    <option value='Up'>Up</option>
+                    <option value='Down'>Down</option>
+                    <option value='Left'>Left</option>
+                    <option value='Right'>Right</option>
+                    <option value='Total'>Total</option>
+                </select>
+            </div>
+        </div>
+    )
+}
 
-        if (deckFilter === 'Selected') {
-            filteredCards = [
-                ...userCards.filter((card) =>
-                    userDeck.find(({ _id }) => card._id === _id)
-                ),
-            ]
-        }
-
-        if (deckFilter === 'Unselected') {
-            filteredCards = [
-                ...userCards.filter(
-                    (card) => !userDeck.find(({ _id }) => card._id === _id)
-                ),
-            ]
-        }
-        if (rarityFilter) {
-            filteredCards = [
-                ...filteredCards.filter((card) => card.rarity === rarityFilter),
-            ]
-        }
-
-        if (elementFilter) {
-            filteredCards = [
-                ...filteredCards.filter(
-                    (card) => card.element === elementFilter
-                ),
-            ]
-        }
-
-        if (sortingFilter === 'Reset') {
-            filteredCards.sort((a, b) => a.number - b.number)
-        }
-        if (sortingFilter === 'Up') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[0].replace(/A/g, 10) -
-                    a.values[0].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Right') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[1].replace(/A/g, 10) -
-                    a.values[1].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Down') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[2].replace(/A/g, 10) -
-                    a.values[2].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Left') {
-            filteredCards.sort(
-                (a, b) =>
-                    b.values[3].replace(/A/g, 10) -
-                    a.values[3].replace(/A/g, 10)
-            )
-        }
-        if (sortingFilter === 'Total') {
-            filteredCards.sort(
+const DeckBar = ({
+    userCards,
+    userDeck,
+    getCurrentUser,
+    markSelected,
+    removeSelection,
+}) => {
+    const autoBuild = async () => {
+        const emptySlots = 15 - userDeck.length
+        const totalValueArray = userCards
+            .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
+            .sort(
                 (a, b) =>
                     b.values.reduce(
                         (sum, current) =>
@@ -131,18 +162,154 @@ const Collection = () => {
                         0
                     )
             )
+        for (let i = 0; i < emptySlots; i++) {
+            markSelected(totalValueArray[i])
         }
-        return filteredCards
+        getCurrentUser()
     }
 
+    const unSelectAll = () => {
+        userDeck.forEach((deckCard) => {
+            removeSelection(deckCard)
+        })
+        getCurrentUser()
+    }
+
+    return (
+        <div className='deck center'>
+            <div className='counter'>
+                <p>Cards in Deck</p>
+                <p>
+                    <span
+                        className={userDeck?.length < 15 ? 'invalid' : 'valid'}
+                    >
+                        {userDeck.length}
+                    </span>
+                    / 15
+                </p>
+            </div>
+            <div className='strength'>
+                <p>Deck Strength</p>
+                {userDeck.reduce(
+                    (total, card) =>
+                        total +
+                        card.values.reduce(
+                            (sum, current) =>
+                                parseInt(sum) +
+                                parseInt(current.replace(/A/g, 10)),
+                            0
+                        ),
+                    0
+                )}
+            </div>
+
+            <div className='section'>
+                <Button onClick={autoBuild} label='Auto Build' />
+                <Button onClick={unSelectAll} label='Clear Deck' />
+            </div>
+        </div>
+    )
+}
+
+const CardCollection = ({
+    userCards,
+    userDeck,
+    deckFilter,
+    rarityFilter,
+    valueFilter,
+    valuesArray,
+    markSelected,
+    removeSelection,
+}) => {
+    const [filteredCards, setFilteredCards] = useState([])
+
+    useEffect(() => {
+        let filtered = [...userCards]
+
+        if (deckFilter === 'Show All') {
+            filtered = [...userCards]
+        } else if (deckFilter === 'In Deck') {
+            filtered = userCards.filter((card) =>
+                userDeck.find(({ _id }) => card._id === _id)
+            )
+        } else if (deckFilter === 'Not In Deck') {
+            filtered = userCards.filter(
+                (card) => !userDeck.find(({ _id }) => card._id === _id)
+            )
+        }
+
+        if (rarityFilter == '-') {
+            filtered.sort((a, b) => a.number - b.number)
+        } else if (rarityFilter) {
+            filtered = filtered.filter((card) => card.rarity === rarityFilter)
+        }
+
+        if (valueFilter == '-') {
+            filtered.sort((a, b) => a.number - b.number)
+        } else if (valueFilter) {
+            filtered = filtered.sort((a, b) => {
+                const aVal = a.values[valuesArray.indexOf(valueFilter)]
+                const bVal = b.values[valuesArray.indexOf(valueFilter)]
+                return (
+                    parseInt(bVal.replace(/A/g, 10)) -
+                    parseInt(aVal.replace(/A/g, 10))
+                )
+            })
+        }
+
+        setFilteredCards(filtered)
+    }, [userCards, deckFilter, rarityFilter, valueFilter, userDeck])
+
+    return (
+        <div className='card-collection'>
+            <div className='header'>
+                <h1>Cards</h1>
+                <hr />
+            </div>
+            <div className='card-list'>
+                {filteredCards?.map((card) => (
+                    <Card
+                        key={card._id}
+                        card={card}
+                        player='p1'
+                        turn={true}
+                        visibility={true}
+                        selector={true}
+                        handleClick={() =>
+                            !card.selected
+                                ? markSelected(card)
+                                : removeSelection(card)
+                        }
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+const Collection = () => {
+    const { getCurrentUser, user, getUserCards, userCards, userDeck } =
+        useGlobalContext()
+
+    const [deckFilter, setDeckFilter] = useState('')
+    const [rarityFilter, setRarityFilter] = useState('')
+    const [valueFilter, setValueFilter] = useState('')
+    const valuesArray = ['Up', 'Right', 'Down', 'Left', 'Total']
+
+    useEffect(() => {
+        getCurrentUser()
+        getUserCards()
+    }, [])
+
     const markSelected = async (card) => {
-        if (userDeck.length < 35) {
+        if (userDeck.length < 15) {
             await axios.put(`/api/collection/${card._id}/selected`)
             await axios.post('/api/deck/add', {
                 user: user._id,
                 _id: card._id,
                 number: card.number,
                 name: card.name,
+                level: card.level,
                 rarity: card.rarity,
                 element: card.element,
                 image: card.image,
@@ -162,332 +329,35 @@ const Collection = () => {
         getCurrentUser()
     }
 
-    const autoBuild = async () => {
-        const emptySlots = 35 - userDeck.length
-        const totalValueArray = userCards
-            .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
-            .sort(
-                (a, b) =>
-                    b.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    ) -
-                    a.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    )
-            )
-
-        for (let i = 0; i < emptySlots; i++) {
-            markSelected(totalValueArray[i])
-        }
-        getCurrentUser()
-    }
-
-    const unSelectAll = () => {
-        userDeck.forEach((deckCard) => {
-            removeSelection(deckCard)
-        })
-        getCurrentUser()
-    }
-
     return (
-        <div className='deck page'>
-            <div className='sidebar box'>
-                <div className='filters'>
-                    <div className='filters__section box'>
-                        <h1>Filter</h1>
-                        <div className='section__header'>
-                            <h3>Cards </h3>
-                            <hr />
-                        </div>
-
-                        <div className='section__options'>
-                            <button
-                                className={`${
-                                    deckFilter === 'Show All' ? 'active' : ''
-                                } box`}
-                                onClick={() => setDeckFilter('Show All')}
-                            >
-                                All
-                            </button>
-                            <button
-                                className={`${
-                                    deckFilter === 'Selected' ? 'active' : ''
-                                } box`}
-                                onClick={() => setDeckFilter('Selected')}
-                            >
-                                Selected
-                            </button>
-                            <button
-                                className={`${
-                                    deckFilter === 'Unselected' ? 'active' : ''
-                                } box`}
-                                onClick={() => setDeckFilter('Unselected')}
-                            >
-                                Unselected
-                            </button>
-                        </div>
-                        <div className='section__header'>
-                            <h3>Rarity</h3>
-                            <hr />
-                        </div>
-                        <div className='section__options'>
-                            <button
-                                className='box'
-                                onClick={() => setRarityFilter(null)}
-                            >
-                                Clear Filter
-                            </button>
-                            {rarityArray.map((rarity) => (
-                                <button
-                                    key={rarity}
-                                    className={`${
-                                        rarityFilter === rarity ? 'active' : ''
-                                    } box`}
-                                    onClick={() => setRarityFilter(rarity)}
-                                >
-                                    {rarity}
-                                </button>
-                            ))}
-                        </div>
-
-                        <div className='section__header'>
-                            <h3>Element</h3>
-                            <hr />
-                        </div>
-                        <div className='section__options'>
-                            <button
-                                className='box'
-                                onClick={() => setElementFilter(null)}
-                            >
-                                Clear Filter
-                            </button>
-                            {elementArray.map((element) => (
-                                <button
-                                    key={element}
-                                    className={`${
-                                        elementFilter === element
-                                            ? 'active'
-                                            : ''
-                                    } box`}
-                                    onClick={() => setElementFilter(element)}
-                                >
-                                    {element}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                    <div className='filters__section box'>
-                        <h1>Sort</h1>
-                        <div className='section__header'>
-                            <h3>Card Values</h3>
-                            <hr />
-                        </div>
-                        <div className='section__options'>
-                            <button
-                                className='box'
-                                onClick={() => setSortingFilter('Reset')}
-                            >
-                                Reset
-                            </button>
-                            {valuesArray.map((value) => (
-                                <button
-                                    key={value}
-                                    className={`${
-                                        sortingFilter === value ? 'active' : ''
-                                    } box`}
-                                    onClick={() => setSortingFilter(value)}
-                                >
-                                    {value}
-                                </button>
-                            ))}
-                            <button
-                                className={`${
-                                    sortingFilter === 'Total' ? 'active' : ''
-                                } box`}
-                                onClick={() => setSortingFilter('Total')}
-                            >
-                                Total
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='details box'>
-                <div className='top'>
-                    <div className='text'>
-                        <div className='counter'>
-                            <p>Cards in Deck</p>
-                            <p>
-                                <span
-                                    className={
-                                        userDeck.length < 35
-                                            ? 'invalid'
-                                            : 'valid'
-                                    }
-                                >
-                                    {userDeck.length}
-                                </span>
-                                / 35
-                            </p>
-                        </div>
-                        <div className='strength'>
-                            <p>Deck Strength</p>
-                            {userDeck.reduce(
-                                (total, card) =>
-                                    total +
-                                    card.values.reduce(
-                                        (sum, current) =>
-                                            parseInt(sum) +
-                                            parseInt(current.replace(/A/g, 10)),
-                                        0
-                                    ),
-                                0
-                            )}
-                        </div>
-                    </div>
-
-                    <div className='section'>
-                        <button className='box' onClick={() => autoBuild()}>
-                            Auto Build
-                        </button>
-                        <button className='box' onClick={() => unSelectAll()}>
-                            Unselect All
-                        </button>
-                    </div>
-                </div>
-                <div className='bottom'>
-                    <div className='element'>
-                        <img src={Neutral} alt='Neutral' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Neutral'
-                                ).length
-                            }
-                        </span>
-                    </div>
-                    <div className='element'>
-                        <img src={Fire} alt='Fire' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Fire'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Water} alt='Water' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Water'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Earth} alt='Earth' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Earth'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Wind} alt='Wind' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Wind'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Ice} alt='Ice' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Ice'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Lightning} alt='Lightning' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Lightning'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Holy} alt='Holy' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Holy'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Dark} alt='Dark' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Dark'
-                                ).length
-                            }
-                        </span>
-                    </div>{' '}
-                    <div className='element'>
-                        <img src={Universal} alt='Universal' />
-                        <span>
-                            {
-                                userDeck.filter(
-                                    (card) => card.element === 'Universal'
-                                ).length
-                            }
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div className='list'>
-                {filterCards().map((card) => (
-                    <div key={card._id} className='display'>
-                        <Card
-                            card={card}
-                            player='p1'
-                            page={'deck'}
-                            handleClick={() =>
-                                !card.selected
-                                    ? markSelected(card)
-                                    : removeSelection(card)
-                            }
-                            turn={true}
-                            visibility={true}
-                        />
-
-                        <p className='stars'>
-                            <FaStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                        </p>
-                    </div>
-                ))}
-            </div>
+        <div className='collection page'>
+            <UserSection user={user} userCards={userCards ?? []} />
+            <DeckBar
+                user={user}
+                userCards={userCards}
+                userDeck={userDeck}
+                getCurrentUser={getCurrentUser}
+                markSelected={markSelected}
+                removeSelection={removeSelection}
+            />
+            <Filters
+                deckFilter={deckFilter}
+                rarityFilter={rarityFilter}
+                valueFilter={valueFilter}
+                setDeckFilter={setDeckFilter}
+                setRarityFilter={setRarityFilter}
+                setValueFilter={setValueFilter}
+            />
+            <CardCollection
+                userCards={userCards ?? []}
+                userDeck={userDeck ?? []}
+                deckFilter={deckFilter}
+                rarityFilter={rarityFilter}
+                valueFilter={valueFilter}
+                valuesArray={valuesArray}
+                markSelected={markSelected}
+                removeSelection={removeSelection}
+            />
         </div>
     )
 }

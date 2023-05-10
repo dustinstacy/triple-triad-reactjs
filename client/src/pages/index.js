@@ -1,6 +1,5 @@
 export { default as Account } from './Account/Account'
 export { default as Collection } from './Collection/Collection'
-export { default as FirstDeck } from './FirstDeck/FirstDeck'
 export { default as Home } from './Home/Home'
 export { default as LandingPage } from './LandingPage/LandingPage'
 export { default as Match } from './Match/Match'

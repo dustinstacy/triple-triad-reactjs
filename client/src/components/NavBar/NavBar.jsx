@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { MdOutlineClose, MdLogout, MdMenu } from 'react-icons/md'
 
-import axios from 'axios'
 import { motion } from 'framer-motion'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
@@ -11,10 +10,11 @@ import { handleToggle } from '../../utils/handleToggle'
 
 import { logo } from '../../assets/logos'
 import { coinImage } from '../../assets/icons'
-import { levels } from '../../constants/levels'
 import { navlinks } from '../../constants/navlinks'
 
 import './NavBar.scss'
+import ExperienceBar from '../ExperienceBar/ExperienceBar'
+import Avatar from '../Avatar/Avatar'
 
 // The list of links is memoized to avoid unnecessary re-rendering.
 // The menu and onClick props are used to add CSS class names and customize functionality of the links.
@@ -60,7 +60,7 @@ const BurgerMenu = () => {
                 initial={{ width: 0 }}
                 animate={
                     isSmallScreen
-                        ? { width: isMenuOpen ? '30vw' : '0' }
+                        ? { width: isMenuOpen ? '40vw' : '0' }
                         : { width: isMenuOpen ? '60vw' : '0' }
                 }
                 transition={{
@@ -91,99 +91,19 @@ const UserInventory = ({ user }) => {
     )
 }
 
-// This component displays the username, XP progress bar, and current XP / next level XP
-// It also handles level up logic by making an API call when user XP exceeds the XP required for their current level.
-const UserInfo = ({ user }) => {
-    const { getCurrentUser } = useGlobalContext()
-    const { username, xp, level } = user ?? {}
-    const userNextLevel = levels[level]
-
-    const xpPercentage = () => {
-        return `${(xp / userNextLevel) * 100}%`
-    }
-
-    const handleLevelUp = () => {
-        axios
-            .put('/api/profile', { level: level + 1 })
-            .then(() => getCurrentUser())
-    }
-
-    useEffect(() => {
-        if (xp >= userNextLevel) {
-            handleLevelUp()
-        }
-    }, [xp, userNextLevel])
-
-    return (
-        <div className='user-info'>
-            <h2>{username}</h2>
-            <div className='progressBar'>
-                <div
-                    className='progressBar__inner'
-                    style={{ width: xpPercentage() }}
-                ></div>
-            </div>
-            <span className='xp'>
-                XP {xp} / {userNextLevel}
-            </span>
-        </div>
-    )
-}
-
-const UserImage = ({ user }) => {
-    const { image, level } = user ?? {}
-    const [isOpen, setIsOpen] = useState(false)
-
-    return (
-        <div className='user-image'>
-            <div className='image-inner '>
-                <img
-                    src={image}
-                    alt='user image'
-                    onClick={() => handleToggle(setIsOpen)}
-                />
-                <p className='level box'>LVL {level}</p>
-                <UserMenu isOpen={isOpen} setIsOpen={setIsOpen} />
-            </div>
-        </div>
-    )
-}
-
-// This component is the menu that is displayed when the user clicks on their image.
-const UserMenu = ({ isOpen, setIsOpen }) => {
-    const { logout } = useGlobalContext()
-
-    const navigate = useNavigate()
-
-    const handleLogout = () => {
-        logout().then(() => {
-            handleToggle(setIsOpen)
-            navigate('/')
-        })
-    }
-
-    return (
-        isOpen && (
-            <div className='user-menu box'>
-                <NavLink to='/account' onClick={() => handleToggle(setIsOpen)}>
-                    Account
-                </NavLink>
-                <a className='user-link center' onClick={() => handleLogout()}>
-                    Logout <MdLogout />
-                </a>
-            </div>
-        )
-    )
-}
-
 // This component acts as the parent component for all User-related components
 const UserSection = ({ user }) => {
+    const { username } = user ?? {}
     return (
         <div className='user'>
             <hr />
             <UserInventory user={user} />
-            <UserInfo user={user} />
-            <UserImage user={user} />
+            <div className='user-info'>
+                <h2>{username}</h2>
+                <ExperienceBar user={user} />
+            </div>
+
+            <Avatar user={user} navbar={true} />
         </div>
     )
 }

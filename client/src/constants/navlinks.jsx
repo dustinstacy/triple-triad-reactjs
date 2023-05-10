@@ -3,26 +3,32 @@ import {
     GiAbstract021,
     GiAbstract088,
     GiAbstract112,
+    GiAbstract120,
 } from 'react-icons/gi'
 
 export const navlinks = [
     {
-        name: 'Home',
+        name: 'HoMe',
         path: '/home',
         image: <GiAbstract021 />,
     },
     {
-        name: 'Battle',
+        name: 'BAttLe',
         path: '/match',
-        image: <GiAbstract062 />,
-    },
-    {
-        name: 'Collection',
-        path: '/collection',
         image: <GiAbstract088 />,
     },
     {
-        name: 'Packs',
+        name: 'COlleCtiON',
+        path: '/collection',
+        image: <GiAbstract062 />,
+    },
+    {
+        name: 'MarKet',
+        path: '/market',
+        image: <GiAbstract120 />,
+    },
+    {
+        name: 'DiScoVeRy',
         path: '/packs',
         image: <GiAbstract112 />,
     },

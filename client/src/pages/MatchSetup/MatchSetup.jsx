@@ -14,7 +14,7 @@ const MatchSetup = () => {
 
     return (
         <div className='setup page'>
-            <div className='container'>
+            <div className='section'>
                 <div className='player box'>
                     <div className='player__info'>
                         <img src={user?.image} alt='player image' />

@@ -14,7 +14,6 @@ import {
     MatchSetup,
     Collection,
     Packs,
-    FirstDeck,
     Account,
 } from './pages'
 import './App.scss'
@@ -35,7 +34,6 @@ function App() {
             <Routes>
                 <Route path='/' element={<LandingPage />} />
                 <Route path='/register' element={<LandingPage register />} />
-                <Route path='/firstDeck' element={<FirstDeck />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/battle' element={<Battle />} />
                 <Route path='/matchSetup' element={<MatchSetup />} />

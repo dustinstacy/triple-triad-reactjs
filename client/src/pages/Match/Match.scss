@@ -149,9 +149,10 @@
     }
 
     .selected {
-        box-shadow: var(--primary2-color) 0px 10px 10px,
-            var(--primary2-color) 0px -10px 10px,
-            var(--primary2-color) 0px 5px 5px, var(--primary2-color) 0px 5px 5px,
-            var(--primary2-color) 0px -5px 5px;
+        box-shadow: var(--secondary-color) 0px 10px 10px,
+            var(--secondary-color) 0px -10px 10px,
+            var(--secondary-color) 0px 5px 5px,
+            var(--secondary-color) 0px 5px 5px,
+            var(--secondary-color) 0px -5px 5px;
     }
 }

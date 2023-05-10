@@ -45,7 +45,7 @@ const Avatar = ({ user, navbar }) => {
         <div className='avatar-container'>
             <div className='inner-container '>
                 <img
-                    src={image ?? smlogo}
+                    src={image}
                     alt='user image'
                     onClick={navbar ? () => handleToggle(setIsOpen) : null}
                 />

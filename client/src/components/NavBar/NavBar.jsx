@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-import { MdOutlineClose, MdLogout, MdMenu } from 'react-icons/md'
+import { MdOutlineClose, MdMenu } from 'react-icons/md'
 
 import { motion } from 'framer-motion'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -8,22 +8,23 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { handleToggle } from '../../utils/handleToggle'
 
+import { ExperienceBar, Avatar } from '../../components'
 import { logo } from '../../assets/logos'
 import { coinImage } from '../../assets/icons'
 import { navlinks } from '../../constants/navlinks'
 
 import './NavBar.scss'
-import ExperienceBar from '../ExperienceBar/ExperienceBar'
-import Avatar from '../Avatar/Avatar'
 
 // The list of links is memoized to avoid unnecessary re-rendering.
 // The menu and onClick props are used to add CSS class names and customize functionality of the links.
-const Links = ({ menu, onClick }) => {
-    const linkItems = useMemo(
-        () =>
-            navlinks.map((link) => (
+const Links = ({ menu, onClick, user }) => {
+    return (
+        <div className={`${menu}-links`}>
+            {navlinks.map((link) => (
                 <NavLink
-                    className={`${menu}-link center`}
+                    className={`${menu}-link center ${
+                        !user && link.path !== '/home' ? 'disabled' : ''
+                    }`}
                     key={link.name}
                     to={link.path}
                     onClick={onClick}
@@ -31,14 +32,12 @@ const Links = ({ menu, onClick }) => {
                     {link.image}
                     <p>{link.name}</p>
                 </NavLink>
-            )),
-        [menu]
+            ))}
+        </div>
     )
-
-    return <div className={`${menu}-links`}>{linkItems}</div>
 }
 
-const BurgerMenu = () => {
+const BurgerMenu = ({ user }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const isSmallScreen = useMediaQuery('(min-width:600px)')
 
@@ -71,6 +70,7 @@ const BurgerMenu = () => {
                 <Links
                     menu='burger-menu'
                     onClick={() => handleToggle(setIsMenuOpen)}
+                    user={user}
                 />
             </motion.div>
         </div>
@@ -115,14 +115,14 @@ const NavBar = ({ landing }) => {
 
     return (
         <div className='navbar'>
-            <BurgerMenu />
+            <BurgerMenu user={user} />
             <img
                 src={logo}
                 alt='logo'
                 className='navbar__logo'
                 onClick={() => navigate('/home')}
             />
-            <Links menu='navbar' />
+            <Links menu='navbar' user={user} />
             {user ? (
                 <UserSection user={user} />
             ) : landing ? null : (

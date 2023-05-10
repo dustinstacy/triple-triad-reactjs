@@ -27,7 +27,7 @@ const AvatarMenu = ({ isOpen, setIsOpen }) => {
                     Account
                 </NavLink>
                 <a
-                    className='avatar-link center'
+                    className='avatar-menu-link center'
                     onClick={() => handleLogout()}
                 >
                     Logout <MdLogout />
@@ -42,8 +42,8 @@ const Avatar = ({ user, navbar }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <div className='avatar-image'>
-            <div className='image-inner '>
+        <div className='avatar-container'>
+            <div className='inner-container '>
                 <img
                     src={image ?? smlogo}
                     alt='user image'

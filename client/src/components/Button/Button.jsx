@@ -14,12 +14,12 @@ const Button = ({ label, type, path, onClick, disabled }) => {
     }
 
     return (
-        <div
+        <button
             className={`button center ${disabled ? 'disabled' : ''}`}
             onClick={(e) => handleClick(e)}
         >
             <span>{label}</span>
-        </div>
+        </button>
     )
 }
 

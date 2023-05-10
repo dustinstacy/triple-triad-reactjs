@@ -54,7 +54,7 @@ export const CPUCardProvider = ({ children }) => {
     }
 
     const setCPUDeck = () => {
-        const randomDeck = [...Array(35)]
+        const randomDeck = [...Array(15)]
 
         getRandomCards(randomDeck)
 

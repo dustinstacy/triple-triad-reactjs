@@ -13,6 +13,7 @@ const Card = ({ card, player, turn, handleClick, visibility, selector }) => {
             } ${power} ${!visibility && 'transparent'}`}
             id={_id}
             owner={player}
+            onClick={(e) => handleClick(e)}
         >
             <img
                 className='card__image'
@@ -20,12 +21,14 @@ const Card = ({ card, player, turn, handleClick, visibility, selector }) => {
                 alt={_id}
             />
 
-            <div className='card__values'>
-                <span className='up'>{values[0]}</span>
-                <span className='right'>{values[1]}</span>
-                <span className='down'>{values[2]}</span>
-                <span className='left'>{values[3]}</span>
-            </div>
+            {visibility && (
+                <div className='card__values'>
+                    <span className='up'>{values[0]}</span>
+                    <span className='right'>{values[1]}</span>
+                    <span className='down'>{values[2]}</span>
+                    <span className='left'>{values[3]}</span>
+                </div>
+            )}
 
             {selector && (
                 <div className='checkbox' onClick={(e) => handleClick(e)}>

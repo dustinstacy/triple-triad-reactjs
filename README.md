@@ -1,6 +1,5 @@
 <h1 align="center">
-⚠️ Under Maintainence ⚠️ <br/>
-!!! Current repo does not facilitate Onboarding for new users !!!
+⚠️ Under Maintainence ⚠️
 </h1>
 
 <h1 align="center">

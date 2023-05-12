@@ -28,9 +28,10 @@
                 top: 10px;
                 right: 12px;
                 gap: 8px;
+                font-size: 32px;
 
                 img {
-                    height: 48px;
+                    height: 36px;
                 }
             }
         }
@@ -50,6 +51,7 @@
         height: 100%;
         width: 33%;
         border-right: 1px solid var(--primary-color);
+        font-size: 18px;
 
         .menu-item {
             height: 100px;
@@ -68,7 +70,10 @@
             }
 
             &.chosen {
-                background: var(--primary-color);
+                background: var(--background2-color);
+                color: var(--primary-color);
+                box-shadow: 0 2px 4px var(--primary-color),
+                    0 -2px 4px var(--primary-color);
             }
         }
     }
@@ -91,7 +96,7 @@
 
             hr {
                 height: 2px;
-                background-color: var(--secondary-color);
+                background-color: var(--secondary2-color);
                 border: 0;
             }
 

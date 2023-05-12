@@ -21,13 +21,17 @@ const Packs = () => {
     useEffect(() => {
         user &&
             (setUserSmallPacks([
-                ...user.packs.filter((pack) => pack.name === 'small'),
+                ...user.packs.filter(
+                    (pack) => pack.name === 'Common Discovery'
+                ),
             ]),
             setUserMediumPacks([
-                ...user.packs.filter((pack) => pack.name === 'medium'),
+                ...user.packs.filter(
+                    (pack) => pack.name === 'Uncommon Discovery'
+                ),
             ]),
             setUserLargePacks([
-                ...user.packs.filter((pack) => pack.name === 'large'),
+                ...user.packs.filter((pack) => pack.name === 'Rare Discovery'),
             ]))
     }, [getCurrentUser])
 

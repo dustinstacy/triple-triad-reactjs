@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button } from '../../components'
 import { marketItems } from '../../constants/marketItems'
@@ -78,7 +79,7 @@ const QuantitySelector = ({
     )
 }
 
-const PurchaseBar = ({ chosenItem, chosenQuantity, user }) => {
+const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
     const calulatePrice = (item, quantity, discount) => {
         let totalPrice = item.price * quantity
         if (quantity > 1) {
@@ -92,6 +93,25 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user }) => {
         chosenQuantity.amount,
         chosenQuantity.discount
     )
+
+    const purchasedItem = {
+        name: chosenItem.name,
+        contents: chosenItem.contents,
+        image: chosenItem.image,
+    }
+
+    const completePurchase = async () => {
+        await axios.put('/api/profile', {
+            coin: user.coin - finalPrice,
+        })
+        for (let i = chosenQuantity.amount; i > 0; i--) {
+            await axios
+                .put('api/profile/packs', {
+                    packs: [...user.packs, purchasedItem],
+                })
+                .then(getCurrentUser())
+        }
+    }
 
     return (
         <div className='purchase-bar box'>
@@ -107,7 +127,11 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user }) => {
                     <img src={coinImage} alt='coin' />
                 </div>
             </div>
-            <Button label='Purchase' disabled={finalPrice > user?.coin} />
+            <Button
+                label='Purchase'
+                disabled={finalPrice > user?.coin}
+                onClick={() => completePurchase()}
+            />
         </div>
     )
 }
@@ -155,6 +179,7 @@ const Market = () => {
                             chosenItem={chosenItem}
                             chosenQuantity={chosenQuantity}
                             user={user}
+                            getCurrentUser={getCurrentUser}
                         />
                     </div>
                 </div>

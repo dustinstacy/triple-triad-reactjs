@@ -1,5 +1,8 @@
 .packs {
     flex-direction: row !important;
+    background: url('../../assets/page-images/discoveryRoom.jpg');
+    background-size: cover;
+    background-position: bottom;
     color: var(--white-color);
 
     @media screen and (max-width: 600px) {
@@ -147,5 +150,38 @@
             var(--primary2-color) 0px 1.5px 1.5px,
             var(--primary2-color) 0px 1.5px 1.5px,
             var(--primary2-color) 0px -1.5px 1.5px;
+    }
+
+    @keyframes brightLight {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            height: 1000%;
+            width: 1000%;
+            opacity: 1;
+        }
+    }
+
+    .light {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 50%;
+        width: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(170, 232, 255, 1) 0%,
+            rgba(255, 255, 251, 1) 15%,
+            rgba(170, 232, 255, 1) 19%,
+            rgba(255, 255, 255, 1) 24%,
+            rgba(170, 232, 255, 1) 27%,
+            rgba(255, 255, 255, 1) 61%
+        );
+        border-radius: 50%;
+        animation: brightLight 4s ease-in forwards;
+        z-index: 1000;
     }
 }

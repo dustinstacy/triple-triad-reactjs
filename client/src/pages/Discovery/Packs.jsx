@@ -13,6 +13,7 @@ const Packs = () => {
     const [userSmallPacks, setUserSmallPacks] = useState([])
     const [userMediumPacks, setUserMediumPacks] = useState([])
     const [userLargePacks, setUserLargePacks] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         getCurrentUser()
@@ -38,49 +39,54 @@ const Packs = () => {
     }, [getCurrentUser])
 
     const openPack = async () => {
-        let packSize
-        if (pack === 'small') {
-            packSize = 3
-        }
-        if (pack === 'medium') {
-            packSize = 5
-        }
-        if (pack === 'large') {
-            packSize = 10
-        }
-        const newPack = [...Array(packSize)]
-        getRandomCards(newPack)
-        newPack.forEach((card) => {
-            assignRandomValues(card)
-            axios.post('/api/collection/new', {
-                user: user._id,
-                number: card.number,
-                name: card.name,
-                rarity: card.rarity,
-                element: card.element,
-                image: card.image,
-                values: card.values,
+        setIsLoading(true)
+
+        setTimeout(() => {
+            let packSize
+            if (pack === 'small') {
+                packSize = 3
+            }
+            if (pack === 'medium') {
+                packSize = 5
+            }
+            if (pack === 'large') {
+                packSize = 10
+            }
+            const newPack = [...Array(packSize)]
+            getRandomCards(newPack)
+            newPack.forEach((card) => {
+                assignRandomValues(card)
+                axios.post('/api/collection/new', {
+                    user: user._id,
+                    number: card.number,
+                    name: card.name,
+                    rarity: card.rarity,
+                    element: card.element,
+                    image: card.image,
+                    values: card.values,
+                })
             })
-        })
-        setPackContents(newPack)
-        if (pack === 'small') {
-            userSmallPacks.pop()
-        }
-        if (pack === 'medium') {
-            userMediumPacks.pop()
-        }
-        if (pack === 'large') {
-            userLargePacks.pop()
-        }
-        const userPacks = [
-            ...userSmallPacks,
-            ...userMediumPacks,
-            ...userLargePacks,
-        ]
-        axios.put('/api/profile/packs', {
-            packs: userPacks,
-        })
-        setPack(null)
+            setPackContents(newPack)
+            if (pack === 'small') {
+                userSmallPacks.pop()
+            }
+            if (pack === 'medium') {
+                userMediumPacks.pop()
+            }
+            if (pack === 'large') {
+                userLargePacks.pop()
+            }
+            const userPacks = [
+                ...userSmallPacks,
+                ...userMediumPacks,
+                ...userLargePacks,
+            ]
+            axios.put('/api/profile/packs', {
+                packs: userPacks,
+            })
+            setPack(null)
+            setIsLoading(false)
+        }, 3000)
     }
 
     const randomRarity = () => {
@@ -110,6 +116,7 @@ const Packs = () => {
         <div className='packs page'>
             <div className='contents'>
                 <div className='container'>
+                    {isLoading && <div className='light'></div>}
                     {packContents.map((card, i) => (
                         <Card
                             key={card._id}
@@ -129,21 +136,22 @@ const Packs = () => {
             <div className='packs__bar'>
                 <div className='inventory'>
                     <div className='pack'>
-                        <div className='count'>
-                            <img src={smallPack} alt='Small Pack' />
-                            <span>x {userSmallPacks.length}</span>
+                        <img src={smallPack} alt='Small Pack' />
+                        <div className='selector'>
+                            <div className='count'>
+                                <span>x {userSmallPacks.length}</span>
+                            </div>
+                            <button
+                                className={`box ${
+                                    pack === 'small' && 'active'
+                                } ${userSmallPacks.length === 0 && 'disabled'}`}
+                                onClick={() => {
+                                    setPack('small'), setPackContents([])
+                                }}
+                            >
+                                {pack === 'small' ? 'Selected' : 'Select'}
+                            </button>
                         </div>
-
-                        <button
-                            className={`box ${pack === 'small' && 'active'} ${
-                                userSmallPacks.length === 0 && 'disabled'
-                            }`}
-                            onClick={() => {
-                                setPack('small'), setPackContents([])
-                            }}
-                        >
-                            {pack === 'small' ? 'Selected' : 'Select'}
-                        </button>
                     </div>
                     <div className='pack'>
                         <div className='count'>
@@ -184,5 +192,3 @@ const Packs = () => {
         </div>
     )
 }
-
-export default Packs

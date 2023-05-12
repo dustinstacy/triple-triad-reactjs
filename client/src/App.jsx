@@ -14,8 +14,8 @@ import {
     MatchEnd,
     MatchSetup,
     Collection,
-    Packs,
     Account,
+    Discovery,
 } from './pages'
 import './App.scss'
 
@@ -42,7 +42,7 @@ function App() {
                 <Route path='/matchEnd' element={<MatchEnd />} />
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />
-                <Route path='/packs' element={<Packs />} />
+                <Route path='/discovery' element={<Discovery />} />
                 <Route path='/account' element={<Account />} />
             </Routes>
         </CPUCardProvider>

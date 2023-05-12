@@ -1,3 +1,4 @@
 import library from './library.jpg'
+import discoveryRoom from './discoveryRoom.jpg'
 
-export { library }
+export { library, discoveryRoom }

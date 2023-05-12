@@ -80,15 +80,15 @@ const QuantitySelector = ({
 }
 
 const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
-    const calulatePrice = (item, quantity, discount) => {
+    const calculatePrice = (item, quantity, discount) => {
         let totalPrice = item.price * quantity
         if (quantity > 1) {
-            totalPrice = totalPrice * ((100 - parseFloat(discount)) / 100)
+            totalPrice *= (100 - parseFloat(discount)) / 100
         }
         return totalPrice
     }
 
-    const finalPrice = calulatePrice(
+    const finalPrice = calculatePrice(
         chosenItem,
         chosenQuantity.amount,
         chosenQuantity.discount
@@ -100,16 +100,25 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
         image: chosenItem.image,
     }
 
+    const finalPurchase = Array.from(
+        { length: chosenQuantity.amount },
+        () => purchasedItem
+    )
+
+    const canPurchase = finalPrice <= (user.coin || 0)
+
     const completePurchase = async () => {
-        await axios.put('/api/profile', {
-            coin: user.coin - finalPrice,
-        })
-        for (let i = chosenQuantity.amount; i > 0; i--) {
-            await axios
-                .put('api/profile/packs', {
-                    packs: [...user.packs, purchasedItem],
-                })
-                .then(getCurrentUser())
+        try {
+            await axios.put('/api/profile', {
+                coin: user.coin - finalPrice,
+            })
+
+            await axios.put('api/profile/packs', {
+                packs: [...user.packs, ...finalPurchase],
+            })
+            getCurrentUser()
+        } catch (error) {
+            console.error('Error completing purchase:', error)
         }
     }
 
@@ -129,8 +138,8 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
             </div>
             <Button
                 label='Purchase'
-                disabled={finalPrice > user?.coin}
-                onClick={() => completePurchase()}
+                disabled={!canPurchase}
+                onClick={completePurchase}
             />
         </div>
     )
@@ -166,7 +175,6 @@ const Market = () => {
                     <MarketMenuBar
                         chosenItem={chosenItem}
                         setChosenItem={setChosenItem}
-                        setChosenQuantity={setChosenQuantity}
                     />
                     <div className='chosen-item-display'>
                         <ChosenItem chosenItem={chosenItem} />

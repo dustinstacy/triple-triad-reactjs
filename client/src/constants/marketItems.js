@@ -2,7 +2,7 @@ import { smallPack, mediumPack, largePack } from '../assets/packs'
 
 export const marketItems = [
     {
-        name: 'Common Discovery',
+        name: 'Beginner Discovery',
         details: 'Enter Item Description here',
         type: 'discovery',
         contents: { count: 1, chance: 'common' },
@@ -16,7 +16,7 @@ export const marketItems = [
         level: 1,
     },
     {
-        name: 'Uncommon Discovery',
+        name: 'Novice Discovery',
         details: 'Enter Item Description here',
         type: 'discovery',
         contents: { count: 1, chance: 'uncommon' },
@@ -30,7 +30,7 @@ export const marketItems = [
         level: 1,
     },
     {
-        name: 'Rare Discovery',
+        name: 'Amateur Discovery',
         details: 'Enter Item Description here',
         type: 'discovery',
         contents: { count: 1, chance: 'rare' },

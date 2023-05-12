@@ -22,16 +22,18 @@ const Packs = () => {
         user &&
             (setUserSmallPacks([
                 ...user.packs.filter(
-                    (pack) => pack.name === 'Common Discovery'
+                    (pack) => pack.name === 'Beginner Discovery'
                 ),
             ]),
             setUserMediumPacks([
                 ...user.packs.filter(
-                    (pack) => pack.name === 'Uncommon Discovery'
+                    (pack) => pack.name === 'Novice Discovery'
                 ),
             ]),
             setUserLargePacks([
-                ...user.packs.filter((pack) => pack.name === 'Rare Discovery'),
+                ...user.packs.filter(
+                    (pack) => pack.name === 'Amateur Discovery'
+                ),
             ]))
     }, [getCurrentUser])
 

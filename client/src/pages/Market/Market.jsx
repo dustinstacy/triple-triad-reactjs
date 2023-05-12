@@ -80,6 +80,8 @@ const QuantitySelector = ({
 }
 
 const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
+    const { packs, coin } = user ?? {}
+
     const calculatePrice = (item, quantity, discount) => {
         let totalPrice = item.price * quantity
         if (quantity > 1) {
@@ -105,16 +107,16 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
         () => purchasedItem
     )
 
-    const canPurchase = finalPrice <= (user.coin || 0)
+    const canPurchase = finalPrice <= (coin || 0)
 
     const completePurchase = async () => {
         try {
             await axios.put('/api/profile', {
-                coin: user.coin - finalPrice,
+                coin: coin - finalPrice,
             })
 
             await axios.put('api/profile/packs', {
-                packs: [...user.packs, ...finalPurchase],
+                packs: [...packs, ...finalPurchase],
             })
             getCurrentUser()
         } catch (error) {
@@ -162,7 +164,7 @@ const Market = () => {
 
     return (
         <div className='market page center'>
-            <div className='market-menu box'>
+            <div className='market-menu'>
                 <div className='market-menu-header'>
                     <h1>MaRKet</h1>
                     <hr />

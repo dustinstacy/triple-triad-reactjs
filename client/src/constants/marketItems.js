@@ -1,3 +1,5 @@
+import { smallPack, mediumPack, largePack } from '../assets/packs'
+
 export const marketItems = [
     {
         name: 'Common Discovery',
@@ -5,7 +7,7 @@ export const marketItems = [
         type: 'discovery',
         contents: { count: 1, chance: 'common' },
         price: 150,
-        image: url('../assets/packs/pack1.png'),
+        image: smallPack,
         level: 1,
     },
     {
@@ -14,7 +16,7 @@ export const marketItems = [
         type: 'discovery',
         contents: { count: 1, chance: 'uncommon' },
         price: 400,
-        image: url('../assets/packs/pack2.png'),
+        image: mediumPack,
         level: 1,
     },
     {
@@ -23,7 +25,7 @@ export const marketItems = [
         type: 'discovery',
         contents: { count: 1, chance: 'rare' },
         price: 1000,
-        image: url('../assets/packs/pack3.png'),
+        image: largePack,
         level: 1,
     },
 ]

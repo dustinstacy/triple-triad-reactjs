@@ -25,11 +25,54 @@
 
         .menu-body {
             height: 720px;
+            display: flex;
 
             .menu-items {
                 height: 100%;
                 width: 33%;
                 border-right: 1px solid var(--primary-color);
+
+                .menu-item {
+                    height: 100px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 4px 12px;
+                    border-bottom: 1px solid var(--secondary2-color);
+
+                    .menu-item-price {
+                        gap: 4px;
+                        img {
+                            height: 24px;
+                        }
+                    }
+                }
+            }
+
+            .chosen-item {
+                width: 66%;
+                padding: 48px 24px;
+
+                .chosen-item-top {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+
+                    .chosen-item-image {
+                        margin-top: 24px;
+                        img {
+                            height: 128px;
+                        }
+                    }
+
+                    .chosen-item-info {
+                        width: 70%;
+                        .chosen-item-details {
+                            width: 120%;
+                            margin-top: 12px;
+                        }
+                    }
+                }
             }
         }
     }

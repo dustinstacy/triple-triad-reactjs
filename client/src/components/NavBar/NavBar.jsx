@@ -131,7 +131,7 @@ const NavBar = ({ landing }) => {
                 </NavLink>
             )}
 
-            <hr className='gold-border-bottom' />
+            <hr className='gold-border' />
         </div>
     )
 }

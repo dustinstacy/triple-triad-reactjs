@@ -9,6 +9,7 @@ import {
     LandingPage,
     Home,
     Battle,
+    Market,
     Match,
     MatchEnd,
     MatchSetup,
@@ -40,6 +41,7 @@ function App() {
                 <Route path='/match' element={<Match />} />
                 <Route path='/matchEnd' element={<MatchEnd />} />
                 <Route path='/collection' element={<Collection />} />
+                <Route path='/market' element={<Market />} />
                 <Route path='/packs' element={<Packs />} />
                 <Route path='/account' element={<Account />} />
             </Routes>

@@ -71,43 +71,49 @@ const QuantitySelector = ({
             </div>
 
             <div className='discount'>
-                {' '}
                 {chosenQuantity.discount !== '0' &&
-                    chosenQuantity.discount + 'Discount'}
+                    chosenQuantity.discount + ' Discount'}
             </div>
         </div>
     )
 }
 
-const PurchaseBar = ({ chosenItem, chosenQuantity }) => {
+const PurchaseBar = ({ chosenItem, chosenQuantity, user }) => {
     const calulatePrice = (item, quantity, discount) => {
-        let totalPrice = chosenItem.price * chosenQuantity.amount
+        let totalPrice = item.price * quantity
         if (quantity > 1) {
             totalPrice = totalPrice * ((100 - parseFloat(discount)) / 100)
         }
         return totalPrice
     }
 
+    const finalPrice = calulatePrice(
+        chosenItem,
+        chosenQuantity.amount,
+        chosenQuantity.discount
+    )
+
     return (
         <div className='purchase-bar box'>
             <div className='total'>
                 Total :
                 <div className='amount center'>
-                    {calulatePrice(
-                        chosenItem,
-                        chosenQuantity.amount,
-                        chosenQuantity.discount
+                    {chosenQuantity.discount !== '0' && (
+                        <span className='previous-amount'>
+                            {chosenItem.price * chosenQuantity.amount}
+                        </span>
                     )}
+                    {finalPrice}
                     <img src={coinImage} alt='coin' />
                 </div>
             </div>
-            <Button label='Purchase' />
+            <Button label='Purchase' disabled={finalPrice > user?.coin} />
         </div>
     )
 }
 
 const Market = () => {
-    const { getCurrentUser } = useGlobalContext()
+    const { getCurrentUser, user } = useGlobalContext()
     const [chosenItem, setChosenItem] = useState(marketItems[0])
     const [chosenQuantity, setChosenQuantity] = useState(
         chosenItem.quantities[0]
@@ -127,6 +133,9 @@ const Market = () => {
                 <div className='market-menu-header'>
                     <h1>MaRKet</h1>
                     <hr />
+                    <p className='coin center'>
+                        {user?.coin} <img src={coinImage} alt='coin' />
+                    </p>
                 </div>
 
                 <div className='market-menu-body'>
@@ -145,6 +154,7 @@ const Market = () => {
                         <PurchaseBar
                             chosenItem={chosenItem}
                             chosenQuantity={chosenQuantity}
+                            user={user}
                         />
                     </div>
                 </div>

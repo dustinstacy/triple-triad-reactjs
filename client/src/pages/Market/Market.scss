@@ -6,6 +6,7 @@
         width: 80vw;
 
         .market-menu-header {
+            position: relative;
             background: var(--black-color);
             font-size: 42px;
             text-align: center;
@@ -20,6 +21,17 @@
                 margin: 0;
                 border: 0;
                 background: var(--primary-color);
+            }
+
+            .coin {
+                position: absolute;
+                top: 10px;
+                right: 12px;
+                gap: 8px;
+
+                img {
+                    height: 48px;
+                }
             }
         }
 
@@ -76,8 +88,14 @@
 
         .chosen-item-info {
             width: 70%;
+
+            hr {
+                height: 2px;
+                background-color: var(--secondary-color);
+                border: 0;
+            }
+
             .chosen-item-details {
-                width: 120%;
                 margin-top: 12px;
             }
         }
@@ -127,6 +145,10 @@
             .amount {
                 gap: 8px;
 
+                .previous-amount {
+                    color: var(--gray-color);
+                    text-decoration: line-through;
+                }
                 img {
                     height: 36px;
                 }

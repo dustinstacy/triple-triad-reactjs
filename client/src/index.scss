@@ -18,6 +18,28 @@
     --gray-color: rgb(162, 162, 165);
     --white-color: rgb(243, 244, 248);
 
+    --gold-gradient: linear-gradient(
+        to right,
+        #554903 0,
+        #cb9b51 10%,
+        #f6e27a 40%,
+        #f8f7ee 50%,
+        #f6e27a 60%,
+        #cb9b51 90%,
+        #554903 100%
+    );
+
+    --gold-gradient45: linear-gradient(
+        45deg,
+        #554903 0,
+        #cb9b51 5%,
+        #f6e27a 40%,
+        #f8f7ee 50%,
+        #f6e27a 60%,
+        #cb9b51 95%,
+        #554903 100%
+    );
+
     --navbar-height: 80px;
     --footer-height: 80px;
 
@@ -88,9 +110,23 @@ p,
 span {
     margin: 0;
     color: var(--white-color);
+}
+
+p,
+span {
     text-shadow: 2px 2px 1px var(--black-color),
         -1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
         -1px 1px 1px var(--black-color);
+}
+
+h1,
+h2,
+h3 {
+    text-shadow: 1px 1px 1px var(--black-color),
+        -1px -1px 1px var(--black-color), -1px 1px 1px var(--black-color),
+        1px -1px 1px var(--black-color), 2px 2px 2px var(--black-color),
+        -2px -2px 2px var(--black-color), -2px 2px 2px var(--black-color),
+        2px -2px 2px var(--black-color);
 }
 
 /******* Scrollbar ********/

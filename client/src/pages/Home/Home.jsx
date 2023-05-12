@@ -15,6 +15,11 @@ const Home = () => {
 
     return (
         <div className='home page'>
+            {/* Will be conditionally rendered based on user's Onboarding progress */}
+            <div className='section center'>
+                <h1>GettIng &nbsp; StarteD</h1>
+            </div>
+
             <div className={`section gray ${isLargeScreen ? 'right' : ''}`}>
                 <div className='box'>
                     <Button label='Battle' type='link' path='match' />

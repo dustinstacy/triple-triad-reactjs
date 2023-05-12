@@ -1,16 +1,6 @@
 /******** Mix-ins *********/
 
 @mixin gold-effect {
-    background: linear-gradient(
-        to right,
-        #554903 0,
-        #cb9b51 22%,
-        #f6e27a 45%,
-        #f6f2c0 50%,
-        #f6e27a 55%,
-        #cb9b51 78%,
-        #554903 100%
-    );
 }
 
 /******* Containers *********/
@@ -28,7 +18,8 @@
 
 .box {
     background-color: var(--background-colorOpacity);
-    border: 1px solid var(--primary-color);
+    border: 2px solid;
+    border-image: var(--gold-gradient45) 1;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
         rgba(0, 0, 0, 0.15) -40px -36px 130px 0px inset,
@@ -59,13 +50,9 @@
 
 /******* Styled Borders ********/
 
-.gold-border-bottom {
-    @include gold-effect();
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.gold-border {
     height: 2px;
     margin: 0;
     border: 0;
+    background: var(--gold-gradient);
 }

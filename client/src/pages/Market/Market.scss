@@ -1,0 +1,36 @@
+.market {
+    padding-top: var(--navbar-height);
+
+    .market-menu {
+        min-height: 800px;
+        width: 80vw;
+
+        .menu-header {
+            background: var(--black-color);
+            font-size: 42px;
+            text-align: center;
+            line-height: 64px;
+
+            h1 {
+                padding-top: 16px;
+            }
+
+            hr {
+                height: 2px;
+                margin: 0;
+                border: 0;
+                background: var(--primary-color);
+            }
+        }
+
+        .menu-body {
+            height: 720px;
+
+            .menu-items {
+                height: 100%;
+                width: 33%;
+                border-right: 1px solid var(--primary-color);
+            }
+        }
+    }
+}

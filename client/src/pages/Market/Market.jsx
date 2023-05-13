@@ -80,7 +80,7 @@ const QuantitySelector = ({
 }
 
 const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
-    const { packs, coin } = user ?? {}
+    const { inventory, coin } = user ?? {}
 
     const calculatePrice = (item, quantity, discount) => {
         let totalPrice = item.price * quantity
@@ -98,8 +98,10 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
 
     const purchasedItem = {
         name: chosenItem.name,
+        type: chosenItem.type,
         contents: chosenItem.contents,
         image: chosenItem.image,
+        level: chosenItem.level,
     }
 
     const finalPurchase = Array.from(
@@ -115,8 +117,8 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
                 coin: coin - finalPrice,
             })
 
-            await axios.put('api/profile/packs', {
-                packs: [...packs, ...finalPurchase],
+            await axios.put('api/profile/inventory', {
+                inventory: [...inventory, ...finalPurchase],
             })
             getCurrentUser()
         } catch (error) {

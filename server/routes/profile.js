@@ -65,14 +65,14 @@ router.put('/stats', requiresAuth, async (req, res) => {
 // @route PUT /api/profile/packs
 // @desc Update user's packs
 // @access Private
-router.put('/packs', requiresAuth, async (req, res) => {
+router.put('/inventory', requiresAuth, async (req, res) => {
     try {
         const updatedProfile = await User.findOneAndUpdate(
             {
                 _id: req.user._id,
             },
             {
-                packs: req.body.packs,
+                inventory: req.body.inventory,
             }
         )
         return res.json(updatedProfile)

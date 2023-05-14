@@ -110,11 +110,7 @@ npm start
 Huge thanks to the following content providers: </br> </br> Character Artwork -
 AEkashics <https://www.patreon.com/aekashics/posts> </br> Elements, Ranks, and
 Misc. Icons - Upkylak <https://www.freepik.com/author/upklyak> </br>
-Backgrounds - Sebastian Luca <https://www.artstation.com/bast>, Li Shuxing
-<https://www.artstation.com/shuxingli> </br> </br> This content is for
-non-commercial use. Any intent to redistribute or commericalize this content
-must be done through the consent of the artist and/or membership privileges
-where applicable.
+
 
 ## License
 

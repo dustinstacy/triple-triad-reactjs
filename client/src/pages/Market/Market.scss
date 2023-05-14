@@ -141,6 +141,7 @@
 
         .chosen-item-image {
             margin-top: 48px;
+            text-align: center;
 
             img {
                 height: 200px;
@@ -160,6 +161,11 @@
 
             @media screen and (max-width: 1080px) {
                 width: 70%;
+            }
+
+            @media screen and (max-width: 400px) {
+                width: 65%;
+                font-size: 14px;
             }
 
             hr {

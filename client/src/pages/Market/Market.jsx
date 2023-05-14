@@ -28,11 +28,19 @@ const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
     )
 }
 
-const ChosenItem = ({ chosenItem }) => {
+const ChosenItem = ({ chosenItem, user }) => {
     return (
         <div className='chosen-item'>
             <div className='chosen-item-image'>
                 <img src={chosenItem.image} alt={chosenItem.name} />
+                <div className='owned-inventory'>
+                    <span>Owned: &nbsp;</span>
+                    {
+                        user?.inventory.filter(
+                            (item) => item.name === chosenItem.name
+                        ).length
+                    }
+                </div>
             </div>
             <div className='chosen-item-info'>
                 <h1 className='chosen-item-name'>{chosenItem.name}</h1>
@@ -182,7 +190,7 @@ const Market = () => {
                         setChosenItem={setChosenItem}
                     />
                     <div className='chosen-item-display'>
-                        <ChosenItem chosenItem={chosenItem} />
+                        <ChosenItem chosenItem={chosenItem} user={user} />
                         <QuantitySelector
                             chosenItem={chosenItem}
                             chosenQuantity={chosenQuantity}

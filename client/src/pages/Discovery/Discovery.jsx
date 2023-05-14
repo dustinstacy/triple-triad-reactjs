@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '../../components'
+import { Button, Card, Loader } from '../../components'
 import './Discovery.scss'
 import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
+import { assignRandomValues } from '../../utils/assignRandomValues'
+import { removeObjectByValue } from '../../utils/removeObjectByValue'
 
-const Carousel = ({ items, userInventory }) => {
+import axios from 'axios'
+
+const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
     const [currentItemIndex, setCurrentItemIndex] = useState(0)
     const [slideDirection, setslideDirection] = useState('')
 
@@ -38,6 +42,10 @@ const Carousel = ({ items, userInventory }) => {
         { position: 'current', value: current },
         { position: 'next', value: next },
     ]
+
+    useEffect(() => {
+        setCurrentDiscovery(current)
+    })
 
     return (
         <div className='carousel'>
@@ -81,7 +89,10 @@ const Carousel = ({ items, userInventory }) => {
 }
 
 const Discovery = () => {
-    const { getCurrentUser, user } = useGlobalContext()
+    const { allCards, getCurrentUser, user } = useGlobalContext()
+    const [currentDiscovery, setCurrentDiscovery] = useState('')
+    const [madeDiscovery, setMadeDiscovery] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         getCurrentUser()
@@ -92,25 +103,117 @@ const Discovery = () => {
     ]
     const uniqueDiscoveries = uniqueItemsFilter(userDiscoveries)
 
+    const openPack = () => {
+        setIsLoading(true)
+
+        setTimeout(() => {
+            const userDiscovery = userDiscoveries.find(
+                (discovery) => discovery.name === currentDiscovery.name
+            )
+            const { contents } = userDiscovery ?? {}
+            const newDiscoveries = [...Array(contents.count)]
+            getRandomCards(newDiscoveries, contents.chance)
+            newDiscoveries.forEach((discovery) => {
+                assignRandomValues(discovery)
+                axios.post('/api/collection/new', {
+                    user: user._id,
+                    number: discovery.number,
+                    name: discovery.name,
+                    rarity: discovery.rarity,
+                    element: discovery.element,
+                    image: discovery.image,
+                    values: discovery.values,
+                })
+            })
+            setMadeDiscovery(newDiscoveries)
+            removeObjectByValue(user.inventory, currentDiscovery.name)
+            axios.put('api/profile/inventory', {
+                inventory: user.inventory,
+            })
+            setIsLoading(false)
+        }, 5000)
+    }
+
+    const randomRarity = (chance) => {
+        if (chance === 'common') {
+            const num = Math.random()
+            if (num < 0.9) return 'Common'
+            else return 'Uncommon'
+        }
+
+        if (chance === 'uncommon') {
+            const num = Math.random()
+            if (num < 0.5) return 'Common'
+            else if (num <= 0.9) return 'Uncommon'
+            else return 'Rare'
+        }
+
+        if (chance === 'rare') {
+            const num = Math.random()
+            if (num <= 0.5) return 'Uncommon'
+            else if (num <= 0.9) return 'Rare'
+            else return 'Epic'
+        }
+    }
+
+    const getRandomCards = (array, chance) => {
+        array.forEach((_, i) => {
+            const rarity = randomRarity(chance)
+            const currentRarityCards = allCards.filter(
+                (card) => card.rarity === rarity
+            )
+            const randomCard =
+                currentRarityCards[
+                    Math.floor(Math.random() * currentRarityCards.length)
+                ]
+            array.splice(i, 1, randomCard)
+        })
+    }
+
     return (
         <div className='discovery page center'>
-            <div className='panel center'>
-                <div className='panel-header'>
-                    <h1>ChOOse a DiScovery Kit</h1>
-                    <hr />
-                </div>
-                <div className='user-discoveries center'>
-                    {uniqueDiscoveries.length && (
-                        <Carousel
-                            items={uniqueDiscoveries}
-                            userInventory={userDiscoveries}
+            {madeDiscovery && !isLoading ? (
+                <div className='discovery-container center'>
+                    {madeDiscovery.map((card) => (
+                        <Card
+                            key={card._id}
+                            card={card}
+                            player='p1'
+                            visibility={true}
                         />
-                    )}
+                    ))}
+                    <Button
+                        label='Go Back'
+                        onClick={() => setMadeDiscovery(null)}
+                    />{' '}
                 </div>
-                <div className='panel-footer center'>
-                    <Button label='Make DiScoVery' />
+            ) : isLoading ? (
+                <div className='loader-container'>
+                    <Loader />
                 </div>
-            </div>
+            ) : (
+                <div className='panel center'>
+                    <div className='panel-header'>
+                        <h1>ChOOse a DiScovery Kit</h1>
+                        <hr />
+                    </div>
+                    <div className='user-discoveries center'>
+                        {uniqueDiscoveries.length && (
+                            <Carousel
+                                items={uniqueDiscoveries}
+                                userInventory={userDiscoveries}
+                                setCurrentDiscovery={setCurrentDiscovery}
+                            />
+                        )}
+                    </div>
+                    <div className='panel-footer center'>
+                        <Button
+                            label='Make DiScoVery'
+                            onClick={() => openPack()}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

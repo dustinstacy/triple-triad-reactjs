@@ -2,7 +2,7 @@
     position: relative;
     height: 300px;
     width: calc(300px * 0.725);
-    border-radius: 8px;
+    border-radius: 15px;
     z-index: 1;
 
     @media screen and (max-width: 1200px) {
@@ -11,7 +11,7 @@
         border-radius: 12px;
 
         img {
-            border-radius: 12px;
+            border-radius: 6px;
         }
 
         span {
@@ -85,7 +85,7 @@
 
     &__image {
         height: 100%;
-        border-radius: 8px;
+        width: 100%;
         pointer-events: none;
     }
 

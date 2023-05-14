@@ -26,6 +26,7 @@
         "jsonwebtoken": "^9.0.0",
         "mongoose": "^6.8.4",
         "nodemon": "^2.0.20",
+        "react-spinners": "^0.13.8",
         "validator": "^13.9.0"
     }
 }

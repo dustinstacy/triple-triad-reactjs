@@ -10,43 +10,71 @@ const Carousel = ({ items, userInventory }) => {
     const [slideDirection, setslideDirection] = useState('')
 
     const handlePrevious = () => {
-        setslideDirection('previous')
+        setslideDirection('left')
         setTimeout(() => {
             setCurrentItemIndex((index) =>
                 index === 0 ? items.length - 1 : index - 1
             )
             setslideDirection('')
-        }, 300)
+        }, 500)
     }
 
     const handleNext = () => {
-        setslideDirection('next')
+        setslideDirection('right')
         setTimeout(() => {
             setCurrentItemIndex((index) =>
                 index === items.length - 1 ? 0 : index + 1
             )
             setslideDirection('')
-        }, 300)
+        }, 500)
     }
 
-    const currentItem = items[currentItemIndex]
-    const previousItem =
-        items[(currentItemIndex + items.length - 1) % items.length]
-    const nextItem = items[(currentItemIndex + 1) % items.length]
+    const current = items[currentItemIndex]
+    const previous = items[(currentItemIndex + items.length - 1) % items.length]
+    const next = items[(currentItemIndex + 1) % items.length]
+
+    const carouselPositions = [
+        { position: 'previous', value: previous },
+        { position: 'current', value: current },
+        { position: 'next', value: next },
+    ]
 
     return (
         <div className='carousel'>
             <BiLeftArrow className='arrow' onClick={handlePrevious} />
-            <div className={`carousel-item previous ${slideDirection}`}>
-                <img src={previousItem.image} alt='' />
-            </div>
-            <div className={`carousel-item current ${slideDirection}`}>
-                <img src={currentItem.image} alt={currentItem.name} />
-                <h3>{currentItem.name}</h3>
-            </div>
-            <div className={`carousel-item next ${slideDirection}`}>
-                <img src={nextItem.image} alt='' />
-            </div>
+            {carouselPositions.map((position) => (
+                <div
+                    key={position.position}
+                    className={`carousel-item ${position.position} ${slideDirection}`}
+                >
+                    <div className='carousel-item-image'>
+                        <img
+                            src={position.value.image}
+                            alt={position.value.name}
+                        />
+                    </div>
+                    <div className='carousel-item-info'>
+                        <h1 className='carousel-item-name'>
+                            {position.value.name}
+                        </h1>
+                        <hr />
+                        <p className='carousel-item-details'>
+                            {/* Placeholder text until user inventory has all necessary data */}
+                            Enter item description here.
+                            {position.value.details}
+                        </p>
+                        <div className='available-inventory'>
+                            <span>Available: &nbsp;</span>
+                            {
+                                userInventory.filter(
+                                    (item) => item.name === position.value.name
+                                ).length
+                            }
+                        </div>
+                    </div>
+                </div>
+            ))}
+
             <BiRightArrow className='arrow' onClick={handleNext} />
         </div>
     )

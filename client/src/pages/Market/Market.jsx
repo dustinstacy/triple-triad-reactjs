@@ -102,6 +102,7 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
         contents: chosenItem.contents,
         image: chosenItem.image,
         level: chosenItem.level,
+        details: chosenItem.details,
     }
 
     const finalPurchase = Array.from(

@@ -28,11 +28,19 @@ const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
     )
 }
 
-const ChosenItem = ({ chosenItem }) => {
+const ChosenItem = ({ chosenItem, user }) => {
     return (
         <div className='chosen-item'>
             <div className='chosen-item-image'>
                 <img src={chosenItem.image} alt={chosenItem.name} />
+                <div className='owned-inventory'>
+                    <span>Owned: &nbsp;</span>
+                    {
+                        user?.inventory.filter(
+                            (item) => item.name === chosenItem.name
+                        ).length
+                    }
+                </div>
             </div>
             <div className='chosen-item-info'>
                 <h1 className='chosen-item-name'>{chosenItem.name}</h1>
@@ -80,15 +88,17 @@ const QuantitySelector = ({
 }
 
 const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
-    const calulatePrice = (item, quantity, discount) => {
+    const { inventory, coin } = user ?? {}
+
+    const calculatePrice = (item, quantity, discount) => {
         let totalPrice = item.price * quantity
         if (quantity > 1) {
-            totalPrice = totalPrice * ((100 - parseFloat(discount)) / 100)
+            totalPrice *= (100 - parseFloat(discount)) / 100
         }
         return totalPrice
     }
 
-    const finalPrice = calulatePrice(
+    const finalPrice = calculatePrice(
         chosenItem,
         chosenQuantity.amount,
         chosenQuantity.discount
@@ -96,20 +106,32 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
 
     const purchasedItem = {
         name: chosenItem.name,
+        type: chosenItem.type,
         contents: chosenItem.contents,
         image: chosenItem.image,
+        level: chosenItem.level,
+        details: chosenItem.details,
     }
 
+    const finalPurchase = Array.from(
+        { length: chosenQuantity.amount },
+        () => purchasedItem
+    )
+
+    const canPurchase = finalPrice <= (coin || 0)
+
     const completePurchase = async () => {
-        await axios.put('/api/profile', {
-            coin: user.coin - finalPrice,
-        })
-        for (let i = chosenQuantity.amount; i > 0; i--) {
-            await axios
-                .put('api/profile/packs', {
-                    packs: [...user.packs, purchasedItem],
-                })
-                .then(getCurrentUser())
+        try {
+            await axios.put('/api/profile', {
+                coin: coin - finalPrice,
+            })
+
+            await axios.put('api/profile/inventory', {
+                inventory: [...inventory, ...finalPurchase],
+            })
+            getCurrentUser()
+        } catch (error) {
+            console.error('Error completing purchase:', error)
         }
     }
 
@@ -129,8 +151,8 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
             </div>
             <Button
                 label='Purchase'
-                disabled={finalPrice > user?.coin}
-                onClick={() => completePurchase()}
+                disabled={!canPurchase}
+                onClick={completePurchase}
             />
         </div>
     )
@@ -153,7 +175,7 @@ const Market = () => {
 
     return (
         <div className='market page center'>
-            <div className='market-menu box'>
+            <div className='market-menu'>
                 <div className='market-menu-header'>
                     <h1>MaRKet</h1>
                     <hr />
@@ -166,10 +188,9 @@ const Market = () => {
                     <MarketMenuBar
                         chosenItem={chosenItem}
                         setChosenItem={setChosenItem}
-                        setChosenQuantity={setChosenQuantity}
                     />
                     <div className='chosen-item-display'>
-                        <ChosenItem chosenItem={chosenItem} />
+                        <ChosenItem chosenItem={chosenItem} user={user} />
                         <QuantitySelector
                             chosenItem={chosenItem}
                             chosenQuantity={chosenQuantity}

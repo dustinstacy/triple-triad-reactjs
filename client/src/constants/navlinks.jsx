@@ -29,7 +29,7 @@ export const navlinks = [
     },
     {
         name: 'DiScoVeRy',
-        path: '/packs',
+        path: '/discovery',
         image: <GiAbstract112 />,
     },
 ]

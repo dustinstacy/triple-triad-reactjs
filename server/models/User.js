@@ -35,6 +35,7 @@ const UserSchema = new Schema(
             type: Number,
             default: 0,
         },
+        inventory: [],
         stats: {
             matches: {
                 type: Number,
@@ -53,7 +54,6 @@ const UserSchema = new Schema(
                 default: 0,
             },
         },
-        packs: [],
         onboarding: {
             firstLogin: {
                 type: Boolean,

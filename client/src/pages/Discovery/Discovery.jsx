@@ -5,6 +5,7 @@ import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
 import { assignRandomValues } from '../../utils/assignRandomValues'
+import { randomRarity } from '../../utils/randomRarity'
 import { removeObjectByValue } from '../../utils/removeObjectByValue'
 
 import axios from 'axios'
@@ -83,72 +84,61 @@ const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
     )
 }
 
+const MadeDiscovery = ({ cards, setMadeDiscovery }) => (
+    <div className='discovery-container center'>
+        {cards.map((card) => (
+            <Card key={card._id} card={card} player='p1' visibility />
+        ))}
+        <Button label='Go Back' onClick={() => setMadeDiscovery(null)} />
+    </div>
+)
+
 const Discovery = () => {
     const { allCards, getCurrentUser, user } = useGlobalContext()
-    const [currentDiscovery, setCurrentDiscovery] = useState('')
+    const [currentDiscovery, setCurrentDiscovery] = useState(null)
     const [madeDiscovery, setMadeDiscovery] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        getCurrentUser()
-    }, [])
+        !user && getCurrentUser()
+    }, [getCurrentUser, user])
 
     const userDiscoveries = [
         ...new Set(user?.inventory.filter((item) => item.type === 'discovery')),
     ]
     const uniqueDiscoveries = uniqueItemsFilter(userDiscoveries)
 
-    const openPack = () => {
+    const openPack = async () => {
         setIsLoading(true)
 
-        setTimeout(() => {
-            const userDiscovery = userDiscoveries.find(
-                (discovery) => discovery.name === currentDiscovery.name
-            )
-            const { contents } = userDiscovery ?? {}
-            const newDiscoveries = [...Array(contents.count)]
-            getRandomCards(newDiscoveries, contents.chance)
-            newDiscoveries.forEach((discovery) => {
-                assignRandomValues(discovery)
-                axios.post('/api/collection/new', {
-                    user: user._id,
-                    number: discovery.number,
-                    name: discovery.name,
-                    rarity: discovery.rarity,
-                    element: discovery.element,
-                    image: discovery.image,
-                    values: discovery.values,
-                })
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+
+        const userDiscovery = userDiscoveries.find(
+            (discovery) => discovery.name === currentDiscovery.name
+        )
+        const { contents } = userDiscovery ?? {}
+        const newDiscoveries = [...Array(contents.count)]
+        getRandomCards(newDiscoveries, contents.chance)
+        newDiscoveries.forEach((discovery) => {
+            assignRandomValues(discovery)
+            axios.post('/api/collection/new', {
+                user: user._id,
+                number: discovery.number,
+                name: discovery.name,
+                rarity: discovery.rarity,
+                element: discovery.element,
+                image: discovery.image,
+                values: discovery.values,
             })
-            setMadeDiscovery(newDiscoveries)
-            removeObjectByValue(user.inventory, currentDiscovery.name)
-            axios.put('api/profile/inventory', {
-                inventory: user.inventory,
-            })
-            setIsLoading(false)
-        }, 5000)
-    }
+        })
+        setMadeDiscovery(newDiscoveries)
 
-    const randomRarity = (chance) => {
-        if (chance === 'common') {
-            const num = Math.random()
-            if (num < 0.9) return 'Common'
-            else return 'Uncommon'
-        }
+        removeObjectByValue(user.inventory, currentDiscovery.name)
+        axios.put('api/profile/inventory', {
+            inventory: user.inventory,
+        })
 
-        if (chance === 'uncommon') {
-            const num = Math.random()
-            if (num < 0.5) return 'Common'
-            else if (num <= 0.9) return 'Uncommon'
-            else return 'Rare'
-        }
-
-        if (chance === 'rare') {
-            const num = Math.random()
-            if (num <= 0.5) return 'Uncommon'
-            else if (num <= 0.9) return 'Rare'
-            else return 'Epic'
-        }
+        setIsLoading(false)
     }
 
     const getRandomCards = (array, chance) => {
@@ -168,20 +158,10 @@ const Discovery = () => {
     return (
         <div className='discovery page center'>
             {madeDiscovery && !isLoading ? (
-                <div className='discovery-container center'>
-                    {madeDiscovery.map((card) => (
-                        <Card
-                            key={card._id}
-                            card={card}
-                            player='p1'
-                            visibility={true}
-                        />
-                    ))}
-                    <Button
-                        label='Go Back'
-                        onClick={() => setMadeDiscovery(null)}
-                    />{' '}
-                </div>
+                <MadeDiscovery
+                    cards={madeDiscovery}
+                    setMadeDiscovery={setMadeDiscovery}
+                />
             ) : isLoading ? (
                 <div className='loader-container'>
                     <Loader />

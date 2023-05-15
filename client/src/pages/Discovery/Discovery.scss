@@ -26,27 +26,27 @@
             display: flex;
             gap: 4vw;
 
-            img {
-                height: 300px;
-            }
-        }
+            .available-discoveries {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
-        .available-discoveries {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+                img {
+                    height: 300px;
+                }
 
-            .panel-footer {
-                min-height: 75px;
-                height: 10%;
-                width: 80%;
+                .panel-footer {
+                    min-height: 75px;
+                    height: 10%;
+                    width: 80%;
 
-                .button {
-                    height: 60px;
-                    width: 300px;
-                    font-size: 28px;
+                    .button {
+                        height: 60px;
+                        width: 300px;
+                        font-size: 28px;
+                    }
                 }
             }
         }
@@ -136,30 +136,6 @@
     }
 }
 
-.chosen-item {
-    height: 375px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    overflow: auto;
-
-    .chosen-item-image {
-        margin-top: 48px;
-
-        img {
-            height: 200px;
-
-            @media screen and (max-width: 1080px) {
-                height: 160px;
-            }
-
-            @media screen and (max-width: 900px) {
-                height: 120px;
-            }
-        }
-    }
-}
-
 @keyframes slideOutLeft {
     0% {
         transform: translateX(0);
@@ -204,21 +180,6 @@
     }
 }
 
-.discovery-container {
-    position: relative;
-    min-height: calc(100vh - var(--navbar-height));
-    width: 100%;
-    .button {
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 60px;
-        width: 200px;
-        font-size: 28px;
-    }
-}
-
 .loader-container {
     position: relative;
     height: calc(100vh - var(--navbar-height));
@@ -236,5 +197,21 @@
     100% {
         height: 0;
         width: 0;
+    }
+}
+
+.discovery-container {
+    position: relative;
+    min-height: calc(100vh - var(--navbar-height));
+    width: 100%;
+
+    .button {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 60px;
+        width: 200px;
+        font-size: 28px;
     }
 }

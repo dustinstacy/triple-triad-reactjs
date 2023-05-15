@@ -50,7 +50,7 @@ const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
 
     return (
         <div className='carousel'>
-            <BiLeftArrow className='arrow' onClick={handlePrevious} />
+            <BiLeftArrow className='arrow-previous' onClick={handlePrevious} />
             {carouselPositions.map(({ position, value }) => (
                 <div
                     key={position}
@@ -79,7 +79,7 @@ const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
                 </div>
             ))}
 
-            <BiRightArrow className='arrow' onClick={handleNext} />
+            <BiRightArrow className='arrow-next' onClick={handleNext} />
         </div>
     )
 }

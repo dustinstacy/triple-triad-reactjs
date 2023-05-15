@@ -11,25 +11,25 @@ import axios from 'axios'
 
 const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
     const [currentItemIndex, setCurrentItemIndex] = useState(0)
-    const [slideDirection, setslideDirection] = useState('')
+    const [slideDirection, setSlideDirection] = useState('')
 
     const handlePrevious = () => {
-        setslideDirection('left')
+        setSlideDirection('left')
         setTimeout(() => {
             setCurrentItemIndex((index) =>
                 index === 0 ? items.length - 1 : index - 1
             )
-            setslideDirection('')
+            setSlideDirection('')
         }, 500)
     }
 
     const handleNext = () => {
-        setslideDirection('right')
+        setSlideDirection('right')
         setTimeout(() => {
             setCurrentItemIndex((index) =>
                 index === items.length - 1 ? 0 : index + 1
             )
-            setslideDirection('')
+            setSlideDirection('')
         }, 500)
     }
 
@@ -45,37 +45,32 @@ const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
 
     useEffect(() => {
         setCurrentDiscovery(current)
-    })
+    }, [current, setCurrentDiscovery])
 
     return (
         <div className='carousel'>
             <BiLeftArrow className='arrow' onClick={handlePrevious} />
-            {carouselPositions.map((position) => (
+            {carouselPositions.map(({ position, value }) => (
                 <div
-                    key={position.position}
-                    className={`carousel-item ${position.position} ${slideDirection}`}
+                    key={position}
+                    className={`carousel-item ${position} ${slideDirection}`}
                 >
                     <div className='carousel-item-image'>
-                        <img
-                            src={position.value.image}
-                            alt={position.value.name}
-                        />
+                        <img src={value.image} alt={value.name} />
                     </div>
                     <div className='carousel-item-info'>
-                        <h1 className='carousel-item-name'>
-                            {position.value.name}
-                        </h1>
+                        <h1 className='carousel-item-name'>{value.name}</h1>
                         <hr />
                         <p className='carousel-item-details'>
                             {/* Placeholder text until user inventory has all necessary data */}
                             Enter item description here.
-                            {position.value.details}
+                            {value.details}
                         </p>
                         <div className='available-inventory'>
                             <span>Available: &nbsp;</span>
                             {
                                 userInventory.filter(
-                                    (item) => item.name === position.value.name
+                                    (item) => item.name === value.name
                                 ).length
                             }
                         </div>
@@ -198,19 +193,25 @@ const Discovery = () => {
                         <hr />
                     </div>
                     <div className='user-discoveries center'>
-                        {uniqueDiscoveries.length && (
-                            <Carousel
-                                items={uniqueDiscoveries}
-                                userInventory={userDiscoveries}
-                                setCurrentDiscovery={setCurrentDiscovery}
-                            />
+                        {uniqueDiscoveries.length ? (
+                            <div className='available-discoveries'>
+                                <Carousel
+                                    items={uniqueDiscoveries}
+                                    userInventory={userDiscoveries}
+                                    setCurrentDiscovery={setCurrentDiscovery}
+                                />
+                                <div className='panel-footer center'>
+                                    <Button
+                                        label='Make DiScoVery'
+                                        onClick={() => openPack()}
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <h2>
+                                Head to the Market to purchase more diScoveries
+                            </h2>
                         )}
-                    </div>
-                    <div className='panel-footer center'>
-                        <Button
-                            label='Make DiScoVery'
-                            onClick={() => openPack()}
-                        />
                     </div>
                 </div>
             )}

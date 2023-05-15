@@ -31,15 +31,23 @@
             }
         }
 
-        .panel-footer {
-            min-height: 75px;
-            height: 10%;
-            width: 80%;
+        .available-discoveries {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-            .button {
-                height: 60px;
-                width: 300px;
-                font-size: 28px;
+            .panel-footer {
+                min-height: 75px;
+                height: 10%;
+                width: 80%;
+
+                .button {
+                    height: 60px;
+                    width: 300px;
+                    font-size: 28px;
+                }
             }
         }
     }

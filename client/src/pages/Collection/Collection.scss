@@ -102,7 +102,7 @@
 
                     table:nth-child(2) {
                         tr {
-                            width: 25vw;
+                            width: 40vw;
                         }
                     }
                 }
@@ -201,12 +201,21 @@
         }
     }
 
+    .header {
+        width: 80vw;
+        margin-top: 48px;
+        text-align: center;
+    }
+
     .filters {
         height: 100%;
         min-height: 150px;
+        width: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 5vw;
+        background-color: var(--background3-color);
 
         @media screen and (max-width: 768px) {
             flex-direction: column;
@@ -255,15 +264,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         background: var(--background3-color);
         text-align: center;
         overflow-y: hidden;
-
-        .header {
-            width: 60vw;
-            margin: 12px 0;
-        }
 
         .card-list {
             width: 100%;

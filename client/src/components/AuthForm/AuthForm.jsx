@@ -4,11 +4,12 @@ import axios from 'axios'
 
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, TextInput } from '../../components'
+import { marketItems } from '../../constants/marketItems'
 import './AuthForm.scss'
 
 // The register prop is used to toggle between login and signup form
 const AuthForm = ({ register }) => {
-    const { getCurrentUser } = useGlobalContext()
+    const { getCurrentUser, user } = useGlobalContext()
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -17,6 +18,7 @@ const AuthForm = ({ register }) => {
     })
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
+    const navigate = useNavigate()
 
     // Define the form fields to be rendered based on the value of register prop
     const formFields = ['Username', 'Password']
@@ -24,8 +26,6 @@ const AuthForm = ({ register }) => {
         formFields.splice(1, 0, 'Email')
         formFields.splice(3, 0, 'Confirm Password')
     }
-
-    const navigate = useNavigate()
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -51,16 +51,7 @@ const AuthForm = ({ register }) => {
                 data
             )
 
-            await getCurrentUser()
-            await axios
-                .put('api/profile/packs', {
-                    packs: [
-                        { name: 'small' },
-                        { name: 'medium' },
-                        { name: 'large' },
-                    ],
-                })
-                .then(navigate('/home'))
+            await getCurrentUser().then(navigate('/home'))
         } catch (error) {
             if (error?.response?.data) {
                 setErrors(error.response.data)

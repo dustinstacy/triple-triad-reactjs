@@ -269,10 +269,6 @@ const CardCollection = ({
 
     return (
         <div className='card-collection'>
-            <div className='header'>
-                <h1>Cards</h1>
-                <hr />
-            </div>
             <div className='card-list'>
                 {filteredCards?.map((card) => (
                     <Card
@@ -347,6 +343,10 @@ const Collection = () => {
                 markSelected={markSelected}
                 removeSelection={removeSelection}
             />
+            <div className='header'>
+                <h1>Cards</h1>
+                <hr />
+            </div>
             <Filters
                 deckFilter={deckFilter}
                 rarityFilter={rarityFilter}

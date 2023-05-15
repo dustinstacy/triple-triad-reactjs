@@ -201,6 +201,12 @@
         }
     }
 
+    .header {
+        width: 80vw;
+        margin-top: 48px;
+        text-align: center;
+    }
+
     .filters {
         height: 100%;
         min-height: 150px;
@@ -259,11 +265,6 @@
         background: var(--background3-color);
         text-align: center;
         overflow-y: hidden;
-
-        .header {
-            width: 60vw;
-            margin: 12px 0;
-        }
 
         .card-list {
             width: 100%;

@@ -62,11 +62,11 @@
     }
 
     &.blue {
-        background-image: url('../../assets/card/blue.jpg');
+        background: var(--background2-color);
     }
 
     &.red {
-        background-image: url('../../assets/card/red.jpg');
+        background: var(--error-color);
     }
 
     &.transparent {
@@ -86,6 +86,7 @@
     &__image {
         height: 100%;
         width: 100%;
+        border-radius: 15px;
         pointer-events: none;
     }
 

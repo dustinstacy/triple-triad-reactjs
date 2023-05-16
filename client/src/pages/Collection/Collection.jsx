@@ -5,6 +5,7 @@ import { Avatar, Button, Card, ExperienceBar } from '../../components'
 import { TbPlayCard } from 'react-icons/tb'
 
 import './Collection.scss'
+import { CheckBox } from '../../components/CheckBox/CheckBox'
 
 const UserSection = ({ userCards, user }) => {
     const { level, stats, username } = user ?? {}
@@ -271,19 +272,17 @@ const CardCollection = ({
         <div className='card-collection'>
             <div className='card-list'>
                 {filteredCards?.map((card) => (
-                    <Card
-                        key={card._id}
-                        card={card}
-                        player='p1'
-                        turn={true}
-                        visibility={true}
-                        selector={true}
-                        handleClick={() =>
-                            !card.selected
-                                ? markSelected(card)
-                                : removeSelection(card)
-                        }
-                    />
+                    <div key={card._id} className='card-container'>
+                        <Card card={card} faith='p1' isShowing />
+                        <CheckBox
+                            handleClick={() =>
+                                !card.selected
+                                    ? markSelected(card)
+                                    : removeSelection(card)
+                            }
+                            selected={card.selected}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

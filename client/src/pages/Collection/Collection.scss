@@ -289,6 +289,10 @@
                 grid-template-columns: repeat(auto-fit, 108px);
             }
         }
+
+        .card-container {
+            position: relative;
+        }
     }
 
     hr {

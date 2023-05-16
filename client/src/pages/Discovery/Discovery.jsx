@@ -87,7 +87,7 @@ const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
 const MadeDiscovery = ({ cards, setMadeDiscovery }) => (
     <div className='discovery-container center'>
         {cards.map((card) => (
-            <Card key={card._id} card={card} player='p1' visibility />
+            <Card key={card._id} card={card} faith='p1' isShowing />
         ))}
         <Button label='Go Back' onClick={() => setMadeDiscovery(null)} />
     </div>

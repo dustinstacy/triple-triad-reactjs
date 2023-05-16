@@ -84,6 +84,39 @@ router.put('/:collectionId', requiresAuth, async (req, res) => {
     }
 })
 
+// @route PUT /api/collection/:collectionId/stats
+// @desc Update a cards stats from users collection
+// @access Private
+router.put('/:collectionId/stats', requiresAuth, async (req, res) => {
+    try {
+        const card = await Collection.findOne({
+            user: req.user._id,
+            _id: req.params.collectionId,
+        })
+
+        if (!card) {
+            return res.status(404).json({ error: 'Card does not exist' })
+        }
+
+        const updatedCard = await Collection.findOneAndUpdate(
+            {
+                user: req.user._id,
+                _id: req.params.collectionId,
+            },
+            {
+                level: req.body.level,
+                timesPlayed: req.body.timesPlayed,
+                enemyCaptures: req.body.enemyCaptures,
+            }
+        )
+
+        return res.json(updatedCard)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error.message)
+    }
+})
+
 // @route PUT /api/collection/:collectionId/selected
 // @desc Add card from user's collection to selected cards
 // @access Private

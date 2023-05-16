@@ -35,13 +35,25 @@ const DeckSchema = new Schema(
         ],
         level: {
             type: Number,
-            required: true,
+            default: 1,
+        },
+        selected: {
+            type: Boolean,
+            default: false,
         },
         element: {
             type: String,
         },
         weakness: {
             type: String,
+        },
+        timesPlayed: {
+            type: Number,
+            default: 0,
+        },
+        enemyCaptures: {
+            type: Number,
+            default: 0,
         },
     },
     {

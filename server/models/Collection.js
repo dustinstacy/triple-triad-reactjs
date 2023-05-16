@@ -43,6 +43,14 @@ const CollectionSchema = new Schema(
         weakness: {
             type: String,
         },
+        timesPlayed: {
+            type: Number,
+            default: 0,
+        },
+        enemyCaptures: {
+            type: Number,
+            default: 0,
+        },
     },
     {
         timestamp: true,

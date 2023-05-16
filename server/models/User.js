@@ -59,11 +59,15 @@ const UserSchema = new Schema(
                 type: Boolean,
                 default: true,
             },
-            firstDeck: {
+            firstPurchase: {
                 type: Boolean,
                 default: true,
             },
-            firstPack: {
+            firstDiscovery: {
+                type: Boolean,
+                default: true,
+            },
+            firstDeck: {
                 type: Boolean,
                 default: true,
             },

@@ -3,7 +3,7 @@ import { cardback } from '../../assets/card'
 import './Card.scss'
 
 const Card = ({ card, owner, faith, handleClick, isShowing }) => {
-    const { _id, power, image, values, selected } = card
+    const { _id, image, values } = card
 
     return (
         <div

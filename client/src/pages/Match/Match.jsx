@@ -7,6 +7,39 @@ import './Match.scss'
 
 const width = 3
 
+const BoardGrid = ({ board }) => (
+    <div className='grid'>
+        {board?.map((contents, i) =>
+            contents === 'empty' ? (
+                <Cell key={i} id={i} handleClick={(e) => placeCard(e)} />
+            ) : (
+                <Card key={i} card={contents} owner={contents.user} isShowing />
+            )
+        )}
+    </div>
+)
+
+const Score = ({ playerScore }) => (
+    <div className='column'>
+        <span className='match__score'>{playerScore} </span>
+    </div>
+)
+
+const Hand = ({ playerHand }) => (
+    <div className={playerHand[0].user === 'cpu' ? 'cpu' : 'player'}>
+        {playerHand?.map((card, i) => (
+            <Card
+                key={card._id + i}
+                card={card}
+                owner={card.user}
+                faith={card.user === 'cpu' ? 'cpu' : 'p1'}
+                isShowing={playerHand[0].user !== 'cpu' ?? false}
+                handleClick={(e) => selectCard(e, card)}
+            />
+        ))}
+    </div>
+)
+
 const Match = () => {
     const { getCurrentUser, user, userDeck } = useGlobalContext()
     const { cpu, cpuDeck } = useCPUCardContext()
@@ -50,46 +83,11 @@ const Match = () => {
     return (
         <div className='match page'>
             <div className='board'>
-                <div className='cpu'>
-                    {hands.cpu?.map((card, i) => (
-                        <Card key={card._id + i} card={card} owner={cpu} />
-                    ))}
-                </div>
-                <div className='column'>
-                    <span className='match__score'>{cpuScore} </span>
-                </div>
-                <div className='grid'>
-                    {board.map((cell, i) =>
-                        cell === 'empty' ? (
-                            <Cell
-                                key={i}
-                                id={i}
-                                handleClick={(e) => placeCard(e)}
-                            />
-                        ) : (
-                            <Card
-                                key={i}
-                                card={cell}
-                                player={cell.user === 'cpu' ? cpu : p1}
-                            />
-                        )
-                    )}
-                </div>
-                <div className='column'>
-                    <span className='match__score'>{p1Score} </span>
-                </div>
-                <div className='player'>
-                    {hands.p1?.map((card, i) => (
-                        <Card
-                            key={card._id + i}
-                            card={card}
-                            owner={user.id}
-                            faith='p1'
-                            isShowing
-                            handleClick={(e) => selectCard(e, card)}
-                        />
-                    ))}
-                </div>
+                <Hand playerHand={hands.cpu} />
+                <Score playerScore={cpuScore} />
+                <BoardGrid board={board} />
+                <Score playerScore={p1Score} />
+                <Hand playerHand={hands.p1} />
             </div>
         </div>
     )

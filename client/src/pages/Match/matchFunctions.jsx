@@ -4,7 +4,6 @@ const [emptyCells, setEmptyCells] = useState(
     [...new Array(width * width).keys()].map((x) => x - 1 + 1)
 )
 const [cardSelected, setCardSelected] = useState(null)
-const table = [...p1Hand, ...boardArray, ...p2Hand]
 const leftColumn = [0, width, width * 2]
 const rightColumn = [width - 1, width * 2 - 1, width * 3 - 1]
 const navigate = useNavigate()

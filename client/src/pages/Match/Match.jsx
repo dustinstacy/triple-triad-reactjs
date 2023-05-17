@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useGlobalContext } from '../../context/GlobalContext'
-import { useCPUCardContext } from '../../context/CPUCardContext'
-import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
-import { Card, Cell } from '../../components'
+import { Button, Card, Cell } from '../../components'
 import './Match.scss'
-
-const width = 3
+import { useBattleContext } from '../../context/BattleContext'
 
 const BoardGrid = ({ board }) => (
     <div className='grid'>
@@ -26,7 +22,7 @@ const Score = ({ playerScore }) => (
 )
 
 const Hand = ({ playerHand }) => (
-    <div className={playerHand[0].user === 'cpu' ? 'cpu' : 'player'}>
+    <div className={playerHand[0]?.user === 'cpu' ? 'cpu' : 'player'}>
         {playerHand?.map((card, i) => (
             <Card
                 key={card._id + i}
@@ -41,44 +37,23 @@ const Hand = ({ playerHand }) => (
 )
 
 const Match = () => {
-    const { getCurrentUser, user, userDeck } = useGlobalContext()
-    const { cpu, cpuDeck } = useCPUCardContext()
+    const {
+        decks,
+        setDecks,
+        hands,
+        setHands,
+        board,
+        setBoard,
+        isP1Turn,
+        setisP1Turn,
+        p1Score,
+        setP1Score,
+        cpuScore,
+        setCpuScore,
+        resetContext,
+    } = useBattleContext()
 
-    const [decks, setDecks] = useState({
-        p1: [...userDeck],
-        cpu: [...cpuDeck],
-    })
-    const [hands, setHands] = useState({
-        p1: [],
-        cpu: [],
-    })
-    const [board, setBoard] = useState([
-        ...new Array(width * width).fill('empty'),
-    ])
-
-    const [isP1Turn, setisP1Turn] = useState(Math.random() < 0.5)
-    const [p1Score, setP1Score] = useState(5)
-    const [cpuScore, setCpuScore] = useState(5)
-
-    const newGame = () => {
-        const p1DealtCards = []
-        const cpuDealtCards = []
-        shuffleCards(userDeck)
-        shuffleCards(cpuDeck)
-        dealCards(p1DealtCards, userDeck)
-        dealCards(cpuDealtCards, cpuDeck)
-        setHands({ p1: p1DealtCards, cpu: cpuDealtCards })
-    }
-
-    useEffect(() => {
-        getCurrentUser()
-    }, [])
-
-    useEffect(() => {
-        if (userDeck.length) {
-            newGame()
-        }
-    }, [userDeck])
+    const table = [...hands.p1, ...board, ...hands.cpu]
 
     return (
         <div className='match page'>

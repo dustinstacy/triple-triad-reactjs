@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Card, Cell } from '../../components'
 import './Match.scss'
 import { useBattleContext } from '../../context/BattleContext'
+import { useGlobalContext } from '../../context/GlobalContext'
+import { BiArrowFromBottom, BiArrowFromTop } from 'react-icons/bi'
 
 const Score = ({ playerScore }) => (
     <div className='column'>
@@ -28,13 +30,39 @@ const Board = ({ board }) => (
     </div>
 )
 
-const Hand = ({ playerHand, selectedCard, setSelectedCard }) => {
+const Hand = ({ playerHand, selectedCard, setSelectedCard, user }) => {
+    const [cardsRaised, setCardsRaised] = useState(false)
+
     const selectCard = (card) => {
-        setSelectedCard(card)
+        if (card === selectedCard) {
+            setSelectedCard(null)
+        } else {
+            setSelectedCard(card)
+        }
+    }
+
+    const raiseCards = () => {
+        setCardsRaised((current) => !current)
     }
 
     return (
-        <div className={playerHand[0]?.user === 'cpu' ? 'cpu' : 'player'}>
+        <div
+            className={`${
+                playerHand[0]?.user === user?._id ? 'player' : 'cpu'
+            } ${cardsRaised ? 'raised' : ''}`}
+        >
+            {playerHand[0]?.user === user?._id &&
+                (cardsRaised ? (
+                    <BiArrowFromTop
+                        className='down-arrow'
+                        onClick={() => raiseCards()}
+                    />
+                ) : (
+                    <BiArrowFromBottom
+                        className='up-arrow'
+                        onClick={() => raiseCards()}
+                    />
+                ))}
             {playerHand?.map((card, index) => (
                 <Card
                     key={card._id + index}
@@ -64,6 +92,7 @@ const Match = () => {
         setCpuScore,
         resetContext,
     } = useBattleContext()
+    const { user } = useGlobalContext()
 
     const [selectedCard, setSelectedCard] = useState(null)
 
@@ -74,12 +103,14 @@ const Match = () => {
                     playerHand={hands.cpu}
                     selectedCard={selectedCard}
                     setSelectedCard={setSelectedCard}
+                    user={user}
                 />
                 <Board board={board} />
                 <Hand
                     playerHand={hands.p1}
                     selectedCard={selectedCard}
                     setSelectedCard={setSelectedCard}
+                    user={user}
                 />
             </div>
         </div>

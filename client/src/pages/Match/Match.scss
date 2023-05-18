@@ -70,7 +70,7 @@
     .player,
     .cpu {
         position: absolute;
-        width: 100%;
+        width: 1200px;
         display: flex;
         justify-content: center;
 
@@ -97,6 +97,20 @@
         justify-content: center;
         transform: perspective(400px) rotateX(10deg);
 
+        .down-arrow,
+        .up-arrow {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 48px;
+            cursor: pointer;
+        }
+
+        .down-arrow {
+            transform: translateY(90%);
+        }
+
         .card {
             cursor: pointer;
             &:hover {
@@ -110,16 +124,20 @@
         height: 100px;
         display: flex;
         align-items: flex-end;
-        transform: perspective(400px) rotateX(10deg);
+        transform: perspective(400px) rotateX(13deg);
         z-index: 10;
 
         .card {
-            height: 225px;
-            width: calc(225px * 0.725);
+            height: 200px;
+            width: calc(200px * 0.725);
         }
 
         @media screen and (max-width: 900px) {
             justify-content: flex-start;
         }
+    }
+
+    .raised {
+        transform: translateY(-135px);
     }
 }

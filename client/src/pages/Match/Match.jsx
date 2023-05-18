@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Cell } from '../../components'
 import './Match.scss'
 import { useBattleContext } from '../../context/BattleContext'
+import { inertia } from 'framer-motion'
 
 const BoardGrid = ({ board }) => (
     <div className='grid'>
@@ -21,20 +22,23 @@ const Score = ({ playerScore }) => (
     </div>
 )
 
-const Hand = ({ playerHand }) => (
-    <div className={playerHand[0]?.user === 'cpu' ? 'cpu' : 'player'}>
-        {playerHand?.map((card, i) => (
-            <Card
-                key={card._id + i}
-                card={card}
-                owner={card.user}
-                faith={card.user === 'cpu' ? 'cpu' : 'p1'}
-                isShowing={playerHand[0].user !== 'cpu' ?? false}
-                handleClick={(e) => selectCard(e, card)}
-            />
-        ))}
-    </div>
-)
+const Hand = ({ playerHand, setCurrentCard }) => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [scrollDirection, setScrollDirection] = useState('')
+
+    return (
+        <div className={playerHand[0]?.user === 'cpu' ? 'cpu' : 'player'}>
+            {playerHand?.map((card, index) => (
+                <Card
+                    key={card._id + index}
+                    card={card}
+                    isShowing={playerHand[0].user !== 'cpu' ?? false}
+                    handleClick={(e) => selectCard(e, card)}
+                />
+            ))}
+        </div>
+    )
+}
 
 const Match = () => {
     const {
@@ -53,16 +57,17 @@ const Match = () => {
         resetContext,
     } = useBattleContext()
 
+    const [currentCard, setCurrentCard] = useState(null)
     const table = [...hands.p1, ...board, ...hands.cpu]
 
     return (
         <div className='match page'>
             <div className='board'>
-                <Hand playerHand={hands.cpu} />
+                <Hand playerHand={hands.cpu} setCurrentCard={setCurrentCard} />
                 <Score playerScore={cpuScore} />
                 <BoardGrid board={board} />
                 <Score playerScore={p1Score} />
-                <Hand playerHand={hands.p1} />
+                <Hand playerHand={hands.p1} setCurrentCard={setCurrentCard} />
             </div>
         </div>
     )

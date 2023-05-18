@@ -53,9 +53,36 @@
         align-content: center;
         justify-content: center;
         background-color: var(--background-color);
-        border: 3px solid var(--background2-color);
-        border-radius: 8px;
         opacity: 0.975;
+        perspective: 400px;
+
+        & :nth-child(1) {
+            transform: scale(0.8) rotateX(5deg) translateX(50px);
+        }
+        & :nth-child(2) {
+            transform: scale(0.8) rotateX(5deg);
+        }
+        & :nth-child(3) {
+            transform: scale(0.8) rotateX(5deg) translateX(-50px);
+        }
+        & :nth-child(4) {
+            transform: scale(0.88) rotateX(5deg) translate(30px, -70px);
+        }
+        & :nth-child(5) {
+            transform: scale(0.88) rotateX(5deg) translateY(-70px);
+        }
+        & :nth-child(6) {
+            transform: scale(0.88) rotateX(5deg) translate(-30px, -70px);
+        }
+        & :nth-child(7) {
+            transform: scale(0.95) rotateX(5deg) translate(12px, -85px);
+        }
+        & :nth-child(8) {
+            transform: scale(0.95) rotateX(5deg) translateY(-85px);
+        }
+        & :nth-child(9) {
+            transform: scale(0.95) rotateX(5deg) translate(-12px, -85px);
+        }
 
         @media screen and (max-width: 1200px) {
             height: 748px;

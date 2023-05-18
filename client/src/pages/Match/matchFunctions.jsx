@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 const [emptyCells, setEmptyCells] = useState(
     [...new Array(width * width).keys()].map((x) => x - 1 + 1)
 )
-const [cardSelected, setCardSelected] = useState(null)
 const leftColumn = [0, width, width * 2]
 const rightColumn = [width - 1, width * 2 - 1, width * 3 - 1]
 const navigate = useNavigate()
@@ -11,13 +10,6 @@ const navigate = useNavigate()
 let p1ScoreCounter = 0
 let p2ScoreCounter = 0
 let winner = 'Draw'
-
-const selectCard = (e, card) => {
-    let previouslySelected = document.querySelector('.selected')
-    previouslySelected && previouslySelected.classList.remove('selected')
-    e.target.classList.add('selected')
-    setCardSelected(card)
-}
 
 const placeCard = (e) => {
     const index = parseInt(e.target.id)

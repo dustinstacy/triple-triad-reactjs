@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useCPUCardContext } from '../../context/CPUCardContext'
 import { Button } from '../../components'
@@ -6,11 +6,7 @@ import './MatchSetup.scss'
 
 const MatchSetup = () => {
     const { cpu, cpuDeck } = useCPUCardContext()
-    const { user, userDeck, getCurrentUser } = useGlobalContext()
-
-    useEffect(() => {
-        getCurrentUser()
-    }, [])
+    const { user, userDeck } = useGlobalContext()
 
     return (
         <div className='setup page'>

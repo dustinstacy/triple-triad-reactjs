@@ -159,12 +159,7 @@ const Market = () => {
     )
 
     useEffect(() => {
-        getCurrentUser()
-    }, [])
-
-    useEffect(() => {
         setChosenQuantity(chosenItem.quantities[0])
-        console.log(marketItems[marketItems.indexOf(chosenItem)])
     }, [chosenItem])
 
     return (

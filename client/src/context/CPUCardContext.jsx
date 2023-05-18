@@ -1,7 +1,14 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react'
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useReducer,
+} from 'react'
 import { assignRandomValues } from '../utils/assignRandomValues'
 import { useGlobalContext } from './GlobalContext'
 import { goblin } from '../constants/opponents'
+import { randomRarity } from '../utils/randomRarity'
 
 const initialState = {
     cpu: goblin,
@@ -28,51 +35,42 @@ const cpuCardReducer = (state, action) => {
 const CPUCardContext = createContext(initialState)
 
 export const CPUCardProvider = ({ children }) => {
-    const [state, dispacth] = useReducer(cpuCardReducer, initialState)
+    const [state, dispatch] = useReducer(cpuCardReducer, initialState)
     const { allCards } = useGlobalContext()
 
-    const randomRarity = () => {
-        const num = Math.random()
-        if (num < 0.5) return 'Common'
-        else if (num <= 0.8) return 'Uncommon'
-        else return 'Rare'
-    }
-
     const getRandomCards = (deck) => {
-        deck.forEach((_, i) => {
-            const rarity = randomRarity()
+        return deck.map((card) => {
+            const rarity = randomRarity(state.cpu.level)
             const currentRarityCards = allCards.filter(
-                (card) => card.rarity === rarity
+                (c) => c.rarity === rarity
             )
             const randomCard =
                 currentRarityCards[
                     Math.floor(Math.random() * currentRarityCards.length)
                 ]
             randomCard.user = 'cpu'
-            deck.splice(i, 1, randomCard)
+            assignRandomValues(randomCard)
+            return randomCard
         })
     }
 
     const setCPUDeck = () => {
-        const randomDeck = [...Array(15)]
-
-        getRandomCards(randomDeck)
-
-        randomDeck.forEach((card) => {
-            assignRandomValues(card)
-        })
-
-        dispacth({ type: 'SET_CPU_DECK', payload: randomDeck })
+        const randomDeck = Array.from({ length: 15 })
+        const updatedDeck = getRandomCards(randomDeck)
+        dispatch({ type: 'SET_CPU_DECK', payload: updatedDeck })
     }
 
     useEffect(() => {
         if (allCards.length > 0 && state.cpuDeck.length === 0) setCPUDeck()
-    }, [allCards])
+    }, [allCards, state.cpuDeck.length])
 
-    const value = {
-        ...state,
-        setCPUDeck,
-    }
+    const value = useMemo(
+        () => ({
+            ...state,
+            setCPUDeck,
+        }),
+        [state.cpu, state.cpuDeck]
+    )
 
     return (
         <CPUCardContext.Provider value={value}>

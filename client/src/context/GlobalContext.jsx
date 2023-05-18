@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useReducer,
+} from 'react'
 import axios from 'axios'
 
 const initialState = {
@@ -59,6 +65,7 @@ export const GlobalProvider = ({ children }) => {
                     type: 'SET_USER',
                     payload: res.data,
                 })
+                getAllCards()
                 getUserCards()
                 getUserDeck()
             } else {
@@ -125,14 +132,28 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
-    const value = {
-        ...state,
-        getCurrentUser,
-        getAllCards,
-        getUserCards,
-        getUserDeck,
-        logout,
-    }
+    const value = useMemo(
+        () => ({
+            ...state,
+            getCurrentUser,
+            getAllCards,
+            getUserCards,
+            getUserDeck,
+            logout,
+        }),
+        [
+            state.user,
+            state.userDeck,
+            state.userCards,
+            state.fetchingUser,
+            state.allCards,
+        ]
+    )
+
+    useEffect(() => {
+        !state.user && getCurrentUser()
+    }, [])
+
     return (
         <GlobalContext.Provider value={value}>
             {children}

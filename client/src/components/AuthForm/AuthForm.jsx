@@ -4,12 +4,11 @@ import axios from 'axios'
 
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, TextInput } from '../../components'
-import { marketItems } from '../../constants/marketItems'
 import './AuthForm.scss'
 
 // The register prop is used to toggle between login and signup form
 const AuthForm = ({ register }) => {
-    const { getCurrentUser, user } = useGlobalContext()
+    const { getCurrentUser } = useGlobalContext()
     const [formData, setFormData] = useState({
         username: '',
         email: '',

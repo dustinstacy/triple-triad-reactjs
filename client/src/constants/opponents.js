@@ -5,6 +5,7 @@ export const goblin = {
     coinReward: 10,
     xpReward: 5,
     card: '17',
+    level: 'common',
 }
 
 export const aquos = {
@@ -14,6 +15,7 @@ export const aquos = {
     coinReward: 20,
     xpReward: 5,
     card: '128',
+    level: 'common',
 }
 
 export const clockworkTarantula = {
@@ -23,6 +25,7 @@ export const clockworkTarantula = {
     coinReward: 30,
     xpReward: 10,
     card: '161',
+    level: 'common',
 }
 
 export const greaterMimic = {
@@ -32,6 +35,7 @@ export const greaterMimic = {
     coinReward: 40,
     xpReward: 10,
     card: '177',
+    level: 'uncommon',
 }
 
 export const asmodeus = {
@@ -41,4 +45,5 @@ export const asmodeus = {
     coinReward: 50,
     xpReward: 15,
     card: '201',
+    level: 'uncommon',
 }

@@ -21,14 +21,8 @@ import {
 import './App.scss'
 
 function App() {
-    const { getAllCards, allCards } = useGlobalContext()
+    const { getCurrentUser } = useGlobalContext()
     const { pathname } = useLocation()
-
-    useEffect(() => {
-        if (allCards.length === 0) {
-            getAllCards()
-        }
-    }, [])
 
     return (
         <CPUCardProvider>

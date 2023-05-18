@@ -27,6 +27,11 @@
         background: var(--background2-color);
         background-position: top;
         transform: perspective(400px) rotateX(10deg) translateY(-150px);
+
+        .card {
+            height: 250px;
+            width: calc(250px * 0.725);
+        }
     }
 
     .grid {

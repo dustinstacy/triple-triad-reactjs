@@ -99,10 +99,6 @@ const Discovery = () => {
     const [madeDiscovery, setMadeDiscovery] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        !user && getCurrentUser()
-    }, [getCurrentUser, user])
-
     const userDiscoveries = [
         ...new Set(user?.inventory.filter((item) => item.type === 'discovery')),
     ]

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Cell } from '../../components'
 import './Match.scss'
 import { useBattleContext } from '../../context/BattleContext'
@@ -11,33 +11,52 @@ const Score = ({ playerScore }) => (
     </div>
 )
 
-const Board = ({ board }) => (
-    <div className='board'>
-        <div className='grid center'>
-            {board?.map((contents, i) =>
-                contents === 'empty' ? (
-                    <Cell key={i} id={i} handleClick={(e) => placeCard(e)} />
-                ) : (
-                    <Card
-                        key={i}
-                        card={contents}
-                        owner={contents.user}
-                        isShowing
-                    />
-                )
-            )}
-        </div>
-    </div>
-)
+const Board = ({ board, setBoard, cardSelected, hands }) => {
+    const placeCard = (e) => {
+        const index = parseInt(e.target.id)
+        if (cardSelected) {
+            console.log(board)
+            console.log(cardSelected)
+            const newBoard = board
+            newBoard.splice(index, 1, cardSelected)
+            console.log(newBoard)
+            setBoard(newBoard)
+            console.log(board)
+        }
+    }
 
-const Hand = ({ playerHand, selectedCard, setSelectedCard, user }) => {
+    return (
+        <div className='board'>
+            <div className='grid center'>
+                {board?.map((contents, i) =>
+                    contents === 'empty' ? (
+                        <Cell
+                            key={i}
+                            id={i}
+                            handleClick={(e) => placeCard(e)}
+                        />
+                    ) : (
+                        <Card
+                            key={i}
+                            card={contents}
+                            owner={contents.user}
+                            isShowing
+                        />
+                    )
+                )}
+            </div>
+        </div>
+    )
+}
+
+const Hand = ({ playerHand, cardSelected, setCardSelected, user }) => {
     const [cardsRaised, setCardsRaised] = useState(false)
 
     const selectCard = (card) => {
-        if (card === selectedCard) {
-            setSelectedCard(null)
+        if (card === cardSelected) {
+            setCardSelected(null)
         } else {
-            setSelectedCard(card)
+            setCardSelected(card)
         }
     }
 
@@ -65,10 +84,10 @@ const Hand = ({ playerHand, selectedCard, setSelectedCard, user }) => {
                 ))}
             {playerHand?.map((card, index) => (
                 <Card
-                    key={card._id + index}
+                    key={card?._id + index}
                     card={card}
-                    isShowing={playerHand[0].user !== 'cpu' ?? false}
-                    isSelected={selectedCard?._id === card._id}
+                    isShowing={playerHand[0]?.user !== 'cpu' ?? false}
+                    isSelected={cardSelected?._id === card?._id}
                     handleClick={() => selectCard(card)}
                 />
             ))}
@@ -84,32 +103,31 @@ const Match = () => {
         setHands,
         board,
         setBoard,
-        isP1Turn,
-        setisP1Turn,
-        p1Score,
-        setP1Score,
-        cpuScore,
-        setCpuScore,
-        resetContext,
+        restoreStateFromLocalStorage,
     } = useBattleContext()
-    const { user } = useGlobalContext()
+    const { getCurrentUser, user } = useGlobalContext()
 
-    const [selectedCard, setSelectedCard] = useState(null)
+    const [cardSelected, setCardSelected] = useState(null)
 
     return (
         <div className='match page'>
             <div className='table'>
                 <Hand
                     playerHand={hands.cpu}
-                    selectedCard={selectedCard}
-                    setSelectedCard={setSelectedCard}
+                    cardSelected={cardSelected}
+                    setCardSelected={setCardSelected}
                     user={user}
                 />
-                <Board board={board} />
+                <Board
+                    board={board}
+                    setBoard={setBoard}
+                    cardSelected={cardSelected}
+                    hands={hands}
+                />
                 <Hand
                     playerHand={hands.p1}
-                    selectedCard={selectedCard}
-                    setSelectedCard={setSelectedCard}
+                    cardSelected={cardSelected}
+                    setCardSelected={setCardSelected}
                     user={user}
                 />
             </div>

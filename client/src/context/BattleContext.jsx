@@ -8,12 +8,16 @@ import React, {
 import { useGlobalContext } from './GlobalContext'
 import { useCPUCardContext } from './CPUCardContext'
 import { shuffleCards, dealCards } from '../utils/shuffleAndDeal'
+import { useNavigate } from 'react-router-dom'
 
 const BattleContext = createContext()
 
 export const BattleProvider = ({ children }) => {
     const { getCurrentUser, userDeck } = useGlobalContext()
     const { cpuDeck } = useCPUCardContext()
+
+    const width = 3
+
     const initialDecks = {
         p1: [],
         cpu: [],
@@ -22,15 +26,44 @@ export const BattleProvider = ({ children }) => {
         p1: [],
         cpu: [],
     }
-    const width = 3
     const initialBoard = [...new Array(width * width).fill('empty')]
 
     const [decks, setDecks] = useState(initialDecks)
     const [hands, setHands] = useState(initialHands)
     const [board, setBoard] = useState(initialBoard)
-    const [isP1Turn, setisP1Turn] = useState(null)
-    const [p1Score, setP1Score] = useState(5)
-    const [cpuScore, setCpuScore] = useState(5)
+    const [childState, setChildState] = useState(false)
+
+    useEffect(() => {
+        getCurrentUser().then(() => restoreStateFromLocalStorage())
+    }, [])
+
+    useEffect(() => {
+        setChildState(false)
+        setDecks((prevDecks) => ({
+            p1: [...userDeck],
+            cpu: [...cpuDeck],
+        }))
+        if (userDeck.length === 15 && cpuDeck.length === 15) {
+            setChildState(true)
+        }
+    }, [userDeck, cpuDeck])
+
+    const setupMatch = () => {
+        const p1DealtCards = []
+        const cpuDealtCards = []
+        shuffleCards([decks.p1, decks.cpu])
+        dealCards(p1DealtCards, decks.p1)
+        dealCards(cpuDealtCards, decks.cpu)
+        setHands((prevHands) => ({
+            p1: p1DealtCards,
+            cpu: cpuDealtCards,
+        }))
+        console.log(decks, hands, board)
+    }
+
+    // useEffect(() => {
+    //     hands.p1.length === 5 && hands.cpu.length === 5 && navigate('/match')
+    // }, [hands])
 
     const saveStateToLocalStorage = () => {
         localStorage.setItem(
@@ -39,43 +72,19 @@ export const BattleProvider = ({ children }) => {
                 decks,
                 hands,
                 board,
-                isP1Turn,
-                p1Score,
-                cpuScore,
             })
         )
-    }
-
-    const setupNewGame = () => {
-        const p1DealtCards = []
-        const cpuDealtCards = []
-        shuffleCards([userDeck, cpuDeck])
-        dealCards(p1DealtCards, userDeck)
-        dealCards(cpuDealtCards, cpuDeck)
-        setHands((prevHands) => ({ p1: p1DealtCards, cpu: cpuDealtCards }))
-        setDecks((prevDecks) => ({ p1: [...userDeck], cpu: [...cpuDeck] }))
-        saveStateToLocalStorage()
     }
 
     const restoreStateFromLocalStorage = () => {
         const savedState = localStorage.getItem('battleState')
         if (savedState) {
-            const { decks, hands, board, isP1Turn, p1Score, cpuScore } =
-                JSON.parse(savedState)
+            const { decks, hands, board } = JSON.parse(savedState)
             setDecks(decks)
             setHands(hands)
             setBoard(board)
-            setisP1Turn(isP1Turn)
-            setP1Score(p1Score)
-            setCpuScore(cpuScore)
-        } else {
-            setupNewGame()
         }
     }
-
-    useEffect(() => {
-        getCurrentUser().then(() => restoreStateFromLocalStorage())
-    }, [])
 
     const resetContext = () => {
         setDecks(initialDecks)
@@ -84,6 +93,7 @@ export const BattleProvider = ({ children }) => {
         setisP1Turn(null)
         setP1Score(5)
         setCpuScore(5)
+        localStorage.removeItem('battleState')
         setupNewGame()
     }
 
@@ -95,15 +105,11 @@ export const BattleProvider = ({ children }) => {
             setHands,
             board,
             setBoard,
-            isP1Turn,
-            setisP1Turn,
-            p1Score,
-            setP1Score,
-            cpuScore,
-            setCpuScore,
             resetContext,
+            setupMatch,
+            restoreStateFromLocalStorage,
         }),
-        [decks, hands, board, isP1Turn, p1Score, cpuScore]
+        [decks, hands, board, childState]
     )
 
     return (

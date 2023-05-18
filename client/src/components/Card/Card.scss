@@ -1,9 +1,8 @@
 .card {
-    position: relative;
     height: 300px;
     width: calc(300px * 0.725);
     perspective: 1000px;
-    z-index: 1;
+    box-shadow: 0 0 30px transparentize(black, 0.8);
 
     @media screen and (max-width: 1200px) {
         height: 225px;

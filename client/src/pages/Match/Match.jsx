@@ -4,15 +4,22 @@ import './Match.scss'
 import { useBattleContext } from '../../context/BattleContext'
 import { inertia } from 'framer-motion'
 
-const BoardGrid = ({ board }) => (
-    <div className='grid'>
-        {board?.map((contents, i) =>
-            contents === 'empty' ? (
-                <Cell key={i} id={i} handleClick={(e) => placeCard(e)} />
-            ) : (
-                <Card key={i} card={contents} owner={contents.user} isShowing />
-            )
-        )}
+const Board = ({ board }) => (
+    <div className='board'>
+        <div className='grid'>
+            {board?.map((contents, i) =>
+                contents === 'empty' ? (
+                    <Cell key={i} id={i} handleClick={(e) => placeCard(e)} />
+                ) : (
+                    <Card
+                        key={i}
+                        card={contents}
+                        owner={contents.user}
+                        isShowing
+                    />
+                )
+            )}
+        </div>
     </div>
 )
 
@@ -62,11 +69,9 @@ const Match = () => {
 
     return (
         <div className='match page'>
-            <div className='board'>
+            <div className='table'>
                 <Hand playerHand={hands.cpu} setCurrentCard={setCurrentCard} />
-                <Score playerScore={cpuScore} />
-                <BoardGrid board={board} />
-                <Score playerScore={p1Score} />
+                <Board board={board} />
                 <Hand playerHand={hands.p1} setCurrentCard={setCurrentCard} />
             </div>
         </div>

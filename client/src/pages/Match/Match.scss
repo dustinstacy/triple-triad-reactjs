@@ -1,18 +1,30 @@
 .match {
     align-items: center;
     justify-content: space-between;
-    background-color: var(--background-color);
+    overflow: hidden;
 
-    .board {
-        min-height: 100vh;
+    .table {
+        height: 100vh;
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
 
         @media screen and (max-width: 900px) {
             flex-direction: column;
         }
+    }
+
+    .board {
+        height: 800px;
+        width: 600px;
+        display: flex;
+        align-items: center;
+        align-self: flex-start;
+        justify-content: center;
+        background: var(--background2-color);
+        background-position: top;
+        transform: perspective(400px) rotateX(15deg);
     }
 
     .column {
@@ -45,44 +57,13 @@
     }
 
     .grid {
-        height: 920px;
-        width: 680px;
+        height: 675px;
+        width: 500px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         align-content: center;
         justify-content: center;
-        background-color: var(--background-color);
-        opacity: 0.975;
-        perspective: 400px;
-
-        & :nth-child(1) {
-            transform: scale(0.8) rotateX(5deg) translateX(50px);
-        }
-        & :nth-child(2) {
-            transform: scale(0.8) rotateX(5deg);
-        }
-        & :nth-child(3) {
-            transform: scale(0.8) rotateX(5deg) translateX(-50px);
-        }
-        & :nth-child(4) {
-            transform: scale(0.88) rotateX(5deg) translate(30px, -70px);
-        }
-        & :nth-child(5) {
-            transform: scale(0.88) rotateX(5deg) translateY(-70px);
-        }
-        & :nth-child(6) {
-            transform: scale(0.88) rotateX(5deg) translate(-30px, -70px);
-        }
-        & :nth-child(7) {
-            transform: scale(0.95) rotateX(5deg) translate(12px, -85px);
-        }
-        & :nth-child(8) {
-            transform: scale(0.95) rotateX(5deg) translateY(-85px);
-        }
-        & :nth-child(9) {
-            transform: scale(0.95) rotateX(5deg) translate(-12px, -85px);
-        }
 
         @media screen and (max-width: 1200px) {
             height: 748px;
@@ -101,33 +82,11 @@
 
     .player,
     .cpu {
-        position: relative;
-        height: 100vh;
-        width: 240px;
+        position: absolute;
+        width: 100%;
         display: flex;
-        align-self: flex-end;
-        box-sizing: border-box;
-
-        .card:nth-child(1) {
-            position: absolute;
-            top: 5%;
-        }
-        .card:nth-child(2) {
-            position: absolute;
-            top: 20%;
-        }
-        .card:nth-child(3) {
-            position: absolute;
-            top: 35%;
-        }
-        .card:nth-child(4) {
-            position: absolute;
-            top: 50%;
-        }
-        .card:nth-child(5) {
-            position: absolute;
-            top: 65%;
-        }
+        justify-content: center;
+        overflow-y: hidden;
 
         @media screen and (max-width: 1200px) {
             height: 95vh;
@@ -138,27 +97,6 @@
             margin-top: 20px;
             height: 220px;
             width: 100%;
-
-            .card:nth-child(1) {
-                top: 0;
-                right: 10%;
-            }
-            .card:nth-child(2) {
-                top: 0;
-                right: 25%;
-            }
-            .card:nth-child(3) {
-                top: 0;
-                right: 40%;
-            }
-            .card:nth-child(4) {
-                top: 0;
-                right: 55%;
-            }
-            .card:nth-child(5) {
-                top: 0;
-                right: 70%;
-            }
         }
 
         @media screen and (max-width: 600px) {
@@ -167,8 +105,29 @@
         }
     }
 
+    .player {
+        bottom: 0;
+        height: 175px;
+        justify-content: center;
+        transform: perspective(400px) rotateX(5deg);
+
+        &:hover {
+            height: 300px;
+        }
+    }
+
     .cpu {
-        justify-content: flex-end;
+        top: 0;
+        height: 125px;
+        display: flex;
+        align-items: flex-end;
+        transform: perspective(400px) rotateX(15deg);
+        z-index: 10;
+
+        .card {
+            height: 200px;
+            width: 145px;
+        }
 
         @media screen and (max-width: 900px) {
             justify-content: flex-start;

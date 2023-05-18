@@ -272,7 +272,7 @@
             width: 100%;
             max-width: 1400px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, 225px);
+            grid-template-rows: repeat(auto-fit, 225px);
             justify-content: space-evenly;
             justify-items: center;
             align-content: space-evenly;

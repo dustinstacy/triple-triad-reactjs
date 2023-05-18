@@ -2,12 +2,14 @@ import React from 'react'
 import { cardback } from '../../assets/card'
 import './Card.scss'
 
-const Card = ({ card, className, handleClick, isShowing }) => {
+const Card = ({ card, handleClick, isShowing, isSelected }) => {
     const { _id, image, user, values } = card
 
     return (
         <div
-            className={`card ${isShowing ? 'flipped' : ''} ${className}`}
+            className={`card ${isShowing ? 'flipped' : ''} ${
+                isSelected ? 'selected' : ''
+            }`}
             id={_id}
             owner={user}
             faith={user === 'cpu' ? 'cpu' : 'p1'}

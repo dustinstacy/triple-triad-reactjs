@@ -1,7 +1,10 @@
+.match.page {
+    overflow: hidden;
+}
+
 .match {
     align-items: center;
     justify-content: space-between;
-    overflow: hidden;
 
     .table {
         height: 100vh;
@@ -16,27 +19,35 @@
     }
 
     .board {
-        height: 800px;
-        width: 600px;
+        height: 140vh;
+        width: 800px;
         display: flex;
         align-items: center;
-        align-self: flex-start;
         justify-content: center;
         background: var(--background2-color);
         background-position: top;
-        transform: perspective(400px) rotateX(15deg);
+        transform: perspective(400px) rotateX(10deg) translateY(-150px);
     }
 
-    .column {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 16px;
+    .grid {
+        height: 750px;
+        width: 545px;
+        flex-wrap: wrap;
+        align-content: center;
+        margin-top: 100px;
 
-        @media screen and (max-width: 1400px) {
-            display: none;
+        @media screen and (max-width: 1200px) {
+            height: 748px;
+            width: 532px;
+        }
+
+        @media screen and (max-width: 900px) {
+            height: 640px;
+        }
+
+        @media screen and (max-width: 600px) {
+            height: 520px;
+            width: 340px;
         }
     }
 
@@ -56,37 +67,12 @@
         text-align: center;
     }
 
-    .grid {
-        height: 675px;
-        width: 500px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
-
-        @media screen and (max-width: 1200px) {
-            height: 748px;
-            width: 532px;
-        }
-
-        @media screen and (max-width: 900px) {
-            height: 640px;
-        }
-
-        @media screen and (max-width: 600px) {
-            height: 520px;
-            width: 340px;
-        }
-    }
-
     .player,
     .cpu {
         position: absolute;
         width: 100%;
         display: flex;
         justify-content: center;
-        overflow-y: hidden;
 
         @media screen and (max-width: 1200px) {
             height: 95vh;
@@ -109,36 +95,31 @@
         bottom: 0;
         height: 175px;
         justify-content: center;
-        transform: perspective(400px) rotateX(5deg);
+        transform: perspective(400px) rotateX(10deg);
 
-        &:hover {
-            height: 300px;
+        .card {
+            cursor: pointer;
+            &:hover {
+                transform: translateY(-150px);
+            }
         }
     }
 
     .cpu {
         top: 0;
-        height: 125px;
+        height: 100px;
         display: flex;
         align-items: flex-end;
-        transform: perspective(400px) rotateX(15deg);
+        transform: perspective(400px) rotateX(10deg);
         z-index: 10;
 
         .card {
-            height: 200px;
-            width: 145px;
+            height: 225px;
+            width: calc(225px * 0.725);
         }
 
         @media screen and (max-width: 900px) {
             justify-content: flex-start;
         }
-    }
-
-    .selected {
-        box-shadow: var(--secondary-color) 0px 10px 10px,
-            var(--secondary-color) 0px -10px 10px,
-            var(--secondary-color) 0px 5px 5px,
-            var(--secondary-color) 0px 5px 5px,
-            var(--secondary-color) 0px -5px 5px;
     }
 }

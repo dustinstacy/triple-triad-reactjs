@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Card, Cell } from '../../components'
+import React, { useState } from 'react'
+import { Card, Cell } from '../../components'
 import './Match.scss'
 import { useBattleContext } from '../../context/BattleContext'
-import { inertia } from 'framer-motion'
+
+const Score = ({ playerScore }) => (
+    <div className='column'>
+        <span className='match__score'>{playerScore} </span>
+    </div>
+)
 
 const Board = ({ board }) => (
     <div className='board'>
-        <div className='grid'>
+        <div className='grid center'>
             {board?.map((contents, i) =>
                 contents === 'empty' ? (
                     <Cell key={i} id={i} handleClick={(e) => placeCard(e)} />
@@ -23,15 +28,10 @@ const Board = ({ board }) => (
     </div>
 )
 
-const Score = ({ playerScore }) => (
-    <div className='column'>
-        <span className='match__score'>{playerScore} </span>
-    </div>
-)
-
-const Hand = ({ playerHand, setCurrentCard }) => {
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const [scrollDirection, setScrollDirection] = useState('')
+const Hand = ({ playerHand, selectedCard, setSelectedCard }) => {
+    const selectCard = (card) => {
+        setSelectedCard(card)
+    }
 
     return (
         <div className={playerHand[0]?.user === 'cpu' ? 'cpu' : 'player'}>
@@ -40,7 +40,8 @@ const Hand = ({ playerHand, setCurrentCard }) => {
                     key={card._id + index}
                     card={card}
                     isShowing={playerHand[0].user !== 'cpu' ?? false}
-                    handleClick={(e) => selectCard(e, card)}
+                    isSelected={selectedCard?._id === card._id}
+                    handleClick={() => selectCard(card)}
                 />
             ))}
         </div>
@@ -64,15 +65,22 @@ const Match = () => {
         resetContext,
     } = useBattleContext()
 
-    const [currentCard, setCurrentCard] = useState(null)
-    const table = [...hands.p1, ...board, ...hands.cpu]
+    const [selectedCard, setSelectedCard] = useState(null)
 
     return (
         <div className='match page'>
             <div className='table'>
-                <Hand playerHand={hands.cpu} setCurrentCard={setCurrentCard} />
+                <Hand
+                    playerHand={hands.cpu}
+                    selectedCard={selectedCard}
+                    setSelectedCard={setSelectedCard}
+                />
                 <Board board={board} />
-                <Hand playerHand={hands.p1} setCurrentCard={setCurrentCard} />
+                <Hand
+                    playerHand={hands.p1}
+                    selectedCard={selectedCard}
+                    setSelectedCard={setSelectedCard}
+                />
             </div>
         </div>
     )

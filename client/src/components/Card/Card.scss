@@ -3,6 +3,7 @@
     width: calc(300px * 0.725);
     perspective: 1000px;
     box-shadow: 0 0 30px transparentize(black, 0.8);
+    transition: all 0.3s ease;
 
     @media screen and (max-width: 1200px) {
         height: 225px;
@@ -156,5 +157,16 @@
             left: 50%;
             transform: translateX(-50%);
         }
+    }
+}
+
+.selected {
+    transform: translateY(-150px);
+    z-index: 20;
+    img {
+        box-shadow: 2px 2px 10px var(--secondary-color),
+            -2px -2px 10px var(--secondary-color),
+            -2px 2px 10px var(--secondary-color),
+            2px -2px 10px var(--secondary-color);
     }
 }

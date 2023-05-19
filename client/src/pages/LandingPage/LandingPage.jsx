@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { AuthForm, NavBar } from '../../components'
 import { logo } from '../../assets/logos'
 import './LandingPage.scss'
+import { useGlobalContext } from '../../context/GlobalContext'
+import { useNavigate } from 'react-router-dom'
 
 const LandingPage = ({ register }) => {
+    const { user } = useGlobalContext()
+    const navigate = useNavigate()
     const [dimensions, setDimensions] = useState({
         height: window.innerHeight,
         width: window.innerWidth,
@@ -18,6 +22,9 @@ const LandingPage = ({ register }) => {
 
     useEffect(() => {
         window.addEventListener('resize', handleResize, false)
+        if (user) {
+            navigate('/home')
+        }
     }, [])
 
     return (

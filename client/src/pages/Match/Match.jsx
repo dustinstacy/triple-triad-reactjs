@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Cell } from '../../components'
+import { Avatar, Card, Cell } from '../../components'
 import './Match.scss'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { BiArrowFromBottom, BiArrowFromTop } from 'react-icons/bi'
 import { useLocation } from 'react-router-dom'
 import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
 
-const Score = ({ playerScore }) => (
-    <div className='column'>
-        <span className='match__score'>{playerScore} </span>
-    </div>
-)
+const Score = ({ playerScore, user }) => {
+    const score = [...new Array(playerScore)]
 
-const Board = ({ board, placeCard }) => {
+    return (
+        <div className={`${user}-score`}>
+            {score.map((tick, i) => (
+                <div key={'tick' + i}>{user === 'p1' ? '🔵' : '🔴'}</div>
+            ))}
+        </div>
+    )
+}
+
+const Board = ({ board, placeCard, playerScores }) => {
     return (
         <div className='board'>
+            <Score playerScore={playerScores.cpu} user='cpu' />
             <div className='grid center'>
                 {board.map((contents, i) =>
                     contents === 'empty' ? (
@@ -33,6 +40,7 @@ const Board = ({ board, placeCard }) => {
                     )
                 )}
             </div>
+            <Score playerScore={playerScores.p1} user='p1' />
         </div>
     )
 }
@@ -102,6 +110,10 @@ const Match = () => {
     const [board, setBoard] = useState(initialBoard)
     const [hands, setHands] = useState(initialHands)
     const [cardSelected, setCardSelected] = useState(null)
+    const [scores, setScores] = useState({
+        p1: 5,
+        cpu: 5,
+    })
 
     useEffect(() => {
         setupMatch()
@@ -164,24 +176,36 @@ const Match = () => {
     return (
         <div className='match page'>
             <div className='table'>
+                <img
+                    className='cpu-image'
+                    src={state.opponent.image}
+                    alt='cpu image '
+                />
                 <Hand
                     playerHand={hands.cpu}
                     cardSelected={cardSelected}
                     setCardSelected={setCardSelected}
                     user={user}
                 />
+
                 <Board
                     board={board}
                     setBoard={setBoard}
                     cardSelected={cardSelected}
                     hands={hands}
                     placeCard={placeCard}
+                    playerScores={scores}
                 />
                 <Hand
                     playerHand={hands.p1}
                     cardSelected={cardSelected}
                     setCardSelected={setCardSelected}
                     user={user}
+                />
+                <img
+                    className='user-image'
+                    src={user.image}
+                    alt='user image '
                 />
             </div>
         </div>

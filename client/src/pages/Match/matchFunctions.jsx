@@ -11,17 +11,6 @@ let p1ScoreCounter = 0
 let p2ScoreCounter = 0
 let winner = 'Draw'
 
-const placeCard = (e) => {
-    const index = parseInt(e.target.id)
-    if (cardSelected) {
-        boardArray.splice(index, 1, cardSelected)
-        processBattles(index, cardSelected)
-        p1Hand.forEach((card, i) =>
-            card._id === cardSelected._id ? p1Hand.splice(i, 1) : ''
-        )
-    }
-}
-
 const processBattles = (index, card) => {
     const up = boardArray[index - width]
     const right = boardArray[index + 1]

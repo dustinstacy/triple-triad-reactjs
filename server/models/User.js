@@ -54,6 +54,10 @@ const UserSchema = new Schema(
                 default: 0,
             },
         },
+        activeBattle: {
+            type: Boolean,
+            default: false,
+        },
         onboarding: {
             firstLogin: {
                 type: Boolean,

@@ -27,6 +27,7 @@ router.put('/', requiresAuth, async (req, res) => {
                 artifacts: req.body.artifacts,
                 level: req.body.level,
                 xp: req.body.xp,
+                activeBattle: req.body.activeBattle,
             }
         )
         return res.json(updatedProfile)

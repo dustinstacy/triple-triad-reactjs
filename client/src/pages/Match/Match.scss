@@ -31,6 +31,10 @@
         .card {
             height: 250px;
             width: calc(250px * 0.725);
+
+            &__values {
+                font-size: 22px;
+            }
         }
     }
 

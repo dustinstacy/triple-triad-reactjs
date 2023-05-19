@@ -22,7 +22,7 @@ const Home = () => {
 
             <div className={`section gray ${isLargeScreen ? 'right' : ''}`}>
                 <div className='box'>
-                    <Button label='Battle' type='link' path='match' />
+                    <Button label='Battle' type='link' path='matchSetup' />
                 </div>
             </div>
             <div className={`section ${isLargeScreen ? 'left' : ''}`}>

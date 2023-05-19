@@ -23,9 +23,6 @@ export const assignRandomValues = (card) => {
             sum = startValues.reduce((sum, value) => sum + value, 0)
         } while (sum - total)
         const values = startValues.map((value) => {
-            if (value === 10) {
-                return 'A'
-            }
             return String(value)
         })
         return values
@@ -44,4 +41,39 @@ export const assignRandomValues = (card) => {
     }
 
     return (card.values = randomizeValues(total, maxValue))
+}
+
+export const randomRarity = (chance) => {
+    const num = Math.random()
+
+    if (chance === 'common') {
+        if (num < 0.9) return 'Common'
+        else return 'Uncommon'
+    }
+
+    if (chance === 'uncommon') {
+        if (num < 0.5) return 'Common'
+        else if (num <= 0.9) return 'Uncommon'
+        else return 'Rare'
+    }
+
+    if (chance === 'rare') {
+        if (num <= 0.5) return 'Uncommon'
+        else if (num <= 0.9) return 'Rare'
+        else return 'Epic'
+    }
+}
+
+export const getRandomCards = (deck, opponent, allCards) => {
+    return deck.map((card) => {
+        const rarity = randomRarity(opponent.chance)
+        const currentRarityCards = allCards.filter((c) => c.rarity === rarity)
+        const randomCard =
+            currentRarityCards[
+                Math.floor(Math.random() * currentRarityCards.length)
+            ] || {}
+        randomCard.user = opponent.name
+        assignRandomValues(randomCard)
+        return randomCard
+    })
 }

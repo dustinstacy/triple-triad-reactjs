@@ -159,14 +159,3 @@
         }
     }
 }
-
-.selected {
-    transform: translateY(-150px);
-    z-index: 20;
-    img {
-        box-shadow: 2px 2px 10px var(--secondary-color),
-            -2px -2px 10px var(--secondary-color),
-            -2px 2px 10px var(--secondary-color),
-            2px -2px 10px var(--secondary-color);
-    }
-}

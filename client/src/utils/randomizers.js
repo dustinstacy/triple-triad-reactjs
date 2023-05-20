@@ -1,6 +1,6 @@
 export const assignRandomValues = (card) => {
     const rarity = card.rarity
-    const maxValue = 10
+    const maxValue = 9
     let total
 
     const randomIntFromInterval = (min, max) => {

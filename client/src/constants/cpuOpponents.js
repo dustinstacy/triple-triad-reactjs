@@ -12,7 +12,7 @@ export const cpuOpponents = [
     {
         name: 'Aquos',
         image: 'https://res.cloudinary.com/dhsflmylz/image/upload/v1676488707/aquos_xdn1jb.png',
-        level: 2,
+        level: 5,
         coinReward: 20,
         xpReward: 5,
         card: '128',
@@ -22,7 +22,7 @@ export const cpuOpponents = [
     {
         name: 'Clockwork Tarantula',
         image: 'https://res.cloudinary.com/dhsflmylz/image/upload/v1676490236/clockwork_spider_mgyjsj.png',
-        level: 3,
+        level: 10,
         coinReward: 30,
         xpReward: 10,
         card: '161',
@@ -32,7 +32,7 @@ export const cpuOpponents = [
     {
         name: 'Greater Mimic',
         image: 'https://res.cloudinary.com/dhsflmylz/image/upload/v1676490583/greater_mimic_nfgvqc.png',
-        level: 4,
+        level: 15,
         coinReward: 40,
         xpReward: 10,
         card: '177',
@@ -42,7 +42,7 @@ export const cpuOpponents = [
     {
         name: 'Asmodeus',
         image: 'https://res.cloudinary.com/dhsflmylz/image/upload/v1675970328/asmodeus_bkpodp.png',
-        level: 3,
+        level: 20,
         coinReward: 50,
         xpReward: 15,
         card: '201',

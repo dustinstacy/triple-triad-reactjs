@@ -14,7 +14,7 @@ export const navlinks = [
     },
     {
         name: 'BAttLe',
-        path: '/matchSetup',
+        path: '/battleSetup',
         image: <GiAbstract088 />,
     },
     {

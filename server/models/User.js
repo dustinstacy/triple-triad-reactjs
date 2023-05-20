@@ -54,6 +54,7 @@ const UserSchema = new Schema(
                 default: 0,
             },
         },
+        defeatedEnemies: [],
         activeBattle: {
             type: Boolean,
             default: false,

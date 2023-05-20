@@ -6,15 +6,29 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
-        margin-top: 84px;
+        margin: 84px 0;
+        z-index: 2;
 
-        .opponent {
+        .header {
+            width: 80vw;
+            margin-bottom: 36px;
+            text-align: center;
+        }
+
+        .opponent,
+        .higher-opponent {
             height: 150px;
             width: 85vw;
+            padding: 8px 48px;
+            background-color: var(--background2-color);
+        }
+
+        .opponent {
+            position: relative;
             display: flex;
             justify-content: space-between;
-            padding: 8px 48px;
             font-size: 20px;
+            transition: all 0.8s ease;
             cursor: pointer;
 
             &__info {
@@ -40,8 +54,7 @@
 
             &__stats {
                 height: 100%;
-                flex-direction: column;
-
+                gap: 48px;
                 text-align: center;
 
                 p {
@@ -70,11 +83,19 @@
                 height: 60%;
                 flex-direction: column;
                 align-self: center;
-                gap: 18px;
+                gap: 12px;
+
+                > p {
+                    text-decoration: underline;
+                }
 
                 .rewards {
                     gap: 18px;
 
+                    p {
+                        margin-bottom: 4px;
+                        color: var(--primary-color);
+                    }
                     span {
                         display: flex;
                         align-items: center;
@@ -87,15 +108,50 @@
                     }
                 }
             }
+
+            &.selected {
+                margin-bottom: 100px;
+                box-shadow: 6px 0px 4px var(--secondary-color),
+                    -6px 0px 4px var(--secondary-color);
+
+                & .opponent-menu {
+                    transform: translate(-50%, 100%);
+                    opacity: 1;
+                }
+            }
+
+            .opponent-menu {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+                height: 100px;
+                width: 75vw;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                text-align: center;
+                z-index: -1;
+                opacity: 0;
+                transition: all 0.8s ease;
+                pointer-events: none;
+
+                .user-deck {
+                    display: flex;
+                }
+
+                .button {
+                    height: 50px;
+                    width: 180px;
+                    font-size: 20px;
+                }
+            }
         }
 
-        .selected {
-            box-shadow: 4px 4px 4px var(--secondary-color);
+        .higher-opponent {
+            color: var(--gray-color);
+            font-size: 28px;
+            filter: grayscale(0.8) blur(0.5px);
         }
-    }
-
-    .button {
-        position: static;
-        margin: 48px 0;
     }
 }

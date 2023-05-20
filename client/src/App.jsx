@@ -25,14 +25,14 @@ function App() {
 
     return (
         <>
-            {pathname !== '/match' && pathname !== 'matchEnd' && <NavBar />}
+            {pathname !== '/battle' && <NavBar />}
             <Routes>
                 <Route path='/' element={<Landing />} />
                 <Route path='/register' element={<Landing register />} />
                 <Route path='/home' element={<Home />} />
 
-                <Route path='/matchSetup' element={<BattleSetup />} />
-                <Route path='/match' element={<Battle />} />
+                <Route path='/battleSetup' element={<BattleSetup />} />
+                <Route path='/battle' element={<Battle />} />
 
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />

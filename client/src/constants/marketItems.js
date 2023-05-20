@@ -1,11 +1,11 @@
-import { smallPack, mediumPack, largePack } from '../assets/packs'
+import { commonPack, uncommonPack, rarePack } from '../assets/packs'
 
 export const marketItems = [
     {
-        name: 'Beginner Discovery',
-        type: 'discovery',
+        name: 'Common Pack',
+        type: 'pack',
         contents: { count: 1, chance: 'common' },
-        image: smallPack,
+        image: commonPack,
         level: 1,
         details: 'Enter Item Description here',
         price: 150,
@@ -16,10 +16,10 @@ export const marketItems = [
         ],
     },
     {
-        name: 'Novice Discovery',
-        type: 'discovery',
+        name: 'Uncommon Pack',
+        type: 'pack',
         contents: { count: 1, chance: 'uncommon' },
-        image: mediumPack,
+        image: uncommonPack,
         level: 3,
         details: 'Enter Item Description here',
         price: 400,
@@ -30,10 +30,10 @@ export const marketItems = [
         ],
     },
     {
-        name: 'Amateur Discovery',
-        type: 'discovery',
+        name: 'Rare Pack',
+        type: 'pack',
         contents: { count: 1, chance: 'rare' },
-        image: largePack,
+        image: rarePack,
         level: 5,
         details: 'Enter Item Description here',
         price: 1000,

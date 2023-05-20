@@ -75,9 +75,9 @@ router.put('/onboarding', requiresAuth, async (req, res) => {
                 onboarding: {
                     firstLogin: req.body.firstLogin,
                     firstPurchase: req.body.firstPurchase,
-                    firstDiscovery: req.body.firstDiscovery,
+                    firstPack: req.body.firstPack,
                     firstDeck: req.body.firstDeck,
-                    firstMatch: req.body.firstMatch,
+                    firstBattle: req.body.firstBattle,
                 },
             }
         )

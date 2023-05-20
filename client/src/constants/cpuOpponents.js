@@ -1,4 +1,4 @@
-export const opponents = [
+export const cpuOpponents = [
     {
         name: 'Goblin',
         image: 'https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/goblin_pet_jgqg2v.png',
@@ -7,6 +7,7 @@ export const opponents = [
         xpReward: 5,
         card: '17',
         chance: 'common',
+        size: 15,
     },
     {
         name: 'Aquos',
@@ -16,6 +17,7 @@ export const opponents = [
         xpReward: 5,
         card: '128',
         chance: 'common',
+        size: 15,
     },
     {
         name: 'Clockwork Tarantula',
@@ -25,6 +27,7 @@ export const opponents = [
         xpReward: 10,
         card: '161',
         chance: 'common',
+        size: 15,
     },
     {
         name: 'Greater Mimic',
@@ -34,6 +37,7 @@ export const opponents = [
         xpReward: 10,
         card: '177',
         chance: 'uncommon',
+        size: 15,
     },
     {
         name: 'Asmodeus',
@@ -43,5 +47,6 @@ export const opponents = [
         xpReward: 15,
         card: '201',
         chance: 'uncommon',
+        size: 15,
     },
 ]

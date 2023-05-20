@@ -1,40 +1,42 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { useGlobalContext } from './context/GlobalContext'
 
 import { NavBar } from './components'
 import {
-    LandingPage,
+    Landing,
     Home,
-    Battle,
     Market,
-    Match,
-    MatchEnd,
-    MatchSetup,
+    Battle,
+    BattleSetup,
     Collection,
     Account,
-    Discovery,
+    OpenPacks,
 } from './pages'
 import './App.scss'
 
 function App() {
+    const { getCurrentUser } = useGlobalContext()
     const { pathname } = useLocation()
+
+    useEffect(() => {
+        getCurrentUser()
+    }, [])
 
     return (
         <>
             {pathname !== '/match' && pathname !== 'matchEnd' && <NavBar />}
             <Routes>
-                <Route path='/' element={<LandingPage />} />
-                <Route path='/register' element={<LandingPage register />} />
+                <Route path='/' element={<Landing />} />
+                <Route path='/register' element={<Landing register />} />
                 <Route path='/home' element={<Home />} />
-                <Route path='/battle' element={<Battle />} />
 
-                <Route path='/matchSetup' element={<MatchSetup />} />
-                <Route path='/match' element={<Match />} />
-                <Route path='/matchEnd' element={<MatchEnd />} />
+                <Route path='/matchSetup' element={<BattleSetup />} />
+                <Route path='/match' element={<Battle />} />
 
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />
-                <Route path='/discovery' element={<Discovery />} />
+                <Route path='/packs' element={<OpenPacks />} />
                 <Route path='/account' element={<Account />} />
             </Routes>
         </>

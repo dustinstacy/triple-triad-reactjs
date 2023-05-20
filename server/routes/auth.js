@@ -81,11 +81,11 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ error: 'Invalid login credentials' })
         }
 
-        const passwordMatch = await bcrypt.compare(
+        const passwordBattle = await bcrypt.compare(
             req.body.password,
             user.password
         )
-        if (!passwordMatch) {
+        if (!passwordBattle) {
             return res.status(400).json({ error: 'Invalid login credentials' })
         }
 

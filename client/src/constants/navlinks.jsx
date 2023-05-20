@@ -28,8 +28,8 @@ export const navlinks = [
         image: <GiAbstract120 />,
     },
     {
-        name: 'DiScoVeRy',
-        path: '/discovery',
+        name: 'OpeN PacKs',
+        path: '/packs',
         image: <GiAbstract112 />,
     },
 ]

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { AuthForm, NavBar } from '../../components'
 import { logo } from '../../assets/logos'
-import './LandingPage.scss'
+import './Landing.scss'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { useNavigate } from 'react-router-dom'
 
-const LandingPage = ({ register }) => {
+const Landing = ({ register }) => {
     const { user } = useGlobalContext()
     const navigate = useNavigate()
     const [dimensions, setDimensions] = useState({
@@ -50,4 +50,4 @@ const LandingPage = ({ register }) => {
     )
 }
 
-export default LandingPage
+export default Landing

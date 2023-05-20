@@ -1,6 +1,6 @@
-.discovery {
+.packs {
     padding-top: var(--navbar-height);
-    background: url('../../assets/page-images/discoveryRoom.jpg');
+    background: url('../../assets/page-images/openPacksRoom.jpg');
     background-size: cover;
     background-position: bottom;
 
@@ -31,13 +31,13 @@
             }
         }
 
-        .user-discoveries {
+        .user-packs {
             height: 100%;
             width: 95%;
             display: flex;
             gap: 24px;
 
-            .available-discoveries {
+            .available-packs {
                 height: 100%;
                 width: 100%;
                 display: flex;
@@ -282,7 +282,7 @@
     }
 }
 
-.discovery-container {
+.packs-container {
     position: relative;
     min-height: calc(100vh - var(--navbar-height));
     width: 100%;

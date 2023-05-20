@@ -31,7 +31,7 @@
 //     }
 // }
 
-// const CPUCardContext = createContext(initialState)
+// const CPUContext = createContext(initialState)
 
 // export const CPUCardProvider = ({ children }) => {
 //     const [state, dispatch] = useReducer(cpuCardReducer, initialState)
@@ -72,10 +72,10 @@
 //     )
 
 //     return (
-//         <CPUCardContext.Provider value={value}>
+//         <CPUContext.Provider value={value}>
 //             {children}
-//         </CPUCardContext.Provider>
+//         </CPUContext.Provider>
 //     )
 // }
 
-// export const useCPUCardContext = () => useContext(CPUCardContext)
+// export const useCPUContext = () => useContext(CPUContext)

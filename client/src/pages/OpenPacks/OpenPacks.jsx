@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Loader } from '../../components'
-import './Discovery.scss'
-import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
-import { useGlobalContext } from '../../context/GlobalContext'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
+import { useGlobalContext } from '../../context/GlobalContext'
+import { Button, Card, Loader } from '../../components'
+import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
 import { assignRandomValues, randomRarity } from '../../utils/randomizers'
 import { removeObjectByValue } from '../../utils/removeObjectByValue'
+import './OpenPacks.scss'
 
 import axios from 'axios'
 
-const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
+const Carousel = ({ items, userInventory, setCurrentPack }) => {
     const [currentItemIndex, setCurrentItemIndex] = useState(0)
     const [slideDirection, setSlideDirection] = useState('')
 
@@ -44,8 +44,8 @@ const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
     ]
 
     useEffect(() => {
-        setCurrentDiscovery(current)
-    }, [current, setCurrentDiscovery])
+        setCurrentPack(current)
+    }, [current, setCurrentPack])
 
     return (
         <div className='carousel'>
@@ -83,52 +83,52 @@ const Carousel = ({ items, userInventory, setCurrentDiscovery }) => {
     )
 }
 
-const MadeDiscovery = ({ cards, setMadeDiscovery }) => (
-    <div className='discovery-container center'>
+const PackContents = ({ cards, setPackContents }) => (
+    <div className='packs-container center'>
         {cards.map((card) => (
             <Card key={card._id} card={card} faith='p1' isShowing />
         ))}
-        <Button label='Go Back' onClick={() => setMadeDiscovery(null)} />
+        <Button label='Go Back' onClick={() => setPackContents(null)} />
     </div>
 )
 
-const Discovery = () => {
-    const { allCards, getCurrentUser, user } = useGlobalContext()
-    const [currentDiscovery, setCurrentDiscovery] = useState(null)
-    const [madeDiscovery, setMadeDiscovery] = useState(null)
+const Packs = () => {
+    const { allCards, user } = useGlobalContext()
+    const [currentPack, setCurrentPack] = useState(null)
+    const [packContents, setPackContents] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-    const userDiscoveries = [
-        ...new Set(user?.inventory.filter((item) => item.type === 'discovery')),
+    const userPacks = [
+        ...new Set(user?.inventory.filter((item) => item.type === 'pack')),
     ]
-    const uniqueDiscoveries = uniqueItemsFilter(userDiscoveries)
+    const uniquePacks = uniqueItemsFilter(userPacks)
 
     const openPack = async () => {
         setIsLoading(true)
 
         await new Promise((resolve) => setTimeout(resolve, 5000))
 
-        const userDiscovery = userDiscoveries.find(
-            (discovery) => discovery.name === currentDiscovery.name
+        const chosenPack = userPacks.find(
+            (pack) => pack.name === currentPack.name
         )
-        const { contents } = userDiscovery ?? {}
-        const newDiscoveries = [...Array(contents.count)]
-        getRandomCards(newDiscoveries, contents.chance)
-        newDiscoveries.forEach((discovery) => {
-            assignRandomValues(discovery)
+        const { contents } = chosenPack ?? {}
+        const newPacks = [...Array(contents.count)]
+        getRandomCards(newPacks, contents.chance)
+        newPacks.forEach((card) => {
+            assignRandomValues(card)
             axios.post('/api/collection/new', {
                 user: user._id,
-                number: discovery.number,
-                name: discovery.name,
-                rarity: discovery.rarity,
-                element: discovery.element,
-                image: discovery.image,
-                values: discovery.values,
+                number: card.number,
+                name: card.name,
+                rarity: card.rarity,
+                element: card.element,
+                image: card.image,
+                values: card.values,
             })
         })
-        setMadeDiscovery(newDiscoveries)
+        setPackContents(newPacks)
 
-        removeObjectByValue(user.inventory, currentDiscovery.name)
+        removeObjectByValue(user.inventory, currentPack.name)
         axios.put('api/profile/inventory', {
             inventory: user.inventory,
         })
@@ -151,11 +151,11 @@ const Discovery = () => {
     }
 
     return (
-        <div className='discovery page center'>
-            {madeDiscovery && !isLoading ? (
-                <MadeDiscovery
-                    cards={madeDiscovery}
-                    setMadeDiscovery={setMadeDiscovery}
+        <div className='packs page center'>
+            {packContents && !isLoading ? (
+                <PackContents
+                    cards={packContents}
+                    setPackContents={setPackContents}
                 />
             ) : isLoading ? (
                 <div className='loader-container'>
@@ -164,28 +164,26 @@ const Discovery = () => {
             ) : (
                 <div className='panel center'>
                     <div className='panel-header'>
-                        <h1>ChOOse a DiScovery Kit</h1>
+                        <h1>ChOOse a PacK</h1>
                         <hr />
                     </div>
-                    <div className='user-discoveries center'>
-                        {uniqueDiscoveries.length ? (
-                            <div className='available-discoveries'>
+                    <div className='user-packs center'>
+                        {uniquePacks.length ? (
+                            <div className='available-packs'>
                                 <Carousel
-                                    items={uniqueDiscoveries}
-                                    userInventory={userDiscoveries}
-                                    setCurrentDiscovery={setCurrentDiscovery}
+                                    items={uniquePacks}
+                                    userInventory={userPacks}
+                                    setCurrentPack={setCurrentPack}
                                 />
                                 <div className='panel-footer center'>
                                     <Button
-                                        label='Make DiScoVery'
+                                        label='OpeN PacK'
                                         onClick={() => openPack()}
                                     />
                                 </div>
                             </div>
                         ) : (
-                            <h2>
-                                Head to the Market to purchase more diScoveries
-                            </h2>
+                            <h2>Head to the Market to purchase more PacKs</h2>
                         )}
                     </div>
                 </div>
@@ -194,4 +192,4 @@ const Discovery = () => {
     )
 }
 
-export default Discovery
+export default Packs

@@ -190,7 +190,7 @@ const DeckBar = ({
                 </p>
             </div>
             <div className='strength'>
-                <p>Deck Strength</p>
+                <p>Power</p>
                 {userDeck.reduce(
                     (total, card) =>
                         total +
@@ -205,7 +205,7 @@ const DeckBar = ({
             </div>
 
             <div className='section'>
-                <Button onClick={autoBuild} label='Auto Build' />
+                <Button onClick={autoBuild} label='FIll Deck' />
                 <Button onClick={unSelectAll} label='Clear Deck' />
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
-import './MatchSetup.scss'
-import { opponents } from '../../constants/opponents.js'
+import './BattleSetup.scss'
+import { cpuOpponents } from '../../constants/cpuOpponents.js'
 import { coinImage } from '../../assets/icons'
 import { getRandomCards } from '../../utils/randomizers'
 import { NavLink } from 'react-router-dom'
@@ -16,8 +16,6 @@ const Opponent = ({
 }) => {
     const [opponentDeck, setOpponentDeck] = useState([])
     const [opponentDeckStrength, setOpponentDeckStrength] = useState(0)
-
-    console.log(opponent)
 
     const getOpponentDeck = () => {
         const randomDeck = Array.from({ length: 15 })
@@ -64,7 +62,7 @@ const Opponent = ({
                     </h3>
                 </div>
                 <div className='opponent__stats center'>
-                    <p>Deck Strength:</p>
+                    <p>Power:</p>
                     <span>
                         {opponentDeckStrength > 0
                             ? opponentDeckStrength
@@ -104,7 +102,7 @@ const Opponent = ({
     )
 }
 
-const MatchSetup = () => {
+const BattleSetup = () => {
     const { allCards } = useGlobalContext()
     const [selectedOpponent, setSelectedOpponent] = useState('')
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState('')
@@ -112,7 +110,7 @@ const MatchSetup = () => {
     return (
         <div className='setup page center'>
             <div className='opponent-list'>
-                {opponents?.map((opponent) => (
+                {cpuOpponents?.map((opponent) => (
                     <Opponent
                         key={opponent.name}
                         opponent={opponent}
@@ -128,4 +126,4 @@ const MatchSetup = () => {
     )
 }
 
-export default MatchSetup
+export default BattleSetup

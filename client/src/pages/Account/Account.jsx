@@ -69,7 +69,7 @@ const Account = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Matches :</th>
+                                        <th>Battles :</th>
                                         <td>{user?.stats.matches}</td>
                                     </tr>
                                     <tr>

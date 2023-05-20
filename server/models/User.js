@@ -67,7 +67,7 @@ const UserSchema = new Schema(
                 type: Boolean,
                 default: true,
             },
-            firstDiscovery: {
+            firstPack: {
                 type: Boolean,
                 default: true,
             },
@@ -75,7 +75,7 @@ const UserSchema = new Schema(
                 type: Boolean,
                 default: true,
             },
-            firstMatch: {
+            firstBattle: {
                 type: Boolean,
                 default: true,
             },

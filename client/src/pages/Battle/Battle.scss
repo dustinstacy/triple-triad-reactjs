@@ -16,158 +16,197 @@
         @media screen and (max-width: 900px) {
             flex-direction: column;
         }
-    }
 
-    .board {
-        height: 140vh;
-        width: 800px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--background2-color);
-        background-position: top;
-        transform: perspective(400px) rotateX(10deg) translateY(-150px);
+        .board {
+            height: 140vh;
+            width: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--background2-color);
+            background-position: top;
+            transform: perspective(400px) rotateX(10deg) translateY(-150px);
 
-        .p1-score,
-        .cpu-score {
-            padding: 36px;
-            font-size: 36px;
-        }
+            .card {
+                height: 250px;
+                width: calc(250px * 0.725);
 
-        .p1-score {
-            align-self: flex-end;
-            padding-bottom: 300px;
-        }
-
-        .cpu-score {
-            align-self: flex-start;
-            padding-top: 400px;
-        }
-
-        .card {
-            height: 250px;
-            width: calc(250px * 0.725);
-
-            &__values {
-                font-size: 22px;
-            }
-        }
-    }
-
-    .grid {
-        height: 750px;
-        width: 545px;
-        flex-wrap: wrap;
-        align-content: center;
-        margin-top: 100px;
-
-        @media screen and (max-width: 1200px) {
-            height: 748px;
-            width: 532px;
-        }
-
-        @media screen and (max-width: 900px) {
-            height: 640px;
-        }
-
-        @media screen and (max-width: 600px) {
-            height: 520px;
-            width: 340px;
-        }
-    }
-
-    .player,
-    .cpu {
-        position: absolute;
-        width: 1200px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .player {
-        bottom: 0;
-        height: 175px;
-        justify-content: center;
-        transform: perspective(400px) rotateX(10deg);
-
-        .down-arrow,
-        .up-arrow {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            color: var(--primary-color);
-            font-size: 48px;
-            cursor: pointer;
-        }
-
-        .down-arrow {
-            transform: translateY(90%);
-        }
-
-        .card {
-            cursor: pointer;
-            &:hover {
-                transform: translateY(-150px);
+                &__values {
+                    font-size: 22px;
+                }
             }
 
-            &.selected {
-                transform: translateY(-150px);
-                z-index: 20;
-                img {
-                    box-shadow: 2px 2px 10px var(--secondary-color),
-                        -2px -2px 10px var(--secondary-color),
-                        -2px 2px 10px var(--secondary-color),
-                        2px -2px 10px var(--secondary-color);
+            .grid {
+                height: 750px;
+                width: 545px;
+                flex-wrap: wrap;
+                align-content: center;
+                margin-top: 100px;
+
+                @media screen and (max-width: 1200px) {
+                    height: 748px;
+                    width: 532px;
+                }
+
+                @media screen and (max-width: 900px) {
+                    height: 640px;
+                }
+
+                @media screen and (max-width: 600px) {
+                    height: 520px;
+                    width: 340px;
+                }
+            }
+
+            .column {
+                height: 100%;
+                width: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .p1-score,
+                .cpu-score {
+                    padding: 36px;
+                    font-size: 36px;
+                }
+
+                .p1-score {
+                    align-self: flex-start;
+                    padding-top: 200px;
+                }
+
+                .cpu-score {
+                    align-self: flex-start;
+                    padding-top: 140px;
                 }
             }
         }
-    }
 
-    .cpu {
-        top: 0;
-        height: 100px;
-        display: flex;
-        align-items: flex-end;
-        transform: perspective(400px) rotateX(13deg);
-        z-index: 10;
-
-        .card {
-            height: 200px;
-            width: calc(200px * 0.725);
+        .hand {
+            position: absolute;
+            width: 1200px;
+            display: flex;
+            justify-content: center;
         }
 
-        @media screen and (max-width: 900px) {
-            justify-content: flex-start;
+        .p1 {
+            bottom: 0;
+            height: 175px;
+            justify-content: center;
+            transform: perspective(400px) rotateX(10deg);
+
+            .down-arrow,
+            .up-arrow {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                color: var(--primary-color);
+                font-size: 48px;
+                cursor: pointer;
+            }
+
+            .down-arrow {
+                transform: translateY(90%);
+            }
+
+            .card {
+                cursor: pointer;
+                &:hover {
+                    transform: translateY(-150px);
+                }
+
+                &.selected {
+                    transform: translateY(-150px);
+                    z-index: 20;
+                    img {
+                        box-shadow: 2px 2px 10px var(--secondary-color),
+                            -2px -2px 10px var(--secondary-color),
+                            -2px 2px 10px var(--secondary-color),
+                            2px -2px 10px var(--secondary-color);
+                    }
+                }
+            }
+        }
+
+        .cpu {
+            top: 0;
+            height: 100px;
+            display: flex;
+            align-items: flex-end;
+            transform: perspective(400px) rotateX(13deg);
+            z-index: 10;
+
+            .card {
+                height: 200px;
+                width: calc(200px * 0.725);
+            }
+
+            @media screen and (max-width: 900px) {
+                justify-content: flex-start;
+            }
+        }
+
+        .raised {
+            transform: translateY(-135px);
+
+            & .card:hover {
+                transform: translateY(-15px);
+            }
+
+            & .card.selected {
+                transform: translateY(-15px);
+            }
+        }
+
+        .user-image,
+        .cpu-image {
+            position: absolute;
+            height: 96px;
+            width: 96px;
+            border-radius: 50%;
+        }
+
+        .user-image {
+            bottom: 24px;
+            right: 24px;
+        }
+
+        .cpu-image {
+            top: 24px;
+            left: 24px;
         }
     }
+}
 
-    .raised {
-        transform: translateY(-135px);
+.turn-arrow {
+    margin-top: 100px;
+    margin-left: 4px;
+    color: var(--secondary-color);
+    font-size: 72px;
+    transition: all 1s ease;
+}
 
-        & .card:hover {
-            transform: translateY(-15px);
-        }
+.turn-arrow.down {
+    transform: rotateZ(45deg);
+}
 
-        & .card.selected {
-            transform: translateY(-15px);
-        }
+.turn-arrow.up {
+    transform: rotateZ(225deg);
+}
+
+.turn-arrow.start-game {
+    animation: spin 0.25s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
     }
-
-    .user-image,
-    .cpu-image {
-        position: absolute;
-        height: 96px;
-        width: 96px;
-        border-radius: 50%;
+    50% {
+        transform: rotate(180deg);
     }
-
-    .user-image {
-        bottom: 24px;
-        right: 24px;
-    }
-
-    .cpu-image {
-        top: 24px;
-        left: 24px;
+    100% {
+        transform: rotate(360deg);
     }
 }

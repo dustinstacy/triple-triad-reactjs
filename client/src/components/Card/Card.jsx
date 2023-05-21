@@ -5,6 +5,8 @@ import './Card.scss'
 const Card = ({ card, handleClick, isShowing, isSelected }) => {
     const { _id, image, user, values } = card
 
+    console.log(user)
+
     return (
         <div
             className={`card ${isShowing ? 'flipped' : ''} ${
@@ -12,12 +14,12 @@ const Card = ({ card, handleClick, isShowing, isSelected }) => {
             }`}
             id={_id}
             owner={user}
-            faith={user === 'cpu' ? 'cpu' : 'p1'}
+            faith={user === 'Goblin' ? 'cpu' : 'p1'}
             onClick={(e) => handleClick(e)}
         >
             <div
                 className={`card__side card__front ${
-                    user === 'cpu' ? 'red' : 'blue'
+                    /\d/.test(user) ? 'blue' : 'red'
                 }`}
             >
                 <img className='card__image' src={image} alt={_id} />

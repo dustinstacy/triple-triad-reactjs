@@ -170,10 +170,7 @@ const OpponentMenu = ({
     }
 
     return (
-        <div
-            className='opponent-menu box'
-            onClick={setSelectedOpponent(selectedOpponent)}
-        >
+        <div className='opponent-menu box'>
             Your Deck:
             <div className='user-deck__power'>
                 <p>Power</p>

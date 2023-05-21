@@ -41,12 +41,7 @@ const Opponent = ({
     }
 
     const selectOpponent = () => {
-        if (opponent === selectedOpponent) {
-            setSelectedOpponent(!opponent)
-        } else {
-            setSelectedOpponent(opponent)
-        }
-
+        setSelectedOpponent(opponent)
         setSelectedOpponentDeck((prevDeck) => opponentDeck)
     }
 
@@ -101,6 +96,7 @@ const Opponent = ({
                     </div>
                     <OpponentMenu
                         selectedOpponent={selectedOpponent}
+                        setSelectedOpponent={setSelectedOpponent}
                         selectedOpponentDeck={selectedOpponentDeck}
                     />
                 </div>
@@ -113,7 +109,11 @@ const Opponent = ({
     )
 }
 
-const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
+const OpponentMenu = ({
+    selectedOpponent,
+    setSelectedOpponent,
+    selectedOpponentDeck,
+}) => {
     const { getCurrentUser, user, userCards, userDeck } = useGlobalContext()
     const navigate = useNavigate()
 
@@ -170,7 +170,10 @@ const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
     }
 
     return (
-        <div className='opponent-menu box'>
+        <div
+            className='opponent-menu box'
+            onClick={setSelectedOpponent(selectedOpponent)}
+        >
             Your Deck:
             <div className='user-deck__power'>
                 <p>Power</p>

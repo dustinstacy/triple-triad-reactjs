@@ -27,9 +27,9 @@ function App() {
         <>
             {pathname !== '/battle' && <NavBar />}
             <Routes>
-                <Route path='/' element={<Landing />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/login' element={<Landing />} />
                 <Route path='/register' element={<Landing register />} />
-                <Route path='/home' element={<Home />} />
 
                 <Route path='/battleSetup' element={<BattleSetup />} />
                 <Route path='/battle' element={<Battle />} />

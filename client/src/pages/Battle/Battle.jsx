@@ -130,6 +130,8 @@ const Battle = () => {
     const [cardSelected, setCardSelected] = useState(null)
     const [isP1Turn, setIsP1Turn] = useState(null)
     const [battleStarted, setBattleStarted] = useState(false)
+    const [battleOver, setBattleOver] = useState(false)
+    const [modalMessage, setModalMessage] = useState(null)
     const [scores, setScores] = useState({
         p1: 5,
         cpu: 5,
@@ -141,7 +143,6 @@ const Battle = () => {
 
     let p1ScoreCounter = 0
     let p2ScoreCounter = 0
-    let winner = 'Draw'
 
     useEffect(() => {
         setupBattle()
@@ -218,12 +219,14 @@ const Battle = () => {
     const checkForWin = () => {
         if (emptyCells.length === 0) {
             setTimeout(() => {
-                if (scores.p1 > scores.p2) {
-                    winner = 'Victory'
-                } else if (scores.p1 < scores.p2) {
-                    winner = 'Defeat'
-                } else if (scores.p1 === scores.p2) {
+                if (scores.p1 > scores.cpu) {
+                    setModalMessage('Victory')
+                } else if (scores.p1 < scores.cpu) {
+                    setModalMessage('Defeat')
+                } else if (scores.p1 === scores.cpu) {
+                    setModalMessage('Draw')
                 }
+                setBattleOver(true)
             }, 1000)
         }
     }
@@ -351,8 +354,6 @@ const Battle = () => {
         processBattles(move.cell, move.card)
     }
 
-    console.log(table)
-
     useEffect(() => {
         if (
             battleStarted &&
@@ -448,6 +449,25 @@ const Battle = () => {
                     src={user?.image}
                     alt='user image '
                 />
+                {battleOver && modalMessage && (
+                    <div className='battle-over box'>
+                        <span className='result'>{modalMessage}</span>
+                        <div className='buttons'>
+                            <button
+                                className='box'
+                                onClick={() => navigate('/battleSetup')}
+                            >
+                                Battle Select
+                            </button>
+                            <button
+                                className='box'
+                                onClick={() => navigate('/')}
+                            >
+                                Quit
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

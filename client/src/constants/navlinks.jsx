@@ -9,7 +9,7 @@ import {
 export const navlinks = [
     {
         name: 'HoMe',
-        path: '/home',
+        path: '/',
         image: <GiAbstract021 />,
     },
     {

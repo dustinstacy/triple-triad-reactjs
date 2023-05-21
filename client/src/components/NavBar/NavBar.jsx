@@ -23,7 +23,7 @@ const Links = ({ menu, onClick, user }) => {
             {navlinks.map((link) => (
                 <NavLink
                     className={`${menu}-link center ${
-                        !user && link.path !== '/home' ? 'disabled' : ''
+                        !user && link.path !== '/' ? 'disabled' : ''
                     }`}
                     key={link.name}
                     to={link.path}
@@ -120,13 +120,13 @@ const NavBar = ({ landing }) => {
                 src={logo}
                 alt='logo'
                 className='navbar__logo'
-                onClick={() => navigate('/home')}
+                onClick={() => navigate('/')}
             />
             <Links menu='navbar' user={user} />
             {user ? (
                 <UserSection user={user} />
             ) : landing ? null : (
-                <NavLink className='navbar__login box' to='/'>
+                <NavLink className='navbar__login box' to='/login'>
                     Login
                 </NavLink>
             )}

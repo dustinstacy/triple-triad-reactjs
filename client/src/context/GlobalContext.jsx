@@ -127,23 +127,14 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
-    const value = useMemo(
-        () => ({
-            ...state,
-            getCurrentUser,
-            getAllCards,
-            getUserCards,
-            getUserDeck,
-            logout,
-        }),
-        [
-            state.user,
-            state.userDeck,
-            state.userCards,
-            state.fetchingUser,
-            state.allCards,
-        ]
-    )
+    const value = useMemo(() => ({
+        ...state,
+        getCurrentUser,
+        getAllCards,
+        getUserCards,
+        getUserDeck,
+        logout,
+    }))
 
     return (
         <GlobalContext.Provider value={value}>

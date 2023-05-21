@@ -15,7 +15,7 @@ const AvatarMenu = ({ isOpen, setIsOpen }) => {
     const handleLogout = () => {
         logout().then(() => {
             handleToggle(setIsOpen)
-            navigate('/')
+            navigate('/login')
         })
     }
 

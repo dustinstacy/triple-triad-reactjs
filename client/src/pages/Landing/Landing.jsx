@@ -22,9 +22,6 @@ const Landing = ({ register }) => {
 
     useEffect(() => {
         window.addEventListener('resize', handleResize, false)
-        if (user) {
-            navigate('/home')
-        }
     }, [])
 
     return (

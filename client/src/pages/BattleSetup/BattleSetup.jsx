@@ -10,13 +10,12 @@ import axios from 'axios'
 
 const Opponent = ({
     opponent,
-    allCards,
     selectedOpponent,
     setSelectedOpponent,
     selectedOpponentDeck,
     setSelectedOpponentDeck,
 }) => {
-    const { user } = useGlobalContext()
+    const { allCards, user, getCurrentUser } = useGlobalContext()
     const [opponentDeck, setOpponentDeck] = useState([])
     const [opponentDeckStrength, setOpponentDeckStrength] = useState(0)
 
@@ -46,7 +45,7 @@ const Opponent = ({
     }
 
     useEffect(() => {
-        getOpponentDeck()
+        getCurrentUser().then(() => getOpponentDeck())
     }, [])
 
     return (
@@ -207,7 +206,6 @@ const OpponentMenu = ({
 }
 
 const BattleSetup = () => {
-    const { allCards } = useGlobalContext()
     const [selectedOpponent, setSelectedOpponent] = useState('')
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState('')
 
@@ -223,7 +221,6 @@ const BattleSetup = () => {
                     <Opponent
                         key={opponent.name}
                         opponent={opponent}
-                        allCards={allCards}
                         selectedOpponent={selectedOpponent}
                         setSelectedOpponent={setSelectedOpponent}
                         selectedOpponentDeck={selectedOpponentDeck}

@@ -54,12 +54,17 @@ const UserSchema = new Schema(
                 default: 0,
             },
         },
+        defeatedEnemies: [],
+        activeBattle: {
+            type: Boolean,
+            default: false,
+        },
         onboarding: {
             firstLogin: {
                 type: Boolean,
                 default: true,
             },
-            firstDeck: {
+            firstPurchase: {
                 type: Boolean,
                 default: true,
             },
@@ -67,7 +72,11 @@ const UserSchema = new Schema(
                 type: Boolean,
                 default: true,
             },
-            firstMatch: {
+            firstDeck: {
+                type: Boolean,
+                default: true,
+            },
+            firstBattle: {
                 type: Boolean,
                 default: true,
             },

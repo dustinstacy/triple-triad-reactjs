@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 
 import { useGlobalContext } from '../../context/GlobalContext'
-import { levels } from '../../constants/levels'
+import { userLevels } from '../../constants/userLevels'
 
 import './ExperienceBar.scss'
 
@@ -11,7 +11,7 @@ import './ExperienceBar.scss'
 const ExperienceBar = () => {
     const { getCurrentUser, user } = useGlobalContext()
     const { xp, level } = user ?? {}
-    const userNextLevel = levels[level]
+    const userNextLevel = userLevels[level]
 
     const xpPercentage = () => {
         return `${(xp / userNextLevel) * 100}%`

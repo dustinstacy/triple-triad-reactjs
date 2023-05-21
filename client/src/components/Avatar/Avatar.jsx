@@ -5,7 +5,6 @@ import { handleToggle } from '../../utils/handleToggle'
 import { MdLogout } from 'react-icons/md'
 
 import './Avatar.scss'
-import { smlogo } from '../../assets/logos'
 
 // This component is the menu that is displayed when the user clicks on their image.
 const AvatarMenu = ({ isOpen, setIsOpen }) => {
@@ -16,7 +15,7 @@ const AvatarMenu = ({ isOpen, setIsOpen }) => {
     const handleLogout = () => {
         logout().then(() => {
             handleToggle(setIsOpen)
-            navigate('/')
+            navigate('/login')
         })
     }
 

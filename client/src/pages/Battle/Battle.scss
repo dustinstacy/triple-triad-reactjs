@@ -1,121 +1,239 @@
-.battle {
-    position: relative;
+.match.page {
+    overflow: hidden;
+}
+
+.match {
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
-    .container {
-        gap: 64px;
-        padding-top: 160px;
+    .table {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        @media screen and (max-width: 1200px) {
-            gap: 96px;
-            padding-top: 240px;
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
         }
 
-        @media screen and (max-width: 900px) and (min-aspect-ratio: 4/3) {
-            padding: 160px 160px 80px 160px;
-        }
-
-        @media screen and (max-width: 600px) {
-            padding: 160px 160px 0 160px;
-            width: 90%;
-        }
-
-        .bar {
-            position: relative;
-            min-height: 200px;
-            width: 50vw;
+        .board {
+            height: 140vh;
+            width: 800px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            background: var(--background2-color);
+            background-position: top;
+            transform: perspective(400px) rotateX(10deg) translateY(-150px);
 
-            .button {
-                height: 60px;
-                width: 35%;
-                font-size: 28px;
+            .card {
+                height: 250px;
+                width: calc(250px * 0.725);
+
+                &__values {
+                    font-size: 22px;
+                }
+            }
+
+            .grid {
+                height: 750px;
+                width: 545px;
+                flex-wrap: wrap;
+                align-content: center;
+                margin-top: 100px;
 
                 @media screen and (max-width: 1200px) {
-                    height: 48px;
-                    font-size: 20px;
+                    height: 748px;
+                    width: 532px;
+                }
+
+                @media screen and (max-width: 900px) {
+                    height: 640px;
                 }
 
                 @media screen and (max-width: 600px) {
-                    height: 30px;
+                    height: 520px;
+                    width: 340px;
                 }
             }
 
-            @media screen and (max-width: 1200px) {
-                min-height: 150px;
-                width: 65vw;
-            }
+            .column {
+                height: 100%;
+                width: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
 
-            @media screen and (max-width: 600px) {
-                width: 100%;
-                align-items: flex-end;
-            }
-        }
-
-        .left {
-            align-self: flex-start;
-            left: 80px;
-
-            @media screen and (max-width: 1200px) {
-                left: 40px;
-            }
-
-            @media screen and (max-width: 600px) {
-                left: 0;
-            }
-
-            .button {
-                right: -80px;
-
-                @media screen and (max-width: 600px) {
-                    right: initial;
+                .p1-score,
+                .cpu-score {
+                    padding: 36px;
+                    font-size: 36px;
                 }
-            }
-        }
 
-        .right {
-            align-self: flex-end;
-            right: 80px;
+                .p1-score {
+                    align-self: flex-start;
+                    padding-top: 200px;
+                }
 
-            @media screen and (max-width: 1200px) {
-                right: 40px;
-            }
-
-            @media screen and (max-width: 600px) {
-                right: 0;
-            }
-
-            .button {
-                left: -80px;
-
-                @media screen and (max-width: 600px) {
-                    left: initial;
+                .cpu-score {
+                    align-self: flex-start;
+                    padding-top: 140px;
                 }
             }
         }
 
-        .creature {
+        .hand {
             position: absolute;
+            width: 1200px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .p1 {
             bottom: 0;
+            height: 175px;
+            justify-content: center;
+            transform: perspective(400px) rotateX(10deg);
 
-            &.medium {
-                width: 300px;
-
-                @media screen and (max-width: 1200px) {
-                    width: 200px;
-                }
+            .down-arrow,
+            .up-arrow {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                color: var(--primary-color);
+                font-size: 48px;
+                cursor: pointer;
             }
 
-            &.large {
-                width: 350px;
+            .down-arrow {
+                transform: translateY(90%);
+            }
 
-                @media screen and (max-width: 1200px) {
-                    width: 275px;
+            .card {
+                cursor: pointer;
+                &:hover {
+                    transform: translateY(-150px);
+                }
+
+                &.selected {
+                    transform: translateY(-150px);
+                    z-index: 20;
+                    img {
+                        box-shadow: 2px 2px 10px var(--secondary-color),
+                            -2px -2px 10px var(--secondary-color),
+                            -2px 2px 10px var(--secondary-color),
+                            2px -2px 10px var(--secondary-color);
+                    }
                 }
             }
+        }
+
+        .cpu {
+            top: 0;
+            height: 100px;
+            display: flex;
+            align-items: flex-end;
+            transform: perspective(400px) rotateX(13deg);
+            z-index: 10;
+
+            .card {
+                height: 200px;
+                width: calc(200px * 0.725);
+            }
+
+            @media screen and (max-width: 900px) {
+                justify-content: flex-start;
+            }
+        }
+
+        .raised {
+            transform: translateY(-135px);
+
+            & .card:hover {
+                transform: translateY(-15px);
+            }
+
+            & .card.selected {
+                transform: translateY(-15px);
+            }
+        }
+
+        .user-image,
+        .cpu-image {
+            position: absolute;
+            height: 96px;
+            width: 96px;
+            border-radius: 50%;
+        }
+
+        .user-image {
+            bottom: 24px;
+            right: 24px;
+        }
+
+        .cpu-image {
+            top: 24px;
+            left: 24px;
+        }
+    }
+}
+
+.turn-arrow {
+    margin-top: 100px;
+    margin-left: 4px;
+    color: var(--secondary-color);
+    font-size: 72px;
+    transition: all 1s ease-in-out;
+}
+
+.turn-arrow.down {
+    transform: rotateZ(45deg);
+}
+
+.turn-arrow.up {
+    transform: rotateZ(225deg);
+}
+
+.turn-arrow.start-game {
+    animation: spin 0.25s infinite forwards;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.battle-over {
+    position: absolute;
+    height: 800px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 20;
+
+    .result {
+        font-size: 124px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+
+        button {
+            height: 100px;
+            width: 400px;
+            font-size: 36px;
         }
     }
 }

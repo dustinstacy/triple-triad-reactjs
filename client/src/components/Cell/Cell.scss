@@ -1,11 +1,12 @@
 .cell {
-    height: 300px;
-    width: calc(300px * 0.725);
+    height: 250px;
+    width: calc(250px * 0.725);
     background-color: rgba(0, 0, 0, 0.4);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     box-shadow: rgba(240, 240, 240, 0.25) 10px 10px 20px -12px inset,
         rgba(240, 240, 240, 0.3) -10px 10px 36px -18px inset;
+    cursor: pointer;
 
     @media screen and (max-width: 1200px) {
         height: 225px;

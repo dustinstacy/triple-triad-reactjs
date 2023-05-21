@@ -9,12 +9,12 @@ import {
 export const navlinks = [
     {
         name: 'HoMe',
-        path: '/home',
+        path: '/',
         image: <GiAbstract021 />,
     },
     {
         name: 'BAttLe',
-        path: '/match',
+        path: '/battleSetup',
         image: <GiAbstract088 />,
     },
     {
@@ -28,8 +28,8 @@ export const navlinks = [
         image: <GiAbstract120 />,
     },
     {
-        name: 'DiScoVeRy',
-        path: '/discovery',
+        name: 'OpeN PacKs',
+        path: '/packs',
         image: <GiAbstract112 />,
     },
 ]

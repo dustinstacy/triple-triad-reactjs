@@ -1,44 +1,38 @@
 import React from 'react'
-import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { cardback } from '../../assets/card'
 import './Card.scss'
 
-const Card = ({ card, player, turn, handleClick, visibility, selector }) => {
-    const { _id, power, image, values, selected } = card
+const Card = ({ card, handleClick, isShowing, isSelected }) => {
+    const { _id, image, user, values } = card
+
+    console.log(user)
 
     return (
         <div
-            className={`card ${player === 'p1' ? 'blue' : 'red'} ${
-                !turn ? 'not__user' : ''
-            } ${power} ${!visibility && 'transparent'}`}
+            className={`card ${isShowing ? 'flipped' : ''} ${
+                isSelected ? 'selected' : ''
+            }`}
             id={_id}
-            owner={player}
+            owner={user}
+            faith={user === 'Goblin' ? 'cpu' : 'p1'}
             onClick={(e) => handleClick(e)}
         >
-            <img
-                className='card__image'
-                src={visibility ? image : cardback}
-                alt={_id}
-            />
-
-            {visibility && (
+            <div
+                className={`card__side card__front ${
+                    /\d/.test(user) ? 'blue' : 'red'
+                }`}
+            >
+                <img className='card__image' src={image} alt={_id} />
                 <div className='card__values'>
                     <span className='up'>{values[0]}</span>
                     <span className='right'>{values[1]}</span>
                     <span className='down'>{values[2]}</span>
                     <span className='left'>{values[3]}</span>
                 </div>
-            )}
-
-            {selector && (
-                <div className='checkbox' onClick={(e) => handleClick(e)}>
-                    {selected ? (
-                        <ImCheckboxChecked className='check' />
-                    ) : (
-                        <ImCheckboxUnchecked className='uncheck' />
-                    )}
-                </div>
-            )}
+            </div>
+            <div className='card__side card__back'>
+                <img className='card__image' src={cardback} alt={_id} />
+            </div>
         </div>
     )
 }

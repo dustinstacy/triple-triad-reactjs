@@ -104,14 +104,7 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
         chosenQuantity.discount
     )
 
-    const purchasedItem = {
-        name: chosenItem.name,
-        type: chosenItem.type,
-        contents: chosenItem.contents,
-        image: chosenItem.image,
-        level: chosenItem.level,
-        details: chosenItem.details,
-    }
+    const purchasedItem = marketItems[marketItems.indexOf(chosenItem)]
 
     const finalPurchase = Array.from(
         { length: chosenQuantity.amount },
@@ -164,10 +157,6 @@ const Market = () => {
     const [chosenQuantity, setChosenQuantity] = useState(
         chosenItem.quantities[0]
     )
-
-    useEffect(() => {
-        getCurrentUser()
-    }, [])
 
     useEffect(() => {
         setChosenQuantity(chosenItem.quantities[0])

@@ -1,5 +1,5 @@
-import largePack from './pack3.png'
-import mediumPack from './pack2.png'
-import smallPack from './pack1.png'
+import rarePack from './rare-pack.png'
+import uncommonPack from './uncommon-pack.png'
+import commonPack from './common-pack.png'
 
-export { largePack, mediumPack, smallPack }
+export { rarePack, uncommonPack, commonPack }

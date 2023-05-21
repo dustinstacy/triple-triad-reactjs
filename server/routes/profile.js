@@ -24,10 +24,10 @@ router.put('/', requiresAuth, async (req, res) => {
                 username: req.body.username,
                 image: req.body.image,
                 coin: req.body.coin,
-                rank: req.body.rank,
+                artifacts: req.body.artifacts,
                 level: req.body.level,
                 xp: req.body.xp,
-                firstDeck: req.body.firstDeck,
+                activeBattle: req.body.activeBattle,
             }
         )
         return res.json(updatedProfile)
@@ -52,6 +52,32 @@ router.put('/stats', requiresAuth, async (req, res) => {
                     wins: req.body.wins,
                     losses: req.body.losses,
                     draws: req.body.draws,
+                },
+            }
+        )
+        return res.json(updatedProfile)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error.message)
+    }
+})
+
+// @route PUT /api/profile/onboarding
+// @desc Update user's onboarding status
+// @access Private
+router.put('/onboarding', requiresAuth, async (req, res) => {
+    try {
+        const updatedProfile = await User.findOneAndUpdate(
+            {
+                _id: req.user._id,
+            },
+            {
+                onboarding: {
+                    firstLogin: req.body.firstLogin,
+                    firstPurchase: req.body.firstPurchase,
+                    firstPack: req.body.firstPack,
+                    firstDeck: req.body.firstDeck,
+                    firstBattle: req.body.firstBattle,
                 },
             }
         )

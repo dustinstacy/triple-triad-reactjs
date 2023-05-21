@@ -4,12 +4,11 @@ import axios from 'axios'
 
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, TextInput } from '../../components'
-import { marketItems } from '../../constants/marketItems'
 import './AuthForm.scss'
 
 // The register prop is used to toggle between login and signup form
 const AuthForm = ({ register }) => {
-    const { getCurrentUser, user } = useGlobalContext()
+    const { getCurrentUser } = useGlobalContext()
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -51,7 +50,7 @@ const AuthForm = ({ register }) => {
                 data
             )
 
-            await getCurrentUser().then(navigate('/home'))
+            await getCurrentUser().then(navigate('/'))
         } catch (error) {
             if (error?.response?.data) {
                 setErrors(error.response.data)
@@ -126,7 +125,7 @@ const AuthForm = ({ register }) => {
                             ? 'Already Have An Account? '
                             : 'Need An AccOunt? '}
                     </span>
-                    <NavLink to={register ? '/' : '/register'}>
+                    <NavLink to={register ? '/login' : '/register'}>
                         {register ? 'Login' : 'Sign up'}
                     </NavLink>
                 </div>

@@ -38,7 +38,7 @@ the user experience, add features, and increase replayability.
 
 In it's current iteration, users can create an account, construct a deck, view
 their collection, open and purchase packs using currency collected from winning
-matches, and play a match against a AI opponent built using a heuristic
+battles, and play a match against a AI opponent built using a heuristic
 customized for average difficulty.
 
 ## Rules
@@ -50,7 +50,7 @@ has an elemental symbol representing the card's element. Each card will also
 have a background color to signal which player the card belongs to.
 
 In a basic game, each player is dealt 5 cards from a constructed 35 card deck
-(35 being ideal for up to 7 round matches). A coin-flip decides who begins. The
+(35 being ideal for up to 7 round battles). A coin-flip decides who begins. The
 player who wins the coin toss may choose a card to play anywhere on the grid.
 After the first card is played, the opponent may play a card on any unoccupied
 space on the board. The game continues with players' turns alternating. Each
@@ -66,7 +66,7 @@ ending score.
 
 ## Planned Updates
 
--   Peer to Peer matches
+-   Peer to Peer battles
 -   Level up rewards
 -   Card enhancements
 -   Constructed challenges

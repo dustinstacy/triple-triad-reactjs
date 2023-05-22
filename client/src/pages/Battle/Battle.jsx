@@ -13,8 +13,8 @@ const Score = ({ playerScore, user }) => {
 
     return (
         <div className={`${user}-score`}>
-            {score.map((tick, i) => (
-                <div key={'tick' + i}>{user === 'p1' ? '🔵' : '🔴'}</div>
+            {score.map((count, i) => (
+                <div key={'count' + i}>{user === 'p1' ? '🔵' : '🔴'}</div>
             ))}
         </div>
     )

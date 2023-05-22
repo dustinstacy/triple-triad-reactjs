@@ -23,11 +23,11 @@ router.put('/', requiresAuth, async (req, res) => {
             {
                 username: req.body.username,
                 image: req.body.image,
-                coin: req.body.coin,
-                artifacts: req.body.artifacts,
-                level: req.body.level,
-                xp: req.body.xp,
+                color: req.body.color,
+                defeatedEnemies: req.body.defeatedEnemies,
                 activeBattle: req.body.activeBattle,
+                coin: req.body.coin,
+                runes: req.body.runes,
             }
         )
         return res.json(updatedProfile)
@@ -47,8 +47,10 @@ router.put('/stats', requiresAuth, async (req, res) => {
                 _id: req.user._id,
             },
             {
+                level: req.body.level,
+                xp: req.body.xp,
                 stats: {
-                    matches: req.body.matches,
+                    battles: req.body.battles,
                     wins: req.body.wins,
                     losses: req.body.losses,
                     draws: req.body.draws,
@@ -59,6 +61,26 @@ router.put('/stats', requiresAuth, async (req, res) => {
     } catch (error) {
         console.log(error)
         return res.status(500).send(error.message)
+    }
+})
+
+// @route PUT /api/profile/inventory
+// @desc Update user's inventory
+// @access Private
+router.put('/inventory', requiresAuth, async (req, res) => {
+    try {
+        const updatedProfile = await User.findOneAndUpdate(
+            {
+                _id: req.user._id,
+            },
+            {
+                inventory: req.body.inventory,
+            }
+        )
+        return res.json(updatedProfile)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error.message)
     }
 })
 
@@ -85,26 +107,6 @@ router.put('/onboarding', requiresAuth, async (req, res) => {
     } catch (error) {
         console.log(error)
         return res.status(500).send(error.message)
-    }
-})
-
-// @route PUT /api/profile/packs
-// @desc Update user's packs
-// @access Private
-router.put('/inventory', requiresAuth, async (req, res) => {
-    try {
-        const updatedProfile = await User.findOneAndUpdate(
-            {
-                _id: req.user._id,
-            },
-            {
-                inventory: req.body.inventory,
-            }
-        )
-        return res.json(updatedProfile)
-    } catch (error) {
-        console.log(error)
-        res.status(500).send(error.message)
     }
 })
 

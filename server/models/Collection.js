@@ -7,19 +7,19 @@ const CollectionSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
         },
-        number: {
-            type: String,
-            required: true,
-        },
         name: {
             type: String,
             required: true,
         },
-        rarity: {
+        number: {
             type: String,
             required: true,
         },
         image: {
+            type: String,
+            required: true,
+        },
+        rarity: {
             type: String,
             required: true,
         },
@@ -29,27 +29,31 @@ const CollectionSchema = new Schema(
                 required: true,
             },
         ],
+        empower: {
+            type: String,
+        },
+        weaken: {
+            type: String,
+        },
+        xp: {
+            type: Number,
+            default: 0,
+        },
         level: {
             type: Number,
             default: 1,
-        },
-        selected: {
-            type: Boolean,
-            default: false,
-        },
-        element: {
-            type: String,
-        },
-        weakness: {
-            type: String,
         },
         timesPlayed: {
             type: Number,
             default: 0,
         },
-        enemyCaptures: {
+        enemiesConverted: {
             type: Number,
             default: 0,
+        },
+        selected: {
+            type: Boolean,
+            default: false,
         },
     },
     {

@@ -87,7 +87,6 @@
             }
 
             &__stats {
-                width: 50%;
                 display: flex;
                 margin-top: 48px;
                 font-size: 22px;
@@ -104,6 +103,17 @@
                         tr {
                             width: 40vw;
                         }
+                    }
+                }
+
+                table:nth-child(1) {
+                    padding-right: 48px;
+                    border-right: 1px solid white;
+                }
+
+                table:nth-child(2) {
+                    tr {
+                        width: 250px;
                     }
                 }
 
@@ -202,8 +212,9 @@
     }
 
     .header {
-        width: 80vw;
-        margin-top: 48px;
+        width: 100%;
+        padding-top: 48px;
+        background-color: var(--background3-color);
         text-align: center;
     }
 

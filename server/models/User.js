@@ -19,14 +19,11 @@ const UserSchema = new Schema(
             default:
                 'https://res.cloudinary.com/dhsflmylz/image/upload/v1677514304/triple-triad/backgrounds/defaultPlayer_unuhf2.png',
         },
-        coin: {
-            type: Number,
-            default: 0,
+        color: {
+            type: String,
+            default: '#03303b',
         },
-        artifacts: {
-            type: Number,
-            default: 0,
-        },
+
         level: {
             type: Number,
             default: 1,
@@ -35,9 +32,8 @@ const UserSchema = new Schema(
             type: Number,
             default: 0,
         },
-        inventory: [],
         stats: {
-            matches: {
+            battles: {
                 type: Number,
                 default: 0,
             },
@@ -59,6 +55,15 @@ const UserSchema = new Schema(
             type: Boolean,
             default: false,
         },
+        coin: {
+            type: Number,
+            default: 0,
+        },
+        runes: {
+            type: Number,
+            default: 0,
+        },
+        inventory: [],
         onboarding: {
             firstLogin: {
                 type: Boolean,

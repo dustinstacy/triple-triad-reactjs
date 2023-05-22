@@ -71,7 +71,7 @@ export const getRandomCards = (deck, opponent, allCards) => {
         const randomCard =
             currentRarityCards[
                 Math.floor(Math.random() * currentRarityCards.length)
-            ] || {}
+            ]
         randomCard.user = opponent.name
         assignRandomValues(randomCard)
         return randomCard

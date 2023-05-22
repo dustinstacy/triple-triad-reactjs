@@ -29,7 +29,7 @@ const UserSection = ({ userCards, user }) => {
                         <tbody>
                             <tr>
                                 <th>Total MatcHes :</th>
-                                <td>{stats?.matches}</td>
+                                <td>{stats?.battles}</td>
                             </tr>
                             <tr>
                                 <th>Wins :</th>

@@ -33,12 +33,13 @@ router.post('/new', requiresAuth, async (req, res) => {
     try {
         const newCollection = new Collection({
             user: req.body.user,
-            number: req.body.number,
             name: req.body.name,
-            rarity: req.body.rarity,
-            element: req.body.element,
+            number: req.body.number,
             image: req.body.image,
+            rarity: req.body.rarity,
             values: req.body.values,
+            empower: req.body.empower,
+            weaken: req.body.weaken,
         })
 
         await newCollection.save()
@@ -69,44 +70,16 @@ router.put('/:collectionId', requiresAuth, async (req, res) => {
                 _id: req.params.collectionId,
             },
             {
-                image: req.body.image,
                 values: req.body.values,
+                empower: req.body.empower,
+                weaken: req.body.weaken,
+                xp: req.body.xp,
+                level: req.body.level,
+                timesPlayed: req.body.timesPlayed,
+                enemiesConverted: req.body.enemiesConverted,
             },
             {
                 new: true,
-            }
-        )
-
-        return res.json(updatedCard)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
-    }
-})
-
-// @route PUT /api/collection/:collectionId/stats
-// @desc Update a cards stats from users collection
-// @access Private
-router.put('/:collectionId/stats', requiresAuth, async (req, res) => {
-    try {
-        const card = await Collection.findOne({
-            user: req.user._id,
-            _id: req.params.collectionId,
-        })
-
-        if (!card) {
-            return res.status(404).json({ error: 'Card does not exist' })
-        }
-
-        const updatedCard = await Collection.findOneAndUpdate(
-            {
-                user: req.user._id,
-                _id: req.params.collectionId,
-            },
-            {
-                level: req.body.level,
-                timesPlayed: req.body.timesPlayed,
-                enemyCaptures: req.body.enemyCaptures,
             }
         )
 

@@ -30,11 +30,12 @@ router.get('/', async (req, res) => {
 router.post('/new', requiresAuth, async (req, res) => {
     try {
         const newCard = new Card({
-            number: req.body.number,
             name: req.body.name,
-            rarity: req.body.rarity,
-            element: req.body.element,
+            number: req.body.number,
             image: req.body.image,
+            rarity: req.body.rarity,
+            empower: req.body.empower,
+            weaken: req.body.weaken,
         })
 
         await newCard.save()
@@ -45,7 +46,7 @@ router.post('/new', requiresAuth, async (req, res) => {
     }
 })
 
-// @route PUT /api/cards/:number
+// @route PUT /api/cards/:cardsId
 // @desc Update released card
 // @desc Admin
 router.put('/:cardsId', requiresAuth, async (req, res) => {
@@ -63,11 +64,12 @@ router.put('/:cardsId', requiresAuth, async (req, res) => {
                 _id: req.params.cardsId,
             },
             {
-                number: req.body.number,
                 name: req.body.name,
-                rarity: req.body.rarity,
-                element: req.body.element,
+                number: req.body.number,
                 image: req.body.image,
+                rarity: req.body.rarity,
+                empower: req.body.empower,
+                weaken: req.body.weaken,
             },
             {
                 new: true,
@@ -81,13 +83,13 @@ router.put('/:cardsId', requiresAuth, async (req, res) => {
     }
 })
 
-// @route DELETE /api/cards/:number/delete
+// @route DELETE /api/cards/:cardsId/delete
 // @desc Remove released card
 // @access Admin
-router.delete('/:number/delete', requiresAuth, async (req, res) => {
+router.delete('/:cardsId/delete', requiresAuth, async (req, res) => {
     try {
         const card = await Card.findOne({
-            number: req.params.number,
+            number: req.params.cardsId,
         })
 
         if (!card) {
@@ -95,7 +97,7 @@ router.delete('/:number/delete', requiresAuth, async (req, res) => {
         }
 
         await Card.findOneAndRemove({
-            number: req.params.number,
+            number: req.params.cardsId,
         })
 
         return res.json({ success: true })

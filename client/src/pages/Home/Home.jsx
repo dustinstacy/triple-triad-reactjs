@@ -4,6 +4,7 @@ import { useGlobalContext } from '../../context/GlobalContext'
 
 import { Button, Footer } from '../../components'
 import './Home.scss'
+import Onboarding from '../../components/Onboarding/Onboarding'
 
 const Home = () => {
     const { getCurrentUser } = useGlobalContext()
@@ -16,21 +17,29 @@ const Home = () => {
     return (
         <div className='home page'>
             {/* Will be conditionally rendered based on user's Onboarding progress */}
-            <div className='section center'>
-                <h1>GettIng &nbsp; StarteD</h1>
+            <div className='section first'>
+                <Onboarding />
             </div>
 
-            <div className={`section gray ${isLargeScreen ? 'right' : ''}`}>
+            <div
+                className={`section center gray ${
+                    isLargeScreen ? 'right' : ''
+                }`}
+            >
                 <div className='box'>
                     <Button label='Battle' type='link' path='matchSetup' />
                 </div>
             </div>
-            <div className={`section ${isLargeScreen ? 'left' : ''}`}>
+            <div className={`section center ${isLargeScreen ? 'left' : ''}`}>
                 <div className='box'>
                     <Button label='COllectiON' type='link' path='collection' />
                 </div>
             </div>
-            <div className={`section gray ${isLargeScreen ? 'right' : ''}`}>
+            <div
+                className={`section center gray ${
+                    isLargeScreen ? 'right' : ''
+                }`}
+            >
                 <div className='box'>
                     <Button label='MarKet' type='link' path='packs' />
                 </div>

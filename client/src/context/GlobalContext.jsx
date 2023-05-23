@@ -51,6 +51,11 @@ const GlobalContext = createContext(initialState)
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(globalReducer, initialState)
 
+    const getGlobalState = async () => {
+        await getCurrentUser()
+        await getAllCards()
+    }
+
     const getCurrentUser = async () => {
         try {
             const res = await axios.get('/api/auth/current')
@@ -60,7 +65,6 @@ export const GlobalProvider = ({ children }) => {
                     type: 'SET_USER',
                     payload: res.data,
                 })
-                getAllCards()
                 getUserCards()
                 getUserDeck()
             } else {
@@ -129,6 +133,7 @@ export const GlobalProvider = ({ children }) => {
 
     const value = useMemo(() => ({
         ...state,
+        getGlobalState,
         getCurrentUser,
         getAllCards,
         getUserCards,

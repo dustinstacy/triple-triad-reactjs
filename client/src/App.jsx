@@ -16,11 +16,11 @@ import {
 import './App.scss'
 
 function App() {
-    const { getCurrentUser } = useGlobalContext()
+    const { getGlobalState } = useGlobalContext()
     const { pathname } = useLocation()
 
     useEffect(() => {
-        getCurrentUser()
+        getGlobalState()
     }, [])
 
     return (

@@ -1,26 +1,65 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useGlobalContext } from '../../context/GlobalContext'
 
+import { useGlobalContext } from '../../context/GlobalContext'
+import { onboardingStages } from '../../constants/onboardingStages'
 import { Button, Footer } from '../../components'
+
 import './Home.scss'
-import Onboarding from '../../components/Onboarding/Onboarding'
+
+const ProgressBar = ({ stages, progress }) => {
+    return (
+        <div className='onboard-bar outer'>
+            {stages.map((stage, index) => (
+                <div key={stage} className='stage'>
+                    <div className='stage__label'>{stage}</div>
+                    <div
+                        className={`progress-circle ${
+                            index + 1 <= progress ? ' full' : ''
+                        }`}
+                    />
+                </div>
+            ))}
+            <div
+                className='onboard-bar inner'
+                style={{ width: progress * (100 / (stages.length - 1)) + '%' }}
+            />
+        </div>
+    )
+}
+
+const Onboarding = ({ stage }) => {
+    const stages = [
+        'First Login',
+        'First Packs',
+        'First Cards',
+        'First Deck',
+        'First Battle',
+    ]
+
+    return (
+        <div className='onboarding panel'>
+            <h1>GettIng &nbsp; StarteD</h1>
+            <ProgressBar stages={stages} progress={stage + 1} />
+            <Button
+                label={onboardingStages[stage].label}
+                path={onboardingStages[stage].path}
+                type='link'
+            />
+        </div>
+    )
+}
 
 const Home = () => {
-    const { user, getCurrentUser } = useGlobalContext()
+    const { user } = useGlobalContext()
     const isLargeScreen = useMediaQuery('(min-width:1200px)')
-
-    useEffect(() => {
-        getCurrentUser()
-    }, [])
+    const stage = user?.onboardingStage
 
     return (
         <div className='home page'>
             {/* Will be conditionally rendered based on user's Onboarding progress */}
             <div className='section first'>
-                {user && user?.onboarding.firstBattle === false && (
-                    <Onboarding />
-                )}
+                {stage < 6 && <Onboarding stage={stage} />}
             </div>
 
             <div

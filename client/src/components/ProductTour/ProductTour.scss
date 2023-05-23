@@ -1,0 +1,26 @@
+.progress-modal {
+    position: fixed;
+    top: 15%;
+    left: 10%;
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 48px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 3px solid var(--secondary-color);
+    text-align: center;
+    font-size: 36px;
+    z-index: 20;
+}
+
+.open-modal,
+.close-modal {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 48px;
+    cursor: pointer;
+}

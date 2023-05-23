@@ -64,27 +64,9 @@ const UserSchema = new Schema(
             default: 0,
         },
         inventory: [],
-        onboarding: {
-            firstLogin: {
-                type: Boolean,
-                default: false,
-            },
-            firstPurchase: {
-                type: Boolean,
-                default: false,
-            },
-            firstPack: {
-                type: Boolean,
-                default: false,
-            },
-            firstDeck: {
-                type: Boolean,
-                default: false,
-            },
-            firstBattle: {
-                type: Boolean,
-                default: false,
-            },
+        onboardingStage: {
+            type: Number,
+            default: 0,
         },
     },
     {

@@ -1,11 +1,25 @@
 .onboarding {
-    width: 100vw;
-    height: 300px;
+    position: relative;
+    width: 1200px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     border: 1px solid white;
+
+    .open-modal,
+    .close-modal {
+        position: absolute;
+        top: 24px;
+        right: 36px;
+        font-size: 48px;
+        cursor: pointer;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
 
     .onboard-bar.outer {
         position: relative;
@@ -22,7 +36,9 @@
 
             &__label {
                 position: absolute;
-                left: -40px;
+                top: -20px;
+                left: -50px;
+                font-size: 20px;
                 white-space: nowrap;
             }
 
@@ -35,7 +51,7 @@
 
             &:nth-child(2) {
                 .stage__label {
-                    left: -60px;
+                    left: -75px;
                 }
             }
 
@@ -48,9 +64,9 @@
 
         .progress-circle {
             position: absolute;
-            top: 30px;
-            height: 20px;
-            width: 20px;
+            top: 28px;
+            height: 25px;
+            width: 25px;
             background-color: var(--background-color);
             border: 2px solid white;
             border-radius: 50%;
@@ -64,5 +80,28 @@
     .onboard-bar.inner {
         height: 8px;
         background-color: var(--primary-color);
+        transition: all 2s ease-out;
+    }
+
+    .button {
+        height: 60px;
+        width: 250px;
+        font-size: 24px;
+    }
+
+    .progress-modal {
+        position: fixed;
+        top: 15%;
+        left: 10%;
+        height: 80vh;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background: rgba(0, 0, 0, 0.9);
+        border: 3px solid var(--secondary-color);
+        font-size: 100px;
+        z-index: 20;
     }
 }

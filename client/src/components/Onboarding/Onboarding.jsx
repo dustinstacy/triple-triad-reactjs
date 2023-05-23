@@ -1,10 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import './Onboarding.scss'
 import { useGlobalContext } from '../../context/GlobalContext'
+import { Button } from '../'
+import { FaInfoCircle, FaRegWindowClose } from 'react-icons/fa'
 
-const ProgressBar = () => {
+const ProgressBar = ({ stages, progress }) => {
+    return (
+        <div className='onboard-bar outer'>
+            {stages.map((stage, index) => (
+                <div key={stage} className='stage'>
+                    <div className='stage__label'>{`${stage.replace(
+                        /(first)/,
+                        '$1 '
+                    )}`}</div>
+                    <div
+                        className={`progress-circle ${
+                            index + 1 <= progress ? ' full' : ''
+                        }`}
+                    />
+                </div>
+            ))}
+            <div
+                className='onboard-bar inner'
+                style={{ width: progress * 20 + '%' }}
+            />
+        </div>
+    )
+}
+
+const ProgressModal = ({ stage, setModalOpen }) => {
+    return (
+        <div className='progress-modal'>
+            <FaRegWindowClose
+                className='close-modal'
+                onClick={() => setModalOpen(false)}
+            />
+            {stage.replace(/(first)/, '$1 ')}
+            <Button label='Do This' />
+        </div>
+    )
+}
+
+const Onboarding = () => {
     const { user } = useGlobalContext()
     const [progress, setProgress] = useState(0)
+    const [modalOpen, setModalOpen] = useState(true)
 
     const stages = [
         'firstLogin',
@@ -27,7 +67,7 @@ const ProgressBar = () => {
             }
         })
 
-        setProgress(completedStages * 20)
+        setProgress(completedStages)
     }
 
     useEffect(() => {
@@ -35,33 +75,32 @@ const ProgressBar = () => {
     }, [user])
 
     return (
-        <div className='onboard-bar outer'>
-            {stages.map((stage, index) => (
-                <div key={stage} className='stage'>
-                    <div className='stage__label'>{`${stage.replace(
-                        /(first)/,
-                        '$1 '
-                    )}`}</div>
-                    <div
-                        className={`progress-circle ${
-                            index + 1 <= progress / 20 ? ' full' : ''
-                        }`}
-                    />
-                </div>
-            ))}
-            <div
-                className='onboard-bar inner'
-                style={{ width: progress + '%' }}
-            />
-        </div>
-    )
-}
+        <div className='onboarding panel'>
+            {!modalOpen && (
+                <FaInfoCircle
+                    className='open-modal'
+                    onClick={() => setModalOpen(true)}
+                />
+            )}
 
-const Onboarding = () => {
-    return (
-        <div className='onboarding'>
             <h1>GettIng &nbsp; StarteD</h1>
-            <ProgressBar />
+            <ProgressBar stages={stages} progress={progress} />
+            {stages.map((stage, index) => {
+                if (progress - (index + 1) > 0 && modalOpen) {
+                    return (
+                        <ProgressModal
+                            key={stage}
+                            stage={stage}
+                            setModalOpen={setModalOpen}
+                        />
+                    )
+                } else {
+                    return
+                }
+            })}
+            <Button
+                label={`${stages[progress - 1]?.replace(/(first)/, '$1 ')}`}
+            />
         </div>
     )
 }

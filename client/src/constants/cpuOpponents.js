@@ -2,7 +2,7 @@ export const cpuOpponents = [
     {
         name: 'Goblin',
         image: 'https://res.cloudinary.com/dhsflmylz/image/upload/v1676139372/goblin_pet_jgqg2v.png',
-        level: 1,
+        level: 0,
         coinReward: 10,
         xpReward: 5,
         card: '17',

@@ -29,12 +29,12 @@ const Home = () => {
                 }`}
             >
                 <div className='box'>
-                    <Button label='Battle' type='link' path='matchSetup' />
+                    <Button label='Battle' type='link' path='/battleSetup' />
                 </div>
             </div>
             <div className={`section center ${isLargeScreen ? 'left' : ''}`}>
                 <div className='box'>
-                    <Button label='COllectiON' type='link' path='collection' />
+                    <Button label='COllectiON' type='link' path='/collection' />
                 </div>
             </div>
             <div
@@ -43,7 +43,7 @@ const Home = () => {
                 }`}
             >
                 <div className='box'>
-                    <Button label='MarKet' type='link' path='packs' />
+                    <Button label='MarKet' type='link' path='/packs' />
                 </div>
             </div>
             <Footer />

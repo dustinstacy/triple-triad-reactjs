@@ -12,7 +12,7 @@
     .close-modal {
         position: absolute;
         top: 24px;
-        right: 36px;
+        right: 24px;
         font-size: 48px;
         cursor: pointer;
     }
@@ -99,9 +99,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        background: rgba(0, 0, 0, 0.9);
+        padding: 0 48px;
+        background: rgba(0, 0, 0, 0.95);
         border: 3px solid var(--secondary-color);
-        font-size: 100px;
+        text-align: center;
+        font-size: 36px;
         z-index: 20;
     }
 }

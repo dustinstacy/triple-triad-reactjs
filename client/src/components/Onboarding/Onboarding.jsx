@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import './Onboarding.scss'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button } from '../'
+import { progressModals } from '../../constants/progressModals'
 import { FaInfoCircle, FaRegWindowClose } from 'react-icons/fa'
+import { starterCards } from '../../constants/starterCards'
+import axios from 'axios'
+import { assignRandomValues } from '../../utils/randomizers'
 
 const ProgressBar = ({ stages, progress }) => {
     return (
@@ -22,30 +26,36 @@ const ProgressBar = ({ stages, progress }) => {
             ))}
             <div
                 className='onboard-bar inner'
-                style={{ width: progress * 20 + '%' }}
+                style={{ width: progress * 25 + '%' }}
             />
         </div>
     )
 }
 
-const ProgressModal = ({ stage, setModalOpen }) => {
+const ProgressModal = ({ progress, setModalOpen }) => {
     return (
         <div className='progress-modal'>
             <FaRegWindowClose
                 className='close-modal'
                 onClick={() => setModalOpen(false)}
             />
-            {stage.replace(/(first)/, '$1 ')}
-            <Button label='Do This' />
+            <h1>{progressModals[progress].header}</h1>
+            <p>{progressModals[progress].body}</p>
+            <Button
+                label={progressModals[progress].label}
+                path={progressModals[progress].path}
+                type='link'
+            />
         </div>
     )
 }
 
 const Onboarding = () => {
-    const { user } = useGlobalContext()
+    const { user, userCards, userDeck } = useGlobalContext()
     const [progress, setProgress] = useState(0)
     const [modalOpen, setModalOpen] = useState(true)
 
+    const currentOnboarding = user.onboarding
     const stages = [
         'firstLogin',
         'firstPurchase',
@@ -71,8 +81,50 @@ const Onboarding = () => {
     }
 
     useEffect(() => {
-        if (user) getProgress()
-    }, [user])
+        if (user) {
+            getProgress()
+        }
+        if (user?.onboarding.firstLogin === false) {
+            axios.put('api/profile/onboarding', {
+                firstLogin: true,
+            })
+            axios.put('api/profile', {
+                coin: user.coin + 3000,
+            })
+            starterCards.forEach((card) => {
+                assignRandomValues(card)
+                axios.post('api/collection/new', {
+                    user: user._id,
+                    name: card.name,
+                    number: card.number,
+                    image: card.image,
+                    rarity: card.rarity,
+                    values: card.values,
+                    empower: card.empower,
+                    weaken: card.weaken,
+                })
+            })
+        }
+        if (
+            user?.inventory.length > 0 &&
+            user.onboarding.firstPurchase === false
+        ) {
+            currentOnboarding.firstPurchase = true
+            axios.put('api/profile/onboarding', currentOnboarding)
+        }
+        if (userCards.length > 0 && user.onboarding.firstPack === false) {
+            currentOnboarding.firstPack = true
+            axios.put('api/profile/onboarding', currentOnboarding)
+        }
+        if (userDeck.length > 0 && user.onboarding.firstDeck === false) {
+            currentOnboarding.firstDeck = true
+            axios.put('api/profile/onboarding', currentOnboarding)
+        }
+        if (user.stats.battles > 1 && user.onboarding.firstBattle === false) {
+            currentOnboarding.firstBattle = true
+            axios.put('api/profile/onboarding', currentOnboarding)
+        }
+    }, [user, userCards, userDeck, currentOnboarding])
 
     return (
         <div className='onboarding panel'>
@@ -90,7 +142,7 @@ const Onboarding = () => {
                     return (
                         <ProgressModal
                             key={stage}
-                            stage={stage}
+                            progress={progress}
                             setModalOpen={setModalOpen}
                         />
                     )
@@ -98,7 +150,11 @@ const Onboarding = () => {
                     return
                 }
             })}
-            <Button label={`${stages[progress]?.replace(/(first)/, '$1 ')}`} />
+            <Button
+                label={progressModals[progress].label}
+                path={progressModals[progress].path}
+                type='link'
+            />
         </div>
     )
 }

@@ -118,12 +118,13 @@ const Packs = () => {
             assignRandomValues(card)
             axios.post('/api/collection/new', {
                 user: user._id,
-                number: card.number,
                 name: card.name,
-                rarity: card.rarity,
-                element: card.element,
+                number: card.number,
                 image: card.image,
+                rarity: card.rarity,
                 values: card.values,
+                empower: card.empower,
+                weaken: card.weaken,
             })
         })
         setPackContents(newPacks)

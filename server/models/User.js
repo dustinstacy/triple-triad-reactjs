@@ -67,23 +67,23 @@ const UserSchema = new Schema(
         onboarding: {
             firstLogin: {
                 type: Boolean,
-                default: true,
+                default: false,
             },
             firstPurchase: {
                 type: Boolean,
-                default: true,
+                default: false,
             },
             firstPack: {
                 type: Boolean,
-                default: true,
+                default: false,
             },
             firstDeck: {
                 type: Boolean,
-                default: true,
+                default: false,
             },
             firstBattle: {
                 type: Boolean,
-                default: true,
+                default: false,
             },
         },
     },

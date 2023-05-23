@@ -86,7 +86,7 @@ const Onboarding = () => {
             <h1>GettIng &nbsp; StarteD</h1>
             <ProgressBar stages={stages} progress={progress} />
             {stages.map((stage, index) => {
-                if (progress - (index + 1) > 0 && modalOpen) {
+                if (progress === index && modalOpen) {
                     return (
                         <ProgressModal
                             key={stage}
@@ -98,9 +98,7 @@ const Onboarding = () => {
                     return
                 }
             })}
-            <Button
-                label={`${stages[progress - 1]?.replace(/(first)/, '$1 ')}`}
-            />
+            <Button label={`${stages[progress]?.replace(/(first)/, '$1 ')}`} />
         </div>
     )
 }

@@ -7,7 +7,7 @@ import './Home.scss'
 import Onboarding from '../../components/Onboarding/Onboarding'
 
 const Home = () => {
-    const { getCurrentUser } = useGlobalContext()
+    const { user, getCurrentUser } = useGlobalContext()
     const isLargeScreen = useMediaQuery('(min-width:1200px)')
 
     useEffect(() => {
@@ -18,7 +18,9 @@ const Home = () => {
         <div className='home page'>
             {/* Will be conditionally rendered based on user's Onboarding progress */}
             <div className='section first'>
-                <Onboarding />
+                {user && user?.onboarding.firstBattle === false && (
+                    <Onboarding />
+                )}
             </div>
 
             <div

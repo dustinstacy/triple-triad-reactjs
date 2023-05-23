@@ -23,7 +23,7 @@ const Landing = ({ register }) => {
     useEffect(() => {
         window.addEventListener('resize', handleResize, false)
         if (user) navigate('/')
-    }, [])
+    }, [user])
 
     return (
         <div className='landing page center'>

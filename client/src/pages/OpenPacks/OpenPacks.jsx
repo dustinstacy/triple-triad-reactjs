@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { Button, Card, Loader } from '../../components'
+import { Button, Card, Loader, ProductTour } from '../../components'
 import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
 import { assignRandomValues, randomRarity } from '../../utils/randomizers'
 import { removeObjectByValue } from '../../utils/removeObjectByValue'
@@ -93,7 +93,9 @@ const PackContents = ({ cards, setPackContents }) => (
 )
 
 const Packs = () => {
-    const { allCards, user } = useGlobalContext()
+    const { allCards, getCurrentUser, user } = useGlobalContext()
+    const stage = user?.onboardingStage
+
     const [currentPack, setCurrentPack] = useState(null)
     const [packContents, setPackContents] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -135,6 +137,7 @@ const Packs = () => {
         })
 
         setIsLoading(false)
+        getCurrentUser()
     }
 
     const getRandomCards = (array, chance) => {
@@ -151,8 +154,15 @@ const Packs = () => {
         })
     }
 
+    useEffect(() => {
+        getCurrentUser()
+    }, [])
+
     return (
         <div className='packs page center'>
+            {stage === 1 && <ProductTour step={2} />}
+            {stage === 2 && <ProductTour step={3} />}
+
             {packContents && !isLoading ? (
                 <PackContents
                     cards={packContents}

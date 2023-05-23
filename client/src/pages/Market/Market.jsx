@@ -6,6 +6,7 @@ import { marketItems } from '../../constants/marketItems'
 import { coinImage } from '../../assets/icons'
 
 import './Market.scss'
+import ProductTour from '../../components/ProductTour/ProductTour'
 
 const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
     return (
@@ -153,6 +154,7 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
 
 const Market = () => {
     const { getCurrentUser, user } = useGlobalContext()
+    const stage = user?.onboardingStage
     const [chosenItem, setChosenItem] = useState(marketItems[0])
     const [chosenQuantity, setChosenQuantity] = useState(
         chosenItem.quantities[0]
@@ -164,6 +166,7 @@ const Market = () => {
 
     return (
         <div className='market page center'>
+            {stage === 0 && <ProductTour step={1} />}
             <div className='market-menu'>
                 <div className='market-menu-header'>
                     <h1>MaRKet</h1>

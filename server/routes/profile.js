@@ -94,13 +94,7 @@ router.put('/onboarding', requiresAuth, async (req, res) => {
                 _id: req.user._id,
             },
             {
-                onboarding: {
-                    firstLogin: req.body.firstLogin,
-                    firstPurchase: req.body.firstPurchase,
-                    firstPack: req.body.firstPack,
-                    firstDeck: req.body.firstDeck,
-                    firstBattle: req.body.firstBattle,
-                },
+                onboardingStage: req.body.onboardingStage,
             }
         )
         return res.json(updatedProfile)

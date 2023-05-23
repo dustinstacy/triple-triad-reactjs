@@ -50,7 +50,7 @@ const Opponent = ({
 
     return (
         <>
-            {user?.level > opponent.level ? (
+            {user?.level >= opponent.level ? (
                 <div
                     className={`opponent box ${
                         selectedOpponent === opponent ? 'selected' : ''

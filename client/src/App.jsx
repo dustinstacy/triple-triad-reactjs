@@ -11,6 +11,7 @@ import {
     BattleSetup,
     Collection,
     Account,
+    Rules,
     OpenPacks,
 } from './pages'
 import './App.scss'
@@ -37,6 +38,7 @@ function App() {
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />
                 <Route path='/packs' element={<OpenPacks />} />
+                <Route path='/rules' element={<Rules />} />
                 <Route path='/account' element={<Account />} />
             </Routes>
         </>

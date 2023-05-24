@@ -44,27 +44,39 @@ export const assignRandomValues = (card) => {
 }
 
 // odds: Object containing rarity names as keys and their corresponding
-//probabilities as values in decimal point format i.e. (0.9 = 90%)
+// probabilities in float value (i.e. 83.1 = 83.1%)
 export const randomRarity = (odds) => {
     // Generate a random number between 0(inclusive) and 1(exclusive)
     const num = Math.random()
 
-    // Variable to track cumulative odds
-    let totalOdds = 0
+    // Variable to track total odds percentage
+    let totalPercentage = 0
 
-    // Iterate over each key (rarity) in the odds object
+    // Calculate the total odds percentage from the object values
+    // Suggested total = 100.0
     for (const rarity in odds) {
-        // Accumulate odds during each iteration to check if threshold is met
-        totalOdds += odds[rarity]
-        // If random generated number falls within the accumulated odds,
+        totalPercentage += odds[rarity]
+    }
+
+    // Variable to track the cumulative percentage
+    let cumulativePercentage = 0
+
+    // Iterate over each key (rarity) and its percentage
+    for (const rarity in odds) {
+        // Calculate the normalized percentage
+        // normalized percentage = number between 0 and 1
+        const percentage = odds[rarity] / totalPercentage
+
+        // Accumulate the normalized percentage
+        cumulativePercentage += percentage
+
+        // Check if the generated random number falls within the
+        // accumulated percentage
         // return the selected rarity
-        if (num < totalOdds) {
+        if (num < cumulativePercentage) {
             return rarity
         }
     }
-
-    // If odds not totaling to 1 are entered (error), return default of 'Common'
-    return 'Common'
 }
 
 export const getRandomCards = (array, odds, cardSet) => {

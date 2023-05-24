@@ -43,31 +43,34 @@ export const assignRandomValues = (card) => {
     return (card.values = randomizeValues(total, maxValue))
 }
 
-export const randomRarity = (chance) => {
+// odds: Object containing rarity names as keys and their corresponding
+//probabilities as values in decimal point format i.e. (0.9 = 90%)
+export const randomRarity = (odds) => {
+    // Generate a random number between 0(inclusive) and 1(exclusive)
     const num = Math.random()
 
-    if (chance === 'common') {
-        if (num < 0.9) return 'Common'
-        else return 'Uncommon'
+    // Variable to track cumulative odds
+    let totalOdds = 0
+
+    // Iterate over each key (rarity) in the odds object
+    for (const rarity in odds) {
+        // Accumulate odds during each iteration to check if threshold is met
+        totalOdds += odds[rarity]
+        // If random generated number falls within the accumulated odds,
+        // return the selected rarity
+        if (num < totalOdds) {
+            return rarity
+        }
     }
 
-    if (chance === 'uncommon') {
-        if (num < 0.5) return 'Common'
-        else if (num <= 0.9) return 'Uncommon'
-        else return 'Rare'
-    }
-
-    if (chance === 'rare') {
-        if (num <= 0.5) return 'Uncommon'
-        else if (num <= 0.9) return 'Rare'
-        else return 'Epic'
-    }
+    // If odds not totaling to 1 are entered (error), return default of 'Common'
+    return 'Common'
 }
 
-export const getRandomCards = (array, chance, allCards) => {
+export const getRandomCards = (array, odds, cardSet) => {
     array.forEach((_, i) => {
-        const rarity = randomRarity(chance)
-        const currentRarityCards = allCards.filter(
+        const rarity = randomRarity(odds)
+        const currentRarityCards = cardSet.filter(
             (card) => card.rarity === rarity
         )
         const randomCard =

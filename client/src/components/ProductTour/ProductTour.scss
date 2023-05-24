@@ -16,6 +16,14 @@
     font-size: 36px;
     z-index: 20;
 
+    &.open {
+        animation: modal-grow 0.5s forwards;
+    }
+
+    &.close {
+        animation: modal-shrink 0.5s forwards;
+    }
+
     h1 {
         font-size: 48px;
     }
@@ -80,5 +88,25 @@
         height: 60px;
         width: 250px;
         font-size: 24px;
+    }
+}
+
+@keyframes modal-grow {
+    0% {
+        transform: scale(0.75);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes modal-shrink {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
     }
 }

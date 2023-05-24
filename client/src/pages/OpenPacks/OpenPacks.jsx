@@ -93,7 +93,8 @@ const PackContents = ({ cards, setPackContents }) => (
 )
 
 const Packs = () => {
-    const { allCards, getCurrentUser, user } = useGlobalContext()
+    const { allCards, getGlobalState, getCurrentUser, user } =
+        useGlobalContext()
     const stage = user?.onboardingStage
 
     const [currentPack, setCurrentPack] = useState(null)
@@ -113,9 +114,11 @@ const Packs = () => {
         const chosenPack = userPacks.find(
             (pack) => pack.name === currentPack.name
         )
+
         const { contents } = chosenPack ?? {}
-        const newPacks = [...Array(contents.count)]
+        const newPacks = [...Array({ length: contents.count })]
         getRandomCards(newPacks, contents.chance)
+
         newPacks.forEach((card) => {
             assignRandomValues(card)
             axios.post('/api/collection/new', {
@@ -140,12 +143,38 @@ const Packs = () => {
         getCurrentUser()
     }
 
+    const randomRarity = (chance) => {
+        console.log(chance)
+        const num = Math.random()
+
+        if (chance === 'common') {
+            if (num < 0.9) return 'Common'
+            else return 'Uncommon'
+        }
+
+        if (chance === 'uncommon') {
+            if (num < 0.5) return 'Common'
+            else if (num <= 0.9) return 'Uncommon'
+            else return 'Rare'
+        }
+
+        if (chance === 'rare') {
+            if (num <= 0.5) return 'Uncommon'
+            else if (num <= 0.9) return 'Rare'
+            else return 'Epic'
+        }
+    }
+
     const getRandomCards = (array, chance) => {
+        console.log(array.length, chance)
         array.forEach((_, i) => {
+            console.log('ran')
             const rarity = randomRarity(chance)
+            console.log(rarity, allCards)
             const currentRarityCards = allCards.filter(
                 (card) => card.rarity === rarity
             )
+            console.log(currentRarityCards)
             const randomCard =
                 currentRarityCards[
                     Math.floor(Math.random() * currentRarityCards.length)
@@ -155,7 +184,7 @@ const Packs = () => {
     }
 
     useEffect(() => {
-        getCurrentUser()
+        getGlobalState()
     }, [])
 
     return (

@@ -23,7 +23,10 @@ const Links = ({ menu, onClick, user }) => {
             {navlinks.map((link) => (
                 <NavLink
                     className={`${menu}-link center ${
-                        !user && link.path !== '/' ? 'disabled' : ''
+                        (!user && link.path !== '/') ||
+                        user?.onboardingStage < 3
+                            ? 'disabled'
+                            : ''
                     }`}
                     key={link.name}
                     to={link.path}

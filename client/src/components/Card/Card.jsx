@@ -5,8 +5,6 @@ import './Card.scss'
 const Card = ({ card, handleClick, isShowing, isSelected }) => {
     const { _id, image, user, values } = card
 
-    console.log(user)
-
     return (
         <div
             className={`card ${isShowing ? 'flipped' : ''} ${

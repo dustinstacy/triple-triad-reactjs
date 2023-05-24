@@ -11,18 +11,6 @@ const DeckSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Collection',
         },
-        number: {
-            type: String,
-            required: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        rarity: {
-            type: String,
-            required: true,
-        },
         image: {
             type: String,
             required: true,
@@ -33,27 +21,11 @@ const DeckSchema = new Schema(
                 required: true,
             },
         ],
-        level: {
-            type: Number,
-            default: 1,
-        },
-        selected: {
-            type: Boolean,
-            default: false,
-        },
-        element: {
+        empower: {
             type: String,
         },
-        weakness: {
+        weaken: {
             type: String,
-        },
-        timesPlayed: {
-            type: Number,
-            default: 0,
-        },
-        enemyCaptures: {
-            type: Number,
-            default: 0,
         },
     },
     {

@@ -4,6 +4,7 @@ import {
     GiAbstract088,
     GiAbstract112,
     GiAbstract120,
+    GiAbstract116,
 } from 'react-icons/gi'
 
 export const navlinks = [
@@ -31,5 +32,10 @@ export const navlinks = [
         name: 'OpeN PacKs',
         path: '/packs',
         image: <GiAbstract112 />,
+    },
+    {
+        name: 'HoW to pLAy',
+        path: '/rules',
+        image: <GiAbstract116 />,
     },
 ]

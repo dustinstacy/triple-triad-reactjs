@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+
 import { useGlobalContext } from '../../context/GlobalContext'
-import { Button } from '../../components'
+import { Button, ProductTour } from '../../components'
 import { marketItems } from '../../constants/marketItems'
 import { coinImage } from '../../assets/icons'
 
 import './Market.scss'
 
 const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
+    const { user } = useGlobalContext()
     return (
         <div className='menu-bar'>
             {marketItems.map((item, i) => (
@@ -16,7 +18,7 @@ const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
                     onClick={() => setChosenItem(marketItems[i])}
                     className={`menu-item ${
                         chosenItem === item ? 'chosen' : ''
-                    }`}
+                    } ${item.level > user?.level ? 'disabled' : ''}`}
                 >
                     {item.name}
                     <div className='menu-item-price center'>
@@ -153,6 +155,7 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
 
 const Market = () => {
     const { getCurrentUser, user } = useGlobalContext()
+    const stage = user?.onboardingStage
     const [chosenItem, setChosenItem] = useState(marketItems[0])
     const [chosenQuantity, setChosenQuantity] = useState(
         chosenItem.quantities[0]
@@ -164,6 +167,7 @@ const Market = () => {
 
     return (
         <div className='market page center'>
+            {stage === 0 && <ProductTour step={1} />}
             <div className='market-menu'>
                 <div className='market-menu-header'>
                     <h1>MaRKet</h1>

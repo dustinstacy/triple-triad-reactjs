@@ -10,7 +10,7 @@ const Button = ({ label, type, path, onClick, disabled }) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        type === 'link' ? navigate(`/${path}`) : onClick(e)
+        type === 'link' ? navigate(`${path}`) : onClick(e)
     }
 
     return (

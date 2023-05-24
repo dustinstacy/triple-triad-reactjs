@@ -11,16 +11,17 @@ import {
     BattleSetup,
     Collection,
     Account,
+    Rules,
     OpenPacks,
 } from './pages'
 import './App.scss'
 
 function App() {
-    const { getCurrentUser } = useGlobalContext()
+    const { getGlobalState } = useGlobalContext()
     const { pathname } = useLocation()
 
     useEffect(() => {
-        getCurrentUser()
+        getGlobalState()
     }, [])
 
     return (
@@ -37,6 +38,7 @@ function App() {
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />
                 <Route path='/packs' element={<OpenPacks />} />
+                <Route path='/rules' element={<Rules />} />
                 <Route path='/account' element={<Account />} />
             </Routes>
         </>

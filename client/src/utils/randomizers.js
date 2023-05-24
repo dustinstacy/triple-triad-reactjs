@@ -64,16 +64,16 @@ export const randomRarity = (chance) => {
     }
 }
 
-export const getRandomCards = (deck, opponent, allCards) => {
-    return deck.map((card) => {
-        const rarity = randomRarity(opponent.chance)
-        const currentRarityCards = allCards.filter((c) => c.rarity === rarity)
+export const getRandomCards = (array, chance, allCards) => {
+    array.forEach((_, i) => {
+        const rarity = randomRarity(chance)
+        const currentRarityCards = allCards.filter(
+            (card) => card.rarity === rarity
+        )
         const randomCard =
             currentRarityCards[
                 Math.floor(Math.random() * currentRarityCards.length)
-            ] || {}
-        randomCard.user = opponent.name
-        assignRandomValues(randomCard)
-        return randomCard
+            ]
+        array.splice(i, 1, randomCard)
     })
 }

@@ -3,15 +3,11 @@ import { Schema, model } from 'mongoose'
 // base card schema for library display and pack openings
 const CardSchema = new Schema(
     {
-        number: {
-            type: String,
-            required: true,
-        },
         name: {
             type: String,
             required: true,
         },
-        rarity: {
+        number: {
             type: String,
             required: true,
         },
@@ -19,10 +15,14 @@ const CardSchema = new Schema(
             type: String,
             required: true,
         },
-        element: {
+        rarity: {
+            type: String,
+            required: true,
+        },
+        empower: {
             type: String,
         },
-        weakness: {
+        weaken: {
             type: String,
         },
     },

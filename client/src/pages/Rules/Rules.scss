@@ -1,0 +1,25 @@
+.rules {
+    display: flex;
+    align-items: center;
+    padding-top: 200px;
+    background: url('../../assets/page-images/rules.jpg');
+    background-position: center;
+    background-size: 60%;
+
+    .panel {
+        min-height: 600px;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px;
+
+        h1 {
+            margin-bottom: 48px;
+        }
+
+        p {
+            width: 50%;
+        }
+    }
+}

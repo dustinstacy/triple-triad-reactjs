@@ -1,7 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { Avatar, Button, Card, ExperienceBar } from '../../components'
+import {
+    Avatar,
+    Button,
+    Card,
+    ExperienceBar,
+    ProductTour,
+} from '../../components'
 import { TbPlayCard } from 'react-icons/tb'
 
 import './Collection.scss'
@@ -29,7 +35,7 @@ const UserSection = ({ userCards, user }) => {
                         <tbody>
                             <tr>
                                 <th>Total MatcHes :</th>
-                                <td>{stats?.matches}</td>
+                                <td>{stats?.battles}</td>
                             </tr>
                             <tr>
                                 <th>Wins :</th>
@@ -292,7 +298,7 @@ const CardCollection = ({
 const Collection = () => {
     const { getCurrentUser, user, getUserCards, userCards, userDeck } =
         useGlobalContext()
-
+    const stage = user?.onboardingStage
     const [deckFilter, setDeckFilter] = useState('')
     const [rarityFilter, setRarityFilter] = useState('')
     const [valueFilter, setValueFilter] = useState('')
@@ -333,6 +339,8 @@ const Collection = () => {
 
     return (
         <div className='collection page'>
+            {stage === 2 && <ProductTour step={4} />}
+
             <UserSection user={user} userCards={userCards ?? []} />
             <DeckBar
                 user={user}

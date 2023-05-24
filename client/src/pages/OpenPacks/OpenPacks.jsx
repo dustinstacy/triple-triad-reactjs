@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { Button, Card, Loader } from '../../components'
+import { Button, Card, Loader, ProductTour } from '../../components'
 import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
 import { assignRandomValues, randomRarity } from '../../utils/randomizers'
 import { removeObjectByValue } from '../../utils/removeObjectByValue'
@@ -93,7 +93,10 @@ const PackContents = ({ cards, setPackContents }) => (
 )
 
 const Packs = () => {
-    const { allCards, user } = useGlobalContext()
+    const { allCards, getGlobalState, getCurrentUser, user } =
+        useGlobalContext()
+    const stage = user?.onboardingStage
+
     const [currentPack, setCurrentPack] = useState(null)
     const [packContents, setPackContents] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -111,19 +114,22 @@ const Packs = () => {
         const chosenPack = userPacks.find(
             (pack) => pack.name === currentPack.name
         )
+
         const { contents } = chosenPack ?? {}
-        const newPacks = [...Array(contents.count)]
+        const newPacks = [...Array({ length: contents.count })]
         getRandomCards(newPacks, contents.chance)
+
         newPacks.forEach((card) => {
             assignRandomValues(card)
             axios.post('/api/collection/new', {
                 user: user._id,
-                number: card.number,
                 name: card.name,
-                rarity: card.rarity,
-                element: card.element,
+                number: card.number,
                 image: card.image,
+                rarity: card.rarity,
                 values: card.values,
+                empower: card.empower,
+                weaken: card.weaken,
             })
         })
         setPackContents(newPacks)
@@ -134,14 +140,41 @@ const Packs = () => {
         })
 
         setIsLoading(false)
+        getCurrentUser()
+    }
+
+    const randomRarity = (chance) => {
+        console.log(chance)
+        const num = Math.random()
+
+        if (chance === 'common') {
+            if (num < 0.9) return 'Common'
+            else return 'Uncommon'
+        }
+
+        if (chance === 'uncommon') {
+            if (num < 0.5) return 'Common'
+            else if (num <= 0.9) return 'Uncommon'
+            else return 'Rare'
+        }
+
+        if (chance === 'rare') {
+            if (num <= 0.5) return 'Uncommon'
+            else if (num <= 0.9) return 'Rare'
+            else return 'Epic'
+        }
     }
 
     const getRandomCards = (array, chance) => {
+        console.log(array.length, chance)
         array.forEach((_, i) => {
+            console.log('ran')
             const rarity = randomRarity(chance)
+            console.log(rarity, allCards)
             const currentRarityCards = allCards.filter(
                 (card) => card.rarity === rarity
             )
+            console.log(currentRarityCards)
             const randomCard =
                 currentRarityCards[
                     Math.floor(Math.random() * currentRarityCards.length)
@@ -150,8 +183,15 @@ const Packs = () => {
         })
     }
 
+    useEffect(() => {
+        getGlobalState()
+    }, [])
+
     return (
         <div className='packs page center'>
+            {stage === 1 && <ProductTour step={2} />}
+            {stage === 2 && <ProductTour step={3} />}
+
             {packContents && !isLoading ? (
                 <PackContents
                     cards={packContents}

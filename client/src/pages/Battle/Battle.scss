@@ -18,14 +18,13 @@
         }
 
         .board {
-            height: 140vh;
-            width: 800px;
+            height: 100vh;
+            width: 1200px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             background: var(--background2-color);
             background-position: top;
-            transform: perspective(400px) rotateX(10deg) translateY(-150px);
 
             .card {
                 height: 250px;
@@ -41,7 +40,7 @@
                 width: 545px;
                 flex-wrap: wrap;
                 align-content: center;
-                margin-top: 100px;
+                margin-bottom: 100px;
 
                 @media screen and (max-width: 1200px) {
                     height: 748px;
@@ -94,7 +93,7 @@
             bottom: 0;
             height: 175px;
             justify-content: center;
-            transform: perspective(400px) rotateX(10deg);
+            transform: perspective(400px) rotateX(0);
 
             .down-arrow,
             .up-arrow {
@@ -131,15 +130,15 @@
 
         .cpu {
             top: 0;
-            height: 100px;
+            height: 50px;
             display: flex;
             align-items: flex-end;
-            transform: perspective(400px) rotateX(13deg);
+            transform: perspective(400px) rotateX(0);
             z-index: 10;
 
             .card {
-                height: 200px;
-                width: calc(200px * 0.725);
+                height: 250px;
+                width: calc(250px * 0.725);
             }
 
             @media screen and (max-width: 900px) {
@@ -168,13 +167,14 @@
         }
 
         .user-image {
-            bottom: 24px;
-            right: 24px;
+            bottom: 200px;
+            left: 1200px;
         }
 
         .cpu-image {
-            top: 24px;
-            left: 24px;
+            top: 100px;
+            left: 1150px;
+            z-index: 10;
         }
     }
 }
@@ -188,11 +188,11 @@
 }
 
 .turn-arrow.down {
-    transform: rotateZ(45deg);
+    transform: rotateZ(40);
 }
 
 .turn-arrow.up {
-    transform: rotateZ(225deg);
+    transform: rotateZ(220);
 }
 
 .turn-arrow.start-game {

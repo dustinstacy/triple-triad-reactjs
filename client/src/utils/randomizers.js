@@ -1,60 +1,75 @@
 // Generates random values for a card based on it's rarity
 export const assignRandomValues = (card) => {
     const rarity = card.rarity
-    let total, maxValue
+    let totalOfValues, maxValue
 
     // Helper function to generate a random integer within a specified range
     const randomIntFromInterval = (min, max) => {
-        // Addition of 1 to the difference in max - min ensures a return value
-        // in the inclusive range
+        // + 1 ensures a returned integer in the inclusive range
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    // Set the total of all values and max single value based on the card's rarity
+    // totalOfValues: Maximum total of all 4 card values
+    // maxValue: Maximum value of any single value
     if (rarity === 'Common') {
-        total = randomIntFromInterval(6, 10)
+        totalOfValues = randomIntFromInterval(6, 10)
         maxValue = 5
     } else if (rarity === 'Uncommon') {
-        total = randomIntFromInterval(10, 14)
+        totalOfValues = randomIntFromInterval(10, 14)
         maxValue = 6
     } else if (rarity === 'Rare') {
-        total = randomIntFromInterval(14, 18)
+        totalOfValues = randomIntFromInterval(14, 18)
         maxValue = 7
     } else if (rarity === 'Epic') {
-        total = randomIntFromInterval(18, 24)
+        totalOfValues = randomIntFromInterval(18, 24)
         maxValue = 8
     } else if (rarity === 'Legendary') {
-        total = randomIntFromInterval(24, 30)
+        totalOfValues = randomIntFromInterval(24, 30)
         maxValue = 9
     }
 
-    // Generate random values based on total and max value determined by rarity
-    const randomizeValues = (total, max) => {
-        const values = []
-        // The number of values for each card is hardcoded to 4
-        for (let i = 0; i < 4; i++) {
-            // Set value equal to number randomly generated between 1 and the
-            // remaining total. Use Math.min() to cap the returned number at
-            // the max allowed value.
-            const value = Math.min(max, randomIntFromInterval(1, total))
-            values.push(value)
-            // Decrement the total value by the randomly generated value to ensure
-            // the total is not exceeded.
-            total -= value
-        }
+    // Generate random values based on maximum total of all 4 values
+    // and max single value determined by rarity
+    const randomizeValues = (totalOfValues, maxValue) => {
+        // Create an array to store the generated values
+        let values = [...new Array(4)]
+        let sum = 0
+
+        do {
+            // Generate 4 random numbers between 0 and 1 for each value
+            for (let i = 0; i < values.length; i++) {
+                values[i] = Math.random()
+            }
+            // Get the sum of all 4 randomly generated numbers
+            sum = values.reduce((sum, value) => sum + value, 0)
+            // Crate scale factor to determine how much each value needs to
+            // be adjusted to reach desired sum
+            const scale = totalOfValues / sum
+            // Scale each value proportionally without exceeding the maxValue
+            values = values.map((value) =>
+                Math.min(maxValue, Math.round(value * scale))
+            )
+            // Recalculate the sum to ensure totalOfValues is met
+            sum = values.reduce((sum, value) => sum + value, 0)
+        } while (
+            // exit loop when sum - totalOfValues is equal to 0
+            sum - totalOfValues
+        )
+
         return values
     }
 
     // Assign randomly generated values to the card object's 'values' property
-    return (card.values = randomizeValues(total, maxValue))
+    return (card.values = randomizeValues(totalOfValues, maxValue))
 }
 
-// array: Empty array equal in length to desired amount of cards
+// nCards: Number of cards to return
 // odds: Object containing rarity names as keys and their corresponding
 // probabilities in float value (i.e. 83.1 = 83.1%)
 // cardSet: Array of cards from which random cards will be selected
-export const getRandomCards = (array, odds, cardSet) => {
-    for (let i = 0; i < array.length; i++) {
+export const getRandomCards = (nCards, odds, cardSet) => {
+    const randomCardsArray = [...new Array(nCards)]
+    for (let i = 0; i < randomCardsArray.length; i++) {
         // Get random rarity based on odds
         const rarity = randomRarity(odds)
         // Filter card set to obtain cards with current rarity
@@ -67,8 +82,9 @@ export const getRandomCards = (array, odds, cardSet) => {
                 Math.floor(Math.random() * currentRarityCards.length)
             ]
 
-        array[i] = randomCard
+        randomCardsArray[i] = randomCard
     }
+    return randomCardsArray
 }
 
 // odds: See getRandomCards function

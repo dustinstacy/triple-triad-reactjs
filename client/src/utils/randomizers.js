@@ -43,33 +43,48 @@ export const assignRandomValues = (card) => {
     return (card.values = randomizeValues(total, maxValue))
 }
 
+// array: Empty array equal in length to desired amount of cards
 // odds: Object containing rarity names as keys and their corresponding
 // probabilities in float value (i.e. 83.1 = 83.1%)
+// cardSet: Array of cards from which random cards will be selected
+export const getRandomCards = (array, odds, cardSet) => {
+    for (let i = 0; i < array.length; i++) {
+        // Get random rarity based on odds
+        const rarity = randomRarity(odds)
+        // Filter card set to obtain cards with current rarity
+        const currentRarityCards = cardSet.filter(
+            (card) => card.rarity === rarity
+        )
+        // Selected a random card from the filtered card set
+        const randomCard =
+            currentRarityCards[
+                Math.floor(Math.random() * currentRarityCards.length)
+            ]
+
+        array[i] = randomCard
+    }
+}
+
+// odds: See getRandomCards function
 export const randomRarity = (odds) => {
     // Generate a random number between 0(inclusive) and 1(exclusive)
     const num = Math.random()
-
     // Variable to track total odds percentage
     let totalPercentage = 0
-
     // Calculate the total odds percentage from the object values
     // Suggested total = 100.0
     for (const rarity in odds) {
         totalPercentage += odds[rarity]
     }
-
     // Variable to track the cumulative percentage
     let cumulativePercentage = 0
-
     // Iterate over each key (rarity) and its percentage
     for (const rarity in odds) {
         // Calculate the normalized percentage
         // normalized percentage = number between 0 and 1
         const percentage = odds[rarity] / totalPercentage
-
         // Accumulate the normalized percentage
         cumulativePercentage += percentage
-
         // Check if the generated random number falls within the
         // accumulated percentage
         // return the selected rarity
@@ -77,18 +92,4 @@ export const randomRarity = (odds) => {
             return rarity
         }
     }
-}
-
-export const getRandomCards = (array, odds, cardSet) => {
-    array.forEach((_, i) => {
-        const rarity = randomRarity(odds)
-        const currentRarityCards = cardSet.filter(
-            (card) => card.rarity === rarity
-        )
-        const randomCard =
-            currentRarityCards[
-                Math.floor(Math.random() * currentRarityCards.length)
-            ]
-        array.splice(i, 1, randomCard)
-    })
 }

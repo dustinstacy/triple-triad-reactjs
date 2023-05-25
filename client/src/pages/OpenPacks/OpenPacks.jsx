@@ -116,9 +116,8 @@ const Packs = () => {
         )
 
         const { contents } = chosenPack ?? {}
-        const newPacks = [...Array({ length: contents.count })]
-        getRandomCards(newPacks, contents.odds, allCards)
-        newPacks.forEach((card) => {
+        const newCards = getRandomCards(contents.count, contents.odds, allCards)
+        newCards.forEach((card) => {
             assignRandomValues(card)
             axios.post('/api/collection/new', {
                 user: user._id,
@@ -131,7 +130,7 @@ const Packs = () => {
                 weaken: card.weaken,
             })
         })
-        setPackContents(newPacks)
+        setPackContents(newCards)
 
         removeObjectByValue(user.inventory, currentPack.name)
         await axios

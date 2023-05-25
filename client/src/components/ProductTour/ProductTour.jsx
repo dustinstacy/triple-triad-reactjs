@@ -74,9 +74,8 @@ const ProductTour = ({ step }) => {
                     navigate('/market')
                     break
                 case 3:
-                    const starterCards = [...Array(15)]
-                    getRandomCards(
-                        starterCards,
+                    const starterCards = getRandomCards(
+                        15,
                         { Common: 90, Uncommon: 10 },
                         allCards
                     )

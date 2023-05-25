@@ -1,45 +1,51 @@
+// Generates random values for a card based on it's rarity
 export const assignRandomValues = (card) => {
     const rarity = card.rarity
-    const maxValue = 9
-    let total
+    let total, maxValue
 
+    // Helper function to generate a random integer within a specified range
     const randomIntFromInterval = (min, max) => {
+        // Addition of 1 to the difference in max - min ensures a return value
+        // in the inclusive range
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
+    // Set the total of all values and max single value based on the card's rarity
+    if (rarity === 'Common') {
+        total = randomIntFromInterval(6, 10)
+        maxValue = 5
+    } else if (rarity === 'Uncommon') {
+        total = randomIntFromInterval(10, 14)
+        maxValue = 6
+    } else if (rarity === 'Rare') {
+        total = randomIntFromInterval(14, 18)
+        maxValue = 7
+    } else if (rarity === 'Epic') {
+        total = randomIntFromInterval(18, 24)
+        maxValue = 8
+    } else if (rarity === 'Legendary') {
+        total = randomIntFromInterval(24, 30)
+        maxValue = 9
+    }
+
+    // Generate random values based on total and max value determined by rarity
     const randomizeValues = (total, max) => {
-        const numberOfValues = 4
-        let startValues = new Array(numberOfValues)
-        let sum = 0
-        do {
-            for (let i = 0; i < numberOfValues; i++) {
-                startValues[i] = Math.random()
-            }
-            sum = startValues.reduce((sum, value) => sum + value, 0)
-            const scale = (total - numberOfValues) / sum
-            startValues = startValues.map((value) =>
-                Math.min(max, Math.round(value * scale) + 1)
-            )
-            sum = startValues.reduce((sum, value) => sum + value, 0)
-        } while (sum - total)
-        const values = startValues.map((value) => {
-            return String(value)
-        })
+        const values = []
+        // The number of values for each card is hardcoded to 4
+        for (let i = 0; i < 4; i++) {
+            // Set value equal to number randomly generated between 1 and the
+            // remaining total. Use Math.min() to cap the returned number at
+            // the max allowed value.
+            const value = Math.min(max, randomIntFromInterval(1, total))
+            values.push(value)
+            // Decrement the total value by the randomly generated value to ensure
+            // the total is not exceeded.
+            total -= value
+        }
         return values
     }
 
-    if (rarity === 'Common') {
-        total = randomIntFromInterval(8, 12)
-    } else if (rarity === 'Uncommon') {
-        total = randomIntFromInterval(13, 17)
-    } else if (rarity === 'Rare') {
-        total = randomIntFromInterval(18, 22)
-    } else if (rarity === 'Epic') {
-        total = randomIntFromInterval(23, 27)
-    } else if (rarity === 'Legendary') {
-        total = randomIntFromInterval(28, 32)
-    }
-
+    // Assign randomly generated values to the card object's 'values' property
     return (card.values = randomizeValues(total, maxValue))
 }
 

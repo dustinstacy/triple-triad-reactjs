@@ -3,7 +3,7 @@ import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, Card, Loader, ProductTour } from '../../components'
 import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
-import { assignRandomValues, randomRarity } from '../../utils/randomizers'
+import { assignRandomValues, getRandomCards } from '../../utils/randomizers'
 import { removeObjectByValue } from '../../utils/removeObjectByValue'
 import './OpenPacks.scss'
 
@@ -117,8 +117,7 @@ const Packs = () => {
 
         const { contents } = chosenPack ?? {}
         const newPacks = [...Array({ length: contents.count })]
-        getRandomCards(newPacks, contents.chance)
-
+        getRandomCards(newPacks, contents.odds, allCards)
         newPacks.forEach((card) => {
             assignRandomValues(card)
             axios.post('/api/collection/new', {
@@ -135,52 +134,13 @@ const Packs = () => {
         setPackContents(newPacks)
 
         removeObjectByValue(user.inventory, currentPack.name)
-        axios.put('api/profile/inventory', {
-            inventory: user.inventory,
-        })
+        await axios
+            .put('api/profile/inventory', {
+                inventory: user.inventory,
+            })
+            .then(() => getCurrentUser())
 
         setIsLoading(false)
-        getCurrentUser()
-    }
-
-    const randomRarity = (chance) => {
-        console.log(chance)
-        const num = Math.random()
-
-        if (chance === 'common') {
-            if (num < 0.9) return 'Common'
-            else return 'Uncommon'
-        }
-
-        if (chance === 'uncommon') {
-            if (num < 0.5) return 'Common'
-            else if (num <= 0.9) return 'Uncommon'
-            else return 'Rare'
-        }
-
-        if (chance === 'rare') {
-            if (num <= 0.5) return 'Uncommon'
-            else if (num <= 0.9) return 'Rare'
-            else return 'Epic'
-        }
-    }
-
-    const getRandomCards = (array, chance) => {
-        console.log(array.length, chance)
-        array.forEach((_, i) => {
-            console.log('ran')
-            const rarity = randomRarity(chance)
-            console.log(rarity, allCards)
-            const currentRarityCards = allCards.filter(
-                (card) => card.rarity === rarity
-            )
-            console.log(currentRarityCards)
-            const randomCard =
-                currentRarityCards[
-                    Math.floor(Math.random() * currentRarityCards.length)
-                ]
-            array.splice(i, 1, randomCard)
-        })
     }
 
     useEffect(() => {

@@ -10,6 +10,8 @@ import cardsRoute from './routes/cards.js'
 import collectionRoute from './routes/collection.js'
 import deckRoute from './routes/deck.js'
 import profileRoute from './routes/profile.js'
+import cpuOpponentsRoute from './routes/cpuOpponents.js'
+import itemsRoute from './routes/items.js'
 
 dotenv.config()
 
@@ -26,6 +28,8 @@ app.use('/api/cards', cardsRoute)
 app.use('/api/collection', collectionRoute)
 app.use('/api/deck', deckRoute)
 app.use('/api/profile', profileRoute)
+app.use('/api/cpuOpponents', cpuOpponentsRoute)
+app.use('/api/items', itemsRoute)
 
 app.use(express.static(path.resolve(__dirname, '../client/dist')))
 

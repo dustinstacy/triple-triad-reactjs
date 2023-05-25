@@ -1,34 +1,33 @@
 import express from 'express'
 import requiresAuth from '../middleware/permissions.js'
-import Deck from '../models/Deck.js'
 import CPUOpponent from '../models/CPUOpponent.js'
 
 const router = express.Router()
 
-// @route GET /api/cpuOpponent/test
+// @route GET /api/cpuOpponents/test
 // @desc Test the auth route
 // @access Public
 router.get('/test', (req, res) => {
     res.send('CPU Opponent route working')
 })
 
-// @route GET /api/cpuOpponent
+// @route GET /api/cpuOpponents
 // @desc Get CPU Opponent
 // @access Private
-router.get('/current', requiresAuth, async (req, res) => {
+router.get('/', requiresAuth, async (req, res) => {
     try {
-        const cpuOpponent = await CPUOpponent.find({ _id: req._id })
+        const cpuOpponents = await CPUOpponent.find()
 
-        return res.json(cpuOpponent)
+        return res.json(cpuOpponents)
     } catch (error) {
         return res.status(500).send(error.message)
     }
 })
 
-// @route POST /api/cpuOpponent/add
+// @route POST /api/cpuOpponents/
 // @route Add CPU Opponent
 // @access Private
-router.post('/add', requiresAuth, async (req, res) => {
+router.post('/', requiresAuth, async (req, res) => {
     try {
         const newCPUOpponent = new CPUOpponent({
             name: req.body.name,
@@ -54,10 +53,10 @@ router.post('/add', requiresAuth, async (req, res) => {
     }
 })
 
-// @route DELETE /api/cpuOpponent/:cpuOpponentId/remove
+// @route DELETE /api/cpuOpponents/:cpuOpponentId
 // @desc Remove CPU Opponent
 // @access Private
-router.delete('/:cpuOpponentId/remove', requiresAuth, async (req, res) => {
+router.delete('/:cpuOpponentId', requiresAuth, async (req, res) => {
     try {
         const cpuOpponent = await CPUOpponent.findOne({
             _id: req.params.cpuOpponentId,

@@ -4,7 +4,7 @@ import './BattleSetup.scss'
 import { cpuOpponents } from '../../constants/cpuOpponents.js'
 import { coinImage } from '../../assets/icons'
 import { getRandomCards } from '../../utils/randomizers'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../../components'
 import axios from 'axios'
 

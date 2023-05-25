@@ -75,7 +75,11 @@ const ProductTour = ({ step }) => {
                     break
                 case 3:
                     const starterCards = [...Array(15)]
-                    getRandomCards(starterCards, 'common', allCards)
+                    getRandomCards(
+                        starterCards,
+                        { Common: 90, Uncommon: 10 },
+                        allCards
+                    )
                     starterCards.forEach((card) => {
                         assignRandomValues(card)
                         axios.post('/api/collection/new', {

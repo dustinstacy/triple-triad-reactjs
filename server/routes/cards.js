@@ -46,13 +46,13 @@ router.post('/new', requiresAuth, async (req, res) => {
     }
 })
 
-// @route PUT /api/cards/:cardsId
+// @route PUT /api/cards/:cardId
 // @desc Update released card
 // @desc Admin
-router.put('/:cardsId', requiresAuth, async (req, res) => {
+router.put('/:cardId', requiresAuth, async (req, res) => {
     try {
         const card = await Card.findOne({
-            _id: req.params.cardsId,
+            _id: req.params.cardId,
         })
 
         if (!card) {
@@ -61,7 +61,7 @@ router.put('/:cardsId', requiresAuth, async (req, res) => {
 
         const updatedCard = await Card.findOneAndUpdate(
             {
-                _id: req.params.cardsId,
+                _id: req.params.cardId,
             },
             {
                 name: req.body.name,
@@ -83,13 +83,13 @@ router.put('/:cardsId', requiresAuth, async (req, res) => {
     }
 })
 
-// @route DELETE /api/cards/:cardsId/delete
+// @route DELETE /api/cards/:cardId/delete
 // @desc Remove released card
 // @access Admin
-router.delete('/:cardsId/delete', requiresAuth, async (req, res) => {
+router.delete('/:cardId/delete', requiresAuth, async (req, res) => {
     try {
         const card = await Card.findOne({
-            number: req.params.cardsId,
+            number: req.params.cardId,
         })
 
         if (!card) {
@@ -97,7 +97,7 @@ router.delete('/:cardsId/delete', requiresAuth, async (req, res) => {
         }
 
         await Card.findOneAndRemove({
-            number: req.params.cardsId,
+            number: req.params.cardId,
         })
 
         return res.json({ success: true })

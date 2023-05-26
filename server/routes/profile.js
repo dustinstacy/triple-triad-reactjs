@@ -21,6 +21,7 @@ router.put('/', requiresAuth, async (req, res) => {
                 _id: req.user._id,
             },
             {
+                role: req.body.role,
                 username: req.body.username,
                 image: req.body.image,
                 color: req.body.color,

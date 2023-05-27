@@ -2,20 +2,13 @@ import express from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-import validateRegisterInput from '../validation/registerValidation.js'
 import { requiresAuth } from '../middleware/permissions.js'
+import validateRegisterInput from '../validation/registerValidation.js'
 import checkExistingEmail from '../middleware/checkExistingEmail.js'
 import checkExistingUsername from '../middleware/checkExistingUsername.js'
 import User from '../models/User.js'
 
 const router = express.Router()
-
-// @route GET /api/auth/test
-// @desc Test the auth route
-// @access Public
-router.get('/test', (req, res) => {
-    res.send('Auth route working')
-})
 
 // Generate and set the access token cookie
 const setAccessTokenCookie = (res, token) => {
@@ -25,6 +18,13 @@ const setAccessTokenCookie = (res, token) => {
         secure: true,
     })
 }
+
+// @route GET /api/auth/test
+// @desc Test the auth route
+// @access Public
+router.get('/test', (req, res) => {
+    res.send('Auth route working')
+})
 
 // @route POST /api/auth/register
 // @desc Create a new user

@@ -14,62 +14,65 @@ router.get('/test', (req, res) => {
 // @route GET /api/cards
 // @desc Get all released cards
 // @access Private
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
-        const cards = await Card.find({ ...Card })
+        const cards = await Card.find()
 
         return res.json(cards)
     } catch (error) {
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
 // @route POST /api/cards/new
 // @desc Release new card
 // @access Admin
-router.post('/new', requiresAuth, async (req, res) => {
+router.post('/new', requiresAuth, requiresAdmin, async (req, res, next) => {
     try {
+        const { name, number, image, rarity, empower, weaken } = req.body
+
         const newCard = new Card({
-            name: req.body.name,
-            number: req.body.number,
-            image: req.body.image,
-            rarity: req.body.rarity,
-            empower: req.body.empower,
-            weaken: req.body.weaken,
+            name: name,
+            number: number,
+            image: image,
+            rarity: rarity,
+            empower: empower,
+            weaken: weaken,
         })
 
         await newCard.save()
         return res.json(newCard)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
 // @route PUT /api/cards/:cardId
 // @desc Update released card
 // @desc Admin
-router.put('/:cardId', requiresAuth, async (req, res) => {
+router.put('/:cardId', requiresAuth, requiresAdmin, async (req, res, next) => {
     try {
         const card = await Card.findOne({
             _id: req.params.cardId,
         })
 
         if (!card) {
-            return res.status(404).json({ error: 'Could not find Card' })
+            return res.status(404).json({ error: 'Card not found' })
         }
+
+        const { name, number, image, rarity, empower, weaken } = req.body
 
         const updatedCard = await Card.findOneAndUpdate(
             {
                 _id: req.params.cardId,
             },
             {
-                name: req.body.name,
-                number: req.body.number,
-                image: req.body.image,
-                rarity: req.body.rarity,
-                empower: req.body.empower,
-                weaken: req.body.weaken,
+                name: name,
+                number: number,
+                image: image,
+                rarity: rarity,
+                empower: empower,
+                weaken: weaken,
             },
             {
                 new: true,
@@ -78,33 +81,36 @@ router.put('/:cardId', requiresAuth, async (req, res) => {
 
         return res.json(updatedCard)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
 // @route DELETE /api/cards/:cardId/delete
 // @desc Remove released card
 // @access Admin
-router.delete('/:cardId/delete', requiresAuth, async (req, res) => {
-    try {
-        const card = await Card.findOne({
-            number: req.params.cardId,
-        })
+router.delete(
+    '/:cardId/remove',
+    requiresAuth,
+    requiresAdmin,
+    async (req, res, next) => {
+        try {
+            const card = await Card.findOne({
+                _id: req.params.cardId,
+            })
 
-        if (!card) {
-            return res.status(404).json({ error: 'Could not find Card' })
+            if (!card) {
+                return res.status(404).json({ error: 'Card not found' })
+            }
+
+            await Card.findOneAndRemove({
+                _id: req.params.cardId,
+            })
+
+            return res.json({ success: true })
+        } catch (error) {
+            next(error)
         }
-
-        await Card.findOneAndRemove({
-            number: req.params.cardId,
-        })
-
-        return res.json({ success: true })
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
     }
-})
+)
 
 export default router

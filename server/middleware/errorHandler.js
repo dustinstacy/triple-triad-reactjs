@@ -11,6 +11,8 @@ const errorHandler = (error, req, res, next) => {
         errorMessage = error.errorMessage || 'Bad Request'
     } else if (statusCode === 401) {
         errorMessage = error.errorMessage || 'Unauthorized'
+    } else if (statusCode === 403) {
+        errorMessage = error.errorMessage || 'Forbidden'
     } else if (statusCode === 404) {
         errorMessage = error.errorMessage || 'Not Found'
     }

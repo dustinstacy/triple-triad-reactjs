@@ -1,5 +1,5 @@
 import express from 'express'
-import requiresAuth from '../middleware/permissions.js'
+import { requiresAuth, requiresAdmin } from '../middleware/permissions.js'
 import Card from '../models/Card.js'
 
 const router = express.Router()

@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 import validateRegisterInput from '../validation/registerValidation.js'
-import requiresAuth from '../middleware/permissions.js'
+import { requiresAuth } from '../middleware/permissions.js'
 import checkExistingEmail from '../middleware/checkExistingEmail.js'
 import checkExistingUsername from '../middleware/checkExistingUsername.js'
 import User from '../models/User.js'

@@ -311,7 +311,7 @@ const Collection = () => {
 
     const markSelected = async (card) => {
         if (userDeck.length < 15) {
-            await axios.put(`/api/collection/${card._id}/selected`)
+            await axios.put(`/api/collection/${card._id}/select`)
             await axios.post('/api/deck/add', {
                 user: user._id,
                 _id: card._id,
@@ -330,7 +330,7 @@ const Collection = () => {
     }
 
     const removeSelection = async (card) => {
-        await axios.put(`/api/collection/${card._id}/removeSelection`)
+        await axios.put(`/api/collection/${card._id}/unselect`)
         await axios.delete(`/api/deck/${card._id}/remove`, {
             user: user._id,
         })

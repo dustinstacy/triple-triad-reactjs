@@ -14,94 +14,145 @@ router.get('/test', (req, res) => {
 // @route PUT /api/profile/
 // @desc Update user's profile
 // @access Private
-router.put('/', requiresAuth, async (req, res) => {
+router.put('/', requiresAuth, async (req, res, next) => {
     try {
+        const user = await User.findOne({
+            _id: req.user._id,
+        })
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        const {
+            role,
+            username,
+            image,
+            color,
+            defeatedEnemies,
+            activeBattle,
+            coin,
+            runes,
+        } = req.body
+
         const updatedProfile = await User.findOneAndUpdate(
             {
                 _id: req.user._id,
             },
             {
-                role: req.body.role,
-                username: req.body.username,
-                image: req.body.image,
-                color: req.body.color,
-                defeatedEnemies: req.body.defeatedEnemies,
-                activeBattle: req.body.activeBattle,
-                coin: req.body.coin,
-                runes: req.body.runes,
+                role: role,
+                username: username,
+                image: image,
+                color: color,
+                defeatedEnemies: defeatedEnemies,
+                activeBattle: activeBattle,
+                coin: coin,
+                runes: runes,
+            },
+            {
+                new: true,
             }
         )
         return res.json(updatedProfile)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
 // @route PUT /api/profile/stats
 // @desc Update user's stats
 // @access Private
-router.put('/stats', requiresAuth, async (req, res) => {
+router.put('/stats', requiresAuth, async (req, res, next) => {
     try {
+        const user = await User.findOne({
+            _id: req.user._id,
+        })
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        const { level, xp, battles, wins, losses, draws } = req.body
+
         const updatedProfile = await User.findOneAndUpdate(
             {
                 _id: req.user._id,
             },
             {
-                level: req.body.level,
-                xp: req.body.xp,
+                level: level,
+                xp: xp,
                 stats: {
-                    battles: req.body.battles,
-                    wins: req.body.wins,
-                    losses: req.body.losses,
-                    draws: req.body.draws,
+                    battles: battles,
+                    wins: wins,
+                    losses: losses,
+                    draws: draws,
                 },
+            },
+            {
+                new: true,
             }
         )
         return res.json(updatedProfile)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
 // @route PUT /api/profile/inventory
 // @desc Update user's inventory
 // @access Private
-router.put('/inventory', requiresAuth, async (req, res) => {
+router.put('/inventory', requiresAuth, async (req, res, next) => {
     try {
+        const user = await User.findOne({
+            _id: req.user._id,
+        })
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        const { inventory } = req.body
+
         const updatedProfile = await User.findOneAndUpdate(
             {
                 _id: req.user._id,
             },
             {
-                inventory: req.body.inventory,
+                inventory: inventory,
             }
         )
         return res.json(updatedProfile)
     } catch (error) {
-        console.log(error)
-        res.status(500).send(error.message)
+        next(error)
     }
 })
 
 // @route PUT /api/profile/onboarding
 // @desc Update user's onboarding status
 // @access Private
-router.put('/onboarding', requiresAuth, async (req, res) => {
+router.put('/onboarding', requiresAuth, async (req, res, next) => {
     try {
+        const user = await User.findOne({
+            _id: req.user._id,
+        })
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        const { onboardingStage } = req.body
+
         const updatedProfile = await User.findOneAndUpdate(
             {
                 _id: req.user._id,
             },
             {
-                onboardingStage: req.body.onboardingStage,
+                onboardingStage: onboardingStage,
             }
         )
         return res.json(updatedProfile)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 

@@ -93,12 +93,12 @@ export const GlobalProvider = ({ children }) => {
 
     const getUserCards = async () => {
         try {
-            const res = await axios.get('/api/collection/current')
+            const res = await axios.get('/api/collection/')
 
             if (res.data) {
                 dispatch({
                     type: 'SET_USER_CARDS',
-                    payload: res.data,
+                    payload: res.data.cards,
                 })
             }
         } catch (error) {

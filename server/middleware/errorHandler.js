@@ -29,7 +29,7 @@ const errorHandler = (error, req, res, next) => {
             error: errorMessage,
             stack: error.stack,
         }
-        res.status(statusCode.json(errorResponse))
+        res.status(statusCode).json(errorResponse)
     }
 }
 

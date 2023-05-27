@@ -67,7 +67,8 @@ const ProductTour = ({ step }) => {
         try {
             switch (step) {
                 case 0:
-                    await axios.put('api/profile', {
+                    await axios.post('api/collection/')
+                    await axios.put('api/profile/', {
                         coin: 500,
                     })
                     await getCurrentUser()
@@ -79,19 +80,24 @@ const ProductTour = ({ step }) => {
                         { Common: 90, Uncommon: 10 },
                         allCards
                     )
-                    starterCards.forEach((card) => {
+                    starterCards.forEach(async (card) => {
                         assignRandomValues(card)
-                        axios.post('/api/collection/new', {
-                            user: user._id,
+                        const cardData = {
                             name: card.name,
                             number: card.number,
                             image: card.image,
                             rarity: card.rarity,
-                            values: card.values,
                             empower: card.empower,
                             weaken: card.weaken,
-                        })
+                            values: card.values,
+                        }
+                        try {
+                            await axios.put('/api/collection/new', cardData)
+                        } catch (error) {
+                            console.log(error)
+                        }
                     })
+
                     navigate('/collection')
                     break
                 case 5:
@@ -114,13 +120,13 @@ const ProductTour = ({ step }) => {
     }, [user?.inventory])
 
     useEffect(() => {
-        if (userCards.length > 0 && stage === 1) {
+        if (userCards?.length > 0 && stage === 1) {
             incrementOnboardingStage('/packs')
         }
     }, [userCards])
 
     useEffect(() => {
-        if (userDeck.length === 15 && stage === 2) {
+        if (userDeck?.length === 15 && stage === 2) {
             incrementOnboardingStage('/rules')
         }
     }, [userDeck])

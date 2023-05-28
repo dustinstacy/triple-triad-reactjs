@@ -54,11 +54,17 @@
 
             &__stats {
                 height: 100%;
-                gap: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                gap: 64px;
                 text-align: center;
 
-                p {
-                    margin-top: 0;
+                .stat {
+                    height: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
                 }
 
                 @media screen and (max-width: 900px) {
@@ -81,6 +87,7 @@
 
             &__rewards {
                 height: 60%;
+                width: 25%;
                 flex-direction: column;
                 align-self: center;
                 gap: 12px;
@@ -90,21 +97,31 @@
                 }
 
                 .rewards {
+                    display: flex;
                     gap: 18px;
 
-                    p {
-                        margin-bottom: 4px;
-                        color: var(--primary-color);
-                    }
-                    span {
+                    .reward {
                         display: flex;
+                        flex-direction: column;
                         align-items: center;
-                        justify-content: center;
-                        gap: 4px;
-                    }
-                    img {
-                        height: 20px;
-                        width: 20px;
+                        p {
+                            margin-bottom: 4px;
+                            color: var(--primary-color);
+                        }
+                        span {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 4px;
+                        }
+                        img {
+                            height: 20px;
+                            width: 20px;
+                        }
+                        .card-icon {
+                            margin-top: 4px;
+                            font-size: 24px;
+                        }
                     }
                 }
             }

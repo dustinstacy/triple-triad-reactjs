@@ -3,7 +3,7 @@ import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, Card, Loader, ProductTour } from '../../components'
 import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
-import { assignRandomValues, getRandomCards } from '../../utils/randomizers'
+import { assignRandomCardValues, getRandomCards } from '../../utils/randomizers'
 import { removeObjectByValue } from '../../utils/removeObjectByValue'
 import './OpenPacks.scss'
 
@@ -118,7 +118,7 @@ const Packs = () => {
         const { contents } = chosenPack ?? {}
         const newCards = getRandomCards(contents.count, contents.odds, allCards)
         newCards.forEach(async (card) => {
-            assignRandomValues(card)
+            assignRandomCardValues(card)
             const cardData = {
                 name: card.name,
                 number: card.number,

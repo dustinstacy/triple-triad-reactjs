@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useGlobalContext } from '../../context/GlobalContext'
-import './BattleSetup.scss'
-import { cpuOpponents } from '../../constants/cpuOpponents.js'
-import { coinImage } from '../../assets/icons'
-import { getRandomCards } from '../../utils/randomizers'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '../../components'
 import axios from 'axios'
+import { TbPlayCard } from 'react-icons/tb'
+
+import { useGlobalContext } from '../../context/GlobalContext'
+import { Button } from '../../components'
+import { assignRandomDeckValues, getRandomCards } from '../../utils/randomizers'
+import { coinImage } from '../../assets/icons'
+
+import './BattleSetup.scss'
 
 const Opponent = ({
     opponent,
@@ -16,41 +18,37 @@ const Opponent = ({
     setSelectedOpponentDeck,
 }) => {
     const { allCards, user, getCurrentUser } = useGlobalContext()
-    const [opponentDeck, setOpponentDeck] = useState([])
-    const [opponentDeckStrength, setOpponentDeckStrength] = useState(0)
 
     const getOpponentDeck = () => {
-        const randomDeck = Array.from({ length: 15 })
-        const updatedDeck = getRandomCards(randomDeck, opponent, allCards)
-        setOpponentDeck(updatedDeck)
-        const deckStrength = calculateDeckStrength(updatedDeck)
-        setOpponentDeckStrength(deckStrength)
-    }
-
-    const calculateDeckStrength = (deck) => {
-        return deck.reduce(
-            (total, card) =>
-                total +
-                card.values.reduce(
-                    (sum, current) => parseInt(sum) + parseInt(current),
-                    0
-                ),
-            0
+        const currentOpponentDeck = getRandomCards(
+            14,
+            { Common: 90, Uncommon: 10 },
+            allCards
         )
+        const currentOpennentCard = allCards.find(
+            (card) => card._id === opponent.rewards.card
+        )
+        currentOpponentDeck.push(currentOpennentCard)
+        assignRandomDeckValues(
+            currentOpponentDeck,
+            opponent.minPower,
+            opponent.maxPower
+        )
+        setSelectedOpponentDeck((prevDeck) => currentOpponentDeck)
     }
 
     const selectOpponent = () => {
         setSelectedOpponent(opponent)
-        setSelectedOpponentDeck((prevDeck) => opponentDeck)
+        getOpponentDeck()
     }
 
     useEffect(() => {
-        getCurrentUser().then(() => getOpponentDeck())
+        getCurrentUser()
     }, [])
 
     return (
         <>
-            {user?.level >= opponent.level ? (
+            {user?.level >= opponent?.level ? (
                 <div
                     className={`opponent box ${
                         selectedOpponent === opponent ? 'selected' : ''
@@ -63,34 +61,42 @@ const Opponent = ({
                         <img src={opponent?.image} alt='opponent image' />
                         <h3>{opponent?.name}</h3>
                     </div>
-                    <div className='opponent__stats center'>
-                        <p>
-                            Power <br />{' '}
+                    <div className='opponent__stats'>
+                        <p className='stat'>
+                            Power
                             <span>
-                                {opponentDeckStrength > 0
-                                    ? opponentDeckStrength
-                                    : 'Loading...'}
+                                {opponent?.minPower} - {opponent?.maxPower}
                             </span>
                         </p>
-                        <p>
-                            Required Deck Size <br />
-                            {opponent?.size}
+                        <p className='stat'>
+                            Required Deck Size
+                            <span>{opponent?.minDeckSize}</span>
                         </p>
                     </div>
                     <div className='opponent__rewards center'>
                         <p>Possible Rewards: </p>
-                        <div className='rewards center'>
+                        <div className='rewards'>
                             <div className='reward'>
                                 <p>XP</p>
-                                {opponent?.xpReward}
+                                {opponent?.rewards.xp}
                             </div>
                             <div className='reward'>
                                 <p>Coin</p>
                                 <span>
-                                    {opponent?.coinReward}
+                                    {opponent?.rewards.coin}
                                     <img src={coinImage} alt='coin' />
                                 </span>
                             </div>
+                            {!user?.defeatedEnemies.includes(
+                                `${opponent.name}`
+                            ) && (
+                                <div className='reward'>
+                                    <p>Card</p>
+                                    <span>
+                                        <TbPlayCard className='card-icon' />
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <OpponentMenu
@@ -108,11 +114,7 @@ const Opponent = ({
     )
 }
 
-const OpponentMenu = ({
-    selectedOpponent,
-    setSelectedOpponent,
-    selectedOpponentDeck,
-}) => {
+const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
     const { getCurrentUser, user, userCards, userDeck } = useGlobalContext()
     const navigate = useNavigate()
 
@@ -142,16 +144,8 @@ const OpponentMenu = ({
             .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
             .sort(
                 (a, b) =>
-                    b.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    ) -
-                    a.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    )
+                    b.values.reduce((sum, current) => sum + current, 0) -
+                    a.values.reduce((sum, current) => sum + current, 0)
             )
         for (let i = 0; i < emptySlots; i++) {
             markSelected(totalValueArray[i])
@@ -174,13 +168,11 @@ const OpponentMenu = ({
             <div className='user-deck__power'>
                 <p>Power</p>
                 <span>
-                    {userDeck.reduce(
+                    {userDeck?.reduce(
                         (total, card) =>
                             total +
                             card.values.reduce(
-                                (sum, current) =>
-                                    parseInt(sum) +
-                                    parseInt(current.replace(/A/g, 10)),
+                                (sum, current) => sum + current,
                                 0
                             ),
                         0
@@ -189,25 +181,34 @@ const OpponentMenu = ({
             </div>
             <div className='user-deck__size'>
                 <p>Size</p>
-                <span>{userDeck.length}</span>
+                <span>{userDeck?.length}</span>
             </div>
             <Button
                 onClick={autoBuild}
                 label='FIll Deck'
-                disabled={userDeck.length === selectedOpponent.size}
+                disabled={userDeck?.length === selectedOpponent.size}
             />
             <Button
                 label='Start Battle'
                 onClick={() => startBattle()}
-                disabled={userDeck.length !== selectedOpponent.size}
+                disabled={userDeck?.length !== selectedOpponent.size}
             />
         </div>
     )
 }
 
 const BattleSetup = () => {
+    const [cpuOpponents, setCPUOpponents] = useState({})
     const [selectedOpponent, setSelectedOpponent] = useState('')
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState('')
+
+    useEffect(() => {
+        const getOpponents = async () => {
+            const opponents = await axios.get('/api/cpuOpponents')
+            setCPUOpponents(opponents.data)
+        }
+        getOpponents()
+    }, [])
 
     return (
         <div className='setup page center'>
@@ -217,16 +218,17 @@ const BattleSetup = () => {
                     <hr />
                 </div>
 
-                {cpuOpponents?.map((opponent) => (
-                    <Opponent
-                        key={opponent.name}
-                        opponent={opponent}
-                        selectedOpponent={selectedOpponent}
-                        setSelectedOpponent={setSelectedOpponent}
-                        selectedOpponentDeck={selectedOpponentDeck}
-                        setSelectedOpponentDeck={setSelectedOpponentDeck}
-                    />
-                ))}
+                {cpuOpponents.length &&
+                    cpuOpponents?.map((opponent) => (
+                        <Opponent
+                            key={opponent.name}
+                            opponent={opponent}
+                            selectedOpponent={selectedOpponent}
+                            setSelectedOpponent={setSelectedOpponent}
+                            selectedOpponentDeck={selectedOpponentDeck}
+                            setSelectedOpponentDeck={setSelectedOpponentDeck}
+                        />
+                    ))}
             </div>
         </div>
     )

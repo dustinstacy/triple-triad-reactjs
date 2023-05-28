@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useGlobalContext } from '../../context/GlobalContext'
-import './BattleSetup.scss'
-import { coinImage } from '../../assets/icons'
-import { getRandomCards } from '../../utils/randomizers'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '../../components'
 import axios from 'axios'
+
+import { useGlobalContext } from '../../context/GlobalContext'
+import { Button } from '../../components'
+import { assignRandomValues, getRandomCards } from '../../utils/randomizers'
+import { coinImage } from '../../assets/icons'
+
+import './BattleSetup.scss'
 
 const Opponent = ({
     opponent,
@@ -18,9 +20,22 @@ const Opponent = ({
     const [opponentDeck, setOpponentDeck] = useState([])
 
     const getOpponentDeck = () => {
-        const randomDeck = Array.from({ length: 15 })
-        const updatedDeck = getRandomCards(randomDeck, opponent, allCards)
-        setOpponentDeck(updatedDeck)
+        const cpuDeck = getRandomCards(
+            14,
+            { Common: 90, Uncommon: 10 },
+            allCards
+        )
+        const cpuCard = allCards.filter(
+            (card) => card._id === opponent.rewards.card
+        )
+        cpuDeck.push(cpuCard[0])
+        cpuDeck.forEach((card) => assignRandomValues(card))
+        const power = cpuDeck?.reduce(
+            (total, card) =>
+                total + card.values.reduce((sum, current) => sum + current, 0),
+            0
+        )
+        console.log(power)
     }
 
     const selectOpponent = () => {
@@ -34,7 +49,7 @@ const Opponent = ({
 
     return (
         <>
-            {user?.level >= opponent.level ? (
+            {user?.level >= opponent?.level ? (
                 <div
                     className={`opponent box ${
                         selectedOpponent === opponent ? 'selected' : ''
@@ -124,16 +139,8 @@ const OpponentMenu = ({
             .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
             .sort(
                 (a, b) =>
-                    b.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    ) -
-                    a.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    )
+                    b.values.reduce((sum, current) => sum + current, 0) -
+                    a.values.reduce((sum, current) => sum + current, 0)
             )
         for (let i = 0; i < emptySlots; i++) {
             markSelected(totalValueArray[i])
@@ -160,9 +167,7 @@ const OpponentMenu = ({
                         (total, card) =>
                             total +
                             card.values.reduce(
-                                (sum, current) =>
-                                    parseInt(sum) +
-                                    parseInt(current.replace(/A/g, 10)),
+                                (sum, current) => sum + current,
                                 0
                             ),
                         0
@@ -200,9 +205,9 @@ const BattleSetup = () => {
         getOpponents()
     }, [])
 
-    useEffect(() => {
-        console.log(cpuOpponents)
-    }, [cpuOpponents])
+    // useEffect(() => {
+    //     console.log(cpuOpponents, 'Opponents')
+    // }, [cpuOpponents])
 
     return (
         <div className='setup page center'>

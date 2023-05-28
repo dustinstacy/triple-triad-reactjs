@@ -11,146 +11,63 @@ router.get('/test', (req, res) => {
     res.send('Auth route working')
 })
 
-// @route PUT /api/profile/
+// @route PUT /api/profile/:action
 // @desc Update user's profile
 // @access Private
-router.put('/', requiresAuth, async (req, res, next) => {
+router.put('/:action', requiresAuth, async (req, res, next) => {
     try {
-        const user = await User.findOne({
-            _id: req.user._id,
-        })
+        let updatedFields = {}
+
+        switch (req.params.action) {
+            case 'info':
+                updatedFields = {
+                    role: req.body.role,
+                    username: req.body.username,
+                    image: req.body.image,
+                    color: req.body.color,
+                    defeatedEnemies: req.body.defeatedEnemies,
+                    activeBattle: req.body.activeBattle,
+                    coin: req.body.coin,
+                    runes: req.body.runes,
+                }
+                break
+            case 'stats':
+                updatedFields = {
+                    level: req.body.level,
+                    xp: req.body.xp,
+                    stats: {
+                        battles: req.body.battles,
+                        wins: req.body.wins,
+                        losses: req.body.losses,
+                        draws: req.body.draws,
+                    },
+                }
+                break
+            case 'inventory':
+                updatedFields = {
+                    inventory: req.body.inventory,
+                }
+                break
+            case 'onboarding':
+                updatedFields = {
+                    onboardingStage: req.body.onboardingStage,
+                }
+                break
+            default:
+                return res.status(400).json({ error: 'Invalid action' })
+        }
+
+        const user = await User.findOneAndUpdate(
+            { _id: req.user._id },
+            updatedFields,
+            { new: true }
+        )
 
         if (!user) {
             return res.status(404).json({ error: 'User not found' })
         }
 
-        const {
-            role,
-            username,
-            image,
-            color,
-            defeatedEnemies,
-            activeBattle,
-            coin,
-            runes,
-        } = req.body
-
-        const updatedProfile = await User.findOneAndUpdate(
-            {
-                _id: req.user._id,
-            },
-            {
-                role: role,
-                username: username,
-                image: image,
-                color: color,
-                defeatedEnemies: defeatedEnemies,
-                activeBattle: activeBattle,
-                coin: coin,
-                runes: runes,
-            },
-            {
-                new: true,
-            }
-        )
-        return res.json(updatedProfile)
-    } catch (error) {
-        next(error)
-    }
-})
-
-// @route PUT /api/profile/stats
-// @desc Update user's stats
-// @access Private
-router.put('/stats', requiresAuth, async (req, res, next) => {
-    try {
-        const user = await User.findOne({
-            _id: req.user._id,
-        })
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' })
-        }
-
-        const { level, xp, battles, wins, losses, draws } = req.body
-
-        const updatedProfile = await User.findOneAndUpdate(
-            {
-                _id: req.user._id,
-            },
-            {
-                level: level,
-                xp: xp,
-                stats: {
-                    battles: battles,
-                    wins: wins,
-                    losses: losses,
-                    draws: draws,
-                },
-            },
-            {
-                new: true,
-            }
-        )
-        return res.json(updatedProfile)
-    } catch (error) {
-        next(error)
-    }
-})
-
-// @route PUT /api/profile/inventory
-// @desc Update user's inventory
-// @access Private
-router.put('/inventory', requiresAuth, async (req, res, next) => {
-    try {
-        const user = await User.findOne({
-            _id: req.user._id,
-        })
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' })
-        }
-
-        const { inventory } = req.body
-
-        const updatedProfile = await User.findOneAndUpdate(
-            {
-                _id: req.user._id,
-            },
-            {
-                inventory: inventory,
-            }
-        )
-        return res.json(updatedProfile)
-    } catch (error) {
-        next(error)
-    }
-})
-
-// @route PUT /api/profile/onboarding
-// @desc Update user's onboarding status
-// @access Private
-router.put('/onboarding', requiresAuth, async (req, res, next) => {
-    try {
-        const user = await User.findOne({
-            _id: req.user._id,
-        })
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' })
-        }
-
-        const { onboardingStage } = req.body
-
-        const updatedProfile = await User.findOneAndUpdate(
-            {
-                _id: req.user._id,
-            },
-            {
-                onboardingStage: onboardingStage,
-            }
-        )
-        return res.json(updatedProfile)
+        return res.json(user)
     } catch (error) {
         next(error)
     }

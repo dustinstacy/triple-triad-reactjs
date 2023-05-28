@@ -52,17 +52,9 @@ router.post('/new', requiresAuth, requiresAdmin, async (req, res, next) => {
 // @desc Admin
 router.put('/:cardId', requiresAuth, requiresAdmin, async (req, res, next) => {
     try {
-        const card = await Card.findOne({
-            _id: req.params.cardId,
-        })
-
-        if (!card) {
-            return res.status(404).json({ error: 'Card not found' })
-        }
-
         const { name, number, image, rarity, empower, weaken } = req.body
 
-        const updatedCard = await Card.findOneAndUpdate(
+        const card = await Card.findOneAndUpdate(
             {
                 _id: req.params.cardId,
             },
@@ -78,6 +70,10 @@ router.put('/:cardId', requiresAuth, requiresAdmin, async (req, res, next) => {
                 new: true,
             }
         )
+
+        if (!card) {
+            return res.status(404).json({ error: 'Card not found' })
+        }
 
         return res.json(updatedCard)
     } catch (error) {

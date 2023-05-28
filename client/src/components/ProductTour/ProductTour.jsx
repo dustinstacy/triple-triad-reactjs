@@ -67,8 +67,9 @@ const ProductTour = ({ step }) => {
         try {
             switch (step) {
                 case 0:
-                    await axios.post('api/collection/')
-                    await axios.put('api/profile/', {
+                    await axios.post('/api/collection/')
+                    await axios.post('/api/deck/')
+                    await axios.put('/api/profile/info', {
                         coin: 500,
                     })
                     await getCurrentUser()

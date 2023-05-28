@@ -306,23 +306,23 @@ const Collection = () => {
 
     useEffect(() => {
         getCurrentUser()
-        getUserCards()
+    }, [])
+
+    useEffect(() => {
+        getCurrentUser()
     }, [])
 
     const markSelected = async (card) => {
         if (userDeck.length < 15) {
             await axios.put(`/api/collection/${card._id}/select`)
-            await axios.post('/api/deck/add', {
-                user: user._id,
+            const cardData = {
                 _id: card._id,
-                number: card.number,
-                name: card.name,
-                level: card.level,
-                rarity: card.rarity,
-                element: card.element,
                 image: card.image,
+                empower: card.empower,
+                weaken: card.weaken,
                 values: card.values,
-            })
+            }
+            await axios.put(`/api/deck/add`, cardData)
             getCurrentUser()
         } else {
             alert('Your deck is currently full')
@@ -331,9 +331,7 @@ const Collection = () => {
 
     const removeSelection = async (card) => {
         await axios.put(`/api/collection/${card._id}/unselect`)
-        await axios.delete(`/api/deck/${card._id}/remove`, {
-            user: user._id,
-        })
+        await axios.put(`/api/deck/${card._id}/remove`)
         getCurrentUser()
     }
 

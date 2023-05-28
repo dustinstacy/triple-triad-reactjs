@@ -138,7 +138,7 @@ const Packs = () => {
 
         removeObjectByValue(user.inventory, currentPack.name)
         await axios
-            .put('api/profile/inventory', {
+            .put('/api/profile/inventory', {
                 inventory: user.inventory,
             })
             .then(() => getCurrentUser())

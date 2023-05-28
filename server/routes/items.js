@@ -53,17 +53,9 @@ router.post('/new', requiresAuth, requiresAdmin, async (req, res, next) => {
 // @access Private
 router.put('/:itemId', requiresAuth, requiresAdmin, async (req, res, next) => {
     try {
-        const item = await Item.findOne({
-            _id: req.params.itemId,
-        })
-
-        if (!item) {
-            return res.status(404).json({ error: 'Item not found' })
-        }
-
         const { name, image, type, level, info, price, contents } = req.body
 
-        const updatedItem = await Item.findOneAndUpdate(
+        const item = await Item.findOneAndUpdate(
             {
                 _id: req.params.itemId,
             },
@@ -80,7 +72,12 @@ router.put('/:itemId', requiresAuth, requiresAdmin, async (req, res, next) => {
                 new: true,
             }
         )
-        return res.json(updatedItem)
+
+        if (!item) {
+            return res.status(404).json({ error: 'Item not found' })
+        }
+
+        return res.json(item)
     } catch (error) {
         next(error)
     }

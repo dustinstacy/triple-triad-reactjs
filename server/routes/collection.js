@@ -58,22 +58,19 @@ router.post('/', requiresAuth, async (req, res, next) => {
 // @access Private
 router.put('/new', requiresAuth, async (req, res, next) => {
     try {
-        const collection = await Collection.findOne({
-            user: req.user._id,
-        })
-
-        if (!collection) {
-            return res.status(404).json({ error: 'Collection not found' })
-        }
-
         const cardData = req.body
-        const updatedCollection = await Collection.findOneAndUpdate(
+
+        const collection = await Collection.findOneAndUpdate(
             { user: req.user._id },
             { $push: { cards: cardData } },
             { new: true }
         )
 
-        return res.json(updatedCollection)
+        if (!collection) {
+            return res.status(404).json({ error: 'Collection not found' })
+        }
+
+        return res.json(collection)
     } catch (error) {
         next(error)
     }

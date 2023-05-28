@@ -19,7 +19,7 @@ const ExperienceBar = () => {
 
     const handleLevelUp = () => {
         axios
-            .put('/api/profile', { level: level + 1 })
+            .put('/api/profile/stats', { level: level + 1 })
             .then(() => getCurrentUser())
     }
 

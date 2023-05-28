@@ -1,11 +1,11 @@
 import express from 'express'
-import requiresAuth from '../middleware/permissions.js'
+import { requiresAuth, requiresAdmin } from '../middleware/permissions.js'
 import CPUOpponent from '../models/CPUOpponent.js'
 
 const router = express.Router()
 
 // @route GET /api/cpuOpponents/test
-// @desc Test the auth route
+// @desc Test the CPU Opoonent route
 // @access Public
 router.get('/test', (req, res) => {
     res.send('CPU Opponent route working')
@@ -14,56 +14,121 @@ router.get('/test', (req, res) => {
 // @route GET /api/cpuOpponents
 // @desc Get CPU Opponent
 // @access Private
-router.get('/', requiresAuth, async (req, res) => {
+router.get('/', requiresAuth, async (req, res, next) => {
     try {
         const cpuOpponents = await CPUOpponent.find()
 
         return res.json(cpuOpponents)
     } catch (error) {
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
 // @route POST /api/cpuOpponents/
 // @route Add CPU Opponent
 // @access Private
-router.post('/', requiresAuth, async (req, res) => {
+router.post('/', requiresAuth, requiresAdmin, async (req, res, next) => {
     try {
+        const {
+            name,
+            image,
+            color,
+            level,
+            minPower,
+            maxPower,
+            minDeckSize,
+            rewards: { xp, coin, card, items },
+        } = req.body
+
         const newCPUOpponent = new CPUOpponent({
-            name: req.body.name,
-            image: req.body.image,
-            color: req.body.color,
-            level: req.body.level,
-            minPower: req.body.minPower,
-            maxPower: req.body.maxPower,
-            minDeckSize: req.body.minDeckSize,
+            name: name,
+            image: image,
+            color: color,
+            level: level,
+            minPower: minPower,
+            maxPower: maxPower,
+            minDeckSize: minDeckSize,
             rewards: {
-                xp: req.body.xp,
-                coin: req.body.coin,
-                cpuOpponent: req.body.card,
-                items: req.body.items,
+                xp: xp,
+                coin: coin,
+                card: card,
+                items: items,
             },
         })
 
         await newCPUOpponent.save()
         return res.json(newCPUOpponent)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
+
+// @route PUT /api/cpuOpponents/:cpuOpponent_id
+// @desc Update CPU Opponent
+// @access Private
+router.put(
+    '/:cpuOpponent_id',
+    requiresAuth,
+    requiresAdmin,
+    async (req, res, next) => {
+        try {
+            const {
+                name,
+                image,
+                color,
+                level,
+                minPower,
+                maxPower,
+                minDeckSize,
+                rewards: { xp, coin, card, items },
+            } = req.body
+
+            const cpuOpponent = await CPUOpponent.findOneAndUpdate(
+                {
+                    _id: req.params.cpuOpponent_id,
+                },
+                {
+                    name: name,
+                    image: image,
+                    color: color,
+                    level: level,
+                    minPower: minPower,
+                    maxPower: maxPower,
+                    minDeckSize: minDeckSize,
+                    rewards: {
+                        xp: xp,
+                        coin: coin,
+                        card: card,
+                        items: items,
+                    },
+                },
+                {
+                    new: true,
+                }
+            )
+
+            if (!cpuOpponent) {
+                return res.status(404).json({ error: 'CPU Opponent not found' })
+            }
+
+            return res.json(cpuOpponent)
+        } catch (error) {
+            next(error)
+        }
+    }
+)
 
 // @route DELETE /api/cpuOpponents/:cpuOpponentId
 // @desc Remove CPU Opponent
 // @access Private
-router.delete('/:cpuOpponentId', requiresAuth, async (req, res) => {
+router.delete('/:cpuOpponentId', requiresAuth, async (req, res, next) => {
     try {
         const cpuOpponent = await CPUOpponent.findOne({
             _id: req.params.cpuOpponentId,
         })
 
         if (!cpuOpponent) {
-            return res.status(404).json({ error: 'Opponent does not exist' })
+            return res.status(404).json({ error: 'CPU Opponent not found' })
         }
 
         await CPUOpponent.findByIdAndRemove({
@@ -72,8 +137,7 @@ router.delete('/:cpuOpponentId', requiresAuth, async (req, res) => {
 
         return res.json({ success: true })
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 

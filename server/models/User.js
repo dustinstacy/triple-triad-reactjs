@@ -2,6 +2,10 @@ import { Schema, model } from 'mongoose'
 
 const UserSchema = new Schema(
     {
+        role: {
+            type: String,
+            default: 'player',
+        },
         username: {
             type: String,
             required: true,

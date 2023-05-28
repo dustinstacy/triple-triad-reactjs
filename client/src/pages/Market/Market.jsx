@@ -117,11 +117,11 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
 
     const completePurchase = async () => {
         try {
-            await axios.put('/api/profile', {
+            await axios.put('/api/profile/info', {
                 coin: coin - finalPrice,
             })
 
-            await axios.put('api/profile/inventory', {
+            await axios.put('/api/profile/inventory', {
                 inventory: [...inventory, ...finalPurchase],
             })
             getCurrentUser()

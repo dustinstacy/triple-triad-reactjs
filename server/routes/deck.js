@@ -1,74 +1,99 @@
 import express from 'express'
-import requiresAuth from '../middleware/permissions.js'
+import { requiresAuth } from '../middleware/permissions.js'
 import Deck from '../models/Deck.js'
+import User from '../models/User.js'
 
 const router = express.Router()
 
 // @route GET /api/deck/test
-// @desc Test the auth route
+// @desc Test the Deck route
 // @access Public
 router.get('/test', (req, res) => {
     res.send('Deck route working')
 })
 
 // @route GET /api/deck
-// @desc Get user deck
+// @desc Get user's Deck
 // @access Private
-router.get('/current', requiresAuth, async (req, res) => {
+router.get('/', requiresAuth, async (req, res, next) => {
     try {
-        const deck = await Deck.find({ user: req.user._id })
+        const deck = await Deck.findOne({
+            user: req.user._id,
+        }).lean()
 
         return res.json(deck)
     } catch (error) {
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
-// @route POST /api/deck/add
-// @route Add card to users deck
+// @route POST /api/deck
+// @route Create a new user Deck
 // @access Private
-router.post('/add', requiresAuth, async (req, res) => {
+router.post('/', requiresAuth, async (req, res, next) => {
     try {
+        const user = await User.findOne({
+            _id: req.user._id,
+        })
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
         const newDeck = new Deck({
-            user: req.body.user,
-            _id: req.body._id,
-            image: req.body.image,
-            values: req.body.values,
-            empower: req.body.empower,
-            weaken: req.body.weaken,
+            user: user._id,
+            cards: [],
         })
 
         await newDeck.save()
+
         return res.json(newDeck)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
-// @route DELETE /api/deck/:deckId/remove
-// @desc Remove card from user's deck
+// @route PUT /api/deck/:card_id/add
+// @desc Add a card to user's Deck
 // @access Private
-router.delete('/:deckId/remove', requiresAuth, async (req, res) => {
+router.put('/add', requiresAuth, async (req, res, next) => {
     try {
-        const card = await Deck.findOne({
-            user: req.user._id,
-            _id: req.params.deckId,
-        })
+        const cardData = req.body
 
-        if (!card) {
-            return res.status(404).json({ error: 'Card does not exist' })
+        const deck = await Deck.findOneAndUpdate(
+            { user: req.user._id },
+            { $push: { cards: cardData } },
+            { new: true }
+        )
+
+        if (!deck) {
+            return res.status(404).json({ error: 'User deck not found' })
         }
 
-        await Deck.findByIdAndRemove({
-            user: req.body._id,
-            _id: req.params.deckId,
-        })
-
-        return res.json({ success: true })
+        return res.json(deck)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
+    }
+})
+
+// @route PUT /api/deck/:card_id/remove
+// @desc Remove card from user's deck
+// @access Private
+router.put('/:card_id/remove', requiresAuth, async (req, res, next) => {
+    try {
+        const deck = await Deck.findOneAndUpdate(
+            { user: req.user._id },
+            { $pull: { cards: { _id: req.params.card_id } } },
+            { new: true }
+        )
+
+        if (!deck) {
+            return res.status(404).json({ error: 'User deck not found' })
+        }
+
+        return res.json(deck)
+    } catch (error) {
+        next(error)
     }
 })
 

@@ -6,27 +6,32 @@ const DeckSchema = new Schema(
         user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
-        },
-        _id: {
-            type: Schema.Types.ObjectId,
-            ref: 'Collection',
-        },
-        image: {
-            type: String,
             required: true,
         },
-        values: [
+        cards: [
             {
-                type: String,
-                required: true,
+                _id: {
+                    type: Schema.Types.ObjectId,
+                    required: true,
+                },
+                image: {
+                    type: String,
+                    required: true,
+                },
+                empower: {
+                    type: String,
+                },
+                weaken: {
+                    type: String,
+                },
+                values: [
+                    {
+                        type: String,
+                        required: true,
+                    },
+                ],
             },
         ],
-        empower: {
-            type: String,
-        },
-        weaken: {
-            type: String,
-        },
     },
     {
         timestamps: true,

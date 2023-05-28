@@ -13,7 +13,7 @@ const Account = () => {
     }, [])
 
     const updateUserImage = () => {
-        axios.put('./api/profile', {
+        axios.put('./api/profile/info', {
             image: userImage,
         })
         setUserImage('')

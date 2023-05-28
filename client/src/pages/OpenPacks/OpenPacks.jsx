@@ -117,24 +117,28 @@ const Packs = () => {
 
         const { contents } = chosenPack ?? {}
         const newCards = getRandomCards(contents.count, contents.odds, allCards)
-        newCards.forEach((card) => {
+        newCards.forEach(async (card) => {
             assignRandomValues(card)
-            axios.post('/api/collection/new', {
-                user: user._id,
+            const cardData = {
                 name: card.name,
                 number: card.number,
                 image: card.image,
                 rarity: card.rarity,
-                values: card.values,
                 empower: card.empower,
                 weaken: card.weaken,
-            })
+                values: card.values,
+            }
+            try {
+                await axios.put('/api/collection/new', cardData)
+            } catch (error) {
+                console.log(error)
+            }
         })
         setPackContents(newCards)
 
         removeObjectByValue(user.inventory, currentPack.name)
         await axios
-            .put('api/profile/inventory', {
+            .put('/api/profile/inventory', {
                 inventory: user.inventory,
             })
             .then(() => getCurrentUser())

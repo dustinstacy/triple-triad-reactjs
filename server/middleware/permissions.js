@@ -1,7 +1,7 @@
 import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 
-const requiresAuth = async (req, res, next) => {
+export const requiresAuth = async (req, res, next) => {
     const token = req.cookies['access-token']
     let isAuthed = false
 
@@ -28,4 +28,16 @@ const requiresAuth = async (req, res, next) => {
     return next()
 }
 
-export default requiresAuth
+export const requiresAdmin = async (req, res, next) => {
+    try {
+        const user = req.user
+
+        if (user.role === 'admin') {
+            return next()
+        } else {
+            return res.status(403).json({ error: 'Forbidden' }) // User is not authorized as an admin
+        }
+    } catch (error) {
+        next(error)
+    }
+}

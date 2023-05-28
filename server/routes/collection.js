@@ -1,6 +1,7 @@
 import express from 'express'
-import requiresAuth from '../middleware/permissions.js'
+import { requiresAuth } from '../middleware/permissions.js'
 import Collection from '../models/Collection.js'
+import User from '../models/User.js'
 
 const router = express.Router()
 
@@ -11,184 +12,156 @@ router.get('/test', (req, res) => {
     res.send('Collection route working')
 })
 
-// @route GET /api/collection/current
-// @desc Get user's card collection
+// @route GET /api/collection
+// @desc Get user's Collection
 // @access Private
-router.get('/current', requiresAuth, async (req, res) => {
+router.get('/', requiresAuth, async (req, res, next) => {
     try {
-        const collection = await Collection.find({
+        const collection = await Collection.findOne({
             user: req.user._id,
-        })
+        }).lean()
 
         return res.json(collection)
     } catch (error) {
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
-// @route POST /api/collection/new
-// @route Add card to user's collection
+// @route POST /api/collection
+// @route Create new user Collection
 // @access Private
-router.post('/new', requiresAuth, async (req, res) => {
+router.post('/', requiresAuth, async (req, res, next) => {
     try {
+        const user = await User.findOne({
+            _id: req.user._id,
+        })
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
         const newCollection = new Collection({
-            user: req.body.user,
-            name: req.body.name,
-            number: req.body.number,
-            image: req.body.image,
-            rarity: req.body.rarity,
-            values: req.body.values,
-            empower: req.body.empower,
-            weaken: req.body.weaken,
+            user: user._id,
+            cards: [],
         })
 
         await newCollection.save()
+
         return res.json(newCollection)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
-// @route PUT /api/collection/:collectionId
-// @desc Update a card in user's collection
+// @route PUT /api/collection/new
+// @route Add a new card to user's Collection
 // @access Private
-router.put('/:collectionId', requiresAuth, async (req, res) => {
+router.put('/new', requiresAuth, async (req, res, next) => {
     try {
-        const card = await Collection.findOne({
-            user: req.body._id,
-            _id: req.params.collectionId,
-        })
+        const cardData = req.body
 
-        if (!card) {
-            return res.status(404).json({ error: 'Card does not exist' })
-        }
-
-        const updatedCard = await Collection.findOneAndUpdate(
-            {
-                user: req.body._id,
-                _id: req.params.collectionId,
-            },
-            {
-                values: req.body.values,
-                empower: req.body.empower,
-                weaken: req.body.weaken,
-                xp: req.body.xp,
-                level: req.body.level,
-                timesPlayed: req.body.timesPlayed,
-                enemiesConverted: req.body.enemiesConverted,
-            },
-            {
-                new: true,
-            }
+        const collection = await Collection.findOneAndUpdate(
+            { user: req.user._id },
+            { $push: { cards: cardData } },
+            { new: true }
         )
 
-        return res.json(updatedCard)
+        if (!collection) {
+            return res.status(404).json({ error: 'Collection not found' })
+        }
+
+        return res.json(collection)
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
-// @route PUT /api/collection/:collectionId/selected
-// @desc Add card from user's collection to selected cards
+// @route PUT /api/collection/:cardId/:action
+// @desc Update a card in user's Collection
 // @access Private
-router.put('/:collectionId/selected', requiresAuth, async (req, res) => {
+router.put('/:cardId/:action', requiresAuth, async (req, res, next) => {
     try {
-        const card = await Collection.findOne({
+        const collection = await Collection.findOne({
             user: req.user._id,
-            _id: req.params.collectionId,
         })
 
-        if (!card) {
-            return res.status(404).json({ error: 'Card does not exist' })
+        if (!collection) {
+            return res.status(404).json({ error: 'Collection not found' })
         }
 
-        if (card.selected) {
-            return res.status(400).json({ error: 'Already added to selected' })
-        }
-
-        const updatedCard = await Collection.findOneAndUpdate(
-            {
-                user: req.user._id,
-                _id: req.params.collectionId,
-            },
-            {
-                selected: true,
-            },
-            {
-                new: true,
-            }
+        const card = collection.cards.find(
+            (card) => card._id.toString() === req.params.cardId
         )
 
-        return res.json(updatedCard)
+        if (!card) {
+            return res.status(404).json({ error: 'Card not found' })
+        }
+
+        switch (req.params.action) {
+            case 'update':
+                card.values = req.body.values
+                card.empower = req.body.empower
+                card.weaken = req.body.weaken
+                card.xp = req.body.xp
+                card.level = req.body.level
+                card.timesPlayed = req.body.timesPlayed
+                card.enemiesConverted = req.body.enemiesConverted
+                await collection.save()
+                return res.json(card)
+            case 'select':
+                if (card.selected) {
+                    return res
+                        .status(400)
+                        .json({ error: 'Card already selected' })
+                }
+                card.selected = true
+                await collection.save()
+                return res.json(collection)
+            case 'unselect':
+                if (!card.selected) {
+                    return res
+                        .status(400)
+                        .json({ error: 'Card already unselected' })
+                }
+                card.selected = false
+                await collection.save()
+                return res.json(collection)
+            default:
+                return res.status(400).json({ error: 'Invalid action' })
+        }
     } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
+        next(error)
     }
 })
 
-// @route PUT /api/collection/:collectionId/removeSelection
-// @desc Remove card from user's collection from selected cards
-// @access Private
-router.put('/:collectionId/removeSelection', requiresAuth, async (req, res) => {
-    try {
-        const card = await Collection.findOne({
-            user: req.user._id,
-            _id: req.params.collectionId,
-        })
-
-        if (!card) {
-            return res.status(404).json({ error: 'Card does not exist' })
-        }
-
-        if (!card.selected) {
-            return res
-                .status(400)
-                .json({ error: 'Card already removed from selected' })
-        }
-
-        const updatedCard = await Collection.findOneAndUpdate(
-            {
-                user: req.user._id,
-                _id: req.params.collectionId,
-            },
-            {
-                selected: false,
-            },
-            {
-                new: true,
-            }
-        )
-
-        return res.json(updatedCard)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error.message)
-    }
-})
-
-// @route DELETE /api/collection/:collectionId/delete
+// @route DELETE /api/collection/:cardId/delete
 // @desc Remove card from user's collection
 // @access Private
-router.delete('/:collectionId/delete', requiresAuth, async (req, res) => {
+router.delete('/:cardId/delete', requiresAuth, async (req, res, next) => {
     try {
-        const card = await Collection.findOne({
-            _id: req.params.collectionId,
+        const collection = await Collection.findOne({
+            user: req.user._id,
         })
 
-        if (!card) {
-            return res.status(404).json({ error: 'Card does not exist' })
+        if (!collection) {
+            return res.status(404).json({ error: 'Collection not found' })
         }
 
-        await Collection.findOneAndRemove({
-            _id: req.params.collectionId,
-        })
+        const cardIndex = collection.cards.findIndex(
+            (card) => card._id.toString() === req.params.cardId
+        )
+
+        if (cardIndex === -1) {
+            return res.status(404).json({ error: 'Card not found' })
+        }
+
+        collection.cards.splice(cardIndex, 1)
+
+        await collection.save()
 
         return res.json({ success: true })
     } catch (error) {
-        console.log(error)
-        res.status(500).send(error.message)
+        next(error)
     }
 })
 

@@ -1,4 +1,5 @@
 import validator from 'validator'
+import User from '../models/User.js'
 
 const isEmpty = (value) =>
     value === undefined ||
@@ -6,30 +7,31 @@ const isEmpty = (value) =>
     (typeof value === 'object' && Object.keys(value).length === 0) ||
     (typeof value === 'string' && value.trim().length === 0)
 
-const validateRegisterInput = (data) => {
+export const validateRegisterInput = (data) => {
     let errors = {}
+    const { username, email, password, confirmPassword } = data
 
-    if (isEmpty(data.username)) {
+    if (isEmpty(username)) {
         errors.username = 'Username field cannot be empty'
-    } else if (!validator.isLength(data.username, { min: 2, max: 25 })) {
+    } else if (!validator.isLength(username, { min: 2, max: 25 })) {
         errors.username = 'Username must be between 2 and 25 characters long'
     }
 
-    if (isEmpty(data.email)) {
+    if (isEmpty(email)) {
         errors.email = 'Email field cannot be empty'
-    } else if (!validator.isEmail(data.email)) {
+    } else if (!validator.isEmail(email)) {
         errors.email = 'Email is invalid, please provide a valid email'
     }
 
-    if (isEmpty(data.password)) {
+    if (isEmpty(password)) {
         errors.password = 'Password field cannot be empty'
-    } else if (!validator.isLength(data.password, { min: 6, max: 150 })) {
+    } else if (!validator.isLength(password, { min: 6, max: 150 })) {
         errors.password = 'Password must be between 6 and 150 characters long'
     }
 
-    if (isEmpty(data.confirmPassword)) {
+    if (isEmpty(confirmPassword)) {
         errors.confirmPassword = 'Confirm password field cannot be empty'
-    } else if (!validator.equals(data.password, data.confirmPassword)) {
+    } else if (!validator.equals(password, confirmPassword)) {
         errors.confirmPassword = 'Passwords do not match'
     }
 
@@ -39,4 +41,32 @@ const validateRegisterInput = (data) => {
     }
 }
 
-export default validateRegisterInput
+export const checkForExistingEmail = async (req, res, next) => {
+    try {
+        const existingEmail = await User.findOne({
+            email: new RegExp('^' + req.body.email + '$', 'i'),
+        })
+        if (existingEmail) {
+            return res
+                .status(400)
+                .json({ email: 'This email address is already registered' })
+        }
+        next()
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const checkForExistingUsername = async (req, res, next) => {
+    try {
+        const existingUsername = await User.findOne({
+            username: new RegExp('^' + req.body.username + '$', 'i'),
+        })
+        if (existingUsername) {
+            return res.status(400).json({ username: 'Username already taken' })
+        }
+        next()
+    } catch (error) {
+        next(error)
+    }
+}

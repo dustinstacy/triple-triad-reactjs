@@ -3,9 +3,11 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 import { requiresAuth } from '../middleware/permissions.js'
-import validateRegisterInput from '../validation/registerValidation.js'
-import checkExistingEmail from '../middleware/checkExistingEmail.js'
-import checkExistingUsername from '../middleware/checkExistingUsername.js'
+import {
+    validateRegisterInput,
+    checkForExistingEmail,
+    checkForExistingUsername,
+} from '../validation/registerValidation.js'
 import User from '../models/User.js'
 
 const router = express.Router()
@@ -15,7 +17,6 @@ const setAccessTokenCookie = (res, token) => {
     res.cookie('access-token', token, {
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        secure: true,
     })
 }
 
@@ -31,8 +32,8 @@ router.get('/test', (req, res) => {
 // @access Public
 router.post(
     '/register',
-    checkExistingEmail,
-    checkExistingUsername,
+    checkForExistingEmail,
+    checkForExistingUsername,
     async (req, res, next) => {
         try {
             const { errors, isValid } = validateRegisterInput(req.body)

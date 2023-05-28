@@ -1,4 +1,5 @@
 import validator from 'validator'
+import User from '../models/User.js'
 
 const isEmpty = (value) =>
     value === undefined ||
@@ -6,7 +7,7 @@ const isEmpty = (value) =>
     (typeof value === 'object' && Object.keys(value).length === 0) ||
     (typeof value === 'string' && value.trim().length === 0)
 
-const validateRegisterInput = (data) => {
+export const validateRegisterInput = (data) => {
     let errors = {}
     const { username, email, password, confirmPassword } = data
 
@@ -40,4 +41,32 @@ const validateRegisterInput = (data) => {
     }
 }
 
-export default validateRegisterInput
+export const checkForExistingEmail = async (req, res, next) => {
+    try {
+        const existingEmail = await User.findOne({
+            email: new RegExp('^' + req.body.email + '$', 'i'),
+        })
+        if (existingEmail) {
+            return res
+                .status(400)
+                .json({ email: 'This email address is already registered' })
+        }
+        next()
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const checkForExistingUsername = async (req, res, next) => {
+    try {
+        const existingUsername = await User.findOne({
+            username: new RegExp('^' + req.body.username + '$', 'i'),
+        })
+        if (existingUsername) {
+            return res.status(400).json({ username: 'Username already taken' })
+        }
+        next()
+    } catch (error) {
+        next(error)
+    }
+}

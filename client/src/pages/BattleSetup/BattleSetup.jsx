@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { TbPlayCard } from 'react-icons/tb'
 
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button } from '../../components'
-import {
-    assignRandomCardValues,
-    assignRandomDeckValues,
-    getRandomCards,
-} from '../../utils/randomizers'
+import { assignRandomDeckValues, getRandomCards } from '../../utils/randomizers'
 import { coinImage } from '../../assets/icons'
 
 import './BattleSetup.scss'
@@ -23,17 +20,21 @@ const Opponent = ({
     const { allCards, user, getCurrentUser } = useGlobalContext()
 
     const getOpponentDeck = () => {
-        const cpuDeck = getRandomCards(
+        const currentOpponentDeck = getRandomCards(
             14,
             { Common: 90, Uncommon: 10 },
             allCards
         )
-        const cpuCard = allCards.filter(
+        const currentOpennentCard = allCards.find(
             (card) => card._id === opponent.rewards.card
         )
-        cpuDeck.push(cpuCard[0])
-        assignRandomDeckValues(cpuDeck, opponent.minPower, opponent.maxPower)
-        setSelectedOpponentDeck((prevDeck) => cpuDeck)
+        currentOpponentDeck.push(currentOpennentCard)
+        assignRandomDeckValues(
+            currentOpponentDeck,
+            opponent.minPower,
+            opponent.maxPower
+        )
+        setSelectedOpponentDeck((prevDeck) => currentOpponentDeck)
     }
 
     const selectOpponent = () => {
@@ -60,21 +61,21 @@ const Opponent = ({
                         <img src={opponent?.image} alt='opponent image' />
                         <h3>{opponent?.name}</h3>
                     </div>
-                    <div className='opponent__stats center'>
-                        <p>
-                            Power <br />{' '}
+                    <div className='opponent__stats'>
+                        <p className='stat'>
+                            Power
                             <span>
                                 {opponent?.minPower} - {opponent?.maxPower}
                             </span>
                         </p>
-                        <p>
-                            Required Deck Size <br />
-                            {opponent?.minDeckSize}
+                        <p className='stat'>
+                            Required Deck Size
+                            <span>{opponent?.minDeckSize}</span>
                         </p>
                     </div>
                     <div className='opponent__rewards center'>
                         <p>Possible Rewards: </p>
-                        <div className='rewards center'>
+                        <div className='rewards'>
                             <div className='reward'>
                                 <p>XP</p>
                                 {opponent?.rewards.xp}
@@ -86,6 +87,16 @@ const Opponent = ({
                                     <img src={coinImage} alt='coin' />
                                 </span>
                             </div>
+                            {!user?.defeatedEnemies.includes(
+                                `${opponent.name}`
+                            ) && (
+                                <div className='reward'>
+                                    <p>Card</p>
+                                    <span>
+                                        <TbPlayCard className='card-icon' />
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <OpponentMenu
@@ -103,11 +114,7 @@ const Opponent = ({
     )
 }
 
-const OpponentMenu = ({
-    selectedOpponent,
-    setSelectedOpponent,
-    selectedOpponentDeck,
-}) => {
+const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
     const { getCurrentUser, user, userCards, userDeck } = useGlobalContext()
     const navigate = useNavigate()
 
@@ -202,10 +209,6 @@ const BattleSetup = () => {
         }
         getOpponents()
     }, [])
-
-    // useEffect(() => {
-    //     console.log(cpuOpponents, 'Opponents')
-    // }, [cpuOpponents])
 
     return (
         <div className='setup page center'>

@@ -4,7 +4,11 @@ import axios from 'axios'
 
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button } from '../../components'
-import { assignRandomValues, getRandomCards } from '../../utils/randomizers'
+import {
+    assignRandomCardValues,
+    assignRandomDeckValues,
+    getRandomCards,
+} from '../../utils/randomizers'
 import { coinImage } from '../../assets/icons'
 
 import './BattleSetup.scss'
@@ -17,7 +21,6 @@ const Opponent = ({
     setSelectedOpponentDeck,
 }) => {
     const { allCards, user, getCurrentUser } = useGlobalContext()
-    const [opponentDeck, setOpponentDeck] = useState([])
 
     const getOpponentDeck = () => {
         const cpuDeck = getRandomCards(
@@ -29,22 +32,17 @@ const Opponent = ({
             (card) => card._id === opponent.rewards.card
         )
         cpuDeck.push(cpuCard[0])
-        cpuDeck.forEach((card) => assignRandomValues(card))
-        const power = cpuDeck?.reduce(
-            (total, card) =>
-                total + card.values.reduce((sum, current) => sum + current, 0),
-            0
-        )
-        console.log(power)
+        assignRandomDeckValues(cpuDeck, opponent.minPower, opponent.maxPower)
+        setSelectedOpponentDeck((prevDeck) => cpuDeck)
     }
 
     const selectOpponent = () => {
         setSelectedOpponent(opponent)
-        setSelectedOpponentDeck((prevDeck) => opponentDeck)
+        getOpponentDeck()
     }
 
     useEffect(() => {
-        getCurrentUser().then(() => getOpponentDeck())
+        getCurrentUser()
     }, [])
 
     return (

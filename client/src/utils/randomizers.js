@@ -4,9 +4,8 @@ const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-// totalOfValues: Total of all 4 card values
-// maxSingleValue: Maximum value of any single value
-// Set the value limitations for an individual card
+// Helper function to generate random total of all 4 card values
+// and maximum value of any single value based on the card's rarity
 const setValueLimits = (card) => {
     let totalOfValues, maxSingleValue
 
@@ -30,13 +29,14 @@ const setValueLimits = (card) => {
     return { totalOfValues, maxSingleValue }
 }
 
-// Generates random values for a card based on it's rarity
-export const assignRandomValues = (card) => {
-    // Generate total of all 4 values and max single value
-    // based on cards rarity
+// Generates random values for a card
+export const assignRandomCardValues = (card) => {
+    // See setValueLimits()
     const { totalOfValues, maxSingleValue } = setValueLimits(card)
 
+    // Create empty array to store 4 values
     let values = [...new Array(4)]
+    // Variable to track sum of all 4 card values
     let sum = 0
 
     do {
@@ -62,6 +62,58 @@ export const assignRandomValues = (card) => {
 
     // Assign randomly generated values to the card object's 'values' property
     return (card.values = values)
+}
+
+// Assigns random values to all cards in a given deck,
+// ensuring the total sum of card values falls within a specified range.
+// deck: Array of card objects representing the deck.
+// minDeckValue: Minimum total sum of all card values allowed.
+// maxDeckValue: Maximum total sum of all card values allowed.
+export const assignRandomDeckValues = (deck, minDeckValue, maxDeckValue) => {
+    // Variable to store the final calculated sum of all card values
+    let finalValue = 0
+    // Variable to store the scale factor for adjusting values
+    let scale = 0
+
+    do {
+        // Assign random card values to all cards in the deck
+        deck.forEach((card) => {
+            assignRandomCardValues(card)
+        })
+
+        // Calculate the current sum of all card values in the deck
+        const currentSum = deck.reduce((total, card) => {
+            return total + card.values.reduce((sum, value) => sum + value, 0)
+        }, 0)
+
+        // Determine the scaling factor based on the current sum of values
+        if (currentSum > maxDeckValue) {
+            scale = maxDeckValue / currentSum
+        } else if (currentSum < minDeckValue) {
+            scale = minDeckValue / currentSum
+        }
+
+        // Adjust the values based on the scale to bring total within closer
+        // range of the desired outcome
+        deck.forEach((card) => {
+            card.values = card.values.map((value) => Math.round(value * scale))
+        })
+
+        // Calculate the final sum of all card values in the deck
+        finalValue = deck.reduce((total, card) => {
+            if (card.values && card.values.length) {
+                return (
+                    total + card.values.reduce((sum, value) => sum + value, 0)
+                )
+            }
+            return total
+        }, 0)
+    } while (
+        // When the total value of all card values in the deck falls within range,
+        // exit the loop
+        finalValue < minDeckValue ||
+        finalValue > maxDeckValue
+    )
 }
 
 // nCards: Number of cards to return

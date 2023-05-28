@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button } from '../../components'
 import { onboardingStages } from '../../constants/onboardingStages'
-import { getRandomCards, assignRandomValues } from '../../utils/randomizers'
+import { getRandomCards, assignRandomCardValues } from '../../utils/randomizers'
 
 import './ProductTour.scss'
 
@@ -82,7 +82,7 @@ const ProductTour = ({ step }) => {
                         allCards
                     )
                     starterCards.forEach(async (card) => {
-                        assignRandomValues(card)
+                        assignRandomCardValues(card)
                         const cardData = {
                             name: card.name,
                             number: card.number,

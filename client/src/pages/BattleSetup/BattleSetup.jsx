@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from '../../context/GlobalContext'
 import './BattleSetup.scss'
-import { cpuOpponents } from '../../constants/cpuOpponents.js'
 import { coinImage } from '../../assets/icons'
 import { getRandomCards } from '../../utils/randomizers'
 import { useNavigate } from 'react-router-dom'
@@ -17,26 +16,11 @@ const Opponent = ({
 }) => {
     const { allCards, user, getCurrentUser } = useGlobalContext()
     const [opponentDeck, setOpponentDeck] = useState([])
-    const [opponentDeckStrength, setOpponentDeckStrength] = useState(0)
 
     const getOpponentDeck = () => {
         const randomDeck = Array.from({ length: 15 })
         const updatedDeck = getRandomCards(randomDeck, opponent, allCards)
         setOpponentDeck(updatedDeck)
-        const deckStrength = calculateDeckStrength(updatedDeck)
-        setOpponentDeckStrength(deckStrength)
-    }
-
-    const calculateDeckStrength = (deck) => {
-        return deck.reduce(
-            (total, card) =>
-                total +
-                card.values.reduce(
-                    (sum, current) => parseInt(sum) + parseInt(current),
-                    0
-                ),
-            0
-        )
     }
 
     const selectOpponent = () => {
@@ -67,14 +51,12 @@ const Opponent = ({
                         <p>
                             Power <br />{' '}
                             <span>
-                                {opponentDeckStrength > 0
-                                    ? opponentDeckStrength
-                                    : 'Loading...'}
+                                {opponent?.minPower} - {opponent?.maxPower}
                             </span>
                         </p>
                         <p>
                             Required Deck Size <br />
-                            {opponent?.size}
+                            {opponent?.minDeckSize}
                         </p>
                     </div>
                     <div className='opponent__rewards center'>
@@ -82,12 +64,12 @@ const Opponent = ({
                         <div className='rewards center'>
                             <div className='reward'>
                                 <p>XP</p>
-                                {opponent?.xpReward}
+                                {opponent?.rewards.xp}
                             </div>
                             <div className='reward'>
                                 <p>Coin</p>
                                 <span>
-                                    {opponent?.coinReward}
+                                    {opponent?.rewards.coin}
                                     <img src={coinImage} alt='coin' />
                                 </span>
                             </div>
@@ -174,7 +156,7 @@ const OpponentMenu = ({
             <div className='user-deck__power'>
                 <p>Power</p>
                 <span>
-                    {userDeck.reduce(
+                    {userDeck?.reduce(
                         (total, card) =>
                             total +
                             card.values.reduce(
@@ -189,25 +171,38 @@ const OpponentMenu = ({
             </div>
             <div className='user-deck__size'>
                 <p>Size</p>
-                <span>{userDeck.length}</span>
+                <span>{userDeck?.length}</span>
             </div>
             <Button
                 onClick={autoBuild}
                 label='FIll Deck'
-                disabled={userDeck.length === selectedOpponent.size}
+                disabled={userDeck?.length === selectedOpponent.size}
             />
             <Button
                 label='Start Battle'
                 onClick={() => startBattle()}
-                disabled={userDeck.length !== selectedOpponent.size}
+                disabled={userDeck?.length !== selectedOpponent.size}
             />
         </div>
     )
 }
 
 const BattleSetup = () => {
+    const [cpuOpponents, setCPUOpponents] = useState({})
     const [selectedOpponent, setSelectedOpponent] = useState('')
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState('')
+
+    useEffect(() => {
+        const getOpponents = async () => {
+            const opponents = await axios.get('/api/cpuOpponents')
+            setCPUOpponents(opponents.data)
+        }
+        getOpponents()
+    }, [])
+
+    useEffect(() => {
+        console.log(cpuOpponents)
+    }, [cpuOpponents])
 
     return (
         <div className='setup page center'>
@@ -217,16 +212,17 @@ const BattleSetup = () => {
                     <hr />
                 </div>
 
-                {cpuOpponents?.map((opponent) => (
-                    <Opponent
-                        key={opponent.name}
-                        opponent={opponent}
-                        selectedOpponent={selectedOpponent}
-                        setSelectedOpponent={setSelectedOpponent}
-                        selectedOpponentDeck={selectedOpponentDeck}
-                        setSelectedOpponentDeck={setSelectedOpponentDeck}
-                    />
-                ))}
+                {cpuOpponents.length &&
+                    cpuOpponents?.map((opponent) => (
+                        <Opponent
+                            key={opponent.name}
+                            opponent={opponent}
+                            selectedOpponent={selectedOpponent}
+                            setSelectedOpponent={setSelectedOpponent}
+                            selectedOpponentDeck={selectedOpponentDeck}
+                            setSelectedOpponentDeck={setSelectedOpponentDeck}
+                        />
+                    ))}
             </div>
         </div>
     )

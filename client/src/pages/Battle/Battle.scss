@@ -68,6 +68,9 @@
                 .cpu-score {
                     padding: 36px;
                     font-size: 36px;
+                    img {
+                        height: 48px;
+                    }
                 }
 
                 .p1-score {
@@ -78,6 +81,9 @@
                 .cpu-score {
                     align-self: flex-start;
                     padding-top: 140px;
+                    img {
+                        rotate: 180deg;
+                    }
                 }
             }
         }

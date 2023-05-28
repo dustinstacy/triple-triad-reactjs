@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
 import { GiBroadheadArrow } from 'react-icons/gi'
 import { useNavigate } from 'react-router-dom'
-import { turnArrow } from '../../assets/icons'
+import { blueScore, redScore, turnArrow } from '../../assets/icons'
 
 const Score = ({ playerScore, user }) => {
     const score = [...new Array(playerScore)]
@@ -15,7 +15,13 @@ const Score = ({ playerScore, user }) => {
     return (
         <div className={`${user}-score`}>
             {score.map((count, i) => (
-                <div key={'count' + i}>{user === 'p1' ? '🔵' : '🔴'}</div>
+                <div key={'count' + i}>
+                    {user === 'p1' ? (
+                        <img src={blueScore} alt='blue score' />
+                    ) : (
+                        <img src={redScore} alt='red score' />
+                    )}
+                </div>
             ))}
         </div>
     )

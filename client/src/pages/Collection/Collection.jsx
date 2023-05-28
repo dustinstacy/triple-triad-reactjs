@@ -201,9 +201,7 @@ const DeckBar = ({
                     (total, card) =>
                         total +
                         card.values.reduce(
-                            (sum, current) =>
-                                parseInt(sum) +
-                                parseInt(current.replace(/A/g, 10)),
+                            (sum, current) => parseInt(sum) + parseInt(current),
                             0
                         ),
                     0

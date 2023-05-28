@@ -18,6 +18,7 @@ const CPUOpponentSchema = new Schema(
             type: Number,
             required: true,
         },
+        deckOdds: {},
         minPower: {
             type: Number,
             required: true,

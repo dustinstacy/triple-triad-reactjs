@@ -180,31 +180,36 @@
 }
 
 .turn-arrow {
-    margin-top: 100px;
-    margin-left: 4px;
-    color: var(--secondary-color);
-    font-size: 72px;
-    transition: all 1s ease-in-out;
+    height: 140px;
+    width: 70px;
+    transition: all 1s ease;
+    transform-origin: 47% 52%;
 }
 
 .turn-arrow.down {
-    transform: rotateZ(40);
+    transform: rotate(180deg);
 }
 
 .turn-arrow.up {
-    transform: rotateZ(220);
+    transform: rotate(0deg);
 }
 
 .turn-arrow.start-game {
-    animation: spin 0.25s infinite forwards;
+    animation: spin 0.1s linear infinite;
 }
 
 @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
+    25% {
+        transform: rotate(90deg);
+    }
     50% {
         transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
     }
     100% {
         transform: rotate(360deg);

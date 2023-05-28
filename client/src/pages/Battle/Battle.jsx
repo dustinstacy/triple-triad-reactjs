@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Avatar, Card, Cell } from '../../components'
+import { Card, Cell } from '../../components'
 import './Battle.scss'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { BiArrowFromBottom, BiArrowFromTop } from 'react-icons/bi'
@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom'
 import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
 import { GiBroadheadArrow } from 'react-icons/gi'
 import { useNavigate } from 'react-router-dom'
+import { turnArrow } from '../../assets/icons'
 
 const Score = ({ playerScore, user }) => {
     const score = [...new Array(playerScore)]
@@ -46,8 +47,10 @@ const Board = ({ board, placeCard, playerScores, isP1Turn }) => {
                 )}
             </div>
             <div className='column'>
-                <GiBroadheadArrow
+                <img
                     className={`turn-arrow ${isP1Turn ? 'down' : 'up'}`}
+                    src={turnArrow}
+                    alt='turn arrow'
                 />
             </div>
         </div>
@@ -375,7 +378,7 @@ const Battle = () => {
                 Math.random() < 0.5 ? setIsP1Turn(true) : setIsP1Turn(false)
             arrowElement.classList.remove('start-game')
             setBattleStarted(true)
-        }, 1500)
+        }, 1000)
     }
 
     const saveStateToLocalStorage = () => {

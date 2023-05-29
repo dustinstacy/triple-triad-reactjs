@@ -5,18 +5,17 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import { BiArrowFromBottom, BiArrowFromTop } from 'react-icons/bi'
 import { useLocation } from 'react-router-dom'
 import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
-import { GiBroadheadArrow } from 'react-icons/gi'
 import { useNavigate } from 'react-router-dom'
 import { blueScore, redScore, turnArrow } from '../../assets/icons'
 
-const Score = ({ playerScore, user }) => {
+const Score = ({ playerScore, player }) => {
     const score = [...new Array(playerScore)]
 
     return (
-        <div className={`${user}-score`}>
+        <div className={`${player}-score`}>
             {score.map((count, i) => (
                 <div key={'count' + i}>
-                    {user === 'p1' ? (
+                    {player === 'p1' ? (
                         <img src={blueScore} alt='blue score' />
                     ) : (
                         <img src={redScore} alt='red score' />
@@ -31,8 +30,8 @@ const Board = ({ board, placeCard, playerScores, isP1Turn }) => {
     return (
         <div className='board'>
             <div className='column'>
-                <Score playerScore={playerScores.cpu} user='cpu' />
-                <Score playerScore={playerScores.p1} user='p1' />
+                <Score playerScore={playerScores.cpu} player='cpu' />
+                <Score playerScore={playerScores.p1} player='p1' />
             </div>
             <div className='grid center'>
                 {board.map((contents, i) =>
@@ -64,10 +63,11 @@ const Board = ({ board, placeCard, playerScores, isP1Turn }) => {
 }
 
 const Hand = ({
+    player,
     playerHand,
+    user,
     cardSelected,
     setCardSelected,
-    user,
     isP1Turn,
 }) => {
     const [cardsRaised, setCardsRaised] = useState(false)
@@ -86,11 +86,11 @@ const Hand = ({
 
     return (
         <div
-            className={`${
-                playerHand[0]?.user === user?._id ? 'p1 hand' : 'cpu hand'
-            } ${cardsRaised ? 'raised' : ''}`}
+            className={`${player === 'p1' ? 'p1 hand' : 'cpu hand'} ${
+                cardsRaised ? 'raised' : ''
+            }`}
         >
-            {playerHand[0]?.user === user?._id &&
+            {player === 'p1' &&
                 (cardsRaised ? (
                     <BiArrowFromTop
                         className='down-arrow'
@@ -106,7 +106,8 @@ const Hand = ({
                 <Card
                     key={card?._id + index}
                     card={card}
-                    isShowing={playerHand[0]?.user == user?._id ?? false}
+                    user={user}
+                    isShowing={player == 'p1' ?? false}
                     isSelected={cardSelected?._id === card?._id}
                     handleClick={isP1Turn ? () => selectCard(card) : ''}
                 />
@@ -118,51 +119,105 @@ const Hand = ({
 const Battle = () => {
     const { user, userDeck } = useGlobalContext()
     const { state } = useLocation()
+    const navigate = useNavigate()
 
     const WIDTH = 3
-    const initialDecks = {
-        p1: [],
-        cpu: [],
-    }
-    const initialHands = {
-        p1: [],
-        cpu: [],
-    }
 
-    const initialBoard = [...new Array(WIDTH * WIDTH).fill('empty')]
-    const [decks, setDecks] = useState(initialDecks)
-    const [board, setBoard] = useState(initialBoard)
+    const [decks, setDecks] = useState({
+        p1: [],
+        cpu: [],
+    })
+    const [hands, setHands] = useState({
+        p1: [],
+        cpu: [],
+    })
+    const [board, setBoard] = useState([
+        ...new Array(WIDTH * WIDTH).fill('empty'),
+    ])
     const [emptyCells, setEmptyCells] = useState([
         ...new Array(WIDTH * WIDTH).keys(),
     ])
-    const [hands, setHands] = useState(initialHands)
+
     const [cardSelected, setCardSelected] = useState(null)
     const [isP1Turn, setIsP1Turn] = useState(null)
-    const [battleStarted, setBattleStarted] = useState(false)
-    const [battleOver, setBattleOver] = useState(false)
-    const [modalMessage, setModalMessage] = useState(null)
     const [scores, setScores] = useState({
         p1: 5,
         cpu: 5,
     })
+
+    const [battleStarted, setBattleStarted] = useState(false)
+    const [battleOver, setBattleOver] = useState(false)
+    const [modalMessage, setModalMessage] = useState(null)
+
+    const table = [...hands.p1, ...board, ...hands.cpu]
     const leftColumn = [0, WIDTH, WIDTH * 2]
     const rightColumn = [WIDTH - 1, WIDTH * 2 - 1, WIDTH * 3 - 1]
-    const table = [...hands.p1, ...board, ...hands.cpu]
-    const navigate = useNavigate()
 
     let p1ScoreCounter = 0
-    let p2ScoreCounter = 0
+    let cpuScoreCounter = 0
 
     useEffect(() => {
-        setupBattle()
+        const savedState = localStorage.getItem('battleState')
+        if (savedState) {
+            restoreStateFromLocalStorage(savedState)
+        } else {
+            setupBattle()
+        }
     }, [])
 
+    useEffect(() => {
+        if (battleStarted === true) {
+            saveStateToLocalStorage()
+        }
+    }, [battleStarted])
+
+    useEffect(() => {
+        if (battleOver === true) {
+            removeStateFromLocalStorage()
+        }
+    }, [battleOver])
+
+    const restoreStateFromLocalStorage = (savedState) => {
+        const { decks, hands, board, isP1Turn } = JSON.parse(savedState)
+        setDecks(decks)
+        setHands(hands)
+        setBoard(board)
+        setIsP1Turn(isP1Turn)
+        setBattleStarted(true)
+    }
+
+    const saveStateToLocalStorage = () => {
+        localStorage.setItem(
+            'battleState',
+            JSON.stringify({
+                decks,
+                hands,
+                board,
+                isP1Turn,
+                battleStarted,
+            })
+        )
+    }
+
+    const removeStateFromLocalStorage = () => {
+        localStorage.removeItem('battleState')
+    }
+
     const setupBattle = () => {
+        shuffleDecks()
+        dealHands()
+        randomFirstTurn()
+    }
+
+    const shuffleDecks = () => {
         shuffleCards([userDeck, state.opponentDeck])
         setDecks({
             p1: [...userDeck],
             cpu: [...state.opponentDeck],
         })
+    }
+
+    const dealHands = () => {
         let p1DealtCards = []
         let cpuDealtCards = []
         dealCards(p1DealtCards, userDeck)
@@ -171,7 +226,34 @@ const Battle = () => {
             p1: [...p1DealtCards],
             cpu: [...cpuDealtCards],
         })
-        spinArrow()
+    }
+
+    const randomFirstTurn = () => {
+        const arrowElement = document.querySelector('.turn-arrow')
+        arrowElement.classList.add('start-game')
+        setTimeout(() => {
+            Math.random() < 0.5 ? setIsP1Turn(true) : setIsP1Turn(false)
+            arrowElement.classList.remove('start-game')
+            setBattleStarted(true)
+        }, 1000)
+    }
+
+    const placeCard = (e) => {
+        const index = parseInt(e.target.id)
+        if (cardSelected) {
+            const newBoard = [...board]
+            const newHands = { ...hands }
+            const handToUpdate = newHands[user._id === user._id ? 'p1' : 'cpu']
+            const card = handToUpdate.find((c) => c._id === cardSelected._id)
+            if (card) {
+                const cardIndex = handToUpdate.indexOf(card)
+                handToUpdate.splice(cardIndex, 1)
+                newBoard[index] = card
+                setHands(newHands)
+                setBoard(newBoard)
+                processBattles(index, cardSelected)
+            }
+        }
     }
 
     const processBattles = (index, card) => {
@@ -210,12 +292,12 @@ const Battle = () => {
 
     const updateScores = () => {
         table.forEach((card) => {
-            if (card.user === user?._id) {
+            if (card.number) {
+                cpuScoreCounter++
+            } else if (card.image) {
                 p1ScoreCounter++
-            } else if (card.user) {
-                p2ScoreCounter++
             }
-            setScores({ p1: p1ScoreCounter, cpu: p2ScoreCounter })
+            setScores({ p1: p1ScoreCounter, cpu: cpuScoreCounter })
         })
         endTurn()
     }
@@ -224,6 +306,10 @@ const Battle = () => {
         setCardSelected(null)
         setIsP1Turn((current) => !current)
     }
+
+    useEffect(() => {
+        checkForWin()
+    }, [isP1Turn])
 
     const checkForWin = () => {
         if (emptyCells.length === 0) {
@@ -237,12 +323,10 @@ const Battle = () => {
                 }
                 setBattleOver(true)
             }, 1000)
+        } else if (emptyCells.length < 9) {
+            saveStateToLocalStorage()
         }
     }
-
-    useEffect(() => {
-        checkForWin()
-    }, [isP1Turn])
 
     const cpuMove = () => {
         const newBoardArray = board
@@ -376,69 +460,15 @@ const Battle = () => {
         }
     }, [isP1Turn, hands.cpu])
 
-    const spinArrow = () => {
-        const arrowElement = document.querySelector('.turn-arrow')
-        arrowElement.classList.add('start-game')
-        setTimeout(() => {
-            const randomFirstTurn =
-                Math.random() < 0.5 ? setIsP1Turn(true) : setIsP1Turn(false)
-            arrowElement.classList.remove('start-game')
-            setBattleStarted(true)
-        }, 1000)
-    }
-
-    const saveStateToLocalStorage = () => {
-        localStorage.setItem(
-            'battleState',
-            JSON.stringify({
-                decks,
-                hands,
-                board,
-            })
-        )
-    }
-
-    const restoreStateFromLocalStorage = () => {
-        const savedState = localStorage.getItem('battleState')
-        if (savedState) {
-            const { decks, hands, board } = JSON.parse(savedState)
-            setDecks(decks)
-            setHands(hands)
-            setBoard(board)
-        }
-    }
-
-    const placeCard = (e) => {
-        const index = parseInt(e.target.id)
-        if (cardSelected) {
-            const newBoard = [...board]
-            const newHands = { ...hands }
-            const handToUpdate = newHands[user._id === user._id ? 'p1' : 'cpu']
-            const card = handToUpdate.find((c) => c._id === cardSelected._id)
-            if (card) {
-                const cardIndex = handToUpdate.indexOf(card)
-                handToUpdate.splice(cardIndex, 1)
-                newBoard[index] = card
-                setHands(newHands)
-                setBoard(newBoard)
-                processBattles(index, cardSelected)
-            }
-        }
-    }
-
     return (
         <div className='match page'>
             <div className='table'>
-                <img
-                    className='cpu-image'
-                    src={state.opponent.image}
-                    alt='cpu image '
-                />
                 <Hand
+                    player='cpu'
                     playerHand={hands.cpu}
+                    user={state.opponent}
                     cardSelected={cardSelected}
                     setCardSelected={setCardSelected}
-                    user={user}
                 />
                 <Board
                     board={board}
@@ -447,17 +477,14 @@ const Battle = () => {
                     isP1Turn={isP1Turn}
                 />
                 <Hand
+                    player='p1'
                     playerHand={hands.p1}
+                    user={user}
                     cardSelected={cardSelected}
                     setCardSelected={setCardSelected}
-                    user={user}
                     isP1Turn={isP1Turn}
                 />
-                <img
-                    className='user-image'
-                    src={user?.image}
-                    alt='user image '
-                />
+
                 {battleOver && modalMessage && (
                     <div className='battle-over box'>
                         <span className='result'>{modalMessage}</span>

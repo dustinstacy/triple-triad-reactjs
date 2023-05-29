@@ -2,8 +2,8 @@ import React from 'react'
 import { cardback } from '../../assets/card'
 import './Card.scss'
 
-const Card = ({ card, handleClick, isShowing, isSelected }) => {
-    const { _id, image, user, values } = card
+const Card = ({ card, user, handleClick, isShowing, isSelected }) => {
+    const { _id, image, values } = card
 
     return (
         <div
@@ -11,14 +11,11 @@ const Card = ({ card, handleClick, isShowing, isSelected }) => {
                 isSelected ? 'selected' : ''
             }`}
             id={_id}
-            owner={user}
-            faith={user === 'Goblin' ? 'cpu' : 'p1'}
             onClick={(e) => handleClick(e)}
         >
             <div
-                className={`card__side card__front ${
-                    /\d/.test(user) ? 'blue' : 'red'
-                }`}
+                className='card__side card__front'
+                style={{ backgroundColor: user?.color }}
             >
                 <img className='card__image' src={image} alt={_id} />
                 <div className='card__values'>

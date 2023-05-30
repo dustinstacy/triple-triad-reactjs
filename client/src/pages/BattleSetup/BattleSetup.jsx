@@ -34,6 +34,9 @@ const Opponent = ({
             opponent.minPower,
             opponent.maxPower
         )
+        currentOpponentDeck.forEach((card) => {
+            card.user = opponent
+        })
         setSelectedOpponentDeck((prevDeck) => currentOpponentDeck)
     }
 
@@ -202,13 +205,19 @@ const BattleSetup = () => {
     const [cpuOpponents, setCPUOpponents] = useState({})
     const [selectedOpponent, setSelectedOpponent] = useState('')
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const getOpponents = async () => {
-            const opponents = await axios.get('/api/cpuOpponents')
-            setCPUOpponents(opponents.data)
+        const savedState = localStorage.getItem('battleState')
+        if (savedState) {
+            navigate('/battle')
+        } else {
+            const getOpponents = async () => {
+                const opponents = await axios.get('/api/cpuOpponents')
+                setCPUOpponents(opponents.data)
+            }
+            getOpponents()
         }
-        getOpponents()
     }, [])
 
     return (

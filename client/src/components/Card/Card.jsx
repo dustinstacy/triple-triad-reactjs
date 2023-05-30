@@ -2,8 +2,8 @@ import React from 'react'
 import { cardback } from '../../assets/card'
 import './Card.scss'
 
-const Card = ({ card, user, handleClick, isShowing, isSelected }) => {
-    const { _id, image, values } = card
+const Card = ({ card, handleClick, isShowing, isSelected }) => {
+    const { _id, image, values, user } = card
 
     return (
         <div
@@ -11,6 +11,7 @@ const Card = ({ card, user, handleClick, isShowing, isSelected }) => {
                 isSelected ? 'selected' : ''
             }`}
             id={_id}
+            user={user}
             onClick={(e) => handleClick(e)}
         >
             <div

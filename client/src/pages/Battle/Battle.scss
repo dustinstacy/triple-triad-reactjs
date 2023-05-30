@@ -15,10 +15,10 @@
 
         .board {
             height: 100vh;
-            width: 1200px;
+            width: 1400px;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             background: var(--background2-color);
 
             .card {
@@ -46,7 +46,7 @@
                 justify-content: center;
 
                 .p1-score,
-                .cpu-score {
+                .p2-score {
                     padding: 36px;
                     font-size: 36px;
                     img {
@@ -59,7 +59,7 @@
                     padding-bottom: 120px;
                 }
 
-                .cpu-score {
+                .p2-score {
                     align-self: flex-start;
 
                     img {
@@ -110,7 +110,7 @@
             }
         }
 
-        .cpu {
+        .p2 {
             top: 0;
             height: 50px;
             display: flex;
@@ -124,6 +124,7 @@
 
         .raised {
             transform: translateY(-135px);
+            z-index: 20;
 
             & .card:hover {
                 transform: translateY(-15px);
@@ -139,6 +140,7 @@
 .turn-arrow {
     height: 140px;
     width: 70px;
+    margin-right: 100px;
     transition: all 1s ease;
     transform-origin: 47% 52%;
 }

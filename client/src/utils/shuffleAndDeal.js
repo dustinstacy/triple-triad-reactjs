@@ -14,11 +14,10 @@ export const shuffleCards = (decks) => {
     })
 }
 
-export const dealCards = (playerDealtCards, playerDeck) => {
+export const dealCards = (playerDeck, playerHand) => {
     const handSize = 5
     let i = 0
     do {
-        playerDealtCards.push(playerDeck.shift()), i++
+        playerHand.push(playerDeck.shift()), i++
     } while (i < handSize)
-    return playerDealtCards
 }

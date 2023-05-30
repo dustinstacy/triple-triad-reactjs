@@ -1,6 +1,9 @@
 .setup {
     position: relative;
     padding-top: var(--navbar-height);
+    background: url('../../assets/page-images/battleSetup.jpg');
+    background-position: center;
+    background-size: cover;
 
     .opponent-list {
         display: flex;

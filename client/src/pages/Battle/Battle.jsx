@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Card, Cell } from '../../components'
 import './Battle.scss'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { BiArrowFromBottom, BiArrowFromTop } from 'react-icons/bi'
+import { BiArrowFromBottom, BiArrowFromTop, BiBath } from 'react-icons/bi'
 import { useLocation } from 'react-router-dom'
 import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
-import { useNavigate } from 'react-router-dom'
+
 import { blueScore, redScore, turnArrow } from '../../assets/icons'
 
-const Score = ({ playerScore, player }) => {
-    const score = [...new Array(playerScore)]
+const Score = ({ player }) => {
+    const { name, score } = player
+    const playerScore = [...new Array(score)]
 
     return (
-        <div className={`${player}-score`}>
-            {score.map((count, i) => (
+        <div className={`${name}-score`}>
+            {playerScore.map((count, i) => (
                 <div key={'count' + i}>
-                    {player === 'p1' ? (
+                    {name === 'p1' ? (
                         <img src={blueScore} alt='blue score' />
                     ) : (
                         <img src={redScore} alt='red score' />
@@ -26,12 +27,14 @@ const Score = ({ playerScore, player }) => {
     )
 }
 
-const Board = ({ board, placeCard, playerScores, isP1Turn }) => {
+const Board = ({ playerOne, playerTwo, battleState, placeCard }) => {
+    const { board, isP1Turn } = battleState
+
     return (
         <div className='board'>
-            <div className='column'>
-                <Score playerScore={playerScores.cpu} player='cpu' />
-                <Score playerScore={playerScores.p1} player='p1' />
+            <div className='column center'>
+                <Score player={playerTwo} />
+                <Score player={playerOne} />
             </div>
             <div className='grid center'>
                 {board.map((contents, i) =>
@@ -42,16 +45,11 @@ const Board = ({ board, placeCard, playerScores, isP1Turn }) => {
                             handleClick={(e) => placeCard(e)}
                         />
                     ) : (
-                        <Card
-                            key={i}
-                            card={contents}
-                            owner={contents.user}
-                            isShowing
-                        />
+                        <Card key={i} card={contents} isShowing />
                     )
                 )}
             </div>
-            <div className='column'>
+            <div className='column center'>
                 <img
                     className={`turn-arrow ${isP1Turn ? 'down' : 'up'}`}
                     src={turnArrow}
@@ -62,14 +60,8 @@ const Board = ({ board, placeCard, playerScores, isP1Turn }) => {
     )
 }
 
-const Hand = ({
-    player,
-    playerHand,
-    user,
-    cardSelected,
-    setCardSelected,
-    isP1Turn,
-}) => {
+const Hand = ({ player, battleState, cardSelected, setCardSelected }) => {
+    const { hand, name } = player
     const [cardsRaised, setCardsRaised] = useState(false)
 
     const selectCard = (card) => {
@@ -80,36 +72,33 @@ const Hand = ({
         }
     }
 
-    const raiseCards = () => {
-        setCardsRaised((current) => !current)
-    }
-
     return (
         <div
-            className={`${player === 'p1' ? 'p1 hand' : 'cpu hand'} ${
+            className={`${name === 'p1' ? 'p1 hand' : 'p2 hand'} ${
                 cardsRaised ? 'raised' : ''
             }`}
         >
-            {player === 'p1' &&
+            {name === 'p1' &&
                 (cardsRaised ? (
                     <BiArrowFromTop
                         className='down-arrow'
-                        onClick={() => raiseCards()}
+                        onClick={() => setCardsRaised((current) => !current)}
                     />
                 ) : (
                     <BiArrowFromBottom
                         className='up-arrow'
-                        onClick={() => raiseCards()}
+                        onClick={() => setCardsRaised((current) => !current)}
                     />
                 ))}
-            {playerHand?.map((card, index) => (
+            {hand?.map((card, index) => (
                 <Card
                     key={card?._id + index}
                     card={card}
-                    user={user}
-                    isShowing={player == 'p1' ?? false}
+                    isShowing={name == 'p1' ?? false}
                     isSelected={cardSelected?._id === card?._id}
-                    handleClick={isP1Turn ? () => selectCard(card) : ''}
+                    handleClick={
+                        battleState.isP1Turn ? () => selectCard(card) : ''
+                    }
                 />
             ))}
         </div>
@@ -118,52 +107,124 @@ const Hand = ({
 
 const Battle = () => {
     const { user, userDeck } = useGlobalContext()
-    const { state } = useLocation()
-    const navigate = useNavigate()
+    const location = useLocation()
+    const { opponent, opponentDeck } = location.state || {}
 
-    const WIDTH = 3
+    const [playerOne, setPlayerOne] = useState({
+        user: user,
+        name: 'p1',
+        deck: [],
+        hand: [],
+        score: 0,
+    })
 
-    const [decks, setDecks] = useState({
-        p1: [],
-        cpu: [],
+    const [playerTwo, setPlayerTwo] = useState({
+        user: opponent,
+        name: 'p2',
+        deck: [],
+        hand: [],
+        score: 0,
     })
-    const [hands, setHands] = useState({
-        p1: [],
-        cpu: [],
+
+    const [battleState, setBattleState] = useState({
+        board: [...new Array(9).fill('empty')],
+        emptyCells: [...new Array(9).keys()],
+        decksShuffled: false,
+        handsDealt: false,
+        battleStarted: false,
+        isP1Turn: null,
+        battleOver: false,
+        battleResultMessage: null,
     })
-    const [board, setBoard] = useState([
-        ...new Array(WIDTH * WIDTH).fill('empty'),
-    ])
-    const [emptyCells, setEmptyCells] = useState([
-        ...new Array(WIDTH * WIDTH).keys(),
-    ])
 
     const [cardSelected, setCardSelected] = useState(null)
-    const [isP1Turn, setIsP1Turn] = useState(null)
-    const [scores, setScores] = useState({
-        p1: 5,
-        cpu: 5,
-    })
 
-    const [battleStarted, setBattleStarted] = useState(false)
-    const [battleOver, setBattleOver] = useState(false)
-    const [modalMessage, setModalMessage] = useState(null)
+    const {
+        board,
+        emptyCells,
+        decksShuffled,
+        handsDealt,
+        battleStarted,
+        isP1Turn,
+        battleOver,
+        battleResultMessage,
+    } = battleState
 
-    const table = [...hands.p1, ...board, ...hands.cpu]
-    const leftColumn = [0, WIDTH, WIDTH * 2]
-    const rightColumn = [WIDTH - 1, WIDTH * 2 - 1, WIDTH * 3 - 1]
+    const table = [...playerTwo.hand, ...board, ...playerOne.hand]
+    const leftColumn = [0, 3, 6]
+    const rightColumn = [2, 5, 8]
 
-    let p1ScoreCounter = 0
-    let cpuScoreCounter = 0
+    const updateState = (setState, updates) => {
+        setState((state) => ({ ...state, ...updates }))
+    }
 
     useEffect(() => {
         const savedState = localStorage.getItem('battleState')
         if (savedState) {
             restoreStateFromLocalStorage(savedState)
         } else {
+            console.log('ran')
             setupBattle()
         }
     }, [])
+
+    const restoreStateFromLocalStorage = (savedState) => {
+        const { playerOne, playerTwo, battleState } = JSON.parse(savedState)
+        setPlayerOne(playerOne)
+        setPlayerTwo(playerTwo)
+        setBattleState(battleState)
+    }
+
+    const setupBattle = () => {
+        shuffleDecks()
+    }
+
+    const shuffleDecks = () => {
+        shuffleCards([userDeck, opponentDeck])
+        updateState(setPlayerOne, { deck: [...userDeck] })
+        updateState(setPlayerTwo, { deck: [...userDeck] })
+        updateState(setBattleState, { decksShuffled: true })
+    }
+
+    useEffect(() => {
+        if (decksShuffled === true && battleStarted === false) {
+            dealHands()
+        }
+    }, [decksShuffled])
+
+    const dealHands = () => {
+        dealCards(playerOne.deck, playerOne.hand)
+        dealCards(playerTwo.deck, playerTwo.hand)
+        updateState(setPlayerOne, {
+            deck: [...playerOne.deck],
+            hand: [...playerOne.hand],
+            score: playerOne.hand.length,
+        })
+        updateState(setPlayerTwo, {
+            deck: [...playerTwo.deck],
+            hand: [...playerTwo.hand],
+            score: playerTwo.hand.length,
+        })
+        updateState(setBattleState, { handsDealt: true })
+    }
+
+    useEffect(() => {
+        if ((handsDealt === true) & (battleStarted === false)) {
+            randomFirstTurn()
+        }
+    }, [handsDealt])
+
+    const randomFirstTurn = () => {
+        const arrowElement = document.querySelector('.turn-arrow')
+        arrowElement.classList.add('start-game')
+        setTimeout(() => {
+            Math.random() < 0.5
+                ? updateState(setBattleState, { isP1Turn: true })
+                : updateState(setBattleState, { isP1Turn: false })
+            arrowElement.classList.remove('start-game')
+            updateState(setBattleState, { battleStarted: true })
+        }, 1000)
+    }
 
     useEffect(() => {
         if (battleStarted === true) {
@@ -171,340 +232,293 @@ const Battle = () => {
         }
     }, [battleStarted])
 
+    const saveStateToLocalStorage = () => {
+        localStorage.setItem(
+            'battleState',
+            JSON.stringify({
+                playerOne,
+                playerTwo,
+                battleState,
+            })
+        )
+    }
+
     useEffect(() => {
         if (battleOver === true) {
             removeStateFromLocalStorage()
         }
     }, [battleOver])
 
-    const restoreStateFromLocalStorage = (savedState) => {
-        const { decks, hands, board, isP1Turn } = JSON.parse(savedState)
-        setDecks(decks)
-        setHands(hands)
-        setBoard(board)
-        setIsP1Turn(isP1Turn)
-        setBattleStarted(true)
-    }
-
-    const saveStateToLocalStorage = () => {
-        localStorage.setItem(
-            'battleState',
-            JSON.stringify({
-                decks,
-                hands,
-                board,
-                isP1Turn,
-                battleStarted,
-            })
-        )
-    }
-
     const removeStateFromLocalStorage = () => {
         localStorage.removeItem('battleState')
-    }
-
-    const setupBattle = () => {
-        shuffleDecks()
-        dealHands()
-        randomFirstTurn()
-    }
-
-    const shuffleDecks = () => {
-        shuffleCards([userDeck, state.opponentDeck])
-        setDecks({
-            p1: [...userDeck],
-            cpu: [...state.opponentDeck],
-        })
-    }
-
-    const dealHands = () => {
-        let p1DealtCards = []
-        let cpuDealtCards = []
-        dealCards(p1DealtCards, userDeck)
-        dealCards(cpuDealtCards, state.opponentDeck)
-        setHands({
-            p1: [...p1DealtCards],
-            cpu: [...cpuDealtCards],
-        })
-    }
-
-    const randomFirstTurn = () => {
-        const arrowElement = document.querySelector('.turn-arrow')
-        arrowElement.classList.add('start-game')
-        setTimeout(() => {
-            Math.random() < 0.5 ? setIsP1Turn(true) : setIsP1Turn(false)
-            arrowElement.classList.remove('start-game')
-            setBattleStarted(true)
-        }, 1000)
     }
 
     const placeCard = (e) => {
         const index = parseInt(e.target.id)
         if (cardSelected) {
-            const newBoard = [...board]
-            const newHands = { ...hands }
-            const handToUpdate = newHands[user._id === user._id ? 'p1' : 'cpu']
-            const card = handToUpdate.find((c) => c._id === cardSelected._id)
+            const updatedBoard = [...board]
+            const updatedHand = [...playerOne.hand]
+            const card = playerOne.hand.find(
+                (card) => card._id === cardSelected._id
+            )
             if (card) {
-                const cardIndex = handToUpdate.indexOf(card)
-                handToUpdate.splice(cardIndex, 1)
-                newBoard[index] = card
-                setHands(newHands)
-                setBoard(newBoard)
+                const cardIndex = updatedHand.indexOf(card)
+                updatedHand.splice(cardIndex, 1)
+                updatedBoard[index] = card
+                updateState(setPlayerOne, { hand: [...updatedHand] })
+                updateState(setBattleState, { board: [...updatedBoard] })
                 processBattles(index, cardSelected)
             }
         }
     }
 
-    const processBattles = (index, card) => {
-        const up = board[index - WIDTH]
-        const right = board[index + 1]
-        const left = board[index - 1]
-        const down = board[index + WIDTH]
-        const values = card.values
-        const winner = card.user
+    // const processBattles = (index, card) => {
+    //     const up = board[index - WIDTH]
+    //     const right = board[index + 1]
+    //     const left = board[index - 1]
+    //     const down = board[index + WIDTH]
+    //     const values = card.values
+    //     const winner = card.user
 
-        if (up?._id) {
-            if (up.values[2] < values[0]) {
-                up.user = winner
-            }
-        }
-        if (!leftColumn.includes(index) && left?._id) {
-            if (left.values[1] < values[3]) {
-                left.user = winner
-            }
-        }
-        if (!rightColumn.includes(index) && right?._id) {
-            if (right.values[3] < values[1]) {
-                right.user = winner
-            }
-        }
-        if (down?._id) {
-            if (down.values[0] < values[2]) {
-                down.user = winner
-            }
-        }
-        emptyCells.forEach((cell, i) =>
-            cell === index ? emptyCells.splice(i, 1) : ''
-        )
-        updateScores()
-    }
+    //     if (up?._id) {
+    //         if (up.values[2] < values[0]) {
+    //             up.user = winner
+    //         }
+    //     }
+    //     if (!leftColumn.includes(index) && left?._id) {
+    //         if (left.values[1] < values[3]) {
+    //             left.user = winner
+    //         }
+    //     }
+    //     if (!rightColumn.includes(index) && right?._id) {
+    //         if (right.values[3] < values[1]) {
+    //             right.user = winner
+    //         }
+    //     }
+    //     if (down?._id) {
+    //         if (down.values[0] < values[2]) {
+    //             down.user = winner
+    //         }
+    //     }
+    //     emptyCells.forEach((cell, i) =>
+    //         cell === index ? emptyCells.splice(i, 1) : ''
+    //     )
+    //     updateScores()
+    // }
 
-    const updateScores = () => {
-        table.forEach((card) => {
-            if (card.number) {
-                cpuScoreCounter++
-            } else if (card.image) {
-                p1ScoreCounter++
-            }
-            setScores({ p1: p1ScoreCounter, cpu: cpuScoreCounter })
-        })
-        endTurn()
-    }
+    // useEffect(() => {
+    //     let p1Score = 0
+    //     let p2Score = 0
 
-    const endTurn = () => {
-        setCardSelected(null)
-        setIsP1Turn((current) => !current)
-    }
+    //     table.forEach((card) => {
+    //         if (card?.user._id === user?._id) {
+    //             p1Score++
+    //         } else if (card?.user.name === opponent?.name) {
+    //             p2Score++
+    //         }
+    //         updateState(setPlayerOne, { score: p1Score })
+    //         updateState(setPlayerTwo, { score: p2Score })
+    //     })
+    // }, [board])
 
-    useEffect(() => {
-        checkForWin()
-    }, [isP1Turn])
+    // const endTurn = () => {
+    //     setCardSelected(null)
+    //     setIsP1Turn((current) => !current)
+    // }
 
-    const checkForWin = () => {
-        if (emptyCells.length === 0) {
-            setTimeout(() => {
-                if (scores.p1 > scores.cpu) {
-                    setModalMessage('Victory')
-                } else if (scores.p1 < scores.cpu) {
-                    setModalMessage('Defeat')
-                } else if (scores.p1 === scores.cpu) {
-                    setModalMessage('Draw')
-                }
-                setBattleOver(true)
-            }, 1000)
-        } else if (emptyCells.length < 9) {
-            saveStateToLocalStorage()
-        }
-    }
+    // useEffect(() => {
+    //     checkForWin()
+    // }, [isP1Turn])
 
-    const cpuMove = () => {
-        const newBoardArray = board
-        let newHand = hands.cpu
-        let bestScore = -Infinity
-        let move
-        hands.cpu.forEach((card) => {
-            emptyCells.forEach((cell) => {
-                let score = 0
-                const up = board[cell - WIDTH]
-                const right = board[cell + 1]
-                const left = board[cell - 1]
-                const down = board[cell + WIDTH]
-                const values = card.values
+    // const checkForWin = () => {
+    //     if (emptyCells.length === 0) {
+    //         setTimeout(() => {
+    //             if (scores.p1 > scores.cpu) {
+    //                 setModalMessage('Victory')
+    //             } else if (scores.p1 < scores.cpu) {
+    //                 setModalMessage('Defeat')
+    //             } else if (scores.p1 === scores.cpu) {
+    //                 setModalMessage('Draw')
+    //             }
+    //             setBattleOver(true)
+    //         }, 1000)
+    //     } else if (emptyCells.length < 9) {
+    //         saveStateToLocalStorage()
+    //     }
+    // }
 
-                // check cards user
-                // scales
+    // const cpuMove = () => {
+    //     const newBoardArray = board
+    //     let newHand = hands.cpu
+    //     let bestScore = -Infinity
+    //     let move
+    //     hands.cpu.forEach((card) => {
+    //         emptyCells.forEach((cell) => {
+    //             let score = 0
+    //             const up = board[cell - WIDTH]
+    //             const right = board[cell + 1]
+    //             const left = board[cell - 1]
+    //             const down = board[cell + WIDTH]
+    //             const values = card.values
 
-                if (cell !== 0 && cell !== 1 && cell !== 2 && up !== 'empty') {
-                    if (up.values[2] < values[0]) {
-                        score +=
-                            100 + (parseInt(up.values[2]) - parseInt(values[0]))
-                    }
-                }
-                if (cell !== 0 && cell !== 1 && cell !== 2 && up === 'empty') {
-                    score += parseInt(values[0])
-                }
-                if (cell === 0 || cell === 1 || cell === 2) {
-                    score -= parseInt(values[0])
-                }
+    //             // check cards user
+    //             // scales
 
-                if (
-                    cell !== 0 &&
-                    cell !== 3 &&
-                    cell !== 6 &&
-                    left !== 'empty'
-                ) {
-                    if (left.values[1] < values[3]) {
-                        score +=
-                            100 +
-                            (parseInt(left.values[1]) - parseInt(values[3]))
-                    }
-                }
+    //             if (cell !== 0 && cell !== 1 && cell !== 2 && up !== 'empty') {
+    //                 if (up.values[2] < values[0]) {
+    //                     score +=
+    //                         100 + (parseInt(up.values[2]) - parseInt(values[0]))
+    //                 }
+    //             }
+    //             if (cell !== 0 && cell !== 1 && cell !== 2 && up === 'empty') {
+    //                 score += parseInt(values[0])
+    //             }
+    //             if (cell === 0 || cell === 1 || cell === 2) {
+    //                 score -= parseInt(values[0])
+    //             }
 
-                if (
-                    cell !== 0 &&
-                    cell !== 3 &&
-                    cell !== 6 &&
-                    left === 'empty'
-                ) {
-                    score += parseInt(values[3])
-                }
-                if (cell === 0 || cell === 3 || cell === 6) {
-                    score -= parseInt(values[3])
-                }
+    //             if (
+    //                 cell !== 0 &&
+    //                 cell !== 3 &&
+    //                 cell !== 6 &&
+    //                 left !== 'empty'
+    //             ) {
+    //                 if (left.values[1] < values[3]) {
+    //                     score +=
+    //                         100 +
+    //                         (parseInt(left.values[1]) - parseInt(values[3]))
+    //                 }
+    //             }
 
-                if (
-                    cell !== 2 &&
-                    cell !== 5 &&
-                    cell !== 8 &&
-                    right !== 'empty'
-                ) {
-                    if (right.values[3] < values[1]) {
-                        score +=
-                            100 +
-                            (parseInt(right.values[3]) - parseInt(values[1]))
-                    }
-                }
+    //             if (
+    //                 cell !== 0 &&
+    //                 cell !== 3 &&
+    //                 cell !== 6 &&
+    //                 left === 'empty'
+    //             ) {
+    //                 score += parseInt(values[3])
+    //             }
+    //             if (cell === 0 || cell === 3 || cell === 6) {
+    //                 score -= parseInt(values[3])
+    //             }
 
-                if (
-                    cell !== 2 &&
-                    cell !== 5 &&
-                    cell !== 8 &&
-                    right !== 'empty'
-                ) {
-                    score += parseInt(values[1])
-                }
-                if (cell === 2 || cell === 5 || cell === 8) {
-                    score -= parseInt(values[1])
-                }
+    //             if (
+    //                 cell !== 2 &&
+    //                 cell !== 5 &&
+    //                 cell !== 8 &&
+    //                 right !== 'empty'
+    //             ) {
+    //                 if (right.values[3] < values[1]) {
+    //                     score +=
+    //                         100 +
+    //                         (parseInt(right.values[3]) - parseInt(values[1]))
+    //                 }
+    //             }
 
-                if (
-                    cell !== 6 &&
-                    cell !== 7 &&
-                    cell !== 8 &&
-                    down !== 'empty'
-                ) {
-                    if (down.values[0] < values[2]) {
-                        score +=
-                            100 +
-                            (parseInt(down.values[0]) - parseInt(values[2]))
-                    }
-                }
+    //             if (
+    //                 cell !== 2 &&
+    //                 cell !== 5 &&
+    //                 cell !== 8 &&
+    //                 right !== 'empty'
+    //             ) {
+    //                 score += parseInt(values[1])
+    //             }
+    //             if (cell === 2 || cell === 5 || cell === 8) {
+    //                 score -= parseInt(values[1])
+    //             }
 
-                if (
-                    cell !== 6 &&
-                    cell !== 7 &&
-                    cell !== 8 &&
-                    down !== 'empty'
-                ) {
-                    score += parseInt(values[2])
-                }
-                if (cell === 6 || cell === 7 || cell === 8) {
-                    score -= parseInt(values[2])
-                }
-                if (score > bestScore) {
-                    bestScore = score
-                    move = { card: card, cell: cell }
-                }
-            })
-        })
-        newBoardArray.splice(move.cell, 1, move.card)
-        setBoard(newBoardArray)
-        newHand.forEach((handCard, i) =>
-            handCard._id === move.card._id ? hands.cpu.splice(i, 1) : ''
-        )
-        setHands({ ...hands, cpu: newHand })
-        processBattles(move.cell, move.card)
-    }
+    //             if (
+    //                 cell !== 6 &&
+    //                 cell !== 7 &&
+    //                 cell !== 8 &&
+    //                 down !== 'empty'
+    //             ) {
+    //                 if (down.values[0] < values[2]) {
+    //                     score +=
+    //                         100 +
+    //                         (parseInt(down.values[0]) - parseInt(values[2]))
+    //                 }
+    //             }
 
-    useEffect(() => {
-        if (
-            battleStarted &&
-            !isP1Turn &&
-            emptyCells.length !== 0 &&
-            hands.cpu.length > 0
-        ) {
-            setTimeout(() => {
-                cpuMove()
-            }, 1500)
-        }
-    }, [isP1Turn, hands.cpu])
+    //             if (
+    //                 cell !== 6 &&
+    //                 cell !== 7 &&
+    //                 cell !== 8 &&
+    //                 down !== 'empty'
+    //             ) {
+    //                 score += parseInt(values[2])
+    //             }
+    //             if (cell === 6 || cell === 7 || cell === 8) {
+    //                 score -= parseInt(values[2])
+    //             }
+    //             if (score > bestScore) {
+    //                 bestScore = score
+    //                 move = { card: card, cell: cell }
+    //             }
+    //         })
+    //     })
+    //     move.card.user = opponent
+    //     newBoardArray.splice(move.cell, 1, move.card)
+    //     setBoard((prevBoard) => newBoardArray)
+    //     newHand.forEach((handCard, i) =>
+    //         handCard._id === move.card._id ? hands.cpu.splice(i, 1) : ''
+    //     )
+    //     setHands({ ...hands, cpu: newHand })
+    //     processBattles(move.cell, move.card)
+    // }
+
+    // useEffect(() => {
+    //     if (
+    //         battleStarted &&
+    //         !isP1Turn &&
+    //         emptyCells.length !== 0 &&
+    //         hands.cpu.length > 0
+    //     ) {
+    //         setTimeout(() => {
+    //             cpuMove()
+    //         }, 1500)
+    //     }
+    // }, [isP1Turn, playerTwo.hand])
 
     return (
         <div className='match page'>
             <div className='table'>
                 <Hand
-                    player='cpu'
-                    playerHand={hands.cpu}
-                    user={state.opponent}
+                    player={playerTwo}
+                    battleState={battleState}
                     cardSelected={cardSelected}
                     setCardSelected={setCardSelected}
                 />
                 <Board
-                    board={board}
+                    playerOne={playerOne}
+                    playerTwo={playerTwo}
+                    battleState={battleState}
                     placeCard={placeCard}
-                    playerScores={scores}
-                    isP1Turn={isP1Turn}
                 />
                 <Hand
-                    player='p1'
-                    playerHand={hands.p1}
-                    user={user}
+                    player={playerOne}
+                    battleState={battleState}
                     cardSelected={cardSelected}
                     setCardSelected={setCardSelected}
-                    isP1Turn={isP1Turn}
                 />
-
-                {battleOver && modalMessage && (
-                    <div className='battle-over box'>
-                        <span className='result'>{modalMessage}</span>
-                        <div className='buttons'>
-                            <button
-                                className='box'
-                                onClick={() => navigate('/battleSetup')}
-                            >
-                                Battle Select
-                            </button>
-                            <button
-                                className='box'
-                                onClick={() => navigate('/')}
-                            >
-                                Quit
-                            </button>
-                        </div>
-                    </div>
-                )}
             </div>
+
+            {battleOver && modalMessage && (
+                <div className='battle-over box'>
+                    <span className='result'>{modalMessage}</span>
+                    <div className='buttons'>
+                        <button
+                            className='box'
+                            onClick={() => navigate('/battleSetup')}
+                        >
+                            Battle Select
+                        </button>
+                        <button className='box' onClick={() => navigate('/')}>
+                            Quit
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

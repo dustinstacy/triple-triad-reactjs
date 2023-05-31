@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import axios from 'axios'
 
-import { Board, Hand } from './components'
 import { useGlobalContext } from '../../context/GlobalContext'
+import { BattleResults, Board, Hand } from './components'
 import { shuffleCards, assignColorsAndDealCards } from './utils/shuffleAndDeal'
 import { processStandardBattles } from './utils/battleEvaluations'
 import { cpuMove } from './ai/cpuMove'
 
 import './Battle.scss'
-import { Button } from '../../components'
-import { assignRandomCardValues } from '../../utils/randomizers'
 
 const Battle = () => {
     // Get user and opponent information from their respective sources
-    const { allCards, getCurrentUser, user, userDeck } = useGlobalContext()
+    const { user, userDeck } = useGlobalContext()
     const location = useLocation()
     const { opponent, opponentDeck } = location.state || {}
 
@@ -25,6 +22,7 @@ const Battle = () => {
         deck: [],
         hand: [],
         score: 0,
+        roundsWon: 0,
     })
 
     // Initialize Player Two state
@@ -34,6 +32,7 @@ const Battle = () => {
         deck: [],
         hand: [],
         score: 0,
+        roundsWon: 0,
     })
 
     // Initialize Battle State
@@ -42,13 +41,15 @@ const Battle = () => {
         decksShuffled: false,
         handsDealt: false,
         battleStarted: false,
+        round: 0,
         isP1Turn: null,
+        roundOver: false,
         battleOver: false,
-        battleResultMessage: null,
     })
 
     // Initiliaze card selection state to track user input
     const [cardSelected, setCardSelected] = useState(null)
+    const [screenMessage, setScreenMessage] = useState(null)
 
     // Destructure Battle State
     const {
@@ -56,9 +57,10 @@ const Battle = () => {
         decksShuffled,
         handsDealt,
         battleStarted,
+        round,
         isP1Turn,
+        roundOver,
         battleOver,
-        battleResultMessage,
     } = battleState
 
     // Variables to track status of Player Hands and Board
@@ -71,6 +73,7 @@ const Battle = () => {
             return null
         })
         .filter((index) => index !== null)
+    const roundsForWin = opponent?.minDeckSize / 5 - 1
 
     // Helper function to simplify updating state
     const updateState = (setState, updates) => {
@@ -106,7 +109,7 @@ const Battle = () => {
         shuffleCards([userDeck, opponentDeck])
         updateState(setPlayerOne, { deck: [...userDeck] })
         updateState(setPlayerTwo, { deck: [...opponentDeck] })
-        updateState(setBattleState, { decksShuffled: true })
+        updateState(setBattleState, { decksShuffled: true, round: round + 1 })
     }
 
     // Deal cards only once decks are shuffled and a Battle is
@@ -130,16 +133,31 @@ const Battle = () => {
             hand: [...playerTwo.hand],
             score: playerTwo.hand.length,
         })
-        updateState(setBattleState, { handsDealt: true })
+        updateState(setBattleState, {
+            handsDealt: true,
+        })
+        setScreenMessage(`Round ${round}`)
     }
+
+    useEffect(() => {
+        if (screenMessage !== null) {
+            setTimeout(() => {
+                setScreenMessage(null)
+            }, 1500)
+        }
+    }, [screenMessage])
 
     // Decide who goes first only once hands have been dealt and
     // a Battle is not currently under way
     useEffect(() => {
-        if ((handsDealt === true) & (battleStarted === false)) {
+        if (
+            (handsDealt === true) &
+            (battleStarted === false) &
+            (screenMessage === null)
+        ) {
             randomFirstTurn()
         }
-    }, [handsDealt])
+    }, [handsDealt, screenMessage])
 
     const randomFirstTurn = () => {
         const arrowElement = document.querySelector('.turn-arrow')
@@ -149,7 +167,10 @@ const Battle = () => {
                 ? updateState(setBattleState, { isP1Turn: true })
                 : updateState(setBattleState, { isP1Turn: false })
             arrowElement.classList.remove('start-game')
-            updateState(setBattleState, { battleStarted: true })
+            updateState(setBattleState, {
+                battleStarted: true,
+                roundOver: false,
+            })
         }, 1000)
     }
 
@@ -169,17 +190,6 @@ const Battle = () => {
                 battleState,
             })
         )
-    }
-
-    // Remove state from local storage when the Battle is over
-    useEffect(() => {
-        if (battleOver === true) {
-            removeStateFromLocalStorage()
-        }
-    }, [battleOver])
-
-    const removeStateFromLocalStorage = () => {
-        localStorage.removeItem('battleState')
     }
 
     // Handle process of user choosing which cell to place a card
@@ -208,7 +218,8 @@ const Battle = () => {
             battleStarted &&
             !isP1Turn &&
             emptyCells.length !== 0 &&
-            playerTwo.hand.length > 0
+            playerTwo.hand.length > 0 &&
+            roundOver === false
         ) {
             setTimeout(() => {
                 cpuTurn()
@@ -250,100 +261,77 @@ const Battle = () => {
     }
 
     useEffect(() => {
-        checkForWin()
+        checkForRoundEnd()
     }, [isP1Turn])
 
-    const checkForWin = () => {
+    const checkForRoundEnd = () => {
         if (emptyCells.length === 0) {
-            setTimeout(() => {
-                battleResults()
-                updateState(setBattleState, { battleOver: true })
-            }, 1000)
+            roundResult()
         } else if (emptyCells.length < 9) {
             saveStateToLocalStorage()
         }
     }
 
-    const battleResults = async () => {
+    const roundResult = async () => {
         if (playerOne.score > playerTwo.score) {
-            updateState(setBattleState, {
-                battleResultMessage: 'Victory',
-            })
+            updateState(setPlayerOne, { roundsWon: playerOne.roundsWon + 1 })
         } else if (playerOne.score < playerTwo.score) {
-            updateState(setBattleState, {
-                battleResultMessage: 'Defeat',
-            })
-        } else if (playerOne.score === playerTwo.score) {
-            updateState(setBattleState, {
-                battleResultMessage: 'Draw',
-            })
+            updateState(setPlayerTwo, { roundsWon: playerTwo.roundsWon + 1 })
         }
+        setTimeout(() => {
+            updateState(setBattleState, { roundOver: true })
+        }, 1000)
+    }
 
-        const updatedCoin = {
-            coin: user.coin + opponent.rewards.coin,
+    useEffect(() => {
+        if (roundOver === true) {
+            checkForWin()
         }
-        await axios
-            .put('/api/profile/info', updatedCoin)
-            .then(() => getCurrentUser())
-        const updatedStats = {
-            level: user.level,
-            xp:
-                user.xp +
-                (playerOne.score > playerTwo.score
-                    ? opponent.rewards.xp
-                    : playerOne.score < playerTwo.score
-                    ? 0
-                    : Math.floor(opponent.rewards.xp / 2)),
+    }, [roundOver])
 
-            battles: user.stats.battles + 1,
-            wins:
-                playerOne.score > playerTwo.score
-                    ? user.stats.wins + 1
-                    : user.stats.wins,
-            losses:
-                playerOne.score < playerTwo.score
-                    ? user.stats.losses + 1
-                    : user.stats.losses,
-            draws:
-                playerOne.score === playerTwo.score
-                    ? user.stats.draws + 1
-                    : user.stats.draws,
-        }
-        await axios
-            .put('/api/profile/stats', updatedStats)
-            .then(() => getCurrentUser())
-
-        if (user.defeatedEnemies.includes(opponent.name)) {
-            return
+    const checkForWin = () => {
+        if (
+            playerOne.roundsWon == roundsForWin ||
+            playerTwo.roundsWon == roundsForWin ||
+            round == opponent.minDeckSize / 5
+        ) {
+            setTimeout(() => {
+                updateState(setBattleState, { battleOver: true })
+            }, 1000)
         } else {
-            const opponentCard = allCards.find(
-                (card) => card._id == opponent.rewards.card
-            )
-            assignRandomCardValues(opponentCard)
-            const cardData = {
-                name: opponentCard.name,
-                number: opponentCard.number,
-                image: opponentCard.image,
-                rarity: opponentCard.rarity,
-                empower: opponentCard.empower,
-                weaken: opponentCard.weaken,
-                values: opponentCard.values,
-            }
-            try {
-                await axios
-                    .put('/api/collection/new', cardData)
-                    .then(() =>
-                        axios.put('/api/profile/info', {
-                            defeatedEnemies: [
-                                ...user.defeatedEnemies,
-                                opponent.name,
-                            ],
-                        })
-                    )
-            } catch (error) {
-                console.log(error)
-            }
+            newRound()
         }
+    }
+
+    const newRound = () => {
+        updateState(setPlayerOne, { hand: [] })
+        updateState(setPlayerTwo, { hand: [] })
+        updateState(setBattleState, {
+            board: [...new Array(9).fill('empty')],
+            handsDealt: false,
+            isP1Turn: null,
+            round: round + 1,
+        })
+    }
+
+    useEffect(() => {
+        if (handsDealt === false && round > 0) {
+            dealHands()
+            setTimeout(() => {
+                randomFirstTurn()
+            }, 1500)
+        }
+    }, [handsDealt])
+
+    // Remove state from local storage when the Battle is over
+    useEffect(() => {
+        if (battleOver === true) {
+            removeStateFromLocalStorage()
+        }
+    }, [battleOver])
+
+    const removeStateFromLocalStorage = () => {
+        localStorage.removeItem('battleState')
     }
 
     return (
@@ -368,19 +356,17 @@ const Battle = () => {
                     setCardSelected={setCardSelected}
                 />
             </div>
-
-            {battleOver && battleResultMessage && (
-                <div className='battle-over box'>
-                    <span className='result'>{battleResultMessage}</span>
-                    <div className='buttons'>
-                        <Button
-                            label='Select Battle'
-                            type='link'
-                            path='/battleSetup'
-                        />
-                        <Button label='Main Menu' type='link' path='/' />
-                    </div>
+            {screenMessage && (
+                <div
+                    className={`screen-message center ${
+                        screenMessage ? 'show' : ''
+                    }`}
+                >
+                    {screenMessage}
                 </div>
+            )}
+            {battleOver && (
+                <BattleResults playerOne={playerOne} playerTwo={playerTwo} />
             )}
         </div>
     )

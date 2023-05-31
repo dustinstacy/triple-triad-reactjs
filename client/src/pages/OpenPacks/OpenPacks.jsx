@@ -134,6 +134,7 @@ const Packs = () => {
                 console.log(error)
             }
         })
+        newCards.forEach((card) => (card.color = 'black'))
         setPackContents(newCards)
 
         removeObjectByValue(user.inventory, currentPack.name)

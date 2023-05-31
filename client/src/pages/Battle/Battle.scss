@@ -15,29 +15,56 @@
     }
 }
 
-.battle-over {
+.screen-message {
     position: absolute;
-    height: 800px;
-    width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    z-index: 20;
+    height: 100%;
+    width: 100%;
+    color: var(--primary-color);
+    font-size: 300px;
+    text-align: center;
+    text-shadow: 5px 5px 2px var(--primary2-color),
+        -5px -5px 2px var(--primary2-color), 5px -5px 2px var(--primary2-color),
+        -5px 5px 2px var(--primary2-color), 6px 6px 4px var(--white-color),
+        -6px -6px 4px var(--white-color), 6px -6px 4px var(--white-color),
+        -6px 6px 4px var(--white-color), 15px 15px 10px var(--black-color),
+        -15px -15px 10px var(--black-color), 15px -15px 10px var(--black-color),
+        -15px 15px 10px var(--black-color);
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 100;
 
-    .result {
-        font-size: 124px;
+    &.show {
+        animation: fade-in-shrink 1.5s forwards;
+    }
+}
+
+@keyframes fade-in-shrink {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
     }
 
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 48px;
+    10% {
+        opacity: 1;
+    }
 
-        button {
-            height: 100px;
-            width: 400px;
-            font-size: 36px;
-        }
+    90% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes message-shrink {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
     }
 }

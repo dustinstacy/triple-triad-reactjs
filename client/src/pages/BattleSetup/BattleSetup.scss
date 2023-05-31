@@ -1,9 +1,18 @@
+.setup .background {
+    background: url('../../assets/page-images/battleSetup.jpg');
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
 .setup {
     position: relative;
     padding-top: var(--navbar-height);
-    background: url('../../assets/page-images/battleSetup.jpg');
-    background-position: center;
-    background-size: cover;
 
     .opponent-list {
         display: flex;

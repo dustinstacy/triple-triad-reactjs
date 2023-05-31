@@ -1,0 +1,82 @@
+.board {
+    height: 100vh;
+    width: 1400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--background2-color);
+
+    .card {
+        height: 250px;
+        width: calc(250px * 0.725);
+
+        &__values {
+            font-size: 22px;
+        }
+    }
+
+    .grid {
+        height: 750px;
+        width: 550px;
+        flex-wrap: wrap;
+        align-content: center;
+        margin-bottom: 120px;
+
+        .cell {
+            .card-wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                z-index: 10;
+            }
+        }
+    }
+
+    .column {
+        height: 100%;
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .turn-arrow {
+        height: 140px;
+        width: 70px;
+        margin-right: 100px;
+        transition: all 1s ease;
+        transform-origin: 47% 52%;
+    }
+
+    .turn-arrow.down {
+        transform: rotate(180deg);
+    }
+
+    .turn-arrow.up {
+        transform: rotate(0deg);
+    }
+
+    .turn-arrow.start-game {
+        animation: spin 0.1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

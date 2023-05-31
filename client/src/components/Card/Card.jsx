@@ -3,7 +3,7 @@ import { cardback } from '../../assets/card'
 import './Card.scss'
 
 const Card = ({ card, handleClick, isShowing, isSelected }) => {
-    const { _id, image, values, user } = card
+    const { color, _id, image, values } = card || {}
 
     return (
         <div
@@ -11,12 +11,11 @@ const Card = ({ card, handleClick, isShowing, isSelected }) => {
                 isSelected ? 'selected' : ''
             }`}
             id={_id}
-            user={user}
             onClick={(e) => handleClick(e)}
         >
             <div
                 className='card__side card__front'
-                style={{ backgroundColor: user?.color }}
+                style={{ backgroundColor: color }}
             >
                 <img className='card__image' src={image} alt={_id} />
                 <div className='card__values'>

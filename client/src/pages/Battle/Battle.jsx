@@ -1,115 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Cell } from '../../components'
-import './Battle.scss'
-import { useGlobalContext } from '../../context/GlobalContext'
-import { BiArrowFromBottom, BiArrowFromTop, BiBath } from 'react-icons/bi'
 import { useLocation } from 'react-router-dom'
-import { shuffleCards, dealCards } from '../../utils/shuffleAndDeal'
+import axios from 'axios'
 
-import { blueScore, redScore, turnArrow } from '../../assets/icons'
+import { Board, Hand } from './components'
+import { useGlobalContext } from '../../context/GlobalContext'
+import { shuffleCards, assignColorsAndDealCards } from './utils/shuffleAndDeal'
+import { processStandardBattles } from './utils/battleEvaluations'
+import { cpuMove } from './ai/cpuMove'
 
-const Score = ({ player }) => {
-    const { name, score } = player
-    const playerScore = [...new Array(score)]
-
-    return (
-        <div className={`${name}-score`}>
-            {playerScore.map((count, i) => (
-                <div key={'count' + i}>
-                    {name === 'p1' ? (
-                        <img src={blueScore} alt='blue score' />
-                    ) : (
-                        <img src={redScore} alt='red score' />
-                    )}
-                </div>
-            ))}
-        </div>
-    )
-}
-
-const Board = ({ playerOne, playerTwo, battleState, placeCard }) => {
-    const { board, isP1Turn } = battleState
-
-    return (
-        <div className='board'>
-            <div className='column center'>
-                <Score player={playerTwo} />
-                <Score player={playerOne} />
-            </div>
-            <div className='grid center'>
-                {board.map((contents, i) =>
-                    contents === 'empty' ? (
-                        <Cell
-                            key={i}
-                            id={i}
-                            handleClick={(e) => placeCard(e)}
-                        />
-                    ) : (
-                        <Card key={i} card={contents} isShowing />
-                    )
-                )}
-            </div>
-            <div className='column center'>
-                <img
-                    className={`turn-arrow ${isP1Turn ? 'down' : 'up'}`}
-                    src={turnArrow}
-                    alt='turn arrow'
-                />
-            </div>
-        </div>
-    )
-}
-
-const Hand = ({ player, battleState, cardSelected, setCardSelected }) => {
-    const { hand, name } = player
-    const [cardsRaised, setCardsRaised] = useState(false)
-
-    const selectCard = (card) => {
-        if (card === cardSelected) {
-            setCardSelected(null)
-        } else {
-            setCardSelected(card)
-        }
-    }
-
-    return (
-        <div
-            className={`${name === 'p1' ? 'p1 hand' : 'p2 hand'} ${
-                cardsRaised ? 'raised' : ''
-            }`}
-        >
-            {name === 'p1' &&
-                (cardsRaised ? (
-                    <BiArrowFromTop
-                        className='down-arrow'
-                        onClick={() => setCardsRaised((current) => !current)}
-                    />
-                ) : (
-                    <BiArrowFromBottom
-                        className='up-arrow'
-                        onClick={() => setCardsRaised((current) => !current)}
-                    />
-                ))}
-            {hand?.map((card, index) => (
-                <Card
-                    key={card?._id + index}
-                    card={card}
-                    isShowing={name == 'p1' ?? false}
-                    isSelected={cardSelected?._id === card?._id}
-                    handleClick={
-                        battleState.isP1Turn ? () => selectCard(card) : ''
-                    }
-                />
-            ))}
-        </div>
-    )
-}
+import './Battle.scss'
+import { Button } from '../../components'
+import { assignRandomCardValues } from '../../utils/randomizers'
 
 const Battle = () => {
-    const { user, userDeck } = useGlobalContext()
+    // Get user and opponent information from their respective sources
+    const { allCards, getCurrentUser, user, userDeck } = useGlobalContext()
     const location = useLocation()
     const { opponent, opponentDeck } = location.state || {}
 
+    // Initialize Player One state
     const [playerOne, setPlayerOne] = useState({
         user: user,
         name: 'p1',
@@ -118,6 +27,7 @@ const Battle = () => {
         score: 0,
     })
 
+    // Initialize Player Two state
     const [playerTwo, setPlayerTwo] = useState({
         user: opponent,
         name: 'p2',
@@ -126,9 +36,9 @@ const Battle = () => {
         score: 0,
     })
 
+    // Initialize Battle State
     const [battleState, setBattleState] = useState({
         board: [...new Array(9).fill('empty')],
-        emptyCells: [...new Array(9).keys()],
         decksShuffled: false,
         handsDealt: false,
         battleStarted: false,
@@ -137,11 +47,12 @@ const Battle = () => {
         battleResultMessage: null,
     })
 
+    // Initiliaze card selection state to track user input
     const [cardSelected, setCardSelected] = useState(null)
 
+    // Destructure Battle State
     const {
         board,
-        emptyCells,
         decksShuffled,
         handsDealt,
         battleStarted,
@@ -150,24 +61,35 @@ const Battle = () => {
         battleResultMessage,
     } = battleState
 
+    // Variables to track status of Player Hands and Board
     const table = [...playerTwo.hand, ...board, ...playerOne.hand]
-    const leftColumn = [0, 3, 6]
-    const rightColumn = [2, 5, 8]
+    const emptyCells = board
+        .map((cell, i) => {
+            if (cell === 'empty') {
+                return i
+            }
+            return null
+        })
+        .filter((index) => index !== null)
 
+    // Helper function to simplify updating state
     const updateState = (setState, updates) => {
         setState((state) => ({ ...state, ...updates }))
     }
 
+    // Retrieve state from local storage if it exists
+    // Otherwise initialize a new game
     useEffect(() => {
         const savedState = localStorage.getItem('battleState')
         if (savedState) {
             restoreStateFromLocalStorage(savedState)
         } else {
-            console.log('ran')
-            setupBattle()
+            newGame()
         }
     }, [])
 
+    // Set state equal to state retrieve from local storage
+    // Returns state to last move before page exit
     const restoreStateFromLocalStorage = (savedState) => {
         const { playerOne, playerTwo, battleState } = JSON.parse(savedState)
         setPlayerOne(playerOne)
@@ -175,17 +97,20 @@ const Battle = () => {
         setBattleState(battleState)
     }
 
-    const setupBattle = () => {
+    // Begin process of setting up a new game
+    const newGame = () => {
         shuffleDecks()
     }
 
     const shuffleDecks = () => {
         shuffleCards([userDeck, opponentDeck])
         updateState(setPlayerOne, { deck: [...userDeck] })
-        updateState(setPlayerTwo, { deck: [...userDeck] })
+        updateState(setPlayerTwo, { deck: [...opponentDeck] })
         updateState(setBattleState, { decksShuffled: true })
     }
 
+    // Deal cards only once decks are shuffled and a Battle is
+    // not currently under way
     useEffect(() => {
         if (decksShuffled === true && battleStarted === false) {
             dealHands()
@@ -193,8 +118,8 @@ const Battle = () => {
     }, [decksShuffled])
 
     const dealHands = () => {
-        dealCards(playerOne.deck, playerOne.hand)
-        dealCards(playerTwo.deck, playerTwo.hand)
+        assignColorsAndDealCards(playerOne)
+        assignColorsAndDealCards(playerTwo)
         updateState(setPlayerOne, {
             deck: [...playerOne.deck],
             hand: [...playerOne.hand],
@@ -208,6 +133,8 @@ const Battle = () => {
         updateState(setBattleState, { handsDealt: true })
     }
 
+    // Decide who goes first only once hands have been dealt and
+    // a Battle is not currently under way
     useEffect(() => {
         if ((handsDealt === true) & (battleStarted === false)) {
             randomFirstTurn()
@@ -226,6 +153,7 @@ const Battle = () => {
         }, 1000)
     }
 
+    // Save state to local storage when a new game has been initialized
     useEffect(() => {
         if (battleStarted === true) {
             saveStateToLocalStorage()
@@ -243,6 +171,7 @@ const Battle = () => {
         )
     }
 
+    // Remove state from local storage when the Battle is over
     useEffect(() => {
         if (battleOver === true) {
             removeStateFromLocalStorage()
@@ -253,6 +182,7 @@ const Battle = () => {
         localStorage.removeItem('battleState')
     }
 
+    // Handle process of user choosing which cell to place a card
     const placeCard = (e) => {
         const index = parseInt(e.target.id)
         if (cardSelected) {
@@ -267,218 +197,154 @@ const Battle = () => {
                 updatedBoard[index] = card
                 updateState(setPlayerOne, { hand: [...updatedHand] })
                 updateState(setBattleState, { board: [...updatedBoard] })
-                processBattles(index, cardSelected)
+                processStandardBattles(index, cardSelected, battleState)
             }
+            updateScores()
         }
     }
 
-    // const processBattles = (index, card) => {
-    //     const up = board[index - WIDTH]
-    //     const right = board[index + 1]
-    //     const left = board[index - 1]
-    //     const down = board[index + WIDTH]
-    //     const values = card.values
-    //     const winner = card.user
+    useEffect(() => {
+        if (
+            battleStarted &&
+            !isP1Turn &&
+            emptyCells.length !== 0 &&
+            playerTwo.hand.length > 0
+        ) {
+            setTimeout(() => {
+                cpuTurn()
+            }, 2000)
+        }
+    }, [isP1Turn, playerTwo.hand])
 
-    //     if (up?._id) {
-    //         if (up.values[2] < values[0]) {
-    //             up.user = winner
-    //         }
-    //     }
-    //     if (!leftColumn.includes(index) && left?._id) {
-    //         if (left.values[1] < values[3]) {
-    //             left.user = winner
-    //         }
-    //     }
-    //     if (!rightColumn.includes(index) && right?._id) {
-    //         if (right.values[3] < values[1]) {
-    //             right.user = winner
-    //         }
-    //     }
-    //     if (down?._id) {
-    //         if (down.values[0] < values[2]) {
-    //             down.user = winner
-    //         }
-    //     }
-    //     emptyCells.forEach((cell, i) =>
-    //         cell === index ? emptyCells.splice(i, 1) : ''
-    //     )
-    //     updateScores()
-    // }
+    const cpuTurn = () => {
+        const { move, newBoard, newHand } = cpuMove(
+            playerTwo.hand,
+            battleState.board,
+            emptyCells
+        )
+        processStandardBattles(move.cell, move.card, battleState)
+        updateState(setPlayerTwo, { hand: newHand })
+        updateState(setBattleState, { board: newBoard })
+        updateScores()
+    }
 
-    // useEffect(() => {
-    //     let p1Score = 0
-    //     let p2Score = 0
+    const updateScores = () => {
+        let p1Score = 0
+        let p2Score = 0
 
-    //     table.forEach((card) => {
-    //         if (card?.user._id === user?._id) {
-    //             p1Score++
-    //         } else if (card?.user.name === opponent?.name) {
-    //             p2Score++
-    //         }
-    //         updateState(setPlayerOne, { score: p1Score })
-    //         updateState(setPlayerTwo, { score: p2Score })
-    //     })
-    // }, [board])
+        table.forEach((card) => {
+            if (card?.color === user?.color) {
+                p1Score++
+            } else if (card?.color === opponent?.color) {
+                p2Score++
+            }
+            updateState(setPlayerOne, { score: p1Score })
+            updateState(setPlayerTwo, { score: p2Score })
+        })
+        endTurn()
+    }
 
-    // const endTurn = () => {
-    //     setCardSelected(null)
-    //     setIsP1Turn((current) => !current)
-    // }
+    const endTurn = () => {
+        setCardSelected(null)
+        updateState(setBattleState, { isP1Turn: !isP1Turn })
+    }
 
-    // useEffect(() => {
-    //     checkForWin()
-    // }, [isP1Turn])
+    useEffect(() => {
+        checkForWin()
+    }, [isP1Turn])
 
-    // const checkForWin = () => {
-    //     if (emptyCells.length === 0) {
-    //         setTimeout(() => {
-    //             if (scores.p1 > scores.cpu) {
-    //                 setModalMessage('Victory')
-    //             } else if (scores.p1 < scores.cpu) {
-    //                 setModalMessage('Defeat')
-    //             } else if (scores.p1 === scores.cpu) {
-    //                 setModalMessage('Draw')
-    //             }
-    //             setBattleOver(true)
-    //         }, 1000)
-    //     } else if (emptyCells.length < 9) {
-    //         saveStateToLocalStorage()
-    //     }
-    // }
+    const checkForWin = () => {
+        if (emptyCells.length === 0) {
+            setTimeout(() => {
+                battleResults()
+                updateState(setBattleState, { battleOver: true })
+            }, 1000)
+        } else if (emptyCells.length < 9) {
+            saveStateToLocalStorage()
+        }
+    }
 
-    // const cpuMove = () => {
-    //     const newBoardArray = board
-    //     let newHand = hands.cpu
-    //     let bestScore = -Infinity
-    //     let move
-    //     hands.cpu.forEach((card) => {
-    //         emptyCells.forEach((cell) => {
-    //             let score = 0
-    //             const up = board[cell - WIDTH]
-    //             const right = board[cell + 1]
-    //             const left = board[cell - 1]
-    //             const down = board[cell + WIDTH]
-    //             const values = card.values
+    const battleResults = async () => {
+        if (playerOne.score > playerTwo.score) {
+            updateState(setBattleState, {
+                battleResultMessage: 'Victory',
+            })
+        } else if (playerOne.score < playerTwo.score) {
+            updateState(setBattleState, {
+                battleResultMessage: 'Defeat',
+            })
+        } else if (playerOne.score === playerTwo.score) {
+            updateState(setBattleState, {
+                battleResultMessage: 'Draw',
+            })
+        }
 
-    //             // check cards user
-    //             // scales
+        const updatedCoin = {
+            coin: user.coin + opponent.rewards.coin,
+        }
+        await axios
+            .put('/api/profile/info', updatedCoin)
+            .then(() => getCurrentUser())
+        const updatedStats = {
+            level: user.level,
+            xp:
+                user.xp +
+                (playerOne.score > playerTwo.score
+                    ? opponent.rewards.xp
+                    : playerOne.score < playerTwo.score
+                    ? 0
+                    : Math.floor(opponent.rewards.xp / 2)),
 
-    //             if (cell !== 0 && cell !== 1 && cell !== 2 && up !== 'empty') {
-    //                 if (up.values[2] < values[0]) {
-    //                     score +=
-    //                         100 + (parseInt(up.values[2]) - parseInt(values[0]))
-    //                 }
-    //             }
-    //             if (cell !== 0 && cell !== 1 && cell !== 2 && up === 'empty') {
-    //                 score += parseInt(values[0])
-    //             }
-    //             if (cell === 0 || cell === 1 || cell === 2) {
-    //                 score -= parseInt(values[0])
-    //             }
+            battles: user.stats.battles + 1,
+            wins:
+                playerOne.score > playerTwo.score
+                    ? user.stats.wins + 1
+                    : user.stats.wins,
+            losses:
+                playerOne.score < playerTwo.score
+                    ? user.stats.losses + 1
+                    : user.stats.losses,
+            draws:
+                playerOne.score === playerTwo.score
+                    ? user.stats.draws + 1
+                    : user.stats.draws,
+        }
+        await axios
+            .put('/api/profile/stats', updatedStats)
+            .then(() => getCurrentUser())
 
-    //             if (
-    //                 cell !== 0 &&
-    //                 cell !== 3 &&
-    //                 cell !== 6 &&
-    //                 left !== 'empty'
-    //             ) {
-    //                 if (left.values[1] < values[3]) {
-    //                     score +=
-    //                         100 +
-    //                         (parseInt(left.values[1]) - parseInt(values[3]))
-    //                 }
-    //             }
-
-    //             if (
-    //                 cell !== 0 &&
-    //                 cell !== 3 &&
-    //                 cell !== 6 &&
-    //                 left === 'empty'
-    //             ) {
-    //                 score += parseInt(values[3])
-    //             }
-    //             if (cell === 0 || cell === 3 || cell === 6) {
-    //                 score -= parseInt(values[3])
-    //             }
-
-    //             if (
-    //                 cell !== 2 &&
-    //                 cell !== 5 &&
-    //                 cell !== 8 &&
-    //                 right !== 'empty'
-    //             ) {
-    //                 if (right.values[3] < values[1]) {
-    //                     score +=
-    //                         100 +
-    //                         (parseInt(right.values[3]) - parseInt(values[1]))
-    //                 }
-    //             }
-
-    //             if (
-    //                 cell !== 2 &&
-    //                 cell !== 5 &&
-    //                 cell !== 8 &&
-    //                 right !== 'empty'
-    //             ) {
-    //                 score += parseInt(values[1])
-    //             }
-    //             if (cell === 2 || cell === 5 || cell === 8) {
-    //                 score -= parseInt(values[1])
-    //             }
-
-    //             if (
-    //                 cell !== 6 &&
-    //                 cell !== 7 &&
-    //                 cell !== 8 &&
-    //                 down !== 'empty'
-    //             ) {
-    //                 if (down.values[0] < values[2]) {
-    //                     score +=
-    //                         100 +
-    //                         (parseInt(down.values[0]) - parseInt(values[2]))
-    //                 }
-    //             }
-
-    //             if (
-    //                 cell !== 6 &&
-    //                 cell !== 7 &&
-    //                 cell !== 8 &&
-    //                 down !== 'empty'
-    //             ) {
-    //                 score += parseInt(values[2])
-    //             }
-    //             if (cell === 6 || cell === 7 || cell === 8) {
-    //                 score -= parseInt(values[2])
-    //             }
-    //             if (score > bestScore) {
-    //                 bestScore = score
-    //                 move = { card: card, cell: cell }
-    //             }
-    //         })
-    //     })
-    //     move.card.user = opponent
-    //     newBoardArray.splice(move.cell, 1, move.card)
-    //     setBoard((prevBoard) => newBoardArray)
-    //     newHand.forEach((handCard, i) =>
-    //         handCard._id === move.card._id ? hands.cpu.splice(i, 1) : ''
-    //     )
-    //     setHands({ ...hands, cpu: newHand })
-    //     processBattles(move.cell, move.card)
-    // }
-
-    // useEffect(() => {
-    //     if (
-    //         battleStarted &&
-    //         !isP1Turn &&
-    //         emptyCells.length !== 0 &&
-    //         hands.cpu.length > 0
-    //     ) {
-    //         setTimeout(() => {
-    //             cpuMove()
-    //         }, 1500)
-    //     }
-    // }, [isP1Turn, playerTwo.hand])
+        if (user.defeatedEnemies.includes(opponent.name)) {
+            return
+        } else {
+            const opponentCard = allCards.find(
+                (card) => card._id == opponent.rewards.card
+            )
+            assignRandomCardValues(opponentCard)
+            const cardData = {
+                name: opponentCard.name,
+                number: opponentCard.number,
+                image: opponentCard.image,
+                rarity: opponentCard.rarity,
+                empower: opponentCard.empower,
+                weaken: opponentCard.weaken,
+                values: opponentCard.values,
+            }
+            try {
+                await axios
+                    .put('/api/collection/new', cardData)
+                    .then(() =>
+                        axios.put('/api/profile/info', {
+                            defeatedEnemies: [
+                                ...user.defeatedEnemies,
+                                opponent.name,
+                            ],
+                        })
+                    )
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
 
     return (
         <div className='match page'>
@@ -503,19 +369,16 @@ const Battle = () => {
                 />
             </div>
 
-            {battleOver && modalMessage && (
+            {battleOver && battleResultMessage && (
                 <div className='battle-over box'>
-                    <span className='result'>{modalMessage}</span>
+                    <span className='result'>{battleResultMessage}</span>
                     <div className='buttons'>
-                        <button
-                            className='box'
-                            onClick={() => navigate('/battleSetup')}
-                        >
-                            Battle Select
-                        </button>
-                        <button className='box' onClick={() => navigate('/')}>
-                            Quit
-                        </button>
+                        <Button
+                            label='Select Battle'
+                            type='link'
+                            path='/battleSetup'
+                        />
+                        <Button label='Main Menu' type='link' path='/' />
                     </div>
                 </div>
             )}

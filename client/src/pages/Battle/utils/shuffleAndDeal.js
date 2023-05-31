@@ -14,10 +14,12 @@ export const shuffleCards = (decks) => {
     })
 }
 
-export const dealCards = (playerDeck, playerHand) => {
+export const assignColorsAndDealCards = (player) => {
+    const { deck, hand, user } = player
+    deck.forEach((card) => (card.color = user.color))
     const handSize = 5
     let i = 0
     do {
-        playerHand.push(playerDeck.shift()), i++
+        hand.push(deck.shift()), i++
     } while (i < handSize)
 }

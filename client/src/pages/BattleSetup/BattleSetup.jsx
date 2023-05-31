@@ -34,9 +34,6 @@ const Opponent = ({
             opponent.minPower,
             opponent.maxPower
         )
-        currentOpponentDeck.forEach((card) => {
-            card.user = opponent
-        })
         setSelectedOpponentDeck((prevDeck) => currentOpponentDeck)
     }
 
@@ -222,6 +219,7 @@ const BattleSetup = () => {
 
     return (
         <div className='setup page center'>
+            <div className='background' />
             <div className='opponent-list'>
                 <div className='header'>
                     <h1>Choose your opponent</h1>

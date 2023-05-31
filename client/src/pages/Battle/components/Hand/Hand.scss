@@ -1,0 +1,65 @@
+.hand {
+    position: absolute;
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+}
+
+.p1 {
+    bottom: 0;
+    height: 175px;
+    justify-content: center;
+
+    .down-arrow,
+    .up-arrow {
+        position: absolute;
+        top: 75%;
+        left: 0;
+        color: var(--primary-color);
+        font-size: 48px;
+        cursor: pointer;
+    }
+
+    .card {
+        cursor: pointer;
+        &:hover {
+            transform: translateY(-150px);
+        }
+
+        &.selected {
+            transform: translateY(-150px);
+            z-index: 20;
+            img {
+                box-shadow: 2px 2px 10px var(--secondary-color),
+                    -2px -2px 10px var(--secondary-color),
+                    -2px 2px 10px var(--secondary-color),
+                    2px -2px 10px var(--secondary-color);
+            }
+        }
+    }
+}
+
+.p2 {
+    top: 0;
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    z-index: 10;
+
+    .card {
+        rotate: 180deg;
+    }
+}
+
+.raised {
+    transform: translateY(-135px);
+    z-index: 20;
+
+    & .card:hover {
+        transform: translateY(-15px);
+    }
+
+    & .card.selected {
+        transform: translateY(-15px);
+    }
+}

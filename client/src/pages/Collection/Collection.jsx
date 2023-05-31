@@ -69,20 +69,6 @@ const UserSection = ({ userCards, user }) => {
                     </table>
                 </div>
             </div>
-
-            <div className='main-card'>
-                {userCards.length > 0 && (
-                    <>
-                        <Card
-                            card={userCards[0]}
-                            player='p1'
-                            turn={true}
-                            visibility={true}
-                        />
-                        <h3>Most CaptuRes</h3>
-                    </>
-                )}
-            </div>
         </div>
     )
 }
@@ -201,9 +187,7 @@ const DeckBar = ({
                     (total, card) =>
                         total +
                         card.values.reduce(
-                            (sum, current) =>
-                                parseInt(sum) +
-                                parseInt(current.replace(/A/g, 10)),
+                            (sum, current) => parseInt(sum) + parseInt(current),
                             0
                         ),
                     0
@@ -219,6 +203,7 @@ const DeckBar = ({
 }
 
 const CardCollection = ({
+    user,
     userCards,
     userDeck,
     deckFilter,
@@ -229,6 +214,10 @@ const CardCollection = ({
     removeSelection,
 }) => {
     const filteredCards = useMemo(() => {
+        userCards.forEach((card) => {
+            card.color = user.color
+        })
+
         let filtered = [...userCards].sort((a, b) => a.number - b.number)
 
         if (deckFilter === 'In Deck') {
@@ -296,17 +285,12 @@ const CardCollection = ({
 }
 
 const Collection = () => {
-    const { getCurrentUser, user, getUserCards, userCards, userDeck } =
-        useGlobalContext()
+    const { getCurrentUser, user, userCards, userDeck } = useGlobalContext()
     const stage = user?.onboardingStage
     const [deckFilter, setDeckFilter] = useState('')
     const [rarityFilter, setRarityFilter] = useState('')
     const [valueFilter, setValueFilter] = useState('')
     const valuesArray = ['Up', 'Right', 'Down', 'Left', 'Total']
-
-    useEffect(() => {
-        getCurrentUser()
-    }, [])
 
     useEffect(() => {
         getCurrentUser()
@@ -361,6 +345,7 @@ const Collection = () => {
                 setValueFilter={setValueFilter}
             />
             <CardCollection
+                user={user}
                 userCards={userCards ?? []}
                 userDeck={userDeck ?? []}
                 deckFilter={deckFilter}

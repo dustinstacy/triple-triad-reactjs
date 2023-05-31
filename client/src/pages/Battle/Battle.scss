@@ -12,228 +12,59 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        @media screen and (max-width: 900px) {
-            flex-direction: column;
-        }
-
-        .board {
-            height: 100vh;
-            width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            background: var(--background2-color);
-            background-position: top;
-
-            .card {
-                height: 250px;
-                width: calc(250px * 0.725);
-
-                &__values {
-                    font-size: 22px;
-                }
-            }
-
-            .grid {
-                height: 750px;
-                width: 545px;
-                flex-wrap: wrap;
-                align-content: center;
-                margin-bottom: 100px;
-
-                @media screen and (max-width: 1200px) {
-                    height: 748px;
-                    width: 532px;
-                }
-
-                @media screen and (max-width: 900px) {
-                    height: 640px;
-                }
-
-                @media screen and (max-width: 600px) {
-                    height: 520px;
-                    width: 340px;
-                }
-            }
-
-            .column {
-                height: 100%;
-                width: 100px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                .p1-score,
-                .cpu-score {
-                    padding: 36px;
-                    font-size: 36px;
-                }
-
-                .p1-score {
-                    align-self: flex-start;
-                    padding-top: 200px;
-                }
-
-                .cpu-score {
-                    align-self: flex-start;
-                    padding-top: 140px;
-                }
-            }
-        }
-
-        .hand {
-            position: absolute;
-            width: 1200px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .p1 {
-            bottom: 0;
-            height: 175px;
-            justify-content: center;
-            transform: perspective(400px) rotateX(0);
-
-            .down-arrow,
-            .up-arrow {
-                position: absolute;
-                top: 50%;
-                left: 0;
-                color: var(--primary-color);
-                font-size: 48px;
-                cursor: pointer;
-            }
-
-            .down-arrow {
-                transform: translateY(90%);
-            }
-
-            .card {
-                cursor: pointer;
-                &:hover {
-                    transform: translateY(-150px);
-                }
-
-                &.selected {
-                    transform: translateY(-150px);
-                    z-index: 20;
-                    img {
-                        box-shadow: 2px 2px 10px var(--secondary-color),
-                            -2px -2px 10px var(--secondary-color),
-                            -2px 2px 10px var(--secondary-color),
-                            2px -2px 10px var(--secondary-color);
-                    }
-                }
-            }
-        }
-
-        .cpu {
-            top: 0;
-            height: 50px;
-            display: flex;
-            align-items: flex-end;
-            transform: perspective(400px) rotateX(0);
-            z-index: 10;
-
-            .card {
-                height: 250px;
-                width: calc(250px * 0.725);
-            }
-
-            @media screen and (max-width: 900px) {
-                justify-content: flex-start;
-            }
-        }
-
-        .raised {
-            transform: translateY(-135px);
-
-            & .card:hover {
-                transform: translateY(-15px);
-            }
-
-            & .card.selected {
-                transform: translateY(-15px);
-            }
-        }
-
-        .user-image,
-        .cpu-image {
-            position: absolute;
-            height: 96px;
-            width: 96px;
-            border-radius: 50%;
-        }
-
-        .user-image {
-            bottom: 200px;
-            left: 1200px;
-        }
-
-        .cpu-image {
-            top: 100px;
-            left: 1150px;
-            z-index: 10;
-        }
     }
 }
 
-.turn-arrow {
-    margin-top: 100px;
-    margin-left: 4px;
-    color: var(--secondary-color);
-    font-size: 72px;
-    transition: all 1s ease-in-out;
-}
-
-.turn-arrow.down {
-    transform: rotateZ(40);
-}
-
-.turn-arrow.up {
-    transform: rotateZ(220);
-}
-
-.turn-arrow.start-game {
-    animation: spin 0.25s infinite forwards;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(180deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.battle-over {
+.screen-message {
     position: absolute;
-    height: 800px;
-    width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    z-index: 20;
+    height: 100%;
+    width: 100%;
+    color: var(--primary-color);
+    font-size: 300px;
+    text-align: center;
+    text-shadow: 5px 5px 2px var(--primary2-color),
+        -5px -5px 2px var(--primary2-color), 5px -5px 2px var(--primary2-color),
+        -5px 5px 2px var(--primary2-color), 6px 6px 4px var(--white-color),
+        -6px -6px 4px var(--white-color), 6px -6px 4px var(--white-color),
+        -6px 6px 4px var(--white-color), 15px 15px 10px var(--black-color),
+        -15px -15px 10px var(--black-color), 15px -15px 10px var(--black-color),
+        -15px 15px 10px var(--black-color);
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 100;
 
-    .result {
-        font-size: 124px;
+    &.show {
+        animation: fade-in-shrink 1.5s forwards;
+    }
+}
+
+@keyframes fade-in-shrink {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
     }
 
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 48px;
+    10% {
+        opacity: 1;
+    }
 
-        button {
-            height: 100px;
-            width: 400px;
-            font-size: 36px;
-        }
+    90% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes message-shrink {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
     }
 }

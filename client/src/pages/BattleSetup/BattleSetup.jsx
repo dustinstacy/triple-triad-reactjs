@@ -22,7 +22,7 @@ const Opponent = ({
     const getOpponentDeck = () => {
         const currentOpponentDeck = getRandomCards(
             14,
-            { Common: 90, Uncommon: 10 },
+            opponent.deckOdds,
             allCards
         )
         const currentOpennentCard = allCards.find(
@@ -168,11 +168,12 @@ const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
             <div className='user-deck__power'>
                 <p>Power</p>
                 <span>
-                    {userDeck?.reduce(
+                    {userDeck.reduce(
                         (total, card) =>
                             total +
                             card.values.reduce(
-                                (sum, current) => sum + current,
+                                (sum, current) =>
+                                    parseInt(sum) + parseInt(current),
                                 0
                             ),
                         0
@@ -186,12 +187,12 @@ const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
             <Button
                 onClick={autoBuild}
                 label='FIll Deck'
-                disabled={userDeck?.length === selectedOpponent.size}
+                disabled={userDeck?.length === selectedOpponent.minDeckSize}
             />
             <Button
                 label='Start Battle'
                 onClick={() => startBattle()}
-                disabled={userDeck?.length !== selectedOpponent.size}
+                disabled={userDeck?.length !== selectedOpponent.minDeckSize}
             />
         </div>
     )
@@ -201,17 +202,24 @@ const BattleSetup = () => {
     const [cpuOpponents, setCPUOpponents] = useState({})
     const [selectedOpponent, setSelectedOpponent] = useState('')
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const getOpponents = async () => {
-            const opponents = await axios.get('/api/cpuOpponents')
-            setCPUOpponents(opponents.data)
+        const savedState = localStorage.getItem('battleState')
+        if (savedState) {
+            navigate('/battle')
+        } else {
+            const getOpponents = async () => {
+                const opponents = await axios.get('/api/cpuOpponents')
+                setCPUOpponents(opponents.data)
+            }
+            getOpponents()
         }
-        getOpponents()
     }, [])
 
     return (
         <div className='setup page center'>
+            <div className='background' />
             <div className='opponent-list'>
                 <div className='header'>
                     <h1>Choose your opponent</h1>

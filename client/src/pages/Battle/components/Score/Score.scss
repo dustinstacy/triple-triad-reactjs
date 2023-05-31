@@ -1,0 +1,21 @@
+.p1-score,
+.p2-score {
+    padding: 36px;
+    font-size: 36px;
+    img {
+        height: 48px;
+    }
+}
+
+.p1-score {
+    align-self: flex-start;
+    padding-bottom: 120px;
+}
+
+.p2-score {
+    align-self: flex-start;
+
+    img {
+        rotate: 180deg;
+    }
+}

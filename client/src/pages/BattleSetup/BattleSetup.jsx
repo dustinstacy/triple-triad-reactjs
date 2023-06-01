@@ -21,7 +21,7 @@ const Opponent = ({
 
     const getOpponentDeck = () => {
         const currentOpponentDeck = getRandomCards(
-            14,
+            opponent.minDeckSize - 1,
             opponent.deckOdds,
             allCards
         )
@@ -117,29 +117,33 @@ const Opponent = ({
 const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
     const { getCurrentUser, user, userCards, userDeck } = useGlobalContext()
     const navigate = useNavigate()
+    let errorDisplayed = false
+
+    const unSelectedCards = userCards.filter(
+        (card) => !userDeck.find(({ _id }) => card._id === _id)
+    )
 
     const markSelected = async (card) => {
-        if (userDeck.length < 15) {
+        if (userDeck.length < 35 && unSelectedCards.length) {
             await axios.put(`/api/collection/${card._id}/selected`)
             await axios.post('/api/deck/add', {
-                user: user._id,
                 _id: card._id,
-                number: card.number,
-                name: card.name,
-                level: card.level,
-                rarity: card.rarity,
-                element: card.element,
                 image: card.image,
+                empower: card.empower,
+                weaken: card.weaken,
                 values: card.values,
             })
             getCurrentUser()
         } else {
-            alert('Your deck is currently full')
+            if (!errorDisplayed) {
+                errorDisplayed = true
+                alert('Your deck is currently full')
+            }
         }
     }
 
     const autoBuild = async () => {
-        const emptySlots = 15 - userDeck.length
+        const emptySlots = 35 - userDeck.length
         const totalValueArray = userCards
             .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
             .sort(
@@ -212,6 +216,7 @@ const BattleSetup = () => {
         } else {
             const getOpponents = async () => {
                 const opponents = await axios.get('/api/cpuOpponents')
+                opponents.data.sort((a, b) => a.level - b.level)
                 setCPUOpponents(opponents.data)
             }
             getOpponents()

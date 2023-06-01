@@ -141,7 +141,7 @@ const DeckBar = ({
     removeSelection,
 }) => {
     const autoBuild = async () => {
-        const emptySlots = 15 - userDeck.length
+        const emptySlots = 35 - userDeck.length
         const totalValueArray = userCards
             .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
             .sort(
@@ -180,7 +180,7 @@ const DeckBar = ({
                     >
                         {userDeck.length}
                     </span>
-                    / 15
+                    / 35
                 </p>
             </div>
             <div className='strength'>
@@ -293,13 +293,18 @@ const Collection = () => {
     const [rarityFilter, setRarityFilter] = useState('')
     const [valueFilter, setValueFilter] = useState('')
     const valuesArray = ['Up', 'Right', 'Down', 'Left', 'Total']
+    let errorDisplayed = false
 
     useEffect(() => {
         getCurrentUser()
     }, [])
 
+    const unSelectedCards = userCards.filter(
+        (card) => !userDeck.find(({ _id }) => card._id === _id)
+    )
+
     const markSelected = async (card) => {
-        if (userDeck.length < 15) {
+        if (userDeck.length < 35 && unSelectedCards.length) {
             await axios.put(`/api/collection/${card._id}/select`)
             const cardData = {
                 _id: card._id,
@@ -311,7 +316,10 @@ const Collection = () => {
             await axios.put(`/api/deck/add`, cardData)
             getCurrentUser()
         } else {
-            alert('Your deck is currently full')
+            if (!errorDisplayed) {
+                errorDisplayed = true
+                alert('Your deck is currently full')
+            }
         }
     }
 

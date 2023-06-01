@@ -61,11 +61,7 @@ const Carousel = ({ items, userInventory, setCurrentPack }) => {
                     <div className='carousel-item-info'>
                         <h1 className='carousel-item-name'>{value.name}</h1>
                         <hr />
-                        <p className='carousel-item-details'>
-                            {/* Placeholder text until user inventory has all necessary data */}
-                            Enter item description here.
-                            {value.details}
-                        </p>
+                        <p className='carousel-item-details'>{value.info}</p>
                         <div className='available-inventory'>
                             <span>Available: &nbsp;</span>
                             {
@@ -86,7 +82,7 @@ const Carousel = ({ items, userInventory, setCurrentPack }) => {
 const PackContents = ({ cards, setPackContents }) => (
     <div className='packs-container center'>
         {cards.map((card) => (
-            <Card key={card._id} card={card} faith='p1' isShowing />
+            <Card key={card._id} card={card} isShowing />
         ))}
         <Button label='Go Back' onClick={() => setPackContents(null)} />
     </div>
@@ -134,7 +130,7 @@ const Packs = () => {
                 console.log(error)
             }
         })
-        newCards.forEach((card) => (card.color = 'black'))
+        newCards.forEach((card) => (card.color = 'gray'))
         setPackContents(newCards)
 
         removeObjectByValue(user.inventory, currentPack.name)

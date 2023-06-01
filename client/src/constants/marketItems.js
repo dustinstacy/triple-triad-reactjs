@@ -2,13 +2,16 @@ import { commonPack, uncommonPack, rarePack } from '../assets/packs'
 
 export const marketItems = [
     {
-        name: 'Common Pack',
-        image: commonPack,
+        name: 'Common Card',
+        image: '',
         type: 'pack',
-        level: 1,
+        level: 2,
         details: 'Enter Item Description here',
-        contents: { count: 1, odds: { Common: 90.0, Uncommon: 10.0 } },
-        price: 150,
+        contents: {
+            count: 1,
+            odds: { Common: 100.0 },
+        },
+        price: 50,
         quantities: [
             { amount: 1, discount: '0' },
             { amount: 5, discount: '10%' },
@@ -16,16 +19,16 @@ export const marketItems = [
         ],
     },
     {
-        name: 'Uncommon Pack',
-        image: uncommonPack,
+        name: 'Uncommon Card',
+        image: '',
         type: 'pack',
-        level: 3,
+        level: 4,
         details: 'Enter Item Description here',
         contents: {
             count: 1,
-            odds: { Common: 30.0, Uncommon: 60.0, Rare: 10.0 },
+            odds: { Uncommon: 100.0 },
         },
-        price: 400,
+        price: 250,
         quantities: [
             { amount: 1, discount: '0' },
             { amount: 5, discount: '10%' },
@@ -33,16 +36,50 @@ export const marketItems = [
         ],
     },
     {
-        name: 'Rare Pack',
-        image: rarePack,
+        name: 'Rare Card',
+        image: '',
         type: 'pack',
-        level: 5,
+        level: 6,
         details: 'Enter Item Description here',
         contents: {
             count: 1,
-            odds: { Uncommon: 40.0, Rare: 50.0, Epic: 10.0 },
+            odds: { Rare: 100.0 },
         },
-        price: 1000,
+        price: 600,
+        quantities: [
+            { amount: 1, discount: '0' },
+            { amount: 5, discount: '10%' },
+            { amount: 10, discount: '15%' },
+        ],
+    },
+    {
+        name: 'Epic Card',
+        image: '',
+        type: 'pack',
+        level: 8,
+        details: 'Enter Item Description here',
+        contents: {
+            count: 1,
+            odds: { Epic: 100.0 },
+        },
+        price: 1200,
+        quantities: [
+            { amount: 1, discount: '0' },
+            { amount: 5, discount: '10%' },
+            { amount: 10, discount: '15%' },
+        ],
+    },
+    {
+        name: 'Legendary Card',
+        image: '',
+        type: 'pack',
+        level: 10,
+        details: 'Enter Item Description here',
+        contents: {
+            count: 1,
+            odds: { Legendary: 100.0 },
+        },
+        price: 5000,
         quantities: [
             { amount: 1, discount: '0' },
             { amount: 5, discount: '10%' },

@@ -24,10 +24,10 @@ router.get('/', requiresAuth, async (req, res, next) => {
     }
 })
 
-// @route POST /api/items/new
+// @route POST /api/items/
 // @desc Add item to database
 // @access Private
-router.post('/new', requiresAuth, requiresAdmin, async (req, res, next) => {
+router.post('/', requiresAuth, requiresAdmin, async (req, res, next) => {
     try {
         const { name, image, type, level, info, price, contents } = req.body
 

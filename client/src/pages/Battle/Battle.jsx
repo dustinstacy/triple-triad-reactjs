@@ -136,7 +136,7 @@ const Battle = () => {
         updateState(setBattleState, {
             handsDealt: true,
         })
-        if (round === roundsForWin) {
+        if (round === roundsForWin + 1) {
             setScreenMessage('Final Round')
         } else {
             setScreenMessage(`Round ${round}`)

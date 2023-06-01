@@ -6,9 +6,6 @@
         width: 100vw;
         display: flex;
         flex-direction: column;
-        background-image: url('../../assets/page-images/market.jpg');
-        background-position: bottom;
-        background-size: cover;
 
         .market-menu-header {
             position: relative;
@@ -85,6 +82,9 @@
                 flex-direction: column;
                 justify-content: center;
                 padding: 48px 24px;
+                background-image: url('../../assets/page-images/market3.jpg');
+                background-position: center;
+                background-size: cover;
 
                 @media screen and (max-width: 768px) {
                     width: 100%;
@@ -117,6 +117,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 4px 24px;
+            background-color: rgba(0, 0, 0, 0.5);
             box-sizing: initial;
             border-bottom: 1px solid var(--secondary2-color);
             cursor: pointer;

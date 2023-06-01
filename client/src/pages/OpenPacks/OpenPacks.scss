@@ -137,6 +137,11 @@
             margin-top: 24px;
         }
 
+        .carousel-item-name {
+            display: flex;
+            justify-content: space-between;
+        }
+
         .carousel-item-info {
             position: relative;
             height: 80%;

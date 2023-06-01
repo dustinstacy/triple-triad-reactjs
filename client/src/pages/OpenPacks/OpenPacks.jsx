@@ -59,7 +59,10 @@ const Carousel = ({ items, userInventory, setCurrentPack }) => {
                         <img src={value.image} alt={value.name} />
                     </div>
                     <div className='carousel-item-info'>
-                        <h1 className='carousel-item-name'>{value.name}</h1>
+                        <h1 className='carousel-item-name'>
+                            {value.name}
+                            <span>LVL &nbsp; {value.level}</span>
+                        </h1>
                         <hr />
                         <p className='carousel-item-details'>{value.info}</p>
                         <div className='available-inventory'>
@@ -100,7 +103,9 @@ const Packs = () => {
     const userPacks = [
         ...new Set(user?.inventory.filter((item) => item.type === 'pack')),
     ]
-    const uniquePacks = uniqueItemsFilter(userPacks)
+    const uniquePacks = uniqueItemsFilter(userPacks).sort(
+        (a, b) => b.level - a.level
+    )
 
     const openPack = async () => {
         setIsLoading(true)

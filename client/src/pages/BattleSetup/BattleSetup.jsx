@@ -115,12 +115,22 @@ const Opponent = ({
 }
 
 const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
-    const { getCurrentUser, user, userCards, userDeck } = useGlobalContext()
+    const { getCurrentUser, userCards, userDeck } = useGlobalContext()
     const navigate = useNavigate()
     let errorDisplayed = false
 
     const unSelectedCards = userCards.filter(
         (card) => !userDeck.find(({ _id }) => card._id === _id)
+    )
+
+    const userDeckPower = userDeck.reduce(
+        (total, card) =>
+            total +
+            card.values.reduce(
+                (sum, current) => parseInt(sum) + parseInt(current),
+                0
+            ),
+        0
     )
 
     const markSelected = async (card) => {
@@ -170,18 +180,14 @@ const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
         <div className='opponent-menu box'>
             Your Deck:
             <div className='user-deck__power'>
-                <p>Power</p>
+                <p>Relative Power</p>
                 <span>
-                    {userDeck.reduce(
-                        (total, card) =>
-                            total +
-                            card.values.reduce(
-                                (sum, current) =>
-                                    parseInt(sum) + parseInt(current),
-                                0
-                            ),
-                        0
-                    )}
+                    {userDeck.length >= selectedOpponent.minDeckSize
+                        ? Math.floor(
+                              (userDeckPower / userDeck.length) *
+                                  selectedOpponent.minDeckSize
+                          )
+                        : '-'}
                 </span>
             </div>
             <div className='user-deck__size'>
@@ -191,12 +197,14 @@ const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
             <Button
                 onClick={autoBuild}
                 label='FIll Deck'
-                disabled={userDeck?.length === selectedOpponent.minDeckSize}
+                disabled={
+                    userDeck?.length === 35 || unSelectedCards?.length === 0
+                }
             />
             <Button
                 label='Start Battle'
                 onClick={() => startBattle()}
-                disabled={userDeck?.length !== selectedOpponent.minDeckSize}
+                disabled={userDeck?.length < selectedOpponent.minDeckSize}
             />
         </div>
     )

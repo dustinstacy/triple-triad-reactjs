@@ -1,5 +1,5 @@
 .setup .background {
-    background: url('../../assets/page-images/battleSetup.jpg');
+    background: url('../../assets/page-images/battleSetup2.jpg');
     position: fixed;
     top: 0;
     left: 0;
@@ -185,6 +185,25 @@
             color: var(--gray-color);
             font-size: 28px;
             filter: grayscale(0.8) blur(0.5px);
+        }
+    }
+
+    .battle-alert {
+        height: 400px;
+        width: 800px;
+        flex-direction: column;
+        gap: 48px;
+        font-size: 20px;
+        z-index: 10;
+
+        .buttons {
+            display: flex;
+            gap: 48px;
+
+            .button {
+                padding: 12px 24px;
+                font-size: 32px;
+            }
         }
     }
 }

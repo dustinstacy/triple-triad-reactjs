@@ -2,6 +2,9 @@
     position: relative;
     padding-top: var(--navbar-height);
     gap: 36px;
+    background: url('../../assets/page-images/account.jpg');
+    background-size: cover;
+    background-position: bottom;
 
     .section {
         min-height: 20vh;

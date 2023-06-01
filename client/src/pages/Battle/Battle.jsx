@@ -73,7 +73,7 @@ const Battle = () => {
             return null
         })
         .filter((index) => index !== null)
-    const roundsForWin = opponent?.minDeckSize / 5 - 1
+    const roundsForWin = playerTwo.user?.minDeckSize / 5 - 1
 
     // Helper function to simplify updating state
     const updateState = (setState, updates) => {
@@ -136,7 +136,11 @@ const Battle = () => {
         updateState(setBattleState, {
             handsDealt: true,
         })
-        setScreenMessage(`Round ${round}`)
+        if (round === roundsForWin + 1) {
+            setScreenMessage('Final Round')
+        } else {
+            setScreenMessage(`Round ${round}`)
+        }
     }
 
     useEffect(() => {
@@ -246,7 +250,7 @@ const Battle = () => {
         table.forEach((card) => {
             if (card?.color === user?.color) {
                 p1Score++
-            } else if (card?.color === opponent?.color) {
+            } else if (card?.color === playerTwo.user?.color) {
                 p2Score++
             }
             updateState(setPlayerOne, { score: p1Score })
@@ -293,7 +297,7 @@ const Battle = () => {
         if (
             playerOne.roundsWon == roundsForWin ||
             playerTwo.roundsWon == roundsForWin ||
-            round == opponent.minDeckSize / 5
+            round == roundsForWin + 1
         ) {
             setTimeout(() => {
                 updateState(setBattleState, { battleOver: true })

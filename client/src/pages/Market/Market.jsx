@@ -3,16 +3,17 @@ import axios from 'axios'
 
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, ProductTour } from '../../components'
-import { marketItems } from '../../constants/marketItems'
 import { coinImage } from '../../assets/icons'
 
 import './Market.scss'
 
-const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
+const MarketMenuBar = ({ marketItems, chosenItem, setChosenItem }) => {
     const { user } = useGlobalContext()
+    const filteredItems = marketItems.sort((a, b) => a.level - b.level)
+
     return (
         <div className='menu-bar'>
-            {marketItems.map((item, i) => (
+            {filteredItems.map((item, i) => (
                 <div
                     key={item.name}
                     onClick={() => setChosenItem(marketItems[i])}
@@ -20,7 +21,15 @@ const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
                         chosenItem === item ? 'chosen' : ''
                     } ${item.level > user?.level ? 'disabled' : ''}`}
                 >
-                    {item.name}
+                    <div className='item'>
+                        <img src={item.image} alt='item image' />
+                        <div className='item-text'>
+                            {item.name}
+                            <br />
+                            Level {item.level}
+                        </div>
+                    </div>
+
                     <div className='menu-item-price center'>
                         {item.price} <img src={coinImage} alt='coin' />
                     </div>
@@ -30,7 +39,9 @@ const MarketMenuBar = ({ chosenItem, setChosenItem }) => {
     )
 }
 
-const ChosenItem = ({ chosenItem, user }) => {
+const ChosenItem = ({ chosenItem }) => {
+    const { user } = useGlobalContext()
+
     return (
         <div className='chosen-item'>
             <div className='chosen-item-image'>
@@ -47,14 +58,14 @@ const ChosenItem = ({ chosenItem, user }) => {
             <div className='chosen-item-info'>
                 <h1 className='chosen-item-name'>{chosenItem.name}</h1>
                 <hr />
-                <p className='chosen-item-details'>{chosenItem.details}</p>
+                <p className='chosen-item-details'>{chosenItem.info}</p>
             </div>
         </div>
     )
 }
 
 const QuantitySelector = ({
-    chosenItem,
+    quantityOptions,
     chosenQuantity,
     setChosenQuantity,
 }) => {
@@ -62,18 +73,18 @@ const QuantitySelector = ({
         setChosenQuantity(quantity)
     }
 
-    const quantityOptions = chosenItem.quantities
-
     return (
         <div className='quantity-selector'>
             <h2>ChOOse Quantity :</h2>
             <div className='quantity-buttons'>
-                {quantityOptions.map((quantity) => (
+                {quantityOptions?.map((quantity) => (
                     <button
                         key={quantity.amount}
                         onClick={() => handleQuantityChange(quantity)}
                         className={`quantity-button ${
-                            chosenQuantity === quantity ? 'chosen' : ''
+                            chosenQuantity.amount === quantity.amount
+                                ? 'chosen'
+                                : ''
                         }`}
                     >
                         {quantity.amount}
@@ -89,7 +100,8 @@ const QuantitySelector = ({
     )
 }
 
-const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
+const PurchaseBar = ({ marketItems, chosenItem, chosenQuantity }) => {
+    const { user, getCurrentUser } = useGlobalContext()
     const { inventory, coin } = user ?? {}
 
     const calculatePrice = (item, quantity, discount) => {
@@ -154,50 +166,70 @@ const PurchaseBar = ({ chosenItem, chosenQuantity, user, getCurrentUser }) => {
 }
 
 const Market = () => {
-    const { getCurrentUser, user } = useGlobalContext()
+    const { user } = useGlobalContext()
     const stage = user?.onboardingStage
-    const [chosenItem, setChosenItem] = useState(marketItems[0])
-    const [chosenQuantity, setChosenQuantity] = useState(
-        chosenItem.quantities[0]
-    )
+
+    const [marketItems, setMarketItems] = useState(null)
+    const [chosenItem, setChosenItem] = useState({})
+    const [chosenQuantity, setChosenQuantity] = useState({})
 
     useEffect(() => {
-        setChosenQuantity(chosenItem.quantities[0])
+        const getMarketItems = async () => {
+            const items = await axios.get('/api/items')
+            setMarketItems(items.data)
+        }
+        getMarketItems()
+    }, [])
+
+    useEffect(() => {
+        marketItems && setChosenItem(marketItems[0])
+    }, [marketItems])
+
+    const quantityOptions = [
+        { amount: 1, discount: '0' },
+        { amount: 5, discount: '10%' },
+        { amount: 10, discount: '15%' },
+    ]
+
+    useEffect(() => {
+        setChosenQuantity(quantityOptions[0])
     }, [chosenItem])
 
     return (
         <div className='market page center'>
             {stage === 0 && <ProductTour step={1} />}
-            <div className='market-menu'>
-                <div className='market-menu-header'>
-                    <h1>MaRKet</h1>
-                    <hr />
-                    <p className='coin center'>
-                        {user?.coin} <img src={coinImage} alt='coin' />
-                    </p>
-                </div>
+            {marketItems && (
+                <div className='market-menu'>
+                    <div className='market-menu-header'>
+                        <h1>MaRKet</h1>
+                        <hr />
+                        <p className='coin center'>
+                            {user?.coin} <img src={coinImage} alt='coin' />
+                        </p>
+                    </div>
 
-                <div className='market-menu-body'>
-                    <MarketMenuBar
-                        chosenItem={chosenItem}
-                        setChosenItem={setChosenItem}
-                    />
-                    <div className='chosen-item-display'>
-                        <ChosenItem chosenItem={chosenItem} user={user} />
-                        <QuantitySelector
+                    <div className='market-menu-body'>
+                        <MarketMenuBar
                             chosenItem={chosenItem}
-                            chosenQuantity={chosenQuantity}
-                            setChosenQuantity={setChosenQuantity}
+                            setChosenItem={setChosenItem}
+                            marketItems={marketItems}
                         />
-                        <PurchaseBar
-                            chosenItem={chosenItem}
-                            chosenQuantity={chosenQuantity}
-                            user={user}
-                            getCurrentUser={getCurrentUser}
-                        />
+                        <div className='chosen-item-display'>
+                            <ChosenItem chosenItem={chosenItem} />
+                            <QuantitySelector
+                                quantityOptions={quantityOptions}
+                                chosenQuantity={chosenQuantity}
+                                setChosenQuantity={setChosenQuantity}
+                            />
+                            <PurchaseBar
+                                marketItems={marketItems}
+                                chosenItem={chosenItem}
+                                chosenQuantity={chosenQuantity}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     )
 }

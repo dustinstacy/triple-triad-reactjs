@@ -39,7 +39,11 @@
         width: 100px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-around;
+
+        .round-score {
+            font-size: 72px;
+        }
     }
 
     .turn-arrow {

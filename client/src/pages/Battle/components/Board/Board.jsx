@@ -37,12 +37,14 @@ const Board = ({ playerOne, playerTwo, battleState, placeCard }) => {
                     )
                 )}
             </div>
-            <div className='column center'>
+            <div className='column'>
+                <div className='p2 round-score'>{playerTwo.roundsWon}</div>
                 <img
                     className={`turn-arrow ${isP1Turn ? 'down' : 'up'}`}
                     src={turnArrow}
                     alt='turn arrow'
                 />
+                <div className='p1 round-score'>{playerOne.roundsWon}</div>
             </div>
         </div>
     )

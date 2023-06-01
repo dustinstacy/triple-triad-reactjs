@@ -2,7 +2,6 @@
     padding-top: var(--navbar-height);
 
     .section.first {
-        height: 750px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -14,6 +13,7 @@
     }
 
     .section.second {
+        background-image: url('../../assets/page-images/battle.jpg');
         background-position: bottom;
         background-size: cover;
     }
@@ -31,9 +31,11 @@
     }
 
     .section {
+        height: calc(100vh - var(--navbar-height));
+        min-height: 600px;
         position: relative;
-        height: 1000px;
-        border-bottom: 2px solid var(--primary2-color);
+        border-bottom: 2px solid;
+        border-image: var(--gold-gradient) 1;
 
         @media screen and (max-width: 768px) {
             flex-direction: column;

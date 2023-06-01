@@ -8,7 +8,14 @@
         width: 100%;
         display: flex;
         gap: 1vw;
-        background-color: var(--background3-color);
+        background: url('../../assets/page-images/battleSetup.jpg');
+        border-bottom: 2px solid;
+        border-image: var(--gold-gradient45) 1;
+
+        .panel {
+            height: 90%;
+            width: 80%;
+        }
 
         .avatar-container {
             height: 60%;
@@ -171,6 +178,8 @@
         width: 100%;
         gap: 5vw;
         font-size: 22px;
+        border-bottom: 2px solid;
+        border-image: var(--gold-gradient45) 1;
 
         @media screen and (max-width: 900px) {
             font-size: 18px;
@@ -191,8 +200,7 @@
 
         .section {
             display: flex;
-            flex-direction: column;
-            gap: 18px;
+            gap: 48px;
 
             .button {
                 height: 40px;
@@ -308,7 +316,7 @@
 
     hr {
         height: 2px;
-        width: 100%;
+        width: 90%;
         border: none;
         background: linear-gradient(
             90deg,

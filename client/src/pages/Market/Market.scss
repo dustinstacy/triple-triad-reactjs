@@ -70,6 +70,7 @@
         .market-menu-body {
             display: flex;
             flex: 1;
+            overflow: hidden;
 
             @media screen and (max-width: 768px) {
                 flex-direction: column;
@@ -79,8 +80,11 @@
                 width: 66%;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
+                justify-content: center;
                 padding: 48px 24px;
+                background-image: url('../../assets/page-images/market3.jpg');
+                background-position: center;
+                background-size: cover;
 
                 @media screen and (max-width: 768px) {
                     width: 100%;
@@ -91,9 +95,12 @@
 
     .menu-bar {
         width: 33%;
-        background-color: var(--background-color);
+        background-image: url('../../assets/page-images/market2.jpg');
+        background-position: bottom;
+        background-size: cover;
         border-right: 1px solid var(--primary-color);
         font-size: 18px;
+        overflow-y: scroll;
 
         @media screen and (max-width: 768px) {
             min-height: 400px;
@@ -110,9 +117,20 @@
             align-items: center;
             justify-content: space-between;
             padding: 4px 24px;
+            background-color: rgba(0, 0, 0, 0.7);
             box-sizing: initial;
             border-bottom: 1px solid var(--secondary2-color);
             cursor: pointer;
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 36px;
+
+                img {
+                    height: 60px;
+                }
+            }
 
             .menu-item-price {
                 gap: 4px;
@@ -144,14 +162,18 @@
         width: 100%;
         display: flex;
         justify-content: space-around;
+        padding-top: 24px;
+        background-color: rgba(0, 0, 0, 0.9);
+        border-radius: 12px 12px 0 0;
         overflow: auto;
 
         .chosen-item-image {
-            margin-top: 48px;
+            margin: 48px;
             text-align: center;
 
             img {
                 height: 200px;
+                margin-bottom: 24px;
 
                 @media screen and (max-width: 1080px) {
                     height: 160px;
@@ -193,6 +215,9 @@
         flex-direction: column;
         align-items: center;
         gap: 12px;
+        padding-bottom: 24px;
+        background-color: rgba(0, 0, 0, 0.9);
+        border-radius: 0 0 12px 12px;
 
         .quantity-buttons {
             margin-top: 12px;
@@ -221,6 +246,7 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
+        margin-top: 48px;
 
         @media screen and (max-width: 600px) {
             height: 150px;

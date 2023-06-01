@@ -1,26 +1,62 @@
 .battle-over {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     height: 800px;
     width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 24px;
     z-index: 20;
 
     .result {
         font-size: 124px;
     }
 
+    .rewards {
+        display: flex;
+        justify-content: center;
+        gap: 120px;
+
+        .coin,
+        .xp,
+        .card-reward {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1 {
+                margin-bottom: 18px;
+            }
+        }
+
+        .coin,
+        .xp {
+            img {
+                height: 80px;
+            }
+            span {
+                font-size: 48px;
+            }
+        }
+
+        .coin-reward {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+    }
+
     .buttons {
         display: flex;
-        flex-direction: column;
         gap: 48px;
 
         button {
-            height: 100px;
-            width: 400px;
-            font-size: 36px;
+            height: 60px;
+            width: 200px;
+            font-size: 22px;
         }
     }
 }

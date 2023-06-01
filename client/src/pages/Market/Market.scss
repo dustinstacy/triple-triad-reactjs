@@ -117,10 +117,20 @@
             align-items: center;
             justify-content: space-between;
             padding: 4px 24px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             box-sizing: initial;
             border-bottom: 1px solid var(--secondary2-color);
             cursor: pointer;
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 36px;
+
+                img {
+                    height: 60px;
+                }
+            }
 
             .menu-item-price {
                 gap: 4px;
@@ -153,8 +163,8 @@
         display: flex;
         justify-content: space-around;
         padding-top: 24px;
-        background-color: rgba(0, 0, 0, 0.8);
-        border-radius: 12px 12px 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        border-radius: 12px 12px 0 0;
         overflow: auto;
 
         .chosen-item-image {
@@ -206,7 +216,7 @@
         align-items: center;
         gap: 12px;
         padding-bottom: 24px;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.9);
         border-radius: 0 0 12px 12px;
 
         .quantity-buttons {

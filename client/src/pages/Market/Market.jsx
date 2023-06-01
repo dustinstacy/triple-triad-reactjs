@@ -21,9 +21,15 @@ const MarketMenuBar = ({ marketItems, chosenItem, setChosenItem }) => {
                         chosenItem === item ? 'chosen' : ''
                     } ${item.level > user?.level ? 'disabled' : ''}`}
                 >
-                    {item.name}
-                    <br />
-                    Level {item.level}
+                    <div className='item'>
+                        <img src={item.image} alt='item image' />
+                        <div className='item-text'>
+                            {item.name}
+                            <br />
+                            Level {item.level}
+                        </div>
+                    </div>
+
                     <div className='menu-item-price center'>
                         {item.price} <img src={coinImage} alt='coin' />
                     </div>

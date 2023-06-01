@@ -123,12 +123,19 @@ const BattleResults = ({ playerOne, playerTwo }) => {
                 {battleResultsMessage === 'Victory' ? (
                     <>
                         <div className='coin'>
-                            + {opponent.rewards.coin}{' '}
-                            <img src={coinImage} alt='coin image' />
+                            <h1>Coin</h1>
+                            <div className='coin-reward'>
+                                <span>+ {opponent.rewards.coin}</span>
+                                <img src={coinImage} alt='coin image' />
+                            </div>
                         </div>
-                        <div className='xp'>+ {opponent.rewards.xp}</div>
+                        <div className='xp'>
+                            <h1>XP</h1>
+                            <span>+ {opponent.rewards.xp}</span>
+                        </div>
                         {cardReward && (
                             <div className='card-reward'>
+                                <h1>NEW CARD!</h1>
                                 <Card card={cardReward} isShowing />
                             </div>
                         )}
@@ -136,10 +143,18 @@ const BattleResults = ({ playerOne, playerTwo }) => {
                 ) : battleResultsMessage === 'Draw' ? (
                     <>
                         <div className='coin'>
-                            + {opponent.rewards.coin / 2}{' '}
-                            <img src={coinImage} alt='coin image' />
+                            <h1>Coin</h1>
+                            <div className='coin-reward'>
+                                <span>
+                                    + {Math.floor(opponent.rewards.coin / 2)}
+                                </span>
+                                <img src={coinImage} alt='coin image' />
+                            </div>
                         </div>
-                        <div className='xp'>+ {opponent.rewards.xp / 2}</div>
+                        <div className='xp'>
+                            <h1>XP</h1>
+                            <span>+ {Math.floor(opponent.rewards.xp / 2)}</span>
+                        </div>
                     </>
                 ) : (
                     <></>

@@ -134,15 +134,19 @@ const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
     )
 
     const markSelected = async (card) => {
-        if (userDeck.length < 35 && unSelectedCards.length) {
-            await axios.put(`/api/collection/${card._id}/selected`)
-            await axios.post('/api/deck/add', {
+        if (
+            userDeck.length < selectedOpponent.minDeckSize &&
+            unSelectedCards.length
+        ) {
+            await axios.put(`/api/collection/${card._id}/select`)
+            const cardData = {
                 _id: card._id,
                 image: card.image,
                 empower: card.empower,
                 weaken: card.weaken,
                 values: card.values,
-            })
+            }
+            await axios.put(`/api/deck/add`, cardData)
             getCurrentUser()
         } else {
             if (!errorDisplayed) {
@@ -153,7 +157,7 @@ const OpponentMenu = ({ selectedOpponent, selectedOpponentDeck }) => {
     }
 
     const autoBuild = async () => {
-        const emptySlots = 35 - userDeck.length
+        const emptySlots = selectedOpponent.minDeckSize - userDeck.length
         const totalValueArray = userCards
             .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
             .sort(

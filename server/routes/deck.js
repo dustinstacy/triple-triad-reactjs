@@ -53,7 +53,7 @@ router.post('/', requiresAuth, async (req, res, next) => {
     }
 })
 
-// @route PUT /api/deck/:card_id/add
+// @route PUT /api/deck/add
 // @desc Add a card to user's Deck
 // @access Private
 router.put('/add', requiresAuth, async (req, res, next) => {

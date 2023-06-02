@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { BiEdit } from 'react-icons/bi'
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalContext'
 import { Button, TextInput } from '../../components'
@@ -8,30 +9,103 @@ const AccountDetails = () => {
     const { user, getCurrentUser } = useGlobalContext()
 
     const [userImage, setUserImage] = useState('')
+    const [edittingUser, setEdittingUser] = useState(false)
+    const [newUsername, setNewUsername] = useState('')
+    const [newEmail, setNewEmail] = useState('')
 
-    const updateUserImage = () => {
-        axios.put('./api/profile/info', {
+    const updateUserImage = async () => {
+        await axios.put('./api/profile/info', {
             image: userImage,
         })
         setUserImage('')
+        getCurrentUser()
     }
 
-    useEffect(() => {
+    const editUser = () => {
+        setEdittingUser(true)
+        setNewUsername(user.username)
+        setNewEmail(user.email)
+    }
+
+    const handleSubmit = async () => {
+        if (newUsername !== user.username) {
+            await axios.put('/api/profile/info', { username: newUsername })
+        }
+        if (newEmail !== user.email) {
+            await axios.put('/api/profile/info', { email: newEmail })
+        }
+        setEdittingUser(false)
         getCurrentUser()
-    }, [setUserImage])
+    }
+
+    const handleCancel = () => {
+        setEdittingUser(false)
+        setNewUsername(user.username)
+        setNewEmail(user.email)
+    }
+
     return (
         <div>
             <h1>Account Details</h1>
-            <div className='section box'>
-                <p className='custom-image'>
-                    Account Image : <img src={user?.image} alt='user image' />
-                </p>
+            <div className='account-details section box'>
+                <div className='user center'>
+                    <p className='user-image'>
+                        Account image :{' '}
+                        <img src={user?.image} alt='user image' />
+                    </p>
+                    <div className='user-info'>
+                        <div className='info-input'>
+                            {edittingUser ? (
+                                <TextInput
+                                    value={newUsername}
+                                    onChange={(e) =>
+                                        setNewUsername(e.target.value)
+                                    }
+                                    label='Enter new username'
+                                />
+                            ) : (
+                                <>
+                                    <p>Username :</p> {user?.username}{' '}
+                                </>
+                            )}
+                        </div>
+                        <div className='info-input'>
+                            {edittingUser ? (
+                                <TextInput
+                                    value={newEmail}
+                                    onChange={(e) =>
+                                        setNewEmail(e.target.value)
+                                    }
+                                    label='Enter new email'
+                                />
+                            ) : (
+                                <>
+                                    <p>Email :</p> {user?.email}
+                                </>
+                            )}
+                        </div>
+                        {edittingUser ? (
+                            <div className='edit-buttons'>
+                                <Button
+                                    label='Submit'
+                                    onClick={() => handleSubmit()}
+                                />
+                                <Button
+                                    label='Cancel'
+                                    onClick={() => handleCancel()}
+                                />
+                            </div>
+                        ) : (
+                            <a className='edit' onClick={() => editUser()}>
+                                Edit Details <BiEdit />
+                            </a>
+                        )}
+                    </div>
+                </div>
                 <div className='image-input'>
                     <TextInput
-                        type='text'
-                        name={userImage}
                         value={userImage}
-                        setState={setUserImage}
+                        onChange={(e) => setUserImage(e.target.value)}
                         label='paste new image url here'
                     />
                     <Button
@@ -40,10 +114,6 @@ const AccountDetails = () => {
                         onClick={updateUserImage}
                     />
                 </div>
-                <br />
-                <p>Username : {user?.username}</p>
-                <p>Email : {user?.email}</p>
-                <a>Edit Details</a>
             </div>
         </div>
     )

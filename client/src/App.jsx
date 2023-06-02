@@ -31,10 +31,8 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Landing />} />
                 <Route path='/register' element={<Landing register />} />
-
                 <Route path='/battleSetup' element={<BattleSetup />} />
                 <Route path='/battle' element={<Battle />} />
-
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />
                 <Route path='/packs' element={<OpenPacks />} />

@@ -4,35 +4,35 @@ const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-// Helper function to generate random total of all 4 card values
+// Helper function to generate random sum of all 4 card values
 // and maximum value of any single value based on the card's rarity
 const setValueLimits = (card) => {
-    let totalOfValues, maxSingleValue
+    let sumOfValues, maxSingleValue
 
     if (card.rarity === 'Common') {
-        totalOfValues = randomIntFromInterval(6, 10)
+        sumOfValues = randomIntFromInterval(6, 10)
         maxSingleValue = 5
     } else if (card.rarity === 'Uncommon') {
-        totalOfValues = randomIntFromInterval(10, 14)
+        sumOfValues = randomIntFromInterval(10, 14)
         maxSingleValue = 6
     } else if (card.rarity === 'Rare') {
-        totalOfValues = randomIntFromInterval(14, 18)
+        sumOfValues = randomIntFromInterval(14, 18)
         maxSingleValue = 7
     } else if (card.rarity === 'Epic') {
-        totalOfValues = randomIntFromInterval(18, 24)
+        sumOfValues = randomIntFromInterval(18, 24)
         maxSingleValue = 8
     } else if (card.rarity === 'Legendary') {
-        totalOfValues = randomIntFromInterval(24, 30)
+        sumOfValues = randomIntFromInterval(24, 30)
         maxSingleValue = 9
     }
 
-    return { totalOfValues, maxSingleValue }
+    return { sumOfValues, maxSingleValue }
 }
 
 // Generates random values for a card
 export const assignRandomCardValues = (card) => {
     // See setValueLimits()
-    const { totalOfValues, maxSingleValue } = setValueLimits(card)
+    const { sumOfValues, maxSingleValue } = setValueLimits(card)
 
     // Create empty array to store 4 values
     let values = [...new Array(4)]
@@ -48,16 +48,16 @@ export const assignRandomCardValues = (card) => {
         sum = values.reduce((sum, value) => sum + value, 0)
         // Crate scale factor to determine how much each value needs to
         // be adjusted to reach desired sum
-        const scale = totalOfValues / sum
+        const scale = sumOfValues / sum
         // Scale each value proportionally without exceeding the maxSingleValue
         values = values.map((value) =>
             Math.min(maxSingleValue, Math.round(value * scale))
         )
-        // Recalculate the sum to ensure totalOfValues is met
+        // Recalculate the sum to ensure sumOfValues is met
         sum = values.reduce((sum, value) => sum + value, 0)
     } while (
-        // exit loop when sum - totalOfValues is equal to 0
-        sum - totalOfValues
+        // exit loop when sum - sumOfValues is equal to 0
+        sum - sumOfValues
     )
 
     // Assign randomly generated values to the card object's 'values' property
@@ -65,7 +65,7 @@ export const assignRandomCardValues = (card) => {
 }
 
 // Assigns random values to all cards in a given deck,
-// ensuring the total sum of card values falls within a specified range.
+// ensuring the sum of card values falls within a specified range.
 // deck: Array of card objects representing the deck.
 // minDeckValue: Minimum total sum of all card values allowed.
 // maxDeckValue: Maximum total sum of all card values allowed.

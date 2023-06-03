@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 
 import { useGlobalContext } from '../../context/GlobalContext'
-import { userLevels } from '../../constants/userLevels'
+import { userLevels } from '@constants'
 
 import './ExperienceBar.scss'
 

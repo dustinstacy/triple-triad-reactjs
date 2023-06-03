@@ -1,37 +1,39 @@
-export const onboardingStages = [
+const onboardingStages = [
     {
         header: 'Welcome message',
-        body: `........`,
+        body: 'Placeholder text',
         label: 'To the Market',
     },
 
     {
         header: 'Purchase A pack',
-        body: `.......`,
+        body: 'Placeholder text',
         label: 'Close',
     },
 
     {
         header: 'Open Pack',
-        body: `.......`,
+        body: 'Placeholder text',
         label: 'Close',
     },
 
     {
         header: 'Build your first DecK',
-        body: `.........`,
+        body: 'Placeholder text',
         label: 'To your Collection',
     },
 
     {
         header: 'Putting it all Together',
-        body: `.........`,
+        body: 'Placeholder text',
         label: 'Close',
     },
 
     {
         header: 'How to Play',
-        body: `..........`,
+        body: 'Placeholder text',
         label: 'Close',
     },
 ]
+
+export default onboardingStages

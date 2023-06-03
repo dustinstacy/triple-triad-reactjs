@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { AuthForm, NavBar } from '../../components'
-import { logo } from '../../assets/logos'
-import './Landing.scss'
-import { useGlobalContext } from '../../context/GlobalContext'
 import { useNavigate } from 'react-router-dom'
+
+import { NavBar } from '@components'
+import { logo } from '@assets'
+import { useGlobalContext } from '@context'
+
+import { AuthForm } from './components'
+
+import './Landing.scss'
 
 const Landing = ({ register }) => {
     const { user } = useGlobalContext()

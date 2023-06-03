@@ -1,0 +1,15 @@
+.packs-container {
+    position: relative;
+    min-height: calc(100vh - var(--navbar-height));
+    width: 100%;
+
+    .button {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 60px;
+        width: 200px;
+        font-size: 28px;
+    }
+}

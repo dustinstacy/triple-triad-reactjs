@@ -1,5 +1,5 @@
 import React from 'react'
-import { cardback } from '../../assets/card'
+import { cardback } from '@assets'
 import './Card.scss'
 
 const Card = ({ card, handleClick, isShowing, isSelected }) => {

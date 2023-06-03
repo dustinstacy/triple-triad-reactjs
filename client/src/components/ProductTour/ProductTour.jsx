@@ -2,33 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-import { useGlobalContext } from '../../context/GlobalContext'
-import { Button } from '../../components'
-import { onboardingStages } from '../../constants/onboardingStages'
+import { Button } from '@components'
+import { onboardingStages } from '@constants'
+import { useGlobalContext } from '@context'
 import { getRandomCards, assignRandomCardValues } from '../../utils/randomizers'
 
+import { ProgressBar } from './components'
 import './ProductTour.scss'
-
-const ProgressBar = ({ stages, progress }) => {
-    return (
-        <div className='onboard-bar outer'>
-            {stages.map((stage, index) => (
-                <div key={stage} className='stage'>
-                    <div className='stage__label'>{stage}</div>
-                    <div
-                        className={`progress-circle ${
-                            index + 1 <= progress ? ' full' : ''
-                        }`}
-                    />
-                </div>
-            ))}
-            <div
-                className='onboard-bar inner'
-                style={{ width: progress * (100 / (stages.length - 1)) + '%' }}
-            />
-        </div>
-    )
-}
 
 const ProductTour = ({ step }) => {
     const { allCards, getCurrentUser, user, userCards, userDeck } =
@@ -127,7 +107,7 @@ const ProductTour = ({ step }) => {
     }, [userCards])
 
     useEffect(() => {
-        if (userDeck?.length === 15 && stage === 2) {
+        if (userDeck?.length >= 5 && stage === 2) {
             incrementOnboardingStage('/rules')
         }
     }, [userDeck])

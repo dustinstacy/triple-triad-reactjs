@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Cell } from '../../../../components'
-import { Score } from '../../components'
+import { Card } from '../../../../components'
+import { Cell, Score } from '../../components'
 import turnArrow from './images/turnArrow.png'
 
 import './Board.scss'

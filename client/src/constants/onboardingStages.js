@@ -1,4 +1,4 @@
-export const onboardingStages = [
+const onboardingStages = [
     {
         header: 'Welcome message',
         body: 'Placeholder text',
@@ -35,3 +35,5 @@ export const onboardingStages = [
         label: 'Close',
     },
 ]
+
+export default onboardingStages

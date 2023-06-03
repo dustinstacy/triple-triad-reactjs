@@ -1,0 +1,155 @@
+.user-panel {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    gap: 1vw;
+    background: url('../../../../assets/page-images/battleSetup.jpg');
+    border-bottom: 2px solid;
+    border-image: var(--gold-gradient45) 1;
+
+    .panel {
+        height: 90%;
+        width: 80%;
+    }
+
+    .avatar-container {
+        height: 60%;
+        width: 150px;
+
+        @media screen and (max-width: 900px) {
+            width: 108px;
+            margin-left: -16px;
+        }
+
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+
+        img {
+            height: 124px;
+            width: 124px;
+
+            @media screen and (max-width: 900px) {
+                height: 96px;
+                width: 96px;
+            }
+        }
+    }
+
+    .user {
+        height: 60%;
+        width: 650px;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-width: 900px) {
+            width: 500px;
+        }
+
+        @media screen and (max-width: 768px) {
+            width: 80vw;
+        }
+
+        &__details {
+            .top {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .experience-bar {
+                margin-top: 18px;
+                font-size: 20px;
+
+                @media screen and (max-width: 900px) {
+                    font-size: 16px;
+                }
+
+                .progress-bar {
+                    height: 18px;
+                    width: 500px;
+                    margin-bottom: 6px;
+                    border: 2px solid var(--primary-color);
+                    border-radius: 8px;
+
+                    @media screen and (max-width: 900px) {
+                        height: 16px;
+                        width: 400px;
+                        margin-top: 8px;
+                    }
+
+                    @media screen and (max-width: 768px) {
+                        width: 60vw;
+                    }
+
+                    &__inner {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+
+        &__stats {
+            display: flex;
+            margin-top: 48px;
+            font-size: 22px;
+            text-align: right;
+
+            @media screen and (max-width: 900px) {
+                font-size: 18px;
+            }
+
+            @media screen and (max-width: 768px) {
+                font-size: 16px;
+
+                table:nth-child(2) {
+                    tr {
+                        width: 40vw;
+                    }
+                }
+            }
+
+            table:nth-child(1) {
+                padding-right: 48px;
+                border-right: 1px solid white;
+            }
+
+            table:nth-child(2) {
+                tr {
+                    width: 250px;
+                }
+            }
+
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            tr {
+                display: flex;
+                width: 300px;
+
+                @media screen and (max-width: 900px) {
+                    width: 250px;
+                }
+
+                @media screen and (max-width: 768px) {
+                    width: 40vw;
+                }
+            }
+
+            th {
+                width: 70%;
+                font-weight: 400;
+
+                svg {
+                    color: var(--gray-color);
+                }
+            }
+
+            td {
+                width: 25%;
+            }
+        }
+    }
+}

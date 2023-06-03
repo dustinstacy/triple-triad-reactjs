@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { useGlobalContext } from '../../../../context/GlobalContext'
-import { Button, Card } from '../../../../components'
+import { useGlobalContext } from '@context'
+import { Button, Card } from '@components'
+import { coinImage } from '@assets'
 import { assignRandomCardValues } from '../../../../utils/randomizers'
 
 import './BattleResults.scss'
-import { coinImage } from '../../../../assets/icons'
 
 const BattleResults = ({ playerOne, playerTwo }) => {
     const { allCards, getCurrentUser } = useGlobalContext()

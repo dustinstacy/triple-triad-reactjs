@@ -13,8 +13,6 @@ build
 dist
 dist-ssr
 # misc
-data
-.DS_Store
 .env
 .env.local
 .env.development.local

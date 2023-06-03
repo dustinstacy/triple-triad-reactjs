@@ -16,11 +16,9 @@ const ItemSchema = new Schema(
         },
         level: {
             type: Number,
-            required: true,
         },
         info: {
             type: String,
-            required: true,
         },
         price: {
             type: Number,

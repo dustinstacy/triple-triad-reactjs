@@ -39,7 +39,11 @@ const Opponent = ({
     }
 
     const selectOpponent = () => {
-        setSelectedOpponent(opponent)
+        if (selectedOpponent === opponent) {
+            setSelectedOpponent(!opponent)
+        } else {
+            setSelectedOpponent(opponent)
+        }
         getOpponentDeck()
     }
 
@@ -72,6 +76,10 @@ const Opponent = ({
                         <p className='stat'>
                             Required Deck Size
                             <span>{opponent?.minDeckSize}</span>
+                        </p>
+                        <p className='stat'>
+                            Number of Rounds:
+                            <span>{opponent?.minDeckSize / 5}</span>
                         </p>
                     </div>
                     <div className='opponent__rewards center'>

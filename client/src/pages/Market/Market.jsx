@@ -18,7 +18,7 @@ const Market = () => {
     const stage = user?.onboardingStage
 
     const [marketItems, setMarketItems] = useState(null)
-    const [chosenItem, setChosenItem] = useState({})
+    const [chosenItem, setChosenItem] = useState(null)
     const [chosenQuantity, setChosenQuantity] = useState({})
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const Market = () => {
             const items = await axios.get('/api/items')
             setMarketItems(items.data)
         }
-        getMarketItems()
+        marketItems ? setChosenItem(marketItems[0]) : getMarketItems()
     }, [])
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const Market = () => {
     return (
         <div className='market page center'>
             {stage === 0 && <ProductTour step={1} />}
-            {marketItems && (
+            {chosenItem && (
                 <div className='market-menu'>
                     <div className='market-menu-header'>
                         <h1>MaRKet</h1>

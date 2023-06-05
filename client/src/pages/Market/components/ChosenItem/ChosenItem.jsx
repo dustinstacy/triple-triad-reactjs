@@ -7,7 +7,6 @@ import './ChosenItem.scss'
 const ChosenItem = ({ chosenItem }) => {
     const { user } = useGlobalContext()
     const { image, info, contents, name } = chosenItem || {}
-    console.log(contents?.odds)
 
     return (
         <div className='chosen-item'>

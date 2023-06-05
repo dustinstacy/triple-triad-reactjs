@@ -14,16 +14,9 @@ const ProductTour = ({ step }) => {
     const { allCards, getCurrentUser, user, userCards, userDeck } =
         useGlobalContext()
     const navigate = useNavigate()
+
     const [modalOpen, setModalOpen] = useState(true)
     const stage = user?.onboardingStage
-
-    const stages = [
-        'First Login',
-        'First Packs',
-        'First Cards',
-        'First Deck',
-        'How To Play',
-    ]
 
     const incrementOnboardingStage = async (path) => {
         try {
@@ -33,7 +26,7 @@ const ProductTour = ({ step }) => {
                 })
                 await getCurrentUser()
                 navigate(`${path}`)
-            }, 1000)
+            }, 2000)
         } catch (error) {
             console.log(error)
         }
@@ -57,7 +50,7 @@ const ProductTour = ({ step }) => {
                     break
                 case 3:
                     const starterCards = getRandomCards(
-                        15,
+                        5,
                         { Common: 90, Uncommon: 10 },
                         allCards
                     )
@@ -116,7 +109,7 @@ const ProductTour = ({ step }) => {
         <>
             <div className={`progress-modal ${modalOpen ? 'open' : 'close'}`}>
                 <h1>GettIng &nbsp; StarteD</h1>
-                <ProgressBar stages={stages} progress={stage + 1} />
+                <ProgressBar progress={stage + 1} />
                 <h1>{onboardingStages[step].header}</h1>
                 <p>{onboardingStages[step].body}</p>
                 <Button

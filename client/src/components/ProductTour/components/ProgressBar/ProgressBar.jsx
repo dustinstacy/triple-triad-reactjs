@@ -2,10 +2,18 @@ import React from 'react'
 
 import './ProgressBar.scss'
 
-const ProgressBar = ({ stages, progress }) => {
+const ProgressBar = ({ progress }) => {
+    const progressStages = [
+        'First Login',
+        'First Pack',
+        'First Card',
+        'First Deck',
+        'How To Play',
+    ]
+
     return (
         <div className='onboard-bar outer'>
-            {stages.map((stage, index) => (
+            {progressStages.map((stage, index) => (
                 <div key={stage} className='stage'>
                     <div className='stage__label'>{stage}</div>
                     <div
@@ -17,7 +25,9 @@ const ProgressBar = ({ stages, progress }) => {
             ))}
             <div
                 className='onboard-bar inner'
-                style={{ width: progress * (100 / (stages.length - 1)) + '%' }}
+                style={{
+                    width: progress * (100 / (progressStages.length - 1)) + '%',
+                }}
             />
         </div>
     )

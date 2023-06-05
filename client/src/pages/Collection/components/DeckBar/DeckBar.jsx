@@ -12,7 +12,7 @@ const DeckBar = ({
     removeSelection,
 }) => {
     const autoBuild = async () => {
-        const emptySlots = 35 - userDeck.length
+        const emptySlots = Math.min(35, userCards.length) - userDeck.length
         const totalValueArray = userCards
             .filter((card) => !userDeck.find(({ _id }) => card._id === _id))
             .sort(

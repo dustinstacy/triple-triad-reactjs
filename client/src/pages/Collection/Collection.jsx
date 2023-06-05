@@ -20,12 +20,8 @@ const Collection = () => {
         getCurrentUser()
     }, [])
 
-    const unSelectedCards = userCards.filter(
-        (card) => !userDeck.find(({ _id }) => card._id === _id)
-    )
-
     const markSelected = async (card) => {
-        if (userDeck.length < 35 && unSelectedCards.length > 0) {
+        if (userDeck.length < 35 && userDeck.length < userCards.length + 1) {
             await axios.put(`/api/collection/${card._id}/select`)
             const cardData = {
                 _id: card._id,

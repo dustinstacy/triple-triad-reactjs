@@ -4,28 +4,17 @@ import { useNavigate } from 'react-router-dom'
 import { logo } from '@assets'
 import { NavBar } from '@components'
 import { useGlobalContext } from '@context'
+import { useWindowResize } from '@hooks'
 
 import { AuthForm } from './components'
-
 import './Landing.scss'
 
 const Landing = ({ register }) => {
     const { user } = useGlobalContext()
+    const { height, width } = useWindowResize()
     const navigate = useNavigate()
-    const [dimensions, setDimensions] = useState({
-        height: window.innerHeight,
-        width: window.innerWidth,
-    })
-
-    const handleResize = () => {
-        setDimensions({
-            height: window.innerHeight,
-            width: window.innerWidth,
-        })
-    }
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize, false)
         if (user) navigate('/')
     }, [user])
 
@@ -40,8 +29,7 @@ const Landing = ({ register }) => {
                 />
                 <AuthForm register={register} />
             </div>
-            {dimensions.width > 1200 &&
-            dimensions.height !== window.screen.availHeight ? (
+            {width > 1200 && height !== window.screen.availHeight ? (
                 <div className='tip__fullscreen'>
                     *Press F11 for fullscreen experience.
                 </div>

@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import { Button } from '@components'
-import { onboardingStages } from '@constants'
 import { useGlobalContext } from '@context'
+import { onboardingStages } from '@constants'
 import { getRandomCards, assignRandomCardValues } from '../../utils/randomizers'
 
 import { ProgressBar } from './components'

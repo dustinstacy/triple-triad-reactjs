@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+
 import './TextInput.scss'
 
 const TextInput = ({ label, name, value, onChange, loading, autofocus }) => {
@@ -10,10 +11,13 @@ const TextInput = ({ label, name, value, onChange, loading, autofocus }) => {
         setPasswordVisible((passwordVisible) => !passwordVisible)
     }
 
+    const inputType = isPasswordInput && !passwordVisible ? 'password' : 'text'
+    const EyeIcon = passwordVisible ? AiFillEye : AiFillEyeInvisible
+
     return (
         <div className='text-input'>
             <input
-                type={isPasswordInput && !passwordVisible ? 'password' : 'text'}
+                type={inputType}
                 id={name}
                 className={`input ${value ? 'has-content' : ''}`}
                 name={name}
@@ -22,13 +26,10 @@ const TextInput = ({ label, name, value, onChange, loading, autofocus }) => {
                 disabled={loading}
                 autoFocus={autofocus}
             />
-            {isPasswordInput &&
-                (passwordVisible ? (
-                    <AiFillEye onClick={() => handleToggle()} />
-                ) : (
-                    <AiFillEyeInvisible onClick={() => handleToggle()} />
-                ))}
-            <label>{label}</label>
+            {isPasswordInput && (
+                <EyeIcon onClick={handleToggle} data-testid='eye-icon' />
+            )}
+            <label htmlFor={name}>{label}</label>
             <span className='focus-border'>
                 <i />
             </span>

@@ -12,7 +12,7 @@
         }
 
         &:hover {
-            p,
+            span,
             svg {
                 color: var(--primary-color);
             }
@@ -28,6 +28,7 @@
     flex: 1;
     gap: 2vw;
     margin-right: 18px;
+    margin-bottom: 8px;
 
     @media screen and (max-width: 1199px) {
         display: none;
@@ -40,13 +41,13 @@
         gap: 6px;
         font-size: 14px;
 
-        p {
+        span {
             height: 16px;
             visibility: hidden;
         }
 
         &:hover {
-            p {
+            span {
                 height: 20px;
                 visibility: visible;
             }

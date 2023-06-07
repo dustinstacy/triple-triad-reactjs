@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-import { useGlobalContext } from '@context'
 import { Button, TextInput } from '@components'
+import { useGlobalContext } from '@context'
+
 import './AuthForm.scss'
 
 // The register prop is used to toggle between login and signup form
@@ -28,6 +29,7 @@ const AuthForm = ({ register }) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
+        setErrors({})
         setFormData({ ...formData, [name]: value })
     }
 
@@ -109,7 +111,7 @@ const AuthForm = ({ register }) => {
                             autofocus={field === 'Username'}
                         />
                         {errors[toCamelCase(field)] && (
-                            <p className='form__error'>
+                            <p className='error'>
                                 {errors[toCamelCase(field)]}
                             </p>
                         )}

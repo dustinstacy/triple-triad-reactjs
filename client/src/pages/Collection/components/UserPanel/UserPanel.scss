@@ -12,45 +12,16 @@
         width: 80%;
     }
 
-    .avatar-container {
-        height: 60%;
-        width: 150px;
-
-        @media screen and (max-width: 900px) {
-            width: 108px;
-            margin-left: -16px;
-        }
-
-        @media screen and (max-width: 768px) {
-            display: none;
-        }
-
-        img {
-            height: 124px;
-            width: 124px;
-
-            @media screen and (max-width: 900px) {
-                height: 96px;
-                width: 96px;
-            }
-        }
-    }
-
     .user {
-        height: 60%;
         width: 650px;
         display: flex;
         flex-direction: column;
 
-        @media screen and (max-width: 900px) {
-            width: 500px;
-        }
-
-        @media screen and (max-width: 768px) {
-            width: 80vw;
-        }
-
         &__details {
+            display: flex;
+            align-items: flex-end;
+            gap: 24px;
+
             .top {
                 display: flex;
                 justify-content: space-between;

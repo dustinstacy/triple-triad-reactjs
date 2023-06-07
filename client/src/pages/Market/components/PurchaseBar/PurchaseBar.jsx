@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { BsCheckCircleFill } from 'react-icons/bs'
 import { ThreeCircles } from 'react-loader-spinner'
 import axios from 'axios'
 
 import { coinImage } from '@assets'
-import { Button } from '@components'
 import { useGlobalContext } from '@context'
+import { Button } from '@components'
 
 import './PurchaseBar.scss'
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useGlobalContext } from '@context'
 import { Button } from '@components'
+import { useGlobalContext } from '@context'
 
 import './OpponentMenu.scss'
 

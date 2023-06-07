@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { useGlobalContext } from '@context'
 import { Button } from '@components'
+import { useGlobalContext } from '@context'
 
 import { Opponent } from './components'
 

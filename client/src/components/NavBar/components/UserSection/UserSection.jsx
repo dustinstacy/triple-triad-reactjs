@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { ExperienceBar } from '@components'
+import { Avatar, ExperienceBar } from '@components'
 
-import { Avatar, UserInventory } from './components'
+import { UserInventory } from './components'
 import './UserSection.scss'
 
 // This component acts as the parent component for all User-related components
@@ -17,7 +17,7 @@ const UserSection = ({ user }) => {
                 <ExperienceBar user={user} />
             </div>
 
-            <Avatar user={user} navbar={true} />
+            <Avatar levelShowing menu small />
         </div>
     )
 }

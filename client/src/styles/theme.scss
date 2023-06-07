@@ -4,3 +4,10 @@
     border: 0;
     background: var(--gold-gradient);
 }
+
+.error {
+    margin: -16px 0 8px 0;
+    color: var(--error-color);
+    font-family: 'Open Sans';
+    text-align: center;
+}

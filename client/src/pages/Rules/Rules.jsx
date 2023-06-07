@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { useGlobalContext } from '@context'
 import { ProductTour } from '@components'
 import { howToPlay } from '@constants'
+import { useGlobalContext } from '@context'
 
 import './Rules.scss'
 

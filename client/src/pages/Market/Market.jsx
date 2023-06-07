@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { coinImage } from '@assets'
-import { useGlobalContext } from '@context'
 import { ProductTour } from '@components'
+import { useGlobalContext } from '@context'
 
 import {
     ChosenItem,

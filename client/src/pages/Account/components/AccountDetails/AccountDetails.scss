@@ -1,96 +1,31 @@
-.user {
-    width: 100%;
-}
-
-.user-image {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-
-    img {
-        height: 124px;
-        width: 124px;
+.account-details {
+    .wrapper {
+        align-items: flex-end;
+        gap: 36px;
         margin-bottom: 12px;
-        background-color: var(--primary2-color);
-        border: 1px solid var(--primary-color);
-        border-radius: 4px;
-    }
-}
 
-.image-input,
-.info-input {
-    width: 100%;
-    position: relative;
-    display: flex;
-}
-
-.image-input {
-    flex-direction: column;
-    align-items: center;
-
-    .text-input {
-        width: 80%;
-    }
-
-    .button {
-        padding: 8px 16px;
-        font-size: 16px;
-
-        @media screen and (max-width: 900px) {
-            min-width: 100px;
-            padding: 6px;
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
         }
 
-        @media screen and (max-width: 600px) {
-            bottom: 0;
-            left: 0;
-            right: initial;
-            min-width: 72px;
-            font-size: 16px;
-        }
-    }
-}
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
 
-.user-info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+            span {
+                display: flex;
 
-    .info-input {
-        display: flex;
+                @media screen and (max-width: 400px) {
+                    flex-direction: column;
+                    align-items: center;
+                }
 
-        p {
-            margin-right: 12px;
-        }
-
-        .text-input {
-            width: 100%;
-        }
-    }
-
-    .edit {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-
-        svg {
-            font-size: 24px;
-        }
-    }
-
-    .edit-buttons {
-        display: flex;
-        flex-direction: row;
-        align-self: center;
-        gap: 24px;
-
-        .button {
-            font-size: 20px;
-            padding: 6px 18px;
+                p {
+                    margin-left: 18px;
+                }
+            }
         }
     }
 }

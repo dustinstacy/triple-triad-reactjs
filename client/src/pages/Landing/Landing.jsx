@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { NavBar } from '@components'
 import { logo } from '@assets'
+import { NavBar } from '@components'
 import { useGlobalContext } from '@context'
 
 import { AuthForm } from './components'

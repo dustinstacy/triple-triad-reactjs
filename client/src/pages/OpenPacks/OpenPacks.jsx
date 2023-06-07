@@ -3,9 +3,9 @@ import axios from 'axios'
 
 import { useGlobalContext } from '@context'
 import { Button, ProductTour } from '@components'
-import { uniqueItemsFilter } from '../../utils/uniqueItemsFilter'
-import { assignRandomCardValues, getRandomCards } from '../../utils/randomizers'
-import { removeObjectByValue } from '../../utils/removeObjectByValue'
+import { uniqueItemsFilter } from '@utils/uniqueItemsFilter'
+import { assignRandomCardValues, getRandomCards } from '@utils/randomizers'
+import { removeObjectByValue } from '@utils/removeObjectByValue'
 
 import { Carousel, Loader, PackContents } from './components'
 import './OpenPacks.scss'

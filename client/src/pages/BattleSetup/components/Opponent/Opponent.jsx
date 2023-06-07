@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { TbPlayCard } from 'react-icons/tb'
 
 import { coinImage } from '@assets'
-import { OpponentMenu } from '..'
 import { useGlobalContext } from '@context'
 import {
     assignRandomDeckValues,
     getRandomCards,
 } from '../../../../utils/randomizers'
 
+import { OpponentMenu } from '..'
 import './Opponent.scss'
 
 const Opponent = ({

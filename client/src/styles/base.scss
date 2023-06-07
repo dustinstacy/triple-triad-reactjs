@@ -40,7 +40,7 @@
         #554903 100%
     );
 
-    --navbar-height: 80px;
+    --navbar-height: 88px;
     --footer-height: 80px;
 
     font-synthesis: none;
@@ -113,6 +113,22 @@ span {
     text-shadow: 2px 2px 1px var(--black-color),
         -1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
         -1px 1px 1px var(--black-color);
+
+    @media screen and (min-width: 1200px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+
+p {
+    font-family: 'Open Sans';
+}
+
+span {
+    font-family: 'Cinzel Decorative';
 }
 
 h1,

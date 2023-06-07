@@ -1,7 +1,20 @@
-.center {
+.just-start,
+.just-start-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.center,
+.center-column {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.center-column,
+.just-start-column {
+    flex-direction: column;
 }
 
 .fill {

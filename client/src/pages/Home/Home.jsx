@@ -1,10 +1,10 @@
 import React from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useGlobalContext } from '../../context/GlobalContext'
-import { Button, Footer } from '../../components'
+
+import { useGlobalContext } from '@context'
+import { Button, ProductTour } from '@components'
 
 import './Home.scss'
-import ProductTour from '../../components/ProductTour/ProductTour'
 
 const Home = () => {
     const { user } = useGlobalContext()
@@ -45,7 +45,6 @@ const Home = () => {
                     <Button label='MarKet' type='link' path='/packs' />
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

@@ -25,7 +25,7 @@ const Links = ({ menu, onClick, user }) => {
                     onClick={onClick}
                 >
                     {link.image}
-                    <p>{link.name}</p>
+                    <span>{link.name}</span>
                 </NavLink>
             ))}
         </div>

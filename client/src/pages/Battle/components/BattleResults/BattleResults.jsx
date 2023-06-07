@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+import { coinImage } from '@assets'
 import { useGlobalContext } from '@context'
 import { Button, Card } from '@components'
-import { coinImage } from '@assets'
 import { assignRandomCardValues } from '../../../../utils/randomizers'
 
 import './BattleResults.scss'

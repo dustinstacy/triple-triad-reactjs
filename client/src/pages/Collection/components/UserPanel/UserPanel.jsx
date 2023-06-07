@@ -5,7 +5,7 @@ import { Avatar, ExperienceBar } from '@components'
 
 import './UserPanel.scss'
 
-const UserSection = ({ userCards, user }) => {
+const UserPanel = ({ userCards, user }) => {
     const { level, stats, username } = user ?? {}
     const cardNames = userCards.map((card) => card.name)
     const uniqueCards = [...new Set(cardNames)]
@@ -13,15 +13,14 @@ const UserSection = ({ userCards, user }) => {
     return (
         <div className='user-panel center'>
             <div className='panel center'>
-                <Avatar user={user} navbar={false} />
                 <div className='user'>
                     <div className='user__details'>
-                        <div className='top'>
+                        <Avatar medium />
+                        <div className='section'>
                             <h1>{username}</h1>
-                            <h1>LVL &nbsp; {level}</h1>
+                            <hr />
+                            <ExperienceBar />
                         </div>
-                        <hr />
-                        <ExperienceBar />
                     </div>
                     <div className='user__stats'>
                         <table>
@@ -67,4 +66,4 @@ const UserSection = ({ userCards, user }) => {
     )
 }
 
-export default UserSection
+export default UserPanel

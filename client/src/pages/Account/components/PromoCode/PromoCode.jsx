@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 
 import { Button, TextInput } from '@components'
 import { useGlobalContext } from '@context'
 
+import { updateUser } from './api'
 import './PromoCode.scss'
 
 const PromoCode = () => {
@@ -32,21 +32,11 @@ const PromoCode = () => {
 
     const checkPromoCode = async () => {
         if (promoCode === import.meta.env.VITE_PROMO) {
-            await updateUser()
+            await updateUser(user)
+            await getCurrentUser() // Refresh user data after updating
         } else {
             throw new Error('That is incorrect') // Throw error for invalid promo code
         }
-    }
-
-    const updateUser = async () => {
-        // Update user's coin and XP with succesful promo code
-        await axios.put('/api/profile/info', {
-            coin: user.coin + 1000000,
-        })
-        await axios.put('/api/profile/stats', {
-            xp: user.xp + 2100,
-        })
-        getCurrentUser() // Refresh user data after updating
     }
 
     return (

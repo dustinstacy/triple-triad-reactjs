@@ -5,6 +5,25 @@
     background: var(--gold-gradient);
 }
 
+.primary-border {
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+.background-gradient {
+    background: var(--background-color);
+    background: -webkit-linear-gradient(
+        45deg,
+        var(--background-color),
+        var(--background2-color)
+    );
+    background: linear-gradient(
+        45deg,
+        var(--background-color),
+        var(--background2-color)
+    );
+}
+
 .error {
     margin: -16px 0 8px 0;
     color: var(--error-color);

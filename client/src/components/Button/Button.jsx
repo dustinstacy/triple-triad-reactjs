@@ -1,5 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { classSet } from '@utils/classSet'
+
 import './Button.scss'
 
 // Button component that can function as a navigation link or a custom onClick function.
@@ -13,11 +16,10 @@ const Button = ({ label, type, path, onClick, disabled }) => {
         type === 'link' ? navigate(`${path}`) : onClick(e)
     }
 
+    const buttonClasses = classSet('button', 'center', disabled && 'disabled')
+
     return (
-        <button
-            className={`button center ${disabled ? 'disabled' : ''}`}
-            onClick={(e) => handleClick(e)}
-        >
+        <button className={buttonClasses} onClick={(e) => handleClick(e)}>
             <span>{label}</span>
         </button>
     )

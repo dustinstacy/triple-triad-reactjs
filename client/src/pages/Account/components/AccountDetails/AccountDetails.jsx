@@ -6,6 +6,7 @@ import { useGlobalContext } from '@context'
 import { UserImageUpdate } from './components'
 import './AccountDetails.scss'
 
+// A component that displays the account details of the current user.
 const AccountDetails = () => {
     const { user } = useGlobalContext()
 

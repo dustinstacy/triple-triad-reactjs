@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <div className='home page'>
             {/* Will be conditionally rendered based on user's Onboarding progress */}
-            <div className='section first'>
+            <div className='section first end-column'>
                 {stage === 0 && <ProductTour step={0} />}
             </div>
 

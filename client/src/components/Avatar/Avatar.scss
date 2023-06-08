@@ -1,15 +1,8 @@
 .avatar {
     position: relative;
-    border: 2px solid var(--primary-color);
-    border-radius: 4px;
 
     &.pointer {
         cursor: pointer;
-    }
-
-    img {
-        height: 100%;
-        width: 100%;
     }
 
     .level {

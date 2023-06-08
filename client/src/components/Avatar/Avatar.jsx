@@ -7,6 +7,9 @@ import { classSet } from '@utils/classSet'
 import { AvatarMenu } from './components'
 import './Avatar.scss'
 
+// levelShowing: Indicates whether the user's level should be displayed
+// menu: Indicates whether the avatar has an onClick menu
+// small, medium, large: Indicates the avatar's size
 const Avatar = ({
     levelShowing = false,
     menu = false,
@@ -19,8 +22,10 @@ const Avatar = ({
 
     const [isOpen, toggleIsOpen] = useToggle(false)
 
+    // Dynamically set CSS classes based on props
     const avatarClasses = classSet(
         'avatar',
+        'primary-border',
         menu && 'pointer',
         small && 'small',
         medium && 'medium',
@@ -30,6 +35,7 @@ const Avatar = ({
     return (
         <div className={avatarClasses} style={{ backgroundColor: user?.color }}>
             <img
+                className='fill'
                 src={image}
                 alt='user image'
                 onClick={menu ? () => toggleIsOpen() : null}

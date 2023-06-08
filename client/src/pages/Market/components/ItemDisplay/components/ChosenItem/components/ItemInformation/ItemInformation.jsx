@@ -2,15 +2,16 @@ import React from 'react'
 
 import { useGlobalContext } from '@context'
 
-import './ChosenItem.scss'
+import './ItemInformation.scss'
 
-const ChosenItem = ({ chosenItem }) => {
+// chosenItem: Item currently chosen from market items
+const ItemInformation = ({ chosenItem }) => {
     const { user } = useGlobalContext()
     const { image, info, contents, name } = chosenItem || {}
 
     return (
-        <div className='chosen-item'>
-            <div className='chosen-item-image'>
+        <div className='item-info start'>
+            <div className='item-image'>
                 <img src={image} alt={name} />
                 <div className='owned-inventory'>
                     <span>Owned: &nbsp;</span>
@@ -20,12 +21,13 @@ const ChosenItem = ({ chosenItem }) => {
                     }
                 </div>
             </div>
-            <div className='chosen-item-info'>
-                <h1 className='chosen-item-name'>{name}</h1>
-                <hr />
-                <p className='chosen-item-details'>{info}</p>
-
-                <div className='chosen-item-odds'>
+            <div className='item-details between-column'>
+                <div className='section'>
+                    <h2 className='item-name'>{name}</h2>
+                    <hr />
+                    <p className='item-desc'>{info}</p>
+                </div>
+                <div className='item-odds'>
                     <h4>Odds:</h4>
                     {contents?.odds &&
                         Object.entries(contents?.odds).map(([key, value]) => (
@@ -41,4 +43,4 @@ const ChosenItem = ({ chosenItem }) => {
     )
 }
 
-export default ChosenItem
+export default ItemInformation

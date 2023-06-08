@@ -7,23 +7,24 @@ import { useGlobalContext } from '@context'
 import { BurgerMenu, Links, UserSection } from './components'
 import './NavBar.scss'
 
-// The landing prop is used to conditionally render the login NavLink on the NavBar component.
+// Navigation Bar component that includes page links and user information
+// Displays a login button based on the value of the `landing` prop
 const NavBar = ({ landing }) => {
     const { user } = useGlobalContext()
     const navigate = useNavigate()
 
     return (
-        <div className='navbar'>
-            <BurgerMenu user={user} />
+        <div className='navbar background-gradient'>
+            <BurgerMenu />
             <img
                 src={logo}
                 alt='logo'
                 className='navbar__logo'
                 onClick={() => navigate('/')}
             />
-            <Links menu='navbar' user={user} />
+            <Links menu='navbar' />
             {user ? (
-                <UserSection user={user} />
+                <UserSection />
             ) : landing ? null : (
                 <NavLink className='navbar__login box' to='/login'>
                     Login

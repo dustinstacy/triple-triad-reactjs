@@ -17,7 +17,10 @@ const UserPanel = ({ userCards, user }) => {
                     <div className='user__details'>
                         <Avatar medium />
                         <div className='section'>
-                            <h1>{username}</h1>
+                            <div className='top'>
+                                <h1>{username}</h1>
+                                <h1>LVL &nbsp; {level}</h1>
+                            </div>
                             <hr />
                             <ExperienceBar />
                         </div>

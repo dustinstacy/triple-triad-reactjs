@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { MdOutlineClose, MdMenu } from 'react-icons/md'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { motion } from 'framer-motion'
 
-import { handleToggle } from '../../../../utils/handleToggle'
+import { useToggle } from '@hooks'
 
 import { Links } from '..'
 import './BurgerMenu.scss'
 
-const BurgerMenu = ({ user }) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+// Burger icon menu for navigation bar
+const BurgerMenu = () => {
+    const [isOpen, toggleIsOpen, setToggleIsOpen] = useToggle(false)
     const isSmallScreen = useMediaQuery('(min-width:600px)')
 
+    // Reset the menu state when unmounting or when the screen size changes
     useEffect(() => {
         return () => {
-            setIsMenuOpen(false)
+            setToggleIsOpen(false)
         }
     }, [, isSmallScreen])
 
     return (
         <div className='burger-menu'>
-            {!isMenuOpen ? (
-                <MdMenu onClick={() => handleToggle(setIsMenuOpen)} />
+            {!isOpen ? (
+                <MdMenu onClick={() => toggleIsOpen()} />
             ) : (
-                <MdOutlineClose onClick={() => handleToggle(setIsMenuOpen)} />
+                <MdOutlineClose onClick={() => toggleIsOpen()} />
             )}
             <motion.div
-                className='menu'
+                className='menu background-gradient'
                 initial={{ width: 0 }}
                 animate={
                     isSmallScreen
-                        ? { width: isMenuOpen ? '40vw' : '0' }
-                        : { width: isMenuOpen ? '60vw' : '0' }
+                        ? { width: isOpen ? '40vw' : '0' }
+                        : { width: isOpen ? '60vw' : '0' }
                 }
                 transition={{
                     duration: 0.3,
@@ -40,8 +42,7 @@ const BurgerMenu = ({ user }) => {
             >
                 <Links
                     menu='burger-menu'
-                    onClick={() => handleToggle(setIsMenuOpen)}
-                    user={user}
+                    onClick={() => setToggleIsOpen(false)}
                 />
             </motion.div>
         </div>

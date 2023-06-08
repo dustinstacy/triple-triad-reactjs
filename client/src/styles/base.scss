@@ -76,6 +76,18 @@ body {
     font-weight: 700;
     scroll-behavior: smooth;
     overflow-x: hidden;
+
+    @media screen and (min-width: 1200px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+
+    @media screen and (max-width: 600px) {
+        font-size: 12px;
+    }
 }
 
 a,
@@ -113,14 +125,6 @@ span {
     text-shadow: 2px 2px 1px var(--black-color),
         -1px -1px 1px var(--black-color), 1px -1px 1px var(--black-color),
         -1px 1px 1px var(--black-color);
-
-    @media screen and (min-width: 1200px) {
-        font-size: 18px;
-    }
-
-    @media screen and (max-width: 768px) {
-        font-size: 14px;
-    }
 }
 
 p {
@@ -159,7 +163,7 @@ h3 {
 ::-webkit-scrollbar-thumb {
     background: var(--background-color);
     background-clip: padding-box;
-    border: 1.5px solid var(--gray-color);
+    border: 1.5px solid var(--primary2-color);
     border-radius: 4px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }

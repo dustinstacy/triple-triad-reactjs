@@ -1,63 +1,69 @@
 import React, { useEffect, useState } from 'react'
 import { ThreeCircles } from 'react-loader-spinner'
-import axios from 'axios'
 
 import { coinImage } from '@assets'
 import { useGlobalContext } from '@context'
 import { Button } from '@components'
 
+import { deductUserCoin, updateUserInventory } from './api'
+import { calculatePrice } from './utils'
 import './PurchaseBar.scss'
 
-const PurchaseBar = ({ marketItems, chosenItem, chosenQuantity }) => {
+// Renders a container displaying the purchase price and a button to initiate the purchase
+const PurchaseBar = ({
+    chosenItem,
+    chosenQuantity,
+    purchaseComplete,
+    setPurchaseComplete,
+    finalPrice,
+    setFinalPrice,
+}) => {
     const { user, getCurrentUser } = useGlobalContext()
     const { inventory, coin } = user ?? {}
 
     const [loading, setLoading] = useState(false)
-    const [purchaseComplete, setPurchaseComplete] = useState(false)
 
-    const calculatePrice = (item, quantity, discount) => {
-        let totalPrice = item.price * quantity
-        if (quantity > 1) {
-            totalPrice *= (100 - parseFloat(discount)) / 100
+    useEffect(() => {
+        if (chosenItem) {
+            // Calculate the final price based on the chosen item, quantity, and discount
+            const calculatedPrice = calculatePrice(
+                chosenItem,
+                chosenQuantity.amount,
+                chosenQuantity.discount
+            )
+
+            setFinalPrice(calculatedPrice)
         }
-        return totalPrice
-    }
+    }, [chosenItem, chosenQuantity])
 
-    const finalPrice = calculatePrice(
-        chosenItem,
-        chosenQuantity.amount,
-        chosenQuantity.discount
-    )
-
-    const purchasedItem = marketItems[marketItems.indexOf(chosenItem)]
-
+    // Create an array representing the final purchase based on the chosen item and quantity
     const finalPurchase = Array.from(
         { length: chosenQuantity.amount },
-        () => purchasedItem
+        () => chosenItem
     )
 
+    // Check if the user has enough coins to make the purchase
     const canPurchase = finalPrice <= (coin || 0)
 
     const completePurchase = async () => {
         try {
             setLoading(true)
-            await axios.put('/api/profile/info', {
-                coin: coin - finalPrice,
-            })
 
-            await axios.put('/api/profile/inventory', {
-                inventory: [...inventory, ...finalPurchase],
-            })
-            getCurrentUser()
-            setTimeout(() => {
-                setLoading(false)
-                setPurchaseComplete(true)
-            }, 1500)
+            // Simulate loading for 1.5 seconds
+            await new Promise((resolve) => setTimeout(resolve, 1500))
+
+            await deductUserCoin(coin, finalPrice)
+            await updateUserInventory(inventory, finalPurchase)
+            await getCurrentUser()
+
+            setLoading(false)
+            setPurchaseComplete(true)
         } catch (error) {
             console.error('Error completing purchase:', error)
         }
     }
 
+    // Reset the purchaseComplete state after 1.5 seconds if it's true
     useEffect(() => {
         if (purchaseComplete === true) {
             setTimeout(() => {
@@ -66,8 +72,20 @@ const PurchaseBar = ({ marketItems, chosenItem, chosenQuantity }) => {
         }
     }, [purchaseComplete])
 
+    // Determine the label for the purchase button based on the loading state
+    const buttonLabel = loading ? (
+        <ThreeCircles
+            color='#ffffff'
+            wrapperClass='purchase-loader'
+            visible={loading}
+            height={'24px'}
+        />
+    ) : (
+        'Purchase'
+    )
+
     return (
-        <div className='purchase-bar box'>
+        <div className='purchase-bar box around'>
             {purchaseComplete ? (
                 <h1>PURCHASE COMPLETE</h1>
             ) : (
@@ -75,7 +93,7 @@ const PurchaseBar = ({ marketItems, chosenItem, chosenQuantity }) => {
                     <div className='total'>
                         Total :
                         <div className='amount center'>
-                            {chosenQuantity.discount !== '0' && (
+                            {chosenQuantity.amount !== 1 && (
                                 <span className='previous-amount'>
                                     {chosenItem.price * chosenQuantity.amount}
                                 </span>
@@ -85,17 +103,7 @@ const PurchaseBar = ({ marketItems, chosenItem, chosenQuantity }) => {
                         </div>
                     </div>
                     <Button
-                        label={
-                            loading ? (
-                                <ThreeCircles
-                                    color='#6eddff'
-                                    wrapperClass='purchase-loader'
-                                    visible={loading}
-                                />
-                            ) : (
-                                'Purchase'
-                            )
-                        }
+                        label={buttonLabel}
                         disabled={!canPurchase}
                         onClick={completePurchase}
                     />

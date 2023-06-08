@@ -44,7 +44,7 @@ const AuthForm = ({ register }) => {
 
         try {
             await sendRequest(formData, register)
-            await getCurrentUser().then(navigate('/'))
+            await getCurrentUser().then(navigate('/')) // Refresh user data after updating and navigate to Home page
         } catch (error) {
             if (error?.response?.data) {
                 setErrors(error.response.data)
@@ -54,6 +54,7 @@ const AuthForm = ({ register }) => {
         }
     }
 
+    // Execute handleSubmit function when user presses Enter key
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleSubmit(e)

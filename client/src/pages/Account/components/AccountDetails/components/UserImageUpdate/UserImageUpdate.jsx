@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 
 import { Button, TextInput } from '@components'
 import { useGlobalContext } from '@context'
 
+import { updateUserImage } from './api'
 import './UserImageUpdate.scss'
 
 const UserImageUpdate = () => {
@@ -20,7 +20,7 @@ const UserImageUpdate = () => {
 
     const handleSubmit = async () => {
         try {
-            await validateURL()
+            await validateURL(newUserImage)
         } catch (error) {
             setError(error.message) // Set the error message for display
         } finally {
@@ -28,21 +28,16 @@ const UserImageUpdate = () => {
         }
     }
 
+    // Validate that the entered string is a image url
     const validateURL = async (str) => {
         const imageRegex = /\.(jpeg|jpg|gif|png)$/i
 
-        if (!imageRegex.test(newUserImage)) {
+        if (!imageRegex.test(str)) {
             throw new Error('Invalid image URL')
         } else {
-            updateUser()
+            await updateUserImage(str)
+            await getCurrentUser() // Refresh user data after updating
         }
-    }
-
-    const updateUser = async () => {
-        await axios.put('./api/profile/info', {
-            image: newUserImage,
-        })
-        getCurrentUser()
     }
 
     return (

@@ -1,0 +1,9 @@
+.user-inventory {
+    display: flex;
+    align-items: flex-end;
+
+    .coin {
+        letter-spacing: 1px;
+        gap: 8px;
+    }
+}

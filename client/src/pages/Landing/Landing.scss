@@ -8,10 +8,6 @@
         position: relative;
         height: 100%;
         width: 600px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
 
         @media screen and (max-width: 768px) {
             width: 100vw;
@@ -19,10 +15,14 @@
 
         .logo {
             margin: 16px 0;
-            width: 700px;
+            width: 500px;
 
-            @media screen and (max-width: 768px) {
-                width: 100%;
+            @media screen and (min-width: 1200px) {
+                width: 800px;
+            }
+
+            @media screen and (max-width: 600px) {
+                width: 300px;
             }
 
             &-register {

@@ -7,9 +7,10 @@
  * @returns {Array} An array containing the toggle state and toggle function.
  *
  * Usage:
- *    const [isToggled, toggle] = useToggle();
+ *    const [isOpen, toggleIsOpen, setToggleIsOpen] = useToggle();
  *    - isToggled: The current state of the toggle (true/false).
  *    - toggle: A function to toggle the state between true and false.
+ *    - setToggleIsOpen: Set state of isOpen to desired value
  */
 import { useState } from 'react'
 
@@ -20,7 +21,7 @@ const useToggle = (initialState = false) => {
         setToggleState((prevState) => !prevState)
     }
 
-    return [toggleState, toggle]
+    return [toggleState, toggle, setToggleState]
 }
 
 export default useToggle

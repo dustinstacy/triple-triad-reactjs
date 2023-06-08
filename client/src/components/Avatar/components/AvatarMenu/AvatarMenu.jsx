@@ -21,7 +21,7 @@ const AvatarMenu = ({ isOpen, toggleIsOpen }) => {
 
     return (
         isOpen && (
-            <div className='avatar-menu box'>
+            <div className='avatar-menu box center-column'>
                 <NavLink to='/account' onClick={() => toggleIsOpen()}>
                     Account
                 </NavLink>

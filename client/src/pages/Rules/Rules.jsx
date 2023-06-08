@@ -11,10 +11,10 @@ const Rules = () => {
     const stage = user?.onboardingStage
 
     return (
-        <div className='rules page'>
+        <div className='rules page center'>
             {stage === 3 && <ProductTour step={5} />}
             {howToPlay.map((panel) => (
-                <div key={panel.header} className='panel'>
+                <div key={panel.header} className='panel center-column'>
                     <h1>{panel.header}</h1>
                     <div className='panel-body'>
                         {panel.body.map((section) => (

@@ -1,8 +1,15 @@
-.just-start,
-.just-start-column {
+.around,
+.around-column {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-around;
+}
+
+.between,
+.between-column {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .center,
@@ -12,8 +19,25 @@
     justify-content: center;
 }
 
+.end,
+.end-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.start,
+.start-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.around-column,
+.between-column,
 .center-column,
-.just-start-column {
+.end-column,
+.start-column {
     flex-direction: column;
 }
 

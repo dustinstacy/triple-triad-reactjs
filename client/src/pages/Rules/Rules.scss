@@ -1,8 +1,6 @@
 .rules {
-    display: flex;
-    align-items: center;
     gap: 48px;
-    padding: 200px 0 100px 0;
+    padding: 128px 0 64px 0;
     background: url('../../assets/page-images/rules.jpg');
     background-position: center;
     background-size: 60%;
@@ -10,18 +8,28 @@
     .panel {
         min-height: 600px;
         width: 80vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         padding: 48px;
 
+        @media screen and (max-width: 768px) {
+            width: 95vw;
+        }
+
         h1 {
+            text-align: center;
             text-decoration: underline;
         }
     }
 
     .panel-body {
-        padding: 36px 64px;
+        padding: 36px;
+
+        @media screen and (max-width: 900px) {
+            padding: 12px;
+        }
+
+        @media screen and (max-width: 900px) {
+            padding: 0;
+        }
     }
 
     .panel-section {
@@ -36,6 +44,14 @@
             font-family: 'Open Sans';
             font-size: 20px;
             font-weight: 600;
+
+            @media screen and (max-width: 900px) {
+                font-size: 18px;
+            }
+
+            @media screen and (max-width: 600px) {
+                font-size: 16px;
+            }
         }
     }
 }

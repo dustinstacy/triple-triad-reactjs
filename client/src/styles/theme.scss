@@ -24,6 +24,20 @@
     );
 }
 
+.background-gradient-reverse {
+    background: var(--background-color);
+    background: -webkit-linear-gradient(
+        45deg,
+        var(--background2-color),
+        var(--background-color)
+    );
+    background: linear-gradient(
+        45deg,
+        var(--background2-color),
+        var(--background-color)
+    );
+}
+
 .error {
     margin: -16px 0 8px 0;
     color: var(--error-color);

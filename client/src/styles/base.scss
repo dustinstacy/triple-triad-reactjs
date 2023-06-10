@@ -77,6 +77,10 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
 
+    @media screen and (min-width: 1440px) {
+        font-size: 20px;
+    }
+
     @media screen and (min-width: 1200px) {
         font-size: 18px;
     }
@@ -128,7 +132,7 @@ span {
 }
 
 p {
-    font-family: 'Open Sans';
+    font-family: 'Jost';
 }
 
 span {

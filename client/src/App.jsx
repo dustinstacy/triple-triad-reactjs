@@ -4,15 +4,15 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '@context'
 import { NavBar } from '@components'
 import {
-    Landing,
-    Home,
-    Market,
-    Battle,
-    BattleSetup,
-    Collection,
     Account,
-    Rules,
+    Battle,
+    Collection,
+    Home,
+    Landing,
+    Market,
     OpenPacks,
+    OpponentSelect,
+    Rules,
 } from '@pages'
 
 import './styles/layout.scss'
@@ -35,7 +35,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Landing />} />
                 <Route path='/register' element={<Landing register />} />
-                <Route path='/battleSetup' element={<BattleSetup />} />
+                <Route path='/opponentSelect' element={<OpponentSelect />} />
                 <Route path='/battle' element={<Battle />} />
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />

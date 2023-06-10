@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
+import { useToggle } from '@hooks'
 import { classSet } from '@utils/classSet'
 
 import './TextInput.scss'
@@ -13,12 +14,8 @@ import './TextInput.scss'
 // loading: Indicates whether the input field is in a loading state.
 // autofocus: Indicates whether the input field should be autofocused.
 const TextInput = ({ label, name, value, onChange, loading, autofocus }) => {
-    const [passwordVisible, setPasswordVisible] = useState(false)
+    const [passwordVisible, togglePasswordVisible] = useToggle()
     const isPasswordInput = label.includes('Password')
-
-    const handleToggle = () => {
-        setPasswordVisible((passwordVisible) => !passwordVisible)
-    }
 
     const inputType = isPasswordInput && !passwordVisible ? 'password' : 'text'
     const EyeIcon = passwordVisible ? AiFillEye : AiFillEyeInvisible
@@ -37,7 +34,10 @@ const TextInput = ({ label, name, value, onChange, loading, autofocus }) => {
                 autoFocus={autofocus}
             />
             {isPasswordInput && (
-                <EyeIcon onClick={handleToggle} data-testid='eye-icon' />
+                <EyeIcon
+                    onClick={togglePasswordVisible}
+                    data-testid='eye-icon'
+                />
             )}
             <label htmlFor={name}>{label}</label>
             <span className='focus-border'>

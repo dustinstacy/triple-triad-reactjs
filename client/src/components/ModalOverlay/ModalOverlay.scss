@@ -1,0 +1,20 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-top: var(--navbar-height);
+    padding-bottom: 24px;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px);
+    overflow: auto;
+    z-index: 9998;
+
+    @media screen and (max-height: 720px) {
+        justify-content: flex-start !important;
+    }
+}
+
+.modal > * {
+    z-index: 9999;
+}

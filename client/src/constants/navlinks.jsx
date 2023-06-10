@@ -16,7 +16,7 @@ const navlinks = [
     },
     {
         name: 'BAttLe',
-        path: '/battleSetup',
+        path: '/opponentSelect',
         image: <GiAbstract088 />,
     },
     {

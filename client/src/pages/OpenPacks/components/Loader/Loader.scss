@@ -1,24 +1,23 @@
 .container {
-    height: 500px;
-    width: 500px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 500px;
+    width: 500px;
 }
 
 .square {
     height: 94%;
     width: 94%;
-    background: var(--secondary-color);
     position: absolute;
     top: 50%;
     left: 50%;
     margin: -47% 0 0 -47%;
 }
 
-.black {
-    background: var(--secondary2-color);
+.gold {
+    background: var(--gold-gradient);
     animation: rotate 10s infinite linear;
 }
 

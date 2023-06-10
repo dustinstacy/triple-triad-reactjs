@@ -4,6 +4,7 @@ import { Button, TextInput } from '@components'
 import { useGlobalContext } from '@context'
 
 import { updateUser } from './api'
+import { checkPromoCode } from './utils'
 import './PromoCode.scss'
 
 const PromoCode = () => {
@@ -22,20 +23,13 @@ const PromoCode = () => {
         setLoading(true)
 
         try {
-            await checkPromoCode()
+            await checkPromoCode(promoCode)
+            await updateUser(user)
+            await getCurrentUser() // Refresh user data after updating
         } catch (error) {
             setError(error.message) // Set the error message for display
         } finally {
             setLoading(false)
-        }
-    }
-
-    const checkPromoCode = async () => {
-        if (promoCode === import.meta.env.VITE_PROMO) {
-            await updateUser(user)
-            await getCurrentUser() // Refresh user data after updating
-        } else {
-            throw new Error('That is incorrect') // Throw error for invalid promo code
         }
     }
 

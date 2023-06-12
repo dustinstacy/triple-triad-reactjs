@@ -1,12 +1,13 @@
 import axios from 'axios'
 
+// Adds empty collection and deck to user's account
 export const completeUserStartingData = async () => {
     await axios.post('/api/collection/')
     await axios.post('/api/deck/')
 }
 
-export const incrementOnboardingStage = async (user) => {
+export const incrementOnboardingStage = async (userOnboardingStage) => {
     await axios.put('/api/profile/onboarding', {
-        onboardingStage: user.onboardingStage + 1,
+        onboardingStage: userOnboardingStage + 1,
     })
 }

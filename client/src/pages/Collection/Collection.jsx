@@ -14,7 +14,8 @@ import './Collection.scss'
 // Renders user information, user's card collection with filter options, and deck management capabilities
 const Collection = () => {
     const { getCurrentUser, user } = useGlobalContext()
-    const stage = user?.onboardingStage
+    const stage = user?.onboardingStage ?? {}
+
     const [deckFilter, setDeckFilter] = useState('')
     const [rarityFilter, setRarityFilter] = useState('')
     const [valueFilter, setValueFilter] = useState('')
@@ -25,7 +26,7 @@ const Collection = () => {
 
     return (
         <div className='collection page'>
-            {stage === 2 && <ProductTour step={4} />}
+            {stage === 4 && <ProductTour step={stage} />}
 
             <UserPanel />
             <DeckBar />

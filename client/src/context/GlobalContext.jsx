@@ -4,9 +4,10 @@ import axios from 'axios'
 const initialState = {
     user: null,
     fetchingUser: true,
-    allCards: [],
     userCards: [],
     userDeck: [],
+    allCards: [],
+    allItems: [],
 }
 
 const globalReducer = (state, action) => {
@@ -26,11 +27,6 @@ const globalReducer = (state, action) => {
                 userCards: [],
                 userDeck: [],
             }
-        case 'SET_ALL_CARDS':
-            return {
-                ...state,
-                allCards: action.payload,
-            }
         case 'SET_USER_CARDS':
             return {
                 ...state,
@@ -40,6 +36,16 @@ const globalReducer = (state, action) => {
             return {
                 ...state,
                 userDeck: action.payload,
+            }
+        case 'SET_ALL_CARDS':
+            return {
+                ...state,
+                allCards: action.payload,
+            }
+        case 'SET_ALL_ITEMS':
+            return {
+                ...state,
+                allItems: action.payload,
             }
         default:
             return state
@@ -54,6 +60,7 @@ export const GlobalProvider = ({ children }) => {
     const getGlobalState = async () => {
         await getCurrentUser()
         await getAllCards()
+        await getAllItems()
     }
 
     const getCurrentUser = async () => {
@@ -73,21 +80,6 @@ export const GlobalProvider = ({ children }) => {
         } catch (error) {
             console.log(error, 'No User')
             dispatch({ type: 'RESET_USER' })
-        }
-    }
-
-    const getAllCards = async () => {
-        try {
-            const res = await axios.get('/api/cards/')
-
-            if (res.data) {
-                dispatch({
-                    type: 'SET_ALL_CARDS',
-                    payload: res.data,
-                })
-            }
-        } catch (error) {
-            console.log(error)
         }
     }
 
@@ -121,6 +113,36 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    const getAllCards = async () => {
+        try {
+            const res = await axios.get('/api/cards/')
+
+            if (res.data) {
+                dispatch({
+                    type: 'SET_ALL_CARDS',
+                    payload: res.data,
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getAllItems = async () => {
+        try {
+            const res = await axios.get('/api/items/')
+
+            if (res.data) {
+                dispatch({
+                    type: 'SET_ALL_ITEMS',
+                    payload: res.data,
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const logout = async () => {
         try {
             await axios.put('/api/auth/logout')
@@ -135,9 +157,10 @@ export const GlobalProvider = ({ children }) => {
         ...state,
         getGlobalState,
         getCurrentUser,
-        getAllCards,
         getUserCards,
         getUserDeck,
+        getAllCards,
+        getAllItems,
         logout,
     }))
 

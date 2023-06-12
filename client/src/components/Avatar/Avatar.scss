@@ -1,10 +1,6 @@
 .avatar {
     position: relative;
 
-    &.pointer {
-        cursor: pointer;
-    }
-
     .level {
         position: absolute;
         left: 50%;
@@ -48,4 +44,8 @@
         width: 162px;
         font-size: 12px;
     }
+}
+
+.pointer {
+    cursor: pointer;
 }

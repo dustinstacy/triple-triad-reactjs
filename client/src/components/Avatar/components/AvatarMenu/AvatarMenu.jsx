@@ -3,12 +3,14 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import { MdLogout } from 'react-icons/md'
 
 import { useGlobalContext } from '@context'
+import { classSet } from '@utils'
 
 import './AvatarMenu.scss'
 
 // This component is the menu that is displayed when the user clicks on their image.
 const AvatarMenu = ({ isOpen, toggleIsOpen }) => {
-    const { logout } = useGlobalContext()
+    const { user, logout } = useGlobalContext()
+    const stage = user?.onboardingStage ?? {}
 
     const navigate = useNavigate()
 
@@ -19,10 +21,16 @@ const AvatarMenu = ({ isOpen, toggleIsOpen }) => {
         })
     }
 
+    const disabledLinkClass = classSet(stage <= 6 && 'disabled')
+
     return (
         isOpen && (
             <div className='avatar-menu box center-column'>
-                <NavLink to='/account' onClick={() => toggleIsOpen()}>
+                <NavLink
+                    className={disabledLinkClass}
+                    to='/account'
+                    onClick={() => toggleIsOpen()}
+                >
                     Account
                 </NavLink>
                 <a

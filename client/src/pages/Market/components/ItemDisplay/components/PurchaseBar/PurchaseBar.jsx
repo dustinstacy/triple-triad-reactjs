@@ -52,6 +52,7 @@ const PurchaseBar = ({
             // Simulate loading for 1.5 seconds
             await new Promise((resolve) => setTimeout(resolve, 1500))
 
+            console.log(coin - finalPrice)
             await deductCoin(coin, finalPrice)
             await addItemToInventory(inventory, finalPurchase)
             await getCurrentUser()

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { useGlobalContext } from '@context'
 
-import { fetchMarketItems } from './api'
 import { Item } from './components'
 import './MarketItems.scss'
 
@@ -10,30 +9,15 @@ import './MarketItems.scss'
 // chosenItem: State used to track the currently chosen item
 // setChosenItem: Function to update the chosen item state based on user selection
 const MarketItems = ({ chosenItem, setChosenItem }) => {
-    const { user } = useGlobalContext()
-    const [marketItems, setMarketItems] = useState([])
+    const { allItems, user } = useGlobalContext()
 
     // Fetches and sets market items, and sets the first item as the chosen item
     useEffect(() => {
-        const fetchAndSetMarketItems = async () => {
-            try {
-                const items = await fetchMarketItems()
-                setMarketItems(items)
-                if (items.length > 0) {
-                    setChosenItem(items[0])
-                }
-            } catch (error) {
-                console.error('Error fetching market items:', error)
-            }
-        }
-
-        if (marketItems.length === 0) {
-            fetchAndSetMarketItems()
-        }
-    }, [marketItems.length, setChosenItem])
+        setChosenItem(allItems[0])
+    }, [allItems])
 
     // Sort market items by level
-    const filteredItems = marketItems.sort((a, b) => a.level - b.level)
+    const filteredItems = allItems.sort((a, b) => a.level - b.level)
 
     return (
         <div className='items'>
@@ -49,7 +33,7 @@ const MarketItems = ({ chosenItem, setChosenItem }) => {
                         index={index}
                         chosenItem={chosenItem}
                         setChosenItem={setChosenItem}
-                        marketItems={marketItems}
+                        allItems={allItems}
                     />
                 )
             )}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+import { addCoin, addExperience, updateUserStats } from '@api'
 import { coinImage } from '@assets'
 import { useGlobalContext } from '@context'
 import { Button, Card } from '@components'
@@ -35,25 +36,12 @@ const BattleResults = ({ playerOne, playerTwo }) => {
     }, [battleResultsMessage])
 
     const updateUser = async (result) => {
-        let updatedCoin = {}
-        let updatedStats = {}
-
         switch (result) {
             case 'Victory':
-                updatedCoin = {
-                    coin: user.coin + opponent.rewards.coin,
-                }
-                updatedStats = {
-                    xp: user.xp + opponent.rewards.xp,
-                    battles: user.stats.battles + 1,
-                    wins: user.stats.wins + 1,
-                    losses: user.stats.losses,
-                    draws: user.stats.draws,
-                }
-                await axios.put('/api/profile/info', updatedCoin)
-                await axios
-                    .put('/api/profile/stats', updatedStats)
-                    .then(() => getCurrentUser())
+                await addCoin(user.coin, opponent.rewards.coin)
+                await addExperience(user.xp, opponent.rewards.xp)
+                await updateUserStats(user.stats, 'win')
+
                 if (!user.defeatedEnemies.includes(opponent.name)) {
                     const opponentCard = allCards.find(
                         (card) => card._id == opponent.rewards.card
@@ -81,39 +69,20 @@ const BattleResults = ({ playerOne, playerTwo }) => {
                 }
                 break
             case 'Draw':
-                updatedCoin = {
-                    coin: user.coin + Math.floor(opponent.rewards.coin / 2),
-                }
-                updatedStats = {
-                    xp: user.xp + Math.floor(opponent.rewards.xp / 2),
-                    battles: user.stats.battles + 1,
-                    wins: user.stats.wins,
-                    losses: user.stats.losses,
-                    draws: user.stats.draws + 1,
-                }
-                await axios.put('/api/profile/info', updatedCoin)
-                await axios
-                    .put('/api/profile/stats', updatedStats)
-                    .then(() => getCurrentUser())
+                await addCoin(user.coin, Math.floor(opponent.rewards.coin / 2))
+                await addExperience(
+                    user.xp,
+                    Math.floor(opponent.rewards.xp / 2)
+                )
+                await updateUserStats(user.stats, 'draw')
                 break
             case 'Defeat':
-                updatedCoin = {
-                    coin: user.coin,
-                }
-                updatedStats = {
-                    battles: user.stats.battles + 1,
-                    wins: user.stats.wins,
-                    losses: user.stats.losses + 1,
-                    draws: user.stats.draws,
-                }
-                await axios.put('/api/profile/info', updatedCoin)
-                await axios
-                    .put('/api/profile/stats', updatedStats)
-                    .then(() => getCurrentUser())
+                await updateUserStats(user.stats, 'loss')
                 break
             default:
                 break
         }
+        await getCurrentUser()
     }
 
     return (
@@ -161,7 +130,11 @@ const BattleResults = ({ playerOne, playerTwo }) => {
                 )}
             </div>
             <div className='buttons'>
-                <Button label='Select Battle' type='link' path='/battleSetup' />
+                <Button
+                    label='Select Battle'
+                    type='link'
+                    path='/opponentSelect'
+                />
                 <Button label='Main Menu' type='link' path='/' />
             </div>
         </div>

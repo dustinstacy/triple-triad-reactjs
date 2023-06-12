@@ -10,14 +10,14 @@ import './Item.scss'
 // index: Item's location index within the market items array
 // chosenItem: State used to track the currently chosen item
 // setChosenItem: Function to update the chosen item state based on user selection
-// marketItems: Array containing all market items
-const Item = ({ item, index, chosenItem, setChosenItem, marketItems }) => {
+// allItems: Array containing all market items
+const Item = ({ item, index, chosenItem, setChosenItem, allItems }) => {
     const itemClasses = (item) =>
         classSet('item', 'between', chosenItem === item && 'chosen')
 
     return (
         <div
-            onClick={() => setChosenItem(marketItems[index])}
+            onClick={() => setChosenItem(allItems[index])}
             className={itemClasses(item)}
         >
             <div className='section center'>

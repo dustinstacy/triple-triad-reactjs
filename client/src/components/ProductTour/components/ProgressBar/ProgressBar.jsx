@@ -2,6 +2,7 @@ import React from 'react'
 
 import './ProgressBar.scss'
 
+// Tracks and displays user's onboarding progress
 const ProgressBar = ({ progress }) => {
     const progressStages = [
         'First Login',
@@ -12,7 +13,7 @@ const ProgressBar = ({ progress }) => {
     ]
 
     return (
-        <div className='onboard-bar outer'>
+        <div className='progress-bar-outer'>
             {progressStages.map((stage, index) => (
                 <div key={stage} className='stage'>
                     <div className='stage__label'>{stage}</div>
@@ -24,7 +25,7 @@ const ProgressBar = ({ progress }) => {
                 </div>
             ))}
             <div
-                className='onboard-bar inner'
+                className='progress-bar-inner'
                 style={{
                     width: progress * (100 / (progressStages.length - 1)) + '%',
                 }}

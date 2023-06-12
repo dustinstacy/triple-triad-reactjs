@@ -26,16 +26,17 @@ const Avatar = ({
     const avatarClasses = classSet(
         'avatar',
         'primary-border',
-        menu && 'pointer',
         small && 'small',
         medium && 'medium',
         large && 'large'
     )
 
+    const imageClasses = classSet('fill', menu && 'pointer')
+
     return (
         <div className={avatarClasses} style={{ backgroundColor: user?.color }}>
             <img
-                className='fill'
+                className={imageClasses}
                 src={image}
                 alt='user image'
                 onClick={menu ? () => toggleIsOpen() : null}

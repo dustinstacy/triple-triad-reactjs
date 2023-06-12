@@ -54,6 +54,8 @@ const UserPacks = ({ setIsLoading, setPackContents }) => {
         setPackContents(newCards)
     }
 
+    const buttonDisablers = !currentPack || user?.onboardingstage <= 6
+
     return (
         <div className='user-packs panel fill between-column'>
             <div className='panel-header'>
@@ -68,7 +70,11 @@ const UserPacks = ({ setIsLoading, setPackContents }) => {
             >
                 <UserPack />
             </Carousel>
-            <Button label='OpeN PacK' onClick={openCurrentPack} />
+            <Button
+                label='OpeN PacK'
+                onClick={openCurrentPack}
+                disabled={buttonDisablers}
+            />
         </div>
     )
 }

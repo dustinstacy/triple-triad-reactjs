@@ -1,37 +1,38 @@
-.progress-modal {
-    position: fixed;
-    top: 15%;
-    left: 10%;
-    height: 80vh;
-    width: 80vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0 48px;
-    background: rgba(0, 0, 0, 0.95);
-    border: 3px solid;
-    border-image: var(--gold-gradient45) 1;
+.product-tour {
+    height: 90vh;
+    min-height: 600px;
+    width: 90vw;
+    min-width: 800px;
+    padding: 24px 48px;
     text-align: center;
-    font-size: 36px;
-    z-index: 20;
+    font-size: 28px;
+    overflow-x: hidden;
+
+    @media screen and (max-width: 900px) {
+        font-size: 22px;
+    }
+
+    @media screen and (max-width: 768px) {
+        min-height: 700px;
+        min-width: 100%;
+        padding: 24px;
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 18px;
+    }
 
     &.open {
         animation: modal-grow 0.5s forwards;
     }
 
-    &.close {
-        animation: modal-shrink 0.5s forwards;
-    }
-
-    h1 {
-        font-size: 48px;
-    }
-
     .button {
-        height: 60px;
-        width: 250px;
         font-size: 24px;
+
+        @media screen and (max-width: 600px) {
+            font-size: 18px;
+        }
     }
 }
 

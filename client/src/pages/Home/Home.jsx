@@ -9,13 +9,13 @@ import './Home.scss'
 const Home = () => {
     const { user } = useGlobalContext()
     const isLargeScreen = useMediaQuery('(min-width:1200px)')
-    const stage = user?.onboardingStage
+    const stage = user?.onboardingStage ?? {}
 
     return (
         <div className='home page'>
             {/* Will be conditionally rendered based on user's Onboarding progress */}
             <div className='section first end-column'>
-                {stage === 0 && <ProductTour step={0} />}
+                {stage <= 6 && <ProductTour step={stage} />}
             </div>
 
             <div

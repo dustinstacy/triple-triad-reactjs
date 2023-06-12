@@ -1,11 +1,21 @@
-.onboard-bar.outer {
+.progress-bar-outer {
     position: relative;
     height: 10px;
-    width: 800px;
+    width: 75vw;
     display: flex;
     align-items: center;
+    margin: 64px 0 32px;
     padding-left: 5px;
     border: 2px solid var(--white-color);
+
+    @media screen and (max-width: 1024px) {
+        width: 60vw;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 75vw;
+        margin: 0 0 12px;
+    }
 
     .stage {
         position: absolute;
@@ -17,6 +27,16 @@
             left: -50px;
             font-size: 20px;
             white-space: nowrap;
+
+            @media screen and (max-width: 1024px) {
+                top: -16px;
+                left: -40px;
+                font-size: 16px;
+            }
+
+            @media screen and (max-width: 768px) {
+                visibility: hidden;
+            }
         }
 
         $totalStages: 5;
@@ -48,8 +68,8 @@
     }
 }
 
-.onboard-bar.inner {
+.progress-bar-inner {
     height: 8px;
     background-color: var(--primary-color);
-    transition: all 2s ease-out;
+    transition: all 1.5s ease-in-out;
 }

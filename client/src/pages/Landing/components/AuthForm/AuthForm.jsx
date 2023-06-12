@@ -43,7 +43,7 @@ const AuthForm = ({ register }) => {
         setLoading(true)
 
         try {
-            await sendRequest(formData, register)
+            await sendAuthRequest(formData, register)
             await getCurrentUser().then(navigate('/')) // Refresh user data after updating and navigate to Home page
         } catch (error) {
             if (error?.response?.data) {

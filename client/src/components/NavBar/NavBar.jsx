@@ -3,6 +3,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 
 import { logo } from '@assets'
 import { useGlobalContext } from '@context'
+import { classSet } from '@utils'
 
 import { BurgerMenu, Links, UserSection } from './components'
 import './NavBar.scss'
@@ -10,8 +11,12 @@ import './NavBar.scss'
 // Navigation Bar component that includes page links and user information
 // Displays a login button based on the value of the `landing` prop
 const NavBar = ({ landing }) => {
-    const { user } = useGlobalContext()
     const navigate = useNavigate()
+
+    const { user } = useGlobalContext()
+    const stage = user?.onboardingStage ?? {}
+
+    const logoClasses = classSet('navbar__logo', stage <= 6 && 'disabled')
 
     return (
         <div className='navbar background-gradient'>
@@ -19,7 +24,7 @@ const NavBar = ({ landing }) => {
             <img
                 src={logo}
                 alt='logo'
-                className='navbar__logo'
+                className={logoClasses}
                 onClick={() => navigate('/')}
             />
             <Links menu='navbar' />

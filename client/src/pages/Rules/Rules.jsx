@@ -8,11 +8,12 @@ import './Rules.scss'
 
 const Rules = () => {
     const { user } = useGlobalContext()
-    const stage = user?.onboardingStage
+    const stage = user?.onboardingStage ?? {}
 
     return (
         <div className='rules page center'>
-            {stage === 3 && <ProductTour step={5} />}
+            {stage === 5 && <ProductTour step={stage} />}
+            {stage === 6 && <ProductTour step={stage} />}
             {howToPlay.map((panel) => (
                 <div key={panel.header} className='panel center-column'>
                     <h1>{panel.header}</h1>

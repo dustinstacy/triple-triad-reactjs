@@ -76,18 +76,6 @@ body {
     font-weight: 700;
     scroll-behavior: smooth;
     overflow-x: hidden;
-
-    @media screen and (min-width: 1440px) {
-        font-size: 20px;
-    }
-
-    @media screen and (max-width: 768px) {
-        font-size: 14px;
-    }
-
-    @media screen and (max-width: 600px) {
-        font-size: 12px;
-    }
 }
 
 a,
@@ -102,6 +90,11 @@ a,
 
     &:active {
         color: var(--secondary2-color);
+    }
+
+    &.disabled {
+        pointer-events: none;
+        color: var(--gray-color);
     }
 }
 

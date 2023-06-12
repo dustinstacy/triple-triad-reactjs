@@ -12,14 +12,15 @@ import './Links.scss'
 // - onClick: Add additional click event handler for the links.
 const Links = ({ menu, onClick }) => {
     const { user } = useGlobalContext()
+    const stage = user?.onboardingStage ?? {}
+
     const publicLinks = ['/', '/rules']
 
     const linkClasses = (linkPath) =>
         classSet(
             `${menu}-link`,
             'center',
-            ((!user && !publicLinks.includes(linkPath)) ||
-                user?.onboardingStage < 3) &&
+            ((!user && !publicLinks.includes(linkPath)) || stage <= 6) &&
                 'disabled'
         )
 

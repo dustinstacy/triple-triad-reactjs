@@ -9,13 +9,13 @@ import './Market.scss'
 // Represents the Market page component that displays the market menu, items, and item details.
 const Market = () => {
     const { user } = useGlobalContext()
-    const stage = user?.onboardingStage
+    const stage = user?.onboardingStage ?? {}
 
     const [chosenItem, setChosenItem] = useState(null)
 
     return (
         <div className='market page'>
-            {stage === 0 && <ProductTour step={1} />}
+            {stage === 1 && <ProductTour step={stage} />}
             <div className='market-menu-header'>
                 <h1>MaRKet</h1>
                 <hr />

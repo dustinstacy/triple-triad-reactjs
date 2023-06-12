@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
+import { addCardToCollection, removeItemFromInventory } from '@api'
 import { Button } from '@components'
 import { useGlobalContext } from '@context'
-import { uniqueItemsFilter } from '@utils/uniqueItemsFilter'
+import { createCardData, uniqueItemsFilter } from '@utils'
 import { assignRandomCardValues, getRandomCards } from '@utils/randomizers'
 
-import { addCardToCollection, removePackFromInventory } from './api'
 import { Carousel, UserPack } from './components'
-import { createCardData } from './utils'
 import './UserPacks.scss'
 
 const UserPacks = ({ setIsLoading, setPackContents }) => {
@@ -34,7 +33,7 @@ const UserPacks = ({ setIsLoading, setPackContents }) => {
         // Simulating a delay of 5 seconds for loader animation
         await new Promise((resolve) => setTimeout(resolve, 5000))
         await getRandomCardsFromPack()
-        await removePackFromInventory(user.inventory, currentPack)
+        await removeItemFromInventory(user.inventory, currentPack)
         await getCurrentUser()
         setIsLoading(false)
     }
@@ -42,6 +41,7 @@ const UserPacks = ({ setIsLoading, setPackContents }) => {
     const getRandomCardsFromPack = async () => {
         const { contents } = currentPack
         const newCards = getRandomCards(contents.count, contents.odds, allCards)
+
         newCards.forEach(async (card) => {
             assignRandomCardValues(card)
             try {

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useGlobalContext } from '@context'
 import { userLevels } from '@constants'
 
+import { handleLevelUp } from './api'
 import './ExperienceBar.scss'
 
 // This component displays the XP progress bar and current XP / next level XP
@@ -21,7 +22,7 @@ const ExperienceBar = () => {
     useEffect(() => {
         const checkLevelUp = async () => {
             if (xp >= userNextLevel) {
-                await handleLevelUp()
+                await handleLevelUp(level)
                 await getCurrentUser()
             }
         }

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import { useGlobalContext } from '@context'
 import { navlinks } from '@constants'
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 
 import './Links.scss'
 

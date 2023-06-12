@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useToggle } from '@hooks'
 import { useGlobalContext } from '@context'
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 
 import { AvatarMenu } from './components'
 import './Avatar.scss'

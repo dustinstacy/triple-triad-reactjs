@@ -1,8 +1,8 @@
 import React from 'react'
 
+import { updateUserStats } from '@api'
 import { Button } from '@components'
 import { useGlobalContext } from '@context'
-import { updateUserOnForfeit } from './api'
 
 import './ActiveBattleAlert.scss'
 
@@ -12,7 +12,7 @@ const ActiveBattleAlert = ({ setAlertActive }) => {
 
     const forfeitBattle = async () => {
         localStorage.removeItem('battleState')
-        await updateUserOnForfeit(user.stats)
+        await updateUserStats(user.stats, 'loss')
         setAlertActive((current) => !current)
     }
 

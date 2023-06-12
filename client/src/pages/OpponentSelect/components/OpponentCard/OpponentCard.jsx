@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useGlobalContext } from '@context'
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 
 import './OpponentCard.scss'
 

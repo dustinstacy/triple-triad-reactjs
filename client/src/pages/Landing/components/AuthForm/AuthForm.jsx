@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, TextInput } from '@components'
 import { useGlobalContext } from '@context'
 
-import { sendRequest } from './api'
+import { sendAuthRequest } from './api'
 import { FormFooter } from './components'
 import { toCamelCase } from './utils'
 import './AuthForm.scss'

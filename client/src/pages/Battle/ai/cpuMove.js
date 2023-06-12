@@ -77,8 +77,11 @@ export const cpuMove = (hand, board, emptyCells) => {
         })
     })
     newBoard.splice(move.cell, 1, move.card)
-    newHand.forEach((handCard, i) =>
-        handCard._id === move.card._id ? hand.splice(i, 1) : ''
+    const cardIndex = newHand.findIndex(
+        (handCard) => handCard._id === move.card._id
     )
+    if (cardIndex !== -1) {
+        newHand.splice(cardIndex, 1)
+    }
     return { move, newHand, newBoard }
 }

@@ -92,12 +92,17 @@
         transform: rotateY(0);
     }
 
-    &.flipped .card__front {
+    &.is-showing .card__front {
         transform: rotateY(0);
     }
 
-    &.flipped .card__back {
+    &.is-showing .card__back {
         transform: rotateY(-180deg);
+    }
+
+    &.is-selected {
+        box-shadow: 6px 0px 3px var(--secondary-color),
+            -6px 0px 3px var(--secondary-color);
     }
 
     &:hover {

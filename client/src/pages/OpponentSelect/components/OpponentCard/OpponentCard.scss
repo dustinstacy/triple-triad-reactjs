@@ -7,15 +7,35 @@
     border-radius: 8px;
     cursor: pointer;
 
+    @media screen and (min-width: 1440px) {
+        height: 245px;
+        width: 250px;
+    }
+
+    @media screen and (max-width: 600px) {
+        height: 195px;
+    }
+
     img {
         height: 180px;
         width: 200px;
         border-radius: 4px;
         pointer-events: none;
 
+        @media screen and (min-width: 1440px) {
+            height: 225px;
+            width: 245px;
+        }
+
         @media screen and (max-width: 1080px) {
             width: 100%;
         }
+    }
+
+    h3 {
+        width: 100%;
+        text-align: center;
+        white-space: nowrap;
     }
 
     &.selected {

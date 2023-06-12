@@ -2,22 +2,24 @@ import React from 'react'
 import { TbPlayCard } from 'react-icons/tb'
 
 import { Avatar, ExperienceBar } from '@components'
+import { useGlobalContext } from '@context'
 
 import './UserPanel.scss'
 
-const UserPanel = ({ userCards, user }) => {
+// Renders user information including experience gained, battle stats, and card counts
+const UserPanel = () => {
+    const { user, userCards } = useGlobalContext()
     const { level, stats, username } = user ?? {}
-    const cardNames = userCards.map((card) => card.name)
-    const uniqueCards = [...new Set(cardNames)]
+    const uniqueCards = [...new Set(userCards.map((card) => card.name))]
 
     return (
         <div className='user-panel center'>
             <div className='panel center'>
-                <div className='user'>
-                    <div className='user__details'>
+                <div className='user center-column'>
+                    <div className='user__details end'>
                         <Avatar medium />
-                        <div className='section'>
-                            <div className='top'>
+                        <div>
+                            <div className='top between'>
                                 <h1>{username}</h1>
                                 <h1>LVL &nbsp; {level}</h1>
                             </div>
@@ -25,11 +27,11 @@ const UserPanel = ({ userCards, user }) => {
                             <ExperienceBar />
                         </div>
                     </div>
-                    <div className='user__stats'>
+                    <div className='user__stats fill'>
                         <table>
                             <tbody>
                                 <tr>
-                                    <th>Total MatcHes :</th>
+                                    <th>Battles:</th>
                                     <td>{stats?.battles}</td>
                                 </tr>
                                 <tr>

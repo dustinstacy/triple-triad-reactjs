@@ -42,7 +42,7 @@ const OpponentSelect = () => {
                 <h1>Choose your opponent</h1>
                 <hr />
             </div>
-            <div className='opponent-list'>
+            <div className='opponent-list center'>
                 {cpuOpponents.length &&
                     cpuOpponents?.map((opponent) => (
                         <OpponentCard

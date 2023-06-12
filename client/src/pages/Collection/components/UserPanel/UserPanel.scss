@@ -1,8 +1,6 @@
 .user-panel {
     height: 600px;
     width: 100%;
-    display: flex;
-    gap: 1vw;
     background: url('../../../../assets/page-images/battleSetup.jpg');
     border-bottom: 2px solid;
     border-image: var(--gold-gradient45) 1;
@@ -10,28 +8,30 @@
     .panel {
         height: 90%;
         width: 80%;
+
+        @media screen and (max-width: 1024px) {
+            height: 100%;
+            width: 100%;
+        }
     }
 
     .user {
         width: 650px;
-        display: flex;
-        flex-direction: column;
 
         &__details {
-            display: flex;
             align-items: flex-end;
             gap: 24px;
 
-            .top {
-                display: flex;
-                justify-content: space-between;
+            @media screen and (max-width: 600px) {
+                flex-direction: column;
+                align-items: center;
             }
 
             .experience-bar {
                 margin-top: 18px;
                 font-size: 20px;
 
-                @media screen and (max-width: 900px) {
+                @media screen and (max-width: 768px) {
                     font-size: 16px;
                 }
 
@@ -42,7 +42,7 @@
                     border: 2px solid var(--primary-color);
                     border-radius: 8px;
 
-                    @media screen and (max-width: 900px) {
+                    @media screen and (max-width: 768px) {
                         height: 16px;
                         width: 400px;
                         margin-top: 8px;
@@ -64,29 +64,19 @@
             margin-top: 48px;
             font-size: 22px;
             text-align: right;
+            border-top: 1px solid var(--white-color);
 
-            @media screen and (max-width: 900px) {
-                font-size: 18px;
-            }
-
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 600px) {
                 font-size: 16px;
-
-                table:nth-child(2) {
-                    tr {
-                        width: 40vw;
-                    }
-                }
             }
 
             table:nth-child(1) {
-                padding-right: 48px;
-                border-right: 1px solid white;
-            }
+                padding-right: 24px;
+                padding-bottom: 12px;
+                border-right: 1px solid var(--white-color);
 
-            table:nth-child(2) {
-                tr {
-                    width: 250px;
+                @media screen and (max-width: 600px) {
+                    padding-right: 0;
                 }
             }
 
@@ -94,32 +84,55 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                width: 300px;
+            }
+
+            tr:nth-child(1) {
+                margin-top: 12px;
             }
 
             tr {
                 display: flex;
                 width: 300px;
 
-                @media screen and (max-width: 900px) {
-                    width: 250px;
+                @media screen and (max-width: 400px) {
+                    width: 350px;
                 }
+            }
 
-                @media screen and (max-width: 768px) {
-                    width: 40vw;
+            table:nth-child(2) {
+                tr {
+                    width: 225px;
+
+                    @media screen and (max-width: 600px) {
+                        width: 175px;
+                    }
+
+                    @media screen and (max-width: 400px) {
+                        width: 160px;
+                    }
                 }
             }
 
             th {
                 width: 70%;
-                font-weight: 400;
+                font-weight: 700;
 
                 svg {
-                    color: var(--gray-color);
+                    color: var(--white-color);
                 }
             }
 
             td {
-                width: 25%;
+                width: 60px;
+
+                @media screen and (max-width: 600px) {
+                    width: 40px;
+                }
+
+                @media screen and (max-width: 400px) {
+                    width: 30px;
+                }
             }
         }
     }

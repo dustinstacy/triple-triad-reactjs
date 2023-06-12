@@ -11,8 +11,8 @@ const UserInventory = () => {
     const { coin } = user ?? {}
 
     return (
-        <div className='user-inventory'>
-            <div className='coin center'>
+        <div className='user-inventory end-column'>
+            <div className='coin end'>
                 <p className='coin-amount'>{coin}</p>
                 <img src={coinImage} alt='coin' />
             </div>

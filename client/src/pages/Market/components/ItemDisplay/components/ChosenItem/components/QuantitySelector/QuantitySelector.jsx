@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 
 import './QuantitySelector.scss'
 

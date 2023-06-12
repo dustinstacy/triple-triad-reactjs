@@ -26,7 +26,7 @@ const OpenPacks = () => {
                 />
             ) : isLoading ? (
                 <div className='loader-container'>
-                    <Loader depth={50} />
+                    <Loader depth={60} />
                 </div>
             ) : (
                 <UserPacks

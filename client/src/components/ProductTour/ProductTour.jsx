@@ -7,6 +7,7 @@ import { useGlobalContext } from '@context'
 import { onboardingStages } from '@constants'
 import { getRandomCards, assignRandomCardValues } from '../../utils/randomizers'
 
+import { completeUserStartingData, incrementOnboardingStage } from './api'
 import { ProgressBar } from './components'
 import './ProductTour.scss'
 
@@ -18,12 +19,10 @@ const ProductTour = ({ step }) => {
     const [modalOpen, setModalOpen] = useState(true)
     const stage = user?.onboardingStage
 
-    const incrementOnboardingStage = async (path) => {
+    const nextOnboardingStage = async (path) => {
         try {
             setTimeout(async () => {
-                await axios.put('/api/profile/onboarding', {
-                    onboardingStage: user.onboardingStage + 1,
-                })
+                incrementOnboardingStage(user)
                 await getCurrentUser()
                 navigate(`${path}`)
             }, 2000)
@@ -40,11 +39,7 @@ const ProductTour = ({ step }) => {
         try {
             switch (step) {
                 case 0:
-                    await axios.post('/api/collection/')
-                    await axios.post('/api/deck/')
-                    await axios.put('/api/profile/info', {
-                        coin: 500,
-                    })
+                    await completeUserStartingData()
                     await getCurrentUser()
                     navigate('/market')
                     break

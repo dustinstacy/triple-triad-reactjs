@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { coinImage } from '@assets'
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 
 import './Item.scss'
 

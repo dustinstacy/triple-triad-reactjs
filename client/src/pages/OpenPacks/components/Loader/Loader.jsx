@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 import './Loader.scss'
 
 // Loader component that renders a recursive pattern of squares
@@ -13,7 +13,7 @@ const Loader = ({ depth }) => {
         // Determine the CSS classes for the square based on the current depth
         const squareClasses = classSet(
             'square',
-            currentDepth % 2 == 0 ? 'gold' : 'background-gradient'
+            currentDepth % 2 == 0 ? 'white' : 'background-gradient'
         )
 
         // Recursively render the nested squares

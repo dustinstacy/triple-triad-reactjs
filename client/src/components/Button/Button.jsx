@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 
 import './Button.scss'
 

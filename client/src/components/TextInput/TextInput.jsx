@@ -2,7 +2,7 @@ import React from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 import { useToggle } from '@hooks'
-import { classSet } from '@utils/classSet'
+import { classSet } from '@utils'
 
 import './TextInput.scss'
 

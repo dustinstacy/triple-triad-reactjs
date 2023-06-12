@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { ThreeCircles } from 'react-loader-spinner'
 
+import { deductCoin, addItemToInventory } from '@api'
 import { coinImage } from '@assets'
 import { useGlobalContext } from '@context'
 import { Button } from '@components'
 
-import { deductUserCoin, updateUserInventory } from './api'
 import { calculatePrice } from './utils'
 import './PurchaseBar.scss'
 
@@ -52,8 +52,8 @@ const PurchaseBar = ({
             // Simulate loading for 1.5 seconds
             await new Promise((resolve) => setTimeout(resolve, 1500))
 
-            await deductUserCoin(coin, finalPrice)
-            await updateUserInventory(inventory, finalPurchase)
+            await deductCoin(coin, finalPrice)
+            await addItemToInventory(inventory, finalPurchase)
             await getCurrentUser()
 
             setLoading(false)
@@ -93,7 +93,7 @@ const PurchaseBar = ({
                     <div className='total'>
                         Total :
                         <div className='amount center'>
-                            {chosenQuantity.amount !== 1 && (
+                            {chosenQuantity.amount > 1 && (
                                 <span className='previous-amount'>
                                     {chosenItem.price * chosenQuantity.amount}
                                 </span>

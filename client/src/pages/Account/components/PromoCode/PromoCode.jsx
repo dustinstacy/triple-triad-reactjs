@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
+import { addCoin, addExperience } from '@api'
 import { Button, TextInput } from '@components'
 import { useGlobalContext } from '@context'
 
-import { updateUser } from './api'
 import { checkPromoCode } from './utils'
 import './PromoCode.scss'
 
@@ -21,10 +21,10 @@ const PromoCode = () => {
 
     const handleSubmit = async (e) => {
         setLoading(true)
-
         try {
             await checkPromoCode(promoCode)
-            await updateUser(user)
+            await addCoin(user.coin, 1000000)
+            await addExperience(user.xp, 100000)
             await getCurrentUser() // Refresh user data after updating
         } catch (error) {
             setError(error.message) // Set the error message for display

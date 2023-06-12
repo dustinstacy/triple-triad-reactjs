@@ -175,6 +175,7 @@ const Battle = () => {
                 battleStarted: true,
                 roundOver: false,
             })
+            console.log(isP1Turn)
         }, 1000)
     }
 

@@ -4,21 +4,14 @@ import { Card } from '@components'
 import { useGlobalContext } from '@context'
 
 import './UserDeck.scss'
+import { calculateDeckPower } from '@utils'
 
 // Renders the user's deck information.
 const UserDeck = ({ selectedOpponent }) => {
     const { userDeck } = useGlobalContext()
 
     // Calculate the sum of all card values in the user's deck
-    const userDeckPower = userDeck.reduce(
-        (total, card) =>
-            total +
-            card.values.reduce(
-                (sum, current) => parseInt(sum) + parseInt(current),
-                0
-            ),
-        0
-    )
+    const userDeckPower = calculateDeckPower(userDeck)
 
     // Calculate the user's relative deck power based on the number of cards
     // in the user's deck and how many will be used in the battle
@@ -33,11 +26,11 @@ const UserDeck = ({ selectedOpponent }) => {
                 <div className='deck-info around-column'>
                     <div className='user-deck-power'>
                         <h4>Power</h4>
-                        <span>{userDeckPower}</span>
+                        <span>{userDeckPower || 0}</span>
                     </div>
                     <div className='relative-power'>
                         <h4>Relative Power</h4>
-                        <span>{relativeUserDeckPower}</span>
+                        <span>{relativeUserDeckPower || 0}</span>
                     </div>
                     <div className='user-deck-count'>
                         <h4>Card Count</h4>
@@ -45,7 +38,7 @@ const UserDeck = ({ selectedOpponent }) => {
                     </div>
                 </div>
                 <div className='deck-image'>
-                    <Card card={userDeck[0]} />
+                    {userDeck.length ? <Card card={userDeck[0]} /> : ''}
                 </div>
             </div>
         </div>

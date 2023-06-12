@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
+import { updateUserInfo } from '@api'
 import { Button, TextInput } from '@components'
 import { useGlobalContext } from '@context'
 
-import { updateUserImage } from './api'
 import { validateURL } from './utils'
 import './UserImageUpdate.scss'
 
@@ -22,7 +22,7 @@ const UserImageUpdate = () => {
     const handleSubmit = async () => {
         try {
             await validateURL(newUserImage)
-            await updateUserImage(newUserImage)
+            await updateUserInfo('image', newUserImage)
             await getCurrentUser()
         } catch (error) {
             setError(error.message) // Set the error message for display

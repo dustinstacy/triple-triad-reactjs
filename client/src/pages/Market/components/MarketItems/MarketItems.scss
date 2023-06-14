@@ -27,9 +27,10 @@
 
     .locked-item {
         height: 100px;
+        background-color: rgba(30, 21, 2, 0.7);
         border-bottom: 1px solid var(--white-color);
         color: var(--white-color);
-        filter: grayscale(0.5) blur(0.25px);
+        filter: grayscale(0.8) blur(0.25px);
         pointer-events: none;
 
         @media screen and (max-width: 400px) {

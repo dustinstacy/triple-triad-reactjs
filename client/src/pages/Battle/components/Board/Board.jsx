@@ -1,16 +1,88 @@
 import React from 'react'
-import { Card } from '../../../../components'
+
+import { Card } from '@components'
+import { classSet } from '@utils'
+
 import { Cell, Score } from '../../components'
+import { processStandardBattles } from '../../lib/logic'
+import { updateState } from '../../utils'
 import turnArrow from './images/turnArrow.png'
 
 import './Board.scss'
 
-const Board = ({ playerOne, playerTwo, battleState, placeCard }) => {
+const Board = ({
+    playerOne,
+    setPlayerOne,
+    playerTwo,
+    battleState,
+    setBattleState,
+    cardSelected,
+    setCardDragged,
+    cardDragged,
+    updateScores,
+}) => {
     const { board, isP1Turn } = battleState
 
+    const handleDragEnter = (e) => {
+        e.target.classList.add('drag-enter')
+    }
+
+    const handleDragLeave = (e) => {
+        e.target.classList.remove('drag-enter')
+    }
+
+    const handleDrop = (e) => {
+        const index = parseInt(e.target.id)
+        if (cardDragged) {
+            const updatedBoard = [...board]
+            const updatedHand = [...playerOne.hand]
+            const card = playerOne.hand.find(
+                (card) => card._id === cardDragged._id
+            )
+            if (card) {
+                const cardIndex = updatedHand.indexOf(card)
+                updatedHand.splice(cardIndex, 1)
+                updatedBoard[index] = card
+                updateState(setPlayerOne, { hand: [...updatedHand] })
+                updateState(setBattleState, { board: [...updatedBoard] })
+                processStandardBattles(index, cardDragged, battleState)
+            }
+            updateScores()
+        }
+        setCardDragged(null)
+    }
+
+    const handleDragOver = (e) => {
+        e.preventDefault()
+    }
+
+    // Handle process of user choosing which cell to place a card
+    const placeCard = (e) => {
+        const index = parseInt(e.target.id)
+        if (cardSelected) {
+            const updatedBoard = [...board]
+            const updatedHand = [...playerOne.hand]
+            const card = playerOne.hand.find(
+                (card) => card._id === cardSelected._id
+            )
+            if (card) {
+                const cardIndex = updatedHand.indexOf(card)
+                updatedHand.splice(cardIndex, 1)
+                updatedBoard[index] = card
+                updateState(setPlayerOne, { hand: [...updatedHand] })
+                updateState(setBattleState, { board: [...updatedBoard] })
+                processStandardBattles(index, cardSelected, battleState)
+            }
+            updateScores()
+        }
+    }
+
+    const p1ImageClassNames = classSet('user-image', isP1Turn && 'is-turn')
+    const p2ImageClassNames = classSet('user-image', !isP1Turn && 'is-turn')
+
     return (
-        <div className='board'>
-            <div className='column center'>
+        <div className='board center'>
+            <div className='score-column center-column'>
                 <Score player={playerTwo} />
                 <Score player={playerOne} />
             </div>
@@ -21,30 +93,41 @@ const Board = ({ playerOne, playerTwo, battleState, placeCard }) => {
                             key={i}
                             id={i}
                             handleClick={(e) => placeCard(e)}
+                            handleDragEnter={(e) => handleDragEnter(e)}
+                            handleDragLeave={(e) => handleDragLeave(e)}
+                            handleDragOver={(e) => handleDragOver(e)}
+                            handleDrop={(e) => handleDrop(e)}
+                            cardSelected={cardSelected}
                         />
                     ) : (
                         <div key={i}>
                             <Cell id={i}>
-                                <div className='card-wrapper'>
-                                    <Card
-                                        card={contents}
-                                        onClick={null}
-                                        isShowing
-                                    />
-                                </div>
+                                <Card
+                                    card={contents}
+                                    onClick={null}
+                                    isShowing
+                                />
                             </Cell>
                         </div>
                     )
                 )}
             </div>
-            <div className='column'>
-                <div className='p2 round-score'>{playerTwo.roundsWon}</div>
+            <div className='arrow-column center-column'>
+                <img
+                    className={p2ImageClassNames}
+                    src={playerTwo.user?.image}
+                    alt='p2 image'
+                />
                 <img
                     className={`turn-arrow ${isP1Turn ? 'down' : 'up'}`}
                     src={turnArrow}
                     alt='turn arrow'
                 />
-                <div className='p1 round-score'>{playerOne.roundsWon}</div>
+                <img
+                    className={p1ImageClassNames}
+                    src={playerOne.user?.image}
+                    alt='p1 image'
+                />
             </div>
         </div>
     )

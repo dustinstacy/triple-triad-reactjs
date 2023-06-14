@@ -1,4 +1,4 @@
-export const cpuMove = (hand, board, emptyCells) => {
+const cpuMove = (hand, board, emptyCells) => {
     const newBoard = board
     let newHand = hand
     let bestScore = -Infinity
@@ -85,3 +85,5 @@ export const cpuMove = (hand, board, emptyCells) => {
     }
     return { move, newHand, newBoard }
 }
+
+export default cpuMove

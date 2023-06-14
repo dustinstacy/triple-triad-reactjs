@@ -52,8 +52,8 @@ const ProductTour = ({ step }) => {
             await nextStage('/collection')
         },
         5: async () => {
-            const rarePack = allItems.find((item) => item.name === 'Rare Pack')
-            await addItemToInventory(user.inventory, rarePack)
+            const rareCard = allItems.find((item) => item.name === 'Rare Card')
+            await addItemToInventory(user.inventory, rareCard)
             await nextStage()
         },
         6: async () => {

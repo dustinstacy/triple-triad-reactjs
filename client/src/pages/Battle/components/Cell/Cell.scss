@@ -1,7 +1,9 @@
 .cell {
     position: relative;
-    height: 252px;
-    width: calc(250px * 0.725 + 2px);
+    height: calc(25vh + 2px);
+
+    width: calc(25vh * 0.725 + 2px);
+
     background-color: rgba(0, 0, 0, 0.4);
     border: 1px solid var(--primary-color);
     border-radius: 12px;
@@ -9,18 +11,9 @@
         rgba(240, 240, 240, 0.3) -10px 10px 36px -18px inset;
     cursor: pointer;
 
-    @media screen and (max-width: 1200px) {
-        height: 225px;
-        width: calc(225px * 0.725);
-    }
-
-    @media screen and (max-width: 900px) {
-        height: 200px;
-        width: calc(200px * 0.725);
-    }
-
-    @media screen and (max-width: 600px) {
-        height: 150px;
-        width: calc(150px * 0.725);
+    &.drag-enter,
+    &.card-selected:hover {
+        box-shadow: -2px -2px 25px 3px var(--primary-color) inset,
+            2px 2px 25px 3px var(--primary-color) inset;
     }
 }

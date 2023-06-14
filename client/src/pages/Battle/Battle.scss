@@ -5,6 +5,9 @@
 .match {
     align-items: center;
     justify-content: space-between;
+    background: url('@assets/page-images/battlePage.jpg');
+    background-position: center;
+    background-size: cover;
 
     .table {
         height: 100vh;

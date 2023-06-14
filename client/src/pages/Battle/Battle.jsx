@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { useGlobalContext } from '../../context/GlobalContext'
-import { BattleResults, Board, Hand } from './components'
-import { shuffleCards, assignColorsAndDealCards } from './utils/shuffleAndDeal'
-import { processStandardBattles } from './utils/battleEvaluations'
-import { cpuMove } from './ai/cpuMove'
+import { useGlobalContext } from '@context'
+
+import { BattleResults, BattleIntro, Board, Hand } from './components'
+import { assignColorsAndDealCards, shuffleCards, updateState } from './utils'
+import { processStandardBattles } from './lib/logic'
+import { cpuMove } from './lib/ai'
 
 import './Battle.scss'
+import { ModalOverlay } from '../../components'
 
 const Battle = () => {
     // Get user and opponent information from their respective sources
@@ -38,6 +40,7 @@ const Battle = () => {
     // Initialize Battle State
     const [battleState, setBattleState] = useState({
         board: [...new Array(9).fill('empty')],
+        playBattleIntro: false,
         decksShuffled: false,
         handsDealt: false,
         battleStarted: false,
@@ -48,6 +51,7 @@ const Battle = () => {
     })
 
     // Initiliaze card selection state to track user input
+    const [cardDragged, setCardDragged] = useState(null)
     const [cardSelected, setCardSelected] = useState(null)
     const [screenMessage, setScreenMessage] = useState(null)
 
@@ -56,6 +60,7 @@ const Battle = () => {
         board,
         decksShuffled,
         handsDealt,
+        playBattleIntro,
         battleStarted,
         round,
         isP1Turn,
@@ -74,11 +79,6 @@ const Battle = () => {
         })
         .filter((index) => index !== null)
     const roundsForWin = playerTwo.user?.minDeckSize / 5 - 1
-
-    // Helper function to simplify updating state
-    const updateState = (setState, updates) => {
-        setState((state) => ({ ...state, ...updates }))
-    }
 
     // Retrieve state from local storage if it exists
     // Otherwise initialize a new game
@@ -102,7 +102,11 @@ const Battle = () => {
 
     // Begin process of setting up a new game
     const newGame = () => {
-        shuffleDecks()
+        updateState(setBattleState, { playBattleIntro: true })
+        setTimeout(() => {
+            shuffleDecks()
+            updateState(setBattleState, { playBattleIntro: false })
+        }, 4000)
     }
 
     const shuffleDecks = () => {
@@ -136,11 +140,6 @@ const Battle = () => {
         updateState(setBattleState, {
             handsDealt: true,
         })
-        if (round === roundsForWin + 1) {
-            setScreenMessage('Final Round')
-        } else {
-            setScreenMessage(`Round ${round}`)
-        }
     }
 
     useEffect(() => {
@@ -194,27 +193,6 @@ const Battle = () => {
                 battleState,
             })
         )
-    }
-
-    // Handle process of user choosing which cell to place a card
-    const placeCard = (e) => {
-        const index = parseInt(e.target.id)
-        if (cardSelected) {
-            const updatedBoard = [...board]
-            const updatedHand = [...playerOne.hand]
-            const card = playerOne.hand.find(
-                (card) => card._id === cardSelected._id
-            )
-            if (card) {
-                const cardIndex = updatedHand.indexOf(card)
-                updatedHand.splice(cardIndex, 1)
-                updatedBoard[index] = card
-                updateState(setPlayerOne, { hand: [...updatedHand] })
-                updateState(setBattleState, { board: [...updatedBoard] })
-                processStandardBattles(index, cardSelected, battleState)
-            }
-            updateScores()
-        }
     }
 
     useEffect(() => {
@@ -345,21 +323,37 @@ const Battle = () => {
                     player={playerTwo}
                     battleState={battleState}
                     cardSelected={cardSelected}
+                    cardDragged={cardDragged}
                     setCardSelected={setCardSelected}
                 />
                 <Board
                     playerOne={playerOne}
+                    setPlayerOne={setPlayerOne}
                     playerTwo={playerTwo}
                     battleState={battleState}
-                    placeCard={placeCard}
+                    setBattleState={setBattleState}
+                    cardSelected={cardSelected}
+                    cardDragged={cardDragged}
+                    setCardDragged={setCardDragged}
+                    updateScores={updateScores}
                 />
                 <Hand
                     player={playerOne}
                     battleState={battleState}
                     cardSelected={cardSelected}
+                    cardDragged={cardDragged}
                     setCardSelected={setCardSelected}
+                    setCardDragged={setCardDragged}
                 />
             </div>
+            {playBattleIntro && (
+                <ModalOverlay>
+                    <BattleIntro
+                        playerOne={playerOne.user}
+                        playerTwo={playerTwo.user}
+                    />
+                </ModalOverlay>
+            )}
             {screenMessage && (
                 <div
                     className={`screen-message center ${

@@ -10,11 +10,19 @@ const Score = ({ player }) => {
     return (
         <div className={`${name}-score`}>
             {playerScore.map((count, i) => (
-                <div key={'count' + i}>
+                <div key={'count' + i} className='center'>
                     {name === 'p1' ? (
-                        <img src={blueScore} alt='blue score' />
+                        <img
+                            className='center'
+                            src={blueScore}
+                            alt='blue score'
+                        />
                     ) : (
-                        <img src={redScore} alt='red score' />
+                        <img
+                            className='center'
+                            src={redScore}
+                            alt='red score'
+                        />
                     )}
                 </div>
             ))}

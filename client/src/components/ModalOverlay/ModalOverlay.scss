@@ -3,8 +3,6 @@
     top: 0;
     left: 0;
     right: 0;
-    padding-top: var(--navbar-height);
-    padding-bottom: 24px;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
     overflow: auto;
@@ -12,7 +10,6 @@
 
     @media screen and (max-height: 767px) {
         justify-content: flex-start !important;
-        padding: 12px 0;
     }
 }
 

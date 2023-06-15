@@ -1,23 +1,34 @@
 .board {
     position: relative;
     height: 100vh;
-    width: calc(75vh * 0.725 + 40vh);
+    width: calc(75vh * 0.725 + 60vh);
     background: url('@assets/page-images/board.jpg');
     background-position: center;
     background-size: cover;
     border-left: 2px solid;
     border-right: 2px solid;
     border-image: var(--gold-gradient45) 1;
+
     box-shadow: 5px 0 5px 2px var(--black-color),
         -5px 0 5px 2px var(--black-color);
 
     .cell .card {
         pointer-events: none;
+
+        &.captured {
+            & .card__front {
+                transform: rotateY(-360deg);
+            }
+
+            & .card__back {
+                transform: rotateY(-180deg);
+            }
+        }
     }
 
     .grid {
         height: 75vh;
-        width: calc(75vh * 0.725 + 6px);
+        width: calc(75vh * 0.725 + 12px);
         flex-wrap: wrap;
         align-content: center;
         background: url('@assets/page-images/grid.jpg');
@@ -31,7 +42,7 @@
         position: absolute;
         left: 0;
         height: 70vh;
-        width: 20vh;
+        width: 30vh;
         background-color: rgba(0, 0, 0, 0.6);
         border-top: 4px solid var(--gray-color);
         border-bottom: 4px solid var(--gray-color);
@@ -45,7 +56,7 @@
         position: absolute;
         right: 0;
         height: 70vh;
-        width: 20vh;
+        width: 30vh;
         gap: 3vh;
         background-color: rgba(0, 0, 0, 0.6);
         border-top: 4px solid var(--gray-color);
@@ -59,7 +70,8 @@
             border-radius: 8px;
 
             &.is-turn {
-                border-color: var(--secondary-color);
+                box-shadow: 2px 0 10px 2px var(--primary-color),
+                    -2px 0 10px 2px var(--primary-color);
             }
         }
 

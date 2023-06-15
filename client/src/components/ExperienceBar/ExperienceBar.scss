@@ -7,15 +7,13 @@
         display: flex;
         align-items: center;
         border: 1px solid var(--primary-color);
-        border-radius: 4px;
+        border-radius: 8px;
 
         &__inner {
             min-height: 10px;
-            display: flex;
-            align-items: flex-start;
             background-color: var(--secondary2-color);
             border-radius: inherit;
-            box-shadow: 1.5px 0px 1px var(--white-color);
+            box-shadow: 2px 0px 1px var(--gray-color);
         }
     }
 }

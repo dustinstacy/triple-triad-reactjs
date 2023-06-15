@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { useToggle } from '@hooks'
 import { useGlobalContext } from '@context'
+import { useToggle } from '@hooks'
 import { classSet } from '@utils'
 
 import { AvatarMenu } from './components'
 import './Avatar.scss'
 
+// Renders user image avatar
 // levelShowing: Indicates whether the user's level should be displayed
 // menu: Indicates whether the avatar has an onClick menu
 // small, medium, large: Indicates the avatar's size
@@ -21,6 +22,10 @@ const Avatar = ({
     const { image, level } = user ?? {}
 
     const [isOpen, toggleIsOpen] = useToggle(false)
+
+    const handleClick = () => {
+        menu ? toggleIsOpen() : null
+    }
 
     // Dynamically set CSS classes based on props
     const avatarClasses = classSet(
@@ -39,7 +44,7 @@ const Avatar = ({
                 className={imageClasses}
                 src={image}
                 alt='user image'
-                onClick={menu ? () => toggleIsOpen() : null}
+                onClick={() => handleClick()}
             />
             {levelShowing && (
                 <span className='level box'>LVL &nbsp;{level}</span>

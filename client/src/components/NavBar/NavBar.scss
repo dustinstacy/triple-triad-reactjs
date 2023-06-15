@@ -4,11 +4,8 @@
     right: 0;
     left: 0;
     height: var(--navbar-height);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 6px 18px;
-    z-index: 90;
+    z-index: 9997;
 
     &__logo {
         height: 64px;

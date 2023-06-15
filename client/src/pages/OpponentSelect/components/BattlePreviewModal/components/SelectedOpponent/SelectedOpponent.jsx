@@ -32,7 +32,7 @@ const SelectedOpponent = ({ selectedOpponent }) => {
 
                 <div className='rewards around-column'>
                     <h2>Possible Rewards</h2>
-                    <div className='rewards__wrapper around'>
+                    <div className='rewards__wrapper center'>
                         <div className='rewards-xp center'>
                             <span>{rewards.xp} XP</span>
                         </div>

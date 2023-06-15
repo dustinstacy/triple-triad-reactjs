@@ -11,7 +11,7 @@ const UserSection = () => {
     const { username } = user ?? {}
 
     return (
-        <div className='user-section'>
+        <div className='user-section end'>
             <hr />
             <UserInventory />
             <div className='user-info center-column'>

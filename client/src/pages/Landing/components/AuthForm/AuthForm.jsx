@@ -11,7 +11,7 @@ import './AuthForm.scss'
 
 // Displays login of registration form based on the value of the register prop
 const AuthForm = ({ register }) => {
-    const { getCurrentUser } = useGlobalContext()
+    const { getGlobalState } = useGlobalContext()
 
     const initialFormData = {
         username: '',
@@ -44,7 +44,8 @@ const AuthForm = ({ register }) => {
 
         try {
             await sendAuthRequest(formData, register)
-            await getCurrentUser().then(navigate('/')) // Refresh user data after updating and navigate to Home page
+            await getGlobalState()
+            navigate('/') // Refresh user data after updating and navigate to Home page
         } catch (error) {
             if (error?.response?.data) {
                 setErrors(error.response.data)

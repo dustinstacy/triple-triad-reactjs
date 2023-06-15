@@ -3,13 +3,16 @@ import React from 'react'
 import { Card } from '@components'
 import { classSet } from '@utils'
 
-import { Cell, Score } from '../../components'
+import { Score } from '../../components'
 import { processStandardBattles } from '../../lib/logic'
 import { updateState } from '../../utils'
+
+import { Cell } from './components'
 import turnArrow from './images/turnArrow.png'
 
 import './Board.scss'
 
+// Render playing board and handles all card placement functions
 const Board = ({
     playerOne,
     setPlayerOne,

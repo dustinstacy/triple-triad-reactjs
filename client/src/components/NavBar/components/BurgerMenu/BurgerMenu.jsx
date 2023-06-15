@@ -8,15 +8,15 @@ import { useToggle } from '@hooks'
 import { Links } from '..'
 import './BurgerMenu.scss'
 
-// Burger icon menu for navigation bar
+// Renders burger icon menu for navigation bar
 const BurgerMenu = () => {
-    const [isOpen, toggleIsOpen, setToggleIsOpen] = useToggle(false)
+    const [isOpen, toggleIsOpen, setIsOpen] = useToggle(false)
     const isSmallScreen = useMediaQuery('(min-width:600px)')
 
     // Reset the menu state when unmounting or when the screen size changes
     useEffect(() => {
         return () => {
-            setToggleIsOpen(false)
+            setIsOpen(false)
         }
     }, [, isSmallScreen])
 
@@ -40,10 +40,7 @@ const BurgerMenu = () => {
                     ease: 'easeInOut',
                 }}
             >
-                <Links
-                    menu='burger-menu'
-                    onClick={() => setToggleIsOpen(false)}
-                />
+                <Links menu='burger-menu' onClick={() => setIsOpen(false)} />
             </motion.div>
         </div>
     )

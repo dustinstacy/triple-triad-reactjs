@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { classSet } from '@utils'
+
 import './ProgressBar.scss'
 
 // Tracks and displays user's onboarding progress
@@ -12,16 +14,15 @@ const ProgressBar = ({ progress }) => {
         'How To Play',
     ]
 
+    const circleClasses = (index) =>
+        classSet('progress-circle', index + 1 <= progress && 'full')
+
     return (
         <div className='progress-bar-outer'>
             {progressStages.map((stage, index) => (
                 <div key={stage} className='stage'>
                     <div className='stage__label'>{stage}</div>
-                    <div
-                        className={`progress-circle ${
-                            index + 1 <= progress ? ' full' : ''
-                        }`}
-                    />
+                    <div className={circleClasses(index)} />
                 </div>
             ))}
             <div

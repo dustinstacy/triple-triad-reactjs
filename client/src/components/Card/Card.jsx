@@ -8,8 +8,8 @@ import './Card.scss'
 const Card = ({
     card,
     handleClick,
-    isDragged,
     isDraggable,
+    isDragged,
     isShowing,
     isSelected,
     setCardDragged,
@@ -23,9 +23,9 @@ const Card = ({
     const cardClasses = classSet(
         'card',
         captured && 'captured',
+        isDragged && 'is-dragged',
         isShowing && 'is-showing',
-        isSelected && 'is-selected',
-        isDragged && 'is-dragged'
+        isSelected && 'is-selected'
     )
 
     const dragImageRef = useRef(null)
@@ -54,7 +54,7 @@ const Card = ({
             onDragEnd={(e) => handleDragEnd(e)}
         >
             <div
-                className='card__side card__front'
+                className='card__side card__front fill'
                 style={{ background: color || defaultColor }}
                 ref={dragImageRef}
             >
@@ -66,7 +66,7 @@ const Card = ({
                     <span className='left center'>{values[3]}</span>
                 </div>
             </div>
-            <div className='card__side card__back'>
+            <div className='card__side card__back fill'>
                 <img className='card__image' src={cardback} alt={_id} />
             </div>
         </div>

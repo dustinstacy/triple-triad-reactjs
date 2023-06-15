@@ -14,11 +14,11 @@
         }
 
         .logo {
-            margin: 16px 0;
+            margin: -64px 0 16px;
             width: 500px;
 
             @media screen and (min-width: 1200px) {
-                width: 800px;
+                width: 600px;
             }
 
             @media screen and (max-width: 600px) {

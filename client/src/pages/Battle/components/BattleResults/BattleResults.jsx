@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { addCoin, addExperience, updateUserStats } from '@api'
+import {
+    addCardToCollection,
+    addCoin,
+    addExperience,
+    updateUserStats,
+} from '@api'
 import { coinImage } from '@assets'
 import { useGlobalContext } from '@context'
 import { Button, Card } from '@components'
+import { createCardData } from '@utils'
 import { assignRandomCardValues } from '../../../../utils/randomizers'
 
+import { updatedDefeatedEnemies } from './api'
 import './BattleResults.scss'
 
+// Renders the user's battle results including any rewards gained
 const BattleResults = ({ playerOne, playerTwo }) => {
     const { allCards, getCurrentUser } = useGlobalContext()
-    const [battleResultsMessage, setBattleResultsMessage] = useState(null)
+    const [battleResult, setBattleResult] = useState(null)
     const [cardReward, setCardReward] = useState(null)
 
     const user = playerOne.user
@@ -22,19 +30,20 @@ const BattleResults = ({ playerOne, playerTwo }) => {
     }, [])
 
     const setBattleResults = () => {
-        if (playerOne.roundsWon > playerTwo.roundsWon) {
-            setBattleResultsMessage('Victory')
-        } else if (playerOne.roundsWon < playerTwo.roundsWon) {
-            setBattleResultsMessage('Defeat')
-        } else if (playerOne.roundsWon === playerTwo.roundsWon) {
-            setBattleResultsMessage('Draw')
+        if (playerOne.battleScore > playerTwo.battleScore) {
+            setBattleResult('Victory')
+        } else if (playerOne.battleScore < playerTwo.battleScore) {
+            setBattleResult('Defeat')
+        } else if (playerOne.battleScore === playerTwo.battleScore) {
+            setBattleResult('Draw')
         }
     }
 
     useEffect(() => {
-        if (battleResultsMessage !== null) updateUser(battleResultsMessage)
-    }, [battleResultsMessage])
+        if (battleResult !== null) updateUser(battleResult)
+    }, [battleResult])
 
+    // Make appropriate API requests based on battle results
     const updateUser = async (result) => {
         switch (result) {
             case 'Victory':
@@ -48,23 +57,10 @@ const BattleResults = ({ playerOne, playerTwo }) => {
                     )
                     assignRandomCardValues(opponentCard)
                     setCardReward(opponentCard)
-                    const cardData = {
-                        name: opponentCard.name,
-                        number: opponentCard.number,
-                        image: opponentCard.image,
-                        rarity: opponentCard.rarity,
-                        empower: opponentCard.empower,
-                        weaken: opponentCard.weaken,
-                        values: opponentCard.values,
-                    }
-
-                    await axios.put('/api/collection/new', cardData).then(() =>
-                        axios.put('/api/profile/info', {
-                            defeatedEnemies: [
-                                ...user.defeatedEnemies,
-                                opponent.name,
-                            ],
-                        })
+                    await addCardToCollection(createCardData(opponentCard))
+                    await updatedDefeatedEnemies(
+                        user.defeatedEnemies,
+                        opponent.name
                     )
                 }
                 break
@@ -86,43 +82,46 @@ const BattleResults = ({ playerOne, playerTwo }) => {
     }
 
     return (
-        <div className='battle-over box'>
-            <span className='result'>{battleResultsMessage}</span>
-            <div className='rewards'>
-                {battleResultsMessage === 'Victory' ? (
+        <div className='battle-over fill'>
+            <span className='result'>{battleResult}</span>
+            <div className='rewards center'>
+                {battleResult === 'Victory' ? (
                     <>
-                        <div className='coin'>
-                            <h1>Coin</h1>
-                            <div className='coin-reward'>
-                                <span>+ {opponent.rewards.coin}</span>
-                                <img src={coinImage} alt='coin image' />
+                        <div className='coin-xp center'>
+                            <div className='coin center'>
+                                <div className='coin-reward center-column'>
+                                    <span>+ {opponent.rewards.coin}</span>
+                                    <img src={coinImage} alt='coin image' />
+                                </div>
+                            </div>
+
+                            <div className='xp center-column'>
+                                <span>+ {opponent.rewards.xp}</span>
+                                <span>XP</span>
                             </div>
                         </div>
-                        <div className='xp'>
-                            <h1>XP</h1>
-                            <span>+ {opponent.rewards.xp}</span>
-                        </div>
+
                         {cardReward && (
-                            <div className='card-reward'>
+                            <div className='card-reward center-column'>
                                 <h1>NEW CARD!</h1>
                                 <Card card={cardReward} isShowing />
                             </div>
                         )}
                     </>
-                ) : battleResultsMessage === 'Draw' ? (
+                ) : battleResult === 'Draw' ? (
                     <>
-                        <div className='coin'>
-                            <h1>Coin</h1>
-                            <div className='coin-reward'>
+                        <div className='coin center'>
+                            <div className='coin-reward center'>
                                 <span>
                                     + {Math.floor(opponent.rewards.coin / 2)}
                                 </span>
                                 <img src={coinImage} alt='coin image' />
                             </div>
                         </div>
-                        <div className='xp'>
-                            <h1>XP</h1>
-                            <span>+ {Math.floor(opponent.rewards.xp / 2)}</span>
+                        <div className='xp center'>
+                            <span>
+                                + {Math.floor(opponent.rewards.xp / 2)} XP
+                            </span>
                         </div>
                     </>
                 ) : (
@@ -131,7 +130,7 @@ const BattleResults = ({ playerOne, playerTwo }) => {
             </div>
             <div className='buttons'>
                 <Button
-                    label='Select Battle'
+                    label='Select Opponent'
                     type='link'
                     path='/opponentSelect'
                 />

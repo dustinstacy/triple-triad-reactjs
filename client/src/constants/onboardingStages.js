@@ -1,7 +1,7 @@
 const onboardingStages = [
     {
         header: 'Your Journey Begins',
-        body: `Welcome to the Alpha release of Triple Triad! We are
+        body: `Welcome to the Alpha release of Nexus Dawn! We are
         thrilled to have you join us on this exciting journey as we
         continuously grow and improve the project. Let us be your
         trusted guides as we navigate the initial steps and set
@@ -60,7 +60,7 @@ const onboardingStages = [
         body: `We express our deepest gratitude once more and eagerly anticipate
         your invaluable feedback. As a token of our appreciation, we have gifted
         you an additional pack, waiting to be unveiled in your inventory. Prepare
-        yourself for an ever-expaning adventure where your voice holds the power
+        yourself for an ever-expanding adventure where your voice holds the power
         to shape the destiny of this extraordinary project.`,
         label: 'Close',
     },

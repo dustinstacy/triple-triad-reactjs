@@ -3,6 +3,12 @@
     align-items: center;
     background-color: var(--background-color);
 
+    .card {
+        span {
+            background: none;
+        }
+    }
+
     hr {
         height: 2px;
         width: 90%;

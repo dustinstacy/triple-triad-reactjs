@@ -27,40 +27,6 @@ const ProductTour = ({ step }) => {
     const starterCardCount = 5
     const starterCardOdds = { Common: 80, Uncommon: 20 }
 
-    // Define step-specific functions used during the product tour
-    const stepFunctions = {
-        0: async () => {
-            await completeUserStartingData()
-            await addCoin(user.coin, 200)
-            await nextStage('/market')
-        },
-        3: async () => {
-            const starterCards = getRandomCards(
-                starterCardCount,
-                starterCardOdds,
-                allCards
-            )
-            starterCards.forEach(async (card) => {
-                assignRandomCardValues(card)
-                const cardData = createCardData(card)
-                try {
-                    await addCardToCollection(cardData)
-                } catch (error) {
-                    console.log(error)
-                }
-            })
-            await nextStage('/collection')
-        },
-        5: async () => {
-            const rareCard = allItems.find((item) => item.name === 'Rare Card')
-            await addItemToInventory(user.inventory, rareCard)
-            await nextStage()
-        },
-        6: async () => {
-            await nextStage()
-        },
-    }
-
     // Conditionally navigate and update state progress based on the current stage and progress
     useEffect(() => {
         if (stage === 0) {
@@ -95,17 +61,6 @@ const ProductTour = ({ step }) => {
         }
     }, [])
 
-    // Advances the user to next onboarding stage
-    const nextStage = async (path) => {
-        try {
-            await incrementOnboardingStage(stage)
-            await getCurrentUser()
-            path && navigate(`${path}`)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     // Handles the click event of the product tour modal button
     const handleClick = async (step) => {
         setModalOpen(false)
@@ -117,6 +72,40 @@ const ProductTour = ({ step }) => {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    // Define step-specific functions used during the product tour
+    const stepFunctions = {
+        0: async () => {
+            await completeUserStartingData()
+            await addCoin(user.coin, 200)
+            await nextStage('/market')
+        },
+        3: async () => {
+            const starterCards = getRandomCards(
+                starterCardCount,
+                starterCardOdds,
+                allCards
+            )
+            starterCards.forEach(async (card) => {
+                assignRandomCardValues(card)
+                const cardData = createCardData(card)
+                try {
+                    await addCardToCollection(cardData)
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+            await nextStage('/collection')
+        },
+        5: async () => {
+            const rareCard = allItems.find((item) => item.name === 'Rare Card')
+            await addItemToInventory(user.inventory, rareCard)
+            await nextStage()
+        },
+        6: async () => {
+            await nextStage()
+        },
     }
 
     // Checks for specific conditions to advance the user's onboarding stage
@@ -139,6 +128,17 @@ const ProductTour = ({ step }) => {
             }, 1500)
         }
     }, [user?.inventory, userCards, userDeck, stage])
+
+    // Advances the user to next onboarding stage
+    const nextStage = async (path) => {
+        try {
+            await incrementOnboardingStage(stage)
+            await getCurrentUser()
+            path && navigate(`${path}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const productTourClasses = classSet(
         'product-tour',

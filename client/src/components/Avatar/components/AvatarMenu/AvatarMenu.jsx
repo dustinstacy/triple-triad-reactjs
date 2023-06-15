@@ -7,18 +7,17 @@ import { classSet } from '@utils'
 
 import './AvatarMenu.scss'
 
-// This component is the menu that is displayed when the user clicks on their image.
+// Renders the menu that is displayed when the user clicks on their navigation bar image.
 const AvatarMenu = ({ isOpen, toggleIsOpen }) => {
     const { user, logout } = useGlobalContext()
     const stage = user?.onboardingStage ?? {}
 
     const navigate = useNavigate()
 
-    const handleLogout = () => {
-        logout().then(() => {
-            toggleIsOpen()
-            navigate('/login')
-        })
+    const handleLogout = async () => {
+        await logout()
+        toggleIsOpen()
+        navigate('/login')
     }
 
     const disabledLinkClass = classSet(stage <= 6 && 'disabled')

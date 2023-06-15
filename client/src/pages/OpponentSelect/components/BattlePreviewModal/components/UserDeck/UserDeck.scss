@@ -23,6 +23,8 @@
                 line-height: 1.25;
 
                 h4 {
+                    font-size: 20px;
+
                     @media screen and (min-height: 900px) {
                         font-size: 20px;
                     }
@@ -37,7 +39,7 @@
                 }
 
                 span {
-                    font-size: 14px;
+                    font-size: 18px;
 
                     @media screen and (min-height: 900px) {
                         font-size: 18px;
@@ -51,22 +53,29 @@
         }
 
         .deck-image {
-            .card {
+            height: 150px;
+            width: calc(150px * 0.725);
+
+            @media screen and (min-height: 900px) {
+                height: 200px;
+                width: calc(200px * 0.725);
+            }
+
+            @media screen and (max-width: 600px) {
                 height: 150px;
                 width: calc(150px * 0.725);
+            }
+            .card {
+                height: 100%;
+                width: 100%;
 
-                img {
-                    border-radius: 4px;
-                }
+                .card__side {
+                    height: 100%;
+                    width: 100%;
 
-                @media screen and (min-height: 900px) {
-                    height: 200px;
-                    width: calc(200px * 0.725);
-                }
-
-                @media screen and (max-width: 600px) {
-                    height: 150px;
-                    width: calc(150px * 0.725);
+                    img {
+                        border-radius: 4px;
+                    }
                 }
             }
         }

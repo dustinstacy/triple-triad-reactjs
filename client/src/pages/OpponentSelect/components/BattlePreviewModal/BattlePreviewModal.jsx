@@ -23,7 +23,7 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
     // Randomize and set opponents deck on component mount
     useEffect(() => {
         getOpponentDeck()
-    }, [])
+    }, [selectedOpponent])
 
     const getOpponentDeck = () => {
         const currentOpponentDeck = getRandomCards(
@@ -31,10 +31,10 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
             deckOdds,
             allCards
         )
-        const currentOpennentCard = allCards.find(
+        const currentOpponentCard = allCards.find(
             (card) => card._id === rewards.card
         )
-        currentOpponentDeck.push(currentOpennentCard)
+        currentOpponentDeck.push(currentOpponentCard)
         assignRandomDeckValues(currentOpponentDeck, minPower, maxPower)
         setSelectedOpponentDeck((prevDeck) => currentOpponentDeck)
     }
@@ -51,29 +51,39 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
 
     return (
         <div className='battle-preview box center-column'>
-            <AiOutlineCloseCircle
-                className='close-modal'
-                onClick={() => setSelectedOpponent(null)}
-            />
-            <SelectedOpponent selectedOpponent={selectedOpponent} />
-            <div className='rules-deck-wrapper'>
-                <BattleRules selectedOpponent={selectedOpponent} />
-                <UserDeck selectedOpponent={selectedOpponent} />
-            </div>
-            <div className='buttons between'>
-                <div className='spacer center'></div>
-
-                <div className='action-buttons center'>
-                    <Button label='Edit Deck' type='link' path='/collection' />
-                    <Button
-                        label='Start Battle'
-                        onClick={(e) => startBattle(e)}
-                        disabled={
-                            userDeck?.length < selectedOpponent.minDeckSize
-                        }
+            {selectedOpponentDeck && (
+                <>
+                    {' '}
+                    <AiOutlineCloseCircle
+                        className='close-modal'
+                        onClick={() => setSelectedOpponent(null)}
                     />
-                </div>
-            </div>
+                    <SelectedOpponent selectedOpponent={selectedOpponent} />
+                    <div className='rules-deck-wrapper'>
+                        <BattleRules selectedOpponent={selectedOpponent} />
+                        <UserDeck selectedOpponent={selectedOpponent} />
+                    </div>
+                    <div className='buttons between'>
+                        <div className='spacer center'></div>
+
+                        <div className='action-buttons center'>
+                            <Button
+                                label='Edit Deck'
+                                type='link'
+                                path='/collection'
+                            />
+                            <Button
+                                label='Start Battle'
+                                onClick={(e) => startBattle(e)}
+                                disabled={
+                                    userDeck?.length <
+                                    selectedOpponent.minDeckSize
+                                }
+                            />
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     )
 }

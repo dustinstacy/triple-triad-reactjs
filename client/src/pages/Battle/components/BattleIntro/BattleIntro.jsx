@@ -2,23 +2,28 @@ import React from 'react'
 
 import './BattleIntro.scss'
 
+// Renders matchup screen prior to battle
 const BattleIntro = ({ playerOne, playerTwo }) => {
     return (
         <div className='battle-intro fill between-column'>
-            <div
-                className='p2-intro start box'
-                style={{ background: playerTwo.color }}
-            >
-                <img src={playerTwo.image} alt='p2 image' />
-                <h2>{playerTwo.name}</h2>
+            <div className='p2-intro start'>
+                <img
+                    src={playerTwo?.image}
+                    style={{ background: playerTwo?.color }}
+                    alt='p2 image'
+                />
+                <h2>{playerTwo?.name}</h2>
             </div>
-            <h1 className='center background-gradient abs-center'>VS</h1>
-            <div
-                className='p1-intro end box'
-                style={{ background: playerOne.color }}
-            >
-                <h2>{playerOne.username}</h2>
-                <img src={playerOne.image} alt='p2 image' />
+            <div className='center versus'>
+                <h1>VS</h1>
+            </div>
+            <div className='p1-intro end '>
+                <h2>{playerOne?.username}</h2>
+                <img
+                    src={playerOne?.image}
+                    style={{ background: playerOne?.color }}
+                    alt='p2 image'
+                />
             </div>
         </div>
     )

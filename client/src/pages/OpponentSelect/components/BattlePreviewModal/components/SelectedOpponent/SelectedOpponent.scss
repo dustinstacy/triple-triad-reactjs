@@ -79,11 +79,15 @@
             }
 
             h2 {
-                font-size: 18px;
+                font-size: 28px;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 16px;
+                }
             }
 
             span {
-                font-size: 24px;
+                font-size: 28px;
 
                 @media screen and (max-width: 768px) {
                     font-size: 16px;
@@ -97,6 +101,7 @@
 
             &__wrapper {
                 width: 100%;
+                gap: 48px;
                 font-size: 24px;
 
                 .rewards-coin {

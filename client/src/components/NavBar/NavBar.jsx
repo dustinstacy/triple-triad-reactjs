@@ -1,15 +1,15 @@
 import React from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 
-import { logo } from '@assets'
+import { smLogo } from '@assets'
 import { useGlobalContext } from '@context'
 import { classSet } from '@utils'
 
 import { BurgerMenu, Links, UserSection } from './components'
 import './NavBar.scss'
 
-// Navigation Bar component that includes page links and user information
-// Displays a login button based on the value of the `landing` prop
+// Renders navigation Bar component that includes page links and user information
+// Renders a login button based on the value of the `landing` prop
 const NavBar = ({ landing }) => {
     const navigate = useNavigate()
 
@@ -19,10 +19,10 @@ const NavBar = ({ landing }) => {
     const logoClasses = classSet('navbar__logo', stage <= 6 && 'disabled')
 
     return (
-        <div className='navbar background-gradient'>
+        <div className='navbar between background-gradient'>
             <BurgerMenu />
             <img
-                src={logo}
+                src={smLogo}
                 alt='logo'
                 className={logoClasses}
                 onClick={() => navigate('/')}

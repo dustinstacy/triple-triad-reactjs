@@ -17,14 +17,6 @@ const Hand = ({
 
     const [shouldCollapse, setShouldCollapse] = useState(false)
 
-    const selectCard = (card) => {
-        if (card === cardSelected) {
-            setCardSelected(null)
-        } else {
-            setCardSelected(card)
-        }
-    }
-
     const handClasses = classSet(
         name === 'p1' ? 'p1 hand' : 'p2 hand',
         shouldCollapse && 'collapse'
@@ -44,7 +36,11 @@ const Hand = ({
     const handleClick = (e, card) => {
         e.preventDefault()
         if (battleState.isP1Turn && name === 'p1' && hand.includes(card)) {
-            selectCard(card)
+            if (card === cardSelected) {
+                setCardSelected(null)
+            } else {
+                setCardSelected(card)
+            }
         }
     }
 

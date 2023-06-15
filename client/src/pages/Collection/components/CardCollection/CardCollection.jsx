@@ -9,7 +9,7 @@ import './CardCollection.scss'
 
 // Renders all of the user's cards and provides options to filter them out
 const CardCollection = ({ deckFilter, rarityFilter, valueFilter }) => {
-    const { getCurrentUser, user, userCards, userDeck } = useGlobalContext()
+    const { user, userCards, userDeck } = useGlobalContext()
 
     // Applies filters to the user's cards based on the selected filter options
     const filteredCards = useMemo(() => {
@@ -37,7 +37,7 @@ const CardCollection = ({ deckFilter, rarityFilter, valueFilter }) => {
     }, [deckFilter, rarityFilter, valueFilter, userCards, userDeck])
 
     return (
-        <div className='card-collection'>
+        <div className='card-collection start-column'>
             <div className='card-list'>
                 {filteredCards?.map((card) => (
                     <div key={card._id} className='card-container'>

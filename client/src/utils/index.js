@@ -42,6 +42,7 @@ export const removeObjectByValue = (array, property, value) => {
     }
 }
 
+// Filters out all duplicates inside an array, returns only one instance of each unique value
 export const uniqueItemsFilter = (array) => {
     return array.reduce((uniqueItems, currentItem) => {
         const foundItem = uniqueItems.find(

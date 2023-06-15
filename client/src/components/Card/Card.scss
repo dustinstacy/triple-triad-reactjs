@@ -1,10 +1,9 @@
 .card {
     position: relative;
-    height: calc(25vh - 2px);
-    width: calc(25vh * 0.725 - 2px);
+    height: calc(25vh);
+    width: calc(25vh * 0.725);
     border-radius: 12px;
-    box-shadow: 1px 1px 1px 1px var(--black-color),
-        1px 1px 1px 1px var(--black-color);
+    box-shadow: -1px 1px 1px 1px var(--black-color);
 
     & > * {
         border-radius: 16px;
@@ -12,8 +11,6 @@
 
     &__side {
         position: absolute;
-        width: 100%;
-        height: 100%;
         backface-visibility: hidden;
         transition: transform 1s ease;
     }
@@ -24,16 +21,6 @@
 
     &.is-showing .card__back {
         transform: rotateY(180deg);
-    }
-
-    &.captured {
-        & .card__front {
-            transform: rotateY(-360deg);
-        }
-
-        & .card__back {
-            transform: rotateY(-180deg);
-        }
     }
 
     &.is-dragged {
@@ -58,14 +45,6 @@
 
     &:hover {
         z-index: 10;
-    }
-
-    &.transparent {
-        background: none;
-    }
-
-    &.not__user {
-        pointer-events: none;
     }
 
     &__image {

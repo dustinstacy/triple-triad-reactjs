@@ -4,8 +4,8 @@ import { blueScore, redScore } from './images'
 import './Score.scss'
 
 const Score = ({ player }) => {
-    const { name, score } = player
-    const playerScore = [...new Array(score)]
+    const { name, roundScore } = player
+    const playerScore = [...new Array(roundScore)]
 
     return (
         <div className={`${name}-score`}>

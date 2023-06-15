@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 
-import { smLogo } from '@assets'
+import { smlogo } from '@assets'
 import { useGlobalContext } from '@context'
 import { classSet } from '@utils'
 
@@ -22,7 +22,7 @@ const NavBar = ({ landing }) => {
         <div className='navbar between background-gradient'>
             <BurgerMenu />
             <img
-                src={smLogo}
+                src={smlogo}
                 alt='logo'
                 className={logoClasses}
                 onClick={() => navigate('/')}

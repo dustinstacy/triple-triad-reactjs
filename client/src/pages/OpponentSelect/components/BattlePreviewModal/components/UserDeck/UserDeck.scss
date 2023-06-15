@@ -1,0 +1,83 @@
+.user-deck {
+    display: flex;
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--secondary2-color);
+
+    &.panel {
+        box-shadow: none;
+    }
+
+    .deck-wrapper {
+        .deck-info {
+            height: 160px;
+
+            @media screen and (min-height: 900px) {
+                height: 200px;
+            }
+
+            > div {
+                height: 50px;
+                width: 100%;
+                text-align: center;
+                line-height: 1.25;
+
+                h4 {
+                    font-size: 20px;
+
+                    @media screen and (min-height: 900px) {
+                        font-size: 20px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        font-size: inherit;
+                    }
+                }
+
+                > * {
+                    margin: 0;
+                }
+
+                span {
+                    font-size: 18px;
+
+                    @media screen and (min-height: 900px) {
+                        font-size: 18px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        font-size: inherit;
+                    }
+                }
+            }
+        }
+
+        .deck-image {
+            height: 150px;
+            width: calc(150px * 0.725);
+
+            @media screen and (min-height: 900px) {
+                height: 200px;
+                width: calc(200px * 0.725);
+            }
+
+            @media screen and (max-width: 600px) {
+                height: 150px;
+                width: calc(150px * 0.725);
+            }
+            .card {
+                height: 100%;
+                width: 100%;
+
+                .card__side {
+                    height: 100%;
+                    width: 100%;
+
+                    img {
+                        border-radius: 4px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -27,6 +27,25 @@ router.put(
     async (req, res, next) => {
         try {
             const user = await User.findOne({ _id: req.user._id })
+            const {
+                role,
+                username,
+                email,
+                image,
+                color,
+                defeatedEnemies,
+                activeBattle,
+                coin,
+                runes,
+                level,
+                xp,
+                battles,
+                wins,
+                losses,
+                draws,
+                inventory,
+                onboardingStage,
+            } = req.body
             const { errors, isValid } = validateRegisterInput(req.body)
 
             if (!isValid) {
@@ -37,39 +56,38 @@ router.put(
             switch (req.params.action) {
                 case 'info':
                     updatedFields = {
-                        role: req.body.role || user.role,
-                        username: req.body.username || user.username,
-                        email: req.body.email || user.email,
-                        image: req.body.image || user.image,
-                        color: req.body.color || user.color,
+                        role: role || user.role,
+                        username: username || user.username,
+                        email: email || user.email,
+                        image: image || user.image,
+                        color: color || user.color,
                         defeatedEnemies:
-                            req.body.defeatedEnemies || user.defeatedEnemies,
-                        activeBattle:
-                            req.body.activeBattle || user.activeBattle,
-                        coin: req.body.coin || user.coin,
-                        runes: req.body.runes || user.runes,
+                            defeatedEnemies || user.defeatedEnemies,
+                        activeBattle: activeBattle || user.activeBattle,
+                        coin: coin || user.coin,
+                        runes: runes || user.runes,
                     }
                     break
                 case 'stats':
                     updatedFields = {
-                        level: req.body.level || user.level,
-                        xp: req.body.xp || user.xp,
+                        level: level || user.level,
+                        xp: xp || user.xp,
                         stats: {
-                            battles: req.body.battles || user.stats.battles,
-                            wins: req.body.wins || user.stats.wins,
-                            losses: req.body.losses || user.stats.losses,
-                            draws: req.body.draws || user.stats.draws,
+                            battles: battles || user.stats.battles,
+                            wins: wins || user.stats.wins,
+                            losses: losses || user.stats.losses,
+                            draws: draws || user.stats.draws,
                         },
                     }
                     break
                 case 'inventory':
                     updatedFields = {
-                        inventory: req.body.inventory,
+                        inventory: inventory,
                     }
                     break
                 case 'onboarding':
                     updatedFields = {
-                        onboardingStage: req.body.onboardingStage,
+                        onboardingStage: onboardingStage,
                     }
                     break
                 default:

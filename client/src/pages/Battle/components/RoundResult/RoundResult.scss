@@ -1,0 +1,37 @@
+.round-result {
+    overflow: hidden;
+
+    .battle-score {
+        position: absolute;
+        top: 2.5%;
+        font-size: 72px;
+    }
+
+    .round-image {
+        height: 100vh;
+        margin: 0 -48px;
+
+        @media screen and (max-width: 1280px) {
+            height: 80vh;
+        }
+
+        @media screen and (max-width: 1024px) {
+            height: 60vh;
+        }
+    }
+
+    .p1-battle-score,
+    .p2-battle-score {
+        font-size: 15vh;
+
+        @media screen and (max-width: 1024px) {
+            font-size: 10vh;
+        }
+
+        img {
+            height: 20vh;
+            border: 2px solid var(--secondary2-color);
+            border-radius: 8px;
+        }
+    }
+}

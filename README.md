@@ -1,14 +1,10 @@
 <h1 align="center">
-⚠️ Under Maintenance ⚠️
-</h1>
-
-<h1 align="center">
-Triple Triad
+Nexus Dawn
 </h1>
 
 <p align="center">
   <a href="https://github.com/dustinstacy/triple-triad-reactjs/issues">
-    <img src="https://img.shields.io/badge/Issues-5-yellow" alt="Issues">
+    <img src="https://img.shields.io/badge/Issues-2-yellow" alt="Issues">
   </a>
    <a href="#license">
     <img src="https://img.shields.io/badge/License-MIT-brightgreen" alt="License">
@@ -34,49 +30,37 @@ Website: <https://tripletriad.herokuapp.com/>
 ## Description
 
 This web app is a playable card game that allows users to collect and upgrade
-cards, construct a deck, and compete in various game modes. Based on the
-eponymous [minigame](https://finalfantasy.fandom.com/wiki/Triple_Triad) from
-Final Fantasy VIII, I was inspired to recreate it and give it a modern twist.
-Progress is ongoing, with numerous planned updates in the near future to enhance
-the user experience, add features, and increase replayability.
+cards, construct a deck, and compete in various game modes. Inspired by the
+Final Fantasy VIII [minigame](https://finalfantasy.fandom.com/wiki/Triple_Triad)
+called Triple Triad, I've recreated it with a modern twist. I am constantly
+working on improving the user experience, adding new features, and increasing
+replayability. Get ready for exciting updates coming soon!
 
-In it's current iteration, users can create an account, construct a deck, view
-their collection, open and purchase packs using currency collected from winning
-battles, and play a match against a AI opponent built using a heuristic
-customized for average difficulty.
+In its current iteration, the user journey begins with creating an account,
+followed by an interactive onboarding process that covers the fundamental
+aspects of the application. Users can then engage in battles against AI
+opponents, progressively unlocking more challenging adversaries as they level
+up. The opponents become increasingly more difficult, providing greater rewards
+and a heightened sense of achievement. By collecting these rewards and advancing
+in levels, users expand their arsenal of cards, enhancing their strategic
+capabilities and tactical options. This progression system empowers users to
+continuously improve their skills and explore new possibilities within the
+application.
 
 ## Rules
 
-Triple Triad is played on a 3x3 grid of blank spaces where the cards will be
-placed. Each card has four ranks placed along each side. The ranks range from
-one to ten, with the letter A representing ten. The top left corner of the card
-has an elemental symbol representing the card's element. Each card will also
-have a background color to signal which player the card belongs to.
-
-In a basic game, each player is dealt 5 cards from a constructed 35 card deck
-(35 being ideal for up to 7 round battles). A coin-flip decides who begins. The
-player who wins the coin toss may choose a card to play anywhere on the grid.
-After the first card is played, the opponent may play a card on any unoccupied
-space on the board. The game continues with players' turns alternating. Each
-player may play only one card per turn.
-
-To win, a majority of the total ten cards played (including the one card that is
-not placed on the board) must be of the player's card color. To capture a card,
-the active player places a card adjacent to the opponent's card. If the rank
-touching the opponent's card is higher, the opponent's card will be captured and
-flipped into the active player's background color. The player who goes second
-will have a card remaining in their hand and that card will count towards their
-ending score.
+[Rules](https://nexus-dawn-16daa70a99d8.herokuapp.com/rules)
 
 ## Planned Updates
 
-- Peer to Peer matches
-- Level up rewards
-- Card enhancements
-- Constructed challenges
-- Expanded Ruleset
-- Multiple Difficulties
-
+-   Level up rewards
+-   Card challenges
+-   Card fusion
+-   Deck presets
+-   UI/UX enhancements
+-   Expanded Ruleset
+-   New game modes
+-   Peer to Peer matches
 
 ## Local Setup
 
@@ -109,9 +93,7 @@ npm start
 ## Credits
 
 Huge thanks to the following content providers: </br> </br> Character Artwork -
-AEkashics <https://www.patreon.com/aekashics/posts> </br> Elements, Ranks, and
-Misc. Icons - Upkylak <https://www.freepik.com/author/upklyak> </br>
-
+AEkashics <https://www.patreon.com/aekashics/posts>
 
 ## License
 

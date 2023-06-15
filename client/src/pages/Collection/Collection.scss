@@ -3,6 +3,12 @@
     align-items: center;
     background-color: var(--background-color);
 
+    .card {
+        span {
+            background: none;
+        }
+    }
+
     hr {
         height: 2px;
         width: 90%;
@@ -15,5 +21,18 @@
             rgba(235, 169, 2, 0.4) 75%,
             rgba(235, 169, 2, 0.2) 100%
         );
+    }
+
+    .filters {
+        min-height: 150px;
+        gap: 5vw;
+        background-color: var(--background3-color);
+
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+            gap: 24px;
+            padding: 24px;
+            font-size: 20px;
+        }
     }
 }

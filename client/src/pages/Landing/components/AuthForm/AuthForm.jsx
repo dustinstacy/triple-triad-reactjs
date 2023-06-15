@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-import { useGlobalContext } from '@context'
 import { Button, TextInput } from '@components'
+import { useGlobalContext } from '@context'
+
+import { sendAuthRequest } from './api'
+import { FormFooter } from './components'
+import { toCamelCase } from './utils'
 import './AuthForm.scss'
 
-// The register prop is used to toggle between login and signup form
+// Displays login of registration form based on the value of the register prop
 const AuthForm = ({ register }) => {
-    const { getCurrentUser } = useGlobalContext()
-    const [formData, setFormData] = useState({
+    const { getGlobalState } = useGlobalContext()
+
+    const initialFormData = {
         username: '',
         email: '',
         password: '',
         confirmPassword: '',
-    })
+    }
+
+    const [formData, setFormData] = useState(initialFormData)
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const navigate = useNavigate()
@@ -28,6 +34,7 @@ const AuthForm = ({ register }) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
+        setErrors({})
         setFormData({ ...formData, [name]: value })
     }
 
@@ -35,22 +42,10 @@ const AuthForm = ({ register }) => {
         e.preventDefault()
         setLoading(true)
 
-        // Deconstruct the formData object to extract values needed for the POST request
-        const { username, email, password, confirmPassword } = formData
-
-        // Set the data object based on the value of register prop
-        const data = register
-            ? { username, email, password, confirmPassword }
-            : { username, password }
-
         try {
-            // Send a POST request to the appropriate endpoint based on the value of register prop
-            await axios.post(
-                register ? '/api/auth/register' : '/api/auth/login',
-                data
-            )
-
-            await getCurrentUser().then(navigate('/'))
+            await sendAuthRequest(formData, register)
+            await getGlobalState()
+            navigate('/') // Refresh user data after updating and navigate to Home page
         } catch (error) {
             if (error?.response?.data) {
                 setErrors(error.response.data)
@@ -60,6 +55,7 @@ const AuthForm = ({ register }) => {
         }
     }
 
+    // Execute handleSubmit function when user presses Enter key
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleSubmit(e)
@@ -67,12 +63,7 @@ const AuthForm = ({ register }) => {
     }
 
     const reset = () => {
-        setFormData({
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-        })
+        setFormData(initialFormData)
         setLoading(false)
         setErrors({})
     }
@@ -81,19 +72,6 @@ const AuthForm = ({ register }) => {
     useEffect(() => {
         reset()
     }, [register])
-
-    // This function takes in a string and converts it to CamelCase format
-    // This capability is used to map TextInput elements to their corresponding labels
-    const toCamelCase = (str) => {
-        return str
-            .replace(/\s(.)/g, function (a) {
-                return a.toUpperCase()
-            })
-            .replace(/\s/g, '')
-            .replace(/^(.)/, function (b) {
-                return b.toLowerCase()
-            })
-    }
 
     return (
         <div className='auth-form center'>
@@ -109,7 +87,7 @@ const AuthForm = ({ register }) => {
                             autofocus={field === 'Username'}
                         />
                         {errors[toCamelCase(field)] && (
-                            <p className='form__error'>
+                            <p className='error'>
                                 {errors[toCamelCase(field)]}
                             </p>
                         )}
@@ -117,18 +95,9 @@ const AuthForm = ({ register }) => {
                 ))}
 
                 {Object.keys(errors).length > 0 && !register && (
-                    <p className='form__error'>Nope. Try Again.</p>
+                    <p className='error'>Nope. Try Again.</p>
                 )}
-                <div className='form__footer'>
-                    <span>
-                        {register
-                            ? 'Already Have An Account? '
-                            : 'Need An AccOunt? '}
-                    </span>
-                    <NavLink to={register ? '/login' : '/register'}>
-                        {register ? 'Login' : 'Sign up'}
-                    </NavLink>
-                </div>
+                <FormFooter register={register} />
             </form>
             <Button
                 label='Submit'

@@ -1,57 +1,85 @@
 .board {
+    position: relative;
     height: 100vh;
-    width: 1400px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--background2-color);
+    width: calc(75vh * 0.725 + 60vh);
+    background: url('@assets/page-images/board.jpg');
+    background-position: center;
+    background-size: cover;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-image: var(--gold-gradient45) 1;
 
-    .card {
-        height: 250px;
-        width: calc(250px * 0.725);
+    box-shadow: 5px 0 5px 2px var(--black-color),
+        -5px 0 5px 2px var(--black-color);
 
-        &__values {
-            font-size: 22px;
-        }
-    }
+    .cell .card {
+        pointer-events: none;
 
-    .grid {
-        height: 750px;
-        width: 550px;
-        flex-wrap: wrap;
-        align-content: center;
-        margin-bottom: 120px;
+        &.captured {
+            & .card__front {
+                transform: rotateY(-360deg);
+            }
 
-        .cell {
-            .card-wrapper {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-                z-index: 10;
+            & .card__back {
+                transform: rotateY(-180deg);
             }
         }
     }
 
-    .column {
-        height: 100%;
-        width: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+    .grid {
+        height: 75vh;
+        width: calc(75vh * 0.725 + 12px);
+        flex-wrap: wrap;
+        align-content: center;
+        background: url('@assets/page-images/grid.jpg');
+        background-position: center;
+        background-size: cover;
+        border-radius: 12px;
+        z-index: 5;
+    }
+
+    .score-column {
+        position: absolute;
+        left: 0;
+        height: 70vh;
+        width: 30vh;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-top: 4px solid var(--gray-color);
+        border-bottom: 4px solid var(--gray-color);
 
         .round-score {
             font-size: 72px;
         }
     }
 
-    .turn-arrow {
-        height: 140px;
-        width: 70px;
-        margin-right: 100px;
-        transition: all 1s ease;
-        transform-origin: 47% 52%;
+    .arrow-column {
+        position: absolute;
+        right: 0;
+        height: 70vh;
+        width: 30vh;
+        gap: 3vh;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-top: 4px solid var(--gray-color);
+        border-bottom: 4px solid var(--gray-color);
+
+        .user-image {
+            height: 12vh;
+            padding: 2px;
+            background-color: black;
+            border: 2px solid var(--secondary2-color);
+            border-radius: 8px;
+
+            &.is-turn {
+                box-shadow: 2px 0 10px 2px var(--primary-color),
+                    -2px 0 10px 2px var(--primary-color);
+            }
+        }
+
+        .turn-arrow {
+            height: 12vh;
+            width: 6vh;
+            transition: all 1s ease;
+        }
     }
 
     .turn-arrow.down {

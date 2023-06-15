@@ -5,7 +5,7 @@ import './Account.scss'
 
 const Account = () => {
     return (
-        <div className='account page center'>
+        <div className='account page start-column'>
             <AccountDetails />
             <PromoCode />
         </div>

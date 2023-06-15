@@ -1,49 +1,42 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { useGlobalContext } from '@context'
-import { Button, TextInput } from '@components'
 
+import { addCoin, addExperience } from '@api'
+import { Button, TextInput } from '@components'
+import { useGlobalContext } from '@context'
+
+import { checkPromoCode } from './utils'
 import './PromoCode.scss'
 
 const PromoCode = () => {
     const { user, getCurrentUser } = useGlobalContext()
+
     const [promoCode, setPromoCode] = useState('')
     const [loading, setLoading] = useState(false)
-    const [errors, setErrors] = useState({})
+    const [error, setError] = useState('')
 
     const handleInputChange = (e) => {
+        setError('') // Clear any previous errors
         setPromoCode(e.target.value)
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
         setLoading(true)
-
         try {
-            if (promoCode === 'ZELLSBELLS') {
-                await axios.put('/api/profile/info', {
-                    coin: user.coin + 1000000,
-                })
-                await axios.put('/api/profile/stats', {
-                    xp: user.xp + 2100,
-                })
-                getCurrentUser()
-            } else {
-                throw new Error("That doesn't seem to work")
-            }
+            await checkPromoCode(promoCode)
+            await addCoin(user.coin, 1000000)
+            await addExperience(user.xp, 100000)
+            await getCurrentUser() // Refresh user data after updating
         } catch (error) {
-            if (error) {
-                setErrors(error.message)
-            }
+            setError(error.message) // Set the error message for display
         } finally {
             setLoading(false)
         }
     }
 
     return (
-        <div>
+        <div className='promo-code'>
             <h1>Promo Code</h1>
-            <div className='promo-code section box'>
+            <div className='box center-column'>
                 <TextInput
                     label='Enter promo code here'
                     name='promoCode'
@@ -51,12 +44,11 @@ const PromoCode = () => {
                     onChange={handleInputChange}
                     loading={loading}
                 />
-                {errors.length && <p>{errors}</p>}
-
+                {error && <p className='error'>{error}</p>}
                 <Button
                     label='Try that one'
-                    onClick={(e) => handleSubmit(e)}
-                    disabled={promoCode.length === 0}
+                    onClick={handleSubmit}
+                    disabled={promoCode.length === 0 || loading}
                 />
             </div>
         </div>

@@ -1,85 +1,48 @@
 import React, { useMemo } from 'react'
 
 import { Card } from '@components'
+import { useGlobalContext } from '@context'
 
-import { CheckBox } from '..'
+import { CheckBox } from './components'
+import * as Sorters from '../../utils'
 import './CardCollection.scss'
 
-const CardCollection = ({
-    user,
-    userCards,
-    userDeck,
-    deckFilter,
-    rarityFilter,
-    valueFilter,
-    valuesArray,
-    markSelected,
-    removeSelection,
-}) => {
+// Renders all of the user's cards and provides options to filter them out
+const CardCollection = ({ deckFilter, rarityFilter, valueFilter }) => {
+    const { user, userCards, userDeck } = useGlobalContext()
+
+    // Applies filters to the user's cards based on the selected filter options
     const filteredCards = useMemo(() => {
         userCards.forEach((card) => {
             card.color = user.color
         })
-
-        let filtered = [...userCards].sort((a, b) => a.number - b.number)
-
+        let filtered = Sorters.sortByCardNumber(userCards)
         if (deckFilter === 'In Deck') {
-            filtered = userCards.filter((card) =>
-                userDeck.find(({ _id }) => card._id === _id)
-            )
+            filtered = Sorters.sortByCardsInDeck(userCards, userDeck)
         } else if (deckFilter === 'Not In Deck') {
-            filtered = userCards.filter(
-                (card) => !userDeck.find(({ _id }) => card._id === _id)
-            )
+            filtered = Sorters.sortByCardsNotInDeck(userCards, userDeck)
         }
-
         if (rarityFilter && rarityFilter !== '-') {
-            filtered = filtered.filter((card) => card.rarity === rarityFilter)
+            filtered = Sorters.sortByRarity(filtered, rarityFilter)
         }
-
         if (valueFilter == 'Total') {
-            filtered = filtered.sort(
-                (a, b) =>
-                    b.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    ) -
-                    a.values.reduce(
-                        (sum, current) =>
-                            parseInt(sum) + parseInt(current.replace(/A/g, 10)),
-                        0
-                    )
-            )
+            filtered = Sorters.sortByTotalCardValue(filtered)
         } else if (valueFilter && valueFilter !== '-') {
+            const valuesArray = ['Up', 'Right', 'Down', 'Left', 'Total']
             const valueIndex = valuesArray.indexOf(valueFilter)
-            filtered = filtered.sort((a, b) => {
-                const aValue = a.values[valueIndex]
-                const bValue = b.values[valueIndex]
-                return (
-                    parseInt(bValue.replace(/A/g, 10)) -
-                    parseInt(aValue.replace(/A/g, 10))
-                )
-            })
+            filtered = Sorters.sortBySingleValue(filtered, valueIndex)
         }
 
         return filtered
-    }, [userCards, deckFilter, rarityFilter, valueFilter, userDeck])
+    }, [deckFilter, rarityFilter, valueFilter, userCards, userDeck])
 
     return (
-        <div className='card-collection'>
+        <div className='card-collection start-column'>
             <div className='card-list'>
                 {filteredCards?.map((card) => (
                     <div key={card._id} className='card-container'>
-                        <Card card={card} faith='p1' isShowing />
-                        <CheckBox
-                            handleClick={() =>
-                                !card.selected
-                                    ? markSelected(card)
-                                    : removeSelection(card)
-                            }
-                            selected={card.selected}
-                        />
+                        <Card card={card} isShowing />
+                        <CheckBox card={card} />
                     </div>
                 ))}
             </div>

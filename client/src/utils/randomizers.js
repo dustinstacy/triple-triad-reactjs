@@ -74,7 +74,7 @@ export const assignRandomDeckValues = (deck, minDeckValue, maxDeckValue) => {
     let finalValue = 0
     // Variable to store the scale factor for adjusting values
     let scale = 0
-    console.log(minDeckValue, maxDeckValue)
+
     do {
         // Assign random card values to all cards in the deck
         deck.forEach((card) => {
@@ -86,7 +86,6 @@ export const assignRandomDeckValues = (deck, minDeckValue, maxDeckValue) => {
             return total + card.values.reduce((sum, value) => sum + value, 0)
         }, 0)
 
-        console.log(currentSum)
         // Determine the scaling factor based on the current sum of values
         if (currentSum > maxDeckValue) {
             scale = maxDeckValue / currentSum
@@ -111,14 +110,12 @@ export const assignRandomDeckValues = (deck, minDeckValue, maxDeckValue) => {
             }
             return total
         }, 0)
-        console.log(finalValue)
     } while (
         // When the total value of all card values in the deck falls within range,
         // exit the loop
         finalValue < minDeckValue ||
         finalValue > maxDeckValue
     )
-    console.log(finalValue)
 }
 
 // nCards: Number of cards to return

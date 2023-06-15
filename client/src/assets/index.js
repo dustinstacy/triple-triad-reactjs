@@ -1,8 +1,8 @@
 import cardback from './card/cardback.png'
 import coinImage from './icons/coinImage.png'
 import logo from './logos/logo.png'
-import smlogo from './logos/smlogo.png'
+import smLogo from './logos/smLogo.png'
 
-export { logo, smlogo }
+export { logo, smLogo }
 export { coinImage }
 export { cardback }

@@ -6,7 +6,7 @@ const howToPlay = [
                 title: 'The Basics -',
                 content: [
                     {
-                        line: `Triple Triad is a card game played on a 3x3 grid between two players.`,
+                        line: `Nexus Dawn is a card game played on a 3x3 grid between two players.`,
                     },
                     {
                         line: `Each player has five cards, and the objective is to control as many spots on
@@ -88,16 +88,17 @@ const howToPlay = [
                 title: 'Keeping Score -',
                 content: [
                     {
-                        line: `Each player will have a counter to keep track of how many rounds they
-                have won.`,
+                        line: `Each player will have a counter to keep track of how cumulative cards they
+                        have captured throughout the battle.`,
                     },
                     {
                         line: `The battle concludes either when all the rounds are completed or when
-                one player has won the majority of the rounds.`,
+                one player has taken a lead greater than the maximum score the opponent can obtain for
+                that battle.`,
                     },
                     {
                         line: `If both players have an equal
-                number of round wins by the end of the battle, it results in a draw.`,
+                number of captures by the end of the battle, it results in a draw.`,
                     },
                 ],
             },

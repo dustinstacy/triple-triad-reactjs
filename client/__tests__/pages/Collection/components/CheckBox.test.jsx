@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, it, vi, expect } from 'vitest'
 import { render, fireEvent } from '@testing-library/react'
-import { CheckBox } from '../../../../src/pages/Collection/components'
+import { CheckBox } from '@pages/Collection/components'
 
 describe('CheckBox', () => {
     it('should call handleClick function when clicked', () => {
@@ -22,8 +22,8 @@ describe('CheckBox', () => {
             <CheckBox handleClick={() => {}} selected />
         )
 
-        expect(container.querySelector('.check')).toBeDefined
-        expect(container.querySelector('.uncheck')).not.toBeDefined
+        expect(container.querySelector('.check')).toBeDefined()
+        expect(container.querySelector('.uncheck')).toBeNull()
     })
 
     it('should display unchecked icon when selected prop is false', () => {
@@ -31,7 +31,7 @@ describe('CheckBox', () => {
             <CheckBox handleClick={() => {}} selected={false} />
         )
 
-        expect(container.querySelector('.uncheck')).toBeDefined
-        expect(container.querySelector('.check')).not.toBeDefined
+        expect(container.querySelector('.uncheck')).toBeDefined()
+        expect(container.querySelector('.check')).toBeNull()
     })
 })

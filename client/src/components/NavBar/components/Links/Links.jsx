@@ -1,31 +1,40 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { useGlobalContext } from '@context'
 import { navlinks } from '@constants'
+import { classSet } from '@utils'
 
 import './Links.scss'
 
-// The list of links is memoized to avoid unnecessary re-rendering.
-// The menu and onClick props are used to add CSS class names and customize functionality of the links.
-const Links = ({ menu, onClick, user }) => {
+// Renders a list of navigation links with customizable CSS classes and functionality.
+// - menu: The identifier for the menu, used to generate CSS class names.
+// - onClick: Add additional click event handler for the links.
+const Links = ({ menu, onClick }) => {
+    const { user } = useGlobalContext()
+    const stage = user?.onboardingStage ?? {}
+
     const publicLinks = ['/', '/rules']
+
+    const linkClasses = (linkPath) =>
+        classSet(
+            `${menu}-link`,
+            'center',
+            ((!user && !publicLinks.includes(linkPath)) || stage <= 6) &&
+                'disabled'
+        )
 
     return (
         <div className={`${menu}-links`}>
             {navlinks.map((link) => (
                 <NavLink
-                    className={`${menu}-link center ${
-                        (!user && !publicLinks.includes(link.path)) ||
-                        user?.onboardingStage < 3
-                            ? 'disabled'
-                            : ''
-                    }`}
+                    className={linkClasses(link.path)}
                     key={link.name}
                     to={link.path}
                     onClick={onClick}
                 >
                     {link.image}
-                    <p>{link.name}</p>
+                    <span>{link.name}</span>
                 </NavLink>
             ))}
         </div>

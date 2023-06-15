@@ -1,65 +1,45 @@
 .hand {
     position: absolute;
-    width: 1200px;
+    width: auto;
     display: flex;
     justify-content: center;
+    scale: 0.6;
+    z-index: 10;
 }
 
 .p1 {
     bottom: 0;
-    height: 175px;
-    justify-content: center;
+    height: 15vh;
+    padding: 24px 48px;
 
-    .down-arrow,
-    .up-arrow {
-        position: absolute;
-        top: 75%;
-        left: 0;
-        color: var(--primary-color);
-        font-size: 48px;
-        cursor: pointer;
+    &:hover:not(.collapse) {
+        scale: 1;
+        transform: translateY(-14vh);
+    }
+
+    &:hover .collapse {
+        scale: 0.6;
+    }
+
+    &.collapse {
+        transform: translateY(0) !important;
     }
 
     .card {
+        margin-top: 12px;
         cursor: pointer;
-        &:hover {
-            transform: translateY(-150px);
-        }
-
-        &.selected {
-            transform: translateY(-150px);
-            z-index: 20;
-            img {
-                box-shadow: 2px 2px 10px var(--secondary-color),
-                    -2px -2px 10px var(--secondary-color),
-                    -2px 2px 10px var(--secondary-color),
-                    2px -2px 10px var(--secondary-color);
-            }
-        }
     }
 }
 
 .p2 {
     top: 0;
-    height: 50px;
+    height: 12vh;
     display: flex;
     align-items: flex-end;
     z-index: 10;
 
     .card {
         rotate: 180deg;
-    }
-}
-
-.raised {
-    transform: translateY(-100px);
-    z-index: 20;
-
-    & .card:hover {
-        transform: translateY(-15px);
-    }
-
-    & .card.selected {
-        transform: translateY(-15px);
+        pointer-events: none;
     }
 }

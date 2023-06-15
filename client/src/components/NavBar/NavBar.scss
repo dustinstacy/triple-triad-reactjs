@@ -1,41 +1,27 @@
-@mixin main-gradient {
-    background: var(--background-color);
-    background: -webkit-linear-gradient(
-        45deg,
-        var(--background-color),
-        var(--background2-color)
-    );
-    background: linear-gradient(
-        45deg,
-        var(--background-color),
-        var(--background2-color)
-    );
-}
-
 .navbar {
-    @include main-gradient;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     height: var(--navbar-height);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 6px 18px;
-    z-index: 10;
+    z-index: 9997;
 
     &__logo {
         height: 64px;
         padding-right: 2vw;
         cursor: pointer;
+
+        &.disabled {
+            pointer-events: none;
+        }
     }
 
     &__login {
+        padding: 4px 12px;
         font-size: 24px;
         font-weight: 600;
         text-transform: capitalize;
-        padding: 6px 12px;
     }
 
     .gold-border {

@@ -18,7 +18,14 @@ const CPUOpponentSchema = new Schema(
             type: Number,
             required: true,
         },
-        deckOdds: {},
+        deckOdds: {
+            type: Object,
+            required: true,
+        },
+        deckCount: {
+            type: Number,
+            required: true,
+        },
         minPower: {
             type: Number,
             required: true,
@@ -27,8 +34,8 @@ const CPUOpponentSchema = new Schema(
             type: Number,
             required: true,
         },
-        minDeckSize: {
-            type: Number,
+        rules: {
+            type: Array,
             required: true,
         },
         rewards: {
@@ -38,10 +45,6 @@ const CPUOpponentSchema = new Schema(
             },
             coin: {
                 type: Number,
-                required: true,
-            },
-            card: {
-                type: String,
                 required: true,
             },
             items: [],

@@ -1,20 +1,21 @@
 import React from 'react'
 
-import { useGlobalContext } from '@context'
 import { ProductTour } from '@components'
 import { howToPlay } from '@constants'
+import { useGlobalContext } from '@context'
 
 import './Rules.scss'
 
 const Rules = () => {
     const { user } = useGlobalContext()
-    const stage = user?.onboardingStage
+    const stage = user?.onboardingStage ?? {}
 
     return (
-        <div className='rules page'>
-            {stage === 3 && <ProductTour step={5} />}
+        <div className='rules page center'>
+            {stage === 5 && <ProductTour step={stage} />}
+            {stage === 6 && <ProductTour step={stage} />}
             {howToPlay.map((panel) => (
-                <div key={panel.header} className='panel'>
+                <div key={panel.header} className='panel center-column'>
                     <h1>{panel.header}</h1>
                     <div className='panel-body'>
                         {panel.body.map((section) => (

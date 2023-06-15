@@ -1,29 +1,35 @@
 import React from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 
-import { logo } from '@assets'
+import { smLogo } from '@assets'
 import { useGlobalContext } from '@context'
+import { classSet } from '@utils'
 
 import { BurgerMenu, Links, UserSection } from './components'
 import './NavBar.scss'
 
-// The landing prop is used to conditionally render the login NavLink on the NavBar component.
+// Renders navigation Bar component that includes page links and user information
+// Renders a login button based on the value of the `landing` prop
 const NavBar = ({ landing }) => {
-    const { user } = useGlobalContext()
     const navigate = useNavigate()
 
+    const { user } = useGlobalContext()
+    const stage = user?.onboardingStage ?? {}
+
+    const logoClasses = classSet('navbar__logo', stage <= 6 && 'disabled')
+
     return (
-        <div className='navbar'>
-            <BurgerMenu user={user} />
+        <div className='navbar between background-gradient'>
+            <BurgerMenu />
             <img
-                src={logo}
+                src={smLogo}
                 alt='logo'
-                className='navbar__logo'
+                className={logoClasses}
                 onClick={() => navigate('/')}
             />
-            <Links menu='navbar' user={user} />
+            <Links menu='navbar' />
             {user ? (
-                <UserSection user={user} />
+                <UserSection />
             ) : landing ? null : (
                 <NavLink className='navbar__login box' to='/login'>
                     Login

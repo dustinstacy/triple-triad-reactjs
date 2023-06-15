@@ -1,5 +1,5 @@
 .landing {
-    padding: 80px 0;
+    padding: 128px 0 64px 0;
     background-image: url('../../assets/page-images/library.jpg');
     background-position: center;
     background-size: cover;
@@ -8,25 +8,25 @@
         position: relative;
         height: 100%;
         width: 600px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
 
         @media screen and (max-width: 768px) {
-            min-height: 70vh;
             width: 100vw;
         }
 
         .logo {
-            margin: 16px 0;
+            margin: -64px 0 16px;
+            width: 500px;
 
-            @media screen and (max-width: 768px) {
-                width: 100%;
+            @media screen and (min-width: 1200px) {
+                width: 600px;
+            }
+
+            @media screen and (max-width: 600px) {
+                width: 300px;
             }
 
             &-register {
-                width: 600px;
+                width: 500px;
 
                 @media screen and (max-width: 768px) {
                     width: 100%;
@@ -39,6 +39,5 @@
         position: absolute;
         bottom: 1vh;
         right: 2vw;
-        color: var(--white-color);
     }
 }

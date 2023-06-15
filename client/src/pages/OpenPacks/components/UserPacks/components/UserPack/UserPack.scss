@@ -1,0 +1,44 @@
+.user-pack {
+    position: relative;
+    height: 400px;
+    width: 80%;
+
+    .pack-image {
+        img {
+            height: 200px;
+
+            @media screen and (min-width: 1200px) {
+                height: 250px;
+            }
+        }
+    }
+
+    .pack-info {
+        height: 75%;
+        width: 100%;
+        align-items: normal;
+        padding-left: 36px;
+
+        hr {
+            height: 2px;
+            width: 100%;
+            background-color: var(--secondary2-color);
+            border: 0;
+        }
+
+        .pack-odds {
+            margin-top: 72px;
+            h4 {
+                margin: 4px 0;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .available-inventory {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 24px;
+    }
+}

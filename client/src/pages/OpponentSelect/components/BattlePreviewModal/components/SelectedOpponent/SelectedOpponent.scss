@@ -1,0 +1,129 @@
+.selected-opponent {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    padding: 24px;
+    gap: 12px;
+
+    @media screen and (max-width: 768px) {
+        height: 200px;
+    }
+
+    .opponent-name {
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        text-align: center;
+
+        @media screen and (max-width: 768px) {
+            top: -18px;
+        }
+    }
+
+    .opponent-image {
+        width: 250px;
+        border: 1px solid var(--secondary2-color);
+        border-radius: 4px;
+
+        @media screen and (min-width: 1440px) {
+            width: 300px;
+        }
+
+        @media screen and (max-width: 768px) {
+            height: 150px;
+            width: 150px;
+        }
+
+        @media screen and (max-width: 600px) {
+            display: none;
+        }
+    }
+
+    .opponent-info {
+        height: 100%;
+        display: flex;
+        flex: 1;
+        gap: 12px;
+
+        .info-top {
+            width: 100%;
+            gap: 12px;
+            padding-right: 48px;
+
+            @media screen and (max-width: 600px) {
+                font-size: 16px;
+            }
+
+            .opponent-level {
+                flex: 1;
+            }
+
+            .opponent-power {
+                flex: 2;
+            }
+        }
+
+        .opponent-level,
+        .opponent-power,
+        .rewards {
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 8px 24px;
+            background: var(--background3-color);
+
+            @media screen and (max-width: 768px) {
+                padding: 8px 12px;
+            }
+
+            h2 {
+                font-size: 28px;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 16px;
+                }
+            }
+
+            span {
+                font-size: 28px;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .rewards {
+            flex: 1;
+            width: 100%;
+
+            &__wrapper {
+                width: 100%;
+                gap: 48px;
+                font-size: 24px;
+
+                .rewards-coin {
+                    gap: 4px;
+                    img {
+                        height: 30px;
+
+                        @media screen and (max-width: 600px) {
+                            height: 18px;
+                        }
+                    }
+                }
+
+                .rewards-card {
+                    color: var(--secondary-color);
+                    font-size: 36px;
+
+                    @media screen and (max-width: 600px) {
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+    }
+}

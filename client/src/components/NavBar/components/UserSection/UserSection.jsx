@@ -1,23 +1,24 @@
 import React from 'react'
 
-import { ExperienceBar } from '@components'
+import { useGlobalContext } from '@context'
+import { Avatar, ExperienceBar, UserInventory } from '@components'
 
-import { Avatar, UserInventory } from './components'
 import './UserSection.scss'
 
-// This component acts as the parent component for all User-related components
-const UserSection = ({ user }) => {
+// This component acts as the parent component for all User-related navigation bar components
+const UserSection = () => {
+    const { user } = useGlobalContext()
     const { username } = user ?? {}
-    return (
-        <div className='user-section'>
-            <hr />
-            <UserInventory user={user} />
-            <div className='user-info'>
-                <h2>{username}</h2>
-                <ExperienceBar user={user} />
-            </div>
 
-            <Avatar user={user} navbar={true} />
+    return (
+        <div className='user-section end'>
+            <hr />
+            <UserInventory />
+            <div className='user-info center-column'>
+                <h2>{username}</h2>
+                <ExperienceBar />
+            </div>
+            <Avatar levelShowing menu small />
         </div>
     )
 }

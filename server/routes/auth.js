@@ -16,7 +16,7 @@ const router = express.Router()
 const setAccessTokenCookie = (res, token) => {
     res.cookie('access-token', token, {
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
+        secure: true,
     })
 }
 

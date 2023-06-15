@@ -1,52 +1,80 @@
 import React from 'react'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { useGlobalContext } from '../../context/GlobalContext'
-import { Button, Footer } from '../../components'
+import { NavLink } from 'react-router-dom'
+
+import { useGlobalContext } from '@context'
+import { ProductTour } from '@components'
+import { classSet } from '@utils'
 
 import './Home.scss'
-import ProductTour from '../../components/ProductTour/ProductTour'
 
 const Home = () => {
     const { user } = useGlobalContext()
-    const isLargeScreen = useMediaQuery('(min-width:1200px)')
-    const stage = user?.onboardingStage
+    const stage = user?.onboardingStage ?? {}
+
+    const userPacks = user?.inventory.filter((item) => (item.name = 'pack'))
+    const packsClasses = classSet(userPacks?.length && 'unopened')
 
     return (
-        <div className='home page'>
-            {/* Will be conditionally rendered based on user's Onboarding progress */}
-            <div className='section first'>
-                {stage === 0 && <ProductTour step={0} />}
-            </div>
+        <>
+            {stage <= 6 && <ProductTour step={stage} />}
 
-            <div
-                className={`section center gray second ${
-                    isLargeScreen ? 'left' : ''
-                }`}
-            >
-                <div className='box'>
-                    <Button label='Battle' type='link' path='/battleSetup' />
+            <div className='home page start'>
+                <div className='home-wrapper '>
+                    <NavLink
+                        to='/opponentSelect'
+                        className='battle-main panel start-column'
+                    >
+                        <p>Test your skill</p>
+                        <h1>Battle</h1>
+                    </NavLink>
+                    <NavLink
+                        to='/collection'
+                        className='collection-main panel start-column'
+                    >
+                        <p>Prepare for battle</p>
+                        <h1>Deck</h1>
+                    </NavLink>
+                    <NavLink
+                        to='/market'
+                        className='market-main panel start-column'
+                    >
+                        <p>Purchase packs</p>
+                        <h1>Market</h1>
+                    </NavLink>
+                    <div className='subs start-column'>
+                        <NavLink
+                            to='/packs'
+                            className='packs-sub panel start-column'
+                        >
+                            <p className={packsClasses}>
+                                Unopened Packs: <span>{userPacks?.length}</span>
+                            </p>
+                            <h2>Packs</h2>
+                        </NavLink>
+                        <NavLink
+                            to='/rules'
+                            className='how-to-play-sub panel start-column'
+                        >
+                            <h2>How To Play</h2>
+                        </NavLink>
+                        <div className='news-sub panel start-column disabled'>
+                            <h2>
+                                Coming SOOn!
+                                <br />
+                                News
+                            </h2>
+                        </div>
+                        <div className='contact-sub panel start-column disabled'>
+                            <h2>
+                                Coming SOON!
+                                <br />
+                                Contact
+                            </h2>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div
-                className={`section center third ${
-                    isLargeScreen ? 'right' : ''
-                }`}
-            >
-                <div className='box'>
-                    <Button label='COllectiON' type='link' path='/collection' />
-                </div>
-            </div>
-            <div
-                className={`section center gray fourth ${
-                    isLargeScreen ? 'left' : ''
-                }`}
-            >
-                <div className='box'>
-                    <Button label='MarKet' type='link' path='/packs' />
-                </div>
-            </div>
-            <Footer />
-        </div>
+        </>
     )
 }
 

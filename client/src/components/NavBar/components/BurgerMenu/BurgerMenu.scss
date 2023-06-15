@@ -1,21 +1,7 @@
-@mixin main-gradient {
-    background: var(--background-color);
-    background: -webkit-linear-gradient(
-        45deg,
-        var(--background-color),
-        var(--background2-color)
-    );
-    background: linear-gradient(
-        45deg,
-        var(--background-color),
-        var(--background2-color)
-    );
-}
-
 .burger-menu {
     width: 80px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1080px) {
         display: none;
     }
 
@@ -25,7 +11,6 @@
     }
 
     .menu {
-        @include main-gradient();
         position: fixed;
         top: var(--navbar-height);
         left: -2px;

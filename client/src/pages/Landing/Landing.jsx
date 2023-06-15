@@ -1,47 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { NavBar } from '@components'
 import { logo } from '@assets'
+import { NavBar } from '@components'
 import { useGlobalContext } from '@context'
+import { useWindowResize } from '@hooks'
 
 import { AuthForm } from './components'
-
 import './Landing.scss'
 
+// Displays login of registration form based on the value of the register prop
 const Landing = ({ register }) => {
     const { user } = useGlobalContext()
+    const { height, width } = useWindowResize()
     const navigate = useNavigate()
-    const [dimensions, setDimensions] = useState({
-        height: window.innerHeight,
-        width: window.innerWidth,
-    })
 
-    const handleResize = () => {
-        setDimensions({
-            height: window.innerHeight,
-            width: window.innerWidth,
-        })
-    }
-
+    // Redirect to the home page if a user is already authenticated
     useEffect(() => {
-        window.addEventListener('resize', handleResize, false)
         if (user) navigate('/')
     }, [user])
+
+    const imageClass = register ? 'logo-register' : 'logo'
 
     return (
         <div className='landing page center'>
             <NavBar landing />
-            <div className='auth box'>
-                <img
-                    className={`${register ? 'logo-register' : 'logo'}`}
-                    src={logo}
-                    alt='logo'
-                />
+            <div className='auth box around-column'>
+                <img className={imageClass} src={logo} alt='logo' />
                 <AuthForm register={register} />
             </div>
-            {dimensions.width > 1200 &&
-            dimensions.height !== window.screen.availHeight ? (
+            {width > 1200 && height !== window.screen.availHeight ? (
                 <div className='tip__fullscreen'>
                     *Press F11 for fullscreen experience.
                 </div>

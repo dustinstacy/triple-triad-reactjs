@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
 
-import { useGlobalContext } from '../../context/GlobalContext'
+import { useGlobalContext } from '@context'
 import { userLevels } from '@constants'
 
+import { handleLevelUp } from './api'
 import './ExperienceBar.scss'
 
 // This component displays the XP progress bar and current XP / next level XP
@@ -13,24 +13,24 @@ const ExperienceBar = () => {
     const { xp, level } = user ?? {}
     const userNextLevel = userLevels[level]
 
+    // Determine percent experience gained towards next level to update CSS styling
     const xpPercentage = () => {
         return `${(xp / userNextLevel) * 100}%`
     }
 
-    const handleLevelUp = () => {
-        axios
-            .put('/api/profile/stats', { level: level + 1 })
-            .then(() => getCurrentUser())
-    }
-
+    // Check if user leveled up whenever their xp or next level xp changes
     useEffect(() => {
-        if (xp >= userNextLevel) {
-            handleLevelUp()
+        const checkLevelUp = async () => {
+            if (xp >= userNextLevel) {
+                await handleLevelUp(level)
+                await getCurrentUser()
+            }
         }
+        checkLevelUp()
     }, [xp, userNextLevel])
 
     return (
-        <div className='experience-bar'>
+        <div className='experience-bar center-column'>
             <div className='progress-bar'>
                 <div
                     className='progress-bar__inner'

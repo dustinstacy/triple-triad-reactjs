@@ -12,14 +12,16 @@
         }
 
         &:hover {
-            p,
+            span,
             svg {
                 color: var(--primary-color);
             }
         }
 
         &.disabled {
-            pointer-events: none;
+            svg {
+                color: var(--gray-color);
+            }
         }
     }
 }
@@ -28,8 +30,13 @@
     flex: 1;
     gap: 2vw;
     margin-right: 18px;
+    margin-bottom: 8px;
 
-    @media screen and (max-width: 1199px) {
+    @media screen and (max-width: 1200px) {
+        gap: 1vw;
+    }
+
+    @media screen and (max-width: 1079px) {
         display: none;
     }
 
@@ -40,13 +47,13 @@
         gap: 6px;
         font-size: 14px;
 
-        p {
+        span {
             height: 16px;
             visibility: hidden;
         }
 
         &:hover {
-            p {
+            span {
                 height: 20px;
                 visibility: visible;
             }
@@ -66,6 +73,14 @@
     align-items: flex-end;
     gap: 16px;
     font-size: 24px;
+
+    @media screen and (max-width: 768px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 14px;
+    }
 
     .burger-menu-link {
         flex-direction: row-reverse;

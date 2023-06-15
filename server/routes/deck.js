@@ -97,4 +97,25 @@ router.put('/:card_id/remove', requiresAuth, async (req, res, next) => {
     }
 })
 
+// @route PUT /api/deck/empty
+// @desc Empty user's deck
+// @access Private
+router.put('/empty', requiresAuth, async (req, res, next) => {
+    try {
+        const deck = await Deck.findOneAndUpdate(
+            { user: req.user._id },
+            { $set: { cards: [] } },
+            { new: true }
+        )
+
+        if (!deck) {
+            return res.status(404).json({ error: 'User deck not found' })
+        }
+
+        return res.json(deck)
+    } catch (error) {
+        next(error)
+    }
+})
+
 export default router

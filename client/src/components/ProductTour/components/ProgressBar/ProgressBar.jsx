@@ -1,23 +1,35 @@
 import React from 'react'
 
+import { classSet } from '@utils'
+
 import './ProgressBar.scss'
 
-const ProgressBar = ({ stages, progress }) => {
+// Tracks and displays user's onboarding progress
+const ProgressBar = ({ progress }) => {
+    const progressStages = [
+        'First Login',
+        'First Pack',
+        'First Card',
+        'First Deck',
+        'How To Play',
+    ]
+
+    const circleClasses = (index) =>
+        classSet('progress-circle', index + 1 <= progress && 'full')
+
     return (
-        <div className='onboard-bar outer'>
-            {stages.map((stage, index) => (
+        <div className='progress-bar-outer'>
+            {progressStages.map((stage, index) => (
                 <div key={stage} className='stage'>
                     <div className='stage__label'>{stage}</div>
-                    <div
-                        className={`progress-circle ${
-                            index + 1 <= progress ? ' full' : ''
-                        }`}
-                    />
+                    <div className={circleClasses(index)} />
                 </div>
             ))}
             <div
-                className='onboard-bar inner'
-                style={{ width: progress * (100 / (stages.length - 1)) + '%' }}
+                className='progress-bar-inner'
+                style={{
+                    width: progress * (100 / (progressStages.length - 1)) + '%',
+                }}
             />
         </div>
     )

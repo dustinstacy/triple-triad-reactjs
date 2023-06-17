@@ -217,22 +217,26 @@
         background: url('../../assets/page-images/items.png');
         background-position: center;
         background-size: cover;
+
+        .unopened {
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 1px var(--black-color),
+                -1px 1px 1px var(--black-color), 1px -1px 1px var(--black-color),
+                -1px -1px 1px var(--black-color);
+
+            span {
+                color: var(--primary-color);
+            }
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
     }
 
     .how-to-play-sub {
         background: url('../../assets/page-images/howToPlay.png');
         background-position: center;
         background-size: cover;
-    }
-
-    .unopened {
-        color: var(--secondary-color);
-        text-shadow: 1px 1px 1px var(--black-color),
-            -1px 1px 1px var(--black-color), 1px -1px 1px var(--black-color),
-            -1px -1px 1px var(--black-color);
-
-        span {
-            color: var(--primary-color);
-        }
     }
 }

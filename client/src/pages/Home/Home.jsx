@@ -12,7 +12,10 @@ const Home = () => {
     const stage = user?.onboardingStage ?? {}
 
     const userPacks = user?.inventory.filter((item) => (item.name = 'pack'))
-    const packsClasses = classSet(userPacks?.length && 'unopened')
+    const packsClasses = classSet(
+        userPacks?.length && 'unopened',
+        !user && 'hidden'
+    )
 
     return (
         <>

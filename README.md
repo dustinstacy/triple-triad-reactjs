@@ -4,7 +4,7 @@ Nexus Dawn
 
 <p align="center">
   <a href="https://github.com/dustinstacy/triple-triad-reactjs/issues">
-    <img src="https://img.shields.io/badge/Issues-2-yellow" alt="Issues">
+    <img src="https://img.shields.io/badge/Awesome-Yes-blue" alt="Issues">
   </a>
    <a href="#license">
     <img src="https://img.shields.io/badge/License-MIT-brightgreen" alt="License">
@@ -13,6 +13,7 @@ Nexus Dawn
 
 <p align="center">
   <a href="#description">Description</a> •
+  <a href="#screenshots">Screenshots</a> •
   <a href="#rules">Rules</a> •
   <a href="#planned-updates">Planned Updates</a> •
   <a href="#local-setup">Local Setup</a> •
@@ -23,9 +24,12 @@ Nexus Dawn
 
 ---
 
-![match screen](https://www.thedustinstacy.com/static/media/triad.059953b9c512112c1e39.png)
-
-Website: <https://tripletriad.herokuapp.com/>
+<div align="center">
+<img src='https://res.cloudinary.com/dsv7k92lb/image/upload/v1687034760/Nexus%20Dawn/logos/logo_c9eaj0.png' alt='logo'/>
+<br/>
+Website: <a href='https://nexus-dawn.com'>https://nexus-dawn.com</a>
+<h2></h2>
+</div>
 
 ## Description
 
@@ -47,9 +51,20 @@ capabilities and tactical options. This progression system empowers users to
 continuously improve their skills and explore new possibilities within the
 application.
 
+## Screenshots
+
+<h4>Home screen</h4>
+
+![home screen](https://res.cloudinary.com/dsv7k92lb/image/upload/v1687034685/Nexus%20Dawn/Screenshots/homeScreen_nliptx.jpg)
+
+<h4>Battle Screen</h4>
+
+![battle screen](https://res.cloudinary.com/dsv7k92lb/image/upload/v1687034685/Nexus%20Dawn/Screenshots/battleScreen_s2qig9.jpg)
+
 ## Rules
 
-[Rules](https://nexus-dawn-16daa70a99d8.herokuapp.com/rules)
+Find all the game rule listed
+[here](https://nexus-dawn-16daa70a99d8.herokuapp.com/rules)
 
 ## Planned Updates
 
@@ -82,6 +97,22 @@ npm install
 npm start
 ```
 
+From here you'll need to create a
+[free database](https://www.mongodb.com/cloud/atlas/register) from Mongo DB to
+store all your data.
+
+Once you've created your database, create a `.env` file inside your server
+folder. There you will declare a:
+
+`PORT=` variable. Set this equal to the port you wish to run your local server
+on.
+
+`MONGO_URI=` variable. Set this equal to your connection string from your Mongo
+datbase.
+
+`JWT_SECRET=` variable. Set this to a long password or generated value of your
+choosing.
+
 ## Contributing
 
 1. Fork it!
@@ -92,8 +123,11 @@ npm start
 
 ## Credits
 
-Huge thanks to the following content providers: </br> </br> Character Artwork -
-AEkashics <https://www.patreon.com/aekashics/posts>
+Huge thanks to the following content provider:
+
+Character Artwork - AEkashics <https://www.patreon.com/aekashics/posts>
+
+All other non-dependency assets: Dustin Stacy <https://thedustinstacy.com>
 
 ## License
 

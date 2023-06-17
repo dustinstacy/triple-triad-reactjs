@@ -18,7 +18,7 @@ const Collection = () => {
 
     const [deckFilter, setDeckFilter] = useState('')
     const [rarityFilter, setRarityFilter] = useState('')
-    const [valueFilter, setValueFilter] = useState('')
+    const [valueFilter, setValueFilter] = useState('Total')
 
     useEffect(() => {
         getCurrentUser()
@@ -54,6 +54,7 @@ const Collection = () => {
                     value={valueFilter}
                     setValue={setValueFilter}
                     options={valueOptions}
+                    selectedOption='Total'
                     id='value=filter'
                 />
             </div>

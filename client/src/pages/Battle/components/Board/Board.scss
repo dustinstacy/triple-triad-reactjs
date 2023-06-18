@@ -27,8 +27,8 @@
     }
 
     .grid {
-        height: 75vh;
-        width: calc(75vh * 0.725 + 12px);
+        height: calc(75vh + 18px);
+        width: calc(75vh * 0.725 + 18px);
         flex-wrap: wrap;
         align-content: center;
         background: url('@assets/page-images/grid.jpg');
@@ -36,31 +36,74 @@
         background-size: cover;
         border-radius: 12px;
         z-index: 5;
+
+        @media screen and (max-width: 920px) and (orientation: portrait) {
+            height: calc(60vh + 18px);
+            width: calc(60vh * 0.725 + 18px);
+        }
+        @media screen and (max-width: 900px) {
+            height: calc(60vh + 18px);
+            width: calc(60vh * 0.725 + 18px);
+        }
+
+        @media screen and (max-width: 768px) {
+            height: calc(45vh + 18px);
+            width: calc(45vh * 0.725 + 18px);
+        }
     }
 
-    .score-column {
+    .score-column,
+    .arrow-column {
         position: absolute;
-        left: 0;
         height: 70vh;
         width: 30vh;
         background-color: rgba(0, 0, 0, 0.6);
         border-top: 4px solid var(--gray-color);
         border-bottom: 4px solid var(--gray-color);
 
-        .round-score {
-            font-size: 72px;
+        @media screen and (max-width: 1024px) {
+            width: 25vh;
+        }
+
+        @media screen and (max-width: 920px) and (orientation: portrait) {
+            width: 50vw;
+        }
+
+        @media screen and (max-width: 900px) {
+            width: 50vw;
+        }
+    }
+
+    .score-column {
+        left: 0;
+
+        @media screen and (max-width: 400px) {
+            width: 0;
         }
     }
 
     .arrow-column {
-        position: absolute;
         right: 0;
-        height: 70vh;
-        width: 30vh;
         gap: 3vh;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-top: 4px solid var(--gray-color);
-        border-bottom: 4px solid var(--gray-color);
+
+        @media screen and (max-width: 1024px) {
+            align-items: flex-end;
+            padding-right: 2vw;
+        }
+
+        @media screen and (max-width: 900px) {
+            gap: 5vh;
+        }
+
+        @media screen and (max-width: 600px) {
+            justify-content: space-between;
+            padding: 8px;
+        }
+
+        @media screen and (max-width: 400px) {
+            width: 100vw;
+            align-items: center;
+        }
 
         .user-image {
             height: 12vh;
@@ -68,6 +111,14 @@
             background-color: black;
             border: 2px solid var(--secondary2-color);
             border-radius: 8px;
+
+            @media screen and (max-width: 920px) and (orientation: portrait) {
+                height: 9vh;
+            }
+
+            @media screen and (max-width: 900px) {
+                height: 9vh;
+            }
 
             &.is-turn {
                 box-shadow: 2px 0 10px 2px var(--primary-color),
@@ -79,6 +130,21 @@
             height: 12vh;
             width: 6vh;
             transition: all 1s ease;
+            margin-right: 3vw;
+
+            @media screen and (max-width: 920px) and (orientation: portrait) {
+                height: 9vh;
+                margin-right: 1.5vw;
+            }
+
+            @media screen and (max-width: 900px) {
+                height: 9vh;
+                margin-right: 1.5vw;
+            }
+
+            @media screen and (max-width: 600px) {
+                display: none;
+            }
         }
     }
 

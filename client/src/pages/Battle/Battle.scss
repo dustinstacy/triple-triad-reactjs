@@ -19,6 +19,7 @@
 }
 
 .round-alert {
+    height: 100%;
     gap: 36px;
 
     h1,
@@ -84,9 +85,5 @@
         font-size: 10vh;
         flex-direction: column;
         gap: 0;
-    }
-
-    @media screen and (max-width: 400px) {
-        font-size: 8vh;
     }
 }

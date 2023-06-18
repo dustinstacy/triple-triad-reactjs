@@ -14,10 +14,7 @@ const UserPack = ({ itemData, allItems }) => {
                         <img src={image} alt={name} />
                     </div>
                     <div className='pack-info start-column'>
-                        <h2 className='pack-name between'>
-                            {name}
-                            <span>LVL &nbsp; {level}</span>
-                        </h2>
+                        <h2 className='pack-name between'>{name}</h2>
                         <hr />
                         <div className='pack-details '>
                             <p>{info}</p>

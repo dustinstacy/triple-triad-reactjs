@@ -28,10 +28,12 @@ const UserDeck = ({ selectedOpponent }) => {
                         <h4>Power</h4>
                         <span>{userDeckPower || 0}</span>
                     </div>
-                    <div className='relative-power'>
-                        <h4>Relative Power</h4>
-                        <span>{relativeUserDeckPower || 0}</span>
-                    </div>
+                    {userDeck?.length >= selectedOpponent.minDeckSize && (
+                        <div className='relative-power'>
+                            <h4>Relative Power</h4>
+                            <span>{relativeUserDeckPower || 0}</span>
+                        </div>
+                    )}
                     <div className='user-deck-count'>
                         <h4>Card Count</h4>
                         <span>{userDeck.length}</span>

@@ -18,7 +18,8 @@ const OpponentCard = ({ opponent, selectedOpponent, setSelectedOpponent }) => {
 
     return (
         <>
-            {user?.level >= opponent.level ? (
+            {user?.level >= opponent.level &&
+            user?.defeatedEnemies.length >= opponent.level - 1 ? (
                 <div
                     className={opponentClasses}
                     onClick={() => setSelectedOpponent(opponent)}

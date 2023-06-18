@@ -17,7 +17,7 @@ const RoundResult = ({ playerOne, playerTwo }) => {
 
     return (
         <div
-            className='round-result fill center'
+            className='round-result fill around'
             style={{ display: imagesLoaded ? 'flex' : 'none' }}
         >
             <div className='p2-battle-score center-column'>

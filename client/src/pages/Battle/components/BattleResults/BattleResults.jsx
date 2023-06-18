@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 
 import {
     addCardToCollection,
@@ -17,7 +16,7 @@ import { updatedDefeatedEnemies } from './api'
 import './BattleResults.scss'
 
 // Renders the user's battle results including any rewards gained
-const BattleResults = ({ playerOne, playerTwo }) => {
+const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
     const { allCards, getCurrentUser } = useGlobalContext()
     const [battleResult, setBattleResult] = useState(null)
     const [cardReward, setCardReward] = useState(null)
@@ -79,6 +78,16 @@ const BattleResults = ({ playerOne, playerTwo }) => {
                 break
         }
         await getCurrentUser()
+    }
+
+    // Navigate to battle page with stored opponent and opponent deck statee
+    const rematch = () => {
+        navigate('/battle', {
+            state: {
+                opponent: opponent,
+                opponentDeck: opponentDeck,
+            },
+        })
     }
 
     return (

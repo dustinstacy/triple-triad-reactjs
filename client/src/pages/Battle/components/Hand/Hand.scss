@@ -5,6 +5,10 @@
     justify-content: center;
     scale: 0.6;
     z-index: 10;
+
+    @media screen and (max-width: 600px) {
+        scale: 0.4;
+    }
 }
 
 .p1 {
@@ -12,9 +16,50 @@
     height: 15vh;
     padding: 24px 48px;
 
+    @media screen and (max-width: 768px) {
+        height: 17.5vh;
+    }
+
+    @media screen and (max-width: 600px) {
+        height: 20vh;
+    }
+
     &:hover:not(.collapse) {
         scale: 1;
         transform: translateY(-14vh);
+
+        @media screen and (max-width: 768px) {
+            scale: 0.7;
+            transform: translateY(-8vh);
+
+            .card.is-selected {
+                position: absolute;
+                bottom: 5vh;
+                scale: 2;
+            }
+        }
+
+        @media screen and (max-width: 920px) and (orientation: portrait) {
+            scale: 0.7;
+            transform: translateY(-10vh);
+
+            .card.is-selected {
+                position: absolute;
+                bottom: 5vh;
+                scale: 2;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            scale: 0.4;
+            transform: translateY(0);
+
+            .card.is-selected {
+                position: absolute;
+                bottom: 5vh;
+                scale: 2;
+            }
+        }
     }
 
     &:hover .collapse {
@@ -37,6 +82,14 @@
     display: flex;
     align-items: flex-end;
     z-index: 10;
+
+    @media screen and (max-width: 768px) {
+        height: 15vh;
+    }
+
+    @media screen and (max-width: 600px) {
+        height: 17.5vh;
+    }
 
     .card {
         rotate: 180deg;

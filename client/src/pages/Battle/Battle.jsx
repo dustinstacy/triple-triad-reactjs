@@ -361,7 +361,7 @@ const Battle = () => {
                     />
                 </ModalOverlay>
             )}
-            {roundAlert && (
+            {!roundAlert && (
                 <ModalOverlay>
                     <h1 className='round-alert center'>
                         <h1>Round</h1> <span>{round}</span>
@@ -378,6 +378,7 @@ const Battle = () => {
                     <BattleResults
                         playerOne={playerOne}
                         playerTwo={playerTwo}
+                        opponentDeck={opponentDeck}
                     />
                 </ModalOverlay>
             )}

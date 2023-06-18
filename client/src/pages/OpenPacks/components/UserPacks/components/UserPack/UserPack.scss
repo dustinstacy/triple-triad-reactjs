@@ -3,6 +3,10 @@
     height: 400px;
     width: 80%;
 
+    @media screen and (max-width: 900px) {
+        align-items: flex-start !important;
+    }
+
     .pack-image {
         img {
             height: 200px;
@@ -10,6 +14,18 @@
             @media screen and (min-width: 1200px) {
                 height: 250px;
             }
+
+            @media screen and (max-width: 600px) {
+                height: 150px;
+            }
+        }
+    }
+
+    .pack-name {
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 22px;
         }
     }
 
@@ -18,6 +34,10 @@
         width: 100%;
         align-items: normal;
         padding-left: 36px;
+
+        @media screen and (max-width: 600px) {
+            padding-left: 12px;
+        }
 
         hr {
             height: 2px;

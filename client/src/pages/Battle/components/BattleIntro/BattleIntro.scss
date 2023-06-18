@@ -1,10 +1,13 @@
 .battle-intro {
-    min-height: 720px;
     padding: 36px;
     background: url('@assets/page-images/battleIntro.jpg');
     background-position: center;
     background-size: cover;
     overflow-x: hidden;
+
+    @media screen and (max-width: 900px) {
+        padding: 12px;
+    }
 
     .p1-intro,
     .p2-intro {
@@ -14,11 +17,24 @@
         perspective: 1000px;
         overflow: hidden;
 
+        @media screen and (max-width: 900px) {
+            padding: 12px;
+        }
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column-reverse;
+        }
+
         img {
             height: 250px;
             width: 250px;
             border: 2px solid var(--secondary2-color);
             border-radius: 12px;
+
+            @media screen and (max-width: 900px) {
+                height: 175px;
+                width: 175px;
+            }
         }
     }
 
@@ -47,6 +63,10 @@
             4px 4px 4px var(--primary2-color), 6px 6px 6px var(--black-color);
         -webkit-text-stroke: 3px black;
         font-size: 30vh;
+
+        @media screen and (max-width: 900px) {
+            font-size: 20vh;
+        }
     }
 
     h2 {
@@ -54,6 +74,14 @@
         text-align: center;
         text-shadow: 6px 6px 6px var(--black-color);
         -webkit-text-stroke: 1px black;
+
+        @media screen and (max-width: 900px) {
+            font-size: 54px;
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 36px;
+        }
     }
 }
 

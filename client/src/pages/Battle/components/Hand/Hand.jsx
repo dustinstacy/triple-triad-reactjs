@@ -50,8 +50,8 @@ const Hand = ({
                 <Card
                     key={card?._id + index}
                     card={card}
-                    isShowing={name == 'p1' ?? false}
-                    isDraggable={name == 'p1' ?? false}
+                    isShowing={name === 'p1'}
+                    isDraggable={name === 'p1' && battleState.isP1Turn}
                     isSelected={cardSelected?._id === card?._id}
                     isDragged={card === cardDragged}
                     handleClick={(e) => handleClick(e, card)}

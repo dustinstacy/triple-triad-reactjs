@@ -15,6 +15,35 @@
     .cell .card {
         pointer-events: none;
 
+        @media screen and (max-width: 920px) and (orientation: portrait) {
+            height: calc(20vh + 4px);
+            width: calc(20vh * 0.725 + 4px);
+
+            span {
+                height: 2vh;
+                width: 2vh;
+                background: none;
+                font-size: 1.5vh;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            height: calc(20vh + 4px);
+            width: calc(20vh * 0.725 + 4px);
+
+            span {
+                height: 2vh;
+                width: 2vh;
+                background: none;
+                font-size: 1.5vh;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            height: calc(15vh + 4px);
+            width: calc(15vh * 0.725 + 4px);
+        }
+
         &.captured {
             & .card__front {
                 transform: rotateY(-360deg);
@@ -130,7 +159,10 @@
             height: 12vh;
             width: 6vh;
             transition: all 1s ease;
-            margin-right: 3vw;
+
+            @media screen and (max-width: 1024px) {
+                margin-right: 2.5vw;
+            }
 
             @media screen and (max-width: 920px) and (orientation: portrait) {
                 height: 9vh;

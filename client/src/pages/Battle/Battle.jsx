@@ -86,7 +86,7 @@ const Battle = () => {
         })
         .filter((index) => index !== null)
 
-    const battleRounds = opponent.minDeckSize / 5
+    const battleRounds = opponent?.minDeckSize / 5
 
     // Retrieve state from local storage if it exists
     // Otherwise initialize a new game
@@ -361,11 +361,11 @@ const Battle = () => {
                     />
                 </ModalOverlay>
             )}
-            {!roundAlert && (
+            {roundAlert && (
                 <ModalOverlay>
-                    <h1 className='round-alert center'>
+                    <div className='round-alert center'>
                         <h1>Round</h1> <span>{round}</span>
-                    </h1>
+                    </div>
                 </ModalOverlay>
             )}
             {roundOver && !battleOver && (

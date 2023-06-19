@@ -8,35 +8,69 @@ import { handleLevelUp } from './api'
 import { LevelUpScreen } from './components'
 import './ExperienceBar.scss'
 
-// This component displays the XP progress bar and current XP / next level XP
-// It also handles level up logic by making an API call when user XP exceeds the XP required for their current level.
 const ExperienceBar = () => {
     const { getCurrentUser, user } = useGlobalContext()
     const { xp, level } = user ?? {}
     const [newLevelAlert, setNewLevelAlert] = useState(false)
+    const [startXP, setStartXP] = useState(xp)
+    const [animatedXP, setAnimatedXP] = useState(xp - userLevels[level - 1])
 
     const userPrevLevel = userLevels[level - 1]
     const userNextLevel = userLevels[level]
 
-    // Determine percent experience gained towards next level to update CSS styling
     const xpPercentage = () => {
         return `${
             ((xp - userPrevLevel) / (userNextLevel - userPrevLevel)) * 100
         }%`
     }
 
-    // Check if user leveled up whenever their xp or next level xp changes
     useEffect(() => {
         const checkLevelUp = async () => {
             if (xp >= userNextLevel) {
                 await handleLevelUp(user)
                 await getCurrentUser()
-                setNewLevelAlert(true)
+                setTimeout(async () => {
+                    setNewLevelAlert(true)
+                }, 1500)
             }
         }
 
         checkLevelUp()
     }, [xp, userNextLevel])
+
+    useEffect(() => {
+        if (startXP !== xp) {
+            const startTime = Date.now()
+            const duration = 1000 // 1 second
+            const targetXP = xp
+
+            const animateXP = () => {
+                const currentTime = Date.now()
+                const elapsed = currentTime - startTime
+                const progress = Math.min(elapsed / duration, 1)
+                let updatedXP
+
+                if (animatedXP >= userNextLevel) {
+                    updatedXP = animatedXP % userNextLevel
+                    if (updatedXP === 0) {
+                        setStartXP(xp)
+                    }
+                } else {
+                    updatedXP = Math.round(
+                        startXP + (targetXP - startXP) * progress
+                    )
+                }
+
+                setAnimatedXP(updatedXP - userPrevLevel)
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateXP)
+                }
+            }
+
+            requestAnimationFrame(animateXP)
+        }
+    }, [xp])
 
     return (
         <div className='experience-bar center-column'>
@@ -47,9 +81,9 @@ const ExperienceBar = () => {
                 ></div>
             </div>
             <span>
-                XP {xp - userPrevLevel} / {userNextLevel - userPrevLevel}
+                XP {animatedXP} / {userNextLevel - userPrevLevel}
             </span>
-            {!newLevelAlert && (
+            {newLevelAlert && (
                 <ModalOverlay>
                     <LevelUpScreen setNewLevelAlert={setNewLevelAlert} />
                 </ModalOverlay>

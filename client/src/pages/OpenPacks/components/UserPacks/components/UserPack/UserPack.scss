@@ -3,7 +3,7 @@
     height: 400px;
     width: 80%;
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 912px) {
         align-items: flex-start !important;
     }
 
@@ -22,7 +22,7 @@
     }
 
     .pack-name {
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             flex-direction: column;
             align-items: flex-start;
             font-size: 22px;

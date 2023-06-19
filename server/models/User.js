@@ -21,7 +21,7 @@ const UserSchema = new Schema(
         image: {
             type: String,
             default:
-                'https://res.cloudinary.com/dhsflmylz/image/upload/v1677514304/triple-triad/backgrounds/defaultPlayer_unuhf2.png',
+                'https://res.cloudinary.com/dsv7k92lb/image/upload/v1687183751/Nexus%20Dawn/avatars/knight_oqoyoc.png',
         },
         color: {
             type: String,

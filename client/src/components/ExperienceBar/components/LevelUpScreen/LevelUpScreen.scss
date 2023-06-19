@@ -1,14 +1,22 @@
 .level-up {
     position: relative;
     min-height: 600px;
+    padding: 24px 0;
     text-align: center;
-    overflow-x: hidden;
 
     h1 {
-        height: 25vh;
+        height: auto;
         width: 100%;
         font-size: 15vh;
         white-space: nowrap;
+
+        @media screen and (max-width: 912px) {
+            font-size: 10vh;
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 5vh;
+        }
     }
 
     .close-modal {
@@ -17,10 +25,23 @@
         right: 24px;
         font-size: 72px;
         cursor: pointer;
+
+        @media screen and (max-width: 912px) {
+            font-size: 48px;
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 40px;
+            right: 12px;
+        }
     }
 
     .level-wrapper {
-        height: 30vh;
+        margin-top: 3vh;
+
+        @media screen and (max-width: 912px) {
+            height: 25vh;
+        }
 
         .new-level-border {
             position: relative;
@@ -37,6 +58,11 @@
                 -8px 8px 8px 8px var(--primary-color),
                 -8px -8px 8px 8px var(--primary-color);
             animation: level-slide 1s ease-out 1s forwards;
+
+            @media screen and (max-width: 912px) {
+                height: 15vh;
+                width: 15vh;
+            }
         }
 
         .prev-level,
@@ -47,6 +73,11 @@
             color: var(--background3-color);
             font-size: 15vh;
             z-index: 1;
+
+            @media screen and (max-width: 912px) {
+                height: 15vh;
+                font-size: 10vh;
+            }
         }
 
         .prev-level {
@@ -70,9 +101,18 @@
     }
 
     .level-up-unlocks {
-        height: 40vh;
         width: 80vw;
+        margin-top: 3vh;
         padding: 24px 0;
+        gap: 2vh;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
+
+        @media screen and (max-width: 920px) and (orientation: portrait) {
+            flex-direction: column;
+        }
 
         .unlock {
             min-height: 250px;
@@ -86,17 +126,61 @@
             animation-timing-function: ease-in-out;
             animation-fill-mode: forwards;
 
+            @media screen and (max-width: 768px) {
+                min-height: 100px;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            @media screen and (max-width: 920px) and (orientation: portrait) {
+                min-height: 100px;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
             h2 {
                 font-size: 2vh;
+
+                @media screen and (max-width: 768px) {
+                    width: 25%;
+                }
+
+                @media screen and (max-width: 920px) and (orientation: portrait) {
+                    width: 25%;
+                }
             }
 
             img {
                 height: 20vh;
+
+                @media screen and (max-width: 920px) and (orientation: portrait) {
+                    height: 15vh;
+                }
+
+                @media screen and (max-width: 768px) {
+                    height: 15vh;
+                }
+            }
+
+            p {
+                @media screen and (max-width: 768px) {
+                    width: 25%;
+                }
+
+                @media screen and (max-width: 920px) and (orientation: portrait) {
+                    width: 25%;
+                }
+
+                @media screen and (max-width: 600px) {
+                    display: none;
+                }
             }
 
             .coin-reward {
                 height: 100%;
-                gap: 18px;
+                flex-wrap: wrap;
 
                 span {
                     font-size: 5vh;

@@ -14,11 +14,13 @@ const LevelUpScreen = ({ setNewLevelAlert }) => {
     const sortedItems = allItems.sort((a, b) => a.level - b.level)
 
     useEffect(() => {
-        setTimeout(() => setAnimationFinished(true), 5000)
+        setTimeout(() => {
+            setAnimationFinished(true)
+        }, 5000)
     })
 
     return (
-        <div className='level-up fill center-column'>
+        <div className='level-up fill start-column'>
             <h1>Level Up</h1>
             {animationFinished && (
                 <AiOutlineCloseCircle

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useGlobalContext } from '@context'
 import { ProductTour } from '@components'

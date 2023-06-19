@@ -21,7 +21,7 @@
             width: 90vw;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             flex-direction: column;
             width: 90vw;
             height: auto;
@@ -47,7 +47,7 @@
             width: 100%;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             flex-direction: row;
             min-height: 200px;
             width: 100%;
@@ -72,7 +72,7 @@
             align-items: flex-start;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             align-items: flex-start;
         }
 
@@ -92,7 +92,7 @@
     .subs {
         gap: 12px;
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             flex-wrap: wrap;
         }
 
@@ -117,7 +117,7 @@
                 width: 40vw;
             }
 
-            @media screen and (max-width: 900px) {
+            @media screen and (max-width: 912px) {
                 min-height: 200px;
                 min-width: 40vw;
             }
@@ -188,17 +188,6 @@
         background: url('../../assets/page-images/grid.jpg');
         background-position: center;
         background-size: cover;
-
-        box-shadow: 2px 2px 1px 0.5px var(--secondary-color),
-            2px -2px 1px 0.5px var(--secondary-color),
-            -2px 2px 1px 0.5px var(--secondary-color),
-            -2px -2px 1px 0.5px var(--secondary-color),
-            4px 4px 10px 1px var(--primary-color),
-            4px -4px 10px 1px var(--primary-color),
-            -4px 4px 10px 1px var(--primary-color),
-            -4px -4px 10px 1px var(--primary-color);
-        scale: 1.01;
-        filter: grayscale(0.1);
     }
 
     .collection-main {

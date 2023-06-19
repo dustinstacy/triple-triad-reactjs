@@ -22,7 +22,7 @@
             font-size: 28px;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             height: 200px;
             width: calc(200px * 0.725);
 
@@ -41,7 +41,7 @@
             font-size: 48px;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             font-size: 36px;
 
             svg.check {
@@ -63,7 +63,7 @@
         row-gap: 48px;
         padding: 48px;
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             grid-template-columns: repeat(auto-fit, 150px);
         }
 

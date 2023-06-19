@@ -12,7 +12,7 @@
         .deck-info {
             height: 160px;
 
-            @media screen and (min-height: 900px) {
+            @media screen and (min-height: 912px) {
                 height: 200px;
             }
 
@@ -25,7 +25,7 @@
                 h4 {
                     font-size: 20px;
 
-                    @media screen and (min-height: 900px) {
+                    @media screen and (min-height: 912px) {
                         font-size: 20px;
                     }
 
@@ -41,7 +41,7 @@
                 span {
                     font-size: 18px;
 
-                    @media screen and (min-height: 900px) {
+                    @media screen and (min-height: 912px) {
                         font-size: 18px;
                     }
 
@@ -56,7 +56,7 @@
             height: 150px;
             width: calc(150px * 0.725);
 
-            @media screen and (min-height: 900px) {
+            @media screen and (min-height: 912px) {
                 height: 200px;
                 width: calc(200px * 0.725);
             }

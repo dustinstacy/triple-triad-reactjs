@@ -6,15 +6,16 @@
         min-width: 250px;
         display: flex;
         align-items: center;
-        border: 1px solid var(--primary-color);
+        border: 1px solid var(--white-color);
         border-radius: 8px;
 
         &__inner {
             min-height: 10px;
-            background-color: var(--secondary2-color);
+            margin-left: -1px;
+            background-color: var(--primary-color);
             border-radius: inherit;
-            box-shadow: 2px 0px 1px var(--gray-color);
-            transition: all 1.5s linear;
+            box-shadow: 2px 0px 1px var(--white-color);
+            transition: all 1s linear;
         }
     }
 }

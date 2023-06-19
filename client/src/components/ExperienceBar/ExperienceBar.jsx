@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
 import { userLevels } from '@constants'
 
 import { handleLevelUp } from './api'
+import { LevelUpScreen } from './components'
 import './ExperienceBar.scss'
 
 // This component displays the XP progress bar and current XP / next level XP
@@ -11,21 +13,28 @@ import './ExperienceBar.scss'
 const ExperienceBar = () => {
     const { getCurrentUser, user } = useGlobalContext()
     const { xp, level } = user ?? {}
+    const [newLevelAlert, setNewLevelAlert] = useState(false)
+
+    const userPrevLevel = userLevels[level - 1]
     const userNextLevel = userLevels[level]
 
     // Determine percent experience gained towards next level to update CSS styling
     const xpPercentage = () => {
-        return `${(xp / userNextLevel) * 100}%`
+        return `${
+            ((xp - userPrevLevel) / (userNextLevel - userPrevLevel)) * 100
+        }%`
     }
 
     // Check if user leveled up whenever their xp or next level xp changes
     useEffect(() => {
         const checkLevelUp = async () => {
             if (xp >= userNextLevel) {
-                await handleLevelUp(level)
+                await handleLevelUp(user)
                 await getCurrentUser()
+                setNewLevelAlert(true)
             }
         }
+
         checkLevelUp()
     }, [xp, userNextLevel])
 
@@ -38,8 +47,13 @@ const ExperienceBar = () => {
                 ></div>
             </div>
             <span>
-                XP {xp} / {userNextLevel}
+                XP {xp - userPrevLevel} / {userNextLevel - userPrevLevel}
             </span>
+            {!newLevelAlert && (
+                <ModalOverlay>
+                    <LevelUpScreen setNewLevelAlert={setNewLevelAlert} />
+                </ModalOverlay>
+            )}
         </div>
     )
 }

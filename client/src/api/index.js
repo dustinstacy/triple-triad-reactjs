@@ -32,19 +32,11 @@ export const addItemToInventory = async (inventory, item) => {
     })
 }
 
-export const deductCoin = async (user, amount) => {
-    const updatedCoin = user.coin - amount
-
-    if (updatedCoin === 0) {
-        await axios.put('/api/profile/info', {
-            coin: Math.floor(0.0001),
-        })
-    } else {
-        await axios.put('/api/profile/info', {
-            coin: updatedCoin,
-        })
-    }
-}
+export const deductCoin = async (userCoin, amount) => {
+    const updatedCoin = userCoin - amount
+    await axios.put('/api/profile/info', {
+        coin: updatedCoin.toString(), // Explicitly set to string to account for 0
+    })
 
 export const removeItemFromInventory = async (inventory, item) => {
     removeObjectByValue(inventory, 'name', item.name)

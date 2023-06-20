@@ -32,8 +32,8 @@ export const addItemToInventory = async (inventory, item) => {
     })
 }
 
-export const deductCoin = async (userCoin, amount) => {
-    const updatedCoin = userCoin - amount
+export const deductCoin = async (user, amount) => {
+    const updatedCoin = user.coin - amount
     await axios.put('/api/profile/info', {
         coin: updatedCoin.toString(), // Explicitly set to string to account for 0
     })

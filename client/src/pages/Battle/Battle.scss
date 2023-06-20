@@ -1,8 +1,8 @@
-.match.page {
+.battle.page {
     overflow: hidden;
 }
 
-.match {
+.battle {
     align-items: center;
     justify-content: space-between;
     background: url('@assets/page-images/window.jpg');
@@ -39,7 +39,7 @@
             -5px 1px 2px var(--white-color);
         -webkit-text-stroke: 3px black;
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             font-size: 15vh;
             text-shadow: 4px 4px 2px var(--white-color),
                 -4px -4px 2px var(--white-color),
@@ -77,7 +77,7 @@
         }
     }
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 912px) {
         font-size: 15vh;
     }
 

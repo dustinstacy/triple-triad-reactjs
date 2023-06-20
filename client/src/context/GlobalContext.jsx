@@ -8,6 +8,7 @@ const initialState = {
     userDeck: [],
     allCards: [],
     allItems: [],
+    allOpponents: [],
 }
 
 const globalReducer = (state, action) => {
@@ -47,6 +48,11 @@ const globalReducer = (state, action) => {
                 ...state,
                 allItems: action.payload,
             }
+        case 'SET_ALL_OPPONENTS':
+            return {
+                ...state,
+                allOpponents: action.payload,
+            }
         default:
             return state
     }
@@ -61,6 +67,7 @@ export const GlobalProvider = ({ children }) => {
         await getCurrentUser()
         await getAllCards()
         await getAllItems()
+        await getAllOpponents()
     }
 
     const getCurrentUser = async () => {
@@ -143,6 +150,21 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    const getAllOpponents = async () => {
+        try {
+            const res = await axios.get('/api/cpuOpponents/')
+
+            if (res.data) {
+                dispatch({
+                    type: 'SET_ALL_OPPONENTS',
+                    payload: res.data,
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const logout = async () => {
         try {
             await axios.put('/api/auth/logout')
@@ -161,6 +183,7 @@ export const GlobalProvider = ({ children }) => {
         getUserDeck,
         getAllCards,
         getAllItems,
+        getAllOpponents,
         logout,
     }))
 

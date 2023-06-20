@@ -1,190 +1,83 @@
 .battle-over {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 24px;
-    z-index: 20;
-    background: url('@assets/page-images/results.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100vh;
-    overflow: hidden;
-
-    @media screen and (max-width: 768px) {
-        background-size: 75vh;
+    .results-frame {
+        height: 100vh;
+        width: 100vh;
+    }
+    .panel {
+        background-color: rgba(0, 0, 0, 0.5);
     }
 
-    @media screen and (min-width: 768px) and (orientation: portrait) {
-        background-size: 75vh;
-    }
+    .results-wrapper {
+        height: 70vh;
+        width: 85vh;
+        padding: 4vh 0;
+        background: url('../../../../assets/page-images/backdrop3.jpg');
+        background-size: cover;
 
-    @media screen and (max-width: 600px) {
-        justify-content: center;
-        gap: 5vh;
-        background-size: 55vh;
-    }
-
-    .result {
-        font-size: 20vh;
-        -webkit-text-stroke: 2px black;
-
-        @media screen and (max-width: 900px) {
-            font-size: 16vh;
-        }
-
-        @media screen and (max-width: 768px) {
-            font-size: 13vh;
-        }
-
-        @media screen and (min-width: 768px) and (orientation: portrait) {
-            font-size: 13vh;
-        }
-
-        @media screen and (max-width: 600px) {
-            font-size: 7.5vh;
+        .result {
+            width: 60vh;
+            font-size: 10vh;
+            text-align: center;
             -webkit-text-stroke: 1px black;
-        }
-    }
-
-    .rewards {
-        gap: 10vh;
-
-        @media screen and (max-width: 900px) {
-            gap: 5vh;
-        }
-
-        @media screen and (min-width: 768px) and (orientation: portrait) {
-            gap: 5vh;
-        }
-
-        @media screen and (max-width: 600px) {
-            flex-direction: column-reverse;
-        }
-
-        .coin-xp {
-            gap: 10vh;
-
-            @media screen and (max-width: 900px) {
-                gap: 5vh;
-            }
-
-            @media screen and (min-width: 768px) and (orientation: portrait) {
-                gap: 5vh;
-            }
-        }
-
-        .coin,
-        .xp,
-        .card-reward {
-            display: flex;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--primary2-color);
-            border-radius: 24px;
-        }
-
-        .coin,
-        .xp {
-            height: 25vh;
-            width: 25vh;
-
-            @media screen and (min-width: 768px) and (orientation: portrait) {
-                height: 15vh;
-                width: 15vh;
-            }
-
-            @media screen and (max-width: 768px) {
-                height: 17.5vh;
-                width: 17.5vh;
-            }
 
             @media screen and (max-width: 600px) {
-                height: 15vh;
-                width: 15vh;
-            }
-            img {
-                height: 8vh;
-
-                @media screen and (max-width: 768px) {
-                    height: 6vh;
-                }
-
-                @media screen and (min-width: 768px) and (orientation: portrait) {
-                    height: 6vh;
-                }
-
-                @media screen and (max-width: 600px) {
-                    height: 5vh;
-                }
-            }
-            span {
-                font-size: 5vh;
-
-                @media screen and (max-width: 768px) {
-                    font-size: 3vh;
-                }
-
-                @media screen and (min-width: 768px) and (orientation: portrait) {
-                    font-size: 3vh;
-                }
-
-                @media screen and (max-width: 600px) {
-                    font-size: 2vh;
-                }
+                font-size: 7vh;
             }
         }
 
-        .xp,
-        .coin-reward {
-            gap: 12px;
+        .user-image {
+            height: 15vh;
+            width: 15vh;
+            margin-bottom: 12px;
+            background: var(--background2-color);
+            border-radius: 8px;
+            border: 2px solid var(--background3-color);
         }
 
-        .card-reward {
-            height: 40vh;
-            width: 25vh;
-            gap: 2vh;
-
-            @media screen and (max-width: 768px) {
-                height: 35vh;
-                width: 20vh;
-                gap: 1vh;
-                font-size: 1vh;
-            }
-
-            @media screen and (max-width: 600px) {
-                height: 30vh;
-                width: 25vh;
-            }
+        .rewards {
+            flex: 1;
+            padding: 24px;
         }
     }
 
     .buttons {
+        position: absolute;
+        bottom: 12vh;
         display: flex;
-        gap: 7.5vh;
+        gap: 5vh;
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 912px) {
             gap: 5vh;
         }
 
         @media screen and (max-width: 768px) {
+            bottom: 2vh;
             flex-direction: column;
             gap: 2vh;
         }
 
         button {
-            height: 7.5vh;
-            width: 25vh;
+            height: 6vh;
+            width: 24vh;
             font-size: 2vh;
 
-            @media screen and (max-width: 900px) {
+            @media screen and (max-width: 912px) {
                 height: 5vh;
                 width: 20vh;
                 font-size: 1.5vh;
             }
         }
+    }
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(1vh);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

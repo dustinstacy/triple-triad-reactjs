@@ -12,7 +12,7 @@ const ActiveBattleAlert = ({ setAlertActive }) => {
 
     const forfeitBattle = async () => {
         localStorage.removeItem('battleState')
-        await updateUserStats(user.stats, 'loss')
+        await updateUserStats(user, 'loss')
         setAlertActive((current) => !current)
     }
 

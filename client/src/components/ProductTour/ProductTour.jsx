@@ -78,7 +78,7 @@ const ProductTour = ({ step }) => {
     const stepFunctions = {
         0: async () => {
             await completeUserStartingData()
-            await addCoin(user.coin, 200)
+            await addCoin(user, 200)
             await nextStage('/market')
         },
         3: async () => {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import { ModalOverlay } from '@components'
+import { useGlobalContext } from '@context'
 
-import { fetchOpponents } from './api'
 import {
     ActiveBattleAlert,
     BattlePreviewModal,
@@ -14,7 +14,7 @@ import './OpponentSelect.scss'
 // Renders a menu of CPU opponents to select from.
 // Displays alert if saved battle state exists.
 const OpponentSelect = () => {
-    const [cpuOpponents, setCPUOpponents] = useState({})
+    const { allOpponents } = useGlobalContext()
     const [selectedOpponent, setSelectedOpponent] = useState(null)
     const [alertActive, setAlertActive] = useState(false)
 
@@ -25,15 +25,10 @@ const OpponentSelect = () => {
         const savedState = localStorage.getItem('battleState')
         if (savedState) {
             setAlertActive(true)
-        } else {
-            const getOpponents = async () => {
-                const opponents = await fetchOpponents()
-                opponents.sort((a, b) => a.level - b.level)
-                setCPUOpponents(opponents)
-            }
-            getOpponents()
         }
     }, [alertActive])
+
+    const sortedOpponents = allOpponents.sort((a, b) => a.level - b.level)
 
     return (
         <div className='opponent-select page center'>
@@ -43,8 +38,8 @@ const OpponentSelect = () => {
                 <hr />
             </div>
             <div className='opponent-list center'>
-                {cpuOpponents.length &&
-                    cpuOpponents?.map((opponent) => (
+                {sortedOpponents?.length &&
+                    sortedOpponents?.map((opponent) => (
                         <OpponentCard
                             key={opponent.name}
                             opponent={opponent}

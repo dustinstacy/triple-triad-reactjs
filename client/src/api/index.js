@@ -6,15 +6,15 @@ export const addCardToCollection = async (cardData) => {
     await axios.put('/api/collection/new', cardData)
 }
 
-export const addExperience = async (userXP, xp) => {
+export const addExperience = async (user, xp) => {
     await axios.put('/api/profile/stats', {
-        xp: userXP + xp,
+        xp: user.xp + xp,
     })
 }
 
-export const addCoin = async (userCoin, amount) => {
+export const addCoin = async (user, amount) => {
     await axios.put('/api/profile/info', {
-        coin: userCoin + amount,
+        coin: user.coin + amount,
     })
 }
 
@@ -37,7 +37,6 @@ export const deductCoin = async (userCoin, amount) => {
     await axios.put('/api/profile/info', {
         coin: updatedCoin.toString(), // Explicitly set to string to account for 0
     })
-}
 
 export const removeItemFromInventory = async (inventory, item) => {
     removeObjectByValue(inventory, 'name', item.name)
@@ -57,7 +56,7 @@ export const updateUserInfo = async (property, value) => {
 }
 
 // Update user's stats when they choose to forfeit an active battle
-export const updateUserStats = async (userStats, result) => {
+export const updateUserStats = async (user, result) => {
     let results
     switch (result) {
         case 'win':
@@ -74,9 +73,9 @@ export const updateUserStats = async (userStats, result) => {
     }
 
     await axios.put('/api/profile/stats', {
-        battles: userStats.battles + results[0],
-        wins: userStats.wins + results[1],
-        losses: userStats.losses + results[2],
-        draws: userStats.draws + results[3],
+        battles: user.stats.battles + results[0],
+        wins: user.stats.wins + results[1],
+        losses: user.stats.losses + results[2],
+        draws: user.stats.draws + results[3],
     })
 }

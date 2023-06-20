@@ -23,8 +23,8 @@ const PromoCode = () => {
         setLoading(true)
         try {
             await checkPromoCode(promoCode)
-            await addCoin(user.coin, 1000000)
-            await addExperience(user.xp, 100000)
+            await addCoin(user, 1000000)
+            await addExperience(user, 100000)
             await getCurrentUser() // Refresh user data after updating
         } catch (error) {
             setError(error.message) // Set the error message for display

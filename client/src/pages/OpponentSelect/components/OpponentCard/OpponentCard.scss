@@ -6,6 +6,20 @@
     border: 2px solid var(--secondary2-color);
     border-radius: 8px;
     cursor: pointer;
+    filter: grayscale(0.6);
+
+    &:hover {
+        box-shadow: 2px 2px 1px 0.5px var(--black-color),
+            2px -2px 1px 0.5px var(--black-color),
+            -2px 2px 1px 0.5px var(--black-color),
+            -2px -2px 1px 0.5px var(--black-color),
+            4px 4px 10px 1px var(--primary2-color),
+            4px -4px 10px 1px var(--primary2-color),
+            -4px 4px 10px 1px var(--primary2-color),
+            -4px -4px 10px 1px var(--primary2-color);
+        scale: 1.01;
+        filter: grayscale(0.1);
+    }
 
     @media screen and (min-width: 1440px) {
         height: 245px;

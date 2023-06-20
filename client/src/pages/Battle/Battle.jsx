@@ -322,7 +322,7 @@ const Battle = () => {
     }
 
     return (
-        <div className='match page'>
+        <div className='battle page'>
             {!battleIntro && (
                 <div className='table'>
                     <Hand

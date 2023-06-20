@@ -2,7 +2,7 @@
     height: 100%;
 
     .progress-bar {
-        min-height: 10px;
+        height: 10px;
         min-width: 250px;
         display: flex;
         align-items: center;
@@ -10,7 +10,7 @@
         border-radius: 8px;
 
         &__inner {
-            min-height: 10px;
+            height: 100%;
             margin-left: -1px;
             background-color: var(--primary-color);
             border-radius: inherit;

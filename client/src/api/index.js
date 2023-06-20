@@ -12,9 +12,9 @@ export const addExperience = async (user, xp) => {
     })
 }
 
-export const addCoin = async (userCoin, amount) => {
+export const addCoin = async (user, amount) => {
     await axios.put('/api/profile/info', {
-        coin: userCoin + amount,
+        coin: user.coin + amount,
     })
 }
 
@@ -32,12 +32,12 @@ export const addItemToInventory = async (inventory, item) => {
     })
 }
 
-export const deductCoin = async (userCoin, amount) => {
-    const updatedCoin = userCoin - amount
+export const deductCoin = async (user, amount) => {
+    const updatedCoin = user.coin - amount
 
     if (updatedCoin === 0) {
         await axios.put('/api/profile/info', {
-            coin: Math.floor(0.0001), // Set coin to null to remove the value
+            coin: Math.floor(0.0001),
         })
     } else {
         await axios.put('/api/profile/info', {

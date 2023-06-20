@@ -1,14 +1,11 @@
 import React from 'react'
-import { TbPlayCard } from 'react-icons/tb'
 
 import { coinImage } from '@assets'
-import { useGlobalContext } from '@context'
 
 import './SelectedOpponent.scss'
 
 // Renders selected opponent information
 const SelectedOpponent = ({ selectedOpponent }) => {
-    const { user } = useGlobalContext()
     const { name, image, level, minPower, maxPower, rewards } = selectedOpponent
 
     return (
@@ -40,11 +37,6 @@ const SelectedOpponent = ({ selectedOpponent }) => {
                             <span>{rewards.coin}</span>
                             <img src={coinImage} alt='coin image' />
                         </div>
-                        {!user?.defeatedEnemies.includes(`${name}`) && (
-                            <div className='rewards-card center'>
-                                <TbPlayCard className='card-icon' />
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>

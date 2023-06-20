@@ -37,29 +37,29 @@ const LevelUpScreen = ({ setNewLevelAlert }) => {
             </div>
             <div className='level-up-unlocks around'>
                 {level <= 11 && (
-                    <div className='unlock start-column panel background-gradient'>
-                        <h2>
-                            New Market <br />
-                            Item Available
-                        </h2>
-                        <img
-                            src={sortedItems[level - 1]?.image}
-                            alt='market item'
-                        />
-                        <p>{sortedItems[level - 1]?.name}</p>
-                    </div>
-                )}
-                {level <= 11 && user?.defeatedEnemies.length === level - 1 && (
-                    <div className='unlock start-column panel background-gradient'>
-                        <h2>
-                            New Opponent <br /> Unlocked
-                        </h2>
-                        <img
-                            src={allOpponents[level - 1]?.image}
-                            alt='unlocked opponent'
-                        />
-                        <p>{allOpponents[level - 1]?.name}</p>
-                    </div>
+                    <>
+                        <div className='unlock start-column panel background-gradient'>
+                            <h2>
+                                New Market <br />
+                                Item Available
+                            </h2>
+                            <img
+                                src={sortedItems[level - 1]?.image}
+                                alt='market item'
+                            />
+                            <p>{sortedItems[level - 1]?.name}</p>
+                        </div>
+                        <div className='unlock start-column panel background-gradient'>
+                            <h2>
+                                New Opponent <br /> Unlocked
+                            </h2>
+                            <img
+                                src={allOpponents[level - 1]?.image}
+                                alt='unlocked opponent'
+                            />
+                            <p>{allOpponents[level - 1]?.name}</p>
+                        </div>
+                    </>
                 )}
                 <div className=' unlock start-column panel background-gradient'>
                     <h2>

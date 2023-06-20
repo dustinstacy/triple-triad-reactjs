@@ -6,6 +6,7 @@ import { NavBar } from '@components'
 import {
     Account,
     Battle,
+    BattleIntro,
     Collection,
     Home,
     Landing,
@@ -36,6 +37,7 @@ function App() {
                 <Route path='/login' element={<Landing />} />
                 <Route path='/register' element={<Landing register />} />
                 <Route path='/opponentSelect' element={<OpponentSelect />} />
+                <Route path='/battleIntro' element={<BattleIntro />} />
                 <Route path='/battle' element={<Battle />} />
                 <Route path='/collection' element={<Collection />} />
                 <Route path='/market' element={<Market />} />

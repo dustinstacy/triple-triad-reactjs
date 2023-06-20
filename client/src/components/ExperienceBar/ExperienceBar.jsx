@@ -85,7 +85,7 @@ const ExperienceBar = () => {
                 ></div>
             </div>
             <span>
-                XP {displayXP} / {userNextLevel - userPrevLevel}
+                XP {displayXP || xp} / {userNextLevel - userPrevLevel}
             </span>
             {newLevelAlert && (
                 <ModalOverlay>

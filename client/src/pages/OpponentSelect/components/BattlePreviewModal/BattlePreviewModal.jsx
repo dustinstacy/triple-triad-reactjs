@@ -41,7 +41,7 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
 
     // Navigate to battle page with stored opponent and opponent deck statee
     const startBattle = () => {
-        navigate('/battle', {
+        navigate('/battleIntro', {
             state: {
                 opponent: selectedOpponent,
                 opponentDeck: selectedOpponentDeck,

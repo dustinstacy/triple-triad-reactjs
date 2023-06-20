@@ -4,13 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
 
-import {
-    BattleResults,
-    BattleIntro,
-    Board,
-    Hand,
-    RoundResult,
-} from './components'
+import { BattleResults, Board, Hand, RoundResult } from './components'
 import { assignColorsAndDealCards, shuffleCards, updateState } from './utils'
 import { processStandardBattles } from './lib/logic'
 import { cpuMove } from './lib/ai'
@@ -45,7 +39,6 @@ const Battle = () => {
 
     // Initialize Battle State
     const [battleState, setBattleState] = useState({
-        battleIntro: false,
         board: [...new Array(9).fill('empty')],
         decksShuffled: false,
         roundAlert: false,
@@ -63,7 +56,6 @@ const Battle = () => {
 
     // Destructure Battle State
     const {
-        battleIntro,
         board,
         decksShuffled,
         roundAlert,
@@ -112,14 +104,10 @@ const Battle = () => {
 
     // Begin process of setting up a new game
     const newGame = () => {
-        updateState(setBattleState, { battleIntro: true })
-        setTimeout(() => {
-            shuffleDecks()
-            updateState(setBattleState, {
-                battleIntro: false,
-                roundAlert: true,
-            })
-        }, 4000)
+        shuffleDecks()
+        updateState(setBattleState, {
+            roundAlert: true,
+        })
     }
 
     // Save state to local storage when a new game has been initialized
@@ -255,7 +243,7 @@ const Battle = () => {
         }
     }
 
-    const roundResult = async () => {
+    const roundResult = () => {
         updateState(setPlayerOne, {
             battleScore: playerOne.battleScore + playerOne.roundScore,
         })
@@ -270,6 +258,7 @@ const Battle = () => {
     useEffect(() => {
         if (roundOver === true) {
             setTimeout(() => {
+                saveStateToLocalStorage()
                 checkForBattleEnd()
             }, 2500)
         }
@@ -313,54 +302,40 @@ const Battle = () => {
     // Remove state from local storage when the Battle is over
     useEffect(() => {
         if (battleOver === true) {
-            removeStateFromLocalStorage()
+            saveStateToLocalStorage()
         }
     }, [battleOver])
 
-    const removeStateFromLocalStorage = () => {
-        localStorage.removeItem('battleState')
-    }
-
     return (
         <div className='battle page'>
-            {!battleIntro && (
-                <div className='table'>
-                    <Hand
-                        player={playerTwo}
-                        battleState={battleState}
-                        cardSelected={cardSelected}
-                        cardDragged={cardDragged}
-                        setCardSelected={setCardSelected}
-                    />
-                    <Board
-                        playerOne={playerOne}
-                        setPlayerOne={setPlayerOne}
-                        playerTwo={playerTwo}
-                        battleState={battleState}
-                        setBattleState={setBattleState}
-                        cardSelected={cardSelected}
-                        cardDragged={cardDragged}
-                        setCardDragged={setCardDragged}
-                        updateScores={updateScores}
-                    />
-                    <Hand
-                        player={playerOne}
-                        battleState={battleState}
-                        cardSelected={cardSelected}
-                        cardDragged={cardDragged}
-                        setCardSelected={setCardSelected}
-                        setCardDragged={setCardDragged}
-                    />
-                </div>
-            )}
-            {battleIntro && (
-                <ModalOverlay>
-                    <BattleIntro
-                        playerOne={playerOne.user}
-                        playerTwo={playerTwo.user}
-                    />
-                </ModalOverlay>
-            )}
+            <div className='table'>
+                <Hand
+                    player={playerTwo}
+                    battleState={battleState}
+                    cardSelected={cardSelected}
+                    cardDragged={cardDragged}
+                    setCardSelected={setCardSelected}
+                />
+                <Board
+                    playerOne={playerOne}
+                    setPlayerOne={setPlayerOne}
+                    playerTwo={playerTwo}
+                    battleState={battleState}
+                    setBattleState={setBattleState}
+                    cardSelected={cardSelected}
+                    cardDragged={cardDragged}
+                    setCardDragged={setCardDragged}
+                    updateScores={updateScores}
+                />
+                <Hand
+                    player={playerOne}
+                    battleState={battleState}
+                    cardSelected={cardSelected}
+                    cardDragged={cardDragged}
+                    setCardSelected={setCardSelected}
+                    setCardDragged={setCardDragged}
+                />
+            </div>
             {roundAlert && (
                 <ModalOverlay>
                     <div className='round-alert center'>

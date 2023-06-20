@@ -39,45 +39,4 @@
             padding: 24px;
         }
     }
-
-    .buttons {
-        position: absolute;
-        bottom: 12vh;
-        display: flex;
-        gap: 5vh;
-
-        @media screen and (max-width: 912px) {
-            gap: 5vh;
-        }
-
-        @media screen and (max-width: 768px) {
-            bottom: 2vh;
-            flex-direction: column;
-            gap: 2vh;
-        }
-
-        button {
-            height: 6vh;
-            width: 24vh;
-            font-size: 2vh;
-
-            @media screen and (max-width: 912px) {
-                height: 5vh;
-                width: 20vh;
-                font-size: 1.5vh;
-            }
-        }
-    }
-}
-
-@keyframes fade-up {
-    0% {
-        opacity: 0;
-        transform: translateY(1vh);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

@@ -41,12 +41,12 @@ const Battle = () => {
     const [battleState, setBattleState] = useState({
         board: [...new Array(9).fill('empty')],
         decksShuffled: false,
-        roundAlert: false,
         handsDealt: false,
         battleStarted: false,
         round: 0,
         isP1Turn: null,
         roundOver: false,
+        roundResults: [],
         battleOver: false,
     })
 
@@ -58,12 +58,12 @@ const Battle = () => {
     const {
         board,
         decksShuffled,
-        roundAlert,
         handsDealt,
         battleStarted,
         round,
         isP1Turn,
         roundOver,
+        roundResults,
         battleOver,
     } = battleState
 
@@ -79,6 +79,12 @@ const Battle = () => {
         .filter((index) => index !== null)
 
     const battleRounds = opponent?.minDeckSize / 5
+    const cpuCanAct =
+        battleStarted &&
+        !isP1Turn &&
+        emptyCells.length !== 0 &&
+        playerTwo.hand.length > 0 &&
+        roundOver === false
 
     // Retrieve state from local storage if it exists
     // Otherwise initialize a new game
@@ -104,28 +110,19 @@ const Battle = () => {
 
     // Begin process of setting up a new game
     const newGame = () => {
-        shuffleDecks()
-        updateState(setBattleState, {
-            roundAlert: true,
-        })
+        randomFirstTurn()
     }
 
-    // Save state to local storage when a new game has been initialized
-    useEffect(() => {
-        if (battleStarted === true) {
-            saveStateToLocalStorage()
-        }
-    }, [battleStarted])
-
-    const saveStateToLocalStorage = () => {
-        localStorage.setItem(
-            'battleState',
-            JSON.stringify({
-                playerOne,
-                playerTwo,
-                battleState,
-            })
-        )
+    const randomFirstTurn = () => {
+        const arrowElement = document.querySelector('.turn-arrow')
+        arrowElement.classList.add('start-game')
+        setTimeout(() => {
+            Math.random() < 0.5
+                ? updateState(setBattleState, { isP1Turn: true })
+                : updateState(setBattleState, { isP1Turn: false })
+            arrowElement.classList.remove('start-game')
+        }, 1000)
+        shuffleDecks()
     }
 
     const shuffleDecks = () => {
@@ -140,7 +137,6 @@ const Battle = () => {
     useEffect(() => {
         if (decksShuffled === true && battleStarted === false) {
             setTimeout(() => {
-                updateState(setBattleState, { roundAlert: false })
                 dealHands()
             }, 1000)
         }
@@ -168,35 +164,43 @@ const Battle = () => {
     // a Battle is not currently under way
     useEffect(() => {
         if ((handsDealt === true) & (battleStarted === false)) {
-            randomFirstTurn()
+            updateState(setBattleState, {
+                roundResults: Array.from(
+                    { length: battleRounds },
+                    (_, index) => {
+                        return { round: index + 1, p1Score: '', p2Score: '' }
+                    }
+                ),
+                battleStarted: true,
+            })
         }
     }, [handsDealt])
 
-    const randomFirstTurn = () => {
-        const arrowElement = document.querySelector('.turn-arrow')
-        arrowElement.classList.add('start-game')
-        setTimeout(() => {
-            Math.random() < 0.5
-                ? updateState(setBattleState, { isP1Turn: true })
-                : updateState(setBattleState, { isP1Turn: false })
-            arrowElement.classList.remove('start-game')
-            updateState(setBattleState, { battleStarted: true })
-        }, 1000)
+    // Save state to local storage when a new game has been initialized
+    useEffect(() => {
+        if (battleStarted === true) {
+            saveStateToLocalStorage()
+        }
+    }, [battleStarted])
+
+    const saveStateToLocalStorage = () => {
+        localStorage.setItem(
+            'battleState',
+            JSON.stringify({
+                playerOne,
+                playerTwo,
+                battleState,
+            })
+        )
     }
 
     useEffect(() => {
-        if (
-            battleStarted &&
-            !isP1Turn &&
-            emptyCells.length !== 0 &&
-            playerTwo.hand.length > 0 &&
-            roundOver === false
-        ) {
+        if (cpuCanAct) {
             setTimeout(() => {
                 cpuTurn()
             }, 2000)
         }
-    }, [isP1Turn, playerTwo.hand])
+    }, [isP1Turn, battleStarted, playerTwo.hand])
 
     const cpuTurn = () => {
         const { move, newBoard, newHand } = cpuMove(
@@ -250,9 +254,24 @@ const Battle = () => {
         updateState(setPlayerTwo, {
             battleScore: playerTwo.battleScore + playerTwo.roundScore,
         })
+        updateRoundResults()
         setTimeout(() => {
             updateState(setBattleState, { roundOver: true })
-        }, 1000)
+        }, 1500)
+    }
+
+    const updateRoundResults = () => {
+        const updatedRoundResults = roundResults.map((round) => {
+            if (round.round === battleState.round) {
+                return {
+                    ...round,
+                    p1Score: playerOne.roundScore,
+                    p2Score: playerTwo.roundScore,
+                }
+            }
+            return round
+        })
+        updateState(setBattleState, { roundResults: updatedRoundResults })
     }
 
     useEffect(() => {
@@ -260,7 +279,7 @@ const Battle = () => {
             setTimeout(() => {
                 saveStateToLocalStorage()
                 checkForBattleEnd()
-            }, 2500)
+            }, 3000)
         }
     }, [roundOver])
 
@@ -283,7 +302,6 @@ const Battle = () => {
         updateState(setPlayerTwo, { hand: [] })
         updateState(setBattleState, {
             board: [...new Array(9).fill('empty')],
-            roundAlert: true,
             handsDealt: false,
             roundOver: false,
             round: round + 1,
@@ -294,7 +312,6 @@ const Battle = () => {
         if (handsDealt === false && round > 0) {
             setTimeout(() => {
                 dealHands()
-                updateState(setBattleState, { roundAlert: false })
             }, 1000)
         }
     }, [handsDealt])
@@ -336,16 +353,13 @@ const Battle = () => {
                     setCardDragged={setCardDragged}
                 />
             </div>
-            {roundAlert && (
-                <ModalOverlay>
-                    <div className='round-alert center'>
-                        <h1>Round</h1> <span>{round}</span>
-                    </div>
-                </ModalOverlay>
-            )}
             {roundOver && !battleOver && (
                 <ModalOverlay>
-                    <RoundResult playerOne={playerOne} playerTwo={playerTwo} />
+                    <RoundResult
+                        playerOne={playerOne}
+                        playerTwo={playerTwo}
+                        battleState={battleState}
+                    />
                 </ModalOverlay>
             )}
             {battleOver && (

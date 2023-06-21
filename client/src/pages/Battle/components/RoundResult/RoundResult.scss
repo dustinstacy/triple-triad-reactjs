@@ -1,40 +1,32 @@
 .round-result {
     padding: 24px;
-    overflow: hidden;
+    background: url('@assets/page-images/battleBackdrop.jpg');
+    background-position: center;
+    background-size: 50%;
+    font-size: 5vh;
+
+    @media screen and (max-width: 912px) {
+        font-size: 4vh;
+    }
 
     @media screen and (max-width: 600px) {
-        flex-direction: column;
+        font-size: 3vh;
     }
 
-    .battle-score {
-        position: absolute;
-        top: 2.5%;
-        font-size: 72px;
-    }
-
-    .round-image {
-        height: 100vh;
-        margin: 0 -48px;
-
-        @media screen and (max-width: 1280px) {
-            height: 80vh;
-        }
-
-        @media screen and (max-width: 1024px) {
-            height: 60vh;
-        }
+    .round-player {
+        height: 80vh;
 
         @media screen and (max-width: 768px) {
-            height: 40vh;
+            height: 90vh;
         }
-    }
 
-    .p1-battle-score,
-    .p2-battle-score {
-        font-size: 15vh;
+        h4 {
+            font-size: 4vh;
+            text-shadow: 4px 4px 4px var(--black-color);
 
-        @media screen and (max-width: 1024px) {
-            font-size: 10vh;
+            @media screen and (max-width: 912px) {
+                display: none;
+            }
         }
 
         img {
@@ -42,15 +34,52 @@
             border: 2px solid var(--secondary2-color);
             border-radius: 8px;
 
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 912px) {
                 height: 12vh;
+            }
+
+            @media screen and (max-width: 768px) {
+                height: 10vh;
             }
         }
     }
 
-    .p2-battle-score {
+    .round-player:nth-child(1) {
         @media screen and (max-width: 600px) {
-            flex-direction: column-reverse;
+            position: absolute;
+            top: 3vh;
+            left: 3vh;
+        }
+    }
+
+    .round-player:nth-child(3) {
+        @media screen and (max-width: 600px) {
+            position: absolute;
+            top: 3vh;
+            right: 3vh;
+        }
+    }
+
+    .score-wrapper {
+        position: relative;
+        height: 85vh;
+        width: 40vw;
+
+        @media screen and (max-width: 912px) {
+            width: 50vw;
+        }
+
+        @media screen and (max-width: 768px) {
+            width: 80vw;
+        }
+
+        @media screen and (max-width: 600px) {
+            height: 70vh;
+        }
+
+        .round-scores {
+            width: 100%;
+            flex: 1;
         }
     }
 }

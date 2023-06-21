@@ -1,6 +1,6 @@
 .results-buttons {
     position: absolute;
-    bottom: 12vh;
+    bottom: 18vh;
     display: flex;
     gap: 5vh;
 
@@ -17,6 +17,7 @@
     button {
         height: 6vh;
         width: 24vh;
+        background: var(--background3-color);
         font-size: 2vh;
 
         @media screen and (max-width: 912px) {

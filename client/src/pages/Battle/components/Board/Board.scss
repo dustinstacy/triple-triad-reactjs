@@ -149,6 +149,10 @@
                 height: 9vh;
             }
 
+            @media screen and (max-width: 600px) {
+                display: none;
+            }
+
             &.is-turn {
                 box-shadow: 2px 0 10px 2px var(--primary-color),
                     -2px 0 10px 2px var(--primary-color);
@@ -161,7 +165,7 @@
             transition: all 1s ease;
 
             @media screen and (max-width: 1024px) {
-                margin-right: 2.5vw;
+                margin-right: 2vw;
             }
 
             @media screen and (max-width: 920px) and (orientation: portrait) {
@@ -176,6 +180,14 @@
 
             @media screen and (max-width: 600px) {
                 display: none;
+            }
+        }
+
+        span {
+            font-size: 5vh;
+
+            @media screen and (max-width: 1024px) {
+                margin-right: 2vw;
             }
         }
     }

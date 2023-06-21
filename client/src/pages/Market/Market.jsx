@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ProductTour } from '@components'
+import { Onboarding } from '@components'
 import { useGlobalContext } from '@context'
 
 import { ItemDisplay, MarketItems } from './components'
@@ -15,7 +15,7 @@ const Market = () => {
 
     return (
         <div className='market page'>
-            {stage === 1 && <ProductTour step={stage} />}
+            {stage === 1 && <Onboarding />}
             <div className='market-menu-header'>
                 <h1>MaRKet</h1>
                 <hr />

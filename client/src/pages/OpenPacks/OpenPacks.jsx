@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import { useGlobalContext } from '@context'
-import { ProductTour } from '@components'
 
 import { Loader, PackContents, UserPacks } from './components'
 import './OpenPacks.scss'
@@ -16,9 +15,6 @@ const OpenPacks = () => {
 
     return (
         <div className='open-packs page center'>
-            {stage === 2 && <ProductTour step={stage} />}
-            {stage === 3 && <ProductTour step={stage} />}
-
             {packContents && !isLoading ? (
                 <PackContents
                     packContents={packContents}

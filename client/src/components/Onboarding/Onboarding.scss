@@ -1,0 +1,57 @@
+.stage {
+    height: 90vh;
+    width: 90vw;
+    font-size: 3.5vh;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+        font-size: 3vh;
+    }
+
+    @media screen and (max-width: 600px) {
+        font-size: 2vh;
+    }
+
+    .header {
+        position: relative;
+        text-shadow: 2px 2px 5px var(--secondary-color),
+            2px 2px 5px var(--black-color);
+    }
+
+    .logo {
+        height: 25vh;
+        z-index: -1;
+
+        @media screen and (max-width: 600px) {
+            height: 15vh;
+        }
+    }
+
+    .body {
+        position: relative;
+        height: auto;
+        min-height: 400px;
+        width: 70vw;
+        margin-top: 4vh;
+        padding: 2vh 2vh 8vh;
+        gap: 24px;
+
+        @media screen and (max-width: 400px) {
+            width: 100vw;
+        }
+
+        p {
+            padding: 2vh;
+        }
+
+        img {
+            border: 2px solid var(--secondary2-color);
+        }
+
+        .button {
+            position: absolute;
+            bottom: -2.5vh;
+            padding: 4px 24px;
+        }
+    }
+}

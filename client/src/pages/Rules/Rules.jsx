@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { ProductTour } from '@components'
 import { howToPlay } from '@constants'
 import { useGlobalContext } from '@context'
 
@@ -12,8 +11,6 @@ const Rules = () => {
 
     return (
         <div className='rules page center'>
-            {stage === 5 && <ProductTour step={stage} />}
-            {stage === 6 && <ProductTour step={stage} />}
             {howToPlay.map((panel) => (
                 <div key={panel.header} className='panel center-column'>
                     <h1>{panel.header}</h1>

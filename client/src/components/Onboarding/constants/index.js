@@ -1,22 +1,32 @@
-const onboardingStages = [
+export const onboardingStages = [
     {
         header: 'Your Journey Begins',
         body: `Welcome to the Alpha release of Nexus Dawn! We are
         thrilled to have you join us on this exciting journey as we
         continuously grow and improve the project. Let us be your
-        trusted guides as we navigate the initial steps and set
+        trusted guide as we navigate the initial steps and set
         you up for an unforgettable experience.`,
-        label: 'To the Market',
+        label: `Let's Begin`,
     },
     {
         header: 'Purchase A pack',
-        body: `Welcome to the Market, the bustling hub where opportunities
+        body: [
+            `Welcome to the Market, the bustling hub where opportunities
         abound! Here, you'll discover a treasure trove of items awaiting your
         discerning eye. With your gifted coin at the ready, take a moment
         to soak in the excitement of this pivotal moment. Feel the anticipation
         building as you select your very first pack, knowing that each card
         holds the potential for thrilling battles and strategic victories.`,
-        label: 'Close',
+            `As you progress and level up, the realm unfolds, revealing its
+            greater powers and granting you access to stronger cards,
+            attainable at a worthy price.`,
+            `Upon selecting an item, its information will be displayed.
+            However, for now, let's click on the purchase button below the
+            item's information to acquire your very first pack`,
+            `Now that you possess a pack, it's time to unveil its contents.
+            Let's proceed to the opening screen and commence the ritual.`,
+        ],
+        label: ['Next >', 'Close'],
     },
     {
         header: 'Open your pack',
@@ -65,5 +75,3 @@ const onboardingStages = [
         label: 'Close',
     },
 ]
-
-export default onboardingStages

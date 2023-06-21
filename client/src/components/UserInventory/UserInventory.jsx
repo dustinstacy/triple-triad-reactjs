@@ -13,7 +13,7 @@ const UserInventory = () => {
     return (
         <div className='user-inventory end-column'>
             <div className='coin end'>
-                <p className='coin-amount'>{Math.floor(coin)}</p>
+                <p className='coin-amount'>{coin}</p>
                 <img src={coinImage} alt='coin' />
             </div>
         </div>

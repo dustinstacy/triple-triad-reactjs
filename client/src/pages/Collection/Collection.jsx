@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import { ProductTour } from '@components'
 import { useGlobalContext } from '@context'
 
 import { CardCollection, DeckBar, Filter, UserPanel } from './components'
@@ -26,8 +25,6 @@ const Collection = () => {
 
     return (
         <div className='collection page'>
-            {stage === 4 && <ProductTour step={stage} />}
-
             <UserPanel />
             <DeckBar />
             <div className='header'>

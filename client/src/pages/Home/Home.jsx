@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { useGlobalContext } from '@context'
-import { ProductTour } from '@components'
+import { Onboarding } from '@components'
 import { classSet } from '@utils'
 
 import './Home.scss'
@@ -19,7 +19,7 @@ const Home = () => {
 
     return (
         <>
-            {stage <= 6 && <ProductTour step={stage} />}
+            {stage <= 5 && <Onboarding />}
 
             <div className='home page start'>
                 <div className='home-wrapper '>

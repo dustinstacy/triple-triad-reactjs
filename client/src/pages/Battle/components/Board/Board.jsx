@@ -116,6 +116,7 @@ const Board = ({
                 )}
             </div>
             <div className='arrow-column center-column'>
+                {battleState.round > 1 && <span>{playerTwo.battleScore}</span>}
                 <img
                     className={p2ImageClassNames}
                     src={playerTwo.user?.image}
@@ -131,6 +132,7 @@ const Board = ({
                     src={playerOne.user?.image}
                     alt='p1 image'
                 />
+                {battleState.round > 1 && <span>{playerOne.battleScore}</span>}
             </div>
         </div>
     )

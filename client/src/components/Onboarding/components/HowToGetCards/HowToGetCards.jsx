@@ -7,6 +7,7 @@ import { useToggle } from '@hooks'
 
 import { onboardingStages } from '../../constants'
 import { marketMenu, purchaseButton } from '../../images'
+
 import './HowToGetCards.scss'
 
 const HowToGetCards = ({ nextStage }) => {

@@ -21,14 +21,16 @@ const Introduction = ({ nextStage }) => {
     return (
         <ModalOverlay>
             <div className='introduction stage around-column'>
-                <h1 className='header'>
-                    {onboardingStages[0].header}
-                    <img
-                        className='logo abs-center'
-                        src={smlogo}
-                        alt='small logo'
-                    />
-                </h1>
+                <div className='header-wrapper'>
+                    <h1 className='header'>
+                        {onboardingStages[0].header}
+                        <img
+                            className='logo abs-center'
+                            src={smlogo}
+                            alt='small logo'
+                        />
+                    </h1>
+                </div>
                 <div className='body box start-column'>
                     <p>{onboardingStages[0].body}</p>
                     <Button

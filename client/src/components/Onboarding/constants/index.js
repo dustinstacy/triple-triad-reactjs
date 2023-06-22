@@ -30,21 +30,23 @@ export const onboardingStages = [
     },
     {
         header: 'Open your pack',
-        body: `Within these hallowed spaces, we invoke the forces of fortune.
+        body: [
+            `Within these hallowed spaces, we invoke the forces of fortune.
         It's time to unlock the pack you've acquired and uncover the mysteries
         that lie within. Will you uncover legendary warriors, cunning
         strategists, or enigmatic creatures? Only the cards themselves hold
         the answer, and the possibilities are limitless.`,
-        label: 'Close',
-    },
-    {
-        header: `What's in a Card?`,
-        body: `Has the benevolent hand of destiny bestowed it's favour upon
-        you? Observe the arrangement of power values that surrounds your
-        chosen card. These values are the very essence of its strength.
-        Embrace the timeless axiom: ascendancy lies in the realm of higher
-        numbers`,
-        label: 'To your Collection',
+            `As you explore the item details, you'll discover that each pack
+            holds it's own distinct probabilities, offering a chance to reveal
+            cards of varying rarity.`,
+            `Now let's spin the wheel of fate. Click the button to open your
+            pack.`,
+            `
+            Has the benevolent hand of destiny bestowed it's favour upon
+        you? Observe the arrangement of power values that surrounds a given
+        card. These values are the very essence of its strength.`,
+        ],
+        label: ['Next >', 'Close'],
     },
     {
         header: 'Prepare for Battle',

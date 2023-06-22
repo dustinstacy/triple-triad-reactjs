@@ -33,14 +33,16 @@ const HowToGetCards = ({ nextStage }) => {
             {modalOpen && (
                 <ModalOverlay>
                     <div className='get-cards stage around-column'>
-                        <h1 className='header'>
-                            {onboardingStages[1].header}
-                            <img
-                                className='logo abs-center'
-                                src={smlogo}
-                                alt='small logo'
-                            />
-                        </h1>
+                        <div className='header-wrapper'>
+                            <h1 className='header'>
+                                {onboardingStages[1].header}
+                                <img
+                                    className='logo abs-center'
+                                    src={smlogo}
+                                    alt='small logo'
+                                />
+                            </h1>
+                        </div>
                         {step === 1 && (
                             <div className='body box start-column'>
                                 <p>{onboardingStages[1].body[0]}</p>
@@ -51,9 +53,13 @@ const HowToGetCards = ({ nextStage }) => {
                             </div>
                         )}
                         {step === 2 && (
-                            <div className='body box center'>
+                            <div className='body box step-2 center'>
                                 <p>{onboardingStages[1].body[1]}</p>
-                                <img src={marketMenu} alt='market menu' />
+                                <img
+                                    className='market-menu-image'
+                                    src={marketMenu}
+                                    alt='market menu'
+                                />
                                 <Button
                                     label={onboardingStages[1].label[0]}
                                     onClick={incrementStep}

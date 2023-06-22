@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import { Onboarding } from '@components'
 import { useGlobalContext } from '@context'
 
 import { Loader, PackContents, UserPacks } from './components'
@@ -15,6 +16,7 @@ const OpenPacks = () => {
 
     return (
         <div className='open-packs page center'>
+            {stage === 2 && <Onboarding />}
             {packContents && !isLoading ? (
                 <PackContents
                     packContents={packContents}

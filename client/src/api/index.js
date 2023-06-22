@@ -80,3 +80,10 @@ export const updateUserStats = async (user, result) => {
         draws: user.stats.draws + results[3],
     })
 }
+
+// Add battle log to database
+export const postBattleLog = async (battleLog) => {
+    await axios.post('/api/battleLogs', {
+        battleLog: battleLog,
+    })
+}

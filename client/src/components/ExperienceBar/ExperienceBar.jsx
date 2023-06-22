@@ -36,7 +36,7 @@ const ExperienceBar = () => {
                 await getCurrentUser()
                 setTimeout(async () => {
                     setNewLevelAlert(true)
-                }, 3500)
+                }, 3000)
             }
         }
 

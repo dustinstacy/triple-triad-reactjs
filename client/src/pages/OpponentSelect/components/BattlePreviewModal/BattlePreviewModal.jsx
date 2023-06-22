@@ -26,16 +26,19 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
     }, [selectedOpponent])
 
     const getOpponentDeck = () => {
-        const currentOpponentDeck = getRandomCards(
-            minDeckSize - 1,
+        const opponentRandomCards = getRandomCards(
+            minDeckSize,
             deckOdds,
             allCards
         )
-        const currentOpponentCard = allCards.find(
-            (card) => card._id === rewards.card
-        )
-        currentOpponentDeck.push(currentOpponentCard)
-        assignRandomDeckValues(currentOpponentDeck, minPower, maxPower)
+        assignRandomDeckValues(opponentRandomCards, minPower, maxPower)
+        const currentOpponentDeck = opponentRandomCards.map((card, i) => {
+            return {
+                image: card.image,
+                values: card.values,
+                _id: card._id + i,
+            }
+        })
         setSelectedOpponentDeck((prevDeck) => currentOpponentDeck)
     }
 

@@ -63,7 +63,7 @@ application.
 
 ## Rules
 
-Find all the game rule listed
+Find all the game rules listed
 [here](https://nexus-dawn-16daa70a99d8.herokuapp.com/rules)
 
 ## Planned Updates
@@ -90,28 +90,39 @@ git clone https://github.com/dustinstacy/triple-triad-reactjs.git
 # Go into the repository
 cd triple-triad-reactjs
 
-# Install dependencies
+# Install global dependencies
 npm install
 
-# Run the app
-npm start
+# Install client dependencies
+cd client
+npm install
+cd ..
+
+# Install server dependencies
+cd server
+npm install
+cd ..
 ```
 
-From here you'll need to create a
-[free database](https://www.mongodb.com/cloud/atlas/register) from Mongo DB to
-store all your data.
+Next, create a `.env` file inside your server folder. There you will paste the following:
 
-Once you've created your database, create a `.env` file inside your server
-folder. There you will declare a:
+```
+PORT= //set this equal to the port you wish to run your local server on.
 
-`PORT=` variable. Set this equal to the port you wish to run your local server
-on.
+MONGO_URI=mongodb+srv://devUser:06krAnaT33eqrf1y@cluster0.okvmtpm.mongodb.net/?retryWrites=true&w=majority
 
-`MONGO_URI=` variable. Set this equal to your connection string from your Mongo
-datbase.
+JWT_SECRET= //set this equal to a secret phrase of your choosing
+```
 
-`JWT_SECRET=` variable. Set this to a long password or generated value of your
-choosing.
+Finally
+```
+# Run the app
+npm run dev
+```
+
+
+
+
 
 ## Contributing
 
@@ -126,8 +137,6 @@ choosing.
 Huge thanks to the following content provider:
 
 Character Artwork - AEkashics <https://www.patreon.com/aekashics/posts>
-
-All other non-dependency assets: Dustin Stacy <https://thedustinstacy.com>
 
 ## License
 

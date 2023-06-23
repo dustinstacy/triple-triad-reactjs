@@ -54,16 +54,11 @@ const UserSchema = new Schema(
                 default: 0,
             },
         },
-        defeatedEnemies: [],
         activeBattle: {
             type: Boolean,
             default: false,
         },
         coin: {
-            type: Number,
-            default: 0,
-        },
-        runes: {
             type: Number,
             default: 0,
         },

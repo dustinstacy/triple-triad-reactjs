@@ -26,7 +26,7 @@ const DeckSchema = new Schema(
                 },
                 values: [
                     {
-                        type: String,
+                        type: Number,
                         required: true,
                     },
                 ],

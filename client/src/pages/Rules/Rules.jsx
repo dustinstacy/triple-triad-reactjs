@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { howToPlay } from '@constants'
+import { Onboarding } from '@components'
 import { useGlobalContext } from '@context'
 
+import { howToPlay } from './constants'
 import './Rules.scss'
 
 const Rules = () => {
@@ -11,6 +12,7 @@ const Rules = () => {
 
     return (
         <div className='rules page center'>
+            {(stage === 4 || stage === 5) && <Onboarding />}
             {howToPlay.map((panel) => (
                 <div key={panel.header} className='panel center-column'>
                     <h1>{panel.header}</h1>

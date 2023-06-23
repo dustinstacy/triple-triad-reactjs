@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { useGlobalContext } from '@context'
@@ -8,7 +8,7 @@ import { classSet } from '@utils'
 import './Home.scss'
 
 const Home = () => {
-    const { user } = useGlobalContext()
+    const { getCurrentUser, user } = useGlobalContext()
     const stage = user?.onboardingStage ?? {}
 
     const userPacks = user?.inventory.filter((item) => (item.name = 'pack'))

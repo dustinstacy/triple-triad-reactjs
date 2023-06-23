@@ -8,7 +8,7 @@ import {
 } from 'react-icons/gi'
 
 // The case of the names is intentionally varied to achieve different letter stylings
-const navlinks = [
+export const navlinks = [
     {
         name: 'HoMe',
         path: '/',
@@ -40,5 +40,3 @@ const navlinks = [
         image: <GiAbstract116 />,
     },
 ]
-
-export default navlinks

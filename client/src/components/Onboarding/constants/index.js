@@ -50,13 +50,25 @@ export const onboardingStages = [
     },
     {
         header: 'Prepare for Battle',
-        body: `As you ventured to this chamber of tactics, we have graciously
+        body: [
+            `As you ventured to this chamber of tactics, we have graciously
         provided you an abundant collection of additional cards to set you on
         your way. Here, within these walls, you shall forge your deck, crafting
         a formidable ensemble of no less than five cards. Begin by handpicking
         each individual card with care or opt for the swift and effortless
         'Fill Deck' option to expedite the process.`,
-        label: 'Close',
+            `The 'Fill Deck' option evaluates the required number of cards to
+        complete your deck, strategically selecting the strongest cards with
+        the highest total value.`,
+            `Alternatively, you can exercise your own strategic prowess by
+            personally curating your deck, hand-picking each individual card
+            through the convenient checkbox feature located in the top right
+            corner of each card.`,
+            `Armed with a mighty deck, worthy of a promising prospect like
+            yourself, let's bring our tour to an end by reviewing the essential
+            rules of combat.`,
+        ],
+        label: ['Next >', 'Close'],
     },
     {
         header: 'Putting it all togetHer',
@@ -65,15 +77,15 @@ export const onboardingStages = [
         rules, the realm is yours to conquer. Venture forth, amassing an
         ever-growing collection of cards, honing your skills to craft unbeatable
         decks, and challenging adversaries of unparalleled strength.`,
-        label: 'Close',
+        label: 'Next >',
     },
     {
-        header: 'One last thing',
+        header: ['One last thing', 'New Item'],
         body: `We express our deepest gratitude once more and eagerly anticipate
         your invaluable feedback. As a token of our appreciation, we have gifted
         you an additional pack, waiting to be unveiled in your inventory. Prepare
         yourself for an ever-expanding adventure where your voice holds the power
         to shape the destiny of this extraordinary project.`,
-        label: 'Close',
+        label: ['Next >', 'Finish'],
     },
 ]

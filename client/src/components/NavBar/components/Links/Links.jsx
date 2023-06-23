@@ -2,9 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { useGlobalContext } from '@context'
-import { navlinks } from '@constants'
 import { classSet } from '@utils'
 
+import { navlinks } from './constants'
 import './Links.scss'
 
 // Renders a list of navigation links with customizable CSS classes and functionality.
@@ -20,7 +20,7 @@ const Links = ({ menu, onClick }) => {
         classSet(
             `${menu}-link`,
             'center',
-            ((!user && !publicLinks.includes(linkPath)) || stage <= 6) &&
+            ((!user && !publicLinks.includes(linkPath)) || stage <= 5) &&
                 'disabled'
         )
 

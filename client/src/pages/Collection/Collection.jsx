@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import { Onboarding } from '@components'
 import { useGlobalContext } from '@context'
 
 import { CardCollection, DeckBar, Filter, UserPanel } from './components'
@@ -25,6 +26,7 @@ const Collection = () => {
 
     return (
         <div className='collection page'>
+            {stage === 3 && <Onboarding />}
             <UserPanel />
             <DeckBar />
             <div className='header'>

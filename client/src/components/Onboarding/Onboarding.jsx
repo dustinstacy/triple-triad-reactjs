@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useGlobalContext } from '@context'
-import { useToggle } from '@hooks'
 
 import { incrementOnboardingStage } from './api'
 import {
@@ -42,7 +41,7 @@ const Onboarding = () => {
     // Advances the user to next onboarding stage
     const nextStage = async (path) => {
         try {
-            await incrementOnboardingStage(stage)
+            await incrementOnboardingStage(user)
             await getCurrentUser()
             path && navigate(`${path}`)
         } catch (error) {

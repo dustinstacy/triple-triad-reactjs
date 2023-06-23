@@ -87,3 +87,12 @@
         gap: 0;
     }
 }
+
+.hidden-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4vh;
+    width: 4vh;
+    z-index: 500;
+}

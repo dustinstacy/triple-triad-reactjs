@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-import { ModalOverlay } from '@components'
+import { postBattleLog, updateUserStats } from '@api'
+import { Alert, Button, ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
 
 import { BattleResults, Board, Hand, RoundResult } from './components'
@@ -12,6 +13,7 @@ import { cpuMove } from './lib/ai'
 import './Battle.scss'
 
 const Battle = () => {
+    const navigate = useNavigate()
     // Get user and opponent information from their respective sources
     const { user, userDeck } = useGlobalContext()
     const location = useLocation()
@@ -50,7 +52,7 @@ const Battle = () => {
         battleOver: false,
     })
 
-    // Initiliaze card selection state
+    const [alertActive, setAlertActive] = useState(false)
     const [cardDragged, setCardDragged] = useState(null)
     const [cardSelected, setCardSelected] = useState(null)
 
@@ -325,6 +327,14 @@ const Battle = () => {
         }
     }, [battleOver])
 
+    const forfeitBattle = async () => {
+        const battleLog = localStorage.getItem('battleLog')
+        await postBattleLog(battleLog)
+        localStorage.removeItem('battleLog')
+        await updateUserStats(user, 'loss')
+        navigate('/opponentSelect')
+    }
+
     return (
         <div className='battle page'>
             <div className='table'>
@@ -373,6 +383,26 @@ const Battle = () => {
                     />
                 </ModalOverlay>
             )}
+            {alertActive && (
+                <Alert>
+                    <h2>Don't be a quitter!</h2>
+                    <div className='buttons'>
+                        <Button
+                            label='Fight on!'
+                            onClick={() => setAlertActive(false)}
+                        />
+                        <Button
+                            label='Forefeit'
+                            onClick={() => forfeitBattle()}
+                        />
+                    </div>
+                    <p>*Forfeiting will count as a loss</p>
+                </Alert>
+            )}
+            <a
+                className='hidden-button'
+                onClick={() => setAlertActive(true)}
+            ></a>
         </div>
     )
 }

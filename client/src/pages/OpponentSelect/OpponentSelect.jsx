@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-import { ModalOverlay } from '@components'
+import { postBattleLog, updateUserStats } from '@api'
+import { Alert, Button } from '@components'
 import { useGlobalContext } from '@context'
 
-import {
-    ActiveBattleAlert,
-    BattlePreviewModal,
-    OpponentCard,
-} from './components'
+import { BattlePreviewModal, OpponentCard } from './components'
 
 import './OpponentSelect.scss'
 
@@ -30,6 +27,16 @@ const OpponentSelect = () => {
 
     const sortedOpponents = allOpponents.sort((a, b) => a.level - b.level)
 
+    const { user } = useGlobalContext()
+
+    const forfeitBattle = async () => {
+        const battleLog = localStorage.getItem('battleLog')
+        await postBattleLog(battleLog)
+        localStorage.removeItem('battleLog')
+        await updateUserStats(user, 'loss')
+        setAlertActive((current) => !current)
+    }
+
     return (
         <div className='opponent-select page center'>
             <div className='background fill' />
@@ -49,17 +56,23 @@ const OpponentSelect = () => {
                     ))}
             </div>
             {alertActive && (
-                <ModalOverlay>
-                    <ActiveBattleAlert setAlertActive={setAlertActive} />
-                </ModalOverlay>
+                <Alert>
+                    <h2>You currently have an unfinished battle</h2>
+                    <div className='buttons'>
+                        <Button label='Rejoin' path='/battle' type='link' />
+                        <Button
+                            label='Forefeit'
+                            onClick={() => forfeitBattle()}
+                        />
+                    </div>
+                    <p>*Forfeiting will count as a loss</p>
+                </Alert>
             )}
             {selectedOpponent && (
-                <ModalOverlay>
-                    <BattlePreviewModal
-                        selectedOpponent={selectedOpponent}
-                        setSelectedOpponent={setSelectedOpponent}
-                    />
-                </ModalOverlay>
+                <BattlePreviewModal
+                    selectedOpponent={selectedOpponent}
+                    setSelectedOpponent={setSelectedOpponent}
+                />
             )}
         </div>
     )

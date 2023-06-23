@@ -1,15 +1,23 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { postBattleLog } from '@api'
 import { Button } from '@components'
 
 import './BattleResultsButtons.scss'
 
 const BattleResultsButtons = ({ loading, opponent, opponentDeck }) => {
     const navigate = useNavigate()
+
+    const handleClick = async () => {
+        const battleLog = JSON.parse(localStorage.getItem('battleLog'))
+        removeStateFromLocalStorage()
+        await postBattleLog(battleLog)
+    }
+
     // Navigate to battle intro page with stored opponent and opponent deck state
     const rematch = () => {
-        removeStateFromLocalStorage()
+        handleClick()
         navigate('/battleIntro', {
             state: {
                 opponent: opponent,
@@ -19,17 +27,17 @@ const BattleResultsButtons = ({ loading, opponent, opponentDeck }) => {
     }
 
     const selectOpponent = () => {
-        removeStateFromLocalStorage()
+        handleClick()
         navigate('/opponentSelect')
     }
 
     const mainMenu = () => {
-        removeStateFromLocalStorage()
+        handleClick()
         navigate('/')
     }
 
     const removeStateFromLocalStorage = () => {
-        localStorage.removeItem('battleState')
+        localStorage.removeItem('battleLog')
     }
 
     return (

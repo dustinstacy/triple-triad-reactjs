@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { updateUserStats } from '@api'
+import { postBattleLog, updateUserStats } from '@api'
 import { Button } from '@components'
 import { useGlobalContext } from '@context'
 
@@ -11,7 +11,9 @@ const ActiveBattleAlert = ({ setAlertActive }) => {
     const { user } = useGlobalContext()
 
     const forfeitBattle = async () => {
-        localStorage.removeItem('battleState')
+        const battleLog = localStorage.getItem('battleLog')
+        await postBattleLog(battleLog)
+        localStorage.removeItem('battleLog')
         await updateUserStats(user, 'loss')
         setAlertActive((current) => !current)
     }

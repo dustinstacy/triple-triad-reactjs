@@ -22,7 +22,7 @@ const OpponentSelect = () => {
     // If saved state exists, display the battle alert.
     // Otherwise, fetch the list of opponents
     useEffect(() => {
-        const savedState = localStorage.getItem('battleState')
+        const savedState = localStorage.getItem('battleLog')
         if (savedState) {
             setAlertActive(true)
         }

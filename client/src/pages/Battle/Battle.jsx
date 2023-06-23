@@ -89,7 +89,7 @@ const Battle = () => {
     // Retrieve state from local storage if it exists
     // Otherwise initialize a new game
     useEffect(() => {
-        const savedState = localStorage.getItem('battleState')
+        const savedState = JSON.parse(localStorage.getItem('battleLog'))
         setTimeout(() => {
             if (savedState) {
                 restoreStateFromLocalStorage(savedState)
@@ -102,7 +102,8 @@ const Battle = () => {
     // Set state equal to state retrieve from local storage
     // Returns state to last move before page exit
     const restoreStateFromLocalStorage = (savedState) => {
-        const { playerOne, playerTwo, battleState } = JSON.parse(savedState)
+        const lastGameState = savedState[savedState.length - 1]
+        const { playerOne, playerTwo, battleState } = lastGameState
         setPlayerOne(playerOne)
         setPlayerTwo(playerTwo)
         setBattleState(battleState)
@@ -184,14 +185,15 @@ const Battle = () => {
     }, [battleStarted])
 
     const saveStateToLocalStorage = () => {
-        localStorage.setItem(
-            'battleState',
-            JSON.stringify({
-                playerOne,
-                playerTwo,
-                battleState,
-            })
-        )
+        const battleLog = JSON.parse(localStorage.getItem('battleLog')) || []
+
+        battleLog.push({
+            playerOne,
+            playerTwo,
+            battleState,
+        })
+
+        localStorage.setItem('battleLog', JSON.stringify(battleLog))
     }
 
     useEffect(() => {

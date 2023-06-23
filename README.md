@@ -59,7 +59,8 @@ application.
 
 <h4>Battle Screen</h4>
 
-![battle screen](https://res.cloudinary.com/dsv7k92lb/image/upload/v1687034685/Nexus%20Dawn/Screenshots/battleScreen_s2qig9.jpg)
+![battle screen](https://github.com/dustinstacy/triple-triad-reactjs/assets/70343773/3d7cd26b-8595-49a5-939e-008b1559a87f)
+
 
 ## Rules
 

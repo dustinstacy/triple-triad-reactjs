@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 
-import { Button } from '@components'
+import { Button, ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
 import { getRandomCards, assignRandomDeckValues } from '@utils/randomizers'
 
@@ -53,41 +53,42 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
     }
 
     return (
-        <div className='battle-preview box center-column'>
-            {selectedOpponentDeck && (
-                <>
-                    {' '}
-                    <AiOutlineCloseCircle
-                        className='close-modal'
-                        onClick={() => setSelectedOpponent(null)}
-                    />
-                    <SelectedOpponent selectedOpponent={selectedOpponent} />
-                    <div className='rules-deck-wrapper'>
-                        <BattleRules selectedOpponent={selectedOpponent} />
-                        <UserDeck selectedOpponent={selectedOpponent} />
-                    </div>
-                    <div className='buttons between'>
-                        <div className='spacer center'></div>
-
-                        <div className='action-buttons center'>
-                            <Button
-                                label='Edit Deck'
-                                type='link'
-                                path='/collection'
-                            />
-                            <Button
-                                label='Start Battle'
-                                onClick={(e) => startBattle(e)}
-                                disabled={
-                                    userDeck?.length <
-                                    selectedOpponent.minDeckSize
-                                }
-                            />
+        <ModalOverlay>
+            <div className='battle-preview box center-column'>
+                {selectedOpponentDeck && (
+                    <>
+                        <AiOutlineCloseCircle
+                            className='close-modal'
+                            onClick={() => setSelectedOpponent(null)}
+                        />
+                        <SelectedOpponent selectedOpponent={selectedOpponent} />
+                        <div className='rules-deck-wrapper'>
+                            <BattleRules selectedOpponent={selectedOpponent} />
+                            <UserDeck selectedOpponent={selectedOpponent} />
                         </div>
-                    </div>
-                </>
-            )}
-        </div>
+                        <div className='buttons between'>
+                            <div className='spacer center'></div>
+
+                            <div className='action-buttons center'>
+                                <Button
+                                    label='Edit Deck'
+                                    type='link'
+                                    path='/collection'
+                                />
+                                <Button
+                                    label='Start Battle'
+                                    onClick={(e) => startBattle(e)}
+                                    disabled={
+                                        userDeck?.length <
+                                        selectedOpponent.minDeckSize
+                                    }
+                                />
+                            </div>
+                        </div>
+                    </>
+                )}
+            </div>
+        </ModalOverlay>
     )
 }
 

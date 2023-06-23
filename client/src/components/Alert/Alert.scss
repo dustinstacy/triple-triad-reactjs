@@ -1,10 +1,8 @@
-.battle-alert {
+.alert {
     min-height: 300px;
     width: 700px;
     font-family: 'Jost';
     text-align: center;
-
-    z-index: 9999;
 
     @media screen and (max-width: 768px) {
         height: 400px;

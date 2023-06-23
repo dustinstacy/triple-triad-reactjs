@@ -6,8 +6,15 @@ export const completeUserStartingData = async () => {
     await axios.post('/api/deck/')
 }
 
-export const incrementOnboardingStage = async (userOnboardingStage) => {
+export const incrementOnboardingStage = async (user) => {
     await axios.put('/api/profile/onboarding', {
-        onboardingStage: userOnboardingStage + 1,
+        onboardingStage: user.onboardingStage + 1,
+    })
+}
+
+export const skipOnboarding = async (user) => {
+    console.log(user.onboardingStage)
+    await axios.put('/api/profile/onboarding', {
+        onboardingStage: user.onboardingStage + 6,
     })
 }

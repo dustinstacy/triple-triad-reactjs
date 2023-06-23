@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TbPlayCard } from 'react-icons/tb'
 
 import { Avatar, ExperienceBar } from '@components'
@@ -8,9 +8,14 @@ import './UserPanel.scss'
 
 // Renders user information including experience gained, battle stats, and card counts
 const UserPanel = () => {
-    const { user, userCards } = useGlobalContext()
+    const { getCurrentUser, user, userCards } = useGlobalContext()
     const { level, stats, username } = user ?? {}
     const uniqueCards = [...new Set(userCards.map((card) => card.name))]
+
+    useEffect(() => {
+        // Call to ensure xp is updated
+        getCurrentUser()
+    }, [])
 
     return (
         <div className='user-panel center'>

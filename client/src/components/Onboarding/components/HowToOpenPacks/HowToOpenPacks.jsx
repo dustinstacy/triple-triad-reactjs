@@ -1,19 +1,43 @@
 import React, { useEffect, useState } from 'react'
 
+import { addCardToCollection } from '@api'
 import { smlogo } from '@assets'
 import { Button, ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
 import { useToggle } from '@hooks'
+import { createCardData } from '@utils'
+import { getRandomCards, assignRandomCardValues } from '@utils/randomizers'
 
 import { onboardingStages } from '../../constants'
 import { packOdds, openPack, cardValues } from '../../images'
 import './HowToOpenPacks.scss'
 
 const HowToOpenPacks = ({ nextStage }) => {
-    const { user, userCards } = useGlobalContext()
+    const { allCards, user, userCards } = useGlobalContext()
     const stage = user?.onboardingStage
     const [step, setStep] = useState(1)
     const [modalOpen, toggleModalOpen, setModalOpen] = useToggle(true)
+
+    const starterCardCount = 5
+    const starterCardOdds = { Common: 80, Uncommon: 20 }
+
+    const handleClick = async () => {
+        const starterCards = getRandomCards(
+            starterCardCount,
+            starterCardOdds,
+            allCards
+        )
+        starterCards.forEach(async (card) => {
+            assignRandomCardValues(card)
+            const cardData = createCardData(card)
+            try {
+                await addCardToCollection(cardData)
+            } catch (error) {
+                console.log(error)
+            }
+        })
+        await nextStage('/collection')
+    }
 
     const incrementStep = () => {
         setStep((step) => step + 1)
@@ -78,7 +102,7 @@ const HowToOpenPacks = ({ nextStage }) => {
                                 <img src={cardValues} alt='cardValues' />
                                 <Button
                                     label={onboardingStages[2].label[0]}
-                                    onClick={() => nextStage('/collection')}
+                                    onClick={handleClick}
                                 />
                             </div>
                         )}

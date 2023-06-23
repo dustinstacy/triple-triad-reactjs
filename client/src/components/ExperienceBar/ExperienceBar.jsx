@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 import { ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
-import { userLevels } from '@constants'
 
 import { handleLevelUp } from './api'
 import { LevelUpScreen } from './components'
+import { userLevels } from './constants'
 import './ExperienceBar.scss'
 
 // Renders the user's experience bar and handles level up functionality when XP thresholds are reached.

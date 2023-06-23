@@ -1,4 +1,4 @@
-const howToPlay = [
+export const howToPlay = [
     {
         header: 'How To Play: Standard Rules',
         body: [
@@ -118,5 +118,3 @@ const howToPlay = [
         ],
     },
 ]
-
-export default howToPlay

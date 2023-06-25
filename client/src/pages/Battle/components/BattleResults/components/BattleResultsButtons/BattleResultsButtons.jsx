@@ -10,9 +10,9 @@ const BattleResultsButtons = ({ loading, opponent, opponentDeck }) => {
     const navigate = useNavigate()
 
     const handleClick = async () => {
-        const battleLog = JSON.parse(localStorage.getItem('battleLog'))
-        removeStateFromLocalStorage()
+        const battleLog = localStorage.getItem('battleLog')
         await postBattleLog(battleLog)
+        removeStateFromLocalStorage()
     }
 
     // Navigate to battle intro page with stored opponent and opponent deck state

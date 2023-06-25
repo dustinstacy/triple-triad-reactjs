@@ -48,44 +48,7 @@
 
     .buttons {
         position: absolute;
-        bottom: 12px;
-        width: 100%;
-        display: flex;
-        padding: 0 24px;
-
-        @media screen and (max-width: 768px) {
-            padding: 0 8px;
-        }
-
-        .button {
-            font-size: 24px;
-
-            @media screen and (max-width: 768px) {
-                font-size: 18px;
-            }
-
-            @media screen and (max-width: 600px) {
-                font-size: 14px;
-            }
-        }
-
-        .spacer {
-            width: 250px;
-
-            @media screen and (max-width: 768px) {
-                width: 0px;
-            }
-        }
-
-        .action-buttons {
-            display: flex;
-            flex: 1;
-            gap: 48px;
-
-            @media screen and (max-width: 768px) {
-                gap: 12px;
-            }
-        }
+        bottom: -12px;
     }
 
     h3 {

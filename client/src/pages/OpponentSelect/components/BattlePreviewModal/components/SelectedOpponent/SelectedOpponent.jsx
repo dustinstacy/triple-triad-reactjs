@@ -15,26 +15,16 @@ const SelectedOpponent = ({ selectedOpponent }) => {
             <img className='opponent-image' src={image} alt='opponent image' />
             <div className='opponent-info start-column'>
                 <div className='info-top start'>
-                    <div className='opponent-level center-column'>
-                        <h2>Level</h2>
-                        <span>{level}</span>
-                    </div>
                     <div className='opponent-power center-column'>
                         <h2>Power</h2>
-                        <span>
-                            {minPower} - {maxPower}
-                        </span>
+                        <span>{Math.floor(minPower + maxPower / 2)}</span>
                     </div>
                 </div>
 
                 <div className='rewards around-column'>
                     <h2>Possible Rewards</h2>
                     <div className='rewards__wrapper center'>
-                        <div className='rewards-xp center'>
-                            <span>{rewards.xp} XP</span>
-                        </div>
                         <div className='rewards-coin center'>
-                            <span>{rewards.coin}</span>
                             <img src={coinImage} alt='coin image' />
                         </div>
                     </div>

@@ -15,7 +15,7 @@ import './BattlePreviewModal.scss'
 const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
     const navigate = useNavigate()
     const { allCards, userDeck } = useGlobalContext()
-    const { deckOdds, minDeckSize, minPower, maxPower, rewards } =
+    const { deckOdds, cardCount, minPower, maxPower, rewards } =
         selectedOpponent
 
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState([])
@@ -27,7 +27,7 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
 
     const getOpponentDeck = () => {
         const opponentRandomCards = getRandomCards(
-            minDeckSize,
+            cardCount,
             deckOdds,
             allCards
         )
@@ -66,25 +66,13 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
                             <BattleRules selectedOpponent={selectedOpponent} />
                             <UserDeck selectedOpponent={selectedOpponent} />
                         </div>
-                        <div className='buttons between'>
-                            <div className='spacer center'></div>
-
-                            <div className='action-buttons center'>
-                                <Button
-                                    label='Edit Deck'
-                                    type='link'
-                                    path='/collection'
-                                />
-                                <Button
-                                    label='Start Battle'
-                                    onClick={(e) => startBattle(e)}
-                                    disabled={
-                                        userDeck?.length <
-                                        selectedOpponent.minDeckSize
-                                    }
-                                />
-                            </div>
-                        </div>
+                        <Button
+                            label='Start Battle'
+                            onClick={(e) => startBattle(e)}
+                            disabled={
+                                userDeck?.length !== selectedOpponent.cardCount
+                            }
+                        />
                     </>
                 )}
             </div>

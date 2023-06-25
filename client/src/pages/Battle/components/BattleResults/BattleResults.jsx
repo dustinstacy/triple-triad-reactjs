@@ -78,13 +78,7 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
                         alt='user image'
                     />
                     <div className='rewards around-column'>
-                        {battleResult === 'Victory' && (
-                            <>
-                                <XPReward xpReward={xpReward} />
-                                <CoinReward coinReward={coinReward} />
-                            </>
-                        )}
-                        {battleResult === 'Draw' && (
+                        {battleResult !== 'Defeat' && (
                             <>
                                 <XPReward xpReward={xpReward} />
                                 <CoinReward coinReward={coinReward} />

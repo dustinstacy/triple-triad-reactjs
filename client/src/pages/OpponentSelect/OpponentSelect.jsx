@@ -11,9 +11,11 @@ import './OpponentSelect.scss'
 // Renders a menu of CPU opponents to select from.
 // Displays alert if saved battle state exists.
 const OpponentSelect = () => {
-    const { allOpponents } = useGlobalContext()
+    const { allOpponents, user } = useGlobalContext()
     const [selectedOpponent, setSelectedOpponent] = useState(null)
     const [alertActive, setAlertActive] = useState(false)
+
+    const sortedOpponents = allOpponents.sort((a, b) => a.level - b.level)
 
     // Check for a saved battle state when component mounts.
     // If saved state exists, display the battle alert.
@@ -24,10 +26,6 @@ const OpponentSelect = () => {
             setAlertActive(true)
         }
     }, [alertActive])
-
-    const sortedOpponents = allOpponents.sort((a, b) => a.level - b.level)
-
-    const { user } = useGlobalContext()
 
     const forfeitBattle = async () => {
         const battleLog = localStorage.getItem('battleLog')

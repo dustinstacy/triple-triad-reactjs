@@ -1,82 +1,129 @@
 .user-deck {
-    display: flex;
-    flex: 1;
-    padding: 8px;
-    border: 1px solid var(--secondary2-color);
+    position: absolute;
+    bottom: 0;
+    height: 175px;
+    width: 100%;
+    overflow: hidden;
 
-    &.panel {
-        box-shadow: none;
+    @media screen and (min-height: 768px) {
+        height: 200px;
+    }
+
+    @media screen and (min-height: 900px) {
+        height: 250px;
+    }
+
+    @media screen and (max-width: 568px) {
+        height: auto;
+    }
+
+    .header-wrapper {
+        position: relative;
+        height: 40px;
+        font-size: 22px;
+
+        @media screen and (min-height: 900px) {
+            height: 50px;
+            font-size: 28px;
+        }
+
+        .header-style {
+            position: absolute;
+            height: 100%;
+            width: 800px;
+            z-index: -1;
+            rotate: 180deg;
+
+            @media screen and (min-height: 900px) {
+                width: 1200px;
+            }
+        }
     }
 
     .deck-wrapper {
-        .deck-info {
-            height: 160px;
+        padding: 12px;
 
-            @media screen and (min-height: 912px) {
-                height: 200px;
+        @media screen and (min-height: 900px) {
+            padding: 24px;
+        }
+
+        @media screen and (max-width: 568px) {
+            flex-direction: column;
+        }
+    }
+
+    .deck-info {
+        height: 100%;
+        width: 50%;
+
+        @media screen and (min-height: 768px) {
+            padding-right: 50px;
+            gap: 12px;
+        }
+
+        @media screen and (max-width: 568px) {
+            padding: 0;
+        }
+
+        .user-deck-power,
+        .user-deck-count {
+            width: 100%;
+            font-size: 18px;
+            text-align: center;
+
+            @media screen and (min-height: 900px) {
+                font-size: 24px;
             }
 
-            > div {
-                height: 50px;
-                width: 100%;
-                text-align: center;
-                line-height: 1.25;
-
-                h4 {
-                    font-size: 20px;
-
-                    @media screen and (min-height: 912px) {
-                        font-size: 20px;
-                    }
-
-                    @media screen and (max-width: 600px) {
-                        font-size: inherit;
-                    }
-                }
-
-                > * {
-                    margin: 0;
-                }
-
-                span {
-                    font-size: 18px;
-
-                    @media screen and (min-height: 912px) {
-                        font-size: 18px;
-                    }
-
-                    @media screen and (max-width: 600px) {
-                        font-size: inherit;
-                    }
-                }
+            @media screen and (max-width: 568px) {
+                font-size: 18px;
+                margin-bottom: 18px;
             }
         }
 
-        .deck-image {
-            height: 150px;
-            width: calc(150px * 0.725);
-
-            @media screen and (min-height: 912px) {
-                height: 200px;
-                width: calc(200px * 0.725);
+        .user-deck-count {
+            .valid {
+                color: var(--secondary-color);
             }
 
-            @media screen and (max-width: 600px) {
-                height: 150px;
-                width: calc(150px * 0.725);
+            .invalid {
+                color: var(--error-color);
             }
-            .card {
-                height: 100%;
-                width: 100%;
+        }
+    }
 
-                .card__side {
-                    height: 100%;
-                    width: 100%;
+    .buttons {
+        height: 100%;
+        width: 50%;
+        gap: 12px;
 
-                    img {
-                        border-radius: 4px;
-                    }
-                }
+        @media screen and (min-height: 600px) {
+            gap: 18px;
+        }
+
+        @media screen and (min-height: 900px) {
+            gap: 24px;
+        }
+
+        @media screen and (max-width: 568px) {
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .button {
+            position: relative;
+            bottom: 0;
+            width: 175px;
+            font-size: 16px;
+
+            @media screen and (min-height: 900px) {
+                width: 250px;
+                font-size: 22px;
+            }
+
+            @media screen and (max-width: 568px) {
+                width: 200px;
+                font-size: 16px;
             }
         }
     }

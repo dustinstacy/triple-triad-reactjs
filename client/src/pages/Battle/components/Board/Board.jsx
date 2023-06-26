@@ -119,7 +119,7 @@ const Board = ({
                 {battleState.round > 1 && <span>{playerTwo.battleScore}</span>}
                 <img
                     className={p2ImageClassNames}
-                    src={playerTwo.user?.image}
+                    src={playerTwo.user?.avatar}
                     alt='p2 image'
                 />
                 <img

@@ -17,6 +17,15 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
     const user = playerOne.user
     const opponent = playerTwo.user
 
+    const coinReward = Math.floor(
+        opponent.rewards.coin *
+            (playerOne.battleScore + 1 - playerTwo.battleScore)
+    )
+    const xpReward = Math.floor(
+        opponent.rewards.xp *
+            (playerOne.battleScore + 1 - playerTwo.battleScore)
+    )
+
     useEffect(() => {
         setBattleResults()
     }, [])
@@ -24,42 +33,34 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
     const setBattleResults = () => {
         if (playerOne.battleScore > playerTwo.battleScore) {
             setBattleResult('Victory')
-            handleResult('win', opponent.rewards)
+            handleResult('win')
         } else if (playerOne.battleScore < playerTwo.battleScore) {
             setBattleResult('Defeat')
             handleResult('loss')
         } else if (playerOne.battleScore === playerTwo.battleScore) {
             setBattleResult('Draw')
-            handleResult('draw', opponent.rewards)
+            handleResult('draw')
         }
     }
 
-    const handleResult = async (resultType, rewards) => {
+    const handleResult = async (resultType) => {
         await updateUserStats(user, resultType)
-        await addCoin(
-            user,
-            resultType === 'win' ? rewards.coin : Math.floor(rewards.coin / 2)
-        )
-        setTimeout(async () => {
-            await addExperience(
-                user,
-                resultType === 'win' ? rewards.xp : Math.floor(rewards.xp / 2)
-            )
-            await getCurrentUser()
-        }, 1000)
-    }
-
-    useEffect(() => {
         if (battleResult === 'Defeat') {
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
+            return
         } else {
+            await addCoin(user, coinReward)
+            setTimeout(async () => {
+                await addExperience(user, xpReward)
+                await getCurrentUser()
+            }, 1000)
             setTimeout(() => {
                 setLoading(false)
             }, 4000)
         }
-    }, [battleResult])
+    }
 
     return (
         <div className='battle-over fill center'>
@@ -77,20 +78,10 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
                         alt='user image'
                     />
                     <div className='rewards around-column'>
-                        {battleResult === 'Victory' && (
+                        {battleResult !== 'Defeat' && (
                             <>
-                                <XPReward xpReward={opponent?.rewards.xp} />
-                                <CoinReward
-                                    coinReward={opponent?.rewards.coin}
-                                />
-                            </>
-                        )}
-                        {battleResult === 'Draw' && (
-                            <>
-                                <XPReward xpReward={opponent?.rewards.xp / 2} />
-                                <CoinReward
-                                    coinReward={opponent?.rewards.coin / 2}
-                                />
+                                <XPReward xpReward={xpReward} />
+                                <CoinReward coinReward={coinReward} />
                             </>
                         )}
                     </div>

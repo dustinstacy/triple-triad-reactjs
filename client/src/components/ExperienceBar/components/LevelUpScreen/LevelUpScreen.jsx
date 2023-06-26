@@ -36,7 +36,7 @@ const LevelUpScreen = ({ setNewLevelAlert }) => {
                 <hr className='wrapper-hr' />
             </div>
             <div className='level-up-unlocks around'>
-                {level <= 11 && (
+                {level < 10 && (
                     <>
                         <div className='unlock start-column panel background-gradient'>
                             <h2>

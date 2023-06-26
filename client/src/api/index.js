@@ -18,6 +18,12 @@ export const addCoin = async (user, amount) => {
     })
 }
 
+// Mark card as selected and add card to user's deck
+export const addCardToDeck = async (card) => {
+    await axios.put(`/api/deck/add`, card)
+    await axios.put(`/api/collection/${card._id}/select`)
+}
+
 export const addItemToInventory = async (inventory, item) => {
     let updatedInventory = [...inventory]
 
@@ -37,6 +43,12 @@ export const deductCoin = async (user, amount) => {
     await axios.put('/api/profile/info', {
         coin: updatedCoin.toString(), // Explicitly set to string to account for 0
     })
+}
+
+// Mark card as unselected and remove card from user's deck
+export const removeCardFromDeck = async (card) => {
+    await axios.put(`/api/deck/${card._id}/remove`)
+    await axios.put(`/api/collection/${card._id}/unselect`)
 }
 
 export const removeItemFromInventory = async (inventory, item) => {

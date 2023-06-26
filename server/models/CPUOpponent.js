@@ -6,6 +6,10 @@ const CPUOpponentSchema = new Schema(
             type: String,
             required: true,
         },
+        avatar: {
+            type: String,
+            required: true,
+        },
         image: {
             type: String,
             required: true,
@@ -22,7 +26,7 @@ const CPUOpponentSchema = new Schema(
             type: Object,
             required: true,
         },
-        deckCount: {
+        cardCount: {
             type: Number,
             required: true,
         },
@@ -36,6 +40,10 @@ const CPUOpponentSchema = new Schema(
         },
         rules: {
             type: Array,
+            required: true,
+        },
+        rounds: {
+            type: Number,
             required: true,
         },
         rewards: {

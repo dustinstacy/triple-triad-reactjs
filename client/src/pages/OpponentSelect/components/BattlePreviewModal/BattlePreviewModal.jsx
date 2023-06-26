@@ -6,7 +6,7 @@ import { Button, ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
 import { getRandomCards, assignRandomDeckValues } from '@utils/randomizers'
 
-import { BattleRules, SelectedOpponent, UserDeck } from './components'
+import { SelectedOpponent, UserDeck } from './components'
 import './BattlePreviewModal.scss'
 
 // Renders the battle preview overlay upon selection of an opponent
@@ -15,7 +15,7 @@ import './BattlePreviewModal.scss'
 const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
     const navigate = useNavigate()
     const { allCards, userDeck } = useGlobalContext()
-    const { deckOdds, minDeckSize, minPower, maxPower, rewards } =
+    const { deckOdds, cardCount, minPower, maxPower, rewards } =
         selectedOpponent
 
     const [selectedOpponentDeck, setSelectedOpponentDeck] = useState([])
@@ -27,7 +27,7 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
 
     const getOpponentDeck = () => {
         const opponentRandomCards = getRandomCards(
-            minDeckSize,
+            cardCount,
             deckOdds,
             allCards
         )
@@ -54,7 +54,7 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
 
     return (
         <ModalOverlay>
-            <div className='battle-preview box center-column'>
+            <div className='battle-preview center-column'>
                 {selectedOpponentDeck && (
                     <>
                         <AiOutlineCloseCircle
@@ -62,29 +62,15 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
                             onClick={() => setSelectedOpponent(null)}
                         />
                         <SelectedOpponent selectedOpponent={selectedOpponent} />
-                        <div className='rules-deck-wrapper'>
-                            <BattleRules selectedOpponent={selectedOpponent} />
-                            <UserDeck selectedOpponent={selectedOpponent} />
-                        </div>
-                        <div className='buttons between'>
-                            <div className='spacer center'></div>
+                        <UserDeck selectedOpponent={selectedOpponent} />
 
-                            <div className='action-buttons center'>
-                                <Button
-                                    label='Edit Deck'
-                                    type='link'
-                                    path='/collection'
-                                />
-                                <Button
-                                    label='Start Battle'
-                                    onClick={(e) => startBattle(e)}
-                                    disabled={
-                                        userDeck?.length <
-                                        selectedOpponent.minDeckSize
-                                    }
-                                />
-                            </div>
-                        </div>
+                        <Button
+                            label='Start Battle'
+                            onClick={(e) => startBattle(e)}
+                            disabled={
+                                userDeck?.length !== selectedOpponent.cardCount
+                            }
+                        />
                     </>
                 )}
             </div>

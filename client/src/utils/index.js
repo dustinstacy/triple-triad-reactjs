@@ -31,6 +31,25 @@ export const calculateDeckPower = (array) => {
     return power
 }
 
+// Calculate the sum of all card values within an array
+export const calculateOptimizedDeck = (array, count) => {
+    const sortedArray = array.sort(
+        (a, b) =>
+            b.values.reduce(
+                (sum, current) => parseInt(sum) + parseInt(current),
+                0
+            ) -
+            a.values.reduce(
+                (sum, current) => parseInt(sum) + parseInt(current),
+                0
+            )
+    )
+
+    const optimizedDeck = sortedArray.slice(0, count)
+
+    return optimizedDeck
+}
+
 // array: The array from which the object will be removed
 // property: The property name used for comparison to find the object
 // value: The value of the property to match and remove the corresponding object

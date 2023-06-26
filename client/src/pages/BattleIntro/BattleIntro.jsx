@@ -30,7 +30,7 @@ const BattleIntro = () => {
             <div className='battle-intro fill between-column'>
                 <div className='p2-intro start'>
                     <img
-                        src={opponent?.image}
+                        src={opponent?.avatar}
                         style={{ background: opponent?.color }}
                         alt='p2 image'
                     />

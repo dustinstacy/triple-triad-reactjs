@@ -8,7 +8,7 @@ import './OpponentCard.scss'
 // Renders a selectable opponent card with an image and name display.
 const OpponentCard = ({ opponent, selectedOpponent, setSelectedOpponent }) => {
     const { user } = useGlobalContext()
-    const { image, level, name } = opponent
+    const { avatar, level, name } = opponent
 
     const opponentClasses = classSet(
         'opponent-card',
@@ -23,7 +23,7 @@ const OpponentCard = ({ opponent, selectedOpponent, setSelectedOpponent }) => {
                     className={opponentClasses}
                     onClick={() => setSelectedOpponent(opponent)}
                 >
-                    <img src={image} alt='opponent image' />
+                    <img src={avatar} alt='opponent image' />
                     <h3>{name}</h3>
                 </div>
             ) : (

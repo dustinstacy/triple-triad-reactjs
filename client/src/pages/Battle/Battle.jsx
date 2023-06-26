@@ -80,7 +80,6 @@ const Battle = () => {
         })
         .filter((index) => index !== null)
 
-    const battleRounds = opponent?.minDeckSize / 5
     const cpuCanAct =
         battleStarted &&
         !isP1Turn &&
@@ -169,7 +168,7 @@ const Battle = () => {
         if ((handsDealt === true) & (battleStarted === false)) {
             updateState(setBattleState, {
                 roundResults: Array.from(
-                    { length: battleRounds },
+                    { length: opponent.rounds },
                     (_, index) => {
                         return { round: index + 1, p1Score: '', p2Score: '' }
                     }
@@ -289,11 +288,11 @@ const Battle = () => {
 
     const checkForBattleEnd = () => {
         if (
-            round === battleRounds ||
+            round === opponent.rounds ||
             playerOne.battleScore >
-                playerTwo.battleScore + (battleRounds - round) * 9 ||
+                playerTwo.battleScore + (opponent.rounds - round) * 9 ||
             playerTwo.battleScore >
-                playerOne.battleScore + (battleRounds - round) * 9
+                playerOne.battleScore + (opponent.rounds - round) * 9
         ) {
             updateState(setBattleState, { battleOver: true })
         } else {

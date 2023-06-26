@@ -6,6 +6,10 @@ const CPUOpponentSchema = new Schema(
             type: String,
             required: true,
         },
+        avatar: {
+            type: String,
+            required: true,
+        },
         image: {
             type: String,
             required: true,

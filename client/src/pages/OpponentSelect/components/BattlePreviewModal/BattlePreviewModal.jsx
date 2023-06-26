@@ -6,7 +6,7 @@ import { Button, ModalOverlay } from '@components'
 import { useGlobalContext } from '@context'
 import { getRandomCards, assignRandomDeckValues } from '@utils/randomizers'
 
-import { BattleRules, SelectedOpponent, UserDeck } from './components'
+import { SelectedOpponent, UserDeck } from './components'
 import './BattlePreviewModal.scss'
 
 // Renders the battle preview overlay upon selection of an opponent
@@ -54,7 +54,7 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
 
     return (
         <ModalOverlay>
-            <div className='battle-preview box center-column'>
+            <div className='battle-preview center-column'>
                 {selectedOpponentDeck && (
                     <>
                         <AiOutlineCloseCircle
@@ -62,10 +62,8 @@ const BattlePreviewModal = ({ selectedOpponent, setSelectedOpponent }) => {
                             onClick={() => setSelectedOpponent(null)}
                         />
                         <SelectedOpponent selectedOpponent={selectedOpponent} />
-                        <div className='rules-deck-wrapper'>
-                            <BattleRules selectedOpponent={selectedOpponent} />
-                            <UserDeck selectedOpponent={selectedOpponent} />
-                        </div>
+                        <UserDeck selectedOpponent={selectedOpponent} />
+
                         <Button
                             label='Start Battle'
                             onClick={(e) => startBattle(e)}

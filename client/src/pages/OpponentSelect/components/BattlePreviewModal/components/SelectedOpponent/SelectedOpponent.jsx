@@ -1,32 +1,80 @@
 import React from 'react'
 
-import { coinImage } from '@assets'
+import { coinImage, headerStyle } from '@assets'
+import { useGlobalContext } from '@context'
 
 import './SelectedOpponent.scss'
 
 // Renders selected opponent information
 const SelectedOpponent = ({ selectedOpponent }) => {
-    const { name, image, level, minPower, maxPower, rewards } = selectedOpponent
+    const { allItems } = useGlobalContext()
+    const { name, image, minPower, maxPower, rewards, rounds } =
+        selectedOpponent
+
+    const roundsDisplay = ' Round' + (rounds > 1 ? 's' : '')
+
+    const rewardItems = allItems.filter((item) =>
+        rewards.items.includes(item.name)
+    )
 
     return (
-        <div className='selected-opponent'>
+        <div className='selected-opponent fill'>
             <h1 className='opponent-name'>{name}</h1>
-
-            <img className='opponent-image' src={image} alt='opponent image' />
+            <img
+                className='opponent-image fill'
+                src={image}
+                alt='opponent image'
+            />
+            <div className='side-bar' />
             <div className='opponent-info start-column'>
-                <div className='info-top start'>
-                    <div className='opponent-power center-column'>
-                        <h2>Power</h2>
-                        <span>{Math.floor(minPower + maxPower / 2)}</span>
+                <div className='power-attribute between-column'>
+                    <div className='header-wrapper center'>
+                        <img
+                            className='header-style'
+                            src={headerStyle}
+                            alt='header style'
+                        />
+                        POWER
+                    </div>
+                    <div className='value'>
+                        <span>{(minPower + maxPower) / 2}</span>
                     </div>
                 </div>
-
-                <div className='rewards around-column'>
-                    <h2>Possible Rewards</h2>
-                    <div className='rewards__wrapper center'>
-                        <div className='rewards-coin center'>
-                            <img src={coinImage} alt='coin image' />
-                        </div>
+                <div className='rules-attribute between-column'>
+                    <div className='header-wrapper center'>
+                        <img
+                            className='header-style'
+                            src={headerStyle}
+                            alt='header style'
+                        />
+                        Rules
+                    </div>
+                    <div className='value center-column'>
+                        <span>{selectedOpponent.rules}</span>
+                        <span>
+                            {selectedOpponent.rounds}
+                            {roundsDisplay}
+                        </span>
+                    </div>
+                </div>
+                <div className='rewards-attribute between-column'>
+                    <div className='header-wrapper center'>
+                        <img
+                            className='header-style'
+                            src={headerStyle}
+                            alt='header style'
+                        />
+                        Drops
+                    </div>
+                    <div className='value around'>
+                        <img src={coinImage} alt='coin image' />
+                        {rewardItems?.map((item) => (
+                            <img
+                                key={item.name}
+                                src={item.image}
+                                alt='item image'
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

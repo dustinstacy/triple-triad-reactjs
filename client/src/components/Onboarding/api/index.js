@@ -13,7 +13,6 @@ export const incrementOnboardingStage = async (user) => {
 }
 
 export const skipOnboarding = async (user) => {
-    console.log(user.onboardingStage)
     await axios.put('/api/profile/onboarding', {
         onboardingStage: user.onboardingStage + 6,
     })

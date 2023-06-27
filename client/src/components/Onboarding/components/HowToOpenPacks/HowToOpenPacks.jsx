@@ -18,7 +18,7 @@ const HowToOpenPacks = ({ nextStage }) => {
     const [step, setStep] = useState(1)
     const [modalOpen, toggleModalOpen, setModalOpen] = useToggle(true)
 
-    const starterCardCount = 5
+    const starterCardCount = 14
     const starterCardOdds = { Common: 80, Uncommon: 20 }
 
     const handleClick = async () => {

@@ -11,7 +11,7 @@ const RoundResult = ({ playerOne, playerTwo, battleState }) => {
         <div className='round-result fill around'>
             <div className='round-player start-column'>
                 <h4>{playerTwo.user?.name}</h4>
-                <img src={playerTwo.user?.image} alt='p2 image' />
+                <img src={playerTwo.user?.avatar} alt='p2 image' />
             </div>
 
             <div className='score-wrapper start-column'>

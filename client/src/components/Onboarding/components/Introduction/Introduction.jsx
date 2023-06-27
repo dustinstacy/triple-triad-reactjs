@@ -14,7 +14,7 @@ import './Introduction.scss'
 const Introduction = ({ nextStage }) => {
     const { allCards, allItems, getCurrentUser, user } = useGlobalContext()
 
-    const starterCardCount = 5
+    const starterCardCount = 14
     const starterCardOdds = { Common: 80, Uncommon: 20 }
 
     const handleBegin = async () => {

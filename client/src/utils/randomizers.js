@@ -110,7 +110,6 @@ export const assignRandomDeckValues = (deck, minDeckValue, maxDeckValue) => {
             }
             return total
         }, 0)
-        console.log(finalValue)
     } while (
         // When the total value of all card values in the deck falls within range,
         // exit the loop

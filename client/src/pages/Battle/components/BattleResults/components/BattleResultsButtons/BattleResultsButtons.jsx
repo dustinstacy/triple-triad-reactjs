@@ -16,8 +16,8 @@ const BattleResultsButtons = ({ loading, opponent, opponentDeck }) => {
     }
 
     // Navigate to battle intro page with stored opponent and opponent deck state
-    const rematch = () => {
-        handleClick()
+    const rematch = async () => {
+        await handleClick()
         navigate('/battleIntro', {
             state: {
                 opponent: opponent,
@@ -26,13 +26,13 @@ const BattleResultsButtons = ({ loading, opponent, opponentDeck }) => {
         })
     }
 
-    const selectOpponent = () => {
-        handleClick()
+    const selectOpponent = async () => {
+        await handleClick()
         navigate('/opponentSelect')
     }
 
-    const mainMenu = () => {
-        handleClick()
+    const mainMenu = async () => {
+        await handleClick()
         navigate('/')
     }
 

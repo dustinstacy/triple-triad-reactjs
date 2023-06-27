@@ -45,6 +45,14 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
 
     const handleResult = async (resultType) => {
         await updateUserStats(user, resultType)
+        const randomRewardChance = Math.random()
+
+        console.log(randomRewardChance)
+
+        if (battleResult === 'Victory' && randomRewardChance < 0.1) {
+            console.log('won item')
+        }
+
         if (battleResult === 'Defeat') {
             setTimeout(() => {
                 setLoading(false)

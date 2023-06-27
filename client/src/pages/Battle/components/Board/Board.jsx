@@ -80,8 +80,19 @@ const Board = ({
         }
     }
 
-    const p1ImageClassNames = classSet('user-image', isP1Turn && 'is-turn')
-    const p2ImageClassNames = classSet('user-image', !isP1Turn && 'is-turn')
+    const p1ImageClassNames = classSet(
+        'user-image',
+        isP1Turn && isP1Turn !== null && 'is-turn'
+    )
+    const p2ImageClassNames = classSet(
+        'user-image',
+        !isP1Turn && isP1Turn !== null && 'is-turn'
+    )
+    const turnArrowClassNames = classSet(
+        'turn-arrow',
+        isP1Turn && isP1Turn !== null && 'down',
+        !isP1Turn && isP1Turn !== null && 'up'
+    )
 
     return (
         <div className='board center'>
@@ -123,7 +134,7 @@ const Board = ({
                     alt='p2 image'
                 />
                 <img
-                    className={`turn-arrow ${isP1Turn ? 'down' : 'up'}`}
+                    className={turnArrowClassNames}
                     src={turnArrow}
                     alt='turn arrow'
                 />

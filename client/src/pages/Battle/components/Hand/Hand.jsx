@@ -12,15 +12,11 @@ const Hand = ({
     cardSelected,
     setCardSelected,
     setCardDragged,
+    handsDealt,
 }) => {
     const { hand, name } = player
 
     const [shouldCollapse, setShouldCollapse] = useState(false)
-
-    const handClasses = classSet(
-        name === 'p1' ? 'p1 hand' : 'p2 hand',
-        shouldCollapse && 'collapse'
-    )
 
     useEffect(() => {
         if (cardDragged) {
@@ -43,6 +39,12 @@ const Hand = ({
             }
         }
     }
+
+    const handClasses = classSet(
+        name === 'p1' ? 'p1 hand' : 'p2 hand',
+        shouldCollapse && 'collapse',
+        !handsDealt && 'dealing'
+    )
 
     return (
         <div className={handClasses}>

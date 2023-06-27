@@ -9,6 +9,27 @@
     @media screen and (max-width: 600px) {
         scale: 0.4;
     }
+
+    $cardCount: 5;
+
+    @for $i from 1 through $cardCount {
+        > .card:nth-child(#{$i}) {
+            animation-delay: $i * 200ms;
+        }
+    }
+
+    .card {
+        animation: deal 500ms linear forwards;
+        opacity: 0;
+    }
+
+    &:not(.dealing) {
+        .card {
+            animation-play-state: paused;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
 
 .p1 {
@@ -81,6 +102,7 @@
     height: 12vh;
     display: flex;
     align-items: flex-end;
+    flex-direction: row-reverse;
     z-index: 10;
 
     @media screen and (max-width: 768px) {
@@ -94,5 +116,20 @@
     .card {
         rotate: 180deg;
         pointer-events: none;
+    }
+}
+
+@keyframes deal {
+    0% {
+        transform: translateY(500px);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(-25px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

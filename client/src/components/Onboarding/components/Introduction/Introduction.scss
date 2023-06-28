@@ -1,9 +1,9 @@
-.introduction.buttons {
+.introduction .buttons {
     position: absolute;
     bottom: -8vh;
     height: auto;
     width: 100%;
-    flex-direction: column-reverse !important;
+    flex-direction: column;
     gap: 5vh;
 
     .button {

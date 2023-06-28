@@ -20,13 +20,11 @@ const Landing = ({ register }) => {
         if (user) navigate('/')
     }, [user])
 
-    const imageClass = register ? 'logo-register' : 'logo'
-
     return (
         <div className='landing page center'>
             <NavBar landing />
             <div className='auth box around-column'>
-                <img className={imageClass} src={logo} alt='logo' />
+                <img className='logo' src={logo} alt='logo' />
                 <AuthForm register={register} />
             </div>
             {width > 1200 && height !== window.screen.availHeight ? (

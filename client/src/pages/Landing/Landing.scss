@@ -7,7 +7,7 @@
     .auth {
         position: relative;
         height: 100%;
-        width: 600px;
+        width: 40vw;
 
         @media screen and (max-width: 768px) {
             width: 100vw;
@@ -15,22 +15,10 @@
 
         .logo {
             margin: -64px 0 16px;
-            width: 500px;
+            width: 400px;
 
-            @media screen and (min-width: 1200px) {
-                width: 600px;
-            }
-
-            @media screen and (max-width: 600px) {
+            @media screen and (max-width: 400px) {
                 width: 300px;
-            }
-
-            &-register {
-                width: 500px;
-
-                @media screen and (max-width: 768px) {
-                    width: 100%;
-                }
             }
         }
     }

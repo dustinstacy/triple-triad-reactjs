@@ -14,9 +14,6 @@ import './Introduction.scss'
 const Introduction = ({ nextStage }) => {
     const { allCards, allItems, getCurrentUser, user } = useGlobalContext()
 
-    const starterCardCount = 14
-    const starterCardOdds = { Common: 80, Uncommon: 20 }
-
     const handleBegin = async () => {
         await completeUserStartingData()
         await addCoin(user, 200)
@@ -26,11 +23,10 @@ const Introduction = ({ nextStage }) => {
     const handleSkip = async () => {
         await completeUserStartingData()
         await addCoin(user, 200)
-        const starterCards = getRandomCards(
-            starterCardCount,
-            starterCardOdds,
-            allCards
-        )
+        let starterCards = []
+        const commonCards = getRandomCards(12, { Common: 100 }, allCards)
+        const uncommonCards = getRandomCards(2, { Uncommon: 100 }, allCards)
+        starterCards = [...commonCards, ...uncommonCards]
         starterCards.forEach(async (card) => {
             assignRandomCardValues(card)
             const cardData = createCardData(card)
@@ -62,11 +58,11 @@ const Introduction = ({ nextStage }) => {
                 <div className='body box start-column'>
                     <p>{onboardingStages[0].body}</p>
                     <div className='buttons center-column'>
-                        <a onClick={handleSkip}>Skip</a>
                         <Button
                             label={onboardingStages[0].label}
                             onClick={handleBegin}
                         />
+                        <a onClick={handleSkip}>Skip</a>
                     </div>
                 </div>
             </div>

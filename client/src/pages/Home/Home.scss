@@ -158,12 +158,6 @@
             scale: 1.01;
             filter: grayscale(0.1);
         }
-
-        &.disabled {
-            color: var(--gray-color);
-            pointer-events: none;
-            filter: grayscale(0.5);
-        }
     }
 
     h1,
@@ -227,5 +221,10 @@
         background: url('../../assets/page-images/howToPlay.png');
         background-position: center;
         background-size: cover;
+    }
+
+    .contact-sub,
+    .news-sub {
+        pointer-events: none;
     }
 }

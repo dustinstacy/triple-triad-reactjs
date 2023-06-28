@@ -112,18 +112,6 @@ const Battle = () => {
 
     // Begin process of setting up a new game
     const newGame = () => {
-        randomFirstTurn()
-    }
-
-    const randomFirstTurn = () => {
-        const arrowElement = document.querySelector('.turn-arrow')
-        arrowElement.classList.add('start-game')
-        setTimeout(() => {
-            Math.random() < 0.5
-                ? updateState(setBattleState, { isP1Turn: true })
-                : updateState(setBattleState, { isP1Turn: false })
-            arrowElement.classList.remove('start-game')
-        }, 1000)
         shuffleDecks()
     }
 
@@ -138,9 +126,7 @@ const Battle = () => {
     // not currently under way
     useEffect(() => {
         if (decksShuffled === true && battleStarted === false) {
-            setTimeout(() => {
-                dealHands()
-            }, 1000)
+            dealHands()
         }
     }, [decksShuffled])
 
@@ -157,9 +143,11 @@ const Battle = () => {
             hand: [...playerTwo.hand],
             roundScore: playerTwo.hand.length,
         })
-        updateState(setBattleState, {
-            handsDealt: true,
-        })
+        setTimeout(() => {
+            updateState(setBattleState, {
+                handsDealt: true,
+            })
+        }, 1500)
     }
 
     // Decide who goes first only once hands have been dealt and
@@ -173,10 +161,22 @@ const Battle = () => {
                         return { round: index + 1, p1Score: '', p2Score: '' }
                     }
                 ),
-                battleStarted: true,
             })
+            randomFirstTurn()
         }
     }, [handsDealt])
+
+    const randomFirstTurn = () => {
+        const arrowElement = document.querySelector('.turn-arrow')
+        arrowElement.classList.add('start-game')
+        setTimeout(() => {
+            Math.random() < 0.5
+                ? updateState(setBattleState, { isP1Turn: true })
+                : updateState(setBattleState, { isP1Turn: false })
+            arrowElement.classList.remove('start-game')
+            updateState(setBattleState, { battleStarted: true })
+        }, 1000)
+    }
 
     // Save state to local storage when a new game has been initialized
     useEffect(() => {
@@ -343,6 +343,7 @@ const Battle = () => {
                     cardSelected={cardSelected}
                     cardDragged={cardDragged}
                     setCardSelected={setCardSelected}
+                    handsDealt={handsDealt}
                 />
                 <Board
                     playerOne={playerOne}
@@ -362,6 +363,7 @@ const Battle = () => {
                     cardDragged={cardDragged}
                     setCardSelected={setCardSelected}
                     setCardDragged={setCardDragged}
+                    handsDealt={handsDealt}
                 />
             </div>
             {roundOver && !battleOver && (

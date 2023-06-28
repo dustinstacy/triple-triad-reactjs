@@ -170,6 +170,7 @@
         .turn-arrow {
             height: 12vh;
             width: 6vh;
+            transform: rotate(270deg);
             transition: all 1s ease;
 
             @media screen and (max-width: 1024px) {

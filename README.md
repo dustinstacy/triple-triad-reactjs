@@ -25,7 +25,7 @@ Nexus Dawn
 ---
 
 <div align="center">
-<img src='https://res.cloudinary.com/dsv7k92lb/image/upload/v1687034760/Nexus%20Dawn/logos/logo_c9eaj0.png' alt='logo'/>
+<img height='400px' src='https://res.cloudinary.com/dsv7k92lb/image/upload/v1687034760/Nexus%20Dawn/logos/logo_c9eaj0.png' alt='logo'/>
 <br/>
 Website: <a href='https://nexus-dawn.com'>https://nexus-dawn.com</a>
 <h2></h2>

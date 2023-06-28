@@ -18,15 +18,11 @@ const HowToOpenPacks = ({ nextStage }) => {
     const [step, setStep] = useState(1)
     const [modalOpen, toggleModalOpen, setModalOpen] = useToggle(true)
 
-    const starterCardCount = 14
-    const starterCardOdds = { Common: 80, Uncommon: 20 }
-
     const handleClick = async () => {
-        const starterCards = getRandomCards(
-            starterCardCount,
-            starterCardOdds,
-            allCards
-        )
+        let starterCards = []
+        const commonCards = getRandomCards(12, { Common: 100 }, allCards)
+        const uncommonCards = getRandomCards(2, { Uncommon: 100 }, allCards)
+        starterCards = [...commonCards, ...uncommonCards]
         starterCards.forEach(async (card) => {
             assignRandomCardValues(card)
             const cardData = createCardData(card)

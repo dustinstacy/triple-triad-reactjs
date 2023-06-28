@@ -24,8 +24,8 @@ const Introduction = ({ nextStage }) => {
         await completeUserStartingData()
         await addCoin(user, 200)
         let starterCards = []
-        const commonCards = getRandomCards(10, { Common: 100 }, allCards)
-        const uncommonCards = getRandomCards(4, { Uncommon: 100 }, allCards)
+        const commonCards = getRandomCards(12, { Common: 100 }, allCards)
+        const uncommonCards = getRandomCards(2, { Uncommon: 100 }, allCards)
         starterCards = [...commonCards, ...uncommonCards]
         starterCards.forEach(async (card) => {
             assignRandomCardValues(card)

@@ -67,7 +67,6 @@ const SelectedOpponent = ({ selectedOpponent }) => {
                         Drops
                     </div>
                     <div className='value around'>
-                        <img src={coinImage} alt='coin image' />
                         {rewardItems?.map((item) => (
                             <img
                                 key={item.name}

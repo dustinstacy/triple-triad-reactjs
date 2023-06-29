@@ -108,11 +108,11 @@ cd ..
 Next, create a `.env` file inside your server folder. There you will paste the following:
 
 ```
-PORT= //set this equal to the port you wish to run your local server on.
+PORT=5000 //change if needed
 
 MONGO_URI=mongodb+srv://devUser:06krAnaT33eqrf1y@cluster0.okvmtpm.mongodb.net/?retryWrites=true&w=majority
 
-JWT_SECRET= //set this equal to a secret phrase of your choosing
+JWT_SECRET=secretphrasehere //change if needed to protect sensitive information
 ```
 
 Finally

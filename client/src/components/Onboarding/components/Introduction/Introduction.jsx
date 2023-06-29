@@ -37,7 +37,7 @@ const Introduction = ({ nextStage }) => {
             }
         })
         const rareCard = allItems.find((item) => item.name === 'Rare Card')
-        await addItemToInventory(user.inventory, rareCard)
+        await addItemToInventory(user, rareCard)
         await skipOnboarding(user)
         await getCurrentUser()
     }

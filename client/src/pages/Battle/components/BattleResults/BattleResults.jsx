@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-import { addCoin, addExperience, updateUserStats } from '@api'
+import {
+    addCoin,
+    addExperience,
+    addItemToInventory,
+    updateUserStats,
+} from '@api'
 import { useGlobalContext } from '@context'
 
 import { BattleResultsButtons, CoinReward, XPReward } from './components'
@@ -9,9 +14,10 @@ import './BattleResults.scss'
 
 // Renders the user's battle results including any rewards gained
 const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
-    const { getCurrentUser } = useGlobalContext()
+    const { allItems, getCurrentUser } = useGlobalContext()
 
     const [battleResult, setBattleResult] = useState(null)
+    const [itemReward, setItemReward] = useState(null)
     const [loading, setLoading] = useState(true)
 
     const user = playerOne.user
@@ -19,11 +25,12 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
 
     const coinReward = Math.floor(
         opponent.rewards.coin *
-            (playerOne.battleScore + 1 - playerTwo.battleScore)
+            ((playerOne.battleScore - playerTwo.battleScore) / 2 + 1)
     )
+
     const xpReward = Math.floor(
         opponent.rewards.xp *
-            (playerOne.battleScore + 1 - playerTwo.battleScore)
+            ((playerOne.battleScore - playerTwo.battleScore) / 2 + 1)
     )
 
     useEffect(() => {
@@ -47,13 +54,17 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
         await updateUserStats(user, resultType)
         const randomRewardChance = Math.random()
 
-        console.log(randomRewardChance)
-
-        if (battleResult === 'Victory' && randomRewardChance < 0.1) {
-            console.log('won item')
+        if (resultType === 'win' && randomRewardChance < 0.2) {
+            const rewardItem = allItems.filter((item) =>
+                opponent.rewards.items.includes(item.name)
+            )
+            setTimeout(async () => {
+                setItemReward(rewardItem)
+                await addItemToInventory(user, rewardItem)
+            }, 3500)
         }
 
-        if (battleResult === 'Defeat') {
+        if (resultType === 'loss') {
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
@@ -89,7 +100,18 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
                         {battleResult !== 'Defeat' && (
                             <>
                                 <XPReward xpReward={xpReward} />
-                                <CoinReward coinReward={coinReward} />
+                                <div className='rewards__bottom around'>
+                                    <CoinReward coinReward={coinReward} />
+                                    {itemReward && (
+                                        <div className='item-reward center'>
+                                            <p>+</p>
+                                            <img
+                                                src={itemReward[0].image}
+                                                alt='item reward'
+                                            />
+                                        </div>
+                                    )}
+                                </div>
                             </>
                         )}
                     </div>

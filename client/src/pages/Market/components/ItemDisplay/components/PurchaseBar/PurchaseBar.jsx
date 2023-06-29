@@ -19,7 +19,7 @@ const PurchaseBar = ({
     setFinalPrice,
 }) => {
     const { user, getCurrentUser } = useGlobalContext()
-    const { inventory, coin } = user ?? {}
+    const { coin } = user ?? {}
 
     const [loading, setLoading] = useState(false)
 
@@ -52,7 +52,7 @@ const PurchaseBar = ({
             // Simulate loading for 1.5 seconds
             await new Promise((resolve) => setTimeout(resolve, 500))
             await deductCoin(user, finalPrice)
-            await addItemToInventory(inventory, finalPurchase)
+            await addItemToInventory(user, finalPurchase)
             await getCurrentUser()
 
             setLoading(false)

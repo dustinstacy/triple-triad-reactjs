@@ -37,6 +37,27 @@
         .rewards {
             flex: 1;
             padding: 24px;
+
+            &__bottom {
+                margin-top: 2vh;
+                width: 100%;
+
+                @media screen and (max-width: 768px) {
+                    margin-top: 0;
+                }
+
+                p {
+                    font-size: 3vh;
+                }
+
+                img {
+                    height: 8vh;
+                }
+
+                .item-reward {
+                    gap: 12px;
+                }
+            }
         }
     }
 }

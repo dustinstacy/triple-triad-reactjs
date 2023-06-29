@@ -24,8 +24,8 @@ export const addCardToDeck = async (card) => {
     await axios.put(`/api/collection/${card._id}/select`)
 }
 
-export const addItemToInventory = async (inventory, item) => {
-    let updatedInventory = [...inventory]
+export const addItemToInventory = async (user, item) => {
+    let updatedInventory = [...user.inventory]
 
     if (Array.isArray(item)) {
         updatedInventory.push(...item)
@@ -51,10 +51,10 @@ export const removeCardFromDeck = async (card) => {
     await axios.put(`/api/collection/${card._id}/unselect`)
 }
 
-export const removeItemFromInventory = async (inventory, item) => {
-    removeObjectByValue(inventory, 'name', item.name)
+export const removeItemFromInventory = async (user, item) => {
+    removeObjectByValue(user.inventory, 'name', item.name)
     await axios.put('/api/profile/inventory', {
-        inventory: inventory,
+        inventory: user.inventory,
     })
 }
 

@@ -14,7 +14,7 @@ const HowToPlay = ({ nextStage }) => {
 
     const handleClick = async () => {
         const rareCard = allItems.find((item) => item.name === 'Rare Card')
-        await addItemToInventory(user.inventory, rareCard)
+        await addItemToInventory(user, rareCard)
         await nextStage()
     }
 

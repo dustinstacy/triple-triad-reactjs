@@ -1,19 +1,5 @@
 .results-coin {
     position: relative;
-    width: 100%;
     gap: 12px;
-    margin-top: 2vh;
     padding: 8px;
-
-    @media screen and (max-width: 768px) {
-        margin-top: 0;
-    }
-
-    p {
-        font-size: 3vh;
-    }
-
-    img {
-        height: 8vh;
-    }
 }

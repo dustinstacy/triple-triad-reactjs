@@ -55,7 +55,6 @@ export const calculateOptimizedDeck = (array, count) => {
 // value: The value of the property to match and remove the corresponding object
 export const removeObjectByValue = (array, property, value) => {
     const index = array.findIndex((obj) => obj[property] === value)
-
     if (index !== -1) {
         array.splice(index, 1)
     }

@@ -16,11 +16,11 @@
         pointer-events: none;
 
         & .card__front {
-            transition: all 1.1s ease-out;
+            transition: all 0.8s ease-out;
         }
 
         & .card__back {
-            transition: all 1.1s ease-out;
+            transition: all 0.8s ease-out;
         }
 
         @media screen and (max-width: 920px) and (orientation: portrait) {

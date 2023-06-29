@@ -33,7 +33,7 @@ const UserPacks = ({ setIsLoading, setPackContents }) => {
         // Simulating a delay of 5 seconds for loader animation
         await new Promise((resolve) => setTimeout(resolve, 5000))
         await getRandomCardsFromPack()
-        await removeItemFromInventory(user.inventory, currentPack)
+        await removeItemFromInventory(user, currentPack)
         await getCurrentUser()
         setIsLoading(false)
     }

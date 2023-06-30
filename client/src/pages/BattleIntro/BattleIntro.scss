@@ -9,6 +9,11 @@
         padding: 12px;
     }
 
+    @media screen and (max-width: 568px) {
+        justify-content: center !important;
+        padding: 0;
+    }
+
     .p1-intro,
     .p2-intro {
         width: 100%;
@@ -55,6 +60,10 @@
         scale: 0;
         animation: grow 0.25s linear 1.5s forwards;
         z-index: 100;
+
+        @media screen and (max-width: 568px) {
+            height: auto;
+        }
     }
 
     h1 {
@@ -66,6 +75,10 @@
 
         @media screen and (max-width: 912px) {
             font-size: 20vh;
+        }
+
+        @media screen and (max-width: 568px) {
+            font-size: 10vh;
         }
     }
 

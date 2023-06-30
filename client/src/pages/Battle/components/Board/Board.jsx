@@ -82,10 +82,12 @@ const Board = ({
 
     const p1ImageClassNames = classSet(
         'user-image',
+        'p1-image',
         isP1Turn && isP1Turn !== null && 'is-turn'
     )
     const p2ImageClassNames = classSet(
         'user-image',
+        'p2-image',
         !isP1Turn && isP1Turn !== null && 'is-turn'
     )
     const turnArrowClassNames = classSet(

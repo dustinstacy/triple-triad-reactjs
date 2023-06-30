@@ -54,9 +54,12 @@ const BattleResults = ({ playerOne, playerTwo, opponentDeck }) => {
         await updateUserStats(user, resultType)
         const randomRewardChance = Math.random()
 
-        if (resultType === 'win' && randomRewardChance < 0.2) {
+        if (
+            resultType === 'win' &&
+            randomRewardChance < opponent.rewards.items[0].chance / 100
+        ) {
             const rewardItem = allItems.filter((item) =>
-                opponent.rewards.items.includes(item.name)
+                opponent.rewards.items[0].name.includes(item.name)
             )
             setTimeout(async () => {
                 setItemReward(rewardItem)

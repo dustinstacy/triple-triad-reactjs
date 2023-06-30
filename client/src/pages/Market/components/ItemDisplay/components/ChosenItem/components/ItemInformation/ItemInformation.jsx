@@ -16,7 +16,7 @@ const ItemInformation = ({ chosenItem }) => {
                 <div className='owned-inventory'>
                     <span>Owned: &nbsp;</span>
                     {
-                        user?.inventory.filter((item) => item.name === name)
+                        user?.inventory.filter((item) => item?.name === name)
                             .length
                     }
                 </div>

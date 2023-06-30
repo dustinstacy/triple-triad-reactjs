@@ -20,7 +20,7 @@ const AvatarMenu = ({ isOpen, toggleIsOpen }) => {
         navigate('/login')
     }
 
-    const disabledLinkClass = classSet(stage <= 6 && 'disabled')
+    const disabledLinkClass = classSet(stage < 5 && 'disabled')
 
     return (
         isOpen && (

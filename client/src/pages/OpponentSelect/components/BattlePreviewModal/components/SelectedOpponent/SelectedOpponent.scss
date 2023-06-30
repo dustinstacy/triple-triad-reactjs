@@ -4,6 +4,7 @@
     border-radius: 8px;
 
     @media screen and (max-width: 568px) {
+        height: auto !important;
         overflow: visible;
     }
 
@@ -40,7 +41,7 @@
         @media screen and (max-width: 568px) {
             top: 0;
             left: 0;
-            height: 100%;
+            height: 120%;
             width: 100vw;
             rotate: 0deg;
         }
@@ -88,7 +89,7 @@
 
         @media screen and (max-width: 568px) {
             align-items: center;
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
         .power-attribute {
@@ -117,6 +118,10 @@
 
             .value {
                 margin-right: 25px;
+
+                @media screen and (max-width: 568px) {
+                    margin-right: 0;
+                }
             }
         }
 

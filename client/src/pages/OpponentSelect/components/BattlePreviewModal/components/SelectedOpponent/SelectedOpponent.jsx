@@ -14,7 +14,7 @@ const SelectedOpponent = ({ selectedOpponent }) => {
     const roundsDisplay = ' Round' + (rounds > 1 ? 's' : '')
 
     const rewardItems = allItems.filter((item) =>
-        rewards.items.includes(item.name)
+        rewards.items[0].name.includes(item.name)
     )
 
     return (

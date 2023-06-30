@@ -113,6 +113,11 @@
 
     .score-column {
         left: 0;
+        z-index: 2;
+
+        @media screen and (max-width: 600px) {
+            width: auto;
+        }
 
         @media screen and (max-width: 400px) {
             width: 0;
@@ -133,13 +138,11 @@
         }
 
         @media screen and (max-width: 600px) {
-            justify-content: space-between;
-            padding: 8px;
-        }
-
-        @media screen and (max-width: 400px) {
-            width: 100vw;
+            width: 100%;
             align-items: center;
+            justify-content: space-between;
+            flex: 1;
+            padding: 8px;
         }
 
         .user-image {
@@ -158,13 +161,23 @@
             }
 
             @media screen and (max-width: 600px) {
-                display: none;
+                position: absolute;
+                height: 7vh;
+                right: 12px;
             }
 
             &.is-turn {
                 box-shadow: 2px 0 10px 2px var(--primary-color),
                     -2px 0 10px 2px var(--primary-color);
             }
+        }
+
+        .p1-image {
+            bottom: 12px;
+        }
+
+        .p2-image {
+            top: 12px;
         }
 
         .turn-arrow {

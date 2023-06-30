@@ -1,7 +1,7 @@
 import { classSet } from '@utils'
 
 export const subPanels = (user) => {
-    const userPacks = user?.inventory.filter((item) => (item.name = 'pack'))
+    const userPacks = user?.inventory.filter((item) => item?.name === 'pack')
 
     const packsClasses = classSet(
         userPacks?.length && 'unopened',

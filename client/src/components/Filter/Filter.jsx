@@ -17,7 +17,7 @@ const Filter = ({ label, value, setValue, options, id }) => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
             >
-                {options.map((option) => (
+                {options?.map((option) => (
                     <option key={option} value={option}>
                         {option}
                     </option>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-import { Onboarding } from '@components'
+import { Filter, Onboarding } from '@components'
 import { useGlobalContext } from '@context'
+import { calculateDeckPower } from '@utils'
 
-import { CardCollection, DeckBar, Filter, UserPanel } from './components'
+import { CardCollection, DeckBar, UserPanel } from './components'
 import {
     deckOptions,
     rarityOptions,
@@ -13,12 +14,15 @@ import './Collection.scss'
 
 // Renders user information, user's card collection with filter options, and deck management capabilities
 const Collection = () => {
-    const { getCurrentUser, user } = useGlobalContext()
+    const { getCurrentUser, user, userDeck } = useGlobalContext()
     const stage = user?.onboardingStage ?? {}
 
     const [deckFilter, setDeckFilter] = useState('')
     const [rarityFilter, setRarityFilter] = useState('')
     const [valueFilter, setValueFilter] = useState('Total')
+
+    // Calculate sum of all card values in user's deck
+    const userDeckPower = calculateDeckPower(userDeck)
 
     useEffect(() => {
         getCurrentUser()

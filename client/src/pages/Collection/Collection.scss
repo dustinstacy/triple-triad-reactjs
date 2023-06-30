@@ -3,6 +3,14 @@
     align-items: center;
     background-color: var(--background-color);
 
+    & .header {
+        height: 100%;
+        width: 100%;
+        padding-top: 18px;
+        background-color: var(--background3-color);
+        text-align: center;
+    }
+
     .card {
         span {
             background: none;
@@ -27,6 +35,10 @@
         min-height: 150px;
         gap: 5vw;
         background-color: var(--background3-color);
+
+        select {
+            width: 250px;
+        }
 
         @media screen and (max-width: 767px) {
             flex-direction: column;

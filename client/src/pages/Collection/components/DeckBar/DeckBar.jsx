@@ -1,36 +1,53 @@
 import React, { useState } from 'react'
 import { ThreeCircles } from 'react-loader-spinner'
 
-import { Button } from '@components'
+import { addCardToDeck, removeCardFromDeck } from '@api'
+import { Filter, Button } from '@components'
 import { useGlobalContext } from '@context'
-import { calculateDeckPower } from '@utils'
+import { calculateDeckPower, calculateOptimizedDeck } from '@utils'
 
-import { addAllToDeck, removeAllFromDeck } from './api'
-import { sortByTotalCardValue } from '../../utils'
+import { removeAllFromDeck } from './api'
 import './DeckBar.scss'
 
 // Renders the user's deck statistics and provides options to automatically manage the deck
 const DeckBar = () => {
     const { userCards, userDeck, getCurrentUser } = useGlobalContext()
+    const [deckCount, setDeckCount] = useState(15)
     const [fillDeckLoading, setFillDeckLoading] = useState(false)
     const [clearDeckLoading, setClearDeckLoading] = useState(false)
 
+    // Calculate the strongest combination of the user's cards based on the opponent's card count requirement
+    const userOptimizedDeck = calculateOptimizedDeck(userCards, deckCount)
+
     // Calculate sum of all card values in user's deck
     const userDeckPower = calculateDeckPower(userDeck)
+    // Calculate the sum of all card values in the user's highest potential deck
+    const userOptimizedDeckPower = calculateDeckPower(userOptimizedDeck)
+
+    const optimizeDeck = async () => {
+        userDeck.forEach((card) => {
+            if (
+                !userOptimizedDeck.some(
+                    (optimizedCard) => optimizedCard._id === card._id
+                )
+            ) {
+                removeCardFromDeck(card)
+            }
+        })
+        userOptimizedDeck.forEach((optimizedCard) => {
+            if (!userDeck.some((card) => card._id === optimizedCard._id)) {
+                addCardToDeck(optimizedCard)
+            }
+        })
+        await getCurrentUser()
+    }
 
     // Sorts all cards not in the user's deck and creates an array from the
     // strongest cards equal in length to the remaining space in the deck.
     // Then handles the API requests to add the cards to the deck and updates the user data upon completion
     const autoBuild = async () => {
         setFillDeckLoading(true)
-        const emptySlots = Math.min(35, userCards.length) - userDeck.length
-        const unselectedCards = userCards.filter(
-            (card) => !userDeck.find(({ _id }) => card._id === _id)
-        )
-        const totalValueArray = sortByTotalCardValue(unselectedCards)
-        const newDeckCardsArray = totalValueArray.slice(0, emptySlots)
-        await addAllToDeck(newDeckCardsArray)
-        await getCurrentUser()
+        await optimizeDeck()
         setFillDeckLoading(false)
     }
 
@@ -52,7 +69,7 @@ const DeckBar = () => {
             height={'24px'}
         />
     ) : (
-        'Fill Deck'
+        'Optimize Deck'
     )
 
     // Determine the label for the clear deck button based on the clearDeckLoading state
@@ -67,8 +84,10 @@ const DeckBar = () => {
         'Clear Deck'
     )
 
+    const optimizedDeckCountOptions = ['15', userCards?.length > 25 && '25']
+
     return (
-        <div className='deck center'>
+        <div className='deck center-column'>
             <div className='deck-stats center'>
                 <div className='count center-column'>
                     <p>Cards in Deck</p>
@@ -82,12 +101,24 @@ const DeckBar = () => {
                 </div>
             </div>
 
-            <div className='section'>
-                <Button
-                    onClick={autoBuild}
-                    label={fillDeckLabel}
-                    disabled={fillDeckLoading || clearDeckLoading}
-                />
+            <div className='section center'>
+                <div className='optimize-deck center'>
+                    <Filter
+                        label='Card Count'
+                        value={deckCount}
+                        setValue={setDeckCount}
+                        options={optimizedDeckCountOptions}
+                    />
+                    <Button
+                        onClick={autoBuild}
+                        label={fillDeckLabel}
+                        disabled={
+                            userDeckPower === userOptimizedDeckPower ||
+                            fillDeckLoading ||
+                            clearDeckLoading
+                        }
+                    />
+                </div>
                 <Button
                     onClick={emptyDeck}
                     label={clearDeckLabel}

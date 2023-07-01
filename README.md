@@ -24,6 +24,17 @@ Nexus Dawn
 
 ---
 
+<h1 align="center">
+⚠️Project Relocated⚠️
+</h1>
+<div align='center'>
+  I plan on maintaining this repository and updating the code with any relevant improvements.
+  <br/>
+All further additions will take place in the new repository.
+  <br/>
+  If you are interested in working on the project, please reach out to discuss joining the team!
+</div>
+<br/>
 <div align="center">
 <img height='400px' src='https://res.cloudinary.com/dsv7k92lb/image/upload/v1687034760/Nexus%20Dawn/logos/logo_c9eaj0.png' alt='logo'/>
 <br/>
@@ -67,17 +78,6 @@ application.
 Find all the game rules listed
 [here](https://nexus-dawn-16daa70a99d8.herokuapp.com/rules)
 
-## Planned Updates
-
--   Level up rewards
--   Card challenges
--   Card fusion
--   Deck presets
--   UI/UX enhancements
--   Expanded Ruleset
--   New game modes
--   Peer to Peer matches
-
 ## Local Setup
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and
@@ -110,7 +110,7 @@ Next, create a `.env` file inside your server folder. There you will paste the f
 ```
 PORT=5000 //change if needed
 
-MONGO_URI=mongodb+srv://devUser:06krAnaT33eqrf1y@cluster0.okvmtpm.mongodb.net/?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://devUser:fZWxT2RId1oPFy8X@cluster0.okvmtpm.mongodb.net/?retryWrites=true&w=majority
 
 JWT_SECRET=secretphrasehere //change if needed to protect sensitive information
 ```
